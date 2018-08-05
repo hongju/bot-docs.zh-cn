@@ -1,0 +1,11 @@
+# [常见问题](../bot-service-resources-bot-framework-faq.md)
+# [获取支持](../bot-service-resources-links-help.md)
+# [标识符指南](../bot-service-resources-identifiers-guide.md)
+# [App Insights 密钥](../bot-service-resources-app-insights-keys.md)
+# [用户代理请求](../bot-service-resources-user-agent.md)
+# [机器人审核指南](../bot-service-review-guidelines.md)
+# [Bot Framework 活动规范](../bot-service-activity-spec.md)
+# [机器人服务符合性](../v4sdk/bot-service-compliance.md)
+# 故障排除
+## [排查常见问题](../bot-service-troubleshoot-general-problems.md)
+## [排查身份验证问题](../bot-service-troubleshoot-authentication-problems.md)
