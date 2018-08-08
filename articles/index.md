@@ -8,14 +8,17 @@ ms.topic: landing-page
 layout: LandingPage
 ms.prod: bot-framework
 ms.date: 05/03/2018
-ms.openlocfilehash: 2264f714b28b52691da2ee0d421506b408a43ef3
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6759a870538265fa9f8ae089486946b8fe648649
+ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39116412"
+ms.lasthandoff: 08/04/2018
+ms.locfileid: "39514987"
 ---
 ::: moniker range="azure-bot-service-3.0"
+
+> [!NOTE]
+> 本主题适用于 SDK v3（稳定）版本。 可以在[此处](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)找到 SDK v4 预发行版的文档。
 
 <div class="content">
     <h1>Azure 机器人服务文档</h1>
@@ -90,10 +93,12 @@ ms.locfileid: "39116412"
 
 ::: moniker range="azure-bot-service-4.0"
 
+> [!NOTE] 
+> 本主题为 V4 SDK 内容的预发布文档，可能会更改。 可以在[此处](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-3.0)找到 V3 SDK（稳定）内容。
+
 <div class="content">
     <h1>Azure 机器人服务文档</h1>
     <div class="intro" style="min-width: 200px">
-        <p><b> [本主题为预发布文档，可能会更改。] </b></p>
         <p>Azure 机器人服务提供一个专用于机器人开发的集成式环境，使你可以从同一位置生成、连接、测试、部署和管理智能机器人。 Azure 机器人服务利用支持 C#、JavaScript、Python 和 Java 的 Bot Builder SDK。 通过快速入门、教程和示例了解如何使用机器人服务。
 </p>
 </div>
