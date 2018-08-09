@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/13/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 63e5f4b8ac86b6b0e29d09796dbe74295bf3e213
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 96f21f02e74c8f7d78a699c37eb8324b4d36139e
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297771"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574673"
 ---
 # <a name="add-suggested-actions-to-messages"></a>向消息添加建议的操作
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-add-suggested-actions.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-send-suggested-actions.md)
@@ -34,7 +37,7 @@ ms.locfileid: "39297771"
 
 [!code-csharp[Add suggested actions](../includes/code/dotnet-add-suggested-actions.cs#addSuggestedActions)]
 
-当用户点击建议的操作之一时，机器人将从用户收到包含相应操作的 `Value` 的消息。
+当用户点击其中一个建议的操作时，机器人将从用户收到包含相应操作的 `Value` 的消息。
 
 ## <a name="additional-resources"></a>其他资源
 

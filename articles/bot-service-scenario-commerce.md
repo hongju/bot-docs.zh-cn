@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b809e98ec971abaac98fd33c4fb2c285baca898f
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 15745bc25013df2fd18b0a2045ae2314d6c361e2
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298349"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574853"
 ---
 # <a name="commerce-bot-scenario"></a>商业机器人方案
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 [商业机器人](bot-service-scenario-commerce.md)方案描述了一种机器人，它使用酒店的礼宾服务代替人们通常进行的传统电子邮件和电话交互。 机器人利用认知服务通过文本和语音更好地处理客户请求，并通过与后端服务集成收集上下文。
 
 ![应用程序机器人关系图](~/media/scenarios/bot-service-scenario-commerce-bot.png)

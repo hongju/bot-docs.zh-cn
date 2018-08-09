@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 2483366c6d325e5c18a77c2a89b63cc0350aef85
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 049dffd2adc700323bec943e090d369a14ff696b
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297789"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574843"
 ---
 # <a name="cortana-skills-bot-scenario"></a>Cortana 技能机器人方案
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 Cortana 技能机器人扩展了 Cortana，可以轻松地在日历的上下文中使用语音来进行汽车维护预约。
 
 Cortana 是个人助理。 使用你的声音和自定义 Cortana 技能机器人的自然界面，可以让 Cortana 与组织（如汽车商店）交谈，以帮助你预约。 该服务可以提供服务、可用时间和持续时间的列表。 Cortana 可以查看你的日历以了解你在冲突的时间是否有其他安排，如果没有，则创建预约并将其添加到你的日历中。

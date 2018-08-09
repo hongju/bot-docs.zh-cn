@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 7fdcd6e0e56ef11cd887b9d5493fd0b25c23cf89
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 8ba63ad99c772c7cf5884180a62244e0dfe11db2
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297053"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574903"
 ---
 # <a name="global-message-handlers-using-scorables"></a>使用可评分项的全局消息处理程序
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 当机器人期待不同的响应时，用户尝试通过在聊天中使用“帮助”、“取消”或“重新开始”等单词来访问机器人内的某些功能。 可以将机器人设计为使用可评分对话恰当地处理此类请求。
 
