@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: ec16b89a6c25c4113048a40f6b9b3edb6ce2af5e
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6a32bc5712937c615962e4f6edfc7ea691d3ec39
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297861"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574973"
 ---
 # <a name="register-a-bot-with-bot-service"></a>在机器人服务中注册机器人
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 如果已在其他位置托管了机器人，并且希望使用机器人服务将它连接到其他通道，则需要在机器人服务中注册机器人。 在本主题中，了解如何通过创建“机器人通道注册”机器人服务，在机器人服务中注册机器人。
 
 > [!IMPORTANT] 

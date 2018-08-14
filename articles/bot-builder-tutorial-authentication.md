@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 7/2/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 7fb430857cf954d2b9126a400335f28b091fa11d
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: 6d2e22bdfaa9fc4e3ce55bc1dd969921e90c87cc
+ms.sourcegitcommit: 97bb24f15041caccef4ca5736aa14f144881e0c6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39298560"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39567506"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
 本教程使用 Azure 机器人服务中的新机器人身份验证功能，提供各种功能以帮助轻松开发用于向 Azure AD (Azure Active Directory)、GitHub、Uber 等各种标识提供者验证用户身份的机器人。 这些更新还采取了一些措施，通过免去某些客户端的“幻码验证”来改善用户体验。
 

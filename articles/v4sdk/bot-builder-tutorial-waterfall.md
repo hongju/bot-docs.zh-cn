@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 5/10/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 62ff445e4aabf2afd41cc4bf1f15badb3f47e945
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: a5c55d4437033968f9c08ed49c07b9586cb9b7d8
+ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298432"
+ms.lasthandoff: 08/04/2018
+ms.locfileid: "39514967"
 ---
 # <a name="ask-the-user-questions"></a>向用户提问
+
+[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
 其核心是围绕与用户的聊天构建机器人。 聊天可采用[多种形式](bot-builder-conversations.md)：可以是简短聊天或更复杂的聊天，可以是提问，也可以是解答。 聊天的形式取决于多个因素，但它们都与聊天有关。
 

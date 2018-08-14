@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6ba5e4d3b7ccc180fd53766c3cf988b17b495be9
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 539e9e1cd772495d849ce106ee7d6a157fc1a9c0
+ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298526"
+ms.lasthandoff: 08/04/2018
+ms.locfileid: "39515077"
 ---
 # <a name="persist-user-data"></a>保存用户数据
+
+[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
 当机器人要求用户进行输入时，你可能希望将某些信息保存到某种形式的存储中。 借助 Bot Builder SDK，你可使用“内存中存储”、“文件存储”或“数据库存储”（如 CosmosDB 或 SQL）来存储用户的输入项，其中本地存储类型主要用于测试或原型制作，而后期存储类型最适合生产机器人。
 
@@ -49,11 +51,11 @@ options.Middleware.Add(new UserState<MyBot.userState>(storage));
 
 Bot Builder SDK 提供 3 个具有不同范围的状态对象供你选择。
 
-| 状态 | 范围 | 说明 |
+| 省/直辖市/自治区 | 范围 | Description |
 | ---- | ---- | ---- |
 | `dc.ActiveDialog.State` | 对话 | 可供瀑布式对话中的步骤使用的状态。 |
 | `ConversationState` | 聊天 | 可供当前聊天使用的状态。 |
-| `UserState` | 用户 | 可供多个聊天使用的状态。 |
+| `UserState` | user | 可供多个聊天使用的状态。 |
 
 # <a name="javascripttabjstab"></a>[JavaScript](#tab/jstab)
 
@@ -68,11 +70,11 @@ adapter.use(new BotStateSet(convoState, userState));
 
 `BotStateSet` 可同时管理 `ConversationState` 和 `UserState`。 在保存用户数据时，可进行选择。 Bot Builder SDK 提供 3 个具有不同范围的状态对象供你选择。
 
-| 状态 | 范围 | 说明 |
+| 省/直辖市/自治区 | 范围 | Description |
 | ---- | ---- | ---- |
 | `dc.activeDialog.state` | 对话 | 可供瀑布式对话中的步骤使用的状态。 |
 | `ConversationState` | 聊天 | 可供当前聊天使用的状态。 |
-| `UserState` | 用户 | 可供多个聊天使用的状态。 |
+| `UserState` | user | 可供多个聊天使用的状态。 |
 
 ---
  

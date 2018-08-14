@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/25/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6294021355f82ff53a2ea99db4fb19f44cf13029
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: d3c9355a0e87d31029b92614dc182f3d7010c736
+ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39298559"
+ms.lasthandoff: 08/04/2018
+ms.locfileid: "39514937"
 ---
 ## <a name="integrate-multiple-luis-apps-and-qna-services-with-the-dispatch-tool"></a>将多个 LUIS 应用和 QnA 服务与 Dispatch 工具集成
+
+[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
 本教程演示如何使用 Dispatch 工具生成的 LUIS 模型，将机器人与多个语言理解智能服务 (LUIS) 应用和 QnAMaker 服务集成。 
 

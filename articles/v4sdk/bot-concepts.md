@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/28/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 99c9267fe41734a41243461fafa98c7116162984
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: abb2b18d45fb722d7de98c5cd02bd88350aad803
+ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298443"
+ms.lasthandoff: 08/04/2018
+ms.locfileid: "39515087"
 ---
 # <a name="channels-and-the-bot-connector-service"></a>通道和 Bot Connector 服务
+
+[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
 通道是指用户用于连接到机器人的终结点，例如 Facebook、Skype、电子邮件、Slack 等。通过 [Azure 门户](https://portal.azure.com)配置的 Bot Connector 服务将机器人连接到这些通道，并促进机器人与用户之间的通信。 
 

@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 0eb14f4bf52a293d3405762c786259f771aecad6
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 43c178c4bbdf0bb04384bb8ada397066e6f7dd12
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298177"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574613"
 ---
 # <a name="bot-builder-sdk-for-nodejs-samples"></a>Bot Builder SDK for Node.js 示例
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 这些示例演示了以任务为中心的机器人，展示如何利用 Bot Builder SDK for Node.js 中的功能。 这些示例可助你快速入门，构建具有丰富功能的强大机器人。
 

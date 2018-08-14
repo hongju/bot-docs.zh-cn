@@ -8,16 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/03/2018
-ms.openlocfilehash: 142d4cbe0c252e88bab800bb3823b70434a65bd6
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b6326ac152112ff1df01470db1f525d4bf241af4
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298424"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574603"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
 # <a name="azure-bot-service"></a>Azure 机器人服务
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
 Azure 机器人服务提供的工具可用于在一个位置构建、测试、部署和管理智能机器人。 通过由 SDK 提供的模块化和可扩展框架，开发人员可以利用模板制作机器人，提供语音、语言理解、提问和解答等功能。  
 

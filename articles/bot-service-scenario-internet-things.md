@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3583c4382a9262b959b31d5a9a1b7b1b97fc8a04
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3b65f323427760fa43586f471aefb6811ef3e675
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297855"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574514"
 ---
 # <a name="internet-of-things-iot-bot-scenario"></a>物联网 (IoT) 机器人方案
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 这款物联网 (IoT) 机器人可让你轻松控制家中的设备，例如使用语音或交互式聊天命令的 Philips Hue 灯。
 
 人们喜欢谈论自己的事情。 自从第一个电视遥控器问世以来，人们喜欢不必移动即可影响环境。 该款 IoT 机器人允许用户通过简单的聊天命令或语音管理 Philips Hue。 此外，使用聊天时，可为用户提供与颜色相关的视觉选项。

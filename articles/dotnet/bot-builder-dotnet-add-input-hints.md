@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 2f56a855990675ccae4845c13541150ab205379a
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 87fc068c831dba752fa52a6430327232719a74a9
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298362"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574823"
 ---
 # <a name="add-input-hints-to-messages"></a>向消息添加输入提示
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-add-input-hints.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-send-input-hints.md)
@@ -27,23 +30,38 @@ ms.locfileid: "39298362"
 
 若要指示机器人被动地准备好接收输入但未等待用户的响应，请将消息的输入提示设置为 `InputHints.AcceptingInput`。 在许多通道上，这将导致客户端的输入框启用并且麦克风关闭，但仍可供用户访问。 例如，如果用户按住麦克风按钮，Cortana 将打开麦克风以接受来自用户的输入。 下面的代码示例可创建一条消息，指示机器人接受用户输入。
 
-[!code-csharp[Accepting input](../includes/code/dotnet-input-hints.cs#InputHintAcceptingInput)]
+```cs
+Activity reply = activity.CreateReply("This is the text that will be displayed.");
+reply.Speak = "This is the text that will be spoken.";
+reply.InputHint = InputHints.AcceptingInput;
+await connector.Conversations.ReplyToActivityAsync(reply);
+```
 
 ## <a name="expecting-input"></a>期待输入
 
 若要指示机器人正在等待用户的响应，请将消息的输入提示设置为 `InputHints.ExpectingInput`。 在许多通道上，这将导致客户端的输入框启用并且麦克风打开。 下面的代码示例可创建一条消息，指示机器人期待用户输入。
 
-[!code-csharp[Expecting input](../includes/code/dotnet-input-hints.cs#InputHintExpectingInput)]
+```cs
+Activity reply = activity.CreateReply("This is the text that will be displayed.");
+reply.Speak = "This is the text that will be spoken.";
+reply.InputHint = InputHints.ExpectingInput;
+await connector.Conversations.ReplyToActivityAsync(reply);
+```
 
 ## <a name="ignoring-input"></a>忽略输入
- 
+
 若要指示机器人尚未准备好接收用户的输入，请将消息的输入提示设置为 `InputHints.IgnorningInput`。 在许多通道上，这将导致客户端的输入框禁用并且麦克风关闭。 下面的代码示例可创建一条消息，指示机器人忽略用户输入。
 
-[!code-csharp[Ignoring input](../includes/code/dotnet-input-hints.cs#InputHintIgnoringInput)]
+```cs
+Activity reply = activity.CreateReply("This is the text that will be displayed.");
+reply.Speak = "This is the text that will be spoken.";
+reply.InputHint = InputHints.IgnoringInput;
+await connector.Conversations.ReplyToActivityAsync(reply);
+```
 
 ## <a name="default-values-for-input-hint"></a>输入提示的默认值
 
-如果未设置消息的输入提示，Bot Builder SDK 将使用以下逻辑自动进行设置： 
+如果未设置消息的输入提示，Bot Builder SDK 将使用以下逻辑自动进行设置：
 
 - 如果机器人发送提示，则消息的输入提示将指定机器人期待输入。</li>
 - 如果机器人发送单条消息，则消息的输入提示将指定机器人接受输入。</li>

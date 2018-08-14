@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 06be4330d34068bf86466b04686d6636971d0a5e
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 8d1ae09585898ce8babde6c06e525a0ade46c761
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298535"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574913"
 ---
 # <a name="bot-scenarios"></a>机器人方案
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 关于使用机器人服务成功生成的功能强大的机器人，本主题介绍了几种主要方案。
 
 可以从[常见 Bot Framework 方案示例](https://aka.ms/bot/scenarios)中下载或克隆所有方案机器人示例的源代码。
