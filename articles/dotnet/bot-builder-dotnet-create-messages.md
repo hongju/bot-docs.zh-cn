@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a97d21e64ce12f6158f276889762a73ac2aff49b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 00ea81558bf4b8206dc6142ab26e47e3652be563
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298494"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574543"
 ---
 # <a name="create-messages"></a>创建消息
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 机器人将发送消息[活动](bot-builder-dotnet-activities.md)向用户传递信息，同样，也将收到来自用户的消息活动。 某些消息可能只包含纯文本，而其他消息可能包含更丰富的内容，例如[要说的话](bot-builder-dotnet-text-to-speech.md)、[建议的操作](bot-builder-dotnet-add-suggested-actions.md)、[媒体附件](bot-builder-dotnet-add-media-attachments.md)、[资讯卡](bot-builder-dotnet-add-rich-card-attachments.md)和[通道特定的数据](bot-builder-dotnet-channeldata.md)。 
 
@@ -45,11 +47,11 @@ ms.locfileid: "39298494"
 
 许多通道支持机器人或用户在聊天上下文中“提及”某人。 要在消息中提及某位用户，请使用 `Mention` 对象填充消息的 `Entities` 属性。 `Mention` 对象包含以下属性： 
 
-| 属性 | 说明 | 
+| 属性 | Description | 
 |----|----|
 | Type | 实体（“mention”）的类型 | 
 | Mentioned | `ChannelAccount` 对象，它指示提及了哪位用户 | 
-| Text | `Activity.Text` 属性中的文本，它表示 mention 本身（可能为空或为 NULL） |
+| 文本 | `Activity.Text` 属性中的文本，它表示 mention 本身（可能为空或为 NULL） |
 
 此代码示例演示如何向 `Entities` 集合添加 `Mention` 实体。
 
@@ -64,22 +66,22 @@ ms.locfileid: "39298494"
 
 `Place` 对象包含以下属性：
 
-| 属性 | 说明 | 
+| 属性 | Description | 
 |----|----|
 | Type | 实体（“Place”）的类型 |
-| Address | 说明或 `PostalAddress` 对象（未来值） | 
-| Geo | 地理坐标 | 
+| 地址 | 说明或 `PostalAddress` 对象（未来值） | 
+| 地域 | 地理坐标 | 
 | HasMap | 地图或 `Map` 对象的 URL（未来值） |
-| Name | 位置的名称 |
+| 名称 | 位置的名称 |
 
 `GeoCoordinates` 对象包含以下属性：
 
-| 属性 | 说明 | 
+| 属性 | Description | 
 |----|----|
 | Type | 实体（“GeoCoordinates”）类型 |
-| Name | 位置的名称 |
-| Longitude | 位置的经度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 
-| Latitude | 位置的纬度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 
+| 名称 | 位置的名称 |
+| 经度 | 位置的经度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 
+| 纬度 | 位置的纬度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 
 | Elevation | 位置的海拔高度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 
 
 此代码示例演示如何向 `Entities` 集合添加 `Place` 实体：
