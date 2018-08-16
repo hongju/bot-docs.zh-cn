@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: c8919712331a5f78bdbc35f28adeab966435d737
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 2a5c9dcad0d9fd70caaf28ff7ac95830bd47e2d6
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298035"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574593"
 ---
 # <a name="send-and-receive-activities"></a>发送和接收活动
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 Bot Framework Connector 提供单个 REST API，让机器人能够跨多个通道（如 Skype、电子邮件、Slack 等）进行通信。 它通过从机器人到通道以及从通道到机器人的消息中继来促进机器人与用户之间的通信。 
 
@@ -63,7 +65,7 @@ Connector 使用 [Activity](bot-builder-dotnet-activities.md) 对象在机器人
 可以使用 `CreateReply` 方法初始化新消息（这将自动设置消息的 `Recipient`、`From` 和 `Conversation` 属性）。 或者，可以使用 `CreateMessageActivity` 方法来创建新消息并自行设置所有属性值。
 
 > [!NOTE]
-> Bot Framework 未对机器人可能发送的消息数量施加任何限制。 但是，大多数通道都会强制执行限制，以限制机器人在短时间内发送大量消息。 此外，如果机器人快速连续地发送多条消息，则通道可能无法始终以正确的顺序呈现消息。
+> Bot Framework 未对机器人可能发送的消息数量施加任何限制。 但是，大多数通道都会强制实施限制，以限制机器人在短时间内发送大量的消息。 此外，如果机器人快速连续地发送多条消息，则通道可能无法始终以正确的顺序呈现消息。
 
 ## <a name="start-a-conversation"></a>启动会话
 

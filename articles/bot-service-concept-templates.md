@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 286d7057afb28983964ef992de2c11cebd74e0da
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: ab1f0b938703f404417e48520467dc75b9f0717d
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298102"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574833"
 ---
 # <a name="bot-service-templates"></a>机器人服务模板
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 机器人服务包括五个模板来帮助你开始构建机器人。 这些模板提供了一个功能齐全、立即可用的机器人，可以帮助你快速开始。 [创建机器人](bot-service-quickstart.md)时，为机器人选择模板和 SDK 语言。
 
 每个模板都提供了一个基于机器人核心功能的起点。 

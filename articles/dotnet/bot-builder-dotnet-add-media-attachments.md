@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b321bcd19dc38099af5d825ed05621cf0d969bd9
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 68546a9c46bdeb96d31195800cee8a8253fd207b
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298039"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574744"
 ---
 # <a name="add-media-attachments-to-messages"></a>向消息添加媒体附件
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-add-media-attachments.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-send-receive-attachments.md)

@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 4552fd8a38468b000837ef0f580d3a0e504a882b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 9eb07a4ac63816b84830956bca0c3a3910669e0d
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298044"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574533"
 ---
-# <a name="add-rich-card-attachments-to-messages"></a>向消息添加富卡附件
+# <a name="add-rich-card-attachments-to-messages"></a>向消息添加资讯卡附件
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-add-rich-card-attachments.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-send-rich-cards.md)
@@ -32,14 +35,14 @@ Bot Framework 目前支持八个类型的富卡：
 
 | 卡类型 | Description |
 |----|----|
-| <a href="/adaptive-cards/get-started/bots">自适应卡</a> | 一种可以包含文本、语音、图像、按钮和输入字段的任意组合的可自定义卡。 请参阅[每个通道支持](/adaptive-cards/get-started/bots#channel-status)。  |
-| [动画卡][animationCard] | 一种可以播放动态 GIF 或短视频的卡。 |
-| [音频卡][audioCard] | 一种可播放音频文件的卡。 |
-| [英雄卡][heroCard] | 一种通常包含单个大图像、一个或多个按钮和文本的卡。 |
-| [缩略图卡][thumbnailCard] | 一种通常包含单个缩略图图像、一个或多个按钮和文本的卡。 |
-| [收据卡][receiptCard] | 一种让机器人能够向用户提供收据的卡。 它通常包含要包括在收据、税款和总信息以及其他文本中的项列表。 |
+| <a href="/adaptive-cards/get-started/bots">自适应卡片</a> | 一种可以包含文本、语音、图像、按钮和输入字段的任意组合的可自定义卡片。 请参阅[每个通道的支持](/adaptive-cards/get-started/bots#channel-status)。  |
+| [动画卡片][animationCard] | 一种可以播放动态 GIF 或短视频的卡片。 |
+| [音频卡片][audioCard] | 一种可以播放音频文件的卡片。 |
+| [英雄卡][heroCard] | 通常包含单个大图像、一个或多个按钮和文本的卡片。 |
+| [缩略图卡片][thumbnailCard] | 通常包含单个缩略图图像、一个或多个按钮和文本的卡片。 |
+| [收据卡片][receiptCard] | 一种让机器人能够向用户提供收据的卡。 它通常包含要包括在收据、税款和总信息以及其他文本中的项列表。 |
 | [登录卡][signinCard] | 一种让机器人能够请求用户登录的卡。 它通常包含文本和一个或多个按钮，用户可以单击这些按钮来启动登录进程。 |
-| [视频卡][videoCard] | 一种可播放视频的卡。 |
+| [视频卡片][videoCard] | 一种可播放视频的卡。 |
 
 > [!TIP]
 > 若要以列表格式显示多个富卡，请将活动的 `AttachmentLayout` 属性设置为“list”。 若要以轮播格式显示多个富卡，请将活动的 `AttachmentLayout` 属性设置为“carousel”。 如果通道不支持轮播格式，它将以列表格式显示富卡，即使 `AttachmentLayout` 属性指定“carousel”也是如此。
@@ -56,7 +59,7 @@ Bot Framework 目前支持八个类型的富卡：
 | 值 | 字符串 | 执行指定类型的操作所需的值 |
 
 > [!NOTE]
-> 自适应卡中的按钮不是使用 `CardAction` 对象创建的，而是使用<a href="http://adaptivecards.io" target="_blank">自适应卡</a>定义的架构。 有关如何向“自适应卡”添加按钮的示例，请参阅[将自适应卡添加到消息](#adaptive-card)。
+> 自适应卡片中的按钮不是使用 `CardAction` 对象创建的，而是使用<a href="http://adaptivecards.io" target="_blank">自适应卡片</a>定义的架构创建的。 有关如何向“自适应卡”添加按钮的示例，请参阅[将自适应卡添加到消息](#adaptive-card)。
 
 此表列出了 `CardAction.Type` 的有效值，并为每个类型介绍 `CardAction.Value` 的预期内容：
 
@@ -65,11 +68,11 @@ Bot Framework 目前支持八个类型的富卡：
 | openUrl | 要在内置浏览器中打开的 URL |
 | imBack | 要发送到机器人的消息文本（来自单击按钮或点击卡的用户）。 通过托管会话的客户端应用程序，所有会话参与者都可看到此消息（从用户到机器人）。 |
 | postBack | 要发送到机器人的消息文本（来自单击按钮或点击卡的用户）。 某些客户端应用程序可能会在消息源中显示此文本，所有会话参与者都可看到该文本。 |
-| call | 采用以下格式的电话呼叫目标：电话：123123123123 |
+| call | 格式如下的电话呼叫的目标：电话:123123123123 |
 | playAudio | 要播放的音频的 URL |
 | playVideo | 要播放的视频的 URL |
 | showImage | 要显示的图像的 URL |
-| downloadFile | 要下载文件的 URL |
+| downloadFile | 要下载的文件的 URL |
 | signin | 要启动的 OAuth 流的 URL |
 
 ## <a name="add-a-hero-card-to-a-message"></a>向消息添加英雄卡
@@ -106,17 +109,17 @@ Bot Framework 目前支持八个类型的富卡：
 
 ## <a id="adaptive-card"></a> 向消息添加自适应卡
 
-自适应卡可以包含文本、语音、图像、按钮和输入字段的任意组合。 自适应卡使用<a href="http://adaptivecards.io" target="_blank">自适应卡</a>中指定的 JSON 格式创建而成，这让你可以完全控制卡内容和格式。 
+自适应卡片可包含文本、语音、图像、按钮和输入域的任意组合。 自适应卡使用<a href="http://adaptivecards.io" target="_blank">自适应卡</a>中指定的 JSON 格式创建而成，这让你可以完全控制卡内容和格式。 
 
 若要使用 .NET 创建自适应卡，请安装 `Microsoft.AdaptiveCards` NuGet 包。 然后，利用<a href="http://adaptivecards.io" target="_blank">自适应卡</a>站点中的信息了解自适应卡架构、探索自适应卡元素，并查看 JSON 示例，以便用于创建不同组合和复杂性的卡。 此外，可以使用交互式可视化工具来设计自适应卡有效负载并预览卡输出。
 
-此代码示例演示如何创建包含用于日历提醒的自适应卡的消息： 
+此代码示例演示如何创建包含用于日历提醒的自适应卡片的消息： 
 
 [!code-csharp[Add Adaptive Card attachment](../includes/code/dotnet-add-attachments.cs#addAdaptiveCardAttachment)]
 
 生成的卡包含三个文本块、一个输入字段（选择列表）和三个按钮：
 
-![自适应卡日历提醒](../media/adaptive-card-reminder.png)
+![自适应卡片日历提醒](../media/adaptive-card-reminder.png)
 
 ## <a name="additional-resources"></a>其他资源
 

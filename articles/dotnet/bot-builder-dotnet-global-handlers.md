@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 00ffc96672ea34cb2702b3b38fad5b98cf124042
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 796e36fdfd5ef2ee20ba1f5e000f92ef3e4ec1ae
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298026"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574653"
 ---
 # <a name="implement-global-message-handlers"></a>实现全局消息处理程序
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 [!INCLUDE [Introduction to global message handlers](../includes/snippet-global-handlers-intro.md)]
 
@@ -93,6 +95,6 @@ protected override async Task PostAsync(IActivity item, string state, Cancellati
 
 ## <a name="additional-resources"></a>其他资源
 
-- [设计和控制会话流](../bot-service-design-conversation-flow.md)
+- [设计和控制聊天流](../bot-service-design-conversation-flow.md)
 - <a href="/dotnet/api/?view=botbuilder-3.12.2.4" target="_blank">Bot Builder SDK for .NET 参考</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-GlobalMessageHandlers" target="_blank">全局消息处理程序示例 (GitHub)</a>

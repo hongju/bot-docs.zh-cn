@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 0dc869aa1464c086b6596ee83d8e6e488d8a8a55
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 4e0bde9d05ed49f6674b2d721e07235b26c5cea4
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298030"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574748"
 ---
 # <a name="enterprise-productivity-bot-scenario"></a>企业效率机器人方案
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 企业机器人展示了如何通过将机器人与 Office 365 日历和其他服务集成来提高工作效率。
 
 无需打开一堆窗口即可快速访问客户信息，这就是企业效率机器人所实现的功能。 通过使用简单的聊天命令，销售代表可以查找客户并通过 Graph API 和 Office 365 查看他们的下一个约会。 从那里，他们可以访问存储在 Dynamics CRM 中的客户特定信息，例如，获取案例或创建新案例。

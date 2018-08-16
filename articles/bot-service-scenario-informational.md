@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 7c85227d062f32f9f1e8096f1dad83c09ed85a9f
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 43eb8e25e2a17e1d6b1d30e767dd15569fcad78b
+ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298262"
+ms.lasthandoff: 08/06/2018
+ms.locfileid: "39574863"
 ---
 # <a name="information-bot-scenario"></a>信息机器人方案
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 此信息机器人可以使用认知服务 QnA Maker 回答知识集中定义的问题或常见问题，也可以使用 Azure 搜索回答更加开放的问题。
 
 通常，通过搜索可以轻松地使淹没在 SQL Server 等结构化数据中的信息浮出表面。 想象一下按简单的会话式命令查找客户的订单状态。 使用认知服务 QnA Maker，向用户呈现一组有效的搜索选项，例如查找客户、查看客户的最近订单等。通过定义 QnA 格式，用户可以轻松地提出 Azure 搜索支持的问题，而 Azure 搜索可以查找存储在 SQL 数据库中的数据。
