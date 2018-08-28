@@ -1,9 +1,9 @@
 # [Azure 机器人服务文档](index.md)
 # 概述
-## [Azure 机器人服务简介](bot-service-overview-introduction.md)
+## [关于 Azure 机器人服务](bot-service-overview-introduction.md)
 # 快速入门
-## [使用机器人服务创建机器人](~/bot-service-quickstart.md)
-## 使用 Bot Builder SDK 创建机器人
+## [使用 Azure 机器人服务创建机器人](~/bot-service-quickstart.md)
+## 在本地创建机器人
 ### [.NET](dotnet/bot-builder-dotnet-quickstart.md)
 ### [.NET](dotnet/bot-builder-dotnet-sdk-quickstart.md)
 ### [Node.js](nodejs/bot-builder-nodejs-quickstart.md)
