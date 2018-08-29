@@ -48,7 +48,7 @@
 ## [管理](manage/TOC.md)
 ## 开发
 ### [发送消息](v4sdk/bot-builder-howto-send-messages.md)
-### [添加媒体附件](v4sdk/bot-builder-howto-add-media-attachments.md)
+### [向消息添加媒体](v4sdk/bot-builder-howto-add-media-attachments.md)
 ### [向消息添加输入提示](v4sdk/bot-builder-howto-add-input-hints.md)
 ### [向消息添加建议的操作](v4sdk/bot-builder-howto-add-suggested-actions.md)
 ### [创建自己的提示来收集用户输入](v4sdk/bot-builder-primitive-prompts.md)
