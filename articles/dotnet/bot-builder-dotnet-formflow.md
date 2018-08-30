@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f38424c2fa86fd4456ab6f8dee81bde71bfd6753
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: cf3d69f7941d8c3177788bd00e4b58416a71cf5e
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297839"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904621"
 ---
 # <a name="basic-features-of-formflow"></a>FormFlow 的基本功能
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 [对话](bot-builder-dotnet-dialogs.md)是很强大且很灵活的功能，但处理引导式聊天（例如订购三明治）仍需很大周折。 在聊天中，每个时间点接下来要发生的事情都有许多可能性。 例如，可能需要澄清某个不清楚的地方、提供帮助、返回或显示进度。 在用于 .NET 的 Bot Builder SDK 中使用 **FormFlow**，可以大大简化管理此类引导式聊天的过程。 
 
@@ -316,11 +318,11 @@ FormFlow 可简化对话开发。 FormFlow 的高级功能可用于自定义 For
 
 ## <a name="additional-resources"></a>其他资源
 
-- [使用 FormBuilder 自定义窗体](bot-builder-dotnet-formflow-formbuilder.md)
+- [使用 FormBuilder 自定义表单](bot-builder-dotnet-formflow-formbuilder.md)
 - [本地化窗体内容](bot-builder-dotnet-formflow-localize.md)
 - [使用 JSON 架构定义窗体](bot-builder-dotnet-formflow-json-schema.md)
 - [使用模式语言自定义用户体验](bot-builder-dotnet-formflow-pattern-language.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">用于 .NET 的 Bot Builder SDK 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
 
 [LuisDialog]: /dotnet/api/microsoft.bot.builder.dialogs.luisdialog-1
 

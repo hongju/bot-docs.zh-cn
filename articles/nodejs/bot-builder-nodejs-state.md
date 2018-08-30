@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 1001f1aa2fe76127073551e98548fc20ef9e1bd7
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: cdd35bc5b487b5bf0d49006cf168f2541e17a057
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298099"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904369"
 ---
 # <a name="manage-state-data"></a>管理状态数据
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-state.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-state.md)
@@ -24,7 +27,7 @@ ms.locfileid: "39298099"
 
 ## <a name="in-memory-data-storage"></a>内存中数据存储
 
-内存中数据存储仅用于测试。 此存储易失并且是临时的。 每当重新启动机器人便会清除数据。 若要将内存中存储用于测试目的，需要执行两项操作。 首先创建内存中存储的新实例：
+内存中数据存储仅用于测试。 此存储是易失性的临时存储。 每当重新启动机器人便会清除数据。 若要将内存中存储用于测试目的，需要执行两项操作。 首先创建内存中存储的新实例：
 
 ```javascript
 var inMemoryStorage = new builder.MemoryBotStorage();
@@ -42,7 +45,7 @@ var bot = new builder.UniversalBot(connector, [..waterfall steps..])
 
 ## <a name="manage-custom-data-storage"></a>管理自定义数据存储
 
-出于生产环境中的性能和安全考虑，你可能会实现你自己的数据存储或考虑实现以下数据存储选项之一：
+出于生产环境中的性能和安全考虑，你可以实施自己的数据存储，或考虑实施以下数据存储选项之一：
 
 1. [使用 Cosmos DB 管理状态数据](bot-builder-nodejs-state-azure-cosmosdb.md)
 
@@ -54,7 +57,7 @@ var bot = new builder.UniversalBot(connector, [..waterfall steps..])
 
 在 Bot Builder SDK for Node.js 中，`session` 对象公开以下用于存储状态数据的属性。
 
-| 属性 | 作用域 | Description |
+| 属性 | 范围 | Description |
 | ---- | ---- | ---- |
 | [`userData`][userDataURL] | 用户 | 包含在指定通道上为用户保存的数据。 此数据将在多个会话中保持原样。 |
 | [`privateConversationData`][privateConversationDataURL] | 对话 | 包含指定通道上在特定会话上下文中为用户保存的数据。 这些数据对当前用户来说是私有的，并且仅在当前会话中保留。 当会话结束或显式调用 `endConversation` 时，属性将被清除。 |

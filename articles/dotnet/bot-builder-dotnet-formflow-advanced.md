@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8860c6b3fa0eaaf9f9bfc92984a501c066f2fe5c
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6637876b016b8680fe722602f530a0c6b0ddfc5a
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297062"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905401"
 ---
 # <a name="advanced-features-of-formflow"></a>FormFlow 的高级功能
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 [FormFlow 的基本功能](bot-builder-dotnet-formflow.md)介绍了基本的 FormFlow 实现，提供了相当通用的用户体验。 若要使用 FormFlow 提供自定义程度更高的用户体验，可以指定初始窗体状态、添加业务逻辑来管理字段之间的相互依赖关系并处理用户输入，以及使用属性来自定义提示、重写模板、指定可选字段、匹配用户输入和验证用户输入。 
 
@@ -274,7 +276,7 @@ For sandwich I understood Rotisserie Style Chicken. "checkin" is not an option.
 - [本地化窗体内容](bot-builder-dotnet-formflow-localize.md)
 - [使用 JSON 架构定义窗体](bot-builder-dotnet-formflow-json-schema.md)
 - [使用模式语言自定义用户体验](bot-builder-dotnet-formflow-pattern-language.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">用于 .NET 的 Bot Builder SDK 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
 
 [formDialog]: /dotnet/api/microsoft.bot.builder.formflow.formdialog
 

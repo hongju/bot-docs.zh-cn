@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b5efb024c01437867b6ab1cf99b2f544077eee0c
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 2bbf75f166a90d2e0a905bd269f51cef4398a2ef
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298095"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904489"
 ---
 # <a name="add-input-hints-to-messages"></a>向消息添加输入提示
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-add-input-hints.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-send-input-hints.md)
@@ -25,11 +28,11 @@ ms.locfileid: "39298095"
 
 ## <a name="accepting-input"></a>接受输入
 
-若要指示机器人已被动准备好输入但未等待用户的响应，请将消息的输入提示设置为 `builder.InputHint.acceptingInput`。 在许多通道上，这将导致客户端的输入框启用，麦克风关闭但仍可供用户访问。 例如，如果用户按住麦克风按钮，Cortana 将打开麦克风以接受用户的输入。 下面的代码示例可创建一条消息，指示机器人正在接受用户输入。
+若要指示机器人被动地准备好接收输入但未等待用户的响应，请将消息的输入提示设置为 `builder.InputHint.acceptingInput`。 在许多通道上，这将导致客户端的输入框启用并且麦克风关闭，但仍可供用户访问。 例如，如果用户按住麦克风按钮，Cortana 将打开麦克风以接受来自用户的输入。 下面的代码示例可创建一条消息，指示机器人接受用户输入。
 
 [!code-javascript[IMessage.speak](../includes/code/node-input-hints.js#InputHintAcceptingInput)]
 
-## <a name="expecting-input"></a>预期输入
+## <a name="expecting-input"></a>期待输入
 
 若要指示机器人正在等待用户的响应，请将消息的输入提示设置为 `builder.InputHint.expectingInput`。 在许多通道上，这将导致客户端的输入框启用，麦克风打开。 下面的代码示例可创建一个提示，指示机器人正在预期用户输入。
 
@@ -37,17 +40,17 @@ ms.locfileid: "39298095"
 
 ## <a name="ignoring-input"></a>忽略输入
 
-若要指示机器人没有准备好接收用户的输入，请将消息的输入提示设置为 `builder.InputHint.ignoringInput`。 在许多通道上，这将导致客户端的输入框禁用，麦克风关闭。 下面的代码示例使用 `session.say()` 方法发送一条消息，指示机器人正在忽略用户输入。
+若要指示机器人尚未准备好接收用户的输入，请将消息的输入提示设置为 `builder.InputHint.ignoringInput`。 在许多通道上，这将导致客户端的输入框禁用，麦克风关闭。 下面的代码示例使用 `session.say()` 方法发送一条消息，指示机器人正在忽略用户输入。
 
 [!code-javascript[Session.say()](../includes/code/node-input-hints.js#InputHintIgnoringInput)]
 
 ## <a name="default-values-for-input-hint"></a>输入提示的默认值
 
-如果未为消息设置输入提示，Bot Builder SDK 将使用以下逻辑自动进行设置： 
+如果未设置消息的输入提示，Bot Builder SDK 将使用以下逻辑自动进行设置： 
 
-- 如果机器人发送提示，则消息的输入提示将指定机器人正在预期输入。</li>
-- 如果机器人发送单条消息，则消息的输入提示将指定机器人正在接受输入。</li>
-- 如果机器人发送了一系列连续的消息，那么系列中除最后消息之外的所有消息的输入提示将指定机器人正在忽略输入，并且系列中最后消息的输入提示将指定机器人正在接受输入。
+- 如果机器人发送提示，则消息的输入提示将指定机器人期待输入。</li>
+- 如果机器人发送单条消息，则消息的输入提示将指定机器人接受输入。</li>
+- 如果机器人发送了一系列连续的消息，那么系列消息中除最后一条之外的所有消息的输入提示将指定机器人忽略输入，并且系列消息中最后一条的输入提示将指定机器人接受输入。
 
 ## <a name="additional-resources"></a>其他资源
 

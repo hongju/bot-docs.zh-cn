@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/02/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ca4714d3b3988fd08021f55a4905d9426996b7eb
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3b618bfb7cd1a462390aee4d564778c8ec0a7247
+ms.sourcegitcommit: d486dd088b87a44fc8142f7a08877ff993861a42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297875"
+ms.lasthandoff: 08/26/2018
+ms.locfileid: "42928426"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-java"></a>通过 Bot Builder SDK for Java 创建机器人
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -165,8 +165,6 @@ public class App {
 发送“Hi”到机器人，机器人将回应消息。
 
 ## <a name="next-steps"></a>后续步骤
-
-接下来，跳转到解释机器人及其工作原理的概念。
 
 > [!div class="nextstepaction"]
 > [基本机器人概念](../v4sdk/bot-builder-basics.md)

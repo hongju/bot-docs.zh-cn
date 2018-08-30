@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8f58c8d0b884e929c575e01aa5e0fee5c21ea4e6
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: f9af8cbbc5f457d5e8684ad57bb147f9d42a62c7
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298294"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905141"
 ---
 # <a name="support-localization"></a>支持本地化
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 Bot Builder 包含一个丰富的本地化系统，用于构建可以用多种语言与用户交流的机器人。 可以使用存储在机器人目录结构中的 JSON 文件将机器人的所有提示本地化。 如果使用 LUIS 等系统执行自然语言处理，则可以为机器人支持的每种语言的 [LuisRecognizer][LUISRecognizer] 配置单独的模型，SDK 会自动选择与用户的首选区域设置匹配的模型。
 

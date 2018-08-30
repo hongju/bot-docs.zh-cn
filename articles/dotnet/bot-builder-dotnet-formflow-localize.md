@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: bb0ac4b8e3fa34ec8863bb323ae968db37972a6f
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 587e21049ed8c9c3259f04f929784153d06db40c
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297867"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904221"
 ---
 # <a name="localize-form-content"></a>本地化处理表单内容
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 表单的本地化语言由当前线程的 [CurrentUICulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentuiculture(v=vs.110).aspx) 和 [CurrentCulture](https://msdn.microsoft.com/en-us/library/system.threading.thread.currentculture(v=vs.110).aspx) 决定。 默认情况下，区域性派生自当前消息的 Locale 字段，但用户可替代该默认行为。 根据机器人的构造方式，本地化信息可能来自三个不同的源：
 

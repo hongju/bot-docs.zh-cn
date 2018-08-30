@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 4ef96c82229d44a88e6063c64cd435cf7127a4b3
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: add83b0534ff950e9e7dd5c97a970d251b9c8fea
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297856"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904113"
 ---
 # <a name="deploy-a-real-time-media-bot-from-visual-studio-to-azure"></a>将实时媒体机器人从 Visual Studio 部署到 Azure
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 在“IaaS”Azure 虚拟机或“经典”Azure 云服务中可以托管实时媒体机器人。 本文介绍如何使用 Visual Studio 的内置发布功能从 Visual Studio 部署托管在 Azure 云服务辅助角色中的机器人。
 
 ## <a name="prerequisites"></a>先决条件

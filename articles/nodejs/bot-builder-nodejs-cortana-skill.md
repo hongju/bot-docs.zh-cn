@@ -7,14 +7,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a5936f3a622bdc91084ba9a636d8be3b782f9a11
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: c213c1155b1eef5f5c776ba42a221d95b74f99a5
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298367"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906072"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能构建支持语音的机器人
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-cortana-skill.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-cortana-skill.md)

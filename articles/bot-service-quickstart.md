@@ -8,18 +8,21 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/13/2018
-ms.openlocfilehash: c0432bf7c1691422db71798daf3b1aab5bf5b5dd
-ms.sourcegitcommit: 97bb24f15041caccef4ca5736aa14f144881e0c6
+ms.openlocfilehash: fef9a3056839f99fe4da47bb22a1a0980293dc5d
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39567516"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905381"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
 # <a name="create-a-bot-with-bot-service"></a>使用机器人服务创建机器人
+
+[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
+
 机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Builder SDK 和用于将机器人连接到通道的 Bot Framework。 机器人服务提供了五个模板，你可以在创建支持 .NET 和 Node.js 的机器人时选择这些模板。 本主题介绍如何使用机器人服务创建使用 Bot Builder SDK 的新机器人。
 
 ## <a name="log-in-to-azure"></a>登录 Azure
@@ -39,7 +42,7 @@ ms.locfileid: "39567516"
 
    | 设置 | 建议的值 | Description |
    | ---- | ---- | ---- |
-   | **机器人名称** | 机器人的显示名称 | 通道和目录中显示的机器人的显示名称。 可随时更改此名称。 |
+   | **机器人名称** | 机器人的显示名称 | 通道和目录中显示的机器人的显示名称。 此名称可随时更改。 |
    | **订阅** | 订阅 | 选择要使用的 Azure 订阅。 |
    | **资源组** | myResourceGroup | 可创建新的[资源组](/azure/azure-resource-manager/resource-group-overview#resource-groups)或从现有资源组中选择。 |
    | **位置** | 默认位置 | 选择资源组的地理位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 创建机器人后无法更改位置。 |
@@ -48,7 +51,7 @@ ms.locfileid: "39567516"
    | **机器人模板** | 基本 | 选择 **C#** 或 **Node.js**，再选择适用于本快速入门的“基本”模板，然后单击“选择”。 “基本”模板创建回显机器人。 [详细了解](bot-service-concept-templates.md)模板。 |
    | **应用服务计划/位置** | 你的应用服务计划  | 选择[应用服务计划](https://azure.microsoft.com/en-us/pricing/details/app-service/plans/)位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 （不适用于 Functions 机器人。） |
    | **Azure 存储** | 你的 Azure 存储帐户 | 可以创建新的数据存储帐户或使用现有的数据存储帐户。 默认情况下，机器人会使用[表存储](/azure/storage/common/storage-introduction#table-storage)。 |
-   | **Application Insights** | 启用 | 决定要将 [Application Insights](/bot-framework/bot-service-manage-analytics) **打开**还是**关闭**。 如果选择“打开”，还必须指定区域的位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 |
+   | **Application Insights** | 启用 | 决定要启用还是关闭 [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果选择“打开”，还必须指定区域的位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 |
    | **Microsoft 应用 ID 和密码** | 自动创建应用 ID 和密码 | 如果需要手动输入 Microsoft 应用 ID 和密码，请使用此选项。 否则，将在机器人创建过程中创建新的 Microsoft 应用 ID 和密码。 |
 
    > [!NOTE]
@@ -64,7 +67,7 @@ ms.locfileid: "39567516"
  > 有关详细信息，请参阅 [Azure Functions Pack](https://github.com/Azure/azure-functions-pack)。
  
 ## <a name="test-the-bot"></a>测试机器人
-创建机器人后，即可在[网上聊天](bot-service-manage-test-webchat.md)中测试它。 输入一条消息，机器人就会响应。
+创建机器人后，即可在[网上聊天](bot-service-manage-test-webchat.md)中测试它。 输入一条信息，机器人就会响应。
 
 ## <a name="next-steps"></a>后续步骤
 
@@ -99,7 +102,7 @@ Azure 机器人服务提供了用于创建机器人的核心组件，包括用�
 
  | 设置 | 建议的值 | Description |
  | ---- | ---- | ---- |
- | **机器人名称** | 机器人的显示名称 | 通道和目录中显示的机器人的显示名称。 可随时更改此名称。 |
+ | **机器人名称** | 机器人的显示名称 | 通道和目录中显示的机器人的显示名称。 此名称可随时更改。 |
  | **订阅** | 订阅 | 选择要使用的 Azure 订阅。 |
  | **资源组** | myResourceGroup | 可创建新的[资源组](/azure/azure-resource-manager/resource-group-overview#resource-groups)或从现有资源组中选择。 |
  | **位置** | 默认位置 | 选择资源组的地理位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 创建机器人后无法更改位置。 |
@@ -108,7 +111,7 @@ Azure 机器人服务提供了用于创建机器人的核心组件，包括用�
  | **机器人模板** | 基本 | 选择“SDK v4”。 选择 C# 或 Node.js，再选择适用于本快速入门的“基本”模板，然后单击“选择”。 “基本”模板创建回显机器人。 
  | **应用服务计划/位置** | 你的应用服务计划  | 选择[应用服务计划](https://azure.microsoft.com/en-us/pricing/details/app-service/plans/)位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 |
  | **Azure 存储** | 你的 Azure 存储帐户 | 可以创建新的数据存储帐户或使用现有的数据存储帐户。 默认情况下，机器人会使用[表存储](/azure/storage/common/storage-introduction#table-storage)。 |
- | **Application Insights** | 启用 | 决定要将 [Application Insights](/bot-framework/bot-service-manage-analytics) **打开**还是**关闭**。 如果选择“打开”，还必须指定区域的位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 |
+ | **Application Insights** | 启用 | 决定要启用还是关闭 [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果选择“打开”，还必须指定区域的位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 |
  | **Microsoft 应用 ID 和密码** | 自动创建应用 ID 和密码 | 如果需要手动输入 Microsoft 应用 ID 和密码，请使用此选项。 否则，将在机器人创建过程中创建新的 Microsoft 应用 ID 和密码。 |
 
 4. 单击“创建”创建服务并将机器人部署到云。 此过程可能需要数分钟。
@@ -116,7 +119,7 @@ Azure 机器人服务提供了用于创建机器人的核心组件，包括用�
 查看“通知”，确认已部署机器人。 通知将从“正在进行部署...”更改为“部署已成功”。 单击“转到资源”按钮，打开机器人的资源边栏选项卡。
 
 ## <a name="test-the-bot"></a>测试机器人
-创建机器人后，即可在[网上聊天](bot-service-manage-test-webchat.md)中测试它。 输入一条消息，机器人就会响应。
+创建机器人后，即可在[网上聊天](bot-service-manage-test-webchat.md)中测试它。 输入一条信息，机器人就会响应。
 
 ## <a name="next-steps"></a>后续步骤
 

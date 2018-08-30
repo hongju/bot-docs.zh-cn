@@ -8,16 +8,18 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/28/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 9c1a0944a24af3f2a51a90818890c50edfe139d4
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 82a4d0843a9aaab25779d833f2b1b1d2ab2516c2
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298149"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905099"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 识别意向和实体 
 
-本文使用机器人的示例来做笔记，以演示语言理解 ([LUIS][LUIS]) 如何帮助机器人适当响应自然语言输入。 机器人通过识别用户的**意向**来检测他们想要执行的操作。 此意向取决于语音或文本输入，或**话语**。 意向将话语映射到机器人执行的操作，例如调用对话。 机器人可能还需要提取**实体**，这些实体是话语中的重要单词。 有时需要使用实体来达成意向。 在笔记机器人示例中，`Notes.Title` 实体标识每条笔记的标题。
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
+本文以笔记记录机器人为例，演示语言理解 ([LUIS][LUIS]) 如何帮助机器人正确响应自然语言输入。 机器人通过识别用户意向来检测他们想要执行的操作。 此意向取决于语音或文本输入，或**话语**。 意向将话语映射到机器人执行的操作，例如调用对话。 机器人可能还需要提取**实体**，这些实体是话语中的重要单词。 有时需要使用实体来达成意向。 在笔记记录机器人的示例中，`Notes.Title` 实体标识每条笔记的标题。
 
 ## <a name="create-a-language-understanding-bot-with-bot-service"></a>使用机器人服务创建语言理解机器人
 
@@ -30,7 +32,7 @@ ms.locfileid: "39298149"
     ![新建资源](../media/bot-builder-nodejs-use-luis/bot-service-selection.png)
 
 3. 在“机器人服务”边栏选项卡中提供所需的信息，然后单击“创建”。 此操作可创建机器人服务和 LUIS 应用并将其部署到 Azure。 
-   * 将“应用名称”设置为机器人名称。 将机器人部署到云（例如，mynotesbot.azurewebsites.net）时，该名称用作子域。 此名称还用作与机器人关联的 LUIS 应用的名称。 请复制该名称，稍后将要使用它来查找与机器人关联的 LUIS 应用。
+   * 将“应用名称”设置为机器人名称。 将机器人部署到云（例如，mynotesbot.azurewebsites.net）时，该名称用作子域。 此名称还用作与机器人关联的 LUIS 应用的名称。 复制该名称，稍后将用它查找与机器人关联的 LUIS 应用。
    * 选择“订阅”、“[资源组](/azure/azure-resource-manager/resource-group-overview)”、“应用服务计划”和“[位置](https://azure.microsoft.com/en-us/regions/)”。
    * 对于“机器人模板”字段，选择“语言理解 (Node.js)”模板。
 
@@ -44,7 +46,7 @@ ms.locfileid: "39298149"
 
 ## <a name="try-the-bot"></a>试用机器人
 
-查看“通知”，确认已部署机器人。 通知将从“正在进行部署...”更改为“部署已成功”。 单击“转到资源”按钮打开机器人的资源边栏选项卡。
+查看“通知”，确认已部署机器人。 通知将从“正在进行部署...”更改为“部署已成功”。 单击“转到资源”按钮，打开机器人的资源边栏选项卡。
 
 注册机器人后，单击“通过网页聊天执行测试”，打开“网页聊天”窗格。 在网页聊天中键入“你好”。
 
@@ -54,15 +56,15 @@ ms.locfileid: "39298149"
 
 ## <a name="modify-the-luis-app"></a>修改 LUIS 应用
 
-使用登录 Azure 时所用的同一个帐户登录到 [https://www.luis.ai](https://www.luis.ai)。 单击“我的应用”。 在应用列表中，找到开头为在创建机器人服务时在“机器人服务”边栏选项卡的“应用名称”中指定的名称的应用。 
+使用用于登录 Azure 的相同帐户登录 [https://www.luis.ai](https://www.luis.ai)。 单击“我的应用”。 在应用列表中找到所需应用，该应用的开头为创建机器人服务时在“机器人服务”边栏选项卡的“应用名称”中指定的名称。 
 
-LUIS 应用以 4 个意向开始：Cancel、Greeting、Help 和 None。 <!-- picture -->
+LUIS 应用开始时为 4 个意向：Cancel、Greeting、Help 和 None。 <!-- picture -->
 
 以下步骤添加 Note.Create、Note.ReadAloud 和 Note.Delete 意向： 
 
-1. 单击页面左下角的“预生成域”。 找到“Note”域，然后点击“添加域”。
+1. 单击页面左下角的“预生成域”。 找到“Note”域，然后单击“添加域”。
 
-2. 本教程不使用“Note”预生成域中包含的所有意向。 在“意向”页中，单击以下每个意向名称，然后单击“删除意向”按钮。
+2. 本教程不会使用“Note”预生成域中包含的所有意向。 在“意向”页中，单击以下每个意向名称，然后单击“删除意向”按钮。
    * Note.ShowNext
    * Note.DeleteNoteItem
    * Note.Confirm
@@ -82,8 +84,8 @@ LUIS 应用以 4 个意向开始：Cancel、Greeting、Help 和 None。 <!-- pic
      ![LUIS 应用中显示的意向](../media/bot-builder-nodejs-use-luis/luis-intent-list.png)
 
 
-3.  单击右上角的“训练”按钮以训练应用。
-4.  单击顶部导航栏中的“发布”打开“发布”页。 单击“发布到生产槽”按钮。 发布成功后，会将一个 LUIS 应用部署到“发布应用”页的“终结点”列中显示的 URL（位于以资源名称 Starter_Key 开头的行中）。 该 URL 的格式类似于以下示例：`https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx?subscription-key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&timezoneOffset=0&verbose=true&q=` 此 URL 中的应用 ID 和订阅密钥，与“应用服务设置”>“应用程序设置”>“应用设置”中的 LuisAppId 和 LuisAPIKey 相同。
+3.  单击右上角的“训练”按钮，训练应用。
+4.  单击顶部导航栏中的“发布”，打开“发布”页。 单击“发布到生产槽”按钮。 发布成功后，会将一个 LUIS 应用部署到“发布应用”页的“终结点”列中显示的 URL（位于以资源名称 Starter_Key 开头的行中）。 该 URL 的格式类似于以下示例：`https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx?subscription-key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&timezoneOffset=0&verbose=true&q=` 此 URL 中的应用 ID 和订阅密钥，与“应用服务设置”>“应用程序设置”>“应用设置”中的 LuisAppId 和 LuisAPIKey 相同。
 
 
 ## <a name="modify-the-bot-code"></a>修改机器人代码
@@ -552,7 +554,7 @@ function noteCount(notes) {
 
 ## <a name="test-the-bot"></a>测试机器人
 
-在 Azure 门户中，单击“通过网页聊天执行测试”以测试机器人。 尝试键入消息（例如“创建笔记”、“阅读我的笔记”和“删除笔记”），以调用添加到机器人的意向。
+在 Azure 门户中，单击“通过网上聊天执行测试”以测试机器人。 尝试键入消息（例如“创建笔记”、“阅读我的笔记”和“删除笔记”），以调用添加到机器人的意向。
    ![通过网上聊天测试笔记机器人](../media/bot-builder-nodejs-use-luis/bot-service-test-notebot.png)
 
 > [!TIP]

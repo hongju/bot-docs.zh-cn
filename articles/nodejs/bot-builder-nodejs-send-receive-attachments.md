@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: be5018b43a8a015ed763d69a0448e264c5a9fe87
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 4203e9d7a9c5c8e6ab068def879747a4c6158367
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298538"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904041"
 ---
 # <a name="send-and-receive-attachments"></a>发送和接收附件
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-add-media-attachments.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-send-receive-attachments.md)
@@ -58,7 +61,7 @@ var bot = new builder.UniversalBot(connector, function (session) {
 ```
 ## <a name="additional-resources"></a>其他资源
 
-* [使用 Channel Inspector 预览功能][inspector]
+* [使用通道检查器预览功能][inspector]
 * [IMessage][IMessage]
 * [发送资讯卡][SendRichCard]
 * [session.send][SessionSend]

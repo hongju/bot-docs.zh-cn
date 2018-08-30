@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/25/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a808076e4865a181802b85cfc24ce342dbf23cba
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3f7e88192d989e79f2124e03571ddba3b5291955
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297772"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904631"
 ---
 # <a name="how-to-run-net-sdk-v3-bots-in-sdk-40"></a>如何在 SDK 4.0 中运行 .NET SDK V3 机器人
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 **Microsoft.Bot.Builder.Classic** NuGet 包简化了机器人从 Microsoft Bot Framework 3.x 版迁移到 4.0 版的过程。
 

@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 109353d6dc26b957d23ae29e77b1c36811d2c2a2
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: a192b69b2ffbac428d80b2fe7c3fd9180caacd4f
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298353"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905579"
 ---
 # <a name="customize-user-experience-with-pattern-language"></a>使用模式语言自定义用户体验
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 自定义提示或重写默认模板时，可以使用模式语言指定提示的内容和/或格式。 
 
@@ -138,7 +140,7 @@ What kind of sandwich would you like?
 
 - [FormFlow 的基本功能](bot-builder-dotnet-formflow.md)
 - [FormFlow 的高级功能](bot-builder-dotnet-formflow-advanced.md)
-- [使用 FormBuilder 自定义窗体](bot-builder-dotnet-formflow-formbuilder.md)
+- [使用 FormBuilder 自定义表单](bot-builder-dotnet-formflow-formbuilder.md)
 - [本地化窗体内容](bot-builder-dotnet-formflow-localize.md)
 - [使用 JSON 架构定义窗体](bot-builder-dotnet-formflow-json-schema.md)
 - <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>

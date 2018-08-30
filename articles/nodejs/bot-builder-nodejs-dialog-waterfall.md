@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: ac8e01a81e3f8acca3aa6976eec47017876c3042
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: fcda5bb35712f3a1ec27fba64a492ced911c41db
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297965"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905959"
 ---
 # <a name="define-conversation-steps-with-waterfalls"></a>使用瀑布图定义会话步骤
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 会话是用户和机器人之间交换的一系列消息。 当机器人的目的是引导用户完成一系列步骤时，可以使用瀑布图来定义会话步骤。
 

@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 02/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3df88215141fa513fb2b97b8f13d1cc358660d86
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: ba16adebe6bbb9b79949cd9842e975e35c3f2aa6
+ms.sourcegitcommit: d486dd088b87a44fc8142f7a08877ff993861a42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297639"
+ms.lasthandoff: 08/26/2018
+ms.locfileid: "42928406"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-python"></a>使用 Bot Builder SDK for Python 创建机器人
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -134,17 +134,15 @@ python main.py
 
 1. 单击模拟器“欢迎使用”选项卡中的“新建机器人配置”链接。 
 
-2. 输入**机器人名称**并输入机器人代码的目录路径。 机器人配置文件将保存到此路径。
+2. 输入“机器人名称”并输入机器人代码的目录路径。 机器人配置文件将保存到此路径。
 
-3. 在“终结点 URL”字段中键入 `http://localhost:port-number/api/messages`，其中 *port-number* 与运行应用程序的浏览器中显示的端口号相匹配。
+3. 在“终结点 URL”字段中键入 `http://localhost:port-number/api/messages`，其中 port-number 与运行应用程序的浏览器中显示的端口号相匹配。
 
-4. 单击“连接”以连接到机器人。 无需指定 **Microsoft 应用 ID** 和 **Microsoft 应用密码**。 可以暂时将这些字段留空。 以后当你注册机器人时，将获得此信息。
+4. 单击“连接”以连接到机器人。 无需指定“Microsoft 应用 ID”和“Microsoft 应用密码”。 可以暂时将这些字段留空。 以后当你注册机器人时，将获得此信息。
 
 在模拟器中输入 **Hello**，机器人将回显**你说了“Hello”**。
 
 ## <a name="next-steps"></a>后续步骤
-
-接下来，跳转到解释机器人及其工作原理的概念。
 
 > [!div class="nextstepaction"]
 > [基本机器人概念](../v4sdk/bot-builder-basics.md)

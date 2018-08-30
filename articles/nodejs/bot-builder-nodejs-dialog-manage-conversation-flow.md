@@ -8,21 +8,24 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d6c8ad06b9fb198e684deae26e9cbad05a86a611
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 656b6304a576c553db948a348b1c6d8c3fc5ae71
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298405"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905661"
 ---
-# <a name="manage-conversation-flow-with-dialogs"></a>使用对话管理聊天流
+# <a name="manage-conversation-flow-with-dialogs"></a>使用对话框管理会话流
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-manage-conversation-flow.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-dialog-manage-conversation-flow.md)
 
 管理聊天流是构建机器人不可或缺的任务。 机器人需要能够漂亮地执行核心任务，并优雅地处理中断情况。 借助 Bot Builder SDK for Node.js，可使用对话来管理聊天流。
 
-对话就像程序中的函数。 通常可用于执行特定操作，并可根据需要随时进行调用。 如果将多个对话串联在一起，还可处理希望机器人处理的几乎任何聊天流。 可使用 Bot Builder SDK for Node.js 中的内置功能（如[提示](bot-builder-nodejs-dialog-prompt.md)和[瀑布](bot-builder-nodejs-dialog-waterfall.md)）帮助管理聊天流。
+对话就像程序中的函数。 这通常是为了执行特定操作，并可根据需要随时调用。 如果将多个对话串联在一起，还可处理希望机器人处理的几乎任何聊天流。 可使用 Bot Builder SDK for Node.js 中的内置功能（如[提示](bot-builder-nodejs-dialog-prompt.md)和[瀑布](bot-builder-nodejs-dialog-waterfall.md)）帮助管理聊天流。
 
 本文列举了一系列示例，说明如何同时管理简单的聊天流和复杂的聊天流，其中机器人可使用对话完美地处理中断并继续聊天流。 这些示例基于以下场景： 
 

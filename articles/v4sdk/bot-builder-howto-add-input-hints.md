@@ -7,14 +7,14 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 04/04/2018
+ms.date: 08/24/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ac18b57b7c738e1f15776bfb87bfaf27c3b719d8
-ms.sourcegitcommit: b45e16cac2febb7034da4ccd3af3bd7e6f430c31
+ms.openlocfilehash: 02c6cf56a0c1161fa0393880810c1481c5eb2461
+ms.sourcegitcommit: f89ed979eb6321232fb21100ef376d9b0d5113c9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/02/2018
-ms.locfileid: "39469294"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42914627"
 ---
 # <a name="add-input-hints-to-messages"></a>向消息添加输入提示
 
@@ -69,9 +69,9 @@ await context.sendActivity(basicMessage);
 
 ---
 
-## <a name="expecting-input"></a>预期输入
+## <a name="expecting-input"></a>期待输入
 
-若要指示机器人正在等待用户的响应，请将消息的输入提示设置为“预期输入”。 在许多通道上，这将导致客户端的输入框启用，麦克风打开。 下面的代码示例可创建一条消息，指示机器人正在预期用户输入。
+若要指示机器人正在等待用户的响应，请将消息的输入提示设置为“预期输入”。 在许多通道上，这将导致客户端的输入框启用，麦克风打开。 下面的代码示例可创建一条消息，指示机器人期待用户输入。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
@@ -94,7 +94,7 @@ await context.sendActivity(basicMessage);
 
 ## <a name="ignoring-input"></a>忽略输入
 
-若要指示机器人没有准备好接收用户的输入，请将消息的输入提示设置为“忽略输入”。 在许多通道上，这将导致客户端的输入框禁用，麦克风关闭。 下面的代码示例可创建一条消息，指示机器人正在忽略用户输入。
+若要指示机器人没有准备好接收用户的输入，请将消息的输入提示设置为“忽略输入”。 在许多通道上，这将导致客户端的输入框禁用，麦克风关闭。 下面的代码示例可创建一条消息，指示机器人忽略用户输入。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
@@ -117,7 +117,7 @@ await context.sendActivity(basicMessage);
 
 ## <a name="default-values-for-input-hint"></a>输入提示的默认值
 
-如果未为消息设置输入提示，Bot Builder SDK 将使用以下逻辑自动进行设置：
+如果未设置消息的输入提示，Bot Builder SDK 将使用以下逻辑自动进行设置：
 
 - 如果机器人发送提示，则消息的输入提示将指定机器人正在预期输入。</li>
 - 如果机器人发送单条消息，则消息的输入提示将指定机器人正在接受输入。</li>

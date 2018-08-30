@@ -8,21 +8,24 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 1a50bb8af6556830ee9f9b047d7c5a2d3399a6b9
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: e9f07cdd4616a2649dca31f096eca3377cd46b7d
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298008"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904231"
 ---
 # <a name="create-data-driven-experiences-with-azure-search"></a>使用 Azure 搜索创建数据驱动体验 
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-search-azure.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-search-azure.md)
 
 可以将 [Azure 搜索][search]添加到机器人，帮助用户导航大量内容并为机器人用户创建数据驱动的探索体验。
 
-Azure 搜索是一项 Azure 服务，提供关键字搜索、内置语言学、自定义评分、分面导航等。 Azure 搜索还可以为各种源（包括 Azure SQL DB、DocumentDB、Blob 存储和表存储）的内容编制索引。 它支持其他数据源的“推送”索引，并且可以打开包含非结构化数据的 PDF、Office 文档和其他格式。 收集后，内容会进入 Azure 搜索索引，然后机器人可以进行查询。
+Azure 搜索是一项 Azure 服务，提供关键字搜索、内置语言学、自定义评分、分面导航等。 Azure 搜索还可以为各种源（包括 Azure SQL DB、DocumentDB、Blob 存储和表存储）的内容编制索引。 它支持其他数据源的“推送”索引，并且可以打开包含非结构化数据的 PDF、Office 文档和其他格式的文件。 收集后，内容会进入 Azure 搜索索引，然后机器人可以进行查询。
 
 ## <a name="install-dependencies"></a>安装依赖项
 

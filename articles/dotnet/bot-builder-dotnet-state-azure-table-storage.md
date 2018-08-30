@@ -7,14 +7,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e2d8e6a5a390a27b61b11ad22f07ce0ab95f1686
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: e5ff23caa1bdb1158ab19fa7c66e1fe4f6899f49
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298377"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905110"
 ---
 # <a name="manage-custom-state-data-with-azure-table-storage-for-net"></a>通过适用于 .NET 的 Azure 表存储来管理自定义状态数据
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 在本文中，将实施 Azure 表存储来存储和管理机器人的状态数据。 机器人使用的默认连接器状态服务不适用于生产环境。 应使用 GitHub 上提供的 [Azure 扩展](https://github.com/Microsoft/BotBuilder-Azure)，或者使用所选的数据存储平台实现自定义状态客户端。 下面是使用自定义状态存储的一些原因：
  - 状态 API 吞吐量更高（性能控制更强）
  - 降低地理分布的延迟
@@ -108,7 +111,7 @@ using Microsoft.Bot.Builder.Dialogs.Internals;
 在本文中，实施了 Azure 表存储来保存和管理机器人的数据。 接下来，学习如何使用对话为聊天流建模。
 
 > [!div class="nextstepaction"]
-> [管理聊天流](bot-builder-dotnet-manage-conversation-flow.md)
+> [管理会话流](bot-builder-dotnet-manage-conversation-flow.md)
 
 
 ## <a name="additional-resources"></a>其他资源

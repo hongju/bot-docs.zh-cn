@@ -8,28 +8,32 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b98eea6bdae097beec85e93301e5380a1de991c3
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: fc260f34f28e406dc88dd5b688d84cd79c7e9449
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298208"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905949"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 识别意向和实体 
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 本文以笔记记录机器人为例，演示语言理解 ([LUIS][LUIS]) 如何帮助机器人正确响应自然语言输入。 机器人通过识别用户意向来检测他们想要执行的操作。 根据口头或文本输入，或者话语确定此意向。 意向将话语映射到机器人采取的操作。 例如，笔记记录机器人识别到 `Notes.Create` 意向，便调用创建笔记功能。 机器人可能还需要提取实体，这些实体是话语中的重要字词。 在笔记记录机器人的示例中，`Notes.Title` 实体标识每条笔记的标题。
 
 ## <a name="create-a-language-understanding-bot-with-bot-service"></a>使用机器人服务创建语言理解机器人
 
-1. 在 [Azure 门户](https://portal.azure.com)上的菜单边栏选项卡中选择“创建新资源”，然后单击“查看全部”。<!-- Start with the steps in [Create a bot with Bot Service](../bot-service-quickstart.md) to start creating a new bot service.  -->
+1. 在 [Azure 门户](https://portal.azure.com)上的菜单边栏选项卡中选择“创建新资源”，然后单击“全部查看”。
 
-    ![新建资源](../media/bot-builder-dotnet-use-luis/bot-service-creation.png)
+<!-- Start with the steps in [Create a bot with Bot Service](../bot-service-quickstart.md) to start creating a new bot service.  -->
+
+    ![Create new resource](../media/bot-builder-dotnet-use-luis/bot-service-creation.png)
 
 2. 在搜索框中，搜索“Web 应用机器人”。 
 
     ![新建资源](../media/bot-builder-dotnet-use-luis/bot-service-selection.png)
 
-3. 在“机器人服务”边栏选项卡中，提供所需信息，然后单击“创建”。 此操作可创建机器人服务和 LUIS 应用并将其部署到 Azure。 
+3. 在“机器人服务”边栏选项卡中提供所需的信息，然后单击“创建”。 此操作可创建机器人服务和 LUIS 应用并将其部署到 Azure。 
    * 将“应用名称”设置为机器人名称。 将机器人部署到云（例如，mynotesbot.azurewebsites.net）时，该名称用作子域。 此名称还用作与机器人关联的 LUIS 应用的名称。 复制该名称，稍后将用它查找与机器人关联的 LUIS 应用。
    * 选择“订阅”、“[资源组](/azure/azure-resource-manager/resource-group-overview)”、“应用服务计划”和“[位置](https://azure.microsoft.com/en-us/regions/)”。
    * 对于“机器人模板”字段，选择“语言理解(C#)”模板。
@@ -382,8 +386,8 @@ using System.Collections.Generic;
 
 ## <a name="additional-resources"></a>其他资源
 
-- [对话](bot-builder-dotnet-dialogs.md)
-- [使用对话管理聊天流](bot-builder-dotnet-manage-conversation-flow.md)
+- [对话框](bot-builder-dotnet-dialogs.md)
+- [使用对话框管理会话流](bot-builder-dotnet-manage-conversation-flow.md)
 - <a href="https://www.luis.ai" target="_blank">LUIS</a>
 - <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
 

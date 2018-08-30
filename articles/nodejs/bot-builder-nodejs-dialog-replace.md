@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d1a2eca2ebdfccf6dacdf773c48c8b41444559ca
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 4343e9742d6bfabeab1ccb6a96f0d379d824125e
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297831"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905731"
 ---
 # <a name="replace-dialogs"></a>替换对话
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 在聊天过程中需要验证用户输入或重复某个操作时，可以使用替换对话的功能。 使用 Bot Builder SDK for Node.js 时，可以通过 [`session.replaceDialog`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#replacedialog) 方法来替换对话。 此方法可以结束当前对话，在不返回到调用方的情况下将其替换为新的对话。 
 

@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 09/7/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e7dfb72f69202011c4fda06c3d55e0afa8d3d045
-ms.sourcegitcommit: dcbc8ad992a3e242a11ebcdf0ee99714d919a877
+ms.openlocfilehash: 804081e52a03a27da418f549f0fadb6dc8bca52b
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352906"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905671"
 ---
 # <a name="create-messages"></a>创建消息
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 机器人和用户之间通过消息进行通信。 机器人将发送消息活动向用户传递信息，同样，也将收到来自用户的消息活动。 某些消息可能只包含纯文本，而其他消息可能包含更丰富的内容，例如语音文本、建议的操作、媒体附件、富卡和特定于通道的数据。
 
 本文介绍了一些常用的消息方法，可用于增强用户体验。
@@ -64,9 +67,9 @@ session.send(customMessage);
 
 如果在范围内没有 `session` 对象，可以使用 `bot.send` 方法向用户发送带格式的消息。
 
-消息的 `textFormat` 属性可用于指定文本格式。 `textFormat` 属性可以设置为“纯本文”、“markdown”，或“xml”。 `textFormat` 的默认值为“markdown”。 
+消息的 `textFormat` 属性可用于指定文本格式。 `textFormat` 属性可以设置为“纯本文”、“markdown”或“xml”。 `textFormat` 的默认值为“markdown”。 
 
-对于受到广泛支持的文本格式列表，请参阅[文本格式](../bot-service-channel-inspector.md#text-formatting)。 若要确保你想要使用的功能受目标通道的支持，使用[通道检查器](../bot-service-channel-inspector.md)预览功能。
+要查看常用文本格式的列表，请参阅[文本格式](../bot-service-channel-inspector.md#text-formatting)。 若要确保你想要使用的功能受目标通道的支持，使用[通道检查器](../bot-service-channel-inspector.md)预览功能。
 
 ## <a name="message-property"></a>消息属性
 

@@ -9,16 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 48c32a1dd1c43bbb84c0f771be7dff691f0996ec
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: 34564b411f911ae82197d5a34cb954a103abe70b
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39298556"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905411"
 ---
 # <a name="basic-bot-structure"></a>机器人基本结构
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 Azure 机器人服务和 Bot Builder SDK 提供库、示例和工具来帮助生成和调试机器人。 然而，在我们深入了解任何这些详细信息之前，务必先了解机器人的基本结构以及一切要素的工作原理。 无论选择哪种编程语言，这些概念都适用。 在整个过程中提供了更多深度内容的链接；本文将提供关于机器人如何操作的初始心理框架。
 

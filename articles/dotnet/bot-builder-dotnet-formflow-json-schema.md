@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a7f6e3f186e0c4b9f6096cad72a91ef6f3fdffd4
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 03478431822c8be0e696577a18a2e693d441509b
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298365"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904548"
 ---
 # <a name="define-a-form-using-json-schema"></a>使用 JSON 架构定义表单
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 如果使用 FormFlow 创建机器人时使用 [C# 类](bot-builder-dotnet-formflow.md#create-class)来定义表单，则表单派生自 C# 中类型的静态定义。 或者，可以改而使用 <a href="http://json-schema.org/documentation.html" target="_blank">JSON 架构</a>来定义表单。 使用 JSON 架构定义的表单是纯数据驱动的，只需通过更新架构就可以更改表单（因此，也可以更改机器人的行为）。 
 
@@ -28,7 +30,7 @@ FormFlow 支持这些标准 <a href="http://json-schema.org/documentation.html" 
 | 关键字 | Description | 
 |----|----|
 | type | 定义字段包含的数据类型。 |
-| enum | 定义字段的有效值。 |
+| 枚举 | 定义字段的有效值。 |
 | minimum | 定义字段允许的最小数值（如 [NumericAttribute][numericAttribute] 中所述）。 |
 | maximum | 定义字段允许的最大数值（如 [NumericAttribute][numericAttribute] 中所述。 |
 | 必填 | 定义哪些字段是必填。 |
@@ -43,14 +45,14 @@ FormFlow 扩展了标准 <a href="http://json-schema.org/documentation.html" tar
 | 属性 | 值 |
 |----|----|
 | OnCompletion | 带参数 `(IDialogContext context, JObject state)` 的 C# 脚本，用于完成表单。 |
-| References | 要包含在脚本中的引用。 例如，`[assemblyReference, ...]`。 路径应为当前目录的绝对或相对路径。 默认情况下，脚本包括 `Microsoft.Bot.Builder.dll`。 |
-| Imports | 要包含在脚本中的导入。 例如，`[import, ...]`。 默认情况下，脚本包括 `Microsoft.Bot.Builder`、`Microsoft.Bot.Builder.Dialogs`、`Microsoft.Bot.Builder.FormFlow`、`Microsoft.Bot.Builder.FormFlow.Advanced`、`System.Collections.Generic` 和 `System.Linq` 命名空间。 |
+| 参考 | 要包含在脚本中的引用。 例如，`[assemblyReference, ...]`。 路径应为当前目录的绝对或相对路径。 默认情况下，脚本包括 `Microsoft.Bot.Builder.dll`。 |
+| 导入 | 要包含在脚本中的导入。 例如，`[import, ...]`。 默认情况下，脚本包括 `Microsoft.Bot.Builder`、`Microsoft.Bot.Builder.Dialogs`、`Microsoft.Bot.Builder.FormFlow`、`Microsoft.Bot.Builder.FormFlow.Advanced`、`System.Collections.Generic` 和 `System.Linq` 命名空间。 |
 
 ### <a name="additional-properties-at-the-root-of-the-schema-or-as-peers-of-the-type-property"></a>架构根处的其他属性或作为类型属性对等项的其他属性
 
 | 属性 | 值 |
 |----|----|
-| Templates | `{ TemplateUsage: { Patterns: [string, ...], <args> }, ...}` |
+| 模板 | `{ TemplateUsage: { Patterns: [string, ...], <args> }, ...}` |
 | Prompt | `{ Patterns:[string, ...] <args>}` |
 
 要指定 JSON 架构中的模板和提示，请使用 [TemplateAttribute][templateAttribute] 和 [PromptAttribute][promptAttribute] 定义的相同词汇。 架构中的属性名称和值应匹配基础 C# 枚举中的属性名称和值。 例如，此架构片段定义了一个替代 `TemplateUsage.NotUnderstood` 的模板，并指定了 `TemplateBaseAttribute.ChoiceStyle`： 
@@ -65,16 +67,16 @@ FormFlow 扩展了标准 <a href="http://json-schema.org/documentation.html" tar
 |--------------|-----------------------------|------------------------------------------------------------------------------------------------------------------|
 |   DateTime   |            bool             |                                  表示字段是否为 `DateTime` 字段。                                  |
 |   Describe   |      字符串或对象       |                  如 [DescribeAttribute][describeAttribute] 中所述的字段描述。                  |
-|    Terms     |       `[string,...]`        |                  如 TermsAttribute 中所述的匹配字段值的正则表达式。                  |
+|    术语     |       `[string,...]`        |                  如 TermsAttribute 中所述的匹配字段值的正则表达式。                  |
 |  MaxPhrase   |             int             |                  通过 `Language.GenerateTerms(string, int)` 运行你的术语来将其展开。                   |
-|    Values    | `{ string: {Describe:string |                                  object, Terms:[string, ...], MaxPhrase}, ...}`                                  |
-|    Active    |           脚本            | 带参数 `(JObject state)->bool` 的 C# 脚本，用来测试字段、消息或确认是否可用。  |
-|   Validate   |           脚本            |      带参数 `(JObject state, object value)->ValidateResult` 的 C# 脚本，用来验证字段值。      |
+|    值    | `{ string: {Describe:string |                                  object, Terms:[string, ...], MaxPhrase}, ...}`                                  |
+|    活动    |           脚本            | 带参数 `(JObject state)->bool` 的 C# 脚本，用来测试字段、消息或确认是否可用。  |
+|   验证   |           脚本            |      带参数 `(JObject state, object value)->ValidateResult` 的 C# 脚本，用来验证字段值。      |
 |    Define    |           脚本            |        带参数 `(JObject state, Field<JObject> field)` 的 C# 脚本，用来动态定义字段。        |
-|     Next     |           脚本            | 带参数 `(object value, JObject state)` 的 C# 脚本，用来在填写字段后确定下一步。 |
-|    Before    |          `[confirm          |                                                  message, ...]`                                                  |
-|    After     |          `[confirm          |                                                  message, ...]`                                                  |
-| Dependencies |        [string, ...]        |                           此字段、消息或确认所依赖的字段。                           |
+|     下一步     |           脚本            | 带参数 `(object value, JObject state)` 的 C# 脚本，用来在填写字段后确定下一步。 |
+|    之前    |          `[confirm          |                                                  message, ...]`                                                  |
+|    之后     |          `[confirm          |                                                  message, ...]`                                                  |
+| 依赖项 |        [string, ...]        |                           此字段、消息或确认所依赖的字段。                           |
 
 在 Before 属性或 After 属性的值内使用 `{Confirm:script|[string, ...], ...templateArgs}` 来定义确认，方法是使用带参数 `(JObject state)` 的 C# 脚本，或使用随可选模板参数一起随机选择的一组模式。
 
@@ -84,14 +86,14 @@ FormFlow 扩展了标准 <a href="http://json-schema.org/documentation.html" tar
 
 上述几个属性包含脚本作为属性值。 脚本可以是通常会在方法正文中找到的任何 C# 代码片段。 可以通过使用 References 属性和/或 Imports 属性来添加引用。 特殊的全局变量包括：
 
-| 变量 | 说明 |
+| 变量 | Description |
 |----|----|
 | choice | 用于要执行的脚本的内部调度。 |
 | state | 所有脚本的绑定的 `JObject` 表单状态。 |
 | ifield | `IField<JObject>` 可允许对所有脚本（消息/确认提示生成器除外）的当前字段进行推理。 |
-| value | 要为 Validate 进行验证的对象值。 |
-| field | `Field<JObject>` 可允许动态更新 Define 中的字段。 |
-| context | `IDialogContext` 上下文可允许在 OnCompletion 中发布结果。 |
+| 值 | 要为 Validate 进行验证的对象值。 |
+| 字段 | `Field<JObject>` 可允许动态更新 Define 中的字段。 |
+| 上下文 | `IDialogContext` 上下文可允许在 OnCompletion 中发布结果。 |
 
 通过 JSON 架构定义的字段具有与任何其他字段相同的以编程方式扩展或替代定义的功能。 它们也可以用相同的方式进行本地化。
 

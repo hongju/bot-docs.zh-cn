@@ -8,15 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: aff2509a426fb42f136fb9d2b4a2df9ec1accda0
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 1c6b01b1cab9165b1513bfda5af182f27635290e
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298376"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904379"
 ---
 # <a name="send-a-typing-indicator"></a>发送键入指示符 
 
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 用户希望发出的消息得到及时响应。 如果机器人执行一些长时间运行的任务（如调用服务器或执行查询），而不向用户指明机器人已听到其消息，用户可能会失去耐性，并发送其他消息或就此假设机器人出现故障。
 许多通道支持发送键入指示，以向用户显示已接收并且正在处理消息。

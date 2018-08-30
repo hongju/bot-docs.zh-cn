@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/25/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 20258949cd8ea403e5cc9bf774d6a3b7c1e86e7e
-ms.sourcegitcommit: dcbc8ad992a3e242a11ebcdf0ee99714d919a877
+ms.openlocfilehash: 1eb47e76ef1bd6765d5ba93c27b97a8d9e6143db
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352896"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905301"
 ---
 # <a name="create-bots-with-azure-cli"></a>使用 Azure CLI 创建机器人
+
+[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
 
 [Bot Builder 工具](https://github.com/microsoft/botbuilder-tools)是一个新的工具集，可用于直接从命令行管理机器人资源并与之进行交互。 
 
@@ -37,7 +39,7 @@ ms.locfileid: "39352896"
 
 ## <a name="1-enable-azure-cli"></a>1.启用 Azure CLI
 
-现在可以像任何其他 Azure 资源一样使用 [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest) 来管理机器人。 若要启用 Azure CLI，请完成以下步骤：
+现在可以像任何其他 Azure 资源一样使用 [Azure CLI](https://docs.microsoft.com/cli/azure/?view=azure-cli-latest) 来管理机器人。 若要启用 Azure CLI，请完成以下步骤：
 
 1. 如果尚未安装，请[下载](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) Azure CLI。 
 
@@ -64,7 +66,7 @@ az login
 ![Azure 机器人 CLI](media/bot-builder-tools/az-cli-bot.png)
 
 
- 有关 Azure CLI 命令的完整列表，请[单击此处](https://docs.microsoft.com/en-us/cli/azure/reference-index?view=azure-cli-latest)。
+ 有关 Azure CLI 命令的完整列表，请[单击此处](https://docs.microsoft.com/cli/azure/reference-index?view=azure-cli-latest)。
 
 
 ## <a name="2-create-a-new-bot-from-azure-cli"></a>2.从 Azure CLI 创建新机器人
@@ -83,7 +85,7 @@ az bot [command]
 | show |显示现有机器人资源。|
 | update| 更新现有机器人服务|
 
-若要从 CLI 创建新机器人，需要选择一个现有[资源组](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview)，或创建一个新的资源组。 
+若要从 CLI 创建新机器人，需要选择一个现有[资源组](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)，或创建一个新的资源组。 
 
 ```azurecli
 az bot create --resource-group "my-resource-group" --name "my-bot-name" --kind "my-resource-type" --description "description-of-my-bot"
@@ -139,7 +141,7 @@ az bot download --name "my-bot-name" --resource-group "my-resource-group"
 
 ## <a name="4-store-your-bot-information-with-msbot"></a>4.使用 MSBot 存储机器人信息
 
-新 [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/MSBot) 工具允许你创建 .bot 文件，该文件将机器人使用的不同服务的相关元数据存储在一个位置。 此文件还使机器人能够从 CLI 连接到这些服务。 该工具可用作 npm 模块，若要安装，它将运行：
+新 [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/MSBot) 工具允许你创建 .bot 文件，该文件将机器人使用的不同服务的相关元数据存储在一个位置。 此文件还使机器人能够从 CLI 连接到这些服务。 该工具以 npm 模块形式提供。若要安装它，请运行：
 
 ```shell
 npm install -g msbot 
@@ -150,7 +152,7 @@ npm install -g msbot
 ```shell
 msbot init --name name-of-my-bot --endpoint http://localhost:bot-port-number/api/messages
 ```
-若要将机器人连接到服务，在 CLI 中输入“msbot connect”后跟相应的服务：
+若要将机器人连接到服务，请在 CLI 中输入“msbot connect”后跟相应的服务：
 
 ```shell
 msbot connect service-type
@@ -183,7 +185,7 @@ az bot show -n my-bot-name -g my-resource-group --msbot | msbot connect azure --
 > 每个 Bot Builder 工具都包含全局帮助命令，可通过输入 -h 或 --help 从命令行进行访问。 此命令可随时在任何操作中使用，将显示对你可用的有用选项及其描述。
 
 ### <a name="ludown"></a>LUDown
-[LUDown](https://github.com/Microsoft/botbuilder-tools/tree/master/Ludown)，允许你使用 **.lu** 文件为机器人描述和创建功能强大的语言组件。 新的 .lu 文件是 markdown 格式类型，LUDown 工具使用此类型并输出特定于目标服务的 .json 文件。 目前，可以使用 .lu 文件创建新的 [LUIS](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-get-started-create-app) 应用程序或 [QnA](https://qnamaker.ai/Documentation/CreateKb) 知识库，对每个使用不同格式。 LUDown 可作为 npm 模块提供，并且可通过全局安装到计算机使用：
+[LUDown](https://github.com/Microsoft/botbuilder-tools/tree/master/Ludown) 允许你使用 **.lu** 文件为机器人描述和创建功能强大的语言组件。 新的 .lu 文件是 markdown 格式类型，LUDown 工具使用此类型并输出特定于目标服务的 .json 文件。 目前，可以使用 .lu 文件创建新的 [LUIS](https://docs.microsoft.com/azure/cognitive-services/luis/luis-get-started-create-app) 应用程序或 [QnA](https://qnamaker.ai/Documentation/CreateKb) 知识库，对每个使用不同格式。 LUDown 可作为 npm 模块提供，以全局方式安装到计算机后即可使用：
 
 ```shell
 npm install -g ludown
@@ -193,9 +195,9 @@ LUDown 工具可用于为 LUIS 和 QnA 创建新的 .json 模型。
 
 ### <a name="creating-a-luis-application-with-ludown"></a>使用 LUDown 创建 LUIS 应用程序
 
-可以为 LUIS 应用程序定义[意向](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-intents)和[实体](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-entities)，就像在 LUIS 门户中那样。 
+可以为 LUIS 应用程序定义[意向](https://docs.microsoft.com/azure/cognitive-services/luis/add-intents)和[实体](https://docs.microsoft.com/azure/cognitive-services/luis/add-entities)，就像在 LUIS 门户中那样。 
 
-`# \<intent-name\>` 介绍新的意向定义部分。 后续行包含描述该意向的[表达](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-example-utterances)。
+`# \<intent-name\>` 介绍新的意向定义部分。 后续行包含描述该意向的[表达](https://docs.microsoft.com/azure/cognitive-services/luis/add-example-utterances)。
 
 例如，可以在单个 .lu 文件中创建多个 LUIS 意向，如下所示： 
 
@@ -225,7 +227,7 @@ please help
     this-is-the-answer
     ```
   ```
-LUDown 工具会自动将问题和解答分离到 qnamaker JSON 文件，然后可以用来创建新的 [QnaMaker.ai](http://qnamaker.ai) 知识库。
+LUDown 工具会自动将问题和解答分离到 qnamaker JSON 文件，然后即可用其创建新的 [QnaMaker.ai](http://qnamaker.ai) 知识库。
 
   ```ludown
   ### ? How do I change the default message for QnA Maker?
@@ -288,13 +290,13 @@ ludown parse ToLuis --in ludown-file-name.lu
 ludown parse ToQna --in ludown-file-name.lu
 ```
 
-生成的 JSON 文件可由 LUIS 和 QnA 使用，要么通过它们各自的门户网站，要么通过新的 CLI 工具。 
+生成的 JSON 文件可由 LUIS 和 QnA 通过各自的门户或新的 CLI 工具来使用。 
 
-## <a name="6-connect-to-luis-an-qna-maker-services-from-the-cli"></a>6.从 CLI 连接到 LUIS（QnA maker 服务）
+## <a name="6-connect-to-luis-an-qna-maker-services-from-the-cli"></a>6.从 CLI 连接到 LUIS（QnA Maker 服务）
 
 ### <a name="connect-to-luis-from-the-cli"></a>从 CLI 连接到 LUIS 
 
-新工具集中包含的是 [LUIS 扩展](https://github.com/Microsoft/botbuilder-tools/tree/master/LUIS)，允许独立管理 LUIS 资源。 它可以作为 npm 模块提供，可供下载：
+新工具集中包含的是 [LUIS 扩展](https://github.com/Microsoft/botbuilder-tools/tree/master/LUIS)，用于独立管理 LUIS 资源。 它以可下载的 npm 模块形式提供：
 
 ```shell
 npm install -g luis-apis
@@ -304,12 +306,12 @@ CLI 中 LUIS 工具的基本命令用法是：
 ```shell
 luis action-name resource-name arguments-list
 ```
-若要将机器人连接到 LUIS，将需要创建 .luisrc 文件。 这是在应用程序执行出站调用时将 LUIS appID 和密码预配到服务终结点的配置文件。 可以通过运行 luis init 创建此文件，如下所示：
+若要将机器人连接到 LUIS，则需创建 .luisrc 文件。 这是在应用程序执行出站调用时将 LUIS appID 和密码预配到服务终结点的配置文件。 可以通过运行 luis init 创建此文件，如下所示：
 
 ```shell
 luis init
 ```
-在此工具将生成文件之前，系统会提示在终端中输入 LUIS 创作密钥、区域和 appID。  
+在此工具生成文件之前，系统会提示在终端中输入 LUIS 创作密钥、区域和 appID。  
 
 ![LUIS init](media/bot-builder-tools/luis-init.png) 
 

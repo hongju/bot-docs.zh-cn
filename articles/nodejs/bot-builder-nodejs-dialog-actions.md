@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 580d2b75f0db3aff8657eb453f1f3bf6301f7a4d
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 365513c6370025fda807bfc8266ba68f329ceb88
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298454"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905698"
 ---
 # <a name="handle-user-actions"></a>处理用户操作
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-global-handlers.md)
@@ -29,7 +31,7 @@ ms.locfileid: "39298454"
 
 下表列出了可附加到对话的操作类型。 每个操作名称的链接均会转到一个提供该操作详细信息的部分。
 
-| 操作 | 范围 | 说明 |
+| 操作 | 范围 | Description |
 |------|------| ---- |
 | [triggerAction](#bind-a-triggeraction) | 全局 | 如果将操作绑定到对话，这将清除对话堆栈并将其自身推送到堆栈的底部。 使用 `onSelectAction` 选项替代此默认行为。 |
 | [customAction](#bind-a-customaction) | 全局 | 将自定义操作绑定到可处理信息或执行操作但不影响对话堆栈的机器人。 使用 `onSelectAction` 选项自定义此操作的功能。 |

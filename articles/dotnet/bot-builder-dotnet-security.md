@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 331effc0bf604388995288e5d7c3ca9d54537f94
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 376982396ac11cbcf54f26255235b3779e0e1c26
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297764"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905709"
 ---
 # <a name="secure-your-bot"></a>保护机器人
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 机器人可以通过 Bot Framework Connector 服务连接到许多不同的通信通道（Skype、SMS、电子邮件和其他）。 本文介绍如何使用 HTTPS 和 Bot Framework 身份验证来保护机器人。
 
@@ -49,6 +51,6 @@ ms.locfileid: "39297764"
 
 ## <a name="additional-resources"></a>其他资源
 
-- [用于 .NET 的 Bot Builder SDK](bot-builder-dotnet-overview.md)
+- [Bot Builder SDK for .NET](bot-builder-dotnet-overview.md)
 - [用于 .NET 的 Bot Builder SDK 中的重要概念](bot-builder-dotnet-concepts.md)
 - [使用 Bot Framework 注册机器人](~/bot-service-quickstart-registration.md)

@@ -9,16 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 539e9e1cd772495d849ce106ee7d6a157fc1a9c0
-ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
+ms.openlocfilehash: 28377a1e611464012df28d3edf78d1cf01351345
+ms.sourcegitcommit: 44f100a588ffda19c275b118f4f97029f12d1449
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/04/2018
-ms.locfileid: "39515077"
+ms.lasthandoff: 08/26/2018
+ms.locfileid: "42928365"
 ---
 # <a name="persist-user-data"></a>保存用户数据
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 当机器人要求用户进行输入时，你可能希望将某些信息保存到某种形式的存储中。 借助 Bot Builder SDK，你可使用“内存中存储”、“文件存储”或“数据库存储”（如 CosmosDB 或 SQL）来存储用户的输入项，其中本地存储类型主要用于测试或原型制作，而后期存储类型最适合生产机器人。
 

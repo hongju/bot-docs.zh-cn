@@ -8,14 +8,16 @@ manager: kamrani
 ms.topic: get-started-article
 ms.prod: bot-framework
 ms.date: 05/14/2018
-ms.openlocfilehash: 70a3b7f093bb80dd16c854c65331c141fbba3725
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: f3e5ed5b14ffb81c597b10aeac45854464bad8b0
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298354"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905589"
 ---
 # <a name="deploy-your-bot-to-azure"></a>将机器人部署到 Azure
+
+[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
 
 创建机器人并在本地对其进行验证后，可以将其推送到 Azure，以便可以从任何位置访问它。 为此，首先在应用服务中将机器人部署到 Azure，然后使用机器人通道注册项通过 Azure 机器人服务配置机器人。
 

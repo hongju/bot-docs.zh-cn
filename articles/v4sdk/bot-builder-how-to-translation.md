@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/06/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7241b67b582b3e31c1b3c15dc5474e750b7cc558
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: e316ff90b68f860274579f06e7196deec364e082
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298497"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905630"
 ---
 # <a name="translate-from-the-users-language-to-make-your-bot-multilingual"></a>翻译用户的语言，让机器人会讲多种语言
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 机器人可使用 [Microsoft Translator](https://www.microsoft.com/en-us/translator/) 将消息自动翻译成它理解的语言，并选择性地将其回复翻译回用户的语言。
 <!-- 

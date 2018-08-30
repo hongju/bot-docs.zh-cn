@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 10c1cb240a22c1c16dd0d946ee55531d514f332e
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 86f70fd66f1bc2261339cbe0590061913b51ddbc
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298195"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904435"
 ---
 # <a name="save-user-state-data"></a>保存用户状态数据
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 当机器人请求用户输入时，你很可能想要将一些信息保存到某种形式的存储中。 Bot Builder SDK 允许你使用内存中存储、文件存储、数据库存储（如 CosmosDB 或 SQL）存储用户输入。 
 

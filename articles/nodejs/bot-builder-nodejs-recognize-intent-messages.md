@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b737b11db3876d8b98cbd9f46f6e23f8b8564244
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 67dc8a196393458b37bb6447ceaa8f36a28a564a
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298449"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905928"
 ---
 # <a name="recognize-user-intent-from-message-content"></a>识别消息内容中的用户意向
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 机器人接收来自用户的消息后，可使用识别器检查该消息并确定意向。 意向提供了从消息到要调用的对话的映射。 本文介绍如何使用正则表达式或通过检查消息内容识别意向。 例如，机器人可使用正则表达式检查消息是否包含“帮助”一词，并调用帮助对话。 机器人还可以检查用户消息的属性（例如查看用户发送了图像还是文本），并调用图像处理对话。 
 

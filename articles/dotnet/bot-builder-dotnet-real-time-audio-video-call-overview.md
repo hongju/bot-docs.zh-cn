@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3e990da2abcb63c695cc79d5d8d9af40d8966cfa
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 35aca6f5f50602d0a90c41997eff2e8b1d2cdb4e
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298051"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905609"
 ---
 # <a name="build-a-real-time-media-bot-for-skype"></a>为 Skype 构建实时媒体机器人
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 机器人实时媒体平台是一项高级功能，允许机器人逐帧发送和接收语音和视频内容。 机器人具有对语音、视频和屏幕共享实时形式的“原始”访问权限。 本文提供了有关构建音频/视频通话机器人和访问实时形式的概述。
 

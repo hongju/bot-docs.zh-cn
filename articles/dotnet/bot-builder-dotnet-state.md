@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b218ae4ffd2ffbfe9144b4143f2600be15d688dd
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3a924503ecadc9f56fa2543881c116f7fbbb4d9a
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297838"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904325"
 ---
 # <a name="manage-state-data"></a>管理状态数据
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-state.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-state.md)
@@ -24,7 +27,7 @@ ms.locfileid: "39297838"
 
 ## <a name="in-memory-data-storage"></a>内存中数据存储
 
-内存中数据存储仅用于测试。 此存储是易失性和临时性的。 每次重启机器人都会清除数据。 若要将内存中存储用于测试目的，需要： 
+内存中数据存储仅用于测试。 此存储是易失性的临时存储。 每次重启机器人都会清除数据。 若要将内存中存储用于测试目的，需要： 
 
 安装以下 NuGet 包： 
 - Microsoft.Bot.Builder.Azure

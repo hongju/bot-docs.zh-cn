@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 71e04d2c76d6bff22352c6b4e90aae933f209638
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 091c90da9b14c0abe70d08f45f528a3cce818cef
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298217"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904031"
 ---
 # <a name="requirements-and-considerations-for-real-time-media-bots"></a>实时媒体机器人的要求和注意事项
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 并非所有适用于开发消息传递和 IVR 呼叫机器人的指南同样适用于构建实时媒体机器人。 本文介绍了开发实时媒体机器人的一些重要要求和注意事项。 
 

@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d24e43a3f48db024ab55c2089acbc42edebab929
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3ad843530b70b75a6db728a399a315534d2234ac
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298371"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904190"
 ---
 # <a name="customize-a-form-using-formbuilder"></a>使用 FormBuilder 自定义表单
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 [FormFlow 的基本功能](bot-builder-dotnet-formflow.md)介绍了能提供比较通用的用户体验的基本 FormFlow 实现，[FormFlow 的高级功能](bot-builder-dotnet-formflow-advanced.md)则介绍了如何使用业务逻辑和属性自定义用户体验。 本文介绍如何通过指定表单执行步骤的序列并动态定义字段值、确认和消息，使用 [FormBuilder][formBuilder] 更进一步地自定义用户体验。 
 
@@ -81,7 +83,7 @@ ms.locfileid: "39298371"
 - [FormFlow 的基本功能](bot-builder-dotnet-formflow.md)
 - [FormFlow 的高级功能](bot-builder-dotnet-formflow-advanced.md)
 - [本地化处理表单内容](bot-builder-dotnet-formflow-localize.md)
-- [使用 JSON 架构定义表单](bot-builder-dotnet-formflow-json-schema.md)
+- [使用 JSON 架构定义窗体](bot-builder-dotnet-formflow-json-schema.md)
 - [使用模式语言自定义用户体验](bot-builder-dotnet-formflow-pattern-language.md)
 - <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
 

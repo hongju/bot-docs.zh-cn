@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 5/16/17
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6a88b0a7f44f43d0676ba88314fbba7c486e6be4
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 07f4ad7d53c456de53be196977458a3d8b03c6f0
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297799"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906191"
 ---
 # <a name="extract-intents-and-entities-using-luisgen"></a>使用 LUISGen 提取意向和实体
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 除了识别意向外，LUIS 应用还可以提取实体，这些实体是实现用户请求的重要词汇。 例如，在餐馆预订的示例中，LUIS 应用可能能够从用户的消息中提取聚会大小、预订日期或餐馆位置。 
 
@@ -85,7 +87,7 @@ public _Entities Entities;
 |实体 | Type | 示例 | 说明 |
 |-------|-----|------|---|
 |partySize| string[]| `four` 人的聚会| 简单实体会识别字符串。 在此示例中，Entities.partySize[0] 是 `"four"`。
-|datetime| [DateTimeSpec](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.ai.luis.datetimespec?view=botbuilder-4.0.0-alpha)[]| 在 `9pm tomorrow` 预订| 每个 **DateTimeSpec** 对象都有一个 timex 字段，其中包含以 **timex** 格式指定的可能时间值。 有关 timex 的更多信息，请访问： http://www.timeml.org/publications/timeMLdocs/timeml_1.2.1.html#timex3；有关进行识别的库的更多信息，请访问：https://github.com/Microsoft/Recognizers-Text
+|datetime| [DateTimeSpec](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.ai.luis.datetimespec?view=botbuilder-4.0.0-alpha)[]| 在 `9pm tomorrow` 预订| 每个 **DateTimeSpec** 对象都有一个 timex 字段，其中包含以 **timex** 格式指定的可能时间值。 有关 timex 的更多信息，请访问： http://www.timeml.org/publications/timeMLdocs/timeml_1.2.1.html#timex3；有关进行识别的库的更多信息，请访问： https://github.com/Microsoft/Recognizers-Text
 |数字| double[]| `four` 人的聚会，其中包括 `2` 个孩子 | `number` 会识别所有数字，而不仅仅是聚会的大小。 <br/> 在“4 人的聚会，其中包括 2 个孩子”这句话中，`Entities.number[0]` 是 4，`Entities.number[1]` 是2。
 |cafelocation| string[][] | 在 `Seattle` 位置预订。| cafeLocation 是一个列表实体，这意味着它包含已识别的成员列表。 如果已识别的实体是多个列表的成员，则它是数组的数组。 例如，“在华盛顿预订”可以对应于华盛顿州和华盛顿特区的列表
 

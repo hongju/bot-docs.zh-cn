@@ -8,20 +8,22 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: c77b07801b8eb0168ac3e09d7b271ddfb17a04ac
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 84fdbecfe59db49e2e88567a6c942c300ea226a2
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297968"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904357"
 ---
 # <a name="manage-custom-state-data-with-azure-table-storage-for-nodejs"></a>通过适用于 Node.js 的 Azure 表存储来管理自定义状态数据
 
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 在本文中，将实现 Azure 表存储来存储和管理机器人的状态数据。 机器人使用的默认连接器状态服务不适用于生产环境。 应使用 GitHub 上提供的 [Azure 扩展](https://www.npmjs.com/package/botbuilder-azure)，或者使用所选的数据存储平台实现自定义状态客户端。 下面是使用自定义状态存储的一些原因：
 
-- 更高的状态 API 吞吐量（更多地控制性能）
+- 状态 API 吞吐量更高（性能控制更强）
 - 降低地理分布的延迟
-- 控制数据的存储位置（例如：美国西部和美国东部）
+- 控制数据的存储位置（例如美国西部与美国东部）
 - 访问实际的状态数据
 - 状态数据 db 不与其他机器人共享
 - 存储超过 32 kb
@@ -45,7 +47,7 @@ ms.locfileid: "39297968"
 
 ## <a name="install-botbuilder-azure-module"></a>安装 botbuilder-azure 模块
 
-若要从命令提示符安装 `botbuilder-azure` 模块，请导航到机器人的目录并运行以下 npm 命令：
+要从命令提示符处安装 `botbuilder-azure` 模块，请导航到机器人的目录并运行以下 npm 命令：
 
 ```nodejs
 npm install --save botbuilder-azure
@@ -107,11 +109,11 @@ node app.js
 
 ## <a name="connect-your-bot-to-the-emulator"></a>将机器人连接到模拟器
 
-此时，机器人在本地运行。 启动模拟器，然后从模拟器连接到机器人：
+此时，机器人在本地运行。 启动模拟器，然后从模拟器中连接到机器人：
 
-1. 在模拟器的地址栏中键入 <strong>http://localhost:port-number/api/messages</strong>，其中 port-number 与运行应用程序的浏览器中显示的端口号相匹配。 现在可以将“Microsoft 应用 ID”和“Microsoft 应用密码”字段留空。 以后当你[注册机器人](~/bot-service-quickstart-registration.md)时，将获得此信息。
+1. 在模拟器的地址栏中键入 http://localhost:port-number/api/messages，其中 port-number 与运行应用程序的浏览器中显示的端口号相匹配。 现在可以将“Microsoft 应用 ID”和“Microsoft 应用密码”字段留空。 稍后[注册机器人](~/bot-service-quickstart-registration.md)时将获取此信息。
 2. 单击“连接”。
-3. 通过向机器人发送消息测试机器人。 像往常那样与机器人进行交互。 完成后，请转到“存储资源管理器”并查看保存的状态数据。
+3. 通过向机器人发送消息测试机器人。 像往常一样与机器人进行交互。 完成后，请转到“存储资源管理器”并查看保存的状态数据。
 
 ## <a name="view-data-in-storage-explorer"></a>在存储资源管理器中查看数据
 

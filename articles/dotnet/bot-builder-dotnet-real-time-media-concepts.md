@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 255248449ab7adb6512db93ece51389d65c01dee
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: eed4ac20664d15fbc40969551a1f23fc91b4f120
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297889"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906221"
 ---
 # <a name="real-time-media-calling-with-skype"></a>使用 Skype 进行实时媒体通话
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 适用于机器人的实时媒体平台通过实现实时语音、视频和屏幕共享形式为机器人与用户互动的方式增加了一个新的维度。 它提供构建引人注目以及交互式娱乐、教育和辅助机器人的能力。 用户使用 Skype 与实时媒体机器人进行通信。
 
@@ -49,7 +51,7 @@ ms.locfileid: "39297889"
 ## <a name="video-subscription"></a>视频订阅
 在与单个 Skype 呼叫方的通话中，机器人将自动接收呼叫方的视频（如果机器人已被启用接收主要视频）。 在多方 Skype 群组视频通话中，机器人必须向实时媒体平台指出它想要看到哪些参与者。 视频订阅是机器人发出的用于接收参与者的视频的请求。 当群组视频通话中的参与者进行会话时，机器人可以基于主导说话人组的更新来修改其所需的视频订阅。
 
-## <a name="developer-resources"></a>开发者资源 
+## <a name="developer-resources"></a>开发人员资源 
 
 ### <a name="sdks"></a>SDK
 

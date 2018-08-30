@@ -9,16 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/22/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8e08ac4721ee78bbd5d13dac09d9e505d3a1b134
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: 278005c25e98c7c5b7d523030846909aed830224
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39298563"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905350"
 ---
 # <a name="activity-processing"></a>活动处理
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 机器人和用户通过活动交换信息。 机器人应用程序接收的每个活动都会传递给机器人适配器，该适配器会将活动信息传递给机器人逻辑，并最终将所有响应发送给用户。
 
@@ -94,7 +94,7 @@ ms.locfileid: "39298563"
 
 ## <a name="next-steps"></a>后续步骤
 
-既然已熟悉机器人的一些关键概念，那么让我们深入了解机器人如何发送主动消息的详细信息。
+你已熟悉了机器人的一些主要概念，接下来让我们深入了解机器人如何主动传递消息。
 
 > [!div class="nextstepaction"]
 > [中间件](~/v4sdk/bot-builder-concept-middleware.md)

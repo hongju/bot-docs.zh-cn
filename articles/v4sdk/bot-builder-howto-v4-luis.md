@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/30/17
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9a04a73e8ac8716ec528586e069aa2d16d90e28f
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: 88651a2c86698d55e3a429d7ea62662976d2115f
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39298562"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906161"
 ---
 # <a name="using-luis-for-language-understanding"></a>将 LUIS 用于语言理解
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 理解用户在会话和上下文中表达的含义是一项艰巨的任务，但可以让你的机器人更自然地进行会话。 使用语言理解（称为 LUIS）能够实现此目标，使机器人能够识别用户消息的意向，接收用户更自然的语言，并更好地指导会话流程。 如果需要了解 LUIS 与机器人集成的更多背景信息，请参阅[机器人语言理解](./bot-builder-concept-LUIS.md). 
 

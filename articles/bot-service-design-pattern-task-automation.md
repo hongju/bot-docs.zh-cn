@@ -7,14 +7,16 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 2/13/2018
-ms.openlocfilehash: 1f14329958711cc7f9ef8832b267587e1232da2a
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 60a3796e255611ff09d5418cdeaa6f363ad8da15
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297730"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904963"
 ---
 # <a name="create-task-automation-bots"></a>创建任务自动化机器人
+
+[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
 
 任务自动化机器人使用户能在无任何人工帮助的情况下，完成特定任务或一组任务。 通常，这种类型的机器人非常类似于典型的应用或网站，主要通过大量的用户控件和文本与用户进行通信。 它可能具有自然语言理解功能，可与用户进行更多聊天。 
 
@@ -105,7 +107,7 @@ Contoso 公司经验丰富的开发人员 John 决定创建一个机器人来自
 
 ## <a name="additional-resources"></a>其他资源
 
-- [对话](~/dotnet/bot-builder-dotnet-dialogs.md)
+- [对话框](~/dotnet/bot-builder-dotnet-dialogs.md)
 - [使用对话管理聊天流 (.NET)](~/dotnet/bot-builder-dotnet-manage-conversation-flow.md)
 - [使用对话管理聊天流 (Node.js)](~/nodejs/bot-builder-nodejs-manage-conversation-flow.md)
 
