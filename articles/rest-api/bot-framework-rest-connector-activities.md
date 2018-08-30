@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: cf8da2240df7edbb6ea8c858829e71089b7e72cb
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 565f71dee4269ecd67dabe18af57e36defcfb3fc
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298436"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756491"
 ---
 # <a name="activities-overview"></a>活动概述
 
@@ -22,13 +22,12 @@ Bot Connector 服务通过传递 [Activity][Activity] 对象在机器人和通�
 
 Bot Connector 服务支持以下活动类型。
 
-| 活动类型 | 说明 |
+| 活动类型 | Description |
 |------|------|------|
 | message | 表示机器人和用户之间的通信。 |
 | conversationUpdate | 指示机器人已添加到聊天中、其他成员已添加到聊天或已从中删除，或者聊天元数据已更改。 |
 | contactRelationUpdate | 指示已将机器人添加到用户的联系人列表或已从中删除。 |
 | typing | 指示位于聊天另一端的用户或机器人正在编写答复。 | 
-| ping | 表示确定机器人的终结点能否访问的尝试操作。 | 
 | deleteUserData | 向机器人表明用户已请求机器人删除其可能存储的所有用户数据。 |
 | endOfConversation | 指示聊天结束。 |
 
@@ -52,10 +51,6 @@ Bot Connector 服务支持以下活动类型。
 ## <a name="typing"></a>typing
 
 机器人会收到 typing 活动，它指示用户正在键入答复。 机器人可发送 typing 活动向用户表明它正在积极处理请求或编写答复。 
-
-## <a name="ping"></a>ping
-
-机器人会收到 ping 活动，它用于确定其终结点能否访问。 机器人应以 HTTP 状态代码“200 (正常)”、“403 (禁止访问)”或“401 (未经授权)”进行答复。
 
 ## <a name="deleteuserdata"></a>deleteUserData
 

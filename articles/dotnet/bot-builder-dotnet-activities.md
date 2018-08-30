@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f7fe3181a4c361b47a7ef6fbdf815b4c495c6f76
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 834702024c99873ca9f0bbedb53a24a16ba55878
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574633"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756474"
 ---
 # <a name="activities-overview"></a>活动概述
 
@@ -30,17 +30,16 @@ Bot Builder SDK for .NET 支持以下活动类型。
 | [message](#message) | IMessageActivity | 表示机器人和用户之间的通信。 |
 | [conversationUpdate](#conversationupdate) | IConversationUpdateActivity | 指示机器人已添加到聊天中、其他成员已添加到聊天或从聊天中删除，或者聊天元数据已更改。 |
 | [contactRelationUpdate](#contactrelationupdate) | IContactRelationUpdateActivity | 指示已将机器人添加到用户的联系人列表或已从其中删除。 |
-| [typing](#typing) | ITypingActivity | 指示聊天另一端的用户或机器人正在编译响应。 | 
-| [ping](#ping) | 不适用 | 表示尝试确定机器人的终结点是否可访问。 | 
-| [deleteUserData](#deleteuserdata) | 不适用 | 向机器人表明用户已请求机器人删除它可能存储的任何用户数据。 |
+| [typing](#typing) | ITypingActivity | 指示位于聊天另一端的用户或机器人正在编写答复。 | 
+| [deleteUserData](#deleteuserdata) | 不适用 | 向机器人表明用户已请求机器人删除其可能存储的所有用户数据。 |
 | [endOfConversation](#endofconversation) | IEndOfConversationActivity | 指示聊天结束。 |
 | [event](#event) | IEventActivity | 表示发送到用户不可见的机器人的通信。 |
-| [invoke](#invoke) | IInvokeActivity | 表示发送到机器人以请求它执行特定操作的通信。 此活动类型保留供 Microsoft Bot Framework 内部使用。 |
+| [invoke](#invoke) | IInvokeActivity | 表示发送到机器人以请求它执行特定操作的通信。 保留此活动类型以供 Microsoft Bot Framework 内部使用。 |
 | [messageReaction](#messagereaction) | IMessageReactionActivity | 指示用户已对现有活动做出反应。 例如，用户单击消息上的“赞”按钮。 |
 
 ## <a name="message"></a>message
 
-机器人将发送**消息**活动向用户传达信息，并接收来自用户的**消息**活动。 某些消息可能只包含纯文本，而其他消息可能包含更丰富的内容，例如[要说的文本](bot-builder-dotnet-text-to-speech.md)、[建议的操作](bot-builder-dotnet-add-suggested-actions.md)、[媒体附件](bot-builder-dotnet-add-media-attachments.md)、[丰富的卡片](bot-builder-dotnet-add-rich-card-attachments.md)和[特定于通道的数据](bot-builder-dotnet-channeldata.md)。 有关常用消息属性的信息，请参阅[创建消息](bot-builder-dotnet-create-messages.md)。
+机器人将发送“消息”活动向用户传达信息，并接收来自用户的“消息”活动。 某些消息可能只包含纯文本，而其他消息可能包含更丰富的内容，例如[要说的文本](bot-builder-dotnet-text-to-speech.md)、[建议的操作](bot-builder-dotnet-add-suggested-actions.md)、[媒体附件](bot-builder-dotnet-add-media-attachments.md)、[丰富的卡片](bot-builder-dotnet-add-rich-card-attachments.md)和[特定于通道的数据](bot-builder-dotnet-channeldata.md)。 有关常用消息属性的信息，请参阅[创建消息](bot-builder-dotnet-create-messages.md)。
 
 ## <a name="conversationupdate"></a>conversationUpdate
 
@@ -57,23 +56,19 @@ Bot Builder SDK for .NET 支持以下活动类型。
 
 ## <a name="contactrelationupdate"></a>contactRelationUpdate
 
-无论何时将机器人添加到用户的联系人列表或从用户的联系人列表中删除，机器人都会收到 **contactRelationUpdate** 活动。 活动的 `Action` 属性的值 (add | remove) 指示是已将机器人添加到用户的联系人列表还是已将其从其中删除。
+每次将机器人添加到用户的联系人列表或从中删除时，机器人都会收到 contactRelationUpdate 活动 。 活动的 `Action` 属性的值 (add | remove) 指示是已将机器人添加到用户的联系人列表还是已将其从中删除。
 
 ## <a name="typing"></a>typing
 
-机器人会收到 **typing** 活动，该活动指示用户正在键入响应。 机器人可以发送 **typing** 活动以向用户表明它正在努力完成请求或编译响应。 
-
-## <a name="ping"></a>ping
-
-机器人会收到 **ping** 活动，该活动用于确定其终结点是否可访问。 机器人应以 HTTP 状态代码“200 (正常)”、“403 (禁止访问)”或“401 (未经授权)”进行响应。
+机器人会收到 typing 活动，它指示用户正在键入答复。 机器人可发送 typing 活动向用户表明它正在积极处理请求或编写答复。 
 
 ## <a name="deleteuserdata"></a>deleteUserData
 
-当用户请求删除机器人之前为其保留的任何数据时，机器人会收到 **deleteUserData** 活动。 如果机器人收到此类活动，则应删除之前为发出请求的用户存储的任何个人身份信息 (PII)。
+当用户请求删除机器人之前为其保留的任何数据时，机器人会收到 deleteUserData 活动。 如果机器人收到此类活动，则应删除之前为发出请求的用户存储的任何个人身份信息 (PII)。
 
 ## <a name="endofconversation"></a>endOfConversation 
 
-机器人会收到 **endOfConversation** 活动，该活动指示用户已结束聊天。 机器人可以发送 **endOfConversation** 活动以向用户表明正在结束聊天。 
+机器人会收到 endOfConversation 活动，它指示用户已结束聊天。 机器人可发送 endOfConversation 活动向用户表明聊天即将结束。 
 
 ## <a name="event"></a>event
 
@@ -93,4 +88,4 @@ Bot Builder SDK for .NET 支持以下活动类型。
 
 - [发送和接收活动](bot-builder-dotnet-connector.md)
 - [创建消息](bot-builder-dotnet-create-messages.md)
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活动类</a>
+- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 类</a>
