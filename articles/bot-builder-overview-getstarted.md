@@ -8,16 +8,16 @@ ms.topic: get-started-article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 21186c5d3b0769311e4703ca1dab2f48a0a0081a
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 3ee7843e64dfa95427ebcb132740eab3db281ffc
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574883"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904010"
 ---
 # <a name="develop-bots-with-bot-builder"></a>使用 Bot Builder 开发机器人
 
-[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 
 Bot Builder 提供 SDK、库、示例和工具来帮助你生成和调试机器人。 使用机器人服务生成机器人时，机器人由 Bot Builder SDK 提供支持。 还可以使用 Bot Builder SDK 通过 C# 或 Node.js 从头开始创建机器人。 Bot Builder 包括用于测试机器人的 Bot Framework Emulator 和用于预览机器人在不同通道上的用户体验的 Channel Inspector。
 
@@ -55,7 +55,7 @@ Bot Builder 提供 SDK、库、示例和工具来帮助你生成和调试机器�
 
 [Node.js 快速入门](~/nodejs/bot-builder-nodejs-quickstart.md)将指导你使用用于 Node.js 的 Bot Builder SDK 创建机器人。 
 
-用于 Node.js 的 Bot Builder SDK 以 npm 包的形式提供。 若要安装用于 Node.js 的 Bot Builder SDK 及其依赖项，首先要为机器人创建一个文件夹，导航到该文件夹，然后运行以下 **npm** 命令：
+用于 Node.js 的 Bot Builder SDK 以 npm 包的形式提供。 若要安装 Bot Builder SDK for Node.js 及其依赖项，请先为机器人创建一个文件夹，导航到该文件夹，然后运行以下 **npm** 命令：
 
 ```nodejs
 npm init

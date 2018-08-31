@@ -7,14 +7,14 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 04/03/2018
+ms.date: 08/24/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 30a0c463698d9ab7e3b2b0f9ddb0e872f007d1d8
-ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
+ms.openlocfilehash: 5883b31df95da26fa0432f4cfe195f12fc3089ad
+ms.sourcegitcommit: 86ddf3ebe6cc3385d1c4d30b971ac9c3e1fc5a77
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/04/2018
-ms.locfileid: "39515037"
+ms.lasthandoff: 08/27/2018
+ms.locfileid: "43055991"
 ---
 # <a name="add-media-to-messages"></a>向消息添加媒体
 
@@ -233,8 +233,13 @@ await context.sendActivity(hero);
 ---
 
 ## <a name="send-an-adaptive-card"></a>发送自适应卡
+自适应卡片和 MessageFactory 用于发送丰富消息（包括文本、图像、视频、音频和文件）来与用户通信。 但是，两者存在一些差异。 
 
-你也可以将自适应卡作为附件发送。 当前并非所有通道都支持自适应卡。 若要查找有关自适应卡通道支持的最新信息，请参阅<a href="http://adaptivecards.io/visualizer/">自适应卡可视化工具</a>。
+首先，只有某些通道支持自适应卡片，有些通道可能只是部分支持自适应卡片。 例如，如果在 Facebook 中发送自适应卡片，则按钮可能不起作用，而文本和图像可正常使用。 MessageFactory 只是 Bot Builder SDK 中的一个帮助器类，可以自动完成创建步骤，并受大多数通道的支持。 
+
+其次，自适应卡片以卡片格式传送消息，通道确定卡片的布局。 MessageFactory 传送消息的格式取决于通道，除非在附件中包含自适应卡片，否则不一定采用卡片格式。 
+
+若要查找有关自适应卡通道支持的最新信息，请参阅<a href="http://adaptivecards.io/visualizer/">自适应卡可视化工具</a>。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 若要使用自适应卡，请务必添加 `Microsoft.AdaptiveCards` NuGet 包。

@@ -7,18 +7,18 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/03/2018
-ms.openlocfilehash: 129c3a2b92297980e6b5e209f6e7f400a854d3a1
-ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
+ms.openlocfilehash: 7aff56dfc60d9d5cce42a5b6a2624c1364ff1b72
+ms.sourcegitcommit: 44f100a588ffda19c275b118f4f97029f12d1449
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/04/2018
-ms.locfileid: "39515067"
+ms.lasthandoff: 08/26/2018
+ms.locfileid: "42928375"
 ---
-::: moniker range="azure-bot-service-3.0"
-
 # <a name="bot-builder-sdk-for-net-samples"></a>Bot Builder SDK for .NET 示例
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label-v3.md)]
+::: moniker range="azure-bot-service-3.0"
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 这些示例展示了以任务为中心的机器人，这些机器人展示了如何利用 Bot Builder SDK for .NET 的特性。 这些示例可助你快速入门，构建具有丰富功能的强大机器人。
 
@@ -84,15 +84,15 @@ cd BotBuilder-Samples
 
 示例 | Description
 ------------ | -------------
-[Contoso Flowers](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-ContosoFlowers) | 使用 Bot Framework 的许多功能的示例机器人。
+[Contoso Flowers](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-ContosoFlowers) | 一个使用 Bot Framework 的众多功能的示例机器人。
 
 ::: moniker-end
 
 ::: moniker range="azure-bot-service-4.0"
-# <a name="bot-builder-sdk-v4-net-samples"></a>Bot Builder SDK v4 .NET 示例
+
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-这些示例展示了以任务为中心的机器人，这些机器人展示了如何利用 Bot Builder SDK for .NET 的特性。 这些示例可助你快速入门，构建具有丰富功能的强大机器人。 
+这些示例演示以任务为中心的机器人，这些机器人展示了如何利用 Bot Builder SDK for .NET v4 的功能。 这些示例可助你快速入门，构建具有丰富功能的强大机器人。 
 
 注意：SDK v4 正在积极开发中，因此应仅限试验使用。 
 

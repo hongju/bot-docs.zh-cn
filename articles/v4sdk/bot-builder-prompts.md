@@ -1,6 +1,6 @@
 ---
-title: 提示用户输入 | Microsoft Docs
-description: 了解如何在 Bot Builder SDK for Node.js 中提示用户输入。
+title: 使用“对话”库提示用户输入 | Microsoft Docs
+description: 了解如何在 Bot Builder SDK for Node.js 中使用“对话”库提示用户输入。
 keywords: 提示, 对话框, AttachmentPrompt, ChoicePrompt, ConfirmPrompt, DatetimePrompt, NumberPrompt, TextPrompt, 重新提示, 验证
 author: v-ducvo
 ms.author: v-ducvo
@@ -9,20 +9,20 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/10/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b08c087bcce4a3dcee5de20311e2f7b890ea2f6b
-ms.sourcegitcommit: b45e16cac2febb7034da4ccd3af3bd7e6f430c31
+ms.openlocfilehash: 0b238ed510fd1d6fda82734af373f344b0dc28e3
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/02/2018
-ms.locfileid: "39469274"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905361"
 ---
-# <a name="prompt-users-for-input"></a>提示用户输入
+# <a name="prompt-users-for-input-using-the-dialogs-library"></a>使用“对话”库提示用户输入
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-通常机器人通过向用户提出问题收集其信息。 只需使用轮次上下文对象的 send activity 方法来请求字符串输入，即可向用户发送标准消息；但是，Bot Builder SDK 提供了一个对话框库，可以用来要求提供不同类型的信息。 本主题详细介绍如何使用提示来请求用户输入。
+通常机器人通过向用户提出问题收集其信息。 只需使用[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)对象的 _send activity_ 方法来请求字符串输入，即可向用户发送标准消息；但是，Bot Builder SDK 提供了一个可用于请求不同类型的信息的“对话”库。 本主题详细介绍如何使用提示来请求用户输入。
 
-本文介绍如何使用对话框中的提示。 有关在一般情况下使用对话框的信息，请参阅[使用对话框管理会话流](bot-builder-dialog-manage-conversation-flow.md)。
+本文介绍如何使用对话框中的提示。 有关使用对话的一般信息，请参阅[使用对话管理聊天流](bot-builder-dialog-manage-conversation-flow.md)。
 
 ## <a name="prompt-types"></a>提示类型
 
@@ -33,13 +33,13 @@ ms.locfileid: "39469274"
 | **AttachmentPrompt** | 提示用户提供附件，例如文档或图像。 |
 | **ChoicePrompt** | 提示用户从一组选项中进行选择。 |
 | **ConfirmPrompt** | 提示用户确认其操作。 |
-| **DatetimePrompt** | 提示用户输入日期时间。 用户可以使用自然语言响应，如“明天晚上 8 点”或“星期五上午 10 点”。 Bot Framework SDK 使用 LUIS `builtin.datetimeV2` 预生成实体。 有关详细信息，请参阅 [builtin.datetimev2](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-reference-prebuilt-entities#builtindatetimev2)。 |
+| **DatetimePrompt** | 提示用户输入日期时间。 用户可以使用自然语言响应，如“明天晚上 8 点”或“星期五上午 10 点”。 Bot Framework SDK 使用 LUIS `builtin.datetimeV2` 预生成实体。 有关详细信息，请参阅 [builtin.datetimev2](https://docs.microsoft.com/azure/cognitive-services/luis/luis-reference-prebuilt-entities#builtindatetimev2)。 |
 | **NumberPrompt** | 提示用户输入数字。 用户可以使用“10”或“十”进行响应。 如果响应为“10”，例如，提示会将响应转换为一个数字并返回 `10` 作为结果。 |
 | **TextPrompt** | 提示用户输入文本字符串。 |
 
 ## <a name="add-references-to-prompt-library"></a>添加对提示库的引用
 
-可以通过向机器人添加对话框包获取对话框库。 有关对话框，请参阅[使用对话框管理会话流](bot-builder-dialog-manage-conversation-flow.md)，但我们将使用对话框进行提示。
+可以通过向机器人添加对话框包获取对话框库。 [使用对话管理简单的聊天流](bot-builder-dialog-manage-conversation-flow.md)中介绍了对话，本文将在提示中使用对话。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -75,7 +75,7 @@ public class MyDialog : DialogSet
 通过 NPM 安装对话框包：
 
 ```cmd
-npm install --save botbuilder-dialogs
+npm install --save botbuilder-dialogs@preview
 ```
 
 若要在机器人中使用对话框，请将其包含在机器人代码中。
@@ -93,7 +93,7 @@ const dialogs = new DialogSet();
 
 若要提示用户进行输入，可以向对话框添加提示。 例如，可以定义 TextPrompt 类型的提示，并为其提供 textPrompt 的对话框 ID：
 
-添加提示对话框后，可以在简单的两步骤瀑布式对话框中使用它，或在多个步骤瀑布式对话框中同时使用多个提示。 瀑布式对话框只是定义一系列步骤的方法。 有关详细信息，请参阅[使用对话框管理会话流](bot-builder-dialog-manage-conversation-flow.md)的[使用对话框](bot-builder-dialog-manage-conversation-flow.md#using-dialogs-to-guide-the-user-through-steps)部分。
+添加提示对话框后，可以在简单的两步骤瀑布式对话框中使用它，或在多个步骤瀑布式对话框中同时使用多个提示。 瀑布式对话框只是定义一系列步骤的方法。 有关详细信息，请参阅[使用对话管理简单的聊天流](bot-builder-dialog-manage-conversation-flow.md)中的[使用对话](bot-builder-dialog-manage-conversation-flow.md#using-dialogs-to-guide-the-user-through-steps)部分。
 
 在第一轮中，对话框提示用户输入其名称，在第二轮中，对话框将用户输入作为提示答案处理。
 
@@ -129,13 +129,13 @@ public class MyDialog : DialogSet
             async (dc, args, next) =>
             {
                 // Prompt for the user's name.
-                await dc.Prompt(Inputs.Text, "What is your name?").ConfigureAwait(false);
+                await dc.Prompt(Inputs.Text, "What is your name?");
             },
             async(dc, args, next) =>
             {
                 var user = (string)args["Text"];
-                await dc.Context.SendActivity($"Hi {user}!").ConfigureAwait(false);
-                await dc.End().ConfigureAwait(false);
+                await dc.Context.SendActivity($"Hi {user}!");
+                await dc.End();
             }
         });
     }
@@ -166,7 +166,7 @@ dialogs.add('greetings', [
 ---
 
 > [!NOTE]
-> 若要启动对话框，获取一个对话框的上下文，并使用其 begin 方法。 有关详细信息，请参阅[使用对话框管理会话流](./bot-builder-dialog-manage-conversation-flow.md)。
+> 若要启动对话框，获取一个对话框的上下文，并使用其 begin 方法。 有关详细信息，请参阅[使用对话管理简单的聊天流](./bot-builder-dialog-manage-conversation-flow.md)。
 
 ## <a name="reusable-prompts"></a>可重用的提示
 
@@ -197,21 +197,21 @@ public class MyDialog : DialogSet
             async (dc, args, next) =>
             {
                 // Prompt for the user's name.
-                await dc.Prompt(Inputs.Text, "What is your name?").ConfigureAwait(false);
+                await dc.Prompt(Inputs.Text, "What is your name?");
             },
             async(dc, args, next) =>
             {
                 var user = (string)args["Text"];
 
                 // Ask them where they work.
-                await dc.Prompt(Inputs.Text, $"Hi {user}! Where do you work?").ConfigureAwait(false);
+                await dc.Prompt(Inputs.Text, $"Hi {user}! Where do you work?");
             },
             async(dc, args, next) =>
             {
                 var workplace = (string)args["Text"];
 
-                await dc.Context.SendActivity($"{workplace} is a cool place!").ConfigureAwait(false);
-                await dc.End().ConfigureAwait(false);
+                await dc.Context.SendActivity($"{workplace} is a cool place!");
+                await dc.End();
             }
         });
     }
@@ -273,21 +273,21 @@ public MyDialog()
         async (dc, args, next) =>
         {
             // Prompt for the user's name.
-            await dc.Prompt(Inputs.Name, "What is your name?").ConfigureAwait(false);
+            await dc.Prompt(Inputs.Name, "What is your name?");
         },
         async(dc, args, next) =>
         {
             var user = (string)args["Text"];
 
             // Ask them where they work.
-            await dc.Prompt(Inputs.Work, $"Hi {user}! Where do you work?").ConfigureAwait(false);
+            await dc.Prompt(Inputs.Work, $"Hi {user}! Where do you work?");
         },
         async(dc, args, next) =>
         {
             var workplace = (string)args["Text"];
 
-            await dc.Context.SendActivity($"{workplace} is a cool place!").ConfigureAwait(false);
-            await dc.End().ConfigureAwait(false);
+            await dc.Context.SendActivity($"{workplace} is a cool place!");
+            await dc.End();
         }
     });
 }
@@ -334,7 +334,7 @@ dialogs.Add("numberPrompt", new NumberPrompt<int>(Culture.English));
 await dc.Prompt("numberPrompt", "How many people are in your party?", new PromptOptions()
 {
     RetryPromptString = "Sorry, please specify the number of people in your party."
-}).ConfigureAwait(false);
+});
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -405,14 +405,14 @@ public class MyDialog : DialogSet
                     Choices = ChoiceFactory.ToChoices(Colors),
                     RetryPromptActivity =
                         MessageFactory.SuggestedActions(Colors, "Please choose a color.") as Activity
-                }).ConfigureAwait(false);
+                });
             },
             async(dc, args, next) =>
             {
                 var color = (FoundChoice)args["Value"];
 
-                await dc.Context.SendActivity($"You chose {color.Value}.").ConfigureAwait(false);
-                await dc.End().ConfigureAwait(false);
+                await dc.Context.SendActivity($"You chose {color.Value}.");
+                await dc.End();
             }
         });
     }
@@ -482,14 +482,14 @@ public class MyDialog : DialogSet
                 await dc.Prompt(Inputs.Size, "How many people are in your party?", new PromptOptions()
                 {
                     RetryPromptString = "Please specify party size between 6 and 20."
-                }).ConfigureAwait(false);
+                });
             },
             async(dc, args, next) =>
             {
                 var size = (int)args["Value"];
 
-                await dc.Context.SendActivity($"Okay, {size} people!").ConfigureAwait(false);
-                await dc.End().ConfigureAwait(false);
+                await dc.Context.SendActivity($"Okay, {size} people!");
+                await dc.End();
             }
         });
     }
@@ -569,7 +569,7 @@ private static async Task TimeValidator(ITurnContext context, DateTimeResult res
 {
     if (result.Resolution.Count == 0)
     {
-        await context.SendActivity("Sorry, I did not recognize the time that you entered.").ConfigureAwait(false);
+        await context.SendActivity("Sorry, I did not recognize the time that you entered.");
         result.Status = PromptStatus.NotRecognized;
     }
 
@@ -588,7 +588,7 @@ private static async Task TimeValidator(ITurnContext context, DateTimeResult res
     else
     {
         // Otherwise, flag the input as out of range.
-        await context.SendActivity("Please enter a time in the future, such as \"tomorrow at 9am\"").ConfigureAwait(false);
+        await context.SendActivity("Please enter a time in the future, such as \"tomorrow at 9am\"");
         result.Status = PromptStatus.OutOfRange;
     }
 }
@@ -635,5 +635,4 @@ dialogs.add('dateTimePrompt', new botbuilder_dialogs.DatetimePrompt( async (cont
 
 现已了解如何提示用户进行输入，我们可以通过对话框管理各种会话流来增强机器人代码和用户体验。
 
-> [!div class="nextstepaction"]
-> [使用对话框管理会话流](bot-builder-dialog-manage-conversation-flow.md)
+
