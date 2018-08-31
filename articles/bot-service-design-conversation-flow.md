@@ -8,34 +8,37 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/8/2018
-ms.openlocfilehash: 09568fca31649880df0f5b4fbc47f50288e907cb
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6e661d030f49cb8004f122de72de7514e804cb9c
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297711"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905535"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
 # <a name="design-and-control-conversation-flow"></a>设计和控制会话流
 
+[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
+
 在传统应用程序中，用户界面 (UI) 是一系列屏幕。 
 单个应用或网站可以根据需要使用一个或多个屏幕与用户交换信息。 
 在大多数应用程序启动主屏幕中，用户可以进行初始登录，该屏幕还提供指向其他屏幕以使用各种功能（如启动新的订单、浏览产品，或寻求帮助）的导航。
 
-与应用和网站类似，机器人具有 UI，但它由对话框组成，而不是屏幕。 
+与应用和网站类似，机器人具有 UI，但它由对话框组成，而不是屏幕。 对话可以帮助保留你在聊天中所处的位置、根据需要提示用户，并执行输入验证。 它们可用于管理多轮次聊天和简单的“基于格式的”信息集合，以完成航班预订等活动。
+
 对话框可让机器人开发人员从逻辑上分隔机器人功能的各个区域并指引会话流。 例如，你可能会设计一个对话框，其中包含可帮助用户浏览产品的逻辑，以及一个单独的对话框，其中包含可帮助用户创建新订单的逻辑。 
 
 对话框不一定具有图形界面。 它们可能包含按钮、文本和其他元素，或者完全基于语音。 对话框还包含要执行诸如调用其他对话框或处理用户输入的任务的操作。
 
 ## <a name="using-dialogs-to-manage-conversation-flow"></a>使用对话框管理会话流
 
-[!INCLUDE [Dialog flow example](~/includes/snippet-dotnet-manage-conversation-flow-intro.md)]
+[!INCLUDE [Dialog flow example](./includes/snippet-dotnet-manage-conversation-flow-intro.md)]
 
 有关使用对话框和 Bot Builder SDK 管理会话流的详细演练，请参阅：
 
-- [使用对话框管理会话流 (.NET)](~/dotnet/bot-builder-dotnet-manage-conversation-flow.md)
-- [使用对话框管理会话流 (Node.js)](~/nodejs/bot-builder-nodejs-manage-conversation-flow.md)
+- [使用对话框管理会话流 (.NET)](./dotnet/bot-builder-dotnet-manage-conversation-flow.md)
+- [使用对话框管理会话流 (Node.js)](./nodejs/bot-builder-nodejs-manage-conversation-flow.md)
 
 ## <a name="dialog-stack"></a>对话框堆栈
 
@@ -57,7 +60,7 @@ ms.locfileid: "39297711"
 人类不会在“堆栈”中通信。 他们往往会频繁地改变主意。 
 下面是一个示例： 
 
-![机器人](~/media/bot-service-design-conversation-flow/stack-issue.png)
+![机器人](./media/bot-service-design-conversation-flow/stack-issue.png)
 
 虽然机器人可能在逻辑上构建了一个对话框堆栈，但用户可能决定做一些完全不同的事情，或者询问可能与当前主题无关的问题。 
 在该示例中，用户询问问题而不是提供对话框期望的是/否响应。 
@@ -67,12 +70,12 @@ ms.locfileid: "39297711"
 - 忽略用户之前完成的所有操作，重置整个对话框堆栈，并从头开始尝试回答用户的问题。 
 - 尝试回答用户的问题，然后返回到是/否问题并尝试从该位置继续。 
 
-此问题没有正确答案，因为最佳解决方案将取决于你的具体应用场景，以及用户如何合理地期望机器人做出响应。 
+此问题没有正确的答案，因为最佳解决方案取决于具体的应用场景，以及用户如何合理期望机器人做出的响应。 但是，随着聊天复杂性不断增大，**对话**也会变得更难以管理。 对于复杂的分支情况，创建自己的控制逻辑流来跟踪用户聊天可能更方便。
 
 ## <a name="next-steps"></a>后续步骤
 
 在对话框中管理用户的导航，并通过使用户能够实现其目标的方式（甚至是以非线性方式）设计会话流，这是机器人设计的一个基本挑战。 
-[下一篇文章](~/bot-service-design-navigation.md)回顾了设计不良导航的一些常见缺陷，并讨论了避免这些问题的策略。 
+[下一篇文章](./bot-service-design-navigation.md)回顾了设计不良导航的一些常见缺陷，并讨论了避免这些问题的策略。 
 
 ::: moniker-end
 
@@ -96,7 +99,7 @@ ms.locfileid: "39297711"
 
 可以按照自己喜欢的任何方式将这些模块构建到流程中，自由格式或顺序格式均可。 Bot Builder SDK 提供了多个库，使用这些库可以构造机器人所需的任何会话流。 例如，使用 `prompts` 库可以要求用户输入，使用 `waterfall` 库可以定义一系列问题/答案对，使用 `dialog control` 库可以模块化会话流逻辑，等等。所有这些库通过 `dialogs` 对象绑定在一起。 让我们进一步了解如何将模块实现为 `dialogs` 来设计和管理会话流，并查看该流是否类似于传统应用程序流。
 
-![机器人](~/media/designing-bots/core/dialogs-screens.png)
+![机器人](./media/designing-bots/core/dialogs-screens.png)
 
 在传统应用程序中，一切都从主屏幕开始。
 主屏幕调用“新建订单”屏幕。
@@ -119,7 +122,7 @@ ms.locfileid: "39297711"
 人类不会按有序的 `dialogs` 通信。 他们往往会频繁地改变主意。 
 下面是一个示例： 
 
-![机器人](~/media/bot-service-design-conversation-flow/stack-issue.png)
+![机器人](./media/bot-service-design-conversation-flow/stack-issue.png)
 
 虽然机器人可能以程序化为重点，但用户可能决定做一些完全不同的事情，或者询问可能与当前主题无关的问题。 
 在上述示例中，用户询问问题而不是提供机器人期望的是/否响应。 

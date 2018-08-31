@@ -19,7 +19,7 @@
 
 要创建电子邮件，请将 `Activity` 对象的 `ChannelData` 属性设置为包含以下属性的 JSON 对象： 
 
-| 属性 | 说明 |
+| 属性 | Description |
 |----|----|
 | htmlBody | 用于指定电子邮件正文的 HTML 文档。 要了解受支持的 HTML 元素和特性，请参阅通道的相关文档。 |
 | importance | 电子邮件的重要性级别。 有效值为 high、normal 和 low。 默认值为 normal。 |
@@ -123,11 +123,128 @@
 机器人可以按[常规方式](../dotnet/bot-builder-dotnet-connector.md#create-reply)回复此消息，也可以将其答复直接发布到由 `payload` 对象的 `response_url` 属性指定的终结点。
 要了解何时以及如何将答复发布到 `response_url`，请参阅 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按钮</a>。 
 
+可使用以下代码创建动态按钮：
+```cs
+private async Task DemoButtonsAsync(IDialogContext context)
+        {
+            var reply = context.MakeMessage();
+
+            string s = @"{
+                ""text"": ""Would you like to play a game ? "",
+                ""attachments"": [
+                    {
+                        ""text"": ""Choose a game to play!"",
+                        ""fallback"": ""You are unable to choose a game"",
+                        ""callback_id"": ""wopr_game"",
+                        ""color"": ""#3AA3E3"",
+                        ""attachment_type"": ""default"",
+                        ""actions"": [
+                            {
+                                ""name"": ""game"",
+                                ""text"": ""Chess"",
+                                ""type"": ""button"",
+                                ""value"": ""chess""
+                            },
+                            {
+                                ""name"": ""game"",
+                                ""text"": ""Falken's Maze"",
+                                ""type"": ""button"",
+                                ""value"": ""maze""
+                            },
+                            {
+                                ""name"": ""game"",
+                                ""text"": ""Thermonuclear War"",
+                                ""style"": ""danger"",
+                                ""type"": ""button"",
+                                ""value"": ""war"",
+                                ""confirm"": {
+                                    ""title"": ""Are you sure?"",
+                                    ""text"": ""Wouldn't you prefer a good game of chess?"",
+                                    ""ok_text"": ""Yes"",
+                                    ""dismiss_text"": ""No""
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }";
+
+            reply.Text = null;
+            reply.ChannelData = JObject.Parse(s);
+            await context.PostAsync(reply);
+            context.Wait(MessageReceivedAsync);
+        }
+```
+
+若要创建交互式菜单，请使用以下代码：
+```cs
+private async Task DemoMenuAsync(IDialogContext context)
+        {
+            var reply = context.MakeMessage();
+
+            string s = @"{
+                ""text"": ""Would you like to play a game ? "",
+                ""response_type"": ""in_channel"",
+                ""attachments"": [
+                    {
+                        ""text"": ""Choose a game to play"",
+                        ""fallback"": ""If you could read this message, you'd be choosing something fun to do right now."",
+                        ""color"": ""#3AA3E3"",
+                        ""attachment_type"": ""default"",
+                        ""callback_id"": ""game_selection"",
+                        ""actions"": [
+                            {
+                                ""name"": ""games_list"",
+                                ""text"": ""Pick a game..."",
+                                ""type"": ""select"",
+                                ""options"": [
+                                    {
+                                        ""text"": ""Hearts"",
+                                        ""value"": ""menu_id_hearts""
+                                    },
+                                    {
+                                        ""text"": ""Bridge"",
+                                        ""value"": ""menu_id_bridge""
+                                    },
+                                    {
+                                        ""text"": ""Checkers"",
+                                        ""value"": ""menu_id_checkers""
+                                    },
+                                    {
+                                        ""text"": ""Chess"",
+                                        ""value"": ""menu_id_chess""
+                                    },
+                                    {
+                                        ""text"": ""Poker"",
+                                        ""value"": ""menu_id_poker""
+                                    },
+                                    {
+                                        ""text"": ""Falken's Maze"",
+                                        ""value"": ""menu_id_maze""
+                                    },
+                                    {
+                                        ""text"": ""Global Thermonuclear War"",
+                                        ""value"": ""menu_id_war""
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }";
+
+            reply.Text = null;
+            reply.ChannelData = JObject.Parse(s);
+            await context.PostAsync(reply);
+            context.Wait(MessageReceivedAsync);
+        }
+```
+
 ## <a name="create-a-facebook-notification"></a>创建 Facebook 通知
 
 要创建 Facebook 通知，请将 `Activity` 对象的 `ChannelData` 属性设置为指定以下属性的 JSON 对象： 
 
-| 属性 | 说明 |
+| 属性 | Description |
 |----|----|
 | notification_type | 通知的类型（例如 REGULAR、SILENT_PUSH 和 NO_PUSH）。
 | attachment | 附件（用于指定图像、视频或其他多媒体类型）或模板化附件（如收据）。 |
@@ -154,9 +271,9 @@
 
 要创建实现 Telegram 特定的操作（例如共享语音备注或贴纸）的消息，请将 `Activity` 对象的 `ChannelData` 属性设置为指定以下属性的 JSON 对象： 
 
-| 属性 | 说明 |
+| 属性 | Description |
 |----|----|
-| method | 要调用的 Telegram 机器人 API 方法。 |
+| 方法 | 要调用的 Telegram 机器人 API 方法。 |
 | parameters | 已指定的方法的参数。 |
 
 支持以下 Telegram 方法： 
@@ -228,7 +345,7 @@
 
 要创建本机 Kik 消息，请将 `Activity` 对象的 `ChannelData` 属性设置为指定以下属性的 JSON 对象： 
 
-| 属性 | 说明 |
+| 属性 | Description |
 |----|----|
 | messages | 一组 Kik 消息。 有关 Kik 消息格式的详细信息，请参阅 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 消息格式</a>。 |
 

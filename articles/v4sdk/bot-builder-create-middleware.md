@@ -1,5 +1,5 @@
 ---
-title: 编写自己的中间件 | Microsoft Docs
+title: 创建自己的中间件 | Microsoft Docs
 description: 了解如何编写自己的中间件。
 keywords: 中间件, 自定义中间件, 短路, 回退, 活动处理程序
 author: ivorb
@@ -9,20 +9,22 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6bc73b2886374fbb50d8257c387df54f21a12ed7
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b774f2de5856e6001d1b75c47b92aff6399d8fe3
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298197"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904347"
 ---
-# <a name="write-your-own-middleware"></a>编写自己的中间件
+# <a name="create-your-own-middleware"></a>创建自己的中间件
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 中间件允许你为机器人编写丰富的插件，然后其他人也可以使用这些插件。 这里我们将演示如何添加和实现基本中间件，并展示其工作原理。 v4 SDK 提供了一些中间件，例如状态管理、LUIS、QnAMaker 和转换等。 有关更多信息，请参阅 Bot Builder SDK for [.NET](https://github.com/Microsoft/botbuilder-dotnet) 或 Bot Builder SDK for [JavaScript](https://github.com/Microsoft/botbuilder-js)。
 
 ## <a name="adding-middleware"></a>添加中间件
 
-在以下示例中，基于我们的基本 HelloBot 示例，将两个不同的中间件添加到我们的服务中，每个类包含一个新实例。
+以下示例基于通过[入门](~/bot-service-quickstart.md)体验创建的基本机器人示例，将两个不同的中间件添加到服务中，其中的每个类包含一个新实例。
 
 > [!IMPORTANT]
 > 请记住，它们添加到选项的顺序决定了它们的执行顺序。 如果使用多个中间件，请务必考虑这将如何生效。

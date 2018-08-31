@@ -6,13 +6,13 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 05/03/2018
-ms.openlocfilehash: e59f9b10686b10ae821b8c4bf259a1fc301ac702
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 08/28/2018
+ms.openlocfilehash: 63aa65e2591d9f98d763863d8d4d56cd0df185ea
+ms.sourcegitcommit: f667ce3f1635ebb2cb19827016210a88c8e45d58
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297719"
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43142423"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常见问题
 
@@ -50,20 +50,34 @@ Bot Framework 旨在为 Skype 和许多其他通道构建、连接和部署高�
 
 为了提供 I/O 服务，Bot Framework 将你的消息和消息内容（包括你的 ID）从你使用的聊天服务传输到机器人。
 
+### <a name="can-i-host-my-bot-on-my-own-servers"></a>是否可在自己的服务器上托管机器人？
+是的。 可将机器人托管在 Internet 上的任何位置， 包括自己的服务器、Azure 或其他任何数据中心。 唯一的要求是机器人必须公开一个可公开访问的 HTTPS 终结点。
+
 ### <a name="how-do-you-ban-or-remove-bots-from-the-service"></a>如何从服务中禁用或删除机器人？
 
 用户可以通过目录中的机器人联系卡报告存在不当行为的机器人。 开发人员必须遵守 Microsoft 服务条款才能参与该服务。
 
-### <a name="which-specific-urls-do-i-need-to-whitelist-in-my-corporate-firewall-to-access-bot-services"></a>我需要在公司防火墙中将哪些特定的 URL 列入白名单以访问机器人服务？
-
-你需要在公司防火墙中将以下 URL 列入白名单：
+### <a name="which-specific-urls-do-i-need-to-whitelist-in-my-corporate-firewall-to-access-bot-framework-services"></a>需要在企业防火墙中将哪些特定的 URL 列入白名单才能访问 Bot Framework 服务？
+如果出站防火墙阻止了机器人的流量发往 Internet，则你需要在防火墙中将以下 URL 列入白名单：
 - login.botframework.com（机器人身份验证）
 - login.microsoftonline.com（机器人身份验证）
 - westus.api.cognitive.microsoft.com（用于 Luis.ai NLP 集成）
 - state.botframework.com（机器人原型状态存储）
 - cortanabfchanneleastus.azurewebsites.net（Cortana 通道）
 - cortanabfchannelwestus.azurewebsites.net（Cortana 通道）
-- *.botFramework.com（通道）
+- *.botframework.com（通道）
+
+### <a name="can-i-block-all-traffic-to-my-bot-except-traffic-from-the-bot-connector-service"></a>是否可以阻止发往机器人的所有流量，但来自机器人连接器服务的流量除外？
+不是。 这种 IP 地址或 DNS 白名单不切实际。 Bot Framework 连接器服务托管在全球的 Azure 数据中心，Azure IP 列表会不断变化。 将特定的 IP 地址列入白名单可能只管用一天，当 Azure IP 地址发生变化时，这种做法就不起作用。
+ 
+### <a name="what-keeps-my-bot-secure-from-clients-impersonating-the-bot-framework-connector-service"></a>当客户端模拟 Bot Framework 连接器服务时，机器人受到哪种保护？
+1. 向机器人发出的每个请求所随附的安全令牌中包含一个编码的 ServiceUrl，这意味着，即使攻击者获取了该令牌的访问权限，也无法将聊天重定向到新的 ServiceUrl。 SDK 的所有实现都会强制实施此机制，身份验证[参考](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-connector-authentication?view=azure-bot-service-3.0#bot-to-connector)材料中对此做了阐述。
+
+2. 如果传入的令牌缺失或格式不当，Bot Framework SDK 不会在响应中生成令牌。 当机器人配置不当时，此机制可以限制损害程度。
+3. 在机器人内部，可以手动检查令牌中提供的 ServiceUrl。 当服务拓扑发生更改时，此机制会使机器人变得更脆弱，因此，这种机制是可行的，但不建议。
+
+
+请注意，机器人与 Internet 之间存在出站连接。 Bot Framework 连接器服务不是使用 IP 地址或 DNS 名称的列表来与机器人通信。 不支持入站 IP 地址白名单。
 
 ## <a name="rate-limiting"></a>速率限制
 ### <a name="what-is-rate-limiting"></a>什么是速率限制？

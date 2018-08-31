@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: fbfe65526335b7a8797ab229871472d540735e20
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 35af3a339a20fe0e7e70d001db035aec2647aa35
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297713"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905316"
 ---
 # <a name="support-audio-calls-with-skype"></a>支持使用 Skype 进行音频通话
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
 Skype 支持名为“呼叫机器人”的丰富功能。  启用时，用户可以向机器人发出语音呼叫，并使用交互式语音应答 (IVR) 与之交互。  Bot Builder for Node.js SDK 包括一个特殊的[呼叫 SDK][calling_sdk]，可供开发人员用于将呼叫功能添加到聊天机器人。   
 
@@ -70,7 +72,7 @@ bot.dialog('/', function (session) {
 如果按呼叫按钮，它应拨号给机器人，你应会听到“Watson... come here!” 然后挂断。
 
 ## <a name="calling-basics"></a>呼叫基础知识
-[UniversalCallBot](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.universalcallbot) 和 [CallConnector](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callconnector) 类让你可以像创建聊天机器人一样创建呼叫机器人。 将实质上与[聊天对话框](bot-builder-nodejs-manage-conversation-flow.md)相同的对话框添加到机器人。 可以将[瀑布图](bot-builder-nodejs-prompts.md)添加到机器人。 会话对象 [CallSession](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession) 类包含添加的 [answer()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#answer)、[hangup()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#hangup) 和 [reject()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#reject) 方法，用于管理当前呼叫。 一般情况下，无需担心这些呼叫控制方法，因为 CallSession 具有自动管理呼叫的逻辑。 如果采取了发送消息或调用内置提示的操作，会话将自动响应呼叫。 如果你调用 [endConversation()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#endconversation) 或者它检测到你已停止询问呼叫方问题（未调用内置提示），它也会自动挂断/拒绝呼叫。
+[UniversalCallBot](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.universalcallbot) 和 [CallConnector](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callconnector) 类让你可以像创建聊天机器人一样创建呼叫机器人。 将实质上与[聊天对话框](bot-builder-nodejs-manage-conversation-flow.md)相同的对话框添加到机器人。 可以将[瀑布图](bot-builder-nodejs-prompts.md)添加到机器人。 会话对象 [CallSession](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession) 类包含添加的 [answer()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#answer)、[hangup()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#hangup) 和 [reject()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#reject) 方法用于管理当前调用。 一般情况下，无需担心这些呼叫控制方法，因为 CallSession 具有自动管理呼叫的逻辑。 如果采取了发送消息或调用内置提示的操作，会话将自动响应呼叫。 如果你调用 [endConversation()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#endconversation) 或者它检测到你已停止询问呼叫方问题（未调用内置提示），它也会自动挂断/拒绝呼叫。
 
 呼叫机器人和聊天机器人之间的另一个区别是，虽然聊天机器人通常向用户发送消息、卡和键盘，但由呼叫机器人处理操作和结果。 需要使用 Skype 呼叫机器人来创建由一个或多个[操作](http://docs.botframework.com/en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.iaction)组成的[工作流](http://docs.botframework.com/en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.iworkflow)。  这是另一件在实践中不必太过担心的事，因为 Bot Builder 呼叫 SDK 将为你管理大部分内容。 可使用 [CallSession.send()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#send) 方法传递操作或字符串，它会将其转变为 [PlayPromptActions](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.playpromptaction)。  此会话包含自动批处理逻辑，将多个操作合并到提交给呼叫服务的单个工作流，以便可以多次安全地调用 send()。  在处理所有结果时，应依赖于 SDK 的内置[提示](bot-builder-nodejs-prompts.md)来收集用户输入。  
 

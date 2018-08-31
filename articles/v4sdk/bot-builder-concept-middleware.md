@@ -9,16 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/24/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9986ac7d46acfa94694456d653b91dd66c1f55f0
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: d8201da0fb406f30888dfaa4ff6017f125990104
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39298561"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905371"
 ---
 # <a name="middleware"></a>中间件
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 中间件只是一个位于适配器和机器人逻辑之间的类，它是在初始化期间添加到适配器的中间件集合的。 SDK 可让用户自行编写中间件或添加其他人创建的中间件的可重用组件。 可中间件中执行哪些操作？ 可执行任何操作...进出机器人的每个活动都流经中间件。
 
@@ -36,7 +36,7 @@ ms.locfileid: "39298561"
 
 ### <a name="modifying-or-enhancing-the-turn-context"></a>修改或增强回合上下文
 
-如果机器人知道的信息比活动中提供的多，这会让某些聊天将更富成效。 在这种情况下，中间件可以查看截至目前的聊天状态信息、查询外部数据源，还可在将执行传递给机器人逻辑之前将其附加到上下文对象。
+如果机器人知道的信息比活动中提供的多，这会让某些聊天将更富成效。 在这种情况下，中间件可以查看截至目前的聊天状态信息、查询外部数据源，还可在将执行传递给机器人逻辑之前将其附加到[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)对象。
 例如，中间件可以识别聊天详细信息（例如聊天 ID 和状态），然后查询目录服务获取信息。 中间件可以将从该外部查询接收的用户对象添加到上下文对象并进行传递，从而提供有关用户的详细数据，让机器人能够更好地处理请求。
 
 中间件可归入以上这两种用途，也可完全用于其他用途；这一切都取决于你希望如何构造机器人以及机器人尝试实现什么目标。

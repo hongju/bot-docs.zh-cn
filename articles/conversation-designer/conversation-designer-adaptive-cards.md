@@ -7,12 +7,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 ROBOTS: NoIndex, NoFollow
-ms.openlocfilehash: 01f52a6aa6e2c9fc3d2613ff03386a7d87e64a3a
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 2dec87fbdce1cc556c15f7220200da98a4496513
+ms.sourcegitcommit: a2f3d87c0f252e876b3e63d75047ad1e7e110b47
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298351"
+ms.lasthandoff: 08/25/2018
+ms.locfileid: "42928212"
 ---
 # <a name="configure-adaptive-cards"></a>配置自适应卡
 > [!IMPORTANT]
@@ -24,18 +24,16 @@ ms.locfileid: "39298351"
 
 可以在几个不同的关键位置定义自适应卡。
 
-- 对任务的[操作](conversation-designer-tasks.md)的简单响应。
+- 对任务操作的简单响应。
 - 在对话的反馈状态中。
 - 在对话的提示状态中。 请注意，提示可以使用单独的卡：一个用于响应，另一个用于重新提示。
 
 若要定义自适应卡，请导航到相关的编辑器。 浏览并选择现有的自适应卡模板之一，或在 JSON 代码编辑器中构建自己的模板。 
 
-<!--TODO: Insert screenshot -->
-
 构建卡时，会在创作门户中呈现卡的丰富预览。
 
 > [!NOTE]
-> 自适应卡的功能仍在不断开发中。 目前，所有通道都并非支持所有自适应卡功能。 若要查看每个通道支持的功能，请参阅[通道状态](/adaptive-cards/get-started/bots#channel-status)部分。
+> 自适应卡的功能仍在不断开发中。 目前，所有通道都并非支持所有自适应卡功能。 若要查看每个通道支持的功能，请参阅“通道状态”部分。
 
 ## <a name="input-form"></a>输入窗体
 
@@ -74,13 +72,7 @@ ms.locfileid: "39298351"
 * `entityName` 使用卡内的实体。
 * `responseTemplateName` 使用卡内的简单或条件响应模板。
 
-<!--
-# Binding form flow input fields to bot entities
-TODO: fill this out based on design/ implementation -->
-
-<!-- ## Adaptive Card schema
-
-You can learn more about adaptive cards here  TODO: Insert link to adaptive cards schema documentation -->
+可在此处详细了解自适应卡片 TODO：Insert link to adaptive cards schema documentation -->
 
 ## <a name="sample-adaptive-card-payload"></a>示例自适应卡有效负载
 
@@ -149,6 +141,3 @@ You can learn more about adaptive cards here  TODO: Insert link to adaptive card
 }
 ```
 
-## <a name="next-step"></a>后续步骤
-> [!div class="nextstepaction"]
-> [连接到通道](conversation-designer-deploy.md)

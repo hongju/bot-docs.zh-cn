@@ -1,5 +1,5 @@
 ---
-title: 使用认知服务向机器人添加智能 | Microsoft Docs
+title: 认知服务 | Microsoft Docs
 description: 了解如何使用 Microsoft 认知服务向机器人添加人工智能，使其更有用且更具吸引力。
 keywords: 语言理解, 知识提取, 语音识别, web 搜索
 author: RobStand
@@ -8,14 +8,14 @@ manager: rstand
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/17/2017
-ms.openlocfilehash: 168e538720423721a21b720b811d559d8c811adb
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 85b3c86582ce1d653159e0d36516b4a90f5a3220
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574573"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756654"
 ---
-# <a name="add-intelligence-to-bots-with-cognitive-services"></a>使用认知服务向机器人添加智能
+# <a name="cognitive-services"></a>认知服务
 
 借助 Microsoft 认知服务，你能够利用计算机视觉、语音、自然语言处理、知识提取和 Web 搜索领域专家开发的不断增长的强大 AI 算法集合。 这些服务简化各种基于 AI 的任务，为你提供一种快速方法，只需几行代码即可向机器人添加最先进的智能技术。 API 集成到大部分现代语言和平台中。 API 同时还在不断改进、学习及变得更智能，因此，体验始终是最新的。 
 

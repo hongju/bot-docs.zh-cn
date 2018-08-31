@@ -1,5 +1,5 @@
 ---
-title: 使用适合 LUIS 和 QnA Maker 的 Dispatch 工具 | Microsoft Docs
+title: 将多个 LUIS 和 QnA 服务与 Dispatch 工具相集成 | Microsoft Docs
 description: 了解如何在机器人中使用 LUIS 和 QnA Maker。
 keywords: Luis, QnA, Dispatch 工具, 多个服务
 author: DeniseMak
@@ -7,18 +7,18 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 04/25/2018
+ms.date: 08/27/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d3c9355a0e87d31029b92614dc182f3d7010c736
-ms.sourcegitcommit: 9a38d76afb0e82fdccc1f36f9b1a65042671e538
+ms.openlocfilehash: 02dffcdd8cb4fd27f59fa8a763d7f2027aa0bcf2
+ms.sourcegitcommit: 0b2be801e55f6baa048b49c7211944480e83ba95
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/04/2018
-ms.locfileid: "39514937"
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43115032"
 ---
-## <a name="integrate-multiple-luis-apps-and-qna-services-with-the-dispatch-tool"></a>将多个 LUIS 应用和 QnA 服务与 Dispatch 工具集成
+# <a name="integrate-multiple-luis-and-qna-services-with-the-dispatch-tool"></a>将多个 LUIS 和 QnA 服务与 Dispatch 工具相集成
 
-[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 本教程演示如何使用 Dispatch 工具生成的 LUIS 模型，将机器人与多个语言理解智能服务 (LUIS) 应用和 QnAMaker 服务集成。 
 
@@ -30,20 +30,22 @@ ms.locfileid: "39514937"
 | LUIS 应用 | 天气 | 识别 Weather.GetForecast 和 Weather.GetCondition 意向。|
 | QnAMaker 服务 | 常见问题解答  | 提供有关家庭自动化照明系统问题的答案 |
 
-让我们先创建应用和服务，然后将其集成在一起。
-
-> [!NOTE]
-> 需要在 Dispatch 的同一 Azure 位置创建这三个应用才能成功访问它们。 下面的 Dispatch 代码示例使用示例位置美国西部。
+让我们先创建应用和服务，然后使用 Dispatch 工具将其集成在一起。
 
 ## <a name="create-the-luis-apps"></a>创建 LUIS 应用
 
-创建 HomeAutomation 和 Weather LUIS 应用的最快方法是下载 [homeautomation.json][HomeAutomationJSON] 和 [weather.json][WeatherJSON] 文件。 然后转到 [LUIS 网站](https://www.luis.ai/home)并登录。 单击“我的应用” > “导入新应用”，然后选择 homeautomation.json 文件。 将新应用命名为 `homeautomation`。 单击“我的应用” > “导入新应用”，然后选择 weather.json 文件。 将这一新应用命名为 `weather`。
+创建 *HomeAutomation* 和 *Weather* LUIS 应用的最快方法是下载 [homeautomation.json][HomeAutomationJSON] 和 [weather.json][WeatherJSON] 文件。 然后遵循以下步骤导入这两个 LUIS 应用。
+
+1. 转到 [LUIS 网站](https://www.luis.ai/home)并登录。 
+2. 在“我的应用”页上，单击“导入新应用”。
+   1. 对于“homeautomation”应用，请选择“homeautomation.json”文件并将其命名为“homeautomation”。 单击“完成”导入该应用。 导入应用后，单击“发布”以发布该应用。
+   1. 对于“weather”应用，请选择“weather.json”文件并将其命名为“weather”。 单击“完成”导入该应用。 导入应用后，单击“发布”以发布该应用。
 
 ## <a name="create-the-qna-cognitive-service-in-azure"></a>在 Azure 中创建 QnA 认知服务
 
-QnA Maker 服务涉及两个部分，即 Azure 中的认知服务，以及使用认知服务发布的问答对知识库。
+QnA Maker 服务涉及两个部分，即 Azure 中的认知服务，以及使用认知服务发布的问答对知识库。 创建知识库时，可以通过选择在此步骤中创建的 **Azure 服务名称**，将知识库链接到 Azure 服务。
 
-若要在 Azure 中创建认知服务，请通过 https://portal.azure.com 登录 Azure 门户，并执行以下操作：
+若要在 Azure 中创建认知服务，请登录到 [Azure 门户](https://portal.azure.com)并执行以下操作：
 
 1. 单击“所有服务”。
 1. 搜索 `Cognitive` 并选择“认知服务”。
@@ -63,39 +65,54 @@ QnA Maker 服务涉及两个部分，即 Azure 中的认知服务，以及使用
     * 输入要使用的应用程序名称；我们将保留默认的 `SmartLightQnA`。
     * 选择网站位置；我们将使用 `West US`。
     * 保持启用 App Insights 的默认设置。
-    * 选择 App Insights 位置；我们将使用 `West US 2`。
+    * 选择 App Insights 位置；我们将使用 `West US`。
     * 单击“创建”以创建 QnA Maker 服务。
     * Azure 创建并开始部署服务。
 
 1. 部署服务后，查看通知并单击“转到资源”，导航到服务的边栏选项卡。
 1. 单击“密钥”以获取密钥。
 
-    * 复制服务名称和第一个密钥。 将在以下步骤中使用这些信息。
+    * 复制服务名称和第一个密钥。 稍后在创建知识库时需要使用此名称，使服务能够链接到知识库。 此外，在下面的调度程序步骤中，还要使用此密钥来替代 YOUR-AZURE-QNA-SUBSCRIPTION-KEY。
     * 将获得两个密钥，以便可一次重写其中一个密钥而无需中断服务。
 
 ## <a name="create-and-publish-the-qna-maker-knowledge-base"></a>创建并发布 QnA Maker 知识库
 
-转到 [QnA Maker 网站](https://qnamaker.ai)并登录。 选择“创建知识库”，创建一个名为“常见问题解答”的新知识库。 单击“选择文件”按钮，然后上传 [TSV 文件示例][FAQ_TSV]。 单击“创建”，创建服务后，单击“发布”。
+若要创建知识库，请执行以下操作：
+
+1. 转到 [QnA Maker 网站](https://qnamaker.ai)并登录。 
+1. 单击“创建知识库”以创建新的知识库。 由于已在 Azure 中创建了认知服务，因此可以跳过“步骤 1”。
+1. 在“步骤 2”中，对于字段“Azure QnA 服务”，请选择在 Azure 中创建的认知服务名称。 这会将此知识库与在 Azure 中创建的服务相关联。
+1. 在“步骤 3”中，将此知识库命名为“FAQ”。 
+1. 在“步骤 4”中，使用此[示例 TSV 文件][FAQ_TSV]填充知识库。 或者使用网页中的内容。 在这种情况下，请在“URL”字段中粘贴相应的链接。
+1. 在“步骤 5”中，单击“创建知识库”以创建知识库。
+
+创建知识库后，需要**发布**知识库以获取知识库 ID 和终结点。 在此过程的稍后步骤中需要这些信息。
+
 
 ## <a name="use-the-dispatch-tool-to-create-the-dispatcher-luis-app"></a>使用 Dispatch 工具创建调度程序 LUIS 应用
+现已创建两个 LUIS 应用和一个知识库，接下来，让我们使用 Dispatch 工具来生成可将它们合并成一个 LUIS 应用的 LUIS 应用。 
 
-接下来，创建 LUIS 应用以合并创建的每个服务。
+### <a name="step-1-install-the-dispatch-tool"></a>步骤 1：安装 Dispatch 工具
 
-通过在 Node.js 命令提示符中运行以下命令来安装 [Dispatch 工具][DispatchTool]。
+打开“命令提示符”窗口并导航到调度程序项目。 然后，运行以下 NPM 命令来安装 [Dispatch 工具][DispatchTool]。
 
-```
+```cmd
 npm install -g botdispatch
 ```
 
-运行以下命令，初始化名为 `CombineWeatherAndLights` 的 Dispatch 工具。 将 [LUIS 创作密钥](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-concept-keys)换为 `"YOUR-LUIS-AUTHORING-KEY"`。
+### <a name="step-2-initialize-the-dispatch-tool"></a>步骤 2：初始化 Dispatch 工具
 
-```
+运行以下命令，初始化名为 `CombineWeatherAndLights` 的 Dispatch 工具。 请将以下命令行中的 `"YOUR-LUIS-AUTHORING-KEY"` 替换为自己的 [LUIS 创作密钥](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-concept-keys)。
+
+```cmd
 dispatch init -name CombineWeatherAndLights -luisAuthoringKey "YOUR-LUIS-AUTHORING-KEY" -luisAuthoringRegion westus
 ```
 
-对于创建的每个 LUIS 应用，获取 LUIS 应用 ID。 可在 [LUIS 站点](https://www.luis.ai/home)“我的应用”下找到每个应用的应用 ID；单击应用名称，然后单击“设置”查看应用程序 ID。 
+### <a name="step-3-add-apps-to-dispatcher"></a>步骤 3：将应用添加到调度程序
 
-然后为创建的每个 LUIS 应用运行 `dispatch add` 命令。
+对于创建的每个 LUIS 应用，请获取 LUIS 应用 ID。 [LUIS 站点](https://www.luis.ai/home)上的“我的应用”下显示了这些 ID；单击应用名称，然后单击“设置”查看“应用程序 ID”。 使用在“步骤 2”中获取的相同“LUIS 创作密钥”。
+
+针对创建的每个 LUIS 应用（例如 **homeautomation** 和 **weather**）运行以下命令。 请务必在以下命令中替换相应的 ID。
 
 ```
 dispatch add -type luis -id "HOMEAUTOMATION-APP-ID" -name homeautomation -version 0.1 -key "YOUR-LUIS-AUTHORING-KEY"
@@ -103,19 +120,21 @@ dispatch add -type luis -id "WEATHER-APP-ID" -name weather -version 0.1 -key "YO
 
 ```
 
-对创建的 QnA Maker 服务运行 `dispatch add` 命令。 `-key` 参数应为 Azure 门户中的密钥，完成[在 Azure 中创建 QnA 认知服务](./bot-builder-tutorial-dispatch.md#create-the-qna-cognitive-service-in-azure)这一步骤时应保存该密钥。
+接下来，运行以下命令来添加 QnAMaker 知识库。 在此命令中，`QNA-KB-ID` 是指在发布知识库后系统提供的知识库 ID，`YOUR-AZURE-QNA-SUBSCRIPTION-KEY` 是从 Azure 中创建的认知服务获取的密钥。
 
 ```
-dispatch add -type qna -id "QNA-KB-ID" -name faq -key "YOUR-QNA-SUBSCRIPTION-KEY"
+dispatch add -type qna -id "QNA-KB-ID" -name faq -key "YOUR-AZURE-QNA-SUBSCRIPTION-KEY"
 ```
 
-运行 `dispatch create`：
+### <a name="step-4-create-the-dispatcher-luis-app"></a>步骤 4：创建调度程序 LUIS 应用
+
+将所有应用添加到 Dispatch 工具后，运行以下命令创建调度应用。 如果想要检查调度文件，可在扩展名为 **.dispatch** 的文件中找到信息。
 
 ```
 dispatch create
 ```
 
-这将创建名为 CombineWeatherAndLights 的调度程序 LUIS 应用。 可在 [https://www.luis.ai/home](https://www.luis.ai/home) 中看到新应用。 
+此命令创建名为 **CombineWeatherAndLights** 的调度程序 LUIS 应用。 可在 [https://www.luis.ai/home](https://www.luis.ai/home) 中看到新应用。 
 
 ![LUIS.ai 中的调度程序应用](media/tutorial-dispatch/dispatch-app-in-luis.png)
 
@@ -123,7 +142,7 @@ dispatch create
 
 ![LUIS.ai 中的调度程序意向](media/tutorial-dispatch/dispatch-intents-in-luis.png)
 
-单击“训练”按钮以训练 LUIS 应用，并使用“发布”选项卡进行[发布](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)。 单击“设置”，复制要在机器人中使用的新应用的 ID。
+单击“训练”按钮以训练 LUIS 应用，并使用“发布”选项卡进行[发布](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)。 单击“设置”，复制新应用的 ID。 将机器人连接到此应用时需要此 ID。
 
 ## <a name="create-the-bot"></a>创建机器人
 
@@ -162,7 +181,7 @@ dispatch create
 | `Luis-ModelId-HomeAutomation` | 从 homeautomation.json 创建的应用的应用 ID  | 
 | `Luis-ModelId-Weather` | 从 weather.json 创建的应用的应用 ID | 
 | `QnAMaker-Endpoint-Url` | 对于预览版 QnA Maker 服务，应将此设置为 https://westus.api.cognitive.microsoft.com/qnamaker/v2.0。 <br/>对于新的 (GA) QnA Maker 服务，请将此设置为 https://YOUR-QNA-SERVICE-NAME.azurewebsites.net/qnamaker。|
-| `QnAMaker-SubscriptionKey` | QnA Maker 订阅密钥。 | 
+| `QnAMaker-SubscriptionKey` | Azure QnA Maker 订阅密钥。 | 
 | `QnAMaker-KnowledgeBaseId` | 在 [QnAMaker 门户](https://qnamaker.ai)创建的知识库的 ID。| 
 
 
@@ -316,9 +335,15 @@ private static async Task<(IEnumerable<string> intents, IEnumerable<string> enti
 
 # <a name="javascripttabjsbotconfig"></a>[JavaScript](#tab/jsbotconfig)
 
-以 [Dispatch 机器人示例][DispatchBotJs]中的代码开始。 打开 app.js，并可选择将 `appId` 字段替换为创建的 LUIS 应用的 ID。 如果保留最初的 `appId` 字段，则将使用为演示而创建的公共 LUIS 应用。
+以 [Dispatch 机器人示例][DispatchBotJs]中的代码开始。 打开 app.js，并可选择将 `appId` 字段替换为创建的 LUIS 应用的 ID。 如果保留最初的 `appId` 字段，则将使用为演示而创建的公共 LUIS 应用。 与 `LUIS_SUBSCRIPTION_KEY` 一样，可在任何 LUIS 应用的“发布”页中找到该密钥。 它嵌入在该页上的“终结点”链接中。
 
 ```javascript
+// Packages
+const { BotFrameworkAdapter, MemoryStorage, ConversationState } = require('botbuilder');
+const { restify } = require('restify');
+const { LuisRecognizer, QnAMaker } = require('botbuilder-ai');
+const { DialogSet } = require('botbuilder-dialogs');
+
 // Create LuisRecognizers and QnAMaker
 // The LUIS applications are public, meaning you can use your own subscription key to test the applications.
 // For QnAMaker, users are required to create their own knowledge base.

@@ -1,5 +1,5 @@
 ---
-title: 如何使用主动消息传递功能 | Microsoft Docs
+title: 发送主动消息 | Microsoft Docs
 description: 了解如何使用机器人主动传递消息。
 keywords: 主动消息
 author: jonathanfingold
@@ -9,14 +9,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/01/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fd53a897d9847432fd337402d40edfcd6f4ff061
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: c22ce6a35d4d49506360a78a439f15137c429d9d
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298180"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905131"
 ---
-# <a name="how-to-use-proactive-messaging"></a>如何使用主动消息传递功能
+# <a name="send-proactive-messages"></a>发送主动消息 
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+
 
 通常，机器人发送被动消息，但有时候我们也需要能够发送 [主动消息](bot-builder-proactive-messages.md)。 
 
@@ -120,7 +123,7 @@ public void ConfigureServices(IServiceCollection services)
 
 我们开始的作业是一个简单的 5 秒计时器，作业完成时发送主动消息。
 - 如果调用适配器的“继续聊天”方法，会创建由机器人发起的新的回合。
-- 此回合具有自己的回合上下文，其中包含状态消息。
+- 此轮次具有自身的[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)，可从中检索状态消息。
 - 我们使用此上下文向用户发送主动消息。
 
 

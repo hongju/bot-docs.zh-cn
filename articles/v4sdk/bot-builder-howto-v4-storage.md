@@ -1,5 +1,5 @@
 ---
-title: 存储数据 | Microsoft Docs
+title: 直接写入存储 | Microsoft Docs
 description: 了解如何使用 V4 Bot Builder SDK for .NET 直接写入存储。
 keywords: 存储、读取和写入、内存存储、eTag
 author: DeniseMak
@@ -9,14 +9,14 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/2/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 653ec6a1983dd59c485a91b2c08ea07d9f2a34c8
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 76f8976aefe3d4fefcffc46e691dbd0b35e41ec7
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298105"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756753"
 ---
-# <a name="save-data-directly-to-storage"></a>将数据直接保存到存储
+# <a name="write-directly-to-storage"></a>直接写入存储
 
 <!--
  Note for V4: You can write directly to storage without using the state manager. Therefore, this topic isn't called "managing state". State is in a separate topic.

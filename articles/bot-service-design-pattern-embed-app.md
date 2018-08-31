@@ -6,13 +6,13 @@ ms.author: mateusv
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: 3264388cf253bb949eabe3be04fdaebabdc36b99
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 08/15/2018
+ms.openlocfilehash: 68d2d4f7a19aecfcb2c630e5e9e55ca5b8a21d89
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297859"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756382"
 ---
 # <a name="embed-a-bot-in-an-app"></a>在应用中嵌入机器人
 
@@ -42,9 +42,7 @@ IoT 应用可使用 [Direct Line API][directLineAPI] 与 Bot Framework 通信。
 
 创建运行机器人的移动应用的本次示例使用 <a href="https://www.xamarin.com/" target="_blank">Xamarin</a>，这是一种用于生成跨平台移动应用程序的常用工具。 
 
-首先，创建一个简单的 Web 视图组件，将其用于托管 <a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">Web 聊天控件</a>。 然后，使用 Bot Framework 门户 [TODO](~/bot-service-manage-channels.md) 到网上聊天通道。 
-
-![机器人配置设置](~/media/bot-service-design-pattern-embed-app/webchat-channel.png)
+首先，创建一个简单的 Web 视图组件，将其用于托管 <a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">Web 聊天控件</a>。 然后，使用 Azure 门户添加网上聊天通道。 
 
 接下来，在 Xamarin 应用中将注册的网上聊天 URL 指定为 Web 视图控件的源：
 

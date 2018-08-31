@@ -7,21 +7,19 @@ ms.author: RobStand
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: 0a9ad7d51234b417d5d0f27dbcffe4ce839ba94a
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 08/16/2018
+ms.openlocfilehash: 7fbff06966ac64260244e8af375aaa6f8f945fcd
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297715"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756635"
 ---
 # <a name="connect-a-bot-to-facebook-messenger"></a>将机器人连接到 Facebook Messenger
 
 若要了解有关 Facebook Messenger 开发的详细信息，请参阅 [Messenger 平台文档](https://developers.facebook.com/docs/messenger-platform)。 可能需要查看 Facebook 的[启动前准则](https://developers.facebook.com/docs/messenger-platform/product-overview/launch#app_public)、[快速入门](https://developers.facebook.com/docs/messenger-platform/guides/quick-start)和[设置指南](https://developers.facebook.com/docs/messenger-platform/guides/setup)。
 
 若要将机器人配置为使用 Facebook Messenger 进行通信，请在 Facebook 页上启用 Facebook Messenger，然后将机器人连接到应用。
-
-[!INCLUDE [Channel Inspector intro](~/includes/snippet-channel-inspector.md)]
 
 > [!NOTE]
 > 显示的 Facebook UI 可能稍有不同，具体取决于所用版本。
@@ -72,7 +70,7 @@ ms.locfileid: "39297715"
 
 ## <a name="provide-webhook-callback-url-and-verify-token"></a>提供 Webhook 回调 URL 及验证令牌
 
-返回到 [Bot Framework 门户](https://dev.botframework.com/)。 打开机器人，单击“通道”选项卡，然后单击“Facebook Messenger”。
+在 [Azure 门户](https://portal.azure.com/)中打开机器人，单击“通道”选项卡，然后单击“Facebook Messenger”。
 
 * 从门户复制“回调 URL”和“验证令牌”值。
 
@@ -93,7 +91,7 @@ ms.locfileid: "39297715"
 
 ## <a name="provide-facebook-credentials"></a>提供 Facebook 凭据
 
-在 Bot Framework 门户中，粘贴之前从 Facebook Messenger 复制的“页 ID”、“应用 ID”、“应用密码”和“页访问令牌”值。
+在 Azure 门户中，粘贴之前从 Facebook Messenger 复制的“Facebook 应用 ID”、“Facebook 应用机密”、“页 ID”和“页访问令牌”值。 可以通过添加更多的页 ID 和访问令牌，在多个 Facebook 页上使用同一个机器人。
 
 ![输入凭据](~/media/channels/fb-credentials2.png)
 
@@ -110,3 +108,6 @@ ms.locfileid: "39297715"
 
 评审成功后，请在“应用评审”下的“应用仪表板”中，将应用设置为“公开”。
 确保发布了与此机器人关联的 Facebook 页。 状态会显示在页设置中。
+
+> [!NOTE]
+> 还可以使用 Facebook Workplace。 若要启用 Workplace，请为它创建[自定义集成](https://developers.facebook.com/docs/workplace/custom-integrations-new)，并使用其应用 ID、应用机密和访问令牌。 在应用的“关于”页上，不要使用传统的 pageID，而要使用编号后接集成名称。 可以使用 Azure 中显示的凭据连接 Webhook。

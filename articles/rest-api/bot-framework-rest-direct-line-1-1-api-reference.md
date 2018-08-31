@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 2f688b9c80e762b93c2eba8f4671ff1760f624f9
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3569e3bfbb3be51cf9023b4686ed4693e90ed50c
+ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298296"
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42795176"
 ---
 # <a name="api-reference---direct-line-api-11"></a>API 参考 - Direct Line API 1.1
 
@@ -55,7 +55,8 @@ Authorization: BotConnector SECRET_OR_TOKEN
 | 401 | 客户端未获授权，无法发出请求。 通常情况下，出现此状态代码是因为 `Authorization` 标头缺失或格式不正确。 |
 | 403 | 不允许客户端执行请求的操作。 通常情况下，出现此状态代码是因为 `Authorization` 标头指定的令牌或机密无效。 |
 | 404 | 找不到所请求的资源。 通常情况下，此状态代码指示请求 URI 无效。 |
-| 500 | Direct Line 服务中出现内部服务器错误，或者机器人内部出现故障。 如果在通过 POST 方法将消息发布到机器人时收到 500 错误，则可能是因为机器人中出现的故障触发了该错误。 **这是常见错误代码。** |
+| 500 | Direct Line 服务中发生了内部服务器错误 |
+| 502 | 机器人中发生故障；机器人不可用或返回了错误。  这是常见错误代码。 |
 
 ## <a name="token-operations"></a>令牌操作 
 使用以下操作创建或刷新可供客户端用来访问单个聊天的令牌。
@@ -92,13 +93,13 @@ GET /api/tokens/{conversationId}/renew
 
 | Operation | Description |
 |----|----|
-| [开始聊天](#start-conversation) | 与机器人展开新的聊天。 | 
+| [启动聊天](#start-conversation) | 与机器人开启新的聊天。 | 
 | [Get Messages](#get-messages)（获取消息） | 从机器人检索消息。 |
 | [发送消息](#send-a-message) | 向机器人发送消息。 | 
 | [上传和发送文件](#upload-send-files) | 以附件形式上传和发送文件。 |
 
-### <a name="start-conversation"></a>开始聊天
-与机器人展开新的聊天。 
+### <a name="start-conversation"></a>启动聊天
+与机器人开启新的聊天。 
 ```http 
 POST /api/conversations
 ```
@@ -106,7 +107,7 @@ POST /api/conversations
 | | |
 |----|----|
 | **请求正文** | 不适用 |
-| **返回** | 一个[聊天](#conversation-object)对象 | 
+| **返回** | [Conversation](#conversation-object) 对象 | 
 
 ### <a name="get-messages"></a>获取消息
 从机器人检索指定聊天的消息。 设置请求 URI 中的 `watermark` 参数，以便指示客户端看到的最新消息。 
@@ -214,11 +215,11 @@ Direct Line 1.1 架构是 Bot Framework v1 架构的简化副本，其中包含�
 | 属性 | Type | Description |
 |----|----|----|
 | **conversationId** | 字符串 | 一个 ID，可以唯一标识指定的令牌所适用的聊天。 |
-| **token** | 字符串 | 一个令牌，适用于指定的聊天。 |
+| **token** | 字符串 | 对指定的聊天有效的令牌。 |
 | **expires_in** | 数字 | 令牌过期前需经历的秒数。 |
 
 ### <a name="error-object"></a>错误对象
-定义一个错误。<br/><br/> 
+定义错误。<br/><br/> 
 
 | 属性 | Type | Description |
 |----|----|----|
@@ -232,5 +233,5 @@ Direct Line 1.1 架构是 Bot Framework v1 架构的简化副本，其中包含�
 
 |        属性        |          Type          |                                 Description                                 |
 |------------------------|------------------------|-----------------------------------------------------------------------------|
-| <strong>error</strong> | [错误](#error-object) | 一个<strong>错误</strong>对象，包含有关错误的信息。 |
+| <strong>error</strong> | [错误](#error-object) | 一个包含错误相关信息的 <strong>Error</strong> 对象。 |
 

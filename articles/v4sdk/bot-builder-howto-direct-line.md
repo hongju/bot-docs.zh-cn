@@ -1,5 +1,5 @@
 ---
-title: 如何创建 Direct Line 机器人和客户端 | Microsoft Docs
+title: 创建 Direct Line 机器人和客户端 | Microsoft Docs
 description: 了解如何使用用于 .NET 的 Bot Builder SDK V4 版创建 Direct Line 机器人和客户端。
 keywords: direct line 机器人, direct line 客户端, 自定义通道, 基于控制台, 发布
 author: v-royhar
@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/16/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ac96e35763d690c91e6584ff9a840b490e0a32cd
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 23380231c15c40875f78921f72bcf9d57effb3bf
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297650"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905227"
 ---
-# <a name="how-to-create-a-direct-line-bot-and-client"></a>如何创建 Direct Line 机器人和客户端
+# <a name="create-a-direct-line-bot-and-client"></a>创建 Direct Line 机器人和客户端
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 Microsoft Bot Framework Direct Line 机器人是可以通过自行设计的自定义客户端运行的机器人。 Direct Line 机器人非常类似于普通机器人， 只是不需要使用提供的通道。
 
@@ -189,9 +191,6 @@ namespace DirectLineBotSample
                     break;
 
                 case ActivityTypes.Typing:
-                    break;
-
-                case ActivityTypes.Ping:
                     break;
 
                 case ActivityTypes.DeleteUserData:

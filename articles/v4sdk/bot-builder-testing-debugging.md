@@ -1,5 +1,5 @@
 ---
-title: 测试和调试机器人 | Microsoft Docs
+title: 测试和调试指南 | Microsoft Docs
 description: 了解如何测试和调试机器人。
 keywords: 测试原则, 模拟元素, 常见问题解答, 测试级别
 author: ivorb
@@ -9,14 +9,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/09/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ea1c458e98f67f76c56fdd70595307a0e0252c1d
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: caa424ed0ea0944805836739ed48a7a61f78d21c
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297654"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905256"
 ---
-# <a name="testing-and-debugging-your-bot"></a>测试和调试机器人
+# <a name="testing-and-debugging-guidelines"></a>测试和调试指南
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 机器人是复杂的应用，有大量不同的协同工作的部件。 就像其他复杂应用一样，这可能会导致出现一些需要关注的 Bug，或者会导致机器人的行为异常。
 

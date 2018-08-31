@@ -1,5 +1,5 @@
 ---
-title: 使用聊天和用户属性保存状态 | Microsoft Docs
+title: 管理聊天和用户状态 | Microsoft Docs
 description: 了解如何使用 Bot Builder SDK for .NET 的 V4 版本保存和检索状态数据。
 keywords: 聊天状态, 用户状态, 状态中间件, 聊天流, 文件存储, azure 表存储
 author: ivorb
@@ -9,14 +9,14 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/03/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 16df371b1cabb4b3eb47d1f491a5d45e26627d38
-ms.sourcegitcommit: dcbc8ad992a3e242a11ebcdf0ee99714d919a877
+ms.openlocfilehash: a74c52af0ca56b62491ca3aa39d09885c2540c18
+ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352846"
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42795206"
 ---
-# <a name="save-state-using-conversation-and-user-properties"></a>使用聊天和用户属性保存状态
+# <a name="manage-conversation-and-user-state"></a>管理聊天和用户状态
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -30,6 +30,16 @@ ms.locfileid: "39352846"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 要查看 `ConversationState` 的初始化方式，请参阅 Microsoft.Bot.Samples.EchoBot-AspNetCore 示例中的 `Startup.cs`。
+
+此代码所需的库：
+
+```csharp
+using Microsoft.Bot.Builder.BotFramework;
+using Microsoft.Bot.Builder.Core.Extensions;
+using Microsoft.Bot.Builder.Integration.AspNet.Core;
+```
+
+初始化 `ConversationState`：
 
 ```csharp
 services.AddBot<EchoBot>(options =>
@@ -304,7 +314,7 @@ server.post('/api/messages', (req, res) => {
 
 ---
 
-还可使用对话的“瀑布”模型。 该对话持续跟踪聊天状态，因此你无需创建标记进行跟踪。 有关详细信息，请参阅[使用对话管理聊天](bot-builder-dialog-manage-conversation-flow.md)。
+还可使用对话的“瀑布”模型。 该对话持续跟踪聊天状态，因此你无需创建标记进行跟踪。 有关详细信息，请参阅[使用对话管理简单的聊天](bot-builder-dialog-manage-conversation-flow.md)。
 
 ## <a name="file-storage"></a>文件存储
 
@@ -465,5 +475,5 @@ BotBuilder SDK 添加了 `$type` 和 `eTag` 字段。 有关 eTag 的详细信�
 有关存储的更多背景知识，请参阅 [Bot Builder SDK 中的存储](bot-builder-storage-concept.md)
 
 <!-- Links -->
-[AzureStorageEmulator]: https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator
-[AzureStorageExplorer]: https://azure.microsoft.com/en-us/features/storage-explorer/
+[AzureStorageEmulator]: https://docs.microsoft.com/azure/storage/common/storage-use-emulator
+[AzureStorageExplorer]: https://azure.microsoft.com/features/storage-explorer/

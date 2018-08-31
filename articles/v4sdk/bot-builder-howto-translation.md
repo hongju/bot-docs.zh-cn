@@ -1,6 +1,6 @@
 ---
-title: 翻译用户输入，使机器人会讲多种语言 | Microsoft Docs
-description: 如何自动将用户输入翻译成机器人的本机语言，以及翻译回到用户的语言。
+title: 翻译用户输入 | Microsoft Docs
+description: 如何将用户输入的内容自动翻译成机器人的本机语言，以及如何再翻译回到用户的语言。
 keywords: 翻译, 多语言, microsoft translator
 author: DeniseMak
 ms.author: v-demak
@@ -9,18 +9,18 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/06/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 13139755989afccd85b2e09267dc42619ec1f83c
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6304e328e523e73894473620fc1fb7656a8776bf
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297777"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756447"
 ---
-# <a name="translate-user-input-to-make-your-bot-multilingual"></a>翻译用户输入，使机器人会讲多种语言
+# <a name="translate-user-input"></a>翻译用户输入 
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-机器人可以使用 [Microsoft Translator](https://www.microsoft.com/en-us/translator/) 自动将消息翻译成它可以理解的语言，并选择性地将其回复翻译回到用户的语言。 将翻译添加到机器人可让它与更多的受众互动，而无需更改机器人的重要核心编程部分。
+机器人可使用 [Microsoft Translator](https://www.microsoft.com/en-us/translator/) 将消息自动翻译成它理解的语言，并选择性地将其回复翻译回用户的语言。 将翻译添加到机器人可让它与更多的受众互动，而无需更改机器人的重要核心编程部分。
 <!-- 
 - [Get a Text Services key](#get-a-text-services-key)
 - [Installing Packages](#installing-packages)
@@ -36,7 +36,7 @@ ms.locfileid: "39297777"
 
 ## <a name="installing-packages"></a>安装包
 
-确保已安装所需的包，以便将翻译添加到机器人。
+请确保已安装将翻译功能添加到机器人时所需的包。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
@@ -45,13 +45,13 @@ ms.locfileid: "39297777"
 * `Microsoft.Bot.Builder.Integration.AspNet.Core`
 * `Microsoft.Bot.Builder.Ai.Translation`（翻译时需要）
 
-若要将翻译与语言理解 (LUIS) 相结合，另请添加对以下包的引用：
+要将结合使用翻译功能和语言理解 (LUIS)，还要添加对以下包的引用：
 
 * `Microsoft.Bot.Builder.Ai.Luis`（LUIS 需要）
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-可以使用 botbuilder-ai 包将其中的任一服务添加到机器人。 可以通过 npm 将此包添加到项目：
+可使用 botbuilder-ai 包向机器人添加上述任一服务。 可通过 npm 向项目添加以下包：
 * `npm install --save botbuilder@preview`
 * `npm install --save botbuilder-ai@preview`
 
@@ -59,7 +59,7 @@ ms.locfileid: "39297777"
 
 ## <a name="configure-translation"></a>配置翻译
 
-接下来，只需将翻译程序添加到机器人的中间件堆栈，即可将机器人配置为调用该翻译程序来翻译从用户收到的每条消息。 该中间件通过上下文对象，使用翻译结果来修改用户的消息。
+接下来，只需将翻译程序添加到机器人的中间件堆栈，即可将机器人配置为调用该翻译程序来翻译从用户收到的每条消息。 该中间件通过上下文对象使用翻译结果来修改用户的消息。
 
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
@@ -103,11 +103,11 @@ public void ConfigureServices(IServiceCollection services)
 ```
 
 > [!TIP] 
-> BotBuilder SDK 根据用户刚刚提交的消息自动检测用户的语言。 若要重写此功能，可以提供附加的回调参数，以添加自己的逻辑来检测和更改用户的语言。  
+> BotBuilder SDK 根据用户刚提交的消息自动检测用户的语言。 要重写此功能，可提供其他回调参数，以添加自己的逻辑来检测和更改用户的语言。  
 
 
 
-查看 `EchoBot.cs` 中的代码，其中发送了“You sent”，后接用户所述的内容：
+请查看 `EchoBot.cs` 中的代码，其中发送了“You sent”短语，后接用户所述的内容：
 
 ```cs
 using Microsoft.Bot.Builder;
@@ -145,7 +145,7 @@ namespace Microsoft.Bot.Samples
 }
 ```
 
-添加翻译中间件时，某个可选参数可以指定是否要将回复内容翻译回到用户的语言。 `Startup.cs` 中指定了 `false`，表示只将用户消息翻译成机器人的语言。
+添加翻译中间件时，可选参数可用于指定是否要将回复内容翻译回用户的语言。 `Startup.cs` 中指定了 `false`，表示只将用户消息翻译成机器人的语言。
 
 ```cs
 // The first parameter is a list of languages the bot recognizes
@@ -156,7 +156,7 @@ middleware.Add(new TranslationMiddleware(new string[] { "en" }, "<YOUR MICROSOFT
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-若要设置聊天机器人的翻译中间件，请将以下内容粘贴到 app.js 中。
+要使用回显机器人设置翻译中间件，请将以下内容粘贴到 app.js 中。
 
 ```javascript
 const { BotFrameworkAdapter, MemoryStorage, ConversationState } = require('botbuilder');
@@ -199,9 +199,9 @@ server.post('/api/messages', (req, res) => {
 
 ---
 
-## <a name="run-the-bot-and-see-translated-input"></a>运行机器人并查看翻译后的输入
+## <a name="run-the-bot-and-see-translated-input"></a>运行机器人并查看翻译后的输入内容
 
-运行机器人，并以其他语言键入一些消息。 将会看到，机器人已翻译用户消息，并在响应中指明了翻译。
+运行机器人并以其他语言键入一些消息。 你将会看到机器人已翻译用户消息并在答复中指出了所翻译的内容。
 
 ![机器人检测语言并翻译输入](./media/how-to-bot-translate/bot-detects-language-translates-input.png)
 
@@ -210,7 +210,7 @@ server.post('/api/messages', (req, res) => {
 
 ## <a name="invoke-logic-in-the-bots-native-language"></a>调用采用机器人本机语言的逻辑
 
-现在，添加逻辑用于检查英语单词。 如果用户以另一种语言说出“help”或“cancel”，机器人会将它翻译成英语，同时会调用逻辑来检查英语单词“help”或“cancel”。
+现在，添加用于检查英语单词的逻辑。 如果用户以另一种语言说出“help”或“cancel”一词，机器人会将它翻译成英语，同时调用逻辑来检查英语单词“help”或“cancel”。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 在 `EchoBot.cs` 中，更新机器人的 `OnTurn` 方法中消息活动的 `case` 语句。
@@ -241,9 +241,9 @@ if (context.activity.type === 'message') {
 
 
 
-## <a name="translate-replies-back-to-the-users-language"></a>将回复翻译回到用户的语言
+## <a name="translate-replies-back-to-the-users-language"></a>将回复翻译回用户的语言
 
-此外，可以通过将最后一个构造函数参数设置为 `true`，将回复翻译回到用户的语言。
+此外，可通过将最后一个构造函数参数设置为 `true`，将回复翻译回用户的语言。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 在 `Startup.cs` 中，更新 `ConfigureServices` 方法的以下行。
@@ -268,11 +268,11 @@ adapter.use(languageTranslator);
 
 ---
 
-## <a name="run-the-bot-to-see-replies-in-the-users-language"></a>运行机器人以查看采用用户语言的回复
+## <a name="run-the-bot-to-see-replies-in-the-users-language"></a>运行机器人以查看按用户语言给出的回复
 
-运行机器人，并以其他语言键入一些消息。 可以看到，机器人检测到了用户语言，并翻译了响应。
+运行机器人并以其他语言键入一些消息。 你将看到机器人检测到了用户语言，并翻译了答复。
 
-![机器人检测语言并翻译响应](./media/how-to-bot-translate/bot-detects-language-translates-response.png)
+![机器人检测语言并翻译答复](./media/how-to-bot-translate/bot-detects-language-translates-response.png)
 
 
 ## <a name="adding-logic-for-detecting-or-changing-the-user-language"></a>添加逻辑用于检测或更改用户语言
@@ -280,7 +280,7 @@ adapter.use(languageTranslator);
 如果不让 Botbuilder SDK 自动检测用户的语言，可以提供一个回调，以添加自己的逻辑来确定用户的语言，或确定用户的语言何时发生了更改。
 
 
-在以下示例中，`CheckUserChangedLanguage` 回调检查特定的用户消息以更改语言。 
+在下例中，`CheckUserChangedLanguage` 回调检查特定的用户消息以更改语言。 
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 在 `Startup.cs` 中，将一个回调添加到翻译中间件。
@@ -392,9 +392,9 @@ server.post('/api/messages', (req, res) => {
 
 ---
 
-## <a name="combining-luis-or-qna-with-translation"></a>将 LUIS 或 QnA 与翻译相结合
+## <a name="combining-luis-or-qna-with-translation"></a>将翻译功能与 LUIS/QnA 结合使用
 
-若要将翻译与机器人中的其他服务（例如 LUIS 或 QnA 生成器）相结合，请先添加翻译中间件，以便在将消息传递到预期使用机器人本机语言的其他中间件之前对消息进行翻译。
+要将翻译功能与机器人中的其他服务（例如 LUIS 或 QnA 生成器）结合使用，请先添加翻译中间件，以便在将消息传递到预期使用机器人本机语言的其他中间件之前对消息进行翻译。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 ```cs
@@ -485,7 +485,7 @@ server.post('/api/messages', (req, res) => {
 ---
 
 ## <a name="bypass-translation-for-specified-patterns"></a>绕过指定模式的翻译
-你可能不希望机器人翻译某些单词，例如专有名词。 可以提供正则表达式，以指明不应翻译的模式。 例如，如果用户以机器人的非本机语言说出“My name is ...”，而你想要避免翻译该用户的姓名，可以使用一种模式来指定此要求。
+你可能不希望机器人翻译某些单词，例如专有名词。 可提供正则表达式，指出不该翻译的模式。 例如，如果用户以机器人的非本机语言说出“My name is ...”，而你想要避免翻译该用户的姓名，可使用模式来指定此要求。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 在 Startup.cs 中
@@ -524,12 +524,12 @@ adapter.use(languageTranslator);
 
 ## <a name="localize-dates"></a>将日期本地化
 
-如果需要将日期本地化，可以添加 `LocaleConverterMiddleware`。 例如，如果你知道机器人需要 `MM/DD/YYYY` 格式的日期，而采用其他区域设置的用户可能以 `DD/MM/YYYY` 格式输入日期，则区域设置转换器中间件可以自动将日期转换为机器人所需的格式。
+如果需要将日期本地化，可以添加 `LocaleConverterMiddleware`。 例如，如果知道机器人需要 `MM/DD/YYYY` 格式的日期，而采用其他区域设置的用户可能以 `DD/MM/YYYY` 格式输入日期，则区域设置转换器中间件可将日期自动转换为机器人所需的格式。
 
 > [!NOTE]
-> 区域设置转换器中间件只能转换日期。 它并不知道翻译中间件的结果。 如果使用翻译中间件，请谨慎地将它与区域设置转换器相结合。 翻译中间件会连同其他文本输入一起翻译某些采用文本格式的日期，但不会翻译日期
+> 区域设置转换器中间件只能用于转换日期。 它并不知道翻译中间件的结果。 如果使用翻译中间件，请谨慎地将它与区域设置转换器相结合。 翻译中间件会连同其他文本输入一起翻译某些采用文本格式的日期，但不会翻译日期
 
-例如，下图显示的机器人在将英语翻译成法语后回复用户输入。 它使用 `TranslationMiddleware` 而不是 `LocaleConverterMiddleware`。
+例如，下图显示的机器人在将英语翻译成法语后回复用户输入。 它使用 `TranslationMiddleware` 而不是使用 `LocaleConverterMiddleware`。
 
 ![翻译日期而不转换日期的机器人](./media/how-to-bot-translate/locale-date-before.png)
 

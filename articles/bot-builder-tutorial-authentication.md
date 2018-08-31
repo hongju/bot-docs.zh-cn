@@ -8,17 +8,13 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 7/2/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6d2e22bdfaa9fc4e3ce55bc1dd969921e90c87cc
-ms.sourcegitcommit: 97bb24f15041caccef4ca5736aa14f144881e0c6
+ms.openlocfilehash: ca9ccb0f0425bd0cabf1ce7ef236acb7a008aefe
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39567506"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905908"
 ---
-# <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
-
-[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
-
 本教程使用 Azure 机器人服务中的新机器人身份验证功能，提供各种功能以帮助轻松开发用于向 Azure AD (Azure Active Directory)、GitHub、Uber 等各种标识提供者验证用户身份的机器人。 这些更新还采取了一些措施，通过免去某些客户端的“幻码验证”来改善用户体验。
 
 在此之前，机器人需要添加 OAuth 控制器和登录链接、存储目标客户端 ID 和密码，以及执行用户令牌管理。
@@ -48,7 +44,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 > [!NOTE]
 > 身份验证功能还适用于使用 BotBuilder v3 的 Node.js。 但本文只介绍了 C# 代码示例。
 
-有关其他信息和支持，请参阅 [Bot Framework 的其他资源](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-resources-links-help)。
+有关其他信息和支持，请参阅 [Bot Framework 的其他资源](https://docs.microsoft.com/azure/bot-service/bot-service-resources-links-help)。
 
 ## <a name="overview"></a>概述
 
@@ -90,7 +86,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
    1. 将“应用程序类型”设置为“Web 应用/API”。
    1. 将“登录 URL”设置为 `https://token.botframework.com/.auth/web/redirect`。
    1. 单击“创建”。
-      - 创建完成后，它会显示在“已注册的应用”边栏选项卡中。
+      - 创建完成后，它会显示在“已注册的应用”窗格中。
       - 记录“应用程序 ID”值。 稍后需要提供该值作为“客户端 ID”。
 1. 单击“设置”，配置应用程序。
 1. 单击“密钥”打开“密钥”面板。
@@ -178,7 +174,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 #### <a name="to-register-an-azure-ad-v2-application"></a>注册 Azure AD v2 应用程序
 
-1. 导航到 [Azure 门户](http://portal.azure.com/)上的机器人的“机器人通道注册”边栏选项卡。
+1. 在 [Azure 门户](http://portal.azure.com/)上导航到机器人的“机器人通道注册”页。
 1. 单击“设置”。
 1. 在页面底部附近的“OAuth 连接设置”下，单击“添加设置”。
 1. 按如下所示填写表单：
@@ -205,7 +201,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 #### <a name="to-test-your-connection"></a>测试连接
 
 1. 打开刚才创建的连接。
-1. 单击“服务提供程序连接设置”边栏选项卡顶部的“测试连接”。
+1. 单击“服务提供程序连接设置”窗格顶部的“测试连接”。
 1. 第一次进行此操作时，应该会打开一个新的浏览器选项卡（其中列出了应用请求的权限）并提示你接受。
 1. 单击“接受”。
 1. 然后，此操作应该会将你重定向到“‘<your-connection-name>’的连接测试成功”页面。

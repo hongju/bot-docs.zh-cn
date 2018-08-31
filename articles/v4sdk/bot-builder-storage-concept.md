@@ -1,5 +1,5 @@
 ---
-title: 保存状态和访问数据 | Microsoft Docs
+title: 状态和存储 | Microsoft Docs
 description: 介绍了 Bot Builder SDK 中的状态管理器、聊天状态和用户状态。
 keywords: LUIS, 聊天状态, 用户状态, 存储, 管理状态
 author: DeniseMak
@@ -9,21 +9,21 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 02/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 56814ab12a85d18e52b0d5ec83fd81682f3b9f60
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: e25ecec3aec1cdebe3b9eae4bff0d3c434cb610b
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39298554"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756653"
 ---
-# <a name="save-state-and-access-data"></a>保存状态和访问数据
+# <a name="state-and-storage"></a>状态和存储
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 对于出色的机器人设计，其关键是跟踪聊天上下文，使机器人能够记住上一问题答案等内容。
 根据机器人的用途，甚至可能需要跟踪状态或长时间存储信息，使信息保留时间超过聊天生存期。
 机器人的状态是它为了正确响应传入消息而记住的信息。 Bot Builder SDK 提供类，用于存储和检索作为与用户或聊天关联的对象的状态数据。
 
-* 聊天属性可帮助机器人跟踪机器人与用户之间的当前聊天。 如果机器人需要完成一系列步骤或在聊天主题之间进行切换，可使用聊天属性来管理按顺序执行的步骤或跟踪当前主题。 由于聊天属性反映了当前聊天的状态，通常要在聊天结束时（机器人会收到“聊天结束”活动）清除它们。
+* 聊天属性可帮助机器人跟踪机器人与用户之间的当前聊天。 如果机器人需要完成一系列步骤或在聊天主题之间进行切换，可使用聊天属性来管理按顺序执行的步骤或跟踪当前主题。 由于聊天属性反映了当前聊天的状态，因此我们通常会在聊天结束时（此时机器人会收到“聊天结束”活动）清除它们。
 * 用户属性可用于多种目的，例如确定用户之前聊天的中断位置或仅按名称来问候返回的用户。 如果存储了用户的首选项，则可在下次聊天时使用该信息自定义聊天。 例如，可提醒用户注意有关其感兴趣话题的新闻文章，或者在可进行预约时提醒用户。 如果机器人收到“删除用户数据”活动，则应清除这些信息。
 
 可以使用[存储](bot-builder-howto-v4-storage.md)来读取和写入永久存储。 这样机器人便可以执行更新共享资源、记录 RSVP 或投票，或者读取历史天气数据等操作。 与应用使用存储来实现其目标的方式相同，机器人也可以在与用户的聊天中执行此操作。

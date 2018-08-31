@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/11/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 679109cad2f7b0c0c5826a47884b98e1149cb380
-ms.sourcegitcommit: f95702d27abbd242c902eeb218d55a72df56ce56
+ms.openlocfilehash: 32486cb024dfe852a7478ccba4a0eedc476431b0
+ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/19/2018
-ms.locfileid: "39298557"
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42795026"
 ---
 # <a name="conversation-flow"></a>会话流
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -52,7 +52,7 @@ The EchoBot sample in the BotBuilder SDK is a single-turn bot. Here are other ex
 
 ![单轮次天气机器人](./media/concept-conversation/weather-single-turn.png)
 
-天气机器人具有单轮次流，它只是向用户提供天气报告，而无需来回询问城市或日期。 显示天气报告的所有逻辑都基于机器人刚收到的消息。 在每个会话轮次中，机器人都会收到一个轮次上下文，机器人可以使用它来确定下一步该做什么以及如何进行会话。 
+天气机器人具有单轮次流，它只是向用户提供天气报告，而无需来回询问城市或日期。 显示天气报告的所有逻辑都基于机器人刚收到的消息。 在每个聊天轮次中，机器人会收到一个[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)，机器人可以使用它来确定下一步该做什么以及如何进行聊天。 
 
 ## <a name="multiple-turns"></a>多轮次
 
@@ -84,7 +84,7 @@ The EchoBot sample in the BotBuilder SDK is a single-turn bot. Here are other ex
 
 ### <a name="recognize-intent"></a>识别意向
 
-Bot Builder SDK 提供识别器，用于处理每个传入消息以确定意向，因此机器人可以启动适当的会话流。 在接收回调之前，识别器查看来自用户的消息内容以确定意向，然后使用接收回调中的轮次上下文对象将意向返回到机器人，存储为轮次上下文对象上的顶级意向。 
+Bot Builder SDK 提供识别器，用于处理每个传入消息以确定意向，因此机器人可以启动适当的会话流。 在接收回调之前，识别器查看来自用户的消息内容以确定意向，然后使用接收回调中的轮次上下文对象将意向返回到机器人，存储为[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)对象中的“顶级意向”。 
 
 确定顶级意向的识别器可以简单地使用正则表达式、语言理解 (LUIS) 或作为中间件开发的其他逻辑。 以下是识别器示例：
    

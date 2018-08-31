@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 53643f21e2cf1ebdfd84caed38f8f84c330ef71b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 998586820a0489bc4cca1d25b53cb6ac8162c452
+ms.sourcegitcommit: 0b2be801e55f6baa048b49c7211944480e83ba95
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298103"
+ms.lasthandoff: 08/28/2018
+ms.locfileid: "43115042"
 ---
 # <a name="authentication"></a>身份验证
 
@@ -24,7 +24,7 @@ ms.locfileid: "39298103"
 如果使用的是 [Bot Builder SDK for .NET](../dotnet/bot-builder-dotnet-overview.md) 或 [Bot Builder SDK for Node.js](../nodejs/index.md)，则不需要实现本文所述的安全程序，因为 SDK 会自动为你完成。 只需使用在[注册](../bot-service-quickstart-registration.md)期间为机器人获得的应用 ID 和密码配置项目，SDK 将处理其余部分。
 
 > [!WARNING]
-> 在 2016 年 12 月，v3.1 Bot Framework 安全协议引入了对在令牌生成和验证期间使用的几个值的更改。 在 2017 年秋末，将引入 v3.2 Bot Framework 安全协议，它将再次包含对在令牌生成和验证期间使用的值的更改。
+> 在 2016 年 12 月，v3.1 Bot Framework 安全协议引入了对在令牌生成和验证期间使用的几个值的更改。 在 2017 年秋末已推出 Bot Framework 安全协议 v3.2，其中包含对在令牌生成和验证期间使用的值的更改。
 > 有关详细信息，请参阅[安全协议更改](#security-protocol-changes)。
 
 ## <a name="authentication-technologies"></a>身份验证技术
@@ -232,7 +232,7 @@ payload:
 ## <a id="emulator-to-bot"></a> 对从 Bot Framework Emulator 到机器人的请求进行身份验证
 
 > [!WARNING]
-> 在 2017 年秋末，将引入 v3.2 Bot Framework 安全协议。 此新版本在令牌中包括新的“颁发者”值，这些令牌在 Bot Framework Eumaltor 和机器人之间进行交换。 若要准备进行此更改，以下步骤概述了如何检查 v3.1 和 v3.2 颁发者值。 
+> 在 2017 年秋末已推出 Bot Framework 安全协议 v3.2。 此新版本在令牌中包括新的“颁发者”值，这些令牌在 Bot Framework Eumaltor 和机器人之间进行交换。 若要准备进行此更改，以下步骤概述了如何检查 v3.1 和 v3.2 颁发者值。 
 
 [Bot Framework Emulator](../bot-service-debug-emulator.md) 是一个桌面工具，可用于测试机器人的功能。 虽然 Bot Framework Emulator 使用如上所述的相同[身份验证技术](#authentication-technologies)，但它无法模拟真实的 Bot Connector 服务。 相反，它使用在将模拟器连接到机器人时所指定的 Microsoft 应用 ID 和 Microsoft 应用密码，以创建与机器人创建的令牌相同的令牌。 在模拟器向机器人发送请求时，它将在请求的 `Authorization` 标头中指定 JWT 令牌 -- 从本质上讲，使用机器人自己的凭据对请求进行身份验证。 
 

@@ -1,5 +1,5 @@
 ---
-title: 在网上聊天通道中启用语音 | Microsoft Docs
+title: 在网上聊天中启用语音 | Microsoft Docs
 description: 了解如何在网上聊天控件中为已连接到网上聊天通道的机器人启用语音。
 keywords: 语音, 网上聊天, 语音, 麦克风, 音频
 author: DeniseMak
@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 37e18f49eb55fcb7d0bf94e96051479753eec8aa
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 2499197d82b618d7a535efca78f98ce260dd15a7
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297794"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756698"
 ---
-# <a name="how-to-enable-speech-in-web-chat"></a>如何在网上聊天中启用语音
+# <a name="enable-speech-in-web-chat"></a>在网上聊天中启用语音
 可以在网上聊天控件中启用语音界面。 用户使用网上聊天控件中的麦克风来与语音界面交互。
 
 ![网上聊天语音示例](~/media/bot-service-channel-webchat/webchat-sample-speech.png)
@@ -114,6 +114,6 @@ ms.locfileid: "39297794"
 
 ## <a name="additional-resources"></a>其他资源
 
-* 可以在 GitHub 上[下载网上聊天控件的源代码](https://github.com/Microsoft/BotFramework-WebChat)。
+* 可在 GitHub 上为网上聊天控件[下载源代码](https://github.com/Microsoft/BotFramework-WebChat)。
 * [必应语音 API 文档](https://docs.microsoft.com/azure/cognitive-services/speech/home)提供了有关必应语音 API 的详细信息。
 

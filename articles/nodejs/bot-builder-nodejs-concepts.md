@@ -8,14 +8,17 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e276b7f3f4cc46e0978b3ee182b8251e39b86ead
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: fd81b9dfe5d3e16096ffd6ab25c1ee23ff77f79f
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298045"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42904925"
 ---
 # <a name="key-concepts-in-the-bot-builder-sdk-for-nodejs"></a>Bot Builder SDK for Node.js 中的重要概念
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-concepts.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-concepts.md)
@@ -43,7 +46,8 @@ Connector 还规范化机器人发送到通道的消息，使用户可以通过�
 对话框有助于组织机器人的会话逻辑，是[设计会话流](../bot-service-design-conversation-flow.md)的基础。 有关对话框的简介，请参阅[使用对话框管理会话](bot-builder-nodejs-dialog-manage-conversation.md)。
 
 ## <a name="actions"></a>操作
-你想要将机器人设计为能够在会话流中随时处理取消或帮助请求等中断情况。 Bot Builder SDK for Node.js 提供了全局消息处理程序，可触发取消或调用其他对话框等操作。 请参阅<!--[Handling cancel](bot-builder-nodejs-manage-conversation-flow.md#handling-cancel), [Confirming interruptions](bot-builder-nodejs-manage-conversation-flow.md#confirming-interruptions) and-->[处理用户操作](bot-builder-nodejs-dialog-actions.md)，了解如何使用 [triggerAction][triggerAction] 处理程序的示例。
+你想要将机器人设计为能够在会话流中随时处理取消或帮助请求等中断情况。 Bot Builder SDK for Node.js 提供了全局消息处理程序，可触发取消或调用其他对话框等操作。 请参阅[处理用户操作](bot-builder-nodejs-dialog-actions.md)，获取有关如何使用 [triggerAction][triggerAction] 处理程序的示例。
+<!--[Handling cancel](bot-builder-nodejs-manage-conversation-flow.md#handling-cancel), [Confirming interruptions](bot-builder-nodejs-manage-conversation-flow.md#confirming-interruptions) and-->
 
 
 ## <a name="recognizers"></a>识别器

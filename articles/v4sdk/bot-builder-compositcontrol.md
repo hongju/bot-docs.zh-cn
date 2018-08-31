@@ -1,5 +1,5 @@
 ---
-title: 使用对话容器创建模块化机器人逻辑 | Microsoft Docs
+title: 创建集成对话集 | Microsoft Docs
 description: 了解如何使用对话容器在 Bot Builder SDK for Node.js 和 C# 中模块化机器人逻辑。
 keywords: 复合控件, 模块化机器人逻辑
 author: v-ducvo
@@ -9,14 +9,14 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/27/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2441a32167618ebb08e6a43d68d74076c3351d8f
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 93037d70a33d66269f3a79ce7e2a55900d25a6a9
+ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298378"
+ms.lasthandoff: 08/23/2018
+ms.locfileid: "42795196"
 ---
-# <a name="create-modular-bot-logic-with-a-dialog-container"></a>使用对话容器创建模块化机器人逻辑
+# <a name="create-an-integrated-set-of-dialogs"></a>创建集成对话集
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -74,7 +74,7 @@ public class UserInfo
 ```
 
 在一个机器人回合中，对话集的 `CreateContext` 方法会建立对话状态。
-该方法使用回合上下文和状态对象作为参数。
+该方法使用[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)和状态对象作为参数。
 
 对于对话，此状态对象必须实现 `IDictionary<string, object>` 接口。 由于此机器人仅使用聊天状态来存放对话状态，我们的聊天状态类可以是简单的字典。
 
@@ -104,7 +104,7 @@ public class ConversationInfo : Dictionary<string, object> { }
 1. 询问他们想要入住的房间。
 1. 发送确认消息并完成对话。
 
-有关对话和瀑布的详细信息，请参阅[使用对话管理聊天流](bot-builder-dialog-manage-conversation-flow.md)。
+有关对话和瀑布的详细信息，请参阅[使用对话管理简单的聊天流](bot-builder-dialog-manage-conversation-flow.md)。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 

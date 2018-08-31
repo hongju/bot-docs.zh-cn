@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/30/2018
-ms.openlocfilehash: bc1da99c7d0f7a6431ad0c2746b8583ef7bfbd5f
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 2a92281e9bbee09d8dfb00fbbc67fe6ac6b6c69b
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298046"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756743"
 ---
-# <a name="debug-bots-with-the-bot-framework-emulator"></a>使用 Bot Framework Emulator 调试机器人
+# <a name="debug-with-the-bot-framework-emulator"></a>使用 Bot Framework Emulator 调试
 
 Bot Framework Emulator 是一个桌面应用程序，允许机器人开发人员在本地或远程测试和调试机器人。 使用此模拟器，你可以和机器人聊天并检查机器人发送和接收的消息。 模拟器会显示消息，因为它们会出现在网上聊天 UI 中，并在与机器人交换消息时记录 JSON 请求和响应。 
 

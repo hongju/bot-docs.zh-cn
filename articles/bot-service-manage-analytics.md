@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 503e9b2231b198346f5a7cd767a1e6a866e9e5b3
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 3b0032db8e99c75ec8697f79a78cd6b0bd915db9
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297868"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756717"
 ---
 # <a name="bot-analytics"></a>机器人分析
 Analytics 是 [Application Insights](/azure/application-insights/app-insights-analytics) 的扩展。 Application Insights 提供服务级和检测数据，例如流量、延迟和集成。 Analytics 提供有关用户、消息和通道数据的聊天级报告。
@@ -40,7 +40,7 @@ Analytics 是 [Application Insights](/azure/application-insights/app-insights-an
 请注意，更改总体时间范围将导致图上的时间增量（X 轴）相应地发生变化。
 
 ### <a name="grand-totals"></a>总计
-指定期限内的活动用户以及发送并接收的消息的总数。
+指定期限内的活动用户以及发送和接收的活动总数。
 短划线 `--` 表示没有活动。
 
 ### <a name="retention"></a>保留
@@ -60,14 +60,14 @@ Analytics 是 [Application Insights](/azure/application-insights/app-insights-an
 * 折线图表示在特定时间访问机器人的用户数量。
 * 折线图的图例表示哪种颜色代表哪个通道，并显示指定时间段内的用户总数。
 
-### <a name="messages"></a>消息
-消息图跟踪在指定时间范围内使用某一通道发送和接收的消息数。
+### <a name="activities"></a>活动
+“活动”图跟踪在指定期限内使用某一通道发送和接收的活动数。
 
-![消息图](~/media/analytics-messages.png)
+![活动图](~/media/analytics-activities.png)
 
-* 百分比图表显示通过每个通道传递的消息百分比。
-* 折线图表示在指定时间范围内发送和接收的消息数量。
-* 折线图的图例表示每个通道对应的线条颜色，并显示在指定时间段内该通道上发送和接收的消息总数。 
+* 百分比图表显示通过每个通道传递的活动百分比。
+* 折线图指示在指定期限内发送和接收的活动数量。
+* 折线图的图例指示每个通道对应的线条颜色，以及在指定时段内该通道上发送和接收的活动总数。 
 
 ## <a name="enable-analytics"></a>启用分析
 启用并配置 Application Insights 后，Analytics 才可用。 Application Insights 将在启用后立即开始收集数据。 例如，如果 1 周前为运行了 6 个月的机器人启用 Application Insights，则仅收集 1 周的数据。

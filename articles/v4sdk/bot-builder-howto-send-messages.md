@@ -1,5 +1,5 @@
 ---
-title: 使用 Bot Builder SDK 发送消息 | Microsoft Docs
+title: 发送消息 | Microsoft Docs
 description: 了解如何在 Bot Builder SDK 中发送消息。
 keywords: 发送消息, 消息活动, 简单文本消息, 语音, 语音消息
 author: ivorb
@@ -7,18 +7,20 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 04/04/2018
+ms.date: 08/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b854eeb4ecb45a875ab3be5d867333cd63babffd
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b56ad56e19691cfbd7b39606832ed10fce951aa3
+ms.sourcegitcommit: f89ed979eb6321232fb21100ef376d9b0d5113c9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298097"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42914587"
 ---
-# <a name="sending-messages"></a>发送消息
+# <a name="send-messages"></a>发送消息
 
-机器人与用户通信以及接收通信等的主要方法是通过消息活动。 某些消息可能会只包含纯文本，而其他消息可能包含更丰富的内容，如卡或附件。 机器人的轮次处理程序从用户那里接收消息，然后你可以向用户发送响应。 轮次上下文对象提供用于将消息发送回用户的方法。 有关一般情况下活动处理的更多信息，请参阅[活动处理](bot-builder-concept-activity-processing.md)。
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+
+机器人与用户通信以及接收通信等的主要方法是通过消息活动。 某些消息可能会只包含纯文本，而其他消息可能包含更丰富的内容，如卡或附件。 机器人的轮次处理程序从用户那里接收消息，然后你可以向用户发送响应。 [轮次上下文](bot-builder-concept-activity-processing.md#turn-context)对象提供用于将消息发送回用户的方法。 有关一般情况下活动处理的更多信息，请参阅[活动处理](bot-builder-concept-activity-processing.md)。
 
 本文介绍如何发送简单的文本和语音消息。 若要发送更丰富的内容，请参阅如何[添加丰富的媒体附件](bot-builder-howto-add-media-attachments.md)。 有关如何使用提示对象的信息，请参阅如何[提示用户输入](bot-builder-prompts.md)。
 

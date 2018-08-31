@@ -1,5 +1,5 @@
 ---
-title: 事件处理程序 | Microsoft Docs
+title: 使用事件处理程序 | Microsoft Docs
 description: 了解如何使用事件处理程序。
 author: ivorb
 ms.author: v-ivorb
@@ -8,14 +8,16 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 06/14/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0c054b8f4209004806e4564be45e83bdf3a8ec25
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 36bd2638c599de1662a37dd85790b6126184d51b
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298308"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905686"
 ---
-# <a name="event-handlers"></a>事件处理程序
+# <a name="using-event-handlers"></a>使用事件处理程序
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 事件处理程序是我们可以添加到[轮](bot-builder-basics.md#defining-a-turn)内未来活动事件的函数。 这些活动包括 `SendActivity`、`UpdateActivity` 和 `DeleteActivity`，每个活动都有其自己的处理程序。 当你需要对当前上下文对象的每个该类型的未来活动执行某个操作时，这些处理程序非常有用。
 

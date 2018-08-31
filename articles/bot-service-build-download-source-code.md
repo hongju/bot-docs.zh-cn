@@ -1,5 +1,5 @@
 ---
-title: 下载并重新部署机器人服务的源代码 |Microsoft Docs
+title: 下载并重新部署机器人源代码 | Microsoft Docs
 description: 了解如何下载和发布机器人服务。
 keywords: 下载源代码, 重新部署, 部署, zip 文件, 发布
 author: v-ducvo
@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/08/2018
-ms.openlocfilehash: 6d76388712ffeff94c56ba89b4bf4f4831caf45c
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b77e096d28f51f605db9c49d36e796553f9293ef
+ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298228"
+ms.lasthandoff: 08/21/2018
+ms.locfileid: "42756479"
 ---
-# <a name="download-and-redeploy-bot-service-source-code"></a>下载并重新部署机器人服务源代码
+# <a name="download-and-redeploy-bot-source-code"></a>下载并重新部署机器人源代码
 
 使用机器人服务可以下载用于机器人的整个源项目。 这样，你可以使用所选的 IDE 在本地处理机器人。 一旦完成更改后，就可以将所做的更改发布回 Azure。 
 
@@ -75,7 +75,7 @@ npm run azure-publish
 配置项目后，可以通过执行以下操作将机器人源代码发布回 Azure：
 
 1. 在 Visual Studio 中，单击“解决方案资源管理器”。
-2. 右键单击项目名，并单击 **发布...** \。
+2. 右键单击项目名，并单击“发布...”。
 3. 单击“发布”按钮将所做的更改发布到 Azure。
 
 ## <a name="next-steps"></a>后续步骤

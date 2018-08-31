@@ -8,14 +8,17 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/25/2018
-ms.openlocfilehash: 7cf05b3396099f1c65fce7abbceb143a3ad43e9a
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 8004389aba58b5cf79f1559b3ce65d1d66c5358c
+ms.sourcegitcommit: 44f100a588ffda19c275b118f4f97029f12d1449
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574583"
+ms.lasthandoff: 08/26/2018
+ms.locfileid: "42928335"
 ---
 # <a name="create-bots-with-botbuilder-templates"></a>使用 Botbuilder 模板创建机器人
+
+> [!NOTE]
+> 本主题适用于 SDK v3 和 v4 版本。 请参阅下面的附加注释。
 
 现在可以使用模板在每个 Botbuilder SDK 平台中创建机器人： 
 
@@ -189,7 +192,7 @@ LUDown 工具会自动将问题和解答分离到 qnamaker JSON 文件，然后�
   See [this link](https://docs.botframework.com/en-us/azure-bot-service/templates/qnamaker/#navtitle) for details. 
   ```
 
-也可将多个问题添加到相同答案，只需为单个答案添加新的问题变体行即可。 
+此外可以将多个问题添加到相同答案，只需为单个答案新添几行问题变体。 
 
 ```LUDown
 ### ? What is your name?
@@ -200,7 +203,7 @@ LUDown 工具会自动将问题和解答分离到 qnamaker JSON 文件，然后�
 
 ### <a name="generating-json-models-with-ludown"></a>使用 LUDown 生成 .json 模型
 
-在 .lu 格式中定义了 LUIS 或 QnA 语言组件后，即可将内容发布到 LUIS.json、QnA.json 或 QnA.tsv 文件。 运行时，LUDown 工具将在同一个工作目录中查找需分析的任何 .lu 文件。 由于 LUDown 工具可以使用 .lu 文件指向 LUIS 或 QnA，因此只需使用常规命令 **ludown parse <Service> -- in <luFile>** 指定要为哪个语言服务生成模块即可。 
+定义了 .lu 格式的 LUIS 或 QnA 语言组件后，可以将其发布到 LUIS.json、QnA.json 或 QnA.tsv 文件。 运行时，LUDown 工具将在同一个工作目录中查找需分析的任何 .lu 文件。 由于 LUDown 工具可以使用 .lu 文件指向 LUIS 或 QnA，因此只需使用常规命令 **ludown parse <Service> -- in <luFile>** 指定要为哪个语言服务生成模块即可。 
 
 在我们的示例工作目录中，我们有两个 .lu 文件可供分析，“1.lu”用于创建 LUIS 模型，“qna1.lu”用于创建 QnA 知识库。
 

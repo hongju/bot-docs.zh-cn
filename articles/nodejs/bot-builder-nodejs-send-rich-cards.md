@@ -8,14 +8,18 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 45f138d53ebf12325e17659148f2a95ebabfe1dd
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 7f94ea05fcccfe7bdeb1dec187d735cef28b1d7c
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297773"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42905391"
 ---
-# <a name="add-rich-card-attachments-to-messages"></a>将丰富卡片附件添加到消息
+# <a name="add-rich-card-attachments-to-messages"></a>向消息添加资讯卡附件
+
+[!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
+
+
 > [!div class="op_single_selector"]
 > - [.NET](../dotnet/bot-builder-dotnet-add-rich-card-attachments.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-send-rich-cards.md)
@@ -24,16 +28,16 @@ ms.locfileid: "39297773"
 多个通道（例如 Skype 和 Facebook）支持使用交互式按钮（用户单击这些按钮可以启动某个操作）将丰富的图形卡片发送到用户。 SDK 提供多个消息与卡片生成器类用于创建和发送卡片。 Bot Framework 连接器服务将使用通道原生的架构来呈现这些卡片，并支持跨平台通信。 如果通道（例如 SMS）不支持卡片，Bot Framework 会尽量向用户呈现合理的体验。 
 
 ## <a name="types-of-rich-cards"></a>丰富卡片的类型 
-Bot Framework 目前支持八种类型的丰富卡片： 
+Bot Framework 目前支持八个类型的富卡： 
 
-| 卡片类型 | Description |
+| 卡类型 | Description |
 |------|------|
 | <a href="/adaptive-cards/get-started/bots">自适应卡片</a> | 一种可以包含文本、语音、图像、按钮和输入字段的任意组合的可自定义卡片。  请参阅[每个通道的支持](/adaptive-cards/get-started/bots#channel-status)。 |
 | [动画卡片][animationCard] | 一种可以播放动态 GIF 或短视频的卡片。 |
 | [音频卡片][audioCard] | 一种可以播放音频文件的卡片。 |
-| [Hero 卡片][heroCard] | 通常包含单个大图像、一个或多个按钮和文本的卡片。 |
+| [英雄卡][heroCard] | 通常包含单个大图像、一个或多个按钮和文本的卡片。 |
 | [缩略图卡片][thumbnailCard] | 通常包含单个缩略图图像、一个或多个按钮和文本的卡片。|
-| [收据卡片][receiptCard] | 可让机器人向用户提供收据的卡片。 它通常包含要包括在收据、税款、总计信息和其他文本中的项列表。 |
+| [收据卡片][receiptCard] | 一种让机器人能够向用户提供收据的卡。 它通常包含要包括在收据、税款、总计信息和其他文本中的项列表。 |
 | [登录卡片][signinCard] | 可让机器人请求用户登录的卡片。 它通常包含文本和一个或多个按钮，用户可以单击这些按钮来启动登录进程。 |
 | [视频卡片][videoCard] | 一种可以播放视频的卡片。 |
 
@@ -138,7 +142,7 @@ bot.dialog('buyButtonClick', [
 
 -->
 ## <a name="add-a-message-delay-for-image-downloads"></a>针对图像下载添加消息延迟
-某些通道往往会在向用户显示消息之前下载图像，因此，如果发送一条包含图像的消息，紧接着发送一条不带图像的消息，则有时你会看到用户馈送内容中的消息发生翻转。 为了尽量减少出现这种情况的可能性，请确保图像来自内容分发网络 (CDN)，并避免使用过大的图像。 在极端的情况下，甚至需要在包含图像的消息与其后面的内容之间插入 1-2 秒的延迟。 可以调用 **session.sendTyping()** 在开始延迟之前发送一个类型指示符，使用户觉得这种延迟符合常态。 
+某些通道往往会在向用户显示消息之前下载图像，因此，如果发送一条包含图像的消息，紧接着发送一条不带图像的消息，则有时你会看到用户馈送内容中的消息发生翻转。 为了尽量减少出现这种情况的可能性，请确保图像来自内容分发网络 (CDN)，并避免使用过大的图像。 在极端的情况下，甚至需要在包含图像的消息与其后面的内容之间插入 1-2 秒的延迟。 可以调用 **session.sendTyping()** 在开始延迟之前发送一个键入指示符，使用户觉得这种延迟符合常态。 
 
 <!-- 
 To learn more about sending a typing indicator, see [How to send a typing indicator](bot-builder-nodejs-send-typing-indicator.md).
@@ -158,13 +162,13 @@ Bot Framework 实施某种形式的批处理，以尝试避免机器人提供的
 
 [!code-javascript[Add Adaptive Card attachment](../includes/code/node-send-card-buttons.js#addAdaptiveCardAttachment)]
 
-生成的卡片包含三个文本块、一个输入字段（选项列表）和三个按钮：
+生成的卡包含三个文本块、一个输入字段（选择列表）和三个按钮：
 
 ![自适应卡片日历提醒](../media/adaptive-card-reminder.png)
 
 ## <a name="additional-resources"></a>其他资源
 
-* [使用 Channel Inspector 预览特征][inspector]
+* [使用通道检查器预览功能][inspector]
 * <a href="http://adaptivecards.io" target="_blank">自适应卡片</a>
 * [AnimationCard][animationCard]
 * [AudioCard][audioCard]

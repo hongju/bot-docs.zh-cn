@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 1eb334f719279c987b30e604eacfb3878970ba02
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: d76daffcfc4661a87d1efaf85e6bb08e3e999988
+ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298429"
+ms.lasthandoff: 08/20/2018
+ms.locfileid: "42756526"
 ---
 # <a name="api-reference"></a>API 参考
 
@@ -22,7 +22,7 @@ ms.locfileid: "39298429"
 在 Bot Framework 中，Bot Connector 服务使机器人能够在 Bot Framework 门户中配置的通道上与用户交换消息，而 Bot State 服务使机器人能够存储和检索与机器人使用 Bot Connector 服务执行的聊天相关的状态数据。 这两种服务都通过 HTTPS 使用行业标准 REST 和 JSON。
 
 > [!IMPORTANT]
-> 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 **Azure 扩展**之一用于生产性机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”主题。
+> 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展之一用于生产机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”主题。
 
 ## <a name="base-uri"></a>基本 URI
 
@@ -53,7 +53,7 @@ ms.locfileid: "39298429"
 }
 ```
 
-用户消息中的 `serviceUrl` 属性表示机器人应将其响应发送到终结点 `https://smba.trafficmanager.net/apis`；这将是机器人在此聊天上下文中发出的任何后续请求的基本 URI。 如果机器人需要向用户发送主动消息，请务必保存 `serviceUrl` 的值。
+用户消息中的 `serviceUrl` 属性表示机器人应将其响应发送到终结点 `https://smba.trafficmanager.net/apis`；这将是机器人在此聊天上下文中发出的任何后续请求的基 URI。 如果机器人需要向用户发送主动消息，请务必保存 `serviceUrl` 的值。
 
 以下示例展示了机器人为响应用户消息发出的请求。 
 
@@ -420,7 +420,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **textFormat** | 字符串 | 消息**文本**的格式。 下列值之一：**markdown**、**plain**、**xml**。 有关文本格式的详细信息，请参阅[创建消息](bot-framework-rest-connector-create-messages.md)。 |
 | **timestamp** | 字符串 | 在 UTC 时区发送消息的日期和时间，以 <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO-8601</a> 格式表示。 |
 | **topicName** | 字符串 | 活动所属聊天的主题。 |
-| type | 字符串 | 活动的类型。 下列值之一：**contactRelationUpdate**、**conversationUpdate**、**deleteUserData**、**message**、**ping**、**typing**、**endOfConversation**。 有关活动类型的详细信息，请参阅[活动概述](bot-framework-rest-connector-activities.md)。 |
+| type | 字符串 | 活动的类型。 下列值之一：**contactRelationUpdate**、**conversationUpdate**、**deleteUserData**、**message**、**typing**、**endOfConversation**。 有关活动类型的详细信息，请参阅[活动概述](bot-framework-rest-connector-activities.md)。 |
 | **值** | 对象 | 开放式值。 |
 
 <a href="#objects">返回到架构表</a>
@@ -725,7 +725,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 |          属性          |                   Type                   |                                                                                                                                                                                                                           Description                                                                                                                                                                                                                            |
 |----------------------------|------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <strong>mentioned</strong> | [ChannelAccount](#channelaccount-object) | 一个 <strong>ChannelAccount</strong> 对象，用于指定所提到的用户或机器人。 请注意，某些通道（如 Slack）按聊天分配名称，因此，所提到的机器人名称（在消息的 <strong>recipient</strong> 属性中）可能与你在[注册](../bot-service-quickstart-registration.md)机器人时指定的句柄不同。 但是，两者的帐户 ID 相同。 |
-|   <strong>text</strong>    |                  字符串                  |                                                                                                                         聊天中提到的用户或机器人。 例如，如果消息为“@ColorBotpick me a new color”，则此属性将设置为 <strong>@ColorBot</strong>。 并非所有通道都设置此属性。                                                                                                                          |
+|   <strong>text</strong>    |                  字符串                  |                                                                                                                         聊天中提到的用户或机器人。 例如，如果消息为“@ColorBot pick me a new color”，则此属性将设置为 <strong>@ColorBot</strong>。 并非所有通道都设置此属性。                                                                                                                          |
 |   type    |                  字符串                  |                                                                                                                                                                                                   此对象的类型。 始终设置为 <strong>Mention</strong>。                                                                                                                                                                                                    |
 
 <a href="#objects">返回到架构表</a>
@@ -744,7 +744,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 |----|----|----|
 | **address** | 对象 |  某个位置的地址。 此属性可以是 `string` 或 `PostalAddress` 类型的复杂对象。 |
 | **geo** | [GeoCoordinates](#geocoordinates-object) | 一个 **GeoCoordinates** 对象，用于指定该位置的地理坐标。 |
-| **hasMap** | 对象 | 该位置的地图。 此属性可以是 `string`(URL) 或 `Map` 类型的复杂对象。 |
+| **hasMap** | 对象 | 该位置的地图。 此属性可以是 `string` (URL) 或 `Map` 类型的复杂对象。 |
 | name | 字符串 | 该位置的名称。 |
 | type | 字符串 | 此对象的类型。 始终设置为 **Place**。 |
 

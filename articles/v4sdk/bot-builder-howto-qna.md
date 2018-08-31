@@ -1,5 +1,5 @@
 ---
-title: 使用 QnA Maker | Microsoft Docs
+title: 使用 QnA Maker 回答问题 | Microsoft Docs
 description: 了解如何在机器人中使用 QnA maker。
 keywords: 问题和答案, QnA, 常见问题解答, 中间件
 author: ivorb
@@ -9,16 +9,18 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/13/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 78bc2c849a2c1900da33c7419693a7ff84c43cb0
-ms.sourcegitcommit: dcbc8ad992a3e242a11ebcdf0ee99714d919a877
+ms.openlocfilehash: 7dd973e2b5a151e754925e6f19c6e4f82507f745
+ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352946"
+ms.lasthandoff: 08/24/2018
+ms.locfileid: "42906171"
 ---
-# <a name="how-to-use-qna-maker"></a>如何使用 QnA Maker
+# <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答问题
 
-要为机器人添加简单的问答支持，你可以使用 [QnA Maker](https://qnamaker.ai/) 服务。
+
+要为机器人添加简单的问答支持，你可以使用 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/home) 服务。
+
 
 编写自己的 QnA Maker 服务的基本要求之一是为其提供问题和答案。 在许多情况下，问题和答案已经存在于常见问题解答或其他文档等内容中。 其他时候，你希望以更自然的会话方式自定义问题的答案。 
 
@@ -59,7 +61,7 @@ ms.locfileid: "39352946"
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-可以使用 botbuilder-ai 程序包将这些服务中的任何一项添加到机器人。 可以通过 npm 将此包添加到项目中：
+可使用 botbuilder-ai 包向机器人添加上述任一服务。 可以通过 npm 将此包添加到项目中：
 
 * `npm install --save botbuilder@preview`
 * `npm install --save botbuilder-ai@preview`
