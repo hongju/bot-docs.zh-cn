@@ -7,21 +7,19 @@ ms.author: v-ducvo
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 04/13/2018
-ms.openlocfilehash: fef9a3056839f99fe4da47bb22a1a0980293dc5d
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.date: 08/13/2018
+ms.openlocfilehash: e62d57a39c87e9de32a1a492b2dc1386d6574fd3
+ms.sourcegitcommit: bff936a6a3dd5b1bd3ddfeed8bd1023e52929f08
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905381"
+ms.lasthandoff: 08/30/2018
+ms.locfileid: "43312491"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
-[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
-
 # <a name="create-a-bot-with-bot-service"></a>使用机器人服务创建机器人
 
-[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
 机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Builder SDK 和用于将机器人连接到通道的 Bot Framework。 机器人服务提供了五个模板，你可以在创建支持 .NET 和 Node.js 的机器人时选择这些模板。 本主题介绍如何使用机器人服务创建使用 Bot Builder SDK 的新机器人。
 
