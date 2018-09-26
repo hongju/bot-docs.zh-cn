@@ -1,3 +1,12 @@
+# 企业模板
+## [介绍](../v4sdk/bot-builder-enterprise-template-overview.md)
+## [概述](../v4sdk/bot-builder-enterprise-template-overview-detail.md)
+## [创建项目](../v4sdk/bot-builder-enterprise-template-create-project.md)
+## [自定义模板](../v4sdk/bot-builder-enterprise-template-customize.md)
+## [部署模板](../v4sdk/bot-builder-enterprise-template-deployment.md)
+## [分析](../v4sdk/bot-builder-enterprise-template-powerbi.md)
+# 虚拟助手 
+## [概述](../v4sdk/bot-builder-virtual-assistant-introduction.md)
 # [常见问题](../bot-service-resources-bot-framework-faq.md)
 # [获取支持](../bot-service-resources-links-help.md)
 # [标识符指南](../bot-service-resources-identifiers-guide.md)
