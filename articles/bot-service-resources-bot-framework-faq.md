@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 08/28/2018
-ms.openlocfilehash: 63aa65e2591d9f98d763863d8d4d56cd0df185ea
-ms.sourcegitcommit: f667ce3f1635ebb2cb19827016210a88c8e45d58
+ms.openlocfilehash: f6a15d0c478bffce6fbae1a322ba9b108f760755
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2018
-ms.locfileid: "43142423"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389816"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常见问题
 
@@ -124,7 +124,7 @@ Direct Line 适用于：
 * 你需要在[可嵌入网上聊天通道][WebChat]产品/服务的基础上自定义更多内容的网页
 * 服务到服务应用程序
 
-[DirectLineAPI]: http://docs.botframework.com/en-us/restapi/directline/
+[DirectLineAPI]: https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts
 [Support]: bot-service-resources-links-help.md
 [WebChat]: bot-service-channel-connect-webchat.md
 

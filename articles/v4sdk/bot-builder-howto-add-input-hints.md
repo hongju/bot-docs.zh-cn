@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 08/24/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 02c6cf56a0c1161fa0393880810c1481c5eb2461
-ms.sourcegitcommit: f89ed979eb6321232fb21100ef376d9b0d5113c9
+ms.openlocfilehash: acf119a05d4c9f37b74c4fcaf2ad944978504560
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42914627"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707243"
 ---
 # <a name="add-input-hints-to-messages"></a>向消息添加输入提示
 
@@ -122,3 +122,4 @@ await context.sendActivity(basicMessage);
 - 如果机器人发送提示，则消息的输入提示将指定机器人正在预期输入。</li>
 - 如果机器人发送单条消息，则消息的输入提示将指定机器人正在接受输入。</li>
 - 如果机器人发送了一系列连续的消息，那么系列中除最后消息之外的所有消息的输入提示将指定机器人正在忽略输入，并且系列中最后消息的输入提示将指定机器人正在接受输入。
+

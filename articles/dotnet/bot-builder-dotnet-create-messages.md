@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 00ea81558bf4b8206dc6142ab26e47e3652be563
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: c35e651f674d65728ac93a815cc7116515790f53
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574543"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707873"
 ---
 # <a name="create-messages"></a>创建消息
 
@@ -32,8 +32,6 @@ ms.locfileid: "39574543"
 [!code-csharp[Set message properties](../includes/code/dotnet-create-messages.cs#setBasicProperties)]
 
 消息的 `TextFormat` 属性可用于指定文本的格式。 `TextFormat` 属性可以设置为“纯本文”、“markdown”或“xml”。 `TextFormat` 的默认值为“markdown”。 
-
-要查看常用文本格式的列表，请参阅[文本格式](../bot-service-channel-inspector.md#text-formatting)。 要确保要使用的功能受到目标通道的支持，请使用 [Channel Inspector](../bot-service-channel-inspector.md) 预览功能。
 
 ## <a name="attachments"></a>附件
 

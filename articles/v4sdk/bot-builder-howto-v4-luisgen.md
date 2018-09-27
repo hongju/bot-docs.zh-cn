@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 5/16/17
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 07f4ad7d53c456de53be196977458a3d8b03c6f0
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 87ab8d3ceb872cdb0342458b24a9756ccb710fb6
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42906191"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46706983"
 ---
 # <a name="extract-intents-and-entities-using-luisgen"></a>使用 LUISGen 提取意向和实体
 
@@ -23,7 +23,7 @@ ms.locfileid: "42906191"
 除了识别意向外，LUIS 应用还可以提取实体，这些实体是实现用户请求的重要词汇。 例如，在餐馆预订的示例中，LUIS 应用可能能够从用户的消息中提取聚会大小、预订日期或餐馆位置。 
 
 
-可以使用 [LUISGen 工具](https://github.com/Microsoft/botbuilder-tools/tree/master/LUISGen)生成类，以便更轻松地从机器人代码的 LUIS 中提取实体。
+可以使用 [LUISGen 工具](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUISGen)生成类，以便更轻松地从机器人代码的 LUIS 中提取实体。
 
 在 Node.js 命令行中，将 `luisgen` 安装到全局路径。
 ```

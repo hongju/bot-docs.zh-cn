@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 2fbff9c6d7fe1e06fa87e5b2695056dbc1414570
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 62088ecdf2f8402ec5456eea758f5db994de0cf9
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298496"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707313"
 ---
 # <a name="create-messages"></a>创建消息
 
@@ -23,8 +23,6 @@ ms.locfileid: "39298496"
 可使用 plain、markdown 或 xml 设置消息文本的格式。 `textFormat` 属性的默认格式是 markdown，并使用 Markdown 格式设置标准解释文本。 文本格式支持的级别因通道而异。 要了解目标通道是否支持要使用的功能，请使用 [Channel Inspector][ChannelInspector] 预览该功能。 
 
 [Activity][Activity] 对象的 `textFormat` 属性可用于指定文本的格式。 例如，要创建只包含纯文本的基本消息，请将 [Activity][Activity] 对象的 `textFormat` 属性设置为“plain”，将 `text` 属性设置为消息内容，并将 `locale` 属性设置为发送方的区域设置。 
-
-要查看常用文本格式的列表，请参阅[文本格式](../bot-service-channel-inspector.md#text-formatting)。
 
 ## <a name="attachments"></a>附件
 
@@ -56,7 +54,7 @@ ms.locfileid: "39298496"
 
 ## <a name="additional-resources"></a>其他资源
 
-- [使用 Channel Inspector 预览功能][ChannelInspector]
+- [使用通道检查器预览功能][ChannelInspector]
 - [活动概述](bot-framework-rest-connector-activities.md)
 - [发送和接收消息](bot-framework-rest-connector-send-and-receive-messages.md)
 - [向消息添加媒体附件](bot-framework-rest-connector-add-media-attachments.md)

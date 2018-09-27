@@ -7,14 +7,17 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/01/18
-ms.openlocfilehash: 25474f821d64ea50442d9777d8f891124eb27573
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+monikerRange: azure-bot-service-3.0
+ms.openlocfilehash: ceeb854ace1388b6e0435aacc3acf9027763ee73
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297853"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707963"
 ---
 # <a name="test-a-cortana-skill"></a>测试 Cortana 技能
+
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
  
 如果使用 Bot Builder SDK 生成了 Cortana 技能，则可通过从 Cortana 调用它来对其进行测试。 以下说明将指导你完成测试 Cortana 技能所需的步骤。
 
@@ -83,7 +86,6 @@ ms.locfileid: "39297853"
 
 ## <a name="additional-resources"></a>其他资源
 * [Cortana 技能套件][CortanaGetStarted]
-* [使用 Channel Inspector 预览功能](bot-service-channel-inspector.md)
 
 [CortanaGetStarted]: /cortana/getstarted
 

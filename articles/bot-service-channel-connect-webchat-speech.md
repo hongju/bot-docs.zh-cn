@@ -8,12 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 2499197d82b618d7a535efca78f98ce260dd15a7
-ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
+monikerRange: azure-bot-service-3.0
+ms.openlocfilehash: 563fdd480ac5165d5301faa3ed43af3118d2f7d7
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2018
-ms.locfileid: "42756698"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707473"
 ---
 # <a name="enable-speech-in-web-chat"></a>在网上聊天中启用语音
 可以在网上聊天控件中启用语音界面。 用户使用网上聊天控件中的麦克风来与语音界面交互。

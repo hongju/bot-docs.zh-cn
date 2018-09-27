@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 09/7/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 804081e52a03a27da418f549f0fadb6dc8bca52b
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: ebe95791d795b0117da34cc0352847c5f27f837c
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905671"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707293"
 ---
 # <a name="create-messages"></a>创建消息
 
@@ -68,8 +68,6 @@ session.send(customMessage);
 如果在范围内没有 `session` 对象，可以使用 `bot.send` 方法向用户发送带格式的消息。
 
 消息的 `textFormat` 属性可用于指定文本格式。 `textFormat` 属性可以设置为“纯本文”、“markdown”或“xml”。 `textFormat` 的默认值为“markdown”。 
-
-要查看常用文本格式的列表，请参阅[文本格式](../bot-service-channel-inspector.md#text-formatting)。 若要确保你想要使用的功能受目标通道的支持，使用[通道检查器](../bot-service-channel-inspector.md)预览功能。
 
 ## <a name="message-property"></a>消息属性
 
