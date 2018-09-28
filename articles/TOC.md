@@ -4,16 +4,13 @@
 # 快速入门
 ## [使用 Azure 机器人服务创建机器人](~/bot-service-quickstart.md)
 ## 在本地创建机器人
-### [.NET](dotnet/bot-builder-dotnet-quickstart.md)
 ### [.NET](dotnet/bot-builder-dotnet-sdk-quickstart.md)
-### [Node.js](nodejs/bot-builder-nodejs-quickstart.md)
 ### [JavaScript](javascript/bot-builder-javascript-quickstart.md)
 # 教程
 ## [将 LUIS 和 QnA 服务与 Dispatch 工具配合使用](v4sdk/bot-builder-tutorial-dispatch.md)
-## [使用 Azure CLI 创建机器人](bot-builder-tools-az-cli.md)
+## [向机器人添加身份验证](bot-builder-tutorial-authentication.md)
 # 示例
-## [GitHub 示例存储库](bot-builder-samples.md)
-## [Node.js](~/nodejs/bot-builder-nodejs-samples.md)
+## [示例存储库](https://github.com/Microsoft/BotBuilder-Samples/blob/master/readme.md)
 # 概念
 ## [机器人工作原理](v4sdk/bot-builder-basics.md)
 ## [对话框库](v4sdk/bot-builder-concept-dialog.md)
@@ -50,7 +47,7 @@
 ### [持久保存对话框中的数据](v4sdk/bot-builder-tutorial-persist-user-inputs.md)
 ### [使用 LUIS 进行语言理解](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答问题](v4sdk/bot-builder-howto-qna.md)
-### [向机器人添加身份验证](bot-builder-tutorial-authentication.md)
+### [向机器人添加身份验证](v4sdk/bot-builder-authentication.md)
 ### [下载并重新部署机器人代码](bot-service-build-download-source-code.md)
 ### [设置持续部署](bot-service-build-continuous-deployment.md)
 ### [将本地机器人部署到 Azure](bot-builder-howto-deploy-azure.md)

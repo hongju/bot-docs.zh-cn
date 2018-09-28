@@ -7,23 +7,23 @@ manager: kamrani
 ms.topic: landing-page
 layout: LandingPage
 ms.prod: bot-framework
-ms.date: 09/17/2018
-ms.openlocfilehash: 737cd0f2f39ff512f82d4ea8611098fa265e4776
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.date: 09/27/2018
+ms.openlocfilehash: 061354d57fed8863f12a01e976ef0b11faf699c0
+ms.sourcegitcommit: 1ef8f4fd2cb8955270a1bc317c9039e5b8f6bbc4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46706993"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47418829"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
 > [!NOTE]
-> 本主题适用于旧版 SDK (v3)。 可以在[此处](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)找到当前版 SDK (v4) 的文档。
+> 本主题适用于**旧版 SDK (v3)**。 可以在[此处](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)找到当前版 SDK (v4) 的文档。
 
 <div class="content">
     <h1>Azure 机器人服务文档</h1>
     <div class="intro" style="min-width: 200px">
-        <p>机器人服务提供一个专用于机器人开发的集成式环境，使你可以从同一位置生成、连接、测试、部署和管理智能机器人。 Azure 机器人服务利用支持 .NET 和 Node.js 的 Bot Builder SDK。 通过快速入门、教程和示例了解如何使用机器人服务。</p>
+        <p>机器人服务提供一个专用于机器人开发的集成式环境，使你可以从同一位置生成、连接、测试、部署和管理智能机器人。 Azure 机器人服务利用支持 .NET 和 Node.js 的 Bot Builder SDK。 通过快速入门和示例了解如何使用机器人服务。</p>
     </div>
 <h2 style="margin-top: 18px; margin-bottom: 0px;">5 分钟快速入门</h2>
 <div class="ico48Case">
@@ -33,31 +33,16 @@ ms.locfileid: "46706993"
             <span>机器人服务</span>
         </a>
     </div>
-    <div class="ico48Link">
-        <a href="/bot-framework/dotnet/bot-builder-dotnet-quickstart">
-            <img src="media/index/logo_csharp.svg" alt="">
-            <span>C&#35;</span>
-        </a>
-    </div>
-    <div class="ico48Link">
-        <a href="/bot-framework/nodejs/bot-builder-nodejs-quickstart">
-            <img src="media/index/logo_nodejs.svg" alt="">
-            <span>Nodejs</span>
-        </a>
-    </div>
 </div>
  
 <h2 style="margin-top: 36px">示例</h2>
 <p>生成具有丰富功能的强大机器人的快速入门。</p>
 <ul>
-    <li><a href="/bot-framework/dotnet/bot-builder-dotnet-samples">.NET</a></li>
-    <li><a href="/bot-framework/nodejs/bot-builder-nodejs-samples">Node.js</a></li>
+    <li><a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp">.NET</a></li>
+    <li><a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/Node">Node.js</a></li>
 </ul>
 <h2 style="margin-top: 36px">分步教程</h2>
-<p>使用 Azure 机器人服务开发机器人：</p>
-<ol>
-    <li><a href="/bot-framework/bot-builder-tutorial-authentication">向机器人添加身份验证</a></li>
-</ol>
+<p> <a href="/bot-framework/bot-builder-tutorial-authentication">向机器人添加身份验证</a> </p>
 <h2 style="margin-top: 36px">引用</h2>
 <ul class="panelContent cardsD">
     <li>
@@ -68,18 +53,6 @@ ms.locfileid: "46706993"
                         <h3>语言</h3>
                         <p><a href="/dotnet/api/?view=botbuilder-3.12.2.4">.NET</a></p>
                         <p><a href="https://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_.html">Node.js</a></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </li>
-    <li>
-        <div class="cardSize">
-            <div class="cardPadding">
-                <div class="card">
-                    <div class="cardText">
-                        <h3>REST</h3>
-                        <p><a href="/Bot-Framework/rest-api/bot-framework-rest-connector-api-reference">REST API 参考</a></p>
                     </div>
                 </div>
             </div>
