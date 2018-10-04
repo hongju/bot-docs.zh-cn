@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: fc260f34f28e406dc88dd5b688d84cd79c7e9449
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: f95335149fa2c896d905834832089ffbfa960bf2
+ms.sourcegitcommit: d4afc924b0e1907c4d6f7a6fc5ac1fe521aeef7e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905949"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47447383"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 识别意向和实体 
 
@@ -25,9 +25,7 @@ ms.locfileid: "42905949"
 
 1. 在 [Azure 门户](https://portal.azure.com)上的菜单边栏选项卡中选择“创建新资源”，然后单击“全部查看”。
 
-<!-- Start with the steps in [Create a bot with Bot Service](../bot-service-quickstart.md) to start creating a new bot service.  -->
-
-    ![Create new resource](../media/bot-builder-dotnet-use-luis/bot-service-creation.png)
+    ![新建资源](../media/bot-builder-dotnet-use-luis/bot-service-creation.png)
 
 2. 在搜索框中，搜索“Web 应用机器人”。 
 

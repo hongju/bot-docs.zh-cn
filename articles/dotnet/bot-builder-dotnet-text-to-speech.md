@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a8bc0b68b3dfa63ba4e91103c57d4fac60ddca79
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 55663bb493808d5efce2f25699f9df5aca4db968
+ms.sourcegitcommit: d4afc924b0e1907c4d6f7a6fc5ac1fe521aeef7e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574993"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47447332"
 ---
 # <a name="add-speech-to-messages"></a>向消息添加语音
 
@@ -24,7 +24,7 @@ ms.locfileid: "39574993"
 > - [Node.js](../nodejs/bot-builder-nodejs-text-to-speech.md)
 > - [REST](../rest-api/bot-framework-rest-connector-text-to-speech.md)
 
-如果要为支持语音的通道（如 Cortana）构建机器人，则可以构造指定机器人要说出的文本的消息。 还可以通过指定[输入提示](bot-builder-dotnet-add-input-hints.md)来尝试影响客户端麦克风的状态，以指示机器人是在接受、期望还是忽略用户输入。
+如果要为支持语音的通道（如 Cortana）构建机器人，可以构造可指定机器人要说出的文本的消息。 还可以通过指定[输入提示](bot-builder-dotnet-add-input-hints.md)来尝试影响客户端麦克风的状态，以指示机器人是在接受、期望还是忽略用户输入。
 
 ## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定机器人要说的文本
 
@@ -44,21 +44,21 @@ ms.locfileid: "39574993"
 
 ### <a id="prompt-options"></a> 提示选项
 
-使用任何内置提示，可以设置选项 `speak` 和 `retrySpeak` 以指定机器人要说出的文本。 以下代码示例创建一个提示，指定要显示的文本、最初要说出的文本以及等待用户输入后要说出的文本。 它使用 [SSML](#ssml) 格式设置来指示应该以适度的强调说出“确保”一词。
+使用任何内置提示，可以设置 `speak` 和 `retrySpeak` 选项以指定机器人要说出的文本。 以下代码示例创建一个提示，指定要显示的文本、最初要说出的文本以及等待用户输入后要说出的文本。 它使用 [SSML](#ssml) 格式设置来指示应该以适度的强调说出“确保”一词。
 
 [!code-csharp[Set Prompt options](../includes/code/dotnet-text-to-speech.cs#Speak3)]
 
 ## <a id="ssml"></a> 语音合成标记语言 (SSML)
 
-若要指定机器人要说的文本，可以使用纯文本字符串或格式设置为语音合成标记语言 (SSML) 的字符串，后者是一种基于 XML 的标记语言，可用于控制机器人语音的各种特征（如语音、语速、音量、发音、音高等）。 有关 SSML 的详细信息，请参阅<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言参考</a>。
+若要指定机器人要说出的文本，可以使用纯文本字符串或格式设置为语音合成标记语言 (SSML) 的字符串，后者是一种基于 XML 的标记语言，可用于控制机器人语音的各种特征（如语音、语速、音量、发音、音高等）。 有关 SSML 的详细信息，请参阅<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言参考</a>。
 
 ## <a name="input-hints"></a>输入提示
 
-在支持语音的通道上发送消息时，可以尝试通过还包含输入提示来影响客户端麦克风的状态，以指示机器人是在接受、期望还是忽略用户输入。 有关详细信息，请参阅[向消息添加输入提示](bot-builder-dotnet-add-input-hints.md)。
+在支持语音的通道上发送消息时，可以尝试通过同时包含输入提示来影响客户端麦克风的状态，以指示机器人是在接受、期望还是忽略用户输入。 有关详细信息，请参阅[向消息添加输入提示](bot-builder-dotnet-add-input-hints.md)。
 
 ## <a name="sample-code"></a>代码示例 
 
-有关演示如何使用 Bot Builder SDK for .NET 创建支持语音的机器人的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-RollerSkill" target="_blank">掷骰子技能示例</a>。
+有关演示如何使用 Bot Builder SDK for .NET 创建支持语音的机器人的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp" target="_blank">掷骰子技能示例</a>。
 
 ## <a name="additional-resources"></a>其他资源
 

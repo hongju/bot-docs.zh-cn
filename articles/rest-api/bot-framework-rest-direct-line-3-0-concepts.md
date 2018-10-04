@@ -6,13 +6,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: ba5939faf95546b854703978bf7f512e7665eb3b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 09/28/2018
+ms.openlocfilehash: 3e9756f08690820950d0f6d0b8128521cb94f60b
+ms.sourcegitcommit: d4afc924b0e1907c4d6f7a6fc5ac1fe521aeef7e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298423"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47447372"
 ---
 # <a name="key-concepts-in-direct-line-api-30"></a>Direct Line API 3.0 中的重要概念
 
@@ -46,16 +46,20 @@ Bot Framework 提供了客户端库，帮助用户通过 C# 和 Node.js 访问 D
 
 作为使用 C# 或 Node.js 客户端库的替代方法，可使用 <a href="https://docs.botframework.com/en-us/restapi/directline3/swagger.json" target="_blank">Direct Line API 3.0 Swagger 文件</a>以所选的语言自行生成客户端库。
 
+::: moniker range="azure-bot-service-3.0"
+
 ### <a name="sample-code"></a>代码示例
 
-<a href="https://github.com/Microsoft/BotBuilder-Samples" target="_blank">BotBuilder-Samples</a> GitHub 存储库包含多个示例，它们演示了如何结合使用 Direct Line API 3.0 与 C# 和 Node.js。
+<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples" target="_blank">BotBuilder-Samples</a> GitHub 存储库包含多个示例，它们演示了如何结合使用 Direct Line API 3.0 与 C# 和 Node.js。
 
-| 示例 | 语言 | 说明 |
+| 示例 | 语言 | Description |
 |----|----|----|
-| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-DirectLine" target="_blank">Direct Line 机器人示例</a> | C# | 使用 Direct Line API 相互通信的示例机器人和自定义客户端。 |
-| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-DirectLineWebSockets" target="_blank">Direct Line 机器人示例（使用客户端 Websocket）</a> | C# | 使用 Direct Line API 和 Websocket 相互通信的示例机器人和自定义客户端。 |
-| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-DirectLine" target="_blank">Direct Line 机器人示例</a> | JavaScript | 使用 Direct Line API 相互通信的示例机器人和自定义客户端。 |
-| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-DirectLineWebSockets" target="_blank">Direct Line 机器人示例（使用客户端 Websocket）</a> | JavaScript | 使用 Direct Line API 和 Websocket 相互通信的示例机器人和自定义客户端。 |
+| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/core-DirectLine" target="_blank">Direct Line 机器人示例</a> | C# | 使用 Direct Line API 相互通信的示例机器人和自定义客户端。 |
+| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/core-DirectLineWebSockets" target="_blank">Direct Line 机器人示例（使用客户端 Websocket）</a> | C# | 使用 Direct Line API 和 Websocket 相互通信的示例机器人和自定义客户端。 |
+| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/Node/core-DirectLine" target="_blank">Direct Line 机器人示例</a> | JavaScript | 使用 Direct Line API 相互通信的示例机器人和自定义客户端。 |
+| <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/Node/core-DirectLineWebSockets" target="_blank">Direct Line 机器人示例（使用客户端 Websocket）</a> | JavaScript | 使用 Direct Line API 和 Websocket 相互通信的示例机器人和自定义客户端。 |
+
+::: moniker-end
 
 ### <a name="web-chat-control"></a>网上聊天控件 
 

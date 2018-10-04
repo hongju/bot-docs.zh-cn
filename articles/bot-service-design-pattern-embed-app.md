@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 08/15/2018
-ms.openlocfilehash: 68d2d4f7a19aecfcb2c630e5e9e55ca5b8a21d89
-ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
+ms.openlocfilehash: 53148b178b937fdee5bde9a47ef016eedbb92da4
+ms.sourcegitcommit: f0b22c6286e44578c11c9f15d22b542c199f0024
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2018
-ms.locfileid: "42756382"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47403893"
 ---
 # <a name="embed-a-bot-in-an-app"></a>在应用中嵌入机器人
 
@@ -62,9 +62,11 @@ public class WebPage : ContentPage
 
 ![反向通道](~/media/bot-service-design-pattern-embed-app/xamarin-apps.png)
 
-## <a name="sample-code"></a>代码示例
+<!-- TODO: No sample bot available
+## Sample code
 
-有关演示如何创建运行机器人的跨平台移动应用的完整示例（如本文所述），请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/capability-BotInApps" target="_blank">应用中的机器人示例</a>。
+For a complete sample that shows how to create a cross-platform mobile app that runs a bot (as described in this article), see the <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/capability-BotInApps" target="_blank">Bot in Apps sample</a> in GitHub.
+-->
 
 ## <a name="additional-resources"></a>其他资源
 

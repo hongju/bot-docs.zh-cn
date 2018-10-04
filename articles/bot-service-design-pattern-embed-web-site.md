@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 6aae4e9f6cb6a4e892b8036eafb9489dfaedbb36
-ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
+ms.openlocfilehash: a19145c446c74468cef3ae5d9abf6e90e91196ff
+ms.sourcegitcommit: f0b22c6286e44578c11c9f15d22b542c199f0024
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/23/2018
-ms.locfileid: "42795093"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47403974"
 ---
 # <a name="embed-a-bot-in-a-website"></a>在网站中嵌入机器人
 
@@ -30,7 +30,7 @@ Skype Web 控件本质上是启用了 Web 的控件中的 Skype 客户端。 机
 
 ## <a name="open-source-web-control"></a>开源 Web 控件
 
-<a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">开源网上聊天控件</a>基于 ReactJS，它使用 [Direct Line API][directLineAPI] 与 Bot Framework 进行通信。 网上聊天控件提供一个用于实现网上聊天的空白画布，你可以完全控制其行为及其提供的用户体验。 
+<a href="https://aka.ms/BotFramework-WebChat" target="_blank">开源网上聊天控件</a>基于 ReactJS，它使用 [Direct Line API][directLineAPI] 与 Bot Framework 进行通信。 网上聊天控件提供一个用于实现网上聊天的空白画布，你可以完全控制其行为及其提供的用户体验。 
 
 借助反向通道机制，托管控件的网页可以采用对用户完全不可见的方式直接与机器人通信。 此功能支持多种实用方案： 
 
@@ -46,7 +46,7 @@ Skype Web 控件本质上是启用了 Web 的控件中的 Skype 客户端。 机
 
 ## <a name="sample-code"></a>代码示例
 
-可通过 GitHub 获得<a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">开源网上聊天控件</a>。 有关如何使用开源网上聊天控件和 Bot Builder SDK for Node.js 实施反向通道机制的详细信息，请参阅[使用反向通道机制](~/nodejs/bot-builder-nodejs-backchannel.md)。
+可通过 GitHub 获得<a href="https://aka.ms/BotFramework-WebChat" target="_blank">开源网上聊天控件</a>。 有关如何使用开源网上聊天控件和 Bot Builder SDK for Node.js 实施反向通道机制的详细信息，请参阅[使用反向通道机制](~/nodejs/bot-builder-nodejs-backchannel.md)。
 
 ## <a name="additional-resources"></a>其他资源
 

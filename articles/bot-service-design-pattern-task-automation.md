@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 2/13/2018
-ms.openlocfilehash: 60a3796e255611ff09d5418cdeaa6f363ad8da15
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 3bf6bef805e4a86b6e070693660eb5cb20468ffd
+ms.sourcegitcommit: f0b22c6286e44578c11c9f15d22b542c199f0024
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42904963"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47404003"
 ---
 # <a name="create-task-automation-bots"></a>创建任务自动化机器人
 
@@ -92,18 +92,20 @@ Contoso 公司经验丰富的开发人员 John 决定创建一个机器人来自
 
 ## <a name="bot-app-or-website"></a>机器人、应用或网站？
 
-你可能想知道，如果任务自动化机器人与应用或网站非常类似，为什么不直接构建一个应用或网站呢？ 根据具体情况，构建应用或网站而非机器人可能是一个完全合理的选择。 甚至可选择使用 [Bot Framework Direct Line API][directLineAPI] 或<a href="https://github.com/Microsoft/BotFramework-WebChat" target="_blank">网上聊天控件</a>将机器人嵌入到应用中。 在应用的上下文中实现机器人堪称两全其美：集丰富的应用体验和聊天式体验于一身。 
+你可能想知道，如果任务自动化机器人与应用或网站非常类似，为什么不直接构建一个应用或网站呢？ 根据具体情况，构建应用或网站而非机器人可能是一个完全合理的选择。 甚至可选择使用 [Bot Framework Direct Line API][directLineAPI] 或<a href="https://aka.ms/BotFramework-WebChat" target="_blank">网上聊天控件</a>将机器人嵌入到应用中。 在应用的上下文中实现机器人堪称两全其美：集丰富的应用体验和聊天式体验于一身。 
 
 然而，许多情况下，构建应用或网站可能比构建机器人更为复杂和昂贵。 应用或网站通常需要支持多个客户端和平台，打包和部署是一个繁琐且耗时的过程，并且必须下载和安装应用的用户体验不一定是理想之选。 出于这些原因，机器人通常可以提供一种更简单的方法来解决目前的问题。 
 
 此外，机器人可轻松自由扩展。 例如，开发人员可选择向密码重置机器人添加自然语言和语音功能，以便可通过音频呼叫访问机器人，或者可以添加短信支持功能。 该公司可能会在整个建筑中设置网亭，并将密码重置机器人嵌入到该体验中。
 
 ::: moniker range="azure-bot-service-3.0"
-## <a name="sample-code"></a>代码示例
+<!-- TODO: SimpleTaskAutomation no longer exists
+## Sample code
 
-有关演示如何使用 Bot Builder SDK for .NET 实现简单任务自动化的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/capability-SimpleTaskAutomation" target="_blank">简单任务自动化示例</a>。
+For a complete sample that shows how to implement simple task automation using the Bot Builder SDK for .NET, see the <a href="https://aka.ms/capability-SimpleTaskAutomation" target="_blank">Simple Task Automation sample</a> in GitHub.
 
-有关演示如何使用 Bot Builder SDK for Node.js 实现简单任务自动化的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/capability-SimpleTaskAutomation" target="_blank">简单任务自动化示例</a>。
+For a complete sample that shows how to implement simple task automation using the Bot Builder SDK for Node.js, see the <a href="https://aka.ms/capability-SimpleTaskAutomation" target="_blank">Simple Task Automation sample</a> in GitHub.
+-->
 
 ## <a name="additional-resources"></a>其他资源
 
