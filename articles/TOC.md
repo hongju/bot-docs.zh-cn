@@ -19,7 +19,6 @@
 ## [欢迎用户](v4sdk/bot-builder-welcome-user.md)
 ## [语言理解](v4sdk/bot-builder-concept-luis.md)
 ## [机器人服务模板](bot-service-concept-templates.md)
-## [使用机器人生成器进行开发](bot-builder-overview-getstarted.md)
 ## [认知服务](bot-service-concept-intelligence.md)
 ## [适用于机器人的主要方案](bot-service-scenario-overview.md)
 ### [商业机器人](bot-service-scenario-commerce.md)
