@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: a8c3d4fb469ce7c52dfffbcfc3a17e08c167ea66
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 53ad7069f8ec8e7757c7ee4ea1a517d44436b8e9
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298271"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389666"
 ---
 # <a name="connect-a-bot-to-office-365-email"></a>将机器人连接到 Office 365 电子邮件
 
@@ -67,7 +67,7 @@ ms.locfileid: "39298271"
 ::: moniker-end
 
 ::: moniker range="azure-bot-service-4.0"
-若要详细了解如何使用 `channelData`，请参阅 [Node.js](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-ChannelData) 示例或 [.NET](~/v4sdk/bot-builder-channeldata.md) 文档。
+有关使用 `channelData` 的详细信息，请参阅[如何实现特定于通道的功能](~/v4sdk/bot-builder-channeldata.md)。
 ::: moniker-end
 
 ## <a name="additional-resources"></a>其他资源

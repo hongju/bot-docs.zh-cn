@@ -1,5 +1,5 @@
 ---
-title: 使用“对话”库提示用户输入 | Microsoft Docs
+title: 使用对话框库提示用户输入 | Microsoft Docs
 description: 了解如何在 Bot Builder SDK for Node.js 中使用“对话”库提示用户输入。
 keywords: 提示, 对话框, AttachmentPrompt, ChoicePrompt, ConfirmPrompt, DatetimePrompt, NumberPrompt, TextPrompt, 重新提示, 验证
 author: v-ducvo
@@ -7,26 +7,26 @@ ms.author: v-ducvo
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 4/10/2018
+ms.date: 9/25/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0b238ed510fd1d6fda82734af373f344b0dc28e3
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 27066f76db29a82b4ab9dd75bf5eee01dcce3116
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905361"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389706"
 ---
 # <a name="prompt-users-for-input-using-the-dialogs-library"></a>使用“对话”库提示用户输入
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-通常机器人通过向用户提出问题收集其信息。 只需使用[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)对象的 _send activity_ 方法来请求字符串输入，即可向用户发送标准消息；但是，Bot Builder SDK 提供了一个可用于请求不同类型的信息的“对话”库。 本主题详细介绍如何使用提示来请求用户输入。
+通过发布问题来收集信息是机器人与用户交互的主要方式之一。 可以使用 [turn context](bot-builder-concept-activity-processing.md#turn-context) 对象的 _send activity_ 方法直接这样操作，然后将下一个传入消息作为响应处理。 不过，Bot Builder SDK 提供一个**对话框**库，该库提供的方法旨在方便提问，并确保响应符合特定的数据类型或满足自定义验证规则。 本主题详细介绍如何使用**提示**来请求用户输入，以便达到此目的。
 
 本文介绍如何使用对话框中的提示。 有关使用对话的一般信息，请参阅[使用对话管理聊天流](bot-builder-dialog-manage-conversation-flow.md)。
 
 ## <a name="prompt-types"></a>提示类型
 
-对话框库提供多种不同类型的提示，每个提示请求不同类型的响应。
+对话框库提供多种不同类型的提示，每种提示用于收集不同类型的响应。
 
 | Prompt | Description |
 |:----|:----|
@@ -39,35 +39,94 @@ ms.locfileid: "42905361"
 
 ## <a name="add-references-to-prompt-library"></a>添加对提示库的引用
 
-可以通过向机器人添加对话框包获取对话框库。 [使用对话管理简单的聊天流](bot-builder-dialog-manage-conversation-flow.md)中介绍了对话，本文将在提示中使用对话。
+可以通过向机器人添加 **botbuilder-dialogs** 包获取**对话框**库。 [使用对话管理简单的聊天流](bot-builder-dialog-manage-conversation-flow.md)中介绍了对话，本文将在提示中使用对话。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 从 NuGet 安装 **Microsoft.Bot.Builder.Dialogs** 包。
 
-然后，在机器人代码中包含引用库。
+然后，包括对机器人代码中库的引用。
 
 ```cs
 using Microsoft.Bot.Builder.Dialogs;
 ```
 
-可以在机器人代码文件中将对话框定义为类或将内联定义为属性。
+需通过访问器设置聊天对话框状态。 我们不会在这里对此代码进行过多讨论，但你可以在[状态](bot-builder-howto-v4-state.md)一文中找到此方面的详细信息。
 
-本文中的代码是针对定义为类的对话框编写的。
-下面的示例假定你将代码添加到对话框的构造函数。
-
-对话框中的主要流是其步骤集合，需要提供一个 ID。 机器人可以使用此 ID 来检索对话框，因此它是将此公开为常量的好办法。
+在 **Startup.cs** 的机器人选项中，首先定义状态对象，然后添加单一实例，为机器人构造函数提供访问器类。 `BotAccessor` 的这个类直接存储聊天和用户状态，以及适用于每个此类项的访问器。 本文末尾处在链接的示例中提供了完整的类定义。 
 
 ```cs
-public class MyDialog : DialogSet
-{
-    public const string Name = "mainDialog";
-
-    public MyDialog()
+    services.AddBot<MultiTurnPromptsBot>(options =>
     {
-        // Define your dialog's prompts and steps here.
+        InitCredentialProvider(options);
+
+        // Create and add conversation state.
+        var convoState = new ConversationState(dataStore);
+        options.State.Add(convoState);
+
+        // Create and add user state.
+        var userState = new UserState(dataStore);
+        options.State.Add(userState);
+    });
+
+    services.AddSingleton(sp =>
+    {
+        // We need to grab the conversationState we added on the options in the previous step
+        var options = sp.GetRequiredService<IOptions<BotFrameworkOptions>>().Value;
+        if (options == null)
+        {
+            throw new InvalidOperationException("BotFrameworkOptions must be configured prior to setting up the State Accessors");
+        }
+
+        var conversationState = options.State.OfType<ConversationState>().FirstOrDefault();
+        if (conversationState == null)
+        {
+            throw new InvalidOperationException("ConversationState must be defined and added before adding conversation-scoped state accessors.");
+        }
+
+        var userState = options.State.OfType<UserState>().FirstOrDefault();
+        if (userState == null)
+        {
+            throw new InvalidOperationException("UserState must be defined and added before adding user-scoped state accessors.");
+        }
+
+        // The dialogs will need a state store accessor. Creating it here once (on-demand) allows the dependency injection
+        // to hand it to our IBot class that is create per-request.
+        var accessors = new BotAccessors(conversationState, userState)
+        {
+            ConversationDialogState = conversationState.CreateProperty<DialogState>("DialogState"),
+            UserProfile = userState.CreateProperty<UserProfile>("UserProfile"),
+        };
+
+        return accessors;
+    });
+```
+
+接下来，请在机器人代码中定义对话框集的以下对象。
+
+```cs
+    private readonly BotAccessors _accessors;
+
+    /// <summary>
+    /// The <see cref="DialogSet"/> that contains all the Dialogs that can be used at runtime.
+    /// </summary>
+    private DialogSet _dialogs;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MultiTurnPromptsBot"/> class.
+    /// </summary>
+    /// <param name="accessors">A class containing <see cref="IStatePropertyAccessor{T}"/> used to manage state.</param>
+    public MultiTurnPromptsBot(BotAccessors accessors)
+    {
+        _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
+
+        // The DialogSet needs a DialogState accessor, it will call it when it has a turn context.
+        _dialogs = new DialogSet(accessors.ConversationDialogState);
+
+        // ...
+        // other constructor items
+        // ...
     }
-}
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -75,7 +134,7 @@ public class MyDialog : DialogSet
 通过 NPM 安装对话框包：
 
 ```cmd
-npm install --save botbuilder-dialogs@preview
+npm install --save botbuilder-dialogs
 ```
 
 若要在机器人中使用对话框，请将其包含在机器人代码中。
@@ -83,82 +142,100 @@ npm install --save botbuilder-dialogs@preview
 在 app.js 文件中，添加以下内容。
 
 ```javascript
-const {DialogSet} = require("botbuilder-dialogs");
-const dialogs = new DialogSet();
+// Import components from the dialogs library.
+const { DialogSet } = require("botbuilder-dialogs");
+// Import components from the main Bot Builder library.
+const { ConversationState, MemoryStorage } = require('botbuilder');
+
+// Set up a memory storage system to store information.
+const storage = new MemoryStorage();
+// We'll use ConversationState to track the state of the dialogs.
+const conversationState = new ConversationState(storage);
+// Create a property used to track state.
+const dialogState = conversationState.createProperty('dialogState');
+
+// Create a dialog set to control our prompts, store the state in dialogState
+const dialogs = new DialogSet(dialogState);
 ```
 
 ---
 
 ## <a name="prompt-the-user"></a>提示用户
 
-若要提示用户进行输入，可以向对话框添加提示。 例如，可以定义 TextPrompt 类型的提示，并为其提供 textPrompt 的对话框 ID：
+若要提示用户进行输入，请使用某个内置的类（例如 **TextPrompt**）定义一个提示，然后将其添加到对话框集并为其分配一个对话框 ID。
 
-添加提示对话框后，可以在简单的两步骤瀑布式对话框中使用它，或在多个步骤瀑布式对话框中同时使用多个提示。 瀑布式对话框只是定义一系列步骤的方法。 有关详细信息，请参阅[使用对话管理简单的聊天流](bot-builder-dialog-manage-conversation-flow.md)中的[使用对话](bot-builder-dialog-manage-conversation-flow.md#using-dialogs-to-guide-the-user-through-steps)部分。
+添加提示以后，请在双步瀑布对话框中使用它。瀑布对话框可以用来定义一系列步骤。 多个提示可以链接到一起，创建多步聊天。 有关详细信息，请参阅[使用对话管理简单的聊天流](bot-builder-dialog-manage-conversation-flow.md)中的[使用对话](bot-builder-dialog-manage-conversation-flow.md#using-dialogs-to-guide-the-user-through-steps)部分。
 
-在第一轮中，对话框提示用户输入其名称，在第二轮中，对话框将用户输入作为提示答案处理。
-
-例如，以下对话框提示用户输入其名称，然后按名称问候他们：
+例如，以下对话框提示用户输入其名称，然后使用响应来问候他们。 在第一轮，对话框会提示用户输入其名称。 用户的响应作为参数传递给第二个步骤函数，后者在处理输入后发送个性化问候。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 此外，还为对话框中使用的每个提示指定了一个名称，由对话框或机器人用于访问提示。 在所有这些示例中，我们将提示 ID 公开为常量。
 
-对对话框上下文的 Prompt 或 End 方法的调用表示对话框步骤结束。 没有这些语句的情况下，该对话框将无法正常运行。
+在机器人构造函数中，添加供双步瀑布框使用的定义以及供对话框使用的提示。 在这里，我们将它们作为独立函数添加，但也可以根据偏好将它们定义为内联 lambda。
 
 ```csharp
-/// <summary>Defines a simple greeting dialog that asks for the user's name.</summary>
-public class MyDialog : DialogSet
+ public MultiTurnPromptsBot(BotAccessors accessors)
 {
-    /// <summary>The ID of the main dialog in the set.</summary>
-    public const string Name = "mainDialog";
+    _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
 
-    /// <summary>Defines the IDs of the prompts in the set.</summary>
-    public struct Inputs
-    {
-        /// <summary>The ID of the text prompt.</summary>
-        public const string Text = "textPrompt";
-    }
+    // The DialogSet needs a DialogState accessor, it will call it when it has a turn context.
+    _dialogs = new DialogSet(accessors.ConversationDialogState);
 
-    /// <summary>Defines the prompts and steps of the dialog.</summary>
-    public MyDialog()
+    // This array defines how the Waterfall will execute.
+    var waterfallSteps = new WaterfallStep[]
     {
-        Add(Inputs.Text, new TextPrompt());
-        Add(Name, new WaterfallStep[]
-        {
-            // Each step takes in a dialog context, arguments, and the next delegate.
-            async (dc, args, next) =>
-            {
-                // Prompt for the user's name.
-                await dc.Prompt(Inputs.Text, "What is your name?");
-            },
-            async(dc, args, next) =>
-            {
-                var user = (string)args["Text"];
-                await dc.Context.SendActivity($"Hi {user}!");
-                await dc.End();
-            }
-        });
-    }
+        NameStepAsync,
+        SayHiAsync,
+    };
+
+    _dialogs.Add(new WaterfallDialog("details", waterfallSteps));
+    _dialogs.Add(new TextPrompt("name"));
 }
+```
+
+然后，在机器人中定义两个瀑布步骤。 对于文本提示，请指定上面定义的 `TextPrompt` 的 *name* ID。 请注意，这些方法名称与上述 `WaterfallStep[]` 的方法名称匹配。 此处将来的示例不会包含该代码，但必须知道的是，对于后续步骤，需在该 `WaterfallStep[]` 中按正确顺序添加方法名称。
+
+```cs
+    private static async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+    {
+        // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
+        // Running a prompt here means the next WaterfallStep will be run when the users response is received.
+        return await stepContext.PromptAsync("name", new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") }, cancellationToken);
+    }
+
+    private static async Task<DialogTurnResult> SayHiAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+    {
+        await stepContext.Context.SendActivityAsync($"Hi {stepContext.Result}");
+
+        return await stepContext.EndDialogAsync(cancellationToken);
+    }
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
+将 TextPrompt 类导入到应用中。
+
 ```javascript
-const {TextPrompt} = require("botbuilder-dialogs");
+const { TextPrompt } = require("botbuilder-dialogs");
 ```
+
+创建新提示，然后将其添加到对话框集。
 
 ```javascript
 // Greet user:
 // Ask for the user name and then greet them by name.
-dialogs.add('textPrompt', new TextPrompt());
+dialogs.add(new TextPrompt('textPrompt'));
 dialogs.add('greetings', [
-    async function (dc){
-        await dc.prompt('textPrompt', 'What is your name?');
+    async function (step){
+        // the results of this prompt will be passed to the next step
+        return await step.prompt('textPrompt', 'What is your name?');
     },
-    async function(dc, userName){
-        await dc.context.sendActivity(`Hi ${userName}!`);
-        await dc.end();
+    async function(step) {
+        // step.result is the result of the prompt defined above
+        const userName = step.result;
+        await step.context.sendActivity(`Hi ${userName}!`);
+        return await step.endDialog();
     }
 ]);
 ```
@@ -170,52 +247,35 @@ dialogs.add('greetings', [
 
 ## <a name="reusable-prompts"></a>可重用的提示
 
-可以重复使用提示，以使用相同类型的提示要求不同信息。 例如，上面的示例代码定义文本提示，并使用它向用户询问其名称。 例如，如果需要，还可以使用相同的提示请求用户提供另一个文本字符串；例如，“您在哪里工作？”。
+可以重复使用提示来提问不同的问题，只要回答是同一类型的即可。 例如，上面的示例代码定义文本提示，并使用它向用户询问其名称。 还可以使用相同的提示来请求用户提供另一个文本字符串，例如，“您在哪里工作？”。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
+在示例中，文本提示的 ID *name* 并没有提高代码的清晰度。 不过，这也说明了提示 ID 可以随意选择。
+
+现在，我们的方法包含第三个步骤：询问用户的工作地点。
+
 ```cs
-/// <summary>Defines a simple greeting dialog that asks for the user's name and place of work.</summary>
-public class MyDialog : DialogSet
-{
-    /// <summary>The ID of the main dialog in the set.</summary>
-    public const string Name = "mainDialog";
-
-    /// <summary>Defines the IDs of the prompts in the set.</summary>
-    public struct Inputs
+    private static async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
     {
-        /// <summary>The ID of the text prompt.</summary>
-        public const string Text = "textPrompt";
+        // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
+        // Running a prompt here means the next WaterfallStep will be run when the users response is received.
+        return await stepContext.PromptAsync("name", new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") }, cancellationToken);
     }
 
-    /// <summary>Defines the prompts and steps of the dialog.</summary>
-    public MyDialog()
+    private static async Task<DialogTurnResult> WorkAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
     {
-        Add(Inputs.Text, new TextPrompt());
-        Add(Name, new WaterfallStep[]
-        {
-            async (dc, args, next) =>
-            {
-                // Prompt for the user's name.
-                await dc.Prompt(Inputs.Text, "What is your name?");
-            },
-            async(dc, args, next) =>
-            {
-                var user = (string)args["Text"];
+        await stepContext.Context.SendActivityAsync($"Hi {stepContext.Result}!");
 
-                // Ask them where they work.
-                await dc.Prompt(Inputs.Text, $"Hi {user}! Where do you work?");
-            },
-            async(dc, args, next) =>
-            {
-                var workplace = (string)args["Text"];
-
-                await dc.Context.SendActivity($"{workplace} is a cool place!");
-                await dc.End();
-            }
-        });
+        return await stepContext.PromptAsync("name", new PromptOptions { Prompt = MessageFactory.Text("Where do you work?") }, cancellationToken);
     }
-}
+
+    private static async Task<DialogTurnResult> SayHiAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
+    {
+        await stepContext.Context.SendActivityAsync($"{stepContext.Result} is a cool place!");
+
+        return await stepContext.EndDialogAsync(cancellationToken);
+    }
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -224,299 +284,161 @@ public class MyDialog : DialogSet
 // Greet user:
 // Ask for the user name and then greet them by name.
 // Ask them where they work.
-dialogs.add('textPrompt', new botbuilder_dialogs.TextPrompt());
+dialogs.add(new TextPrompt('textPrompt'));
 dialogs.add('greetings',[
-    async function (dc){
-        await dc.prompt('textPrompt', 'What is your name?');
+    async function (step){
+        // Use the textPrompt to ask for a name.
+        return await step.prompt('textPrompt', 'What is your name?');
     },
-    async function(dc, userName){
-        await dc.context.sendActivity(`Hi ${userName}!`);
+    async function (step){
+        const userName = step.result;
+        await step.context.sendActivity(`Hi ${ userName }!`);
 
-        // Ask them where they work.
-        await dc.prompt('textPrompt', 'Where do you work?');
+        // Now, reuse the same prompt to ask them where they work.
+        return await step.prompt('textPrompt', 'Where do you work?');
     },
-    async function(dc, workPlace){
-        await dc.context.sendActivity(`${workPlace} is a cool place!`);
+    async function(step) {
+        const workPlace = step.result;
+        await step.context.sendActivity(`${ workPlace } is a cool place!`);
 
-        await dc.end();
+        return await step.endDialog();
     }
 ]);
 ```
 
 ---
 
-但是，如果希望将提示与提示所请求的期望值配对，可以为每个提示提供一个唯一的 dialogId。 向对话框添加一个唯一 ID。 使用不同的 ID，还可以创建多个相同类型的提示对话框。 例如，可以为上面的示例创建两个 TextPrompt 对话框：
+如需使用多个不同的提示，请为每个提示提供唯一的 *dialogId*。 添加到对话框集的每个对话框或提示都需要唯一 ID。 还可以创建多个相同类型的**提示**对话框。 例如，可以为上面的示例创建两个 TextPrompt 对话框：
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```cs
-/// <summary>The ID of the main dialog in the set.</summary>
-public const string Name = "mainDialog";
-
-/// <summary>Defines the IDs of the prompts in the set.</summary>
-public struct Inputs
-{
-    /// <summary>The ID of the name prompt.</summary>
-    public const string Name = "namePrompt";
-
-    /// <summary>The ID of the work prompt.</summary>
-    public const string Work = "workPrompt";
-}
-
-/// <summary>Defines the prompts and steps of the dialog.</summary>
-public MyDialog()
-{
-    Add(Inputs.Name, new TextPrompt());
-    Add(Inputs.Work, new TextPrompt());
-    Add(Name, new WaterfallStep[]
-    {
-        async (dc, args, next) =>
-        {
-            // Prompt for the user's name.
-            await dc.Prompt(Inputs.Name, "What is your name?");
-        },
-        async(dc, args, next) =>
-        {
-            var user = (string)args["Text"];
-
-            // Ask them where they work.
-            await dc.Prompt(Inputs.Work, $"Hi {user}! Where do you work?");
-        },
-        async(dc, args, next) =>
-        {
-            var workplace = (string)args["Text"];
-
-            await dc.Context.SendActivity($"{workplace} is a cool place!");
-            await dc.End();
-        }
-    });
-}
+_dialogs.Add(new WaterfallDialog("details", waterfallSteps));
+_dialogs.Add(new TextPrompt("name"));
+_dialogs.Add(new TextPrompt("workplace"));
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
-dialogs.add('namePrompt', new TextPrompt());
-dialogs.add('workPlacePrompt', new TextPrompt());
+dialogs.add(new TextPrompt('namePrompt'));
+dialogs.add(new TextPrompt('workPlacePrompt'));
 ```
 
 ---
 
-为了代码可重用性，定义单个 `textPrompt` 将适用于所有这些提示，因为它们要求提供一个文本字符串作为响应。 但是，在需要验证提示输入时，命名对话框才会变得简单易行。 在这种情况下，提示可能会使用 TextPrompt，但每个提示都在寻找一组不同的值。 让我们看看如何使用 `NumberPrompt` 来验证提示响应。
+为了提高代码的可重用性，所有这些提示只需定义一个 `TextPrompt`，因为它们都预期用户会使用文本作为响应。 在需要对提示的输入应用不同的验证规则时，为对话框命名这一功能就会给你带来方便。 让我们看看如何使用 `NumberPrompt` 来验证提示响应。
 
 ## <a name="specify-prompt-options"></a>指定提示选项
 
 在对话框步骤内使用提示时，还可以提供提示选项，例如重新提示字符串。
 
-当用户输入无法满足提示时，指定重新提示字符串很有用，因为它采用的是提示无法解析的格式（例如，用于数字提示的“明天”），或者是因为输入使验证条件失效。
+当用户输入无法满足提示时，指定重新提示字符串很有用，因为它采用的是提示无法解析的格式（例如，用于数字提示的“明天”），或者是因为输入使验证条件失效。 数字提示可以解释各种输入，例如“十二”或“一个季度”以及“12”和“0.25”。
 
-> [!TIP]
-> 创建数字提示时，需要指定它将使用的输入区域性。 数字提示可以解释各种输入，例如“十二”或“一个季度”以及“12”和“0.25”。 输入区域性可帮助提示更正确地解释用户输入。
+在某些提示（例如 **NumberPrompt**）中，local 是可选参数。 它有助于提示更准确地分析输入，但不是必需参数。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-输入区域性在其他库中定义。
+下面的代码将向现有对话框集 **_dialogs** 添加数字提示。
 
 ```csharp
-using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Recognizers.Text;
-```
-
-下面的代码将向现有对话框集（即对话框）添加数字提示。
-
-```csharp
-dialogs.Add("numberPrompt", new NumberPrompt<int>(Culture.English));
+_dialogs.Add(new NumberPrompt<int>("age"));
 ```
 
 在对话框步骤中，下面的代码会提示用户输入，并在他们的输入不能解释为数字的情况下提供要使用的重新提示字符串。
 
 ```csharp
-await dc.Prompt("numberPrompt", "How many people are in your party?", new PromptOptions()
-{
-    RetryPromptString = "Sorry, please specify the number of people in your party."
-});
+return await stepContext.PromptAsync(
+    "age",
+    new PromptOptions {
+        Prompt = MessageFactory.Text("Please enter your age."),
+        RetryPrompt = MessageFactory.Text("I didn't get that. Please enter a valid age."),
+    },
+    cancellationToken);
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
-const {NumberPrompt} = require("botbuilder-dialogs");
-```
+// Import the NumberPrompt class from the dialog library.
+const { NumberPrompt } = require("botbuilder-dialogs");
 
-```javascript
+// Add a NumberPrompt to our dialog set and give it the ID numberPrompt.
+dialogs.add(new NumberPrompt('numberPrompt'));
+
+// Call the numberPrompt dialog with the (optional) retryPrompt parameter.
 await dc.prompt('numberPrompt', 'How many people in your party?', { retryPrompt: `Sorry, please specify the number of people in your party.` })
-```
-
-```javascript
-dialogs.add('numberPrompt', new NumberPrompt());
 ```
 
 ---
 
-具体而言，选择提示需要一些其他信息，即向用户提供的选择列表。
+选择提示有另一必需参数：向用户提供的选择列表。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-此示例使用以下命名空间中的类型。
+通过 **ChoicePrompt** 要求用户在一组选项之间进行选择时，必须提供包含该组选项的提示（在 **PromptOptions** 对象中提供）。 在这里，我们使用 ChoiceFactory 将选项列表转换为相应的格式。
 
 ```csharp
-using Microsoft.Bot.Builder.Core.Extensions;
-using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Builder.Prompts.Choices;
-using Microsoft.Bot.Schema;
-using Microsoft.Recognizers.Text;
-using System.Collections.Generic;
-```
-
-
-当我们使用 ChoicePrompt 要求用户在一组选项之间进行选择，必须提供包含此组选项的提示，在 ChoicePromptOptions 对象中提供。 在这里，我们使用 ChoiceFactory 将选项列表转换为相应的格式。
-
-我们还使用 SuggestedActions 活动作为重新提示，作为重新为用户提供输入选项的一种方法。
-
-
-```csharp
-/// <summary>Defines a dialog that asks for a choice of color.</summary>
-public class MyDialog : DialogSet
+private static async Task<DialogTurnResult> FavoriteColorAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
 {
-    /// <summary>The ID of the main dialog in the set.</summary>
-    public const string Name = "mainDialog";
+    await stepContext.Context.SendActivityAsync($"Hi {stepContext.Result}!");
 
-    /// <summary>Defines the IDs of the prompts in the set.</summary>
-    public struct Inputs
-    {
-        /// <summary>The ID of the color prompt.</summary>
-        public const string Color = "colorPrompt";
-    }
-
-    /// <summary>The available colors to choose from.</summary>
-    public List<string> Colors = new List<string> { "Green", "Blue" };
-
-    /// <summary>Defines the prompts and steps of the dialog.</summary>
-    public MyDialog()
-    {
-        Add(Inputs.Color, new ChoicePrompt(Culture.English));
-        Add(Name, new WaterfallStep[]
-        {
-            async (dc, args, next) =>
-            {
-                // Prompt for a color. A choice prompt requires that you specify choice options.
-                await dc.Prompt(Inputs.Color, "Please make a choice.", new ChoicePromptOptions()
-                {
-                    Choices = ChoiceFactory.ToChoices(Colors),
-                    RetryPromptActivity =
-                        MessageFactory.SuggestedActions(Colors, "Please choose a color.") as Activity
-                });
-            },
-            async(dc, args, next) =>
-            {
-                var color = (FoundChoice)args["Value"];
-
-                await dc.Context.SendActivity($"You chose {color.Value}.");
-                await dc.End();
-            }
-        });
-    }
+    return await stepContext.PromptAsync(
+        "color",
+        new PromptOptions {
+            Prompt = MessageFactory.Text("What's your favorite color?"),
+            Choices = ChoiceFactory.ToChoices(new List<string> { "blue", "green", "red" }),
+        },
+        cancellationToken);
 }
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
-const {ChoicePrompt} = require("botbuilder-dialogs");
+// Import the ChoicePrompt class into your app from the dialogs library.
+const { ChoicePrompt } = require("botbuilder-dialogs");
 ```
 
 ```javascript
-dialogs.add('choicePrompt', new ChoicePrompt());
+// Add a ChoicePrompt to the dialog set and give it an ID of choicePrompt.
+dialogs.add(new ChoicePrompt('choicePrompt'));
 ```
 
 ```javascript
-// A choice prompt requires that you specify choice options.
-const list = ['green', 'blue'];
-await dc.prompt('choicePrompt', 'Please make a choice', list, {retryPrompt: 'Please choose a color.'});
+// Call the choicePrompt into action, passing in an array of options.
+const list = ['green', 'blue', 'red', 'yellow'];
+await dc.prompt('choicePrompt', 'Please make a choice', list, { retryPrompt: 'Please choose a color.' });
 ```
 
 ---
 
 ## <a name="validate-a-prompt-response"></a>验证提示响应
 
-在将有效值返回到瀑布式对话框的下一个步骤之前，可以验证提示响应。 例如，若要验证 NumberPrompt 是否在 6 和 20 之间的数字范围内，可以使用与以下类似的验证逻辑：
+可以在将值返回到**瀑布**对话框的下一个步骤之前验证提示响应。 例如，若要验证 **NumberPrompt** 是否在 6 到 20 这个数字范围内，可以包括一个如下所示的验证函数：
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-```cs
-using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Recognizers.Text;
-using PromptStatus = Microsoft.Bot.Builder.Prompts.PromptStatus;
-```
+在将提示添加到对话框集以包括验证程序函数时更改
 
 ```cs
-/// <summary>Defines a dialog that asks for the number of people in a party.</summary>
-public class MyDialog : DialogSet
+_dialogs.Add(new NumberPrompt<int>("partySize", PartySizeValidatorAsync));
+```
+
+然后将验证定义为它自己的方法，根据是否通过验证来指示 true 或 false。 如果返回 false，则会再次提示用户。
+
+```cs
+private Task<bool> PartySizeValidatorAsync(PromptValidatorContext<int> promptContext, CancellationToken cancellationToken)
 {
-    /// <summary>The ID of the main dialog in the set.</summary>
-    public const string Name = "mainDialog";
+    var result = promptContext.Recognized.Value;
 
-    /// <summary>Defines the IDs of the prompts in the set.</summary>
-    public struct Inputs
+    if (result < 6 || result > 20)
     {
-        /// <summary>The ID of the party size prompt.</summary>
-        public const string Size = "parytySize";
+        return Task.FromResult(false);
     }
 
-    /// <summary>Defines the prompts and steps of the dialog.</summary>
-    public MyDialog()
-    {
-        // Include a validation function for the party size prompt.
-        Add(Inputs.Size, new NumberPrompt<int>(Culture.English, async (context, result) =>
-        {
-            if (result.Value < 6 || result.Value > 20)
-            {
-                result.Status = PromptStatus.OutOfRange;
-            }
-        }));
-        Add(Name, new WaterfallStep[]
-        {
-            async (dc, args, next) =>
-            {
-                // Prompt for the party size.
-                await dc.Prompt(Inputs.Size, "How many people are in your party?", new PromptOptions()
-                {
-                    RetryPromptString = "Please specify party size between 6 and 20."
-                });
-            },
-            async(dc, args, next) =>
-            {
-                var size = (int)args["Value"];
-
-                await dc.Context.SendActivity($"Okay, {size} people!");
-                await dc.End();
-            }
-        });
-    }
+    return Task.FromResult(true);
 }
-```
-
-验证还可以封装在其自己的私有方法中，并以此方式添加。
-
-```cs
-/// <summary>Validates input for the partySize prompt.</summary>
-/// <param name="context">The context object for the current turn of the bot.</param>
-/// <param name="result">The recognition result from the prompt.</param>
-/// <returns>An updated recognition result.</returns>
-private static async Task PartySizeValidator(ITurnContext context, Int32Result result)
-{
-    if (result.Value < 6 || result.Value > 20)
-    {
-        result.Status = PromptStatus.OutOfRange;
-    }
-}
-```
-
-在对话框中，指定要用于验证输入的方法。
-
-```cs
-// Include a validation function for the party size prompt.
-Add(Inputs.Size, new NumberPrompt<int>(Culture.English, PartySizeValidator));
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -524,20 +446,24 @@ Add(Inputs.Size, new NumberPrompt<int>(Culture.English, PartySizeValidator));
 ```javascript
 // Customized prompts with validations
 // A number prompt with validation for valid party size within a range.
-dialogs.add('partySizePrompt', new botbuilder_dialogs.NumberPrompt( async (context, value) => {
-    try {
-        if(value < 6 ){
-            throw new Error('Party size too small.');
+dialogs.add(new NumberPrompt('partySizePrompt', async (promptContext) => {
+    // Check to make sure a value was recognized.
+    if (promptContext.recognized.succeeded) {
+        const value = promptContext.recognized.value;
+        try {
+            if (value < 6 ) {
+                throw new Error('Party size too small.');
+            } else if (value > 20) {
+                throw new Error('Party size too big.')
+            } else {
+                return true; // Indicate that this is a valid value.
+            }
+        } catch (err) {
+            await promptContext.context.sendActivity(`${ err.message } <br/>Please provide a valid number between 6 and 20.`);
+            return false; // Indicate that this is invalid.
         }
-        else if(value > 20){
-            throw new Error('Party size too big.')
-        }
-        else {
-            return value; // Return the valid value
-        }
-    } catch (err) {
-        await context.sendActivity(`${err.message} <br/>Please provide a valid number between 6 and 20.`);
-        return undefined;
+    } else {
+        return false;
     }
 }));
 ```
@@ -549,76 +475,61 @@ dialogs.add('partySizePrompt', new botbuilder_dialogs.NumberPrompt( async (conte
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```cs
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Recognizers.Text;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DateTimeResult = Microsoft.Bot.Builder.Prompts.DateTimeResult;
-using PromptStatus = Microsoft.Bot.Builder.Prompts.PromptStatus;
-```
-
-```cs
-/// <summary>Validates input for the reservationTime prompt.</summary>
-/// <param name="context">The context object for the current turn of the bot.</param>
-/// <param name="result">The recognition result from the prompt.</param>
-/// <returns>An updated recognition result.</returns>
-private static async Task TimeValidator(ITurnContext context, DateTimeResult result)
-{
-    if (result.Resolution.Count == 0)
+    private Task<bool> DateTimeValidatorAsync(PromptValidatorContext<IList<DateTimeResolution>> prompt, CancellationToken cancellationToken)
     {
-        await context.SendActivity("Sorry, I did not recognize the time that you entered.");
-        result.Status = PromptStatus.NotRecognized;
-    }
+        if (prompt.Recognized.Succeeded)
+        {
+            var resolution = prompt.Recognized.Value.First();
 
-    // Find any recognized time that is not in the past.
-    var now = DateTime.Now;
-    DateTime time = default(DateTime);
-    var resolution = result.Resolution.FirstOrDefault(
-        res => DateTime.TryParse(res.Value, out time) && time > now);
+            // Verify that the Timex received is within the desired bounds, compared to today.
+            var now = DateTime.Now;
+            DateTime.TryParse(resolution.Value, out var time);
 
-    if (resolution != null)
-    {
-        // If found, keep only that result.
-        result.Resolution.Clear();
-        result.Resolution.Add(resolution);
+            if (time < now)
+            {
+                return Task.FromResult(false);
+            }
+
+            return Task.FromResult(true);
+        }
+
+        return Task.FromResult(false);
     }
-    else
-    {
-        // Otherwise, flag the input as out of range.
-        await context.SendActivity("Please enter a time in the future, such as \"tomorrow at 9am\"");
-        result.Status = PromptStatus.OutOfRange;
-    }
-}
 ```
 
 ```csharp
-Add(Inputs.Time, new DateTimePrompt(Culture.English, TimeValidator));
+_dialogs.Add(new DateTimePrompt("date", DateTimeValidatorAsync));
 ```
 
-有关更多示例，请参阅[示例存储库](https://github.com/Microsoft/botbuilder-dotnet)。
+有关更多示例，请参阅[示例存储库](https://aka.ms/bot-samples-readme)。
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```JavaScript
 // A date and time prompt with validation for date/time in the future.
-dialogs.add('dateTimePrompt', new botbuilder_dialogs.DatetimePrompt( async (context, values) => {
-    try {
-        if (values.length < 0) { throw new Error('missing time') }
-        if (values[0].type !== 'datetime') { throw new Error('unsupported type') }
-        const value = new Date(values[0].value);
-        if (value.getTime() < new Date().getTime()) { throw new Error('in the past') }
-        return value;
-    } catch (err) {
-        await context.sendActivity(`Please enter a valid time in the future like "tomorrow at 9am".`);
-        return undefined;
+dialogs.add(new atetimePrompt('dateTimePrompt', async (promptContext) => {
+    if (promptContext.recognized.succeeded) {
+        const values = promptContext.recognized.value;
+        try {
+            if (values.length < 0) { throw new Error('missing time') }
+            if (values[0].type !== 'date') { throw new Error('unsupported type') }
+            const value = new Date(values[0].value);
+            if (value.getTime() < new Date().getTime()) { throw new Error('in the past') }
+
+            // update the return value of the prompt to be a real date object
+            promptContext.recognized.value = value;
+            return true; // indicate valid 
+        } catch (err) {
+            await promptContext.context.sendActivity(`Please enter a valid time in the future like "tomorrow at 9am".`);
+            return false; // indicate invalid
+        }
+    } else {
+        return false;
     }
 }));
 ```
 
-有关更多示例，请参阅[示例存储库](https://github.com/Microsoft/botbuilder-js)。
+有关更多示例，请参阅[示例存储库](https://aka.ms/bot-samples-readme)。
 
 ---
 
@@ -631,8 +542,10 @@ dialogs.add('dateTimePrompt', new botbuilder_dialogs.DatetimePrompt( async (cont
 
 提示用户输入时，可以通过几个选项来处理此输入。 例如，可以使用和放弃输入、可以将其保存到全局变量、可以将其保存到一个临时的或内存中存储容器、可以将其保存到文件中，或者可以将其保存到外部数据库。 有关如何保存用户数据的详细信息，请参阅[管理用户数据](bot-builder-howto-v4-state.md)。
 
+## <a name="additional-resources"></a>其他资源
+
+如需通过完整的示例来了解如何使用这其中的一些提示，请参阅“适用于 [C#](https://aka.ms/cs-multi-prompts-sample) 或 [JavaScript](https://aka.ms/js-multi-prompts-sample) 的多轮提示机器人”。
+
 ## <a name="next-steps"></a>后续步骤
 
 现已了解如何提示用户进行输入，我们可以通过对话框管理各种会话流来增强机器人代码和用户体验。
-
-

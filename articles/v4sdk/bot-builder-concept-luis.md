@@ -2,20 +2,20 @@
 title: 语言理解 | Microsoft Docs
 description: 了解如何使用 Microsoft 认知服务向机器人添加人工智能，使其更有用且更具吸引力。
 keywords: LUIS, 意向, 识别器, 调度工具, qna, qna maker
-author: DeniseMak
-ms.author: v-demak
+author: ivorb
+ms.author: v-ivorb
 manager: rstand
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 03/22/2018
+ms.date: 09/19/2018
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 70e703e8c3d7251856e70b3d3601e0d62cb98882
-ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
+ms.openlocfilehash: af79bb40e3d24557fd898fa0a0ca2ef7b0286af4
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/23/2018
-ms.locfileid: "42795063"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707543"
 ---
 # <a name="language-understanding"></a>语言理解
 
@@ -40,7 +40,7 @@ ms.locfileid: "42795063"
 
 这些表达可以有不同结构，并包含你未想到的有关“航班”的各种同义词。 在机器人中，编写匹配所有话语并且仍将它们与包含相同字词的其他意向区分开来的逻辑可能会有难度。 此外，机器人需要提取实体，这是其他重要字词，如位置和时间。 LUIS 通过根据上下文识别意向和实体简化了此过程。
 
-在针对自然语言输入设计机器人时，确定机器人需要识别哪些意向和实体，并考虑它们将如何与机器人所执行的操作联系起来。 在 <a href="https://www.luis.ai" target="_blank">LUIS</a> 中，定义自定义意向和实体，并通过为每个意向提供示例和在其中标记实体来指定它们的行为。
+在针对自然语言输入设计机器人时，确定机器人需要识别哪些意向和实体，并考虑它们将如何与机器人所执行的操作联系起来。 在 [luis.ai](https://www.luis.ai) 中，定义自定义意向和实体，并通过为每个意向提供示例和在其中标记实体来指定它们的行为。
 
 机器人使用 LUIS 识别的意向来确定会话主题或开始会话流。 例如，当用户说“我想要预订航班”，机器人会检测 BookFlight 意向，并调用会话流开始搜索航班。 在触发意向的原始表达和之后的会话流中，LUIS 将检测目标城市和出发日期之类的实体。 一旦机器人拥有其所需的所有信息，它便可以满足用户的意向。
 
@@ -48,23 +48,19 @@ ms.locfileid: "42795063"
 
 ### <a name="recognize-intent-in-common-scenarios"></a>在常见场景中识别意向
 
-为了节省开发时间，LUIS 为常见类别机器人提供识别常见表达的预先定型的语言模型。 <!-- Consider if you'll use prebuilt or custom intents and entities: -->
+为了节省开发时间，LUIS 为常见类别机器人提供识别常见表达的预先定型的语言模型。 
 
-* **预生成域**是预先训练、随时可用的意向和实体集合，适用于约会、提醒、管理、健身、娱乐、通信、预订等常见场景。 实用程序预生成域可帮助机器人处理常见任务，如取消、确认、帮助、重复和停止。 请参阅 [C#]( https://github.com/Microsoft/botbuilder-dotnet/tree/master/samples-final/8.AspNetCore-LUIS-Bot) 或 [JavaScript](https://github.com/Microsoft/botbuilder-js/tree/master/samples/luis-bot-es6) 提醒示例，演示了如何在机器人中使用预生成域，并查看 LUIS 提供的[预生成域](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-how-to-use-prebuilt-domains)。
-* 预生成实体帮助机器人识别常见类型的信息，如日期、时间、数字、温度、货币、地理和年龄。
+**预生成域**是预先训练、随时可用的意向和实体集合，适用于约会、提醒、管理、健身、娱乐、通信、预订等常见场景。 实用程序预生成域可帮助机器人处理常见任务，如取消、确认、帮助、重复和停止。 查看 LUIS 提供的[预生成域](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-how-to-use-prebuilt-domains)。
 
-有关使用 LUIS 提取日期的示例，请参阅[提取类型化的 LUIS 结果][luis-v4-typed-entities]。 有关 LUIS 可以识别的类型的背景，请参阅[使用预生成实体](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/pre-builtentities)。
-
-<!-- TODO: Link to Bot Framework design guidance about LUIS apps, when this is ready -->
+预生成实体帮助机器人识别常见类型的信息，如日期、时间、数字、温度、货币、地理和年龄。 有关 LUIS 可以识别的类型的背景，请参阅[使用预生成实体](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/pre-builtentities)。
 
 ## <a name="how-your-bot-gets-messages-from-luis"></a>机器人如何通过 LUIS 获取消息
-每当集成 LUIS 的机器人收到一个表达，机器人就会将其发送到 LUIS 应用，该应用将返回包含意向和实体的 JSON 响应。 Bot Builder SDK 提供功能（作为[中间件](bot-builder-concept-middleware.md)实现）以自动处理来自 LUIS 的响应并将其传递给机器人。 可以使用机器人轮次处理程序中的[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)在 LUIS 响应中来路由基于意向的聊天流。 
+
+设置并连接 LUIS 后，机器人便可以将消息发送到 LUIS 应用，该应用将返回包含意向和实体的 JSON 响应。 然后，可以使用机器人_轮次处理程序_中的[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)，根据 LUIS 响应中的意向路由聊天流。 
 
 ![如何将意向和实体传递给机器人](./media/cognitive-services-add-bot-language/cognitive-services-luis-message-flow-bot-code.png)
 
-请参阅以下内容以开始将机器人与 LUIS 应用集成：
-
-* [将 LUIS 用于会话流][luis-v4-how-to]
+若要开始在机器人中使用 LUIS 应用，请查看[将 LUIS 用于语言理解][luis-v4-how-to]。
 
 ## <a name="best-practices-for-language-understanding"></a>语言理解的最佳做法
 
@@ -86,12 +82,12 @@ LUIS 应用通过将表达分类到多个类别中的一个来识别意向。 �
 
 ### <a name="review-the-utterances-that-luis-app-receives"></a>查看 LUIS 应用接收的表达
 
-LUIS 应用提供了一项功能来改进应用性能，方法是查看用户向其发送的消息。 有关分步演练，请参阅[查看建议的表达](https://docs.microsoft.com/azure/cognitive-services/LUIS/label-suggested-utterances)。
+LUIS 应用提供了一项功能来改进应用性能，方法是查看用户向其发送的消息。 有关分步演练，请参阅[建议的话语](https://docs.microsoft.com/azure/cognitive-services/LUIS/label-suggested-utterances)。
 
 
-## <a name="integrate-multiple-luis-apps-and-qna-services-with-the-dispatch-tool"></a>将多个 LUIS 应用和 QnA 服务与调度工具集成
+## <a name="integrate-multiple-luis-apps-and-qna-services-with-the-dispatch-tool"></a>将多个 LUIS 应用和 QnA 服务与 Dispatch 工具集成
 
-<!-- 1. Modular. 2. Better performance for classification --> 在构建能够理解多个会话主题的多用途机器人时，可以开始针对每个功能单独开发服务，然后将它们集成在一起。 这些服务可以包括语言理解 (LUIS) 应用和 QnAMaker 服务。 以下是几个示例方案，机器人可以在其中合并多个 LUIS 应用、多个 QnAMaker 服务或将两者结合：
+在构建能够理解多个聊天主题的多用途机器人时，可以开始针对每个功能单独开发服务，然后将它们集成在一起。 这些服务可以包括语言理解 (LUIS) 应用和 QnAMaker 服务。 以下是几个示例方案，机器人可以在其中合并多个 LUIS 应用、多个 QnAMaker 服务或将两者结合：
 
 * 个人助理机器人让用户可以调用各种命令。 每个类别的命令构成可以单独开发的“技能”，且每个技能都有一个 LUIS 应用。
 * 机器人搜索多个知识库来查找常见问题 (FAQ) 的解答。
@@ -103,27 +99,7 @@ LUIS 应用提供了一项功能来改进应用性能，方法是查看用户向
 
 ## <a name="use-luis-to-improve-speech-recognition"></a>使用 LUIS 改进语音识别
 
-对于用户会话的机器人，将其与 LUIS 集成可帮助识别将语音转换为文本时可能被人误解的字词。  例如，在国际象棋场景中，用户可能会说：“Move knight to A 7”。 如果没有用户意向的上下文，该表达可能会被识别为：“Move night 287”。 通过创建代表棋子的实体并以表达进行标记，可以提供语音识别上下文进行标识。 可以使用与必应语音集成的 Bot Framework 通道（比如网络聊天、Bot Framework 模拟器和 Cortana）来[启用语音识别启动][speechrecognitionpriming]。  
+对于用户会话的机器人，将其与 LUIS 集成可帮助识别将语音转换为文本时可能被人误解的字词。  例如，在国际象棋场景中，用户可能会说：“Move knight to A 7”。 如果没有用户意向的上下文，该表达可能会被识别为：“Move night 287”。 通过创建代表棋子的实体并以表达进行标记，可以提供语音识别上下文进行标识。 可以使用与必应语音集成的 Bot Framework 通道（比如网上聊天、Bot Framework 模拟器和 Cortana）来[启用语音识别启动][speechrecognitionpriming]。  
 
 ## <a name="additional-resources"></a>其他资源
-
-* [语言理解](~/bot-service-concept-intelligence.md#language-understanding)
-* <a href="https://www.luis.ai" target="_blank">LUIS 网站</a>
-
-<!-- Links -->
-[luis_home]: https://docs.microsoft.com/en-us/azure/cognitive-services/luis/home
-[middleware]: bot-builder-concept-middleware.md
-<!-- TODO: this link is a placeholder, need to find existing speech priming article -->
-[speechrecognitionpriming]: ../bot-service-channel-connect-webchat-speech.md
-
-[luis-v4-typed-entities]: bot-builder-howto-v4-luisgen.md
-[luis-v4-how-to]: bot-builder-howto-v4-luis.md
-[luis-v4-cs-quickstart]: https://github.com/Microsoft/botbuilder-dotnet/wiki/Using-LUIS-and-QnA-Maker
-[luis-v4-js-quickstart]: https://github.com/Microsoft/botbuilder-js/wiki/Using-LUIS-and-QnA-Maker
-
-## <a name="next-steps"></a>后续步骤
-
-认知服务提供了向机器人添加智能的方法。
-
-> [!div class="nextstepaction"]
-> [适用于机器人的认知服务](../bot-service-concept-intelligence.md)
+有关详细信息，请参阅[认知服务](https://docs.microsoft.com/en-us/azure/cognitive-services/)文档。

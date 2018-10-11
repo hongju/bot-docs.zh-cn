@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 07/13/2018
-ms.openlocfilehash: 5e7fc6fa4fbce9b13d74d5dc7877de44840c51e6
-ms.sourcegitcommit: dcbc8ad992a3e242a11ebcdf0ee99714d919a877
+ms.openlocfilehash: 73cf6cedecd9acaef828bd41f4fccdaad2ae5731
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/30/2018
-ms.locfileid: "39352876"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707163"
 ---
 # <a name="debug-a-bot-service-bot"></a>调试机器人服务机器人
 
@@ -27,7 +27,7 @@ ms.locfileid: "39352876"
 
 在调试 JavaScript 机器人之前，必须完成以下任务。
 
-- （从 Azure）下载机器人源代码，如[下载机器人源代码](bot-service-build-download-source-code.md?#download-bot-source-code)中所述。
+- （从 Azure）下载机器人源代码，如[下载机器人源代码](bot-service-build-download-source-code.md)中所述。
 - 下载并安装 [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases)。
 - 下载并安装一个代码编辑器，如 <a href="https://code.visualstudio.com" target="_blank">Visual Studio Code</a>。
 
@@ -72,7 +72,7 @@ ms.locfileid: "39352876"
 
 在调试 Web 应用 C# 机器人之前，必须完成以下任务。
 
-- （从 Azure）下载机器人源代码，如[下载机器人源代码](bot-service-build-download-source-code.md?#download-bot-source-code)中所述。
+- （从 Azure）下载机器人源代码，如[下载机器人源代码](bot-service-build-download-source-code.md)中所述。
 - 下载并安装 [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases)。
 - 下载并安装 <a href="https://www.visualstudio.com/downloads/" target="_blank">Visual Studio 2017</a>（Community Edition 或更高版本）。
 
@@ -146,13 +146,6 @@ ms.locfileid: "39352876"
 另外，还可以在控制台窗口中查看日志详细信息。
 
 ![控制台窗口](~/media/bot-service-debug-bot/csharp-azureservice-debug-debughostlogging.png)
-
-::: moniker-end
-::: moniker range="azure-bot-service-4.0" 
-
-## <a id="debug-csharp-serverless"></a> 调试消耗计划 C\# 函数机器人
-
-Bot Builder SDK V4 的 Functions 机器人即将推出。
 
 ::: moniker-end
 

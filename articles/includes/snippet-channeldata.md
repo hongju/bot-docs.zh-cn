@@ -1,8 +1,8 @@
 # <a name="implement-channel-specific-functionality"></a>实现通道特定的功能
 
-某些通道提供无法仅使用[消息文本和附件](../dotnet/bot-builder-dotnet-create-messages.md)实现的功能。 要实现通道特定的功能，可将本机元数据传递到 `Activity` 对象的 `ChannelData` 属性中的通道。 例如，机器人可使用 `ChannelData` 属性来指示 Telegram 发送贴纸或指示 Office365 发送电子邮件。
+某些通道提供无法仅使用消息文本和附件实现的功能。 若要实现特定于通道的功能，可以将本机元数据传递给活动对象的_通道数据_属性。 例如，机器人可使用通道数据属性来指示 Telegram 发送贴纸或指示 Office365 发送电子邮件。
 
-本文介绍如何使用消息活动的 `ChannelData` 属性来实现此通道特定的功能：
+本文介绍如何使用消息活动的通道数据属性来实现此通道特定的功能：
 
 | 通道 | 功能 |
 |----|----|
@@ -10,37 +10,52 @@
 | Slack | 发送全保真的 Slack 消息 |
 | Facebook | 本机发送 Facebook 通知 |
 | Telegram | 执行 Telegram 特定操作，例如共享语音备忘录或贴纸 |
-| Kik | 发送和接收本机 Kik 消息 | 
+| Kik | 发送和接收本机 Kik 消息 |
 
 > [!NOTE]
-> `Activity` 对象的 `ChannelData` 属性的值是一个 JSON 对象。 因此，本文中的示例显示了各种方案中 `channelData` JSON 属性的预期格式。 要使用 .NET 创建 JSON 对象，请使用 `JObject` (.NET) 类。 
+> 活动对象的通道数据属性的值是 JSON 对象。
+> 因此，本文中的示例显示了各种方案中 `channelData` JSON 属性的预期格式。
+> 要使用 .NET 创建 JSON 对象，请使用 `JObject` (.NET) 类。
 
 ## <a name="create-a-custom-email-message"></a>创建自定义电子邮件
 
-要创建电子邮件，请将 `Activity` 对象的 `ChannelData` 属性设置为包含以下属性的 JSON 对象： 
+若要创建电子邮件，请将活动对象的通道数据属性设置为包含以下属性的 JSON 对象：
 
 | 属性 | Description |
 |----|----|
+| bccRecipients | 添加到邮件“Bcc(密件抄送)”字段的用分号 (;) 分隔的电子邮件地址字符串。 |
+| ccRecipients | 添加到邮件“Cc(抄送)”字段的用分号 (;) 分隔的电子邮件地址字符串。 |
 | htmlBody | 用于指定电子邮件正文的 HTML 文档。 要了解受支持的 HTML 元素和特性，请参阅通道的相关文档。 |
 | importance | 电子邮件的重要性级别。 有效值为 high、normal 和 low。 默认值为 normal。 |
 | subject | 电子邮件的主题。 要了解字段要求，请参阅通道的相关文档。 |
+| toRecipients | 添加到邮件“收件人”字段的用分号 (;) 分隔的电子邮件地址字符串。 |
 
 > [!NOTE]
-> 机器人通过“电子邮件”通道从用户处接收的消息可能包含 `ChannelData` 属性，该属性中填充了一个如上所述的 JSON 对象。
+> 机器人通过“电子邮件”通道从用户处接收的消息可能包含通道数据属性，该属性中填充了一个如上所述的 JSON 对象。
 
 此代码片段显示了自定义“电子邮件”消息的 `channelData` 属性示例。
 
 ```json
 "channelData": {
-    "htmlBody" : "<html><body style=\"font-family: Calibri; font-size: 11pt;\">This is the email body!</body></html>",
-    "subject":"This is the email subject",
-    "importance":"high"
+    "type": "message",
+    "locale": "en-Us",
+    "channelID": "email",
+    "from": { "id": "mybot@mydomain.com", "name": "My bot"},
+    "recipient": { "id": "joe@otherdomain.com", "name": "Joe Doe"},
+    "conversation": { "id": "123123123123", "topic": "awesome chat" },
+    "channelData":
+    {
+        "htmlBody": "<html><body style = /"font-family: Calibri; font-size: 11pt;/" >This is more than awesome.</body></html>",
+        "subject": "Super awesome message subject",
+        "importance": "high",
+        "ccRecipients": "Yasemin@adatum.com;Temel@adventure-works.com"
+    }
 }
 ```
 
 ## <a name="create-a-full-fidelity-slack-message"></a>创建全保真的 Slack 消息
 
-要创建全保真的 Slack 消息，请将 `Activity` 对象的 `ChannelData` 属性设置为 JSON 对象，该对象指定 <a href="https://api.slack.com/docs/messages" target="_blank">Slack 消息</a>、<a href="https://api.slack.com/docs/message-attachments" target="_blank">Slack 附件</a> 和/或 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按钮</a>。 
+若要创建完全保真的 Slack 消息，请将活动对象的通道数据属性设置为 JSON 对象，该对象指定 <a href="https://api.slack.com/docs/messages" target="_blank">Slack 消息</a>、<a href="https://api.slack.com/docs/message-attachments" target="_blank">Slack 附件</a>和/或 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按钮</a>。
 
 > [!NOTE]
 > 要使用户能在 Slack 消息中使用按钮，必须在[将机器人连接](../bot-service-manage-channels.md)到 Slack 通道时启用“交互式消息”。
@@ -100,7 +115,8 @@
 }
 ```
 
-当用户单击 Slack 消息中的按钮时，机器人将收到一条答复消息，其中 `ChannelData` 属性中填充了 `payload` JSON 对象。 `payload` 对象指定原始消息的内容，标识单击的按钮，并标识单击该按钮的用户。 
+当用户单击 Slack 消息中的按钮时，机器人将收到一条答复消息，其中的通道数据属性填充了 `payload` JSON 对象。
+`payload` 对象指定原始消息的内容，标识单击的按钮，并标识单击该按钮的用户。
 
 此代码片段显示了当用户单击 Slack 消息中的按钮时，机器人收到的消息中 `channelData` 属性的示例。
 
@@ -120,8 +136,8 @@
 }
 ```
 
-机器人可以按[常规方式](../dotnet/bot-builder-dotnet-connector.md#create-reply)回复此消息，也可以将其答复直接发布到由 `payload` 对象的 `response_url` 属性指定的终结点。
-要了解何时以及如何将答复发布到 `response_url`，请参阅 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按钮</a>。 
+机器人可以按常规方式回复此消息，也可以将其答复直接发布到由 `payload` 对象的 `response_url` 属性指定的终结点。
+要了解何时以及如何将答复发布到 `response_url`，请参阅 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按钮</a>。
 
 可使用以下代码创建动态按钮：
 ```cs
@@ -242,7 +258,7 @@ private async Task DemoMenuAsync(IDialogContext context)
 
 ## <a name="create-a-facebook-notification"></a>创建 Facebook 通知
 
-要创建 Facebook 通知，请将 `Activity` 对象的 `ChannelData` 属性设置为指定以下属性的 JSON 对象： 
+若要创建 Facebook 通知，请将活动对象的通道数据属性设置为指定以下属性的 JSON 对象：
 
 | 属性 | Description |
 |----|----|
@@ -269,7 +285,7 @@ private async Task DemoMenuAsync(IDialogContext context)
 
 ## <a name="create-a-telegram-message"></a>创建 Telegram 消息
 
-要创建实现 Telegram 特定的操作（例如共享语音备注或贴纸）的消息，请将 `Activity` 对象的 `ChannelData` 属性设置为指定以下属性的 JSON 对象： 
+若要创建实现特定于 Telegram 的操作的消息，例如共享语音备忘录或贴纸，请将活动对象的通道数据属性设置为指定以下属性的 JSON 对象： 
 
 | 属性 | Description |
 |----|----|
@@ -343,7 +359,7 @@ private async Task DemoMenuAsync(IDialogContext context)
 
 ## <a name="create-a-native-kik-message"></a>创建本机 Kik 消息
 
-要创建本机 Kik 消息，请将 `Activity` 对象的 `ChannelData` 属性设置为指定以下属性的 JSON 对象： 
+若要创建本机 Kik 消息，请将活动对象的通道数据属性设置为指定以下属性的 JSON 对象：
 
 | 属性 | Description |
 |----|----|
@@ -374,9 +390,8 @@ private async Task DemoMenuAsync(IDialogContext context)
     ]
 }
 ```
- 
+
 ## <a name="additional-resources"></a>其他资源
 
-- [活动概述](../dotnet/bot-builder-dotnet-activities.md)
-- [创建消息](../dotnet/bot-builder-dotnet-create-messages.md)
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 类</a>
+- [实体和活动类型](../bot-service-activities-entities.md)
+- [Bot Framework Activity 架构](https://github.com/Microsoft/BotBuilder/blob/hub/specs/botframework-activity/botframework-activity.md)

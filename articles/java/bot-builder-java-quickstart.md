@@ -7,30 +7,26 @@ ms.author: jonathanfingold
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 05/02/2018
+ms.date: 08/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3b618bfb7cd1a462390aee4d564778c8ec0a7247
-ms.sourcegitcommit: d486dd088b87a44fc8142f7a08877ff993861a42
+ms.openlocfilehash: bcfc1c76199d8bc729376bbbfe229b0781eb82ab
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/26/2018
-ms.locfileid: "42928426"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707233"
 ---
-# <a name="create-a-bot-with-the-bot-builder-sdk-for-java"></a>通过 Bot Builder SDK for Java 创建机器人
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
-
-Bot Builder SDK for Java 为 Java 开发人员提供了一种熟悉的方法来编写机器人。 SDK v4 处于预览状态，请访问 Java [GitHub 存储库](https://github.com/Microsoft/botbuilder-java)以获取更多信息。
-
-> [!NOTE]
-> 我们的代码示例和文档当前面向 Java 版本 1.8。
+# <a name="create-a-bot-with-the-bot-builder-sdk-for-java"></a>通过 Bot Builder SDK for Java 创建机器人 
+> [!NOTE] 
+> Java SDK v4 处于**预览**状态。 有关详细信息，请访问 Java [GitHub 存储库](https://github.com/Microsoft/botbuilder-java)。 我们的代码示例和文档当前面向 Java 版本 1.8。
 
 ## <a name="getting-started"></a>入门
 
-v4 SDK 包含一系列的[库](https://github.com/Microsoft/botbuilder-java/tree/master/libraries)。 若要在本地构建，请参阅[构建 SDK](https://github.com/Microsoft/botbuilder-java/wiki/building-the-sdk)。
+Java SDK v4 包含一系列的[库](https://github.com/Microsoft/botbuilder-java/tree/master/libraries)。 若要在本地构建，请参阅[构建 SDK](https://github.com/Microsoft/botbuilder-java/wiki/building-the-sdk)。
 
 - 安装 [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases)
 
-### <a name="create-echobot"></a>创建 EchoBot
+## <a name="create-echobot"></a>创建 EchoBot
 
 在 App.java 文件中，添加以下内容：
 
@@ -146,25 +142,21 @@ public class App {
 }
 ```
 
-如果使用的是 Maven，则可以从此存储库中的示例文件夹中复制 pom.xml 文件。 开始运行可执行文件后，启动 Bot Framework Emulator。
+如果使用的是 Maven，则可以从此存储库中的示例文件夹中复制 pom.xml 文件。 运行可执行文件。 此时，机器人在本地运行。
 
-### <a name="start-the-emulator-and-connect-your-bot"></a>启动模拟器并连接机器人
+## <a name="start-the-emulator-and-connect-your-bot"></a>启动模拟器并连接机器人
 
-此时，机器人在本地运行。
 接下来，启动模拟器，然后在模拟器中连接到机器人：
 
-1. 单击模拟器“欢迎使用”选项卡中的“新建机器人配置”链接。 
+1. 单击模拟器“欢迎”选项卡中的“打开机器人”链接。 
+2. 选择位于创建项目的目录中的 .bot 文件。
 
-2. 输入“机器人名称”并输入机器人代码的目录路径。 机器人配置文件将保存到此路径。
+## <a name="interact-with-your-bot"></a>与机器人交互
 
-3. 在“终结点 URL”字段中键入 `http://localhost:port-number/api/messages`，其中 port-number 与运行应用程序的浏览器中显示的端口号相匹配。
-
-4. 单击“连接”以连接到机器人。 无需指定“Microsoft 应用 ID”和“Microsoft 应用密码”。 可以暂时将这些字段留空。 以后当你注册机器人时，将获得此信息。
-
-### <a name="interact-with-your-bot"></a>与机器人交互
-发送“Hi”到机器人，机器人将回应消息。
+向机器人发送消息，机器人将回复消息。
+![模拟器运行](../media/emulator-v4/emulator-running.png)
 
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [基本机器人概念](../v4sdk/bot-builder-basics.md)
+> [机器人概念](../v4sdk/bot-builder-basics.md)

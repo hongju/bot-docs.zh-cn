@@ -7,23 +7,22 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: get-started-article
 ms.prod: bot-framework
-ms.date: 05/14/2018
-ms.openlocfilehash: f3e5ed5b14ffb81c597b10aeac45854464bad8b0
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.date: 09/19/2018
+ms.openlocfilehash: 1503d5e349839de6f3403ad9b769c7eb0ae41e78
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905589"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46706963"
 ---
 # <a name="deploy-your-bot-to-azure"></a>将机器人部署到 Azure
 
-[!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
+[!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
 
-创建机器人并在本地对其进行验证后，可以将其推送到 Azure，以便可以从任何位置访问它。 为此，首先在应用服务中将机器人部署到 Azure，然后使用机器人通道注册项通过 Azure 机器人服务配置机器人。
+创建机器人并在本地对其进行验证后，可以将其推送到 Azure，以便可以从任何位置访问它。 对于 C# 机器人，可以使用 Visual Studio 或 Azure CLI 将机器人发布到 Azure。 
 
 ## <a name="publish-from-visual-studio"></a>从 Visual Studio 发布
-
-使用 Visual Studio 在 Azure 中创建资源并发布代码。
+你将首先在应用服务中从 Visual Studio 将机器人部署到 Azure。 然后，你将使用机器人通道注册通过 Azure 机器人服务配置机器人。
 
 在“解决方案资源管理器”窗口中右键单击项目的节点，然后选择“发布”。
 
@@ -127,13 +126,16 @@ ms.locfileid: "42905589"
 ## <a name="test-your-bot-in-production"></a>在生产环境中测试机器人
 此时，可以使用内置的 Web Chat 客户端从 Azure 测试机器人。
 
-1. 返回到门户中的“资源组”
+1. 返回到 Azure 门户中的“资源组”
 
-2. 打开机器人注册。
+2. 打开机器人。
 
-3. 在“机器人管理”下，选择“在 Web Chat 中测试”。
+3. 在“机器人管理”下，选择“通过网上聊天执行测试”。
 
 ![通过网上聊天执行测试](media/azure-bot-quickstarts/getting-started-test-webchat.png)
 
 4. 键入 `Hi` 之类的消息，然后按 Enter。 机器人将回显 `Turn 1: You sent Hi`。
 
+## <a name="next-steps"></a>后续步骤
+> [!div class="nextstepaction"]
+> [设置持续部署](bot-service-build-continuous-deployment.md)

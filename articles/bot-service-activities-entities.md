@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 03/01/2018
-ms.openlocfilehash: 8f4b6c27fc28e4cf3b800dad11c3e6bd58561387
-ms.sourcegitcommit: 0b2be801e55f6baa048b49c7211944480e83ba95
+ms.openlocfilehash: f6bf1d99922351a66a4e5401e744fad190746747
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/28/2018
-ms.locfileid: "43115062"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389802"
 ---
 # <a name="entities-and-activity-types"></a>实体和活动类型
 
@@ -23,9 +23,9 @@ ms.locfileid: "43115062"
 
 ## <a name="entities"></a>实体
 
-消息的 Entities 属性是一组开放式 <a href="http://schema.org/" target="_blank">schema.org</a> 对象，它允许在通道和机器人之间交换公共上下文元数据。
+消息的 entities 属性是一组开放式 <a href="http://schema.org/" target="_blank">schema.org</a> 对象，它允许在通道和机器人之间交换公共上下文元数据。
 
-### <a name="mention-entities"></a>提及实体
+### <a name="mention-entities"></a>Mention 实体
 
 许多通道支持机器人或用户在会话上下文中“提及”某人的功能。
 要在消息中提及某个用户，请使用 mention 对象填充消息的 entities 属性。

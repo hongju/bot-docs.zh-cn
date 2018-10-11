@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
-ms.openlocfilehash: a64edda73832f4d3fff49b08b5eaf6792c021ece
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 5373b18ce5c11dae4e971cb1a70307ae2901ad36
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298232"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389656"
 ---
 # <a name="troubleshooting-bot-framework-authentication"></a>对 Bot Framework 身份验证进行故障排除
 
@@ -25,10 +25,10 @@ ms.locfileid: "39298232"
 
 需使用向 Bot Framework 注册机器人时获取的 Microsoft 应用 ID 和 Microsoft 应用密码配置机器人安全性。 这些值通常在机器人的配置文件中指定，用于从 Microsoft 帐户服务检索访问令牌。 
 
-如果尚未执行此操作，请[注册机器人](~/bot-service-quickstart-registration.md)，获取可用于身份验证的 Microsoft 应用 ID 和 Microsoft 应用密码。 
+如果尚未执行此操作，请[将机器人部署到 azure](~/bot-builder-howto-deploy-azure.md)，以获取可用于身份验证的 Microsoft 应用 ID 和 Microsoft 应用密码。 
 
 > [!NOTE]
-> 要查找机器人的 AppID 和 AppPassword，请参阅 [MicrosoftAppID 和 MicrosoftAppPassword](bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
+> 若要查找已部署机器人的机器人 **AppID** 和 **AppPassword**，请参阅 [MicrosoftAppID 和 MicrosoftAppPassword](bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
 
 ## <a name="step-1-disable-security-and-test-on-localhost"></a>步骤 1：禁用安全性，并在 localhost 上进行测试
 

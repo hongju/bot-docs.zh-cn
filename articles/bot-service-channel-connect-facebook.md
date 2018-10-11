@@ -7,13 +7,13 @@ ms.author: RobStand
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 08/16/2018
-ms.openlocfilehash: 7fbff06966ac64260244e8af375aaa6f8f945fcd
-ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
+ms.date: 09/16/2018
+ms.openlocfilehash: 60e39bb652ab5b7ffeeb5ba53bdf4c82f936553e
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2018
-ms.locfileid: "42756635"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707863"
 ---
 # <a name="connect-a-bot-to-facebook-messenger"></a>将机器人连接到 Facebook Messenger
 
@@ -78,7 +78,7 @@ ms.locfileid: "42756635"
 
 1. 返回到 Facebook Messenger 并粘贴“回调 URL”和“验证令牌”值。
 
-2. 在“订阅字段”下，选择“message\_deliveries”、“messages”、“messaging\_options”和“messaging\_postbacks”。
+2. 在“订阅字段”下，选择“message\_deliveries”、“messages”、“messaging\_optins”和“messaging\_postbacks”。
 
 3. 单击“验证并保存”。
 

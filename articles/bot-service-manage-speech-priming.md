@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 2e0b85af834bc92a9da8c9f9be2794da88c2b3bc
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: ba2aec255cf160a72c11c3ddfda021baae304568
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297712"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389636"
 ---
 # <a name="configure-speech-priming"></a>配置语音启动
 
@@ -26,6 +26,9 @@ ms.locfileid: "39297712"
 
 > [!IMPORTANT]
 > 语音启动仅适用于为 Cortana 通道或网上聊天通道配置的机器人。
+
+> [!IMPORTANT]
+> 非美国区域 LUIS 应用不支持启动，包括：eu.luis.ai 和 au.luis.ai
 
 ## <a name="change-the-list-of-luis-apps-your-bot-uses"></a>更改你的机器人使用的 LUIS 应用列表
 

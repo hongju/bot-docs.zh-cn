@@ -6,29 +6,29 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: 648a2e3be901bfa82d84423358fa7df32d403391
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 09/26/2018
+ms.openlocfilehash: 410f50f02dcea2bb64ccf0389e20f5cb76e2fd6b
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298101"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389836"
 ---
 # <a name="troubleshooting-general-problems"></a>排查常见问题
 这些常见问题有助于排查常见的机器人开发或操作问题。
 
 ## <a name="how-can-i-troubleshoot-issues-with-my-bot"></a>如何排查机器人的问题？
 
-1. 通过 [Visual Studio Code](debug-bots-locally-vscode.md) 或 Visual Studio 调试机器人的源代码。
+1. 通过 [Visual Studio Code](debug-bots-locally-vscode.md) 或 [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/debugger/navigating-through-code-with-the-debugger?view=vs-2017) 调试机器人的源代码。
 2. 先使用[模拟器](bot-service-debug-emulator.md)测试机器人，然后再将其部署到云。
-3. 将机器人部署到类似于 Azure 的云托管平台，然后使用 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a>中机器人仪表板上的内置 Web 聊天控件测试与机器人的连接性。 如果在将机器人部署到 Azure 后遇到问题，可以考虑使用本指南：[使用 Visual Studio 对 Azure 应用服务中的 Web 应用进行故障排除](https://azure.microsoft.com/en-us/documentation/articles/web-sites-dotnet-bot-service-troubleshoot-visual-studio/)。
+3. 将机器人部署到类似于 Azure 的云托管平台，然后使用 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a>中机器人仪表板上的内置 Web 聊天控件测试与机器人的连接性。 如果在将机器人部署到 Azure 后遇到问题，可以考虑使用此博客文章：[了解 Azure 故障排除和支持](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)。
 4. 排除[身份验证][TroubleshootingAuth]可能存在问题的可能性。
 5. 在 Skype 上测试机器人。 这将有助于验证端到端的用户体验。
 6. 考虑在具有其他身份验证要求的渠道（例如 Direct Line 或网上聊天）上测试机器人。
 
 ## <a name="how-can-i-troubleshoot-authentication-issues"></a>如何排查身份验证问题？
 
-有关排查机器人身份验证问题的详细信息，请参阅[故障排除 Bot Framework 身份验证][TroubleshootingAuth]。
+有关排查机器人身份验证问题的详细信息，请参阅[故障排除][TroubleshootingAuth] Bot Framework 身份验证。
 
 ## <a name="im-using-the-bot-builder-sdk-for-net-how-can-i-troubleshoot-issues-with-my-bot"></a>我使用的是 Bot Builder SDK for .NET。 如何排查机器人的问题？
 
@@ -91,7 +91,7 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 
 ## <a name="how-do-identifiers-work-in-the-bot-framework"></a>标识符如何在 Bot Framework 中运行？
 
-有关 Bot Framework 中标识符的详细信息，请参阅[标识符的 Bot Framework 指南][BotFrameworkIDGuide]。
+有关 Bot Framework 中标识符的详细信息，请参阅 Bot Framework [标识符指南][BotFrameworkIDGuide]。
 
 ## <a name="how-can-i-get-access-to-the-user-id"></a>如何访问用户 ID？
 
@@ -107,7 +107,7 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 
 ## <a name="how-can-i-use-authenticated-services-from-my-bot"></a>如何通过我的机器人使用经过身份验证的服务？
 
-对于 Azure Active Directory 身份验证，请考虑使用 [BotAuth NuGet](https://www.nuget.org/packages/BotAuth) 库。 对于 Facebook 身份验证示例，请参阅 GitHub 上的 [Bot Builder SDK for .NET 示例](https://github.com/Microsoft/BotBuilder/tree/master/CSharp/Samples)。 
+有关 Azure Active Directory 身份验证，请参阅添加身份验证 [V3](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-3.0&tabs=csharp) | [V4](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-4.0&tabs=csharp)。 
 
 > [!NOTE] 
 > 如果向机器人添加身份验证和安全功能，则应确保在代码中实现的模式符合应用程序相应的安全标准。
@@ -141,7 +141,7 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 
 ## <a name="how-can-i-send-proactive-messages-to-the-user"></a>如何向用户发送主动消息？
 
-有关演示如何发送主动消息的示例，请参阅 GitHub 上的 BotBuilder-Samples 存储库中的 [C# 示例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-proactiveMessages)和 [Node.js 示例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/core-proactiveMessages)。
+有关演示如何发送主动消息的示例，请参阅 GitHub 上的 BotBuilder-Samples 存储库中的 [C# V4 示例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/16.proactive-messages)和 [Node.js V4 示例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/javascript_nodejs/16.proactive-messages)。
 
 ## <a name="how-can-i-reference-non-serializable-services-from-my-c-dialogs"></a>如何从 C# 对话框引用不可序列化的服务？
 
@@ -151,6 +151,8 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 * 使用 [NonSerialized](https://msdn.microsoft.com/en-us/library/system.nonserializedattribute(v=vs.110).aspx) 和 [OnDeserialized](https://msdn.microsoft.com/en-us/library/system.runtime.serialization.ondeserializedattribute(v=vs.110).aspx) 属性还原反序列化的依赖关系。 这是最简单的解决方案。
 * 不要存储该依赖关系，以便不对其进行序列化。 不建议在技术上可行的情况下使用此解决方案。
 * 使用反射序列化代理。 在某些情况下，此解决方案可能不可行，并且存在序列化过多的风险。
+
+::: moniker range="azure-bot-service-3.0"
 
 ## <a name="where-is-conversation-state-stored"></a>在哪里存储会话状态？
 
@@ -171,6 +173,8 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 > [!IMPORTANT]
 > 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展之一用于生产机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”主题。
 
+::: moniker-end
+
 ## <a name="what-is-an-etag--how-does-it-relate-to-bot-data-bag-storage"></a>什么是 ETag？  它与机器人数据包存储有何关系？
 
 [ETag](https://en.wikipedia.org/wiki/HTTP_ETag) 是一种用于[乐观并发控制](https://en.wikipedia.org/wiki/Optimistic_concurrency_control)的机制。 机器人数据包存储使用 ETag 来防止数据更新冲突。 ETag 错误并显示 HTTP 状态代码 412“不满足前提条件”指示为该机器人数据包同时执行了多个“读取-修改-写入”序列。
@@ -186,7 +190,11 @@ Connector 的 `IBotState` 服务用于存储机器人数据包（即，用户、
 
 ## <a name="how-can-i-fix-precondition-failed-412-or-conflict-409-errors"></a>如何修复“不满足前提条件”（412）或“冲突”（409）错误？
 
-这些错误表明机器人同时为同一个会话处理了多条消息。 如果机器人连接到需要精确排序消息的服务，则应考虑锁定会话状态以确保不会并行处理这些消息。 Bot Builder SDK for .NET 提供一种机制（实现 `IScope` 的类 `LocalMutualExclusion`）以保守地使用内存中的信号量来序列化单个会话的处理。 可以扩展此实现以使用 Redis 租用，按会话地址划分其作用范围。
+这些错误表明机器人同时为同一个会话处理了多条消息。 如果机器人连接到需要精确排序消息的服务，则应考虑锁定会话状态以确保不会并行处理这些消息。 
+
+::: moniker range="azure-bot-service-3.0"
+
+Bot Builder SDK for .NET 提供一种机制（实现 `IScope` 的类 `LocalMutualExclusion`）以保守地使用内存中的信号量来序列化单个会话的处理。 可以扩展此实现以使用 Redis 租用，按会话地址划分其作用范围。
 
 如果机器人未连接到外部服务，或者如果并行处理来自同一会话的消息是可接受的操作，则可以添加此代码以忽略 Bot State API 中发生的任何冲突。 这将允许最后一个回复设置会话状态。
 
@@ -199,15 +207,18 @@ builder
     .InstancePerLifetimeScope();
 builder.Update(Conversation.Container);
 ```
+::: moniker-end
 
 ## <a name="is-there-a-limit-on-the-amount-of-data-i-can-store-using-the-state-api"></a>可以使用状态 API 存储的数据量是否有限制？
 
 有限制，每个状态存储（即，用户、会话和机器人专用数据包）最多可包含 64 kb 的数据。 有关详细信息，请参阅[管理状态数据][StateAPI]。
 
+::: moniker range="azure-bot-service-3.0"
+
 ## <a name="how-do-i-version-the-bot-data-stored-through-the-state-api"></a>如何对通过状态 API 存储的机器人数据进行版本控制？
 
 > [!IMPORTANT]
-> 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展之一用于生产机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”主题。
+> 建议不要将 Bot Framework State Service API 用于生产环境或 v4 机器人，该 API 可能会在将来的版本中完全弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展之一用于生产机器人。 有关详细信息，请参阅[管理状态数据](v4sdk/bot-builder-howto-v4-state.md)主题。
 
 借助状态服务，可以通过会话中的对话框保留进度，以便用户稍后可以返回到与机器人的会话，而不会丢失其位置。 为保留这功能，修改机器人代码时，不会自动清除通过状态 API 存储的机器人数据属性包。 应根据修改后的代码是否与旧版数据兼容来决定是否应清除机器人数据。 
 
@@ -216,6 +227,8 @@ builder.Update(Conversation.Container);
 
 > [!NOTE]
 > 如果无法正确反序列化对话框堆栈，则由于序列化格式更改或因为代码更改太多，将重置会话状态。
+
+::: moniker-end
 
 ## <a name="what-are-the-possible-machine-readable-resolutions-of-the-luis-built-in-date-time-duration-and-set-entities"></a>LUIS 内置日期、时间、持续时间和设置实体的可能的机器可读解决方案是什么？
 

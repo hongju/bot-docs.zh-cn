@@ -1,479 +1,325 @@
 ---
 title: 管理聊天和用户状态 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for .NET 的 V4 版本保存和检索状态数据。
-keywords: 聊天状态, 用户状态, 状态中间件, 聊天流, 文件存储, azure 表存储
+description: 了解如何使用 Bot Builder SDK for .NET 来保存和检索状态数据。
+keywords: 聊天状态, 用户状态, 聊天流
 author: ivorb
-ms.author: v-demak
+ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 05/03/18
+ms.date: 09/18/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a74c52af0ca56b62491ca3aa39d09885c2540c18
-ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
+ms.openlocfilehash: 44ec9274e2edcb05a069d353ee5caffec66bb3ca
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/23/2018
-ms.locfileid: "42795206"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389746"
 ---
 # <a name="manage-conversation-and-user-state"></a>管理聊天和用户状态
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-要让机器人保存聊天和用户状态，请先初始化状态管理器中间件，然后再使用聊天和用户状态属性。
-要详细了解如何使用该状态，请参阅[状态和存储](./bot-builder-storage-concept.md)。
+对于出色的机器人设计，其关键是跟踪聊天上下文，使机器人能够记住上一问题答案等内容。 根据机器人的用途，甚至可能需要跟踪状态或长时间存储信息，使信息保留时间超过聊天生存期。 机器人的状态是它为了正确响应传入消息而记住的信息。 Bot Builder SDK 提供两种类，用于存储和检索作为与用户或聊天关联的对象的状态数据。
 
-## <a name="initialize-state-manager-middleware"></a>初始化状态管理器中间件
+- **聊天状态**可帮助机器人跟踪机器人与用户之间的当前聊天。 如果机器人需要完成一系列步骤或在聊天主题之间进行切换，可使用聊天属性来管理按顺序执行的步骤或跟踪当前主题。 
 
-在 SDK 中，需要先初始化机器人适配器以使用状态管理器中间件，然后才能使用聊天或用户属性存储。 聊天状态用于聊天属性，用户状态用于用户属性。 （可以跨多个聊天访问用户状态属性。）状态管理器中间件提供一个抽象项，它可让你使用简单的键值或对象存储访问属性（不考虑基础存储的类型）。 无论基础存储是内存中、文件存储还是 Azure 表存储类型，状态管理器都会将数据写入存储并管理并发。
+- **用户状态**可用于多种目的，例如确定用户之前聊天的中断位置或仅按名称来问候返回的用户。 如果存储了用户的首选项，则可在下次聊天时使用该信息自定义聊天。 例如，可提醒用户注意有关其感兴趣话题的新闻文章，或者在可进行预约时提醒用户。 
 
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-要查看 `ConversationState` 的初始化方式，请参阅 Microsoft.Bot.Samples.EchoBot-AspNetCore 示例中的 `Startup.cs`。
-
-此代码所需的库：
-
-```csharp
-using Microsoft.Bot.Builder.BotFramework;
-using Microsoft.Bot.Builder.Core.Extensions;
-using Microsoft.Bot.Builder.Integration.AspNet.Core;
-```
-
-初始化 `ConversationState`：
-
-```csharp
-services.AddBot<EchoBot>(options =>
-{
-    options.CredentialProvider = new ConfigurationCredentialProvider(Configuration);
-
-    IStorage dataStore = new MemoryStorage();
-    options.Middleware.Add(new ConversationState<EchoState>(dataStore));
-});
-```
-
-在行 `options.Middleware.Add(new ConversationState<EchoState>(dataStore));` 中，`ConversationState` 是聊天状态管理器对象，它作为中间件添加到机器人中。 `EchoState` 类型参数是表示要如何存储聊天状态信息的类型。 机器人可以使用聊天或用户状态数据的任何类类型。
-
-`EchoState` 的实现位于 `EchoBot.cs` 中：
-```csharp
-public class EchoState
-{
-    public int TurnNumber { get; set; }
-}
-``` 
-
-# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
-
-定义存储提供程序并将其分配给要使用的状态管理器。
-对于 `ConversationState` 和 `UserState` 管理中间件，可以使用相同的存储提供程序。
-然后，使用 `BotStateSet` 库将其连接到要管理数据持久性的中间件层。
-
-```javascript
-const { BotFrameworkAdapter, MemoryStorage, ConversationState, UserState, BotStateSet } = require('botbuilder');
-const restify = require('restify');
-
-// Create adapter
-const adapter = new BotFrameworkAdapter({ 
-    appId: process.env.MICROSOFT_APP_ID, 
-    appPassword: process.env.MICROSOFT_APP_PASSWORD 
-});
-
-// Add conversation state middleware.
-const conversationState = new ConversationState(new MemoryStorage());
-adapter.use(conversationState);
-
-// Alternatively, use both conversation and user state middleware.
-// const storage = new MemoryStorage;
-// const conversationState = new ConverstationState(storage);
-// const userState = new UserState(storage);
-// adapter.use(new BotStateSet(conversationState, userState));
-```    
----
+`ConversationState` 和 `UserState` 是状态类，是 `BotState` 类的特化，其中包含的策略可以控制存储在其中的对象的生存期和作用域。 需存储状态的组件会创建一个属性并将其注册到某个类型，然后使用属性访问器来访问状态。 机器人状态管理器可以使用内存存储、CosmosDB 和 Blob 存储。 
 
 > [!NOTE] 
-> 内存中数据存储仅用于测试。 此存储是易失性的临时存储。 每次重启机器人时都会清除数据。 要设置聊天状态和用户状态的其他基础存储媒体，请参阅本文稍后部分的[文件存储](#file-storage)和 [Azure 表存储](#azure-table-storage)。 
+> 请使用机器人状态管理器来存储首选项、用户名或订购的最后一个项目，但不要用它来存储关键的业务数据。 对于关键数据，请创建你自己的存储组件或将数据直接写入[存储](bot-builder-howto-v4-storage.md)。
+> 内存中数据存储仅用于测试。 此存储是易失性的临时存储。 每次重启机器人时都会清除数据。
 
-### <a name="configuring-state-manager-middleware"></a>配置状态管理器中间件
+## <a name="using-conversation-state-and-user-state-to-direct-conversation-flow"></a>使用聊天状态和用户状态来指示聊天流
+在设计聊天流时，通过定义状态标记来指示聊天流非常有用。 该标记可以是简单的布尔类型，也可以是包含当前主题名称的类型。 该标记可帮助跟踪在聊天中所处的位置。 例如，布尔类型标记可指出你是否参与了聊天，而主题名称属性则可以指出你目前在进行哪个聊天。
 
-初始化状态中间件时，使用可选的状态设置参数可更改属性保存方式的默认行为。 默认设置为：
 
-* 保留超过回合上下文生存期的属性。
-* 如果将机器人的多个实例写入属性，请允许机器人的最后一个实例覆盖前一个实例。
-
-## <a name="use-conversation-and-user-state-properties"></a>使用聊天和用户状态属性 
-<!-- middleware and message context properties -->
-
-配置状态管理器中间件后，可从上下文对象中获取聊天状态和用户状态属性。
-<!-- Changes are written to storage before the `SendActivity()` pipeline completes. -->
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-可通过 Bot Builder SDK 中的 `Microsoft.Bot.Samples.EchoBot` 示例了解其工作原理。 
-
-在 `OnTurn` 处理程序中，`context.GetConversationState` 获取聊天状态以访问所定义的数据，而你可使用属性修改状态（在本例中是指递增 `TurnNumber`）。
+### <a name="conversation-and-user-state"></a>聊天和用户状态
+对于此操作方法，一开始可以使用[带计数器的回显机器人示例](https://aka.ms/EchoBot-With-Counter)。 首先在 `TopicState.cs` 中创建 `TopicState` 类，管理当前的聊天主题，如下所示：
 
 ```csharp
-public async Task OnTurn(ITurnContext context)
+public class TopicState
 {
-    // This bot is only handling Messages
-    if (context.Activity.Type == ActivityTypes.Message)
+   public string Prompt { get; set; } = "askName";
+}
+``` 
+然后在 `UserProfile.cs` 中创建 `UserProfile` 类，管理用户状态。
+```csharp
+public class UserProfile
+{
+    public string UserName { get; set; }
+    public string TelephoneNumber { get; set; }
+}
+``` 
+`TopicState` 类有一个用于跟踪我们在聊天中的位置的标记，并使用聊天状态来存储它。 提示会初始化为“askName”，以便启动聊天。 机器人收到用户的响应以后，提示会被重新定义为“askNumber”，以便启动下一轮聊天。 `UserProfile` 类跟踪用户名称和电话号码，并将其存储在用户状态中。
+
+### <a name="property-accessors"></a>属性访问器
+示例中的 `EchoBotAccessors` 类作为单一实例创建，通过依赖项注入传递到 `class EchoWithCounterBot : IBot` 构造函数中。 `EchoBotAccessors` 类构造函数初始化 `EchoBotAccessors` 类的新实例。 它包含 `ConversationState`、`UserState` 和关联的 `IStatePropertyAccessor`。 `conversationState` 对象存储主题状态，`userState` 对象存储用户配置文件信息。 `ConversationState` 和 `UserState` 对象在 Startup.cs 文件中创建。 可以在聊天和用户状态对象中持久保存聊天和用户范围内的任何内容。 
+
+更新了构造函数，使之包含 `UserState`，如下所示：
+```csharp
+public EchoBotAccessors(ConversationState conversationState, UserState userState)
+{
+    ConversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
+    UserState = userState ?? throw new ArgumentNullException(nameof(userState));
+}
+```
+为 `TopicState` 和 `UserProfile` 访问器创建唯一名称。
+```csharp
+public static string UserProfileName { get; } = $"{nameof(EchoBotAccessors)}.UserProfile";
+public static string TopicStateName { get; } = $"{nameof(EchoBotAccessors)}.TopicState";
+```
+接下来，定义两个访问器。 第一个存储聊天的主题，第二个存储用户的名称和电话号码。
+```csharp
+public IStatePropertyAccessor<TopicState> TopicState { get; set; }
+public IStatePropertyAccessor<UserProfile> UserProfile { get; set; }
+```
+
+用于获取 ConversationState 的属性已定义，但需添加 `UserState`，如下所示：
+```csharp
+public ConversationState ConversationState { get; }
+public UserState UserState { get; }
+```
+进行更改后，请保存文件。 接下来，我们将更新 Startup 类，以便创建 `UserState` 对象来持久保存用户范围内的任何内容。 `ConversationState` 已存在。 
+```csharp
+
+services.AddBot<EchoWithCounterBot>(options =>
+{
+    ...
+
+    IStorage dataStore = new MemoryStorage();
+    
+    var conversationState = new ConversationState(dataStore);
+    options.State.Add(conversationState);
+        
+    var userState = new UserState(dataStore);  
+    options.State.Add(userState);
+});
+```
+`options.State.Add(ConversationState);` 和 `options.State.Add(userState);` 行分别添加聊天状态和用户状态。 接下来，创建并注册状态访问器。 在此处创建的访问器每一轮都传递到 IBot 派生的类中。 修改代码，使之包含用户状态，如下所示：
+```csharp
+services.AddSingleton<EchoBotAccessors>(sp =>
+{
+   ...
+    var userState = options.State.OfType<UserState>().FirstOrDefault();
+    if (userState == null)
     {
-        // Get the conversation state from the turn context
-        var state = context.GetConversationState<EchoState>();
+        throw new InvalidOperationException("UserState must be defined and added before adding user-scoped state accessors.");
+    }
+   ...
+ });
+```
 
-        // Bump the turn count. 
-        state.TurnCount++;
+接下来，使用 `TopicState` 和 `UserProfile` 创建这两个访问器，并通过依赖项注入将其传递到 `class EchoWithCounterBot : IBot` 类中。
+```csharp
+services.AddSingleton<EchoBotAccessors>(sp =>
+{
+   ...
+    var accessors = new BotAccessors(conversationState, userState)
+    {
+        TopicState = conversationState.CreateProperty<TopicState>("TopicState"),
+        UserProfile = userState.CreateProperty<UserProfile>("UserProfile"),
+     };
 
-        // Echo back to the user whatever they typed.
-        await context.SendActivity($"Turn {state.TurnCount}: You sent '{context.Activity.Text}'");
+     return accessors;
+ });
+```
+
+聊天和用户状态通过 `services.AddSingleton` 代码块链接到单一实例，并通过代码中以 `var accessors = new BotAccessor(conversationState, userState)` 开头的状态存储访问器进行保存。
+
+### <a name="use-conversation-and-user-state-properties"></a>使用聊天和用户状态属性 
+在 `EchoWithCounterBot : IBot` 类的 `OnTurnAsync` 处理程序中修改代码，提示用户先输入用户名称，然后输入电话号码。 若要跟踪自己在聊天中的位置，请使用在 TopicState 中定义的 Prompt 属性。 该属性已初始化为“askName”。 获得用户名称以后，请将该属性设置为“askNumber”，然后将 UserName 设置为用户键入的名称。 电话号码收到以后，请发送一条确认消息，并将 Prompt 设置为 'confirmation'，因为你位于聊天的末尾。
+
+```csharp
+if (turnContext.Activity.Type == ActivityTypes.Message)
+{
+    // Get the conversation state from the turn context.
+    var convo = await _accessors.TopicState.GetAsync(turnContext, () => new TopicState());
+    
+    // Get the user state from the turn context.
+    var user = await _accessors.UserProfile.GetAsync(turnContext, () => new UserProfile());
+    
+    // Ask user name. The Prompt was initialiazed as "askName" in the TopicState.cs file.
+    if (convo.Prompt == "askName")
+    {
+        await turnContext.SendActivityAsync("What is your name?");
+        
+        // Set the Prompt to ask the next question for this conversation
+        convo.Prompt = "askNumber";
+        
+        // Set the property using the accessor
+        await _accessors.TopicState.SetAsync(turnContext, convo);
+        
+        //Save the new prompt into the conversation state.
+        await _accessors.ConversationState.SaveChangesAsync(turnContext);
+    }
+    else if (convo.Prompt == "askNumber")
+    {
+        // Set the UserName that is defined in the UserProfile class
+        user.UserName = turnContext.Activity.Text;
+        
+        // Use the user name to prompt the user for phone number
+        await turnContext.SendActivityAsync($"Hello, {user.UserName}. What's your telephone number?");
+        
+        // Set the Prompt now that we have collected all the data
+        convo.Prompt = "confirmation";
+                 
+        await _accessors.TopicState.SetAsync(turnContext, convo);
+        await _accessors.ConversationState.SaveChangesAsync(turnContext);
+
+        await _accessors.UserProfile.SetAsync(turnContext, user);
+        await _accessors.UserState.SaveChangesAsync(turnContext);
+    }
+    else if (convo.Prompt == "confirmation")
+    { 
+        // Set the TelephoneNumber that is defined in the UserProfile class
+        user.TelephoneNumber = turnContext.Activity.Text;
+
+        await turnContext.SendActivityAsync($"Got it, {user.UserName}. I'll call you later.");
+
+        // initialize prompt
+        convo.Prompt = ""; // End of conversation
+        await _accessors.TopicState.SetAsync(turnContext, convo);
+        await _accessors.ConversationState.SaveChangesAsync(turnContext);
     }
 }
 ```   
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-可通过基于 Yeoman 生成器示例中生成的 EchoBot 查看其工作原理。
+### <a name="conversation-and-user-state"></a>聊天和用户状态
 
-此代码示例显示了如何将回合计数器存储到聊天状态。
+对于此操作方法，一开始可以使用[带计数器的回显机器人示例](https://aka.ms/EchoBot-With-Counter-JS)。 此示例已使用 `ConversationState` 来存储消息计数。 需添加 `TopicStates` 对象来跟踪聊天状态，添加 `UserState` 来跟踪 `userProfile` 对象中的用户信息。 
+
+在主机器人的 `index.js` 文件中，向需求列表添加 `UserState`：
+
+**index.js**
 
 ```javascript
-const { BotFrameworkAdapter, MemoryStorage, ConversationState } = require('botbuilder');
-const restify = require('restify');
-
-// Create server
-let server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function () {
-    console.log(`${server.name} listening to ${server.url}`);
-});
-
-// Create adapter
-const adapter = new BotFrameworkAdapter({ 
-    appId: process.env.MICROSOFT_APP_ID, 
-    appPassword: process.env.MICROSOFT_APP_PASSWORD 
-});
-
-// Add conversation state middleware
-const conversationState = new ConversationState(new MemoryStorage());
-adapter.use(conversationState);
-
-// Listen for incoming requests 
-server.post('/api/messages', (req, res) => {
-    // Route received request to adapter for processing
-    adapter.processActivity(req, res, async (context) => {
-        if (context.activity.type === 'message') {
-            const state = conversationState.get(context);
-            const count = state.count === undefined ? state.count = 0 : ++state.count;
-            await context.sendActivity(`${count}: You said "${context.activity.text}"`);
-        } else {
-            await context.sendActivity(`[${context.activity.type} event detected]`);
-        }
-    });
-});
+// Import required bot services. See https://aka.ms/bot-services to learn more about the different parts of a bot.
+const { BotFrameworkAdapter, MemoryStorage, ConversationState, UserState } = require('botbuilder');
 ```
----
 
-## <a name="using-conversation-state-to-direct-conversation-flow"></a>使用聊天状态来指示聊天流
+接下来，使用 `MemoryStorage` 作为存储提供程序来创建 `UserState`，然后将其作为第二个参数传递给 `MainDialog` 类。
 
-在设计聊天流时，通过定义状态标记来指示聊天流非常有用。 该标记可以是简单的布尔类型，也可以是包含当前主题名称的类型。 该标记可帮助跟踪在聊天中所处的位置。 例如，布尔类型标记可指出你是否参与了聊天。 而主题名称属性可指出你当前所参与的聊天。
+**index.js**
 
-以下示例使用布尔值“have asked name”属性标记机器人已询问过用户姓名的情况。 收到下一条消息时，机器人会检查该属性。 如果该属性设置为 `true`，则机器人知道刚才已询问过用户的姓名，此时将传入的消息解释为一个要保存为用户属性的名称。
+```javascript
+// Create conversation state with in-memory storage provider. 
+const conversationState = new ConversationState(memoryStorage);
+const userState = new UserState(memoryStorage);
+// Create the main dialog.
+const mainDlg = new MainDialog(conversationState, userState);
+```
 
+在 `dialogs/mainDialog/index.js` 文件中更新构造函数，使之接受 `userState` 作为第二个参数。 然后从 `conversationState` 创建 `topicStates` 属性，从 `userState` 创建 `userProfile` 属性。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-```csharp
-public class ConversationInfo
-{
-    public bool haveAskedNameFlag { get; set; }
-    public bool haveAskedNumberFlag { get; set; }
+**dialogs/mainDialog/index.js**
+
+```javascript
+constructor (conversationState, userState) {
+    // creates a new state accessor property.see https://aka.ms/about-bot-state-accessors to learn more about the bot state and state accessors 
+    this.conversationState = conversationState;
+    this.topicState = this.conversationState.createProperty(TOPIC_STATE);
+
+    // User state
+    this.userState = userState;
+    this.userProfile = this.userState.createProperty(USER_PROFILE);
 }
+```
 
-public class UserInfo
-{
-    public string name { get; set; }
-    public string telephoneNumber { get; set; }
-    public bool done { get; set; }
-}
+### <a name="use-conversation-and-user-state-properties"></a>使用聊天和用户状态属性
 
-public async Task OnTurn(ITurnContext context)
-{
-    // Get state objects. Default objects are created if they don't already exist.
-    var convo = ConversationState<ConversationInfo>.Get(context);
-    var user = UserState<UserInfo>.Get(context);
+在 `MainDialog` 类的 `onTurn` 处理程序中修改代码，提示用户先输入用户名称，然后输入电话号码。 若要跟踪自己在聊天中的位置，请使用在 `topicState` 中定义的 `prompt` 属性。 该属性初始化为“askName”。 获得用户名称以后，请将该属性设置为“askNumber”，然后将 UserName 设置为用户键入的名称。 电话号码收到以后，请发送一条确认消息，并将 Prompt 设置为 `undefined`，因为你位于聊天的末尾。
 
-    if (context.Activity.Type is ActivityTypes.Message)
-    {
-        if (string.IsNullOrEmpty(user.name) && !convo.haveAskedNameFlag)
-        {
-            // Ask for the name.
-            await context.SendActivity("Hello. What's your name?");
+**dialogs/mainDialog/index.js**
 
-            // Set flag to show we've asked for the name. We save this out so the
-            // context object for the next turn of the conversation can check haveAskedName
-            convo.haveAskedNameFlag = true;
-        }
-        else if (!convo.haveAskedNumberFlag)
-        {
-            // Save the name.
-            var name = context.Activity.AsMessageActivity().Text;
-            user.name = name;
-            convo.haveAskedNameFlag = false; // Reset flag
+```javascript
+// see https://aka.ms/about-bot-activity-message to learn more about the message and other activity types
+if (context.activity.type === 'message') {
+    // read from state and set default object if object does not exist in storage.
+    let topicState = await this.topicState.get(context, {
+        //Define the topic state object
+        prompt: "askName"
+    });
+    let userProfile = await this.userProfile.get(context, {  
+        // Define the user's profile object
+        "userName": undefined,
+        "telephoneNumber": undefined
+    });
 
-            // Ask for the phone number. You might want a flag to track this, too.
-            await context.SendActivity($"Hello, {name}. What's your telephone number?");
-            convo.haveAskedNumberFlag = true;
-        }
-        else if (convo.haveAskedNumberFlag)
-        {
-            // save the telephone number
-            var telephonenumber = context.Activity.AsMessageActivity().Text;
+    if(topicState.prompt == "askName"){
+        await context.sendActivity("What is your name?");
 
-            user.telephoneNumber = telephonenumber;
-            convo.haveAskedNumberFlag = false; // Reset flag
-            await context.SendActivity($"Got it. I'll call you later.");
-        }
+        // Set next prompt state
+        topicState.prompt = "askNumber";
+
+        // Update state
+        await this.topicState.set(context, topicState);
     }
+    else if(topicState.prompt == "askNumber"){
+        // Set the UserName that is defined in the UserProfile class
+        userProfile.userName = context.activity.text;
+
+        // Use the user name to prompt the user for phone number
+        await context.sendActivity(`Hello, ${userProfile.userName}. What's your telephone number?`);
+
+        // Set next prompt state
+        topicState.prompt = "confirmation";
+
+        // Update states
+        await this.topicState.set(context, topicState);
+        await this.userProfile.set(context, userProfile);
+    }
+    else if(topicState.prompt == "confirmation"){
+        // Set the phone number
+        userProfile.telephoneNumber = context.activity.text;
+
+        // Sent confirmation
+        await context.sendActivity(`Got it, ${userProfile.userName}. I'll call you later.`)
+
+        // Set next prompt state
+        topicState.prompt = undefined; // End of conversation
+
+        // Update states
+        await this.topicState.set(context, topicState);
+        await this.userProfile.set(context, userProfile);
+    }
+    
+    // Save state changes to storage
+    await this.conversationState.saveChanges(context);
+    await this.userState.saveChanges(context);
+    
 }
-```
-
-要设置用户状态，使其可通过 `UserState<UserInfo>.Get(context)` 返回，请添加用户状态中间件。 例如，在 ASP.NET Core EchoBot 的 `Startup.cs` 中更改 ConfigureServices.cs 中的代码：
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddBot<EchoBot>(options =>
-    {
-        options.CredentialProvider = new ConfigurationCredentialProvider(Configuration);
-        
-        IStorage dataStore = new MemoryStorage();
-        options.Middleware.Add(new ConversationState<ConversationInfo>(dataStore));
-        options.Middleware.Add(new UserState<UserInfo>(dataStore));
-    });
+else {
+    await context.sendActivity(`[${context.activity.type} event detected]`);
 }
-```
-
-# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
-
-**app.js**
-
-```js
-const { BotFrameworkAdapter, MemoryStorage, ConversationState, UserState, BotStateSet } = require('botbuilder');
-const restify = require('restify');
-
-// Create server
-let server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function () {
-    console.log(`${server.name} listening to ${server.url}`);
-});
-
-// Create adapter (it's ok for MICROSOFT_APP_ID and MICROSOFT_APP_PASSWORD to be blank for now)  
-const adapter = new BotFrameworkAdapter({ 
-    appId: process.env.MICROSOFT_APP_ID, 
-    appPassword: process.env.MICROSOFT_APP_PASSWORD 
-});
-
-// Storage
-const storage = new MemoryStorage();
-const conversationState = new ConversationState(storage);
-const userState  = new UserState(storage);
-adapter.use(new BotStateSet(conversationState, userState));
-
-// Listen for incoming requests 
-server.post('/api/messages', (req, res) => {
-    // Route received request to adapter for processing
-    adapter.processActivity(req, res, async (context) => {
-        const isMessage = (context.activity.type === 'message');
-        const convo = conversationState.get(context);
-        const user = userState.get(context);
-
-        if (isMessage) {
-            if(!user.name && !convo.haveAskedNameFlag){
-                // Ask for the name.
-                await context.sendActivity("What is your name?")
-                // Set flag to show we've asked for the name. We save this out so the
-                // context object for the next turn of the conversation can check haveAskedNameFlag
-                convo.haveAskedNameFlag = true;
-            } else if(convo.haveAskedNameFlag){
-                // Save the name.
-                user.name = context.activity.text;
-                convo.haveAskedNameFlag = false; // Reset flag
-
-                await context.sendActivity(`Hello, ${user.name}. What's your telephone number?`);
-                convo.haveAskedNumberFlag = true; // Set flag
-            } else if(convo.haveAskedNumberFlag){
-                // save the phone number
-                user.telephonenumber = context.activity.text;
-                convo.haveAskedNumberFlag = false; // Reset flag
-                await context.sendActivity(`Got it. I'll call you later.`);
-            }
-        }
-
-        // ...
-    });
-});
-
 ```
 
 ---
 
-还可使用对话的“瀑布”模型。 该对话持续跟踪聊天状态，因此你无需创建标记进行跟踪。 有关详细信息，请参阅[使用对话管理简单的聊天](bot-builder-dialog-manage-conversation-flow.md)。
+## <a name="start-your-bot"></a>启动机器人
+在本地运行机器人。
 
-## <a name="file-storage"></a>文件存储
+### <a name="start-the-emulator-and-connect-your-bot"></a>启动模拟器并连接机器人
+接下来，启动模拟器，然后在模拟器中连接到机器人：
 
-内存存储提供程序使用在重启机器人时释放的内存中存储。 最好仅出于测试目的使用它。 如果要保留数据但不想将机器人连接到数据库，就可使用文件存储提供程序。 虽然此提供程序也用于测试目的，但它会将状态数据保留在文件中，便于你进行检查。 数据按 JSON 格式写出到文件。
+1. 单击模拟器“欢迎”选项卡中的“打开机器人”链接。 
+2. 选择创建 Visual Studio 解决方案时所在目录中的 .bot 文件。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+### <a name="interact-with-your-bot"></a>与机器人交互
 
-转到 Microsoft.Bot.Samples.EchoBot-AspNetCore 示例中的 `Startup.cs`，然后编辑 `ConfigureServices` 方法中的代码。
-```csharp
-// This method gets called by the runtime. Use this method to add services to the container.
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddBot<EchoBot>(options =>
-    {
-        options.CredentialProvider = new ConfigurationCredentialProvider(Configuration);
+向机器人发送消息，机器人将回复消息。
+![模拟器运行](../media/emulator-v4/emulator-running.png)
 
-        // Using file storage instead of in-memory storage.
-        IStorage dataStore = new FileStorage(System.IO.Path.GetTempPath());
-        options.Middleware.Add(new ConversationState<EchoState>(dataStore));
-    });
-}
-``` 
-
-运行代码，让 echobot 回显几次输入。
-
-然后转到 `System.IO.Path.GetTempPath()` 指定的目录。 此时应会看到一个名称以“conversation”开头的文件。 打开该文件并查找 JSON。 该文件包含如下内容：
-```json
-{
-  "$type": "Microsoft.Bot.Samples.Echo.EchoState, Microsoft.Bot.Samples.EchoBot",
-  "TurnNumber": "3",
-  "eTag": "ecfe2a23566b4b52b2fe697cffc59385"
-}
-```
-
-`$type` 指定在机器人中用于存储聊天状态的数据结构类型。 `TurnNumber` 字段与 `EchoState` 类中的 `TurnNumber` 属性相对应。 `eTag` 字段继承自 `IStoreItem`，它是一个唯一值，每当机器人更新聊天状态时都会自动更新。  机器人可通过 eTag 字段实现乐观并发。
-
-# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
-
-要使用 `FileStorage`，请更新之前在[使用聊天和用户状态属性](#use-conversation-and-user-state-properties)部分中所述的回显机器人示例。 请确保将 `storage` 设置为 `FileStorage` 而不是 `MemoryStorage`，同时需具备来自 botbuilder 的 `FileStorage`。 仅需进行上述更改。 
-
-```javascript
-// Storage
-const storage = new FileStorage("c:/temp");
-const conversationState = new ConversationState(storage);
-const userState  = new UserState(storage);
-adapter.use(new BotStateSet(conversationState, userState));
-```
-
-`FileStorage` 提供程序将“路径”用作参数。 通过指定路径，你可使用机器人中的持久化信息轻松查找文件。 系统将对每个聊天创建一个新的文件。 因此，你可能在路径中发现多个以 `conversation!` 开头的文件名。 你可以按日期排序，从而更轻松地查找最新聊天。 但只能找到一个用户状态文件。 文件名将以 `user!` 开头。 每当其中任一对象的状态发生变化时，状态管理器都会更新文件以反映更改的内容。
-
-运行机器人并向其发送一些消息。 然后，找到存储文件并将其打开。 下面是跟踪回合计数器的回显机器人可能显示的 JSON 内容。
-
-```json
-{
-  "turnNumber": "3",
-  "eTag": "322"
-}
-```
----
-
-## <a name="azure-table-storage"></a>Azure 表存储
-
-你还可以将 Azure 表存储用作存储媒体。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-在 Microsoft.Bot.Samples.EchoBot-AspNetCore 示例中，添加对 `Microsoft.Bot.Builder.Azure` NuGet 包的引用。
-
-然后，转到 `Startup.cs`，添加 `using Microsoft.Bot.Builder.Azure;` 语句，再编辑 `ConfigureServices` 方法中的代码。
-```csharp
-services.AddBot<EchoBot>(options =>
-{
-    options.CredentialProvider = new ConfigurationCredentialProvider(Configuration);
-    // The parameters are the connection string and table name.
-    // "UseDevelopmentStorage=true" is the connection string to use if you are using the Azure Storage Emulator.
-    // Replace it with your own connection string if you're not using the emulator
-    options.Middleware.Add(new ConversationState<EchoState>(new AzureTableStorage("UseDevelopmentStorage=true","conversationstatetable")));
-    // you could also specify the cloud storage account instead of the connection string
-    /* options.Middleware.Add(new ConversationState<EchoState>(
-        new AzureTableStorage(WindowsAzure.Storage.CloudStorageAccount.DevelopmentStorageAccount, "conversationstatetable"))); */
-    options.EnableProactiveMessages = true;
-});
-```
-`UseDevelopmentStorage=true` 是可与 [Azure 存储模拟器][AzureStorageEmulator]一起使用的连接字符串。 如果不使用模拟器，请将其替换为你自己的连接字符串。
-
-如果表的名称均不是你在 `AzureTableStorage` 构造函数中指定的名称，则创建带此名称的表。
-
-<!-- 
-TODO: step-by-step inspection of the stored table
--->
-
-# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
-
-在 echobot 示例的 `app.js` 中，可使用 `AzureTableStorage` 创建 ConversationState。 
-
-```bash
-npm install --save botbuilder-azure@preview
-```
-
-```javascript
-const { BotFrameworkAdapter, FileStorage, MemoryStorage, ConversationState } = require('botbuilder');
-const { TableStorage } = require('botbuilder-azure');
-
-// ...
-
-// Create adapter
-const adapter = new BotFrameworkAdapter({
-    appId: process.env.MICROSOFT_APP_ID,
-    appPassword: process.env.MICROSOFT_APP_PASSWORD
-});
-
-// Add conversation state middleware
-// The parameters are the connection string and table name.
-// "UseDevelopmentStorage=true" is the connection string to use if you are using the Azure Storage Emulator.
-// Replace it with your own connection string if you're not using the emulator
-var azureStorage = new TableStorage({ tableName: "TestAzureTable1", storageAccountOrConnectionString: "UseDevelopmentStorage=true"})
-
-// You can alternatively use your account name and table name
-// var azureStorage = new TableStorage({tableName: "TestAzureTable2", storageAccessKey: "V3ah0go4DLkMtQKUPC6EbgFeXnE6GeA+veCwDNFNcdE6rqSVE/EQO/kjfemJaitPwtAkmR9lMKLtcvgPhzuxZg==", storageAccountOrConnectionString: "storageaccount"});
-
-const conversationState = new ConversationState(azureStorage);
-adapter.use(conversationState);
-
-```
-
-`UseDevelopmentStorage=true` 是可与 [Azure 存储模拟器][AzureStorageEmulator]一起使用的连接字符串。
-如果表的名称均不是你在 `AzureTableStorage` 构造函数中指定的名称，则创建带此名称的表。
-
----
-
-要查看保存的聊天状态数据，请运行该示例，然后使用 [Azure 存储资源管理器][AzureStorageExplorer]打开该表。
-
-![Azure 存储资源管理器中的 echobot 聊天状态数据](media/how-to-state/echostate-azure-storage-explorer.png)
-
-
-分区键是特定于当前聊天的唯一生成的键。 如果重启机器人或开始新的聊天，则新的聊天将使用自己的分区键获得其自己的行。 `EchoState` 数据结构序列化为 JSON 并保存在 Azure 表的 Json 列中。 
-
-```json
-{
-    "$type":"Microsoft.Bot.Samples.Echo.AspNetCore.EchoState, Microsoft.Bot.Samples.EchoBot-AspNetCore",
-    "TurnNumber":2,
-    "LastMessage":"second message",
-    "eTag":"*"
-}
-```
-
-BotBuilder SDK 添加了 `$type` 和 `eTag` 字段。 有关 eTag 的详细信息，请参阅[管理乐观并发](bot-builder-howto-v4-storage.md#manage-concurrency-using-etags)
-
+如果决定自行管理状态，请参阅[使用自己的提示管理聊天流](bot-builder-primitive-prompts.md)。 还可使用瀑布对话框。 该对话持续跟踪聊天状态，因此你无需创建标记进行跟踪。 有关详细信息，请参阅[使用对话框管理简单的聊天](bot-builder-dialog-manage-conversation-flow.md)。
 
 ## <a name="next-steps"></a>后续步骤
-
 你已了解如何使用状态从存储中读取机器人数据或将其写入到存储中，接下来让我们了解如何直接从存储中读取或直接写入存储。
 
 > [!div class="nextstepaction"]
 > [如何直接写入存储](bot-builder-howto-v4-storage.md)。
-
-## <a name="additional-resources"></a>其他资源
-有关存储的更多背景知识，请参阅 [Bot Builder SDK 中的存储](bot-builder-storage-concept.md)
-
-<!-- Links -->
-[AzureStorageEmulator]: https://docs.microsoft.com/azure/storage/common/storage-use-emulator
-[AzureStorageExplorer]: https://azure.microsoft.com/features/storage-explorer/

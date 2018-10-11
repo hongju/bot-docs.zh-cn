@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 3d098afd70bef9cf1a3b3fab87455e96ffd9c292
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 07fb6e9630996a61932da99b0575d43f4604141e
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297644"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389426"
 ---
 # <a name="application-insights-keys"></a>Application Insights 密钥
 
@@ -30,7 +30,7 @@ Azure **Application Insights** 在 Microsoft Azure 资源中显示有关应用�
 ## <a name="instrumentation-key"></a>检测密钥
 
 若要获取检测密钥，请执行以下操作：
-1. 在 [portal.azure.com](http://portal.azure.com) 中的“监视”部分下，创建一个新的 **Application Insights** 资源（或使用现有资源）。
+1. 在 [Azure 门户](http://portal.azure.com)中的“监视”部分下，创建一个新的 **Application Insights** 资源（或使用现有资源）。
 ![Application Insights 列表的门户屏幕截图](~/media/portal-app-insights-add-new.png)
 
 2. 从 Application Insights 资源列表中，单击刚刚创建的 Application Insight 资源。

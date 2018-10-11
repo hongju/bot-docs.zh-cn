@@ -1,21 +1,18 @@
 ---
-title: 状态和存储 | Microsoft Docs
-description: 介绍了 Bot Builder SDK 中的状态管理器、聊天状态和用户状态。
-keywords: LUIS, 聊天状态, 用户状态, 存储, 管理状态
-author: DeniseMak
-ms.author: v-demak
-manager: kamrani
-ms.topic: article
-ms.prod: bot-framework
-ms.date: 02/15/2018
-monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e25ecec3aec1cdebe3b9eae4bff0d3c434cb610b
-ms.sourcegitcommit: 1abc32353c20acd103e0383121db21b705e5eec3
+redirect_url: /bot-framework/bot-builder-howto-v4-state
+ms.openlocfilehash: e5da105e32ae748383d376f90afd9aebbf4c7aa5
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/21/2018
-ms.locfileid: "42756653"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46708113"
 ---
+<a name="--"></a><!--
+---
+title: 状态和存储 | Microsoft Docs description: 介绍了 Bot Builder SDK 中的状态管理器、聊天状态和用户状态。
+keywords: LUIS, 聊天状态, 用户状态, 存储, 管理状态 author: DeniseMak ms.author: v-demak manager: kamrani ms.topic: article ms.prod: bot-framework ms.date: 02/15/2018 monikerRange: 'azure-bot-service-4.0'
+---
+
 # <a name="state-and-storage"></a>状态和存储
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -37,30 +34,32 @@ You can also store *user state* that persists after a conversation ends. For exa
 <!-- You should generally avoid saving state using a global variable or function closures.
 Doing so will create issues when you want to scale out your bot. Instead, use the conversation state and user state middleware that the BotBuilder SDK provides --> 
 
+<!--
+## Types of underlying storage
 
-## <a name="types-of-underlying-storage"></a>基础存储类型
+The SDK provides bot state manager middleware to persist conversation and user state. State can be accessed using the bot's context. This state manager can use Azure Table Storage, file storage, or memory storage as the underlying data storage. You can also create your own storage components for your bot.
 
-SDK 提供机器人状态管理器中间件来持久存储聊天和用户状态。 可使用机器人上下文访问状态。 此状态管理器可将 Azure 表存储、文件存储或内存存储用作基础数据存储。 还可以为机器人创建自己的存储组件。
-
-使用 Azure 表存储生成的机器人可以设计为无状态并可在多个计算节点之间缩放。
+Bots built using Azure Table Storage can be designed to be stateless and scalable across multiple compute nodes.
 
 > [!NOTE] 
-> 文件和内存存储无法在节点之间进行缩放。
+> File and memory storage won't scale across nodes.
 
-## <a name="writing-directly-to-storage"></a>直接写入存储
+## Writing directly to storage
 
-还可以使用 Bot Builder SDK 将数据直接读取和写入到存储，而无需使用中间件或机器人上下文。 这适用于机器人所用数据来源于机器人聊天流外部的情况。
+You can also use the Bot Builder SDK to read and write data directly to storage, without using middleware or without using the bot context. This can be appropriate to data that your bot uses, that comes from a source outside your bot's conversation flow.
 
-例如，假设机器人允许用户询问天气预报，而它通过读取外部数据库中的数据来检索指定日期的天气预报。 天气数据库的内容不依赖于用户信息或聊天上下文，因此可以直接从存储中读取，无需使用状态管理器。  有关示例，请参阅[如何直接写入存储](bot-builder-howto-v4-storage.md)。
+For example, let's say your bot allows the user to ask for the weather report, and your bot retrieves the weather report for a specified date, by reading it from an external database. The content of the weather database isn't dependent on user information or the conversation context, so you could just read it directly from storage instead of using the state manager.  See [How to write directly to storage](bot-builder-howto-v4-storage.md) for an example.
 
-## <a name="next-steps"></a>后续步骤
+## Next steps
 
-接下来，让我们深入了解如何处理活动以及如何对其作出响应。
+Next, lets get into how activities are processed, in depth, and how we respond to them.
 
 > [!div class="nextstepaction"]
-> [活动处理](bot-builder-concept-activity-processing.md)
+> [Activity Processing](bot-builder-concept-activity-processing.md)
 
-## <a name="additional-resources"></a>其他资源
+## Additional resources
 
-- [如何保存状态](bot-builder-howto-v4-state.md)
-- [如何直接写入存储](bot-builder-howto-v4-storage.md)
+- [How to save state](bot-builder-howto-v4-state.md)
+- [How to write directly to storage](bot-builder-howto-v4-storage.md)
+
+-->

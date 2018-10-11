@@ -7,25 +7,27 @@ ms.author: jonathanfingold
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 08/21/2018
+ms.date: 08/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6458bac5140fae14e8925e7af37aa8ac4ef1f1f5
-ms.sourcegitcommit: 7b5675bbf7f1c2432bfc831ee5d627f6e5659e01
+ms.openlocfilehash: 6b63fe2780c51e57ee16c5e3dba5a83f46566157
+ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/01/2018
-ms.locfileid: "43380993"
+ms.lasthandoff: 09/23/2018
+ms.locfileid: "46707274"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-python"></a>使用 Bot Builder SDK for Python 创建机器人
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-Bot Builder SDK for Python 是一个易于使用的框架，用于开发机器人。 本快速入门将指导你构建机器人，然后使用 Bot Framework Emulator 对其进行测试。 SDK v4 处于预览状态，请访问 Python [GitHub 存储库](https://github.com/Microsoft/botbuilder-python)以获取更多信息。 
+>[!NOTE] 
+> Python SDK 处于**预览**状态，请访问 Python [GitHub 存储库](https://github.com/Microsoft/botbuilder-python)以获取更多信息。 
+
+本快速入门将指导你构建机器人，然后使用 Bot Framework Emulator 对其进行测试。 
 
 ## <a name="pre-requisite"></a>先决条件
 - [Python 3.6.4](https://www.python.org/downloads/) 
 - [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases)
 
-# <a name="create-a-bot"></a>创建机器人
+## <a name="create-a-bot"></a>创建机器人
 在 main.py 文件中，导入以下标准模块：
 
 ```python
@@ -127,22 +129,20 @@ python main.py
 ```
 在本地终端中，应看到消息“已在 localhost:9000 上启动了 http 服务器”
 
-### <a name="start-the-emulator-and-connect-your-bot"></a>启动模拟器并连接机器人
+## <a name="start-the-emulator-and-connect-your-bot"></a>启动模拟器并连接机器人
 
 接下来，启动模拟器，然后在模拟器中连接到机器人：
 
+1. 单击模拟器“欢迎”选项卡中的“打开机器人”链接。 
+2. 选择位于创建项目的目录中的 .bot 文件。
 
-1. 单击模拟器“欢迎使用”选项卡中的“新建机器人配置”链接。 
+## <a name="interact-with-your-bot"></a>与机器人交互
 
-2. 输入“机器人名称”并输入机器人代码的目录路径。 机器人配置文件将保存到此路径。
+向机器人发送消息，机器人将回复消息。
+![模拟器运行](../media/emulator-v4/emulator-running.png)
 
-3. 在“终结点 URL”字段中键入 `http://localhost:port-number/api/messages`，其中 port-number 与运行应用程序的浏览器中显示的端口号相匹配。
-
-4. 单击“连接”以连接到机器人。 无需指定“Microsoft 应用 ID”和“Microsoft 应用密码”。 可以暂时将这些字段留空。 以后当你注册机器人时，将获得此信息。
-
-在模拟器中输入 **Hello**，机器人将回显**你说了“Hello”**。
 
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [基本机器人概念](../v4sdk/bot-builder-basics.md)
+> [机器人概念](../v4sdk/bot-builder-basics.md)

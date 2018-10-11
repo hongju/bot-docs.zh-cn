@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: b560f9f43fc596bc8062676136819922d227d37b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b5a9d20c058fe425d727bf2e39597e7dd29ec077
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297727"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389626"
 ---
 # <a name="connect-a-bot-to-web-chat"></a>将机器人连接到网上聊天
 使用机器人服务[创建机器人](bot-service-quickstart.md)时，将自动配置网上聊天通道。 网上聊天通道包含网上聊天控件，用户可通过该控件直接在网页中与机器人进行交互。
@@ -52,7 +52,7 @@ Bot Framework 门户中的网上聊天通道包含在网页中嵌入网上聊天
 
 2. 对 GET 请求的响应将包含令牌（用引号括起），该令牌可用于通过在 iframe 内中呈现网上聊天控件来启动聊天。 令牌仅对一个聊天有效；要启动另一个聊天，必须生成一个新令牌。
 
-3. 在从 Bot Framework 门户的网上聊天通道复制的 `iframe` 嵌入代码（如上面[步骤 1](#step-1) 中所述）中，将 `s=` 参数更改为 `t=`，然后将“YOUR_SECRET_HERE”替换为令牌。 
+3. 在从 Bot Framework 门户的网上聊天通道复制的 `iframe` 嵌入代码（如上面的[获取机器人密钥](#step-1)中所述）中，将 `s=` 参数更改为 `t=`，然后将“YOUR_SECRET_HERE”替换为你的令牌。
 
 > [!NOTE]
 > 令牌将在过期之前自动续订。 
@@ -109,7 +109,7 @@ Bot Framework 门户中的网上聊天通道包含在网页中嵌入网上聊天
 
 通过在 `iframe` 标记中指定密码，将机器人嵌入网站中：
 
-1. 从 Bot Framework 门户中的网上聊天通道复制 `iframe` 嵌入代码（如上面[步骤 1](#step-1) 中所述）。
+1. 从 Bot Framework 门户中的网上聊天通道复制 `iframe` 嵌入代码（如上面的[获取机器人密钥](#step-1) 中所述）。
 
 2. 在“嵌入代码”中，将“YOUR_SECRET_HERE”替换为从同一页面复制的“密钥值”。
 
