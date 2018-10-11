@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 04/09/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: caa424ed0ea0944805836739ed48a7a61f78d21c
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 4195ae016513c809e4677879e0abe1b2bf8d799e
+ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905256"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47389776"
 ---
 # <a name="testing-and-debugging-guidelines"></a>测试和调试指南
 
@@ -50,7 +50,7 @@ ms.locfileid: "42905256"
 
 ### <a name="level-2-use-a-direct-line-client"></a>级别 2：使用 Direct Line 客户端
 
-验证机器人的运行在表面上是否符合预期以后，下一步是将其连接到某个通道。 为此，可以将机器人部署到过渡服务器，并创建你自己的 [Direct Line 客户端](bot-builder-howto-direct-line.md)，供机器人进行连接。
+验证机器人的运行在表面上是否符合预期以后，下一步是将其连接到某个通道。 为此，可以将机器人部署到过渡服务器，并创建你自己的 <!--IBTODO [Direct Line client](bot-builder-howto-direct-line.md)--> Direct Line 客户端，供机器人进行连接。
 
 创建自己的客户端以后，即可定义通道的内部运作，并对机器人对某些活动交换操作的响应进行具体测试。 连接到客户端以后，请运行测试，以便设置机器人状态并验证功能。 如果机器人使用语音之类的功能，则可通过这些通道来验证该功能。
 
@@ -64,7 +64,7 @@ ms.locfileid: "42905256"
 
 ### <a name="other-testing"></a>其他测试
 
-不同类型的测试可以与上述级别的测试配合使用，也可以从不同的角度来进行，例如：压力测试、性能测试或机器人活动分析。 Visual studio 提供用于在本地执行此类操作的方法，并提供进行应用测试的[工具套件](https://www.visualstudio.com/team-services/testing-tools/)，而 [Azure 门户](https://portal.azure.com)则可用于了解机器人的表现情况。
+不同类型的测试可以与上述级别的测试配合使用，也可以从不同的角度来进行，例如：压力测试、性能测试或机器人活动分析。 Visual studio 提供用于在本地执行此类操作的方法，并提供进行应用测试的[工具套件](https://azure.microsoft.com/en-us/solutions/dev-test/)，而 [Azure 门户](https://portal.azure.com)则可用于了解机器人的表现情况。
 
 ## <a name="debugging"></a>调试
 
@@ -74,7 +74,17 @@ ms.locfileid: "42905256"
 
 **通过模拟器了解机器人活动**
 
-除了正常的消息活动以外，机器人还处理不同类型的[活动](bot-builder-concept-activity-processing.md)。 可以通过[模拟器](../bot-service-debug-emulator.md)来了解这些活动是什么、其发生时间以及其包含的具体信息。 了解这些活动有助于你提高机器人代码编写效率，并可验证机器人发送和接收的活动是否符合预期。
+除了正常的消息活动以外，机器人还处理不同类型的[活动](bot-builder-basics.md#the-activity-processing-stack)。 可以通过[模拟器](../bot-service-debug-emulator.md)来了解这些活动是什么、其发生时间以及其包含的具体信息。 了解这些活动有助于你提高机器人代码编写效率，并可验证机器人发送和接收的活动是否符合预期。
+
+**使用脚本保存和检索用户交互**
+
+Azure blob 脚本存储提供了一个专门的资源，可以在其中[存储和检索脚本](bot-builder-howto-v4-storage.md)（包含用户与机器人之间的交互）。  
+
+此外，存储了用户输入交互后，你便可以使用 Azure 的“_存储资源管理器_”手动查看存储在 Blob 脚本存储中的脚本中包含的数据。 以下示例从“_mynewtestblobstorage_”的设置中打开“_存储资源管理器_”。 若要打开已保存的用户输入，请选择：“Blob 容器”> ChannelId > TranscriptId > ConversationId
+
+![Examine_stored_transcript_text](./media/examine_transcript_text_in_azure.png)
+
+这将以 JSON 格式打开存储的用户聊天输入。 用户输入与键“_text:_”一起保存。
 
 **中间件工作原理**
 
@@ -84,7 +94,7 @@ ms.locfileid: "42905256"
 
 如果未调用 `next()` 委托，则会将其称为[短路路由](bot-builder-concept-middleware.md#short-circuiting)。 当中间件符合当前活动情况且确定不需传递执行时，则会发生这种情况。 
 
-了解中间件何时会短路以及短路的原因后，即可指示哪个中间件应该先进入管道。 另外，了解预期结果对于 SDK 或其他开发者提供的内置中间件来说特别重要。 可以试着先[创建你自己的中间件](bot-builder-create-middleware.md)试验一下，然后再使用内置的中间件，这样也许会有用。
+了解中间件何时会短路以及短路的原因后，即可指示哪个中间件应该先进入管道。 另外，了解预期结果对于 SDK 或其他开发者提供的内置中间件来说特别重要。 可以试着先创建你自己的中间件试验一下，然后再使用内置的中间件，这样也许会有用。
 
 例如，[QnA Maker](bot-builder-howto-qna.md) 旨在处理特定的交互并会在执行此类操作时造成管道短路，这对于首次学习其使用的用户来说可能难以理解。
 

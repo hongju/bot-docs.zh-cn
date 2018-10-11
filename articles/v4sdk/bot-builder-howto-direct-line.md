@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 4/16/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dee0f9700fefede2a231ff2395e50ff17522806e
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 81b6f1f9373c18bd3aedb393cfc4966587bf24cb
+ms.sourcegitcommit: 6c2426c43cd2212bdea1ecbbf8ed245145b3c30d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707393"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48852202"
 ---
 # <a name="create-a-direct-line-bot-and-client"></a>创建 Direct Line 机器人和客户端
 
@@ -28,7 +28,7 @@ Microsoft Bot Framework Direct Line 机器人是可以通过自行设计的自�
 
 ## <a name="create-your-bot"></a>创建机器人
 
-每种语言按不同的路径来创建机器人。 Javascript 在 Azure 中创建机器人，然后修改代码，而 C# 则在本地创建机器人，然后将其发布到 Azure，但两种方法都是有效的，可以用于任一语言。 若要详细了解如何将机器人发布到 Azure，请参阅[在 Azure 中部署机器人](../bot-builder-howto-deploy-azure.md)。
+每种语言按不同的方法来创建机器人。 Javascript 在 Azure 中创建机器人，然后修改代码，而 C# 则在本地创建机器人，然后将其发布到 Azure，但两种方法都是有效的，可以用于任一语言。 若要详细了解如何将机器人发布到 Azure，请参阅[在 Azure 中部署机器人](../bot-builder-howto-deploy-azure.md)。
 
 # <a name="ctabcscreatebot"></a>[C#](#tab/cscreatebot)
 
@@ -52,6 +52,7 @@ Microsoft Bot Framework Direct Line 机器人是可以通过自行设计的自�
     - Microsoft.Bot.Builder
     - Microsoft.Bot.Builder.Core.Extensions
     - Microsoft.Bot.Builder.Integration.AspNet.Core
+    - Microsoft.Rest.ClientRuntime
     - Newtonsoft.Json
 
 ### <a name="create-the-appsettingsjson-file"></a>创建 appsettings.json 文件
@@ -338,7 +339,7 @@ Direct Line 机器人可以托管在任何平台上。 在此示例中，该机�
 
 1. 将地址粘贴到“消息传送终结点”中。
 
-1. 编辑该地址，使之以“https://”开头，以“/api/messages”结尾。 例如，如果从浏览器复制的地址为“http://v-royhar-dlbot-directlinebotsample20180329044602.azurewebsites.net”，则将其编辑为“https://v-royhar-dlbot-directlinebotsample20180329044602.azurewebsites.net/api/messages”。
+1. 编辑该地址，使它以“https://”开头，以“/api/messages”结尾。 例如，如果从浏览器复制的地址为“http://v-royhar-dlbot-directlinebotsample20180329044602.azurewebsites.net”，则将其编辑为“https://v-royhar-dlbot-directlinebotsample20180329044602.azurewebsites.net/api/messages”。
 
 1. 单击“设置”边栏选项卡上的“保存”按钮。
 
