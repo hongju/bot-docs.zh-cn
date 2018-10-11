@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f5cc520704c4bebef6250195fd3e6cbdc3b0be3f
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: c00913c4e6fa7133dad734e69167d2723257f75a
+ms.sourcegitcommit: 6c2426c43cd2212bdea1ecbbf8ed245145b3c30d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574953"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48852302"
 ---
 # <a name="send-proactive-messages"></a>发送主动消息
 
@@ -176,7 +176,7 @@ public class SurveyDialog : IDialog<object>
 
 ## <a name="sample-code"></a>代码示例
 
-有关演示如何使用 Bot Builder SDK for .NET 发送主动消息的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-proactiveMessages" target="_blank">主动消息示例</a>。 在主动消息示例中，<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-proactiveMessages/simpleSendMessage" target="_blank">simpleSendMessage</a> 演示了如何发送临时主动消息，而 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-proactiveMessages/startNewDialog" target="_blank">startNewDialog</a> 演示了如何发送基于对话的主动消息。 
+有关演示如何使用 Bot Builder SDK for .NET 发送主动消息的完整示例，请参阅 GitHub 中的<a href="https://aka.ms/proactive-messaging-cs-v3 " target="_blank">主动消息示例</a>。 在主动消息示例中，<a href="https://aka.ms/proactive-sendmessage-cs-v3 " target="_blank">simpleSendMessage</a> 演示了如何发送临时主动消息，而 <a href="https://aka.ms/proactive-newdialog-cs-v3 " target="_blank">startNewDialog</a> 演示了如何发送基于对话的主动消息。 
 
 ## <a name="additional-resources"></a>其他资源
 

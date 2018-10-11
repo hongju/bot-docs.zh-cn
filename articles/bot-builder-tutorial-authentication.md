@@ -6,15 +6,17 @@ ms.author: JonathanFingold
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 7/2/2018
+ms.date: 10/04/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 37189bb9efbee5a2ad5f40f58106d4d85eda4473
-ms.sourcegitcommit: bff936a6a3dd5b1bd3ddfeed8bd1023e52929f08
+ms.openlocfilehash: be53d50ebfa7738b37fe9a25941fe29764f18c26
+ms.sourcegitcommit: 6c2426c43cd2212bdea1ecbbf8ed245145b3c30d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/30/2018
-ms.locfileid: "43312471"
+ms.lasthandoff: 10/08/2018
+ms.locfileid: "48852192"
 ---
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
 本教程使用 Azure 机器人服务中的新机器人身份验证功能，提供各种功能以帮助轻松开发用于向 Azure AD (Azure Active Directory)、GitHub、Uber 等各种标识提供者验证用户身份的机器人。 这些更新还采取了一些措施，通过免去某些客户端的“幻码验证”来改善用户体验。
 
@@ -37,10 +39,10 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 | 示例 | BotBuilder 版本 | Description |
 |:---|:---:|:---|
-| [AadV1Bot](https://github.com/Microsoft/BotBuilder/tree/master/CSharp/Samples/AadV1Bot) | v3 | 演示 v3 C# SDK 中的 OAuthCard 支持（使用 Azure AD v1 终结点） |
-| [AadV2Bot](https://github.com/Microsoft/BotBuilder/tree/master/CSharp/Samples/AadV2Bot) | v3 |  演示 v3 C# SDK 中的 OAuthCard 支持（使用 Azure AD v2 终结点） |
-| [GitHubBot](https://github.com/Microsoft/BotBuilder/tree/master/CSharp/Samples/GitHubBot) | v3 |  演示 v3 C# SDK 中的 OAuthCard 支持（使用 GitHub） |
-| [BasicOAuth](https://github.com/Microsoft/BotBuilder/tree/master/CSharp/Samples/Microsoft.Bot.Sample.BasicOAuth) | v3 |  演示 v3 C# SDK 中的 OAuth 2.0 支持 |
+| [AadV1Bot](https://aka.ms/AadV1Bot) | v3 | 演示 v3 C# SDK 中的 OAuthCard 支持（使用 Azure AD v1 终结点） |
+| [AadV2Bot](https://aka.ms/AadV2Bot) | v3 |  演示 v3 C# SDK 中的 OAuthCard 支持（使用 Azure AD v2 终结点） |
+| [GitHubBot](https://aka.ms/GitHubBot) | v3 |  演示 v3 C# SDK 中的 OAuthCard 支持（使用 GitHub） |
+| [BasicOAuth](https://aka.ms/BasicOAuth) | v3 |  演示 v3 C# SDK 中的 OAuth 2.0 支持 |
 
 > [!NOTE]
 > 身份验证功能还适用于使用 BotBuilder v3 的 Node.js。 但本文只介绍了 C# 代码示例。
@@ -360,3 +362,5 @@ else if(message.Type == ActivityTypes.Event)
     }
 }
 ```
+## <a name="additional-resources"></a>其他资源
+[Bot Builder SDK](https://github.com/microsoft/botbuilder)
