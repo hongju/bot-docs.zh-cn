@@ -9,18 +9,18 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 08/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 075e9b3a41462bfbb1398bd72840cc7e50d3cfca
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 5b7faaae63bdc084dac570cb33ebbc755ccbcc19
+ms.sourcegitcommit: aef7d80ceb9c3ec1cfb40131709a714c42960965
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707513"
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49383112"
 ---
 # <a name="send-text-and-spoken-messages"></a>发送文本和语音消息
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-机器人与用户通信以及接收通信等的主要方法是通过消息活动。 某些消息可能会只包含纯文本，而其他消息可能包含更丰富的内容，如卡或附件。 机器人的轮次处理程序从用户那里接收消息，然后你可以向用户发送响应。 [轮次上下文](bot-builder-concept-activity-processing.md#turn-context)对象提供用于将消息发送回用户的方法。 有关一般情况下活动处理的更多信息，请参阅[活动处理](bot-builder-concept-activity-processing.md)。
+机器人与用户通信以及接收通信等的主要方法是通过消息活动。 某些消息可能会只包含纯文本，而其他消息可能包含更丰富的内容，如卡或附件。 机器人的轮次处理程序从用户那里接收消息，然后你可以向用户发送响应。 轮次上下文对象提供用于将消息发送回用户的方法。 有关一般情况下活动处理的更多信息，请参阅[活动处理](~/v4sdk/bot-builder-basics.md#the-activity-processing-stack)。
 
 本文介绍如何发送简单的文本和语音消息。 若要发送更丰富的内容，请参阅如何[添加丰富的媒体附件](bot-builder-howto-add-media-attachments.md)。 有关如何使用提示对象的信息，请参阅如何[提示用户输入](bot-builder-prompts.md)。
 
