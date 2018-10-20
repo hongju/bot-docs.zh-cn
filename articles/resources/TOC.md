@@ -13,9 +13,9 @@
 # [App Insights 密钥](../bot-service-resources-app-insights-keys.md)
 # [用户代理请求](../bot-service-resources-user-agent.md)
 # [机器人审核指南](../bot-service-review-guidelines.md)
-# [Bot Framework Activity 架构](https://github.com/Microsoft/BotBuilder/blob/hub/specs/botframework-activity/botframework-activity.md)
-# [Bot Framework Card 架构](https://github.com/Microsoft/BotBuilder/blob/hub/specs/botframework-activity/botframework-cards.md)
-# [Bot Framework Transcript 架构](https://github.com/Microsoft/BotBuilder/blob/hub/specs/transcript/transcript.md)
+# [Bot Framework Activity 架构](https://aka.ms/botSpecs-activitySchema)
+# [Bot Framework Card 架构](https://aka.ms/botSpecs-cardSchema)
+# [Bot Framework Transcript 架构](https://aka.ms/botSpecs-transcripts)
 # [机器人服务符合性](../v4sdk/bot-service-compliance.md)
 # 故障排除
 ## [排查常见问题](../bot-service-troubleshoot-general-problems.md)
