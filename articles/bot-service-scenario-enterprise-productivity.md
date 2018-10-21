@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 4e0bde9d05ed49f6674b2d721e07235b26c5cea4
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: feefa25d0c85c3aa62705b075253372f12e9146e
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574748"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326374"
 ---
 # <a name="enterprise-productivity-bot-scenario"></a>企业效率机器人方案
 

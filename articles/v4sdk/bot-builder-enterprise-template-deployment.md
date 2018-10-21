@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a4ac88872e11cd32a9de96d52dcf9e917bb3488f
-ms.sourcegitcommit: 87b5b0ca9b0d5e028ece9f7cc4948c5507062c2b
+ms.openlocfilehash: 0f4c5e0db9dae86f81414ccd9bbb1e5de4dce624
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/24/2018
-ms.locfileid: "47029795"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326394"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企业机器人模板 - 部署机器人
 
@@ -101,7 +101,7 @@ msbot 工具将概述部署计划，包括位置和 SKU。 在继续操作之前
 
 任何，键入 ```hi``` 来验证是否一切都正常工作。
 
-## <a name="deploy-to-azure"></a>部署到 Azure
+## <a name="deploy-to-azure"></a>“部署到 Azure”
 
 可以在本地执行端到端测试。 当准备好将机器人部署到 Azure 进行额外测试时，可以使用以下命令来发布源代码，任何时候希望推送源代码更新时，都可以运行此命令。
 

@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 05/24/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 38f1bced73251eea11be86a76963aeaf1ec0f718
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 20f5387e7c1ea40e6b9848a1071e542dcd1cacaa
+ms.sourcegitcommit: aef7d80ceb9c3ec1cfb40131709a714c42960965
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389696"
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49383162"
 ---
 # <a name="middleware"></a>中间件
 
@@ -24,7 +24,7 @@ ms.locfileid: "47389696"
 
 适配器处理传入的活动并通过机器人中间件管道将其定向到机器人的逻辑，然后再返回。 当每个活动流入和流出机器人时，每个中间件都可以在机器人逻辑运行前后对其进行检查或执行操作。
 
-在深入了解中间件之前，请务必先了解[机器人概要](~/v4sdk/bot-builder-basics.md)和[机器人处理活动的方式](~/v4sdk/bot-builder-concept-activity-processing.md)。
+在深入了解中间件之前，请务必先了解[机器人概要](~/v4sdk/bot-builder-basics.md)和[机器人处理活动的方式](~/v4sdk/bot-builder-basics.md#the-activity-processing-stack)。
 
 ## <a name="uses-for-middleware"></a>中间件用法
 经常会出现这样的问题：“什么时候我应该将操作作为中间件来实现，而不是使用普通机器人逻辑？” 中间件为你提供了额外的机会，在处理每个_轮次_的聊天前后与用户的聊天流进行交互。 中间件还允许你存储和检索有关聊天的信息，并在需要时调用其他处理逻辑。 下面是一些常见的场景，展示了中间件可能有用的地方。
@@ -33,7 +33,7 @@ ms.locfileid: "47389696"
 很多情况下，需要机器人对每个活动或某种类型的每个活动执行某些操作。 例如，你可能希望记录机器人收到的每个消息活动，或者在机器人本回合未生成响应时提供回退响应。 中间件便是实现这种操作的绝佳位置，它能够在执行剩余机器人逻辑的前后执行操作。
 
 ### <a name="modifying-or-enhancing-the-turn-context"></a>修改或增强回合上下文
-如果机器人知道的信息比活动中提供的多，这会让某些聊天将更富成效。 在这种情况下，中间件可以查看截至目前的聊天状态信息、查询外部数据源，还可在将执行传递给机器人逻辑之前将其附加到[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)对象。 
+如果机器人知道的信息比活动中提供的多，这会让某些聊天将更富成效。 在这种情况下，中间件可以查看截至目前的聊天状态信息、查询外部数据源，还可在将执行传递给机器人逻辑之前将其附加到[轮次上下文](~/v4sdk/bot-builder-basics.md#defining-a-turn)对象。 
 
 SDK 定义了可记录传入和传出活动的日志记录中间件，但你也可以定义自己的中间件。
 
@@ -65,7 +65,7 @@ SDK 定义了可记录传入和传出活动的日志记录中间件，但你也�
 机器人特定的中间件应该排在中间件管道中的最后面，此类中间件可对发送到机器人的每个消息进行某些处理。 如果中间件使用状态信息或机器人上下文中设置的其他信息，请将其添加到中间件管道中用于修改状态或上下文的中间件的后面。
 
 ## <a name="short-circuiting"></a>短路
-有关中间件（和[响应处理程序](./bot-builder-concept-activity-processing.md#response-event-handlers)）的一个重要概念便是短路。 如果要通过后续的层继续执行，需使用中间件（或响应处理程序）调用该执行的_下一个_委托，将执行传递下去。  如果未在该中间件（或响应处理程序）中调用下一个委托，则关联的管道将发生短路并且不会执行后续层。 这意味着将跳过所有机器人逻辑以及管道中后面的所有中间件。 对于将一个轮次短路而言，中间件和响应处理程序之间存在细微差别。
+有关中间件（和[响应处理程序](bot-builder-basics.md#response-event-handlers)）的一个重要概念便是短路。 如果要通过后续的层继续执行，需使用中间件（或响应处理程序）调用该执行的_下一个_委托，将执行传递下去。  如果未在该中间件（或响应处理程序）中调用下一个委托，则关联的管道将发生短路并且不会执行后续层。 这意味着将跳过所有机器人逻辑以及管道中后面的所有中间件。 对于将一个轮次短路而言，中间件和响应处理程序之间存在细微差别。
 
 当中间件将一个轮次短路时，将不会调用机器人轮次处理程序，但是在此之前在管道中执行的所有中间件代码仍然会运行到结束。 
 

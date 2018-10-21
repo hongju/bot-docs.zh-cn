@@ -10,12 +10,12 @@ ms.prod: bot-framework
 ms.date: 09/19/2018
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: af79bb40e3d24557fd898fa0a0ca2ef7b0286af4
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: bef0d5f3220cd818767f4eead5c5f4a09d047c26
+ms.sourcegitcommit: aef7d80ceb9c3ec1cfb40131709a714c42960965
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707543"
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49383152"
 ---
 # <a name="language-understanding"></a>语言理解
 
@@ -56,11 +56,11 @@ ms.locfileid: "46707543"
 
 ## <a name="how-your-bot-gets-messages-from-luis"></a>机器人如何通过 LUIS 获取消息
 
-设置并连接 LUIS 后，机器人便可以将消息发送到 LUIS 应用，该应用将返回包含意向和实体的 JSON 响应。 然后，可以使用机器人_轮次处理程序_中的[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)，根据 LUIS 响应中的意向路由聊天流。 
+设置并连接 LUIS 后，机器人便可以将消息发送到 LUIS 应用，该应用将返回包含意向和实体的 JSON 响应。 然后，可以使用机器人_轮次处理程序_中的[轮次上下文](~/v4sdk/bot-builder-basics.md#defining-a-turn)，根据 LUIS 响应中的意向路由聊天流。 
 
 ![如何将意向和实体传递给机器人](./media/cognitive-services-add-bot-language/cognitive-services-luis-message-flow-bot-code.png)
 
-若要开始在机器人中使用 LUIS 应用，请查看[将 LUIS 用于语言理解][luis-v4-how-to]。
+若要开始在机器人中使用 LUIS 应用，请查看[将 LUIS 用于语言理解](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0)。
 
 ## <a name="best-practices-for-language-understanding"></a>语言理解的最佳做法
 
@@ -99,7 +99,7 @@ LUIS 应用提供了一项功能来改进应用性能，方法是查看用户向
 
 ## <a name="use-luis-to-improve-speech-recognition"></a>使用 LUIS 改进语音识别
 
-对于用户会话的机器人，将其与 LUIS 集成可帮助识别将语音转换为文本时可能被人误解的字词。  例如，在国际象棋场景中，用户可能会说：“Move knight to A 7”。 如果没有用户意向的上下文，该表达可能会被识别为：“Move night 287”。 通过创建代表棋子的实体并以表达进行标记，可以提供语音识别上下文进行标识。 可以使用与必应语音集成的 Bot Framework 通道（比如网上聊天、Bot Framework 模拟器和 Cortana）来[启用语音识别启动][speechrecognitionpriming]。  
+对于用户会话的机器人，将其与 LUIS 集成可帮助识别将语音转换为文本时可能被人误解的字词。  例如，在国际象棋场景中，用户可能会说：“Move knight to A 7”。 如果没有用户意向的上下文，该表达可能会被识别为：“Move night 287”。 通过创建代表棋子的实体并以表达进行标记，可以提供语音识别上下文进行标识。 可以使用与必应语音集成的 Bot Framework 通道（比如网络聊天、Bot Framework 模拟器和 Cortana）来[启用语音识别启动](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-manage-speech-priming?view=azure-bot-service-4.0)。  
 
 ## <a name="additional-resources"></a>其他资源
 有关详细信息，请参阅[认知服务](https://docs.microsoft.com/en-us/azure/cognitive-services/)文档。

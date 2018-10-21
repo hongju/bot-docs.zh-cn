@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 56fe0af4d34e6e0aa4bc420112c541a410aa1301
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: e2176d3eb5584a1d9a234d4ab94c69451f0db6ef
+ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297871"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49315223"
 ---
 # <a name="connect-a-bot-to-slack"></a>将机器人连接到 Slack
 
@@ -21,7 +21,7 @@ ms.locfileid: "39297871"
 
 ## <a name="create-a-slack-application-for-your-bot"></a>为机器人创建 Slack 应用程序
 
-登录到 Slack 并[创建 Slack 应用程序](https://api.slack.com/applications/new)。
+登录到 [Slack](https://slack.com/signin)，然后转到[创建 Slack 应用程序](https://api.slack.com/apps)通道。
 
 ![设置机器人](~/media/channels/slack-NewApp.png)
 
@@ -63,23 +63,23 @@ ms.locfileid: "39297871"
 按照以下步骤订阅六个特别的机器人事件。 通过订阅机器人事件，将在你指定的 URL 上向你的应用通知用户活动。
 
 > [!TIP]
-> 机器人句柄是机器人的一个属性。 若要查找机器人的句柄，请访问 [https://dev.botframework.com/bots](https://dev.botframework.com/bots)，选择机器人，然后单击“设置”。
+> 机器人句柄是机器人的名称。 若要查找机器人的句柄，请访问 [https://dev.botframework.com/bots](https://dev.botframework.com/bots)，选择一个机器人，然后记录该机器人的名称。
 
 1. 选择“事件订阅”选项卡。
 2. 将“启用事件”设置为“开启”。
-3. 在“请求 URL”中，输入此 URL，但将 `{YourBotHandle}` 替换为你的机器人句柄。
+3. 在“请求 URL”中，输入此 URL，但将 `{YourBotHandle}` 替换为你的机器人句柄。 本教程中使用的机器人句柄为 testChannels。
         `https://slack.botframework.com/api/Events/{YourBotHandle}`
-4. 在“订阅机器人事件”中，单击“添加机器人用户事件”。
-5. 在事件列表中，单击“添加机器人用户事件”，然后选择以下六种事件类型：
+4. 在“订阅工作区事件”中，单击“添加工作区事件”。
+5. 在事件列表中，选择以下六种事件类型：
     * `member_joined_channel`
     * `member_left_channel`
     * `message.channels`
     * `message.groups`
     * `message.im`
     * `message.mpim`
-6. 单击“保存更改”。
 
-![订阅事件](~/media/channels/slack-EnableEvents.png)
+![订阅事件](~/media/channels/slack-SubscribeEvents.png)
+6. 单击“保存更改”。
 
 ## <a name="add-and-configure-interactive-messages-optional"></a>添加和配置交互式消息（可选）
 
@@ -87,7 +87,7 @@ ms.locfileid: "39297871"
 
 1. 选择“交互式组件”选项卡，然后单击“启用交互式组件”。
 2. 输入 `https://slack.botframework.com/api/Actions` 作为“请求 URL”。
-3. 单击“启用交互式消息”按钮，然后单击“保存更改”按钮。
+3. 单击“保存更改”按钮。
 
 ![启用消息](~/media/channels/slack-MessageURL.png)
 
@@ -103,7 +103,7 @@ ms.locfileid: "39297871"
 在单独的浏览器窗口中，返回到 Bot Framework 站点 `https://dev.botframework.com/`。
 
 1. 选择“我的机器人”，然后选择要连接到 Slack 的机器人。
-2. 在“添加通道”部分，单击 Slack 图标。
+2. 在“通道”部分，单击 Slack 图标。
 3. 在“输入 Slack 凭据”部分，将 Slack 网站上的应用凭据粘贴到相应的字段中。
 4. “登录页 URL”是可选的。 可以省略或对其进行更改。
 5. 单击“ **保存**”。

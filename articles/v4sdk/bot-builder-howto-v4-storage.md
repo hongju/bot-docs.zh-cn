@@ -9,12 +9,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 09/14/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0bbb507484840ab1fb0dc7c209b5d7ca8e9c9cfb
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 3c28ad1fd14fab90c558ece4736423be2cabd78b
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46708143"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326544"
 ---
 # <a name="write-directly-to-storage"></a>直接写入存储
 
@@ -502,10 +502,11 @@ Azure Blob 存储是 Microsoft 提供的适用于云的对象存储解决方案�
 ```csharp
 using Microsoft.Bot.Builder.Azure;
 ```
-
 更新将“_myStorage_”指向现有 Blob 存储帐户的代码行。
 
 ```csharp
+
+
 private static readonly AzureBlobStorage _myStorage = new AzureBlobStorage("<your-blob-storage-account-string>", "<your-blob-storage-container-name>");
 ```
 
@@ -544,36 +545,71 @@ Azure Blob 脚本存储提供专门的存储选项，可以轻松地以记录脚
 Azure Blob 脚本存储可以使用通过上面的“创建 Blob 存储帐户”和“添加配置信息”部分详述的步骤创建的 Blob 存储帐户。 为了进行本次讨论，我们添加了新的 Blob 容器“_mybottranscripts_”。 
 
 ### <a name="implementation"></a>实现 
-以下代码将脚本存储指针“_myTranscripts_”连接到新的 Azure Blob 脚本存储帐户。 连接脚本存储指针“_myTranscripts_”的单行代码。
+以下代码将脚本存储指针“_transcriptStore_”连接到新的 Azure Blob 脚本存储帐户。 在此处显示的用于存储用户聊天内容的源代码基于[聊天历史记录](https://aka.ms/bot-history-sample-code)示例。 
 
 ```csharp
+// In Startup.cs
 using Microsoft.Bot.Builder.Azure;
-private readonly AzureBlobTranscriptStore _myTranscripts = new AzureBlobTranscriptStore("<your-blob-storage-account-string>", "<your-blob-storage-account-name>");
+
+// Enable the conversation transcript middleware.
+blobStore = new AzureBlobTranscriptStore(blobStorageConfig.ConnectionString, storageContainer);
+var transcriptMiddleware = new TranscriptLoggerMiddleware(blobStore);
+options.Middleware.Add(transcriptMiddleware);
+
+// In ConversationHistoryBot.cs
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Builder.Azure;
+using Microsoft.Bot.Connector;
+using Microsoft.Bot.Schema;
+
+private readonly AzureBlobTranscriptStore _transcriptStore;
+
+/// <param name="transcriptStore">Injected via ASP.NET dependency injection.</param>
+public ConversationHistoryBot(AzureBlobTranscriptStore transcriptStore)
+{
+    _transcriptStore = transcriptStore ?? throw new ArgumentNullException(nameof(transcriptStore));
+}
+
 ```
 
 ### <a name="store-user-conversations-in-azure-blob-transcripts"></a>在 Azure Blob 脚本中存储用户聊天内容
-可以使用 Blob 容器来存储脚本以后，即可保留用户与机器人的聊天内容。 这些聊天内容可以在以后用作调试工具，以便了解用户与机器人的交互情况。 以下代码保留用户聊天输入供以后查看。
+可以使用 Blob 容器来存储脚本以后，即可保留用户与机器人的聊天内容。 这些聊天内容可以在以后用作调试工具，以便了解用户与机器人的交互情况。 以下代码保留当 activity.text 收到输入消息 _!history_ 时的用户聊天输入。
 
 
 ```csharp
 /// <summary>
 /// Every Conversation turn for our EchoBot will call this method. 
 /// </summary>
-/// <param name="context">Turn scoped context containing all the data needed
+/// <param name="turnContext">A <see cref="ITurnContext"/> containing all the data needed
 /// for processing this conversation turn. </param>        
-public async Task OnTurnAsync(ITurnContext context, CancellationToken cancellationToken = default(CancellationToken))
+public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
 {
-    var activityType = context.Activity.Type;
-
-    await context.SendActivityAsync($"Activity type: {context.Activity.Type}.");
-
-    // This bot is processing Messages
-    if (activityType == ActivityTypes.Message)
+    var activity = turnContext.Activity;
+    if (activity.Type == ActivityTypes.Message)
     {
-        // save user input into bot transcript storage for later debugging and review.
-        await _myTranscripts.LogActivityAsync(context.Activity);
-```
+        if (activity.Text == "!history")
+        {
+           // Download the activities from the Transcript (blob store) when a request to upload history arrives.
+           var connectorClient = turnContext.TurnState.Get<ConnectorClient>(typeof(IConnectorClient).FullName);
+           // Get all the message type activities from the Transcript.
+           string continuationToken = null;
+           var count = 0;
+           do
+           {
+               var pagedTranscript = await _transcriptStore.GetTranscriptActivitiesAsync(activity.ChannelId, activity.Conversation.Id);
+               var activities = pagedTranscript.Items
+                  .Where(a => a.Type == ActivityTypes.Message)
+                  .Select(ia => (Activity)ia)
+                  .ToList();
+               
+               var transcript = new Transcript(activities);
 
+               await connectorClient.Conversations.SendConversationHistoryAsync(activity.Conversation.Id, transcript, cancellationToken: cancellationToken);
+
+               continuationToken = pagedTranscript.ContinuationToken;
+           }
+           while (continuationToken != null);
+```
 
 ### <a name="find-all-stored-transcripts-for-your-channel"></a>找到为通道存储的所有脚本
 若要查看自己存储了哪些数据，可以使用以下代码以编程方式查找所有已存储脚本的“_ConversationID_”。 使用机器人模拟器来测试代码时，选择“重新开始”即可启动一个使用新“_ConversationID_”的新脚本。
@@ -584,7 +620,7 @@ PagedResult<Transcript> pagedResult = null;
 var pageSize = 0;
 do
 {
-    pagedResult = await _myTranscripts.ListTranscriptsAsync("emulator", pagedResult?.ContinuationToken);
+    pagedResult = await _transcriptStore.ListTranscriptsAsync("emulator", pagedResult?.ContinuationToken);
     
     // transcript item contains ChannelId, Created, Id.
     // save the converasationIds (Id) found by "ListTranscriptsAsync" to a local list.
@@ -596,7 +632,6 @@ do
     }
 } while (pagedResult.ContinuationToken != null);
 ```
-
 
 ### <a name="retrieve-user-conversations-from-azure-blob-transcript-storage"></a>从 Azure Blob 脚本存储中检索用户聊天内容
 将机器人交互脚本存储到 Azure Blob 脚本存储中以后，即可以编程方式检索它们，以便使用 AzureBlobTranscriptStorage 方法“_GetTranscriptActivities_”进行测试或调试。 以下代码片段从每个存储的脚本中检索在过去 24 小时内收到并存储的所有用户输入脚本。
@@ -635,7 +670,7 @@ for (int i = 0; i < numTranscripts; i++)
    if (i > 0)
    {
        string thisConversationId = storedTranscripts[i];    
-       await _myTranscripts.DeleteTranscriptAsync("emulator", thisConversationId);
+       await _transcriptStore.DeleteTranscriptAsync("emulator", thisConversationId);
     }
 }
 ```

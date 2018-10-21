@@ -9,12 +9,12 @@ ms.topic: get-started-article
 ms.prod: bot-framework
 ms.date: 09/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5f3a02783242697fccf267bef2d56ed453880c67
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: d299e4bdfd503475bf1ec560da2aff1d3a199e47
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707973"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326384"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-net"></a>通过 Bot Builder SDK for .NET 创建机器人
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -35,7 +35,7 @@ ms.locfileid: "46707973"
 ![Visual Studio 项目](../media/azure-bot-quickstarts/bot-builder-dotnet-project.png)
 
 > [!TIP] 
-> 如果需要，请更新 [NuGet 包](https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
+> 根据需要将项目生成类型更改为 ``.Net Core 2.1``；根据需要更新 [NuGet 包](https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio)。
 
 得益于模板，项目包含本快速入门中创建机器人所需的所有代码。 实际上不需要编写任何其他代码。
 
@@ -48,12 +48,16 @@ ms.locfileid: "46707973"
 接下来，启动模拟器，然后在模拟器中连接到机器人：
 
 1. 单击模拟器“欢迎”选项卡中的“打开机器人”链接。 
-2. 选择位于创建 Visual Studio 解决方案的目录中的 .bot 文件。
+2. 选择创建 Visual Studio 解决方案时所在目录中的 .bot 文件。
 
 ## <a name="interact-with-your-bot"></a>与机器人交互
 
 向机器人发送消息，机器人将回复消息。
-![模拟器运行](../media/emulator-v4/emulator-running.png)
+
+![正在运行的模拟器](../media/emulator-v4/emulator-running.png)
+
+> [!NOTE]
+> 如果发现消息无法发送，则可能需要重启计算机，因为 ngrok 尚未在系统上获得所需特权（只需重启一次）。
 
 ## <a name="next-steps"></a>后续步骤
 

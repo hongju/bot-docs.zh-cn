@@ -1,31 +1,37 @@
 ---
 title: 将机器人连接到 Skype | Microsoft Docs
-description: 了解如何通过 Skpye 接口配置机器人以进行访问。
+description: 了解如何配置机器人，以便通过 Skype 接口进行访问。
 keywords: Skype, 机器人通道, 配置 Skype, 发布, 连接到通道
 author: v-ducvo
 ms.author: RobStand
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 2/1/2018
-ms.openlocfilehash: 5dc4063125855113f813b8873b01df84c90e197e
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.date: 10/11/2018
+ms.openlocfilehash: 6fec83e7e37ba4759e8e305be8c98382f0bedeff
+ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297862"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49315073"
 ---
 # <a name="connect-a-bot-to-skype"></a>将机器人连接到 Skpye
 
 Skype 通过即时消息、电话和视频通话让你与用户保持联系。 通过生成用户可通过 Skype 接口发现并与之进行互动的机器人来扩展此功能。
 
-要添加 Skype 通道，请在 [Azure 门户](https://portal.azure.com/)中打开机器人，单击“通道”边栏选项卡，然后单击“Skype”。 这会转到“配置 Skype”设置页。 填写有关机器人的所有必要信息，然后单击“保存”以连接 Skype 通道。 接受“服务条款”，Skype 通道将添加到机器人中。
+要添加 Skype 通道，请在 [Azure 门户](https://portal.azure.com/)中打开机器人，单击“通道”边栏选项卡，然后单击“Skype”。
 
 ![添加 Skype 通道](~/media/channels/skype-addchannel.png)
 
+这会转到“配置 Skype”设置页。
+
+![配置 Skype 通道](~/media/channels/skype_configure.png)
+
+需在“Web 控件”、“消息”、“呼叫”、“组”和“发布”中配置设置。 让我们逐个进行配置。
+
 ## <a name="web-control"></a>Web 控件
 
-为了将机器人嵌入到你的网站中，可通过单击“Web 控件”部分的“获取嵌入代码”按钮来获取代码。
+若要将机器人嵌入到网站中，请单击“Web 控件”部分的“获取嵌入代码”按钮。 此时会转到“开发人员版 Skype”页。 按照该处的说明获取嵌入代码。
 
 ## <a name="messaging"></a>消息传递
 
@@ -44,6 +50,8 @@ Skype 通过即时消息、电话和视频通话让你与用户保持联系。 �
 此部分配置机器人的发布设置。 标有 * 的所有字段都是必填字段。
 
 预览版中的机器人限 100 个联系人。 如果需要超过 100 个联系人，请提交机器人进行审核。 单击“提交以供审核”，如果接受，你的机器人会在 Skype 中自动成为可搜索的机器人。 如果申请未获批准，你将收到有关获得批准所需要执行的更改的通知。
+
+完成配置以后，请单击“保存”并接受“服务条款”。 Skype 通道现在已添加到机器人中。
 
 ## <a name="next-steps"></a>后续步骤
 

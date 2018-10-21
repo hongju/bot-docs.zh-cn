@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 09/26/2018
-ms.openlocfilehash: 410f50f02dcea2bb64ccf0389e20f5cb76e2fd6b
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 42273044cd1e32a3c78fa7fb1b83beac061ce0b8
+ms.sourcegitcommit: aef7d80ceb9c3ec1cfb40131709a714c42960965
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389836"
+ms.lasthandoff: 10/17/2018
+ms.locfileid: "49383172"
 ---
 # <a name="troubleshooting-general-problems"></a>排查常见问题
 这些常见问题有助于排查常见的机器人开发或操作问题。
@@ -39,10 +39,7 @@ ms.locfileid: "47389836"
 在 Visual Studio 中，可以选择是否调试[仅我的代码](https://msdn.microsoft.com/en-us/library/dn457346.aspx)。 检查完整的调用堆栈可能会对问题提供其他见解。
 
 **确保所有对话框方法都以处理下一条消息的计划结束。**  
-所有 `IDialog` 方法均应通过 `IDialogStack.Call`、`IDialogStack.Wait` 或 `IDialogStack.Done` 完成。 这些 `IDialogStack` 方法通过传递给每个 `IDialog` 方法的 `IDialogContext` 公开。 通过 `PromptDialog` 静态方法调用 `IDialogStack.Forward` 并使用系统提示将在其实现中调用其中一种方法。
-
-**确保所有对话框均可序列化。**  
-这可以像在 `IDialog` 实现上使用 `[Serializable]` 属性一样简单。 但是，请注意，如果匿名方法闭包引用其外部环境来捕获变量，则它们不可序列化。 Bot Framework 支持基于反射的序列化代理，以帮助序列化未标记为可序列化的类型。
+所有对话框步骤都需要馈送到瀑布框的下一步中，或者需要终止当前对话框，以便将其从堆栈中弹出。 如果某个步骤未正确处理，则聊天不会像预期的那样继续。 若要详细了解对话框，请参阅有关[对话框](v4sdk/bot-builder-concept-dialog.md)的概念文章。
 
 ## <a name="why-doesnt-the-typing-activity-do-anything"></a>为什么键入活动不会执行任何操作？
 某些渠道不支持其客户端中的临时性键入更新。
@@ -54,7 +51,14 @@ ms.locfileid: "47389836"
 ## <a name="what-causes-an-error-with-http-status-code-429-too-many-requests"></a>导致出现 HTTP 状态代码 429“请求过多”错误的原因是什么？
 
 HTTP 状态代码 429 的错误响应表示在给定的时间内发出了太多请求。 响应的正文应包含问题的说明，也可以指定请求之间所需的最小间隔。 此错误的一个可能来源是 [ngrok](https://ngrok.com/)。 如果你处于免费计划并且遇到 ngrok 的限制，请访问其网站上的定价和限制页以获取更多[选项](https://ngrok.com/product#pricing)。 
- 
+
+## <a name="why-arent-my-bot-messages-getting-received-by-the-user"></a>为何用户收不到我的机器人消息？
+
+在响应中生成的消息活动必须正确处理，否则到不了预期的目标。 绝大多数情况下，你不需进行显式处理；SDK 会为你处理此消息活动。 
+
+正确处理某项活动意味着包括相应的聊天引用详细信息以及有关发送者和接收者的详细信息。 大多数情况下，发送消息活动是为了响应已经到达的消息活动。 因此，可以从入站活动中获取寻址详细信息。 
+
+如果检查跟踪或审核日志，则可通过检查来确保消息正确寻址。 否则，请在机器人中设置一个断点，看看是在何处为消息设置的 ID。
 
 ## <a name="how-can-i-run-background-tasks-in-aspnet"></a>如何在 ASP.NET 中运行后台任务？ 
 
@@ -77,7 +81,7 @@ Bot Framework 将尽可能地保留消息顺序。 例如，如果先发送消�
 
 ## <a name="how-can-i-intercept-all-messages-between-the-user-and-my-bot"></a>如何截获用户和我的机器人之间的所有消息？
 
-使用 Bot Builder SDK for .NET，可以为 `Autofac` 依赖关系注入容器提供 `IPostToBot` 和 `IBotToUser` 接口的实现。 使用 Bot Builder SDK for Node.js，可以将中间件用于相同的目的。 [BotBuilder-Azure](https://github.com/Microsoft/BotBuilder-Azure) 存储库包含将此数据记录到 Azure 表的 C# 和 Node.js 库。
+使用 Bot Builder SDK for .NET，可以为 `Autofac` 依赖关系注入容器提供 `IPostToBot` 和 `IBotToUser` 接口的实现。 使用适用于任何语言的 Bot Builder SDK，可以将中间件用于几乎相同的目的。 [BotBuilder-Azure](https://github.com/Microsoft/BotBuilder-Azure) 存储库包含将此数据记录到 Azure 表的 C# 和 Node.js 库。
 
 ## <a name="why-are-parts-of-my-message-text-being-dropped"></a>为什么我的消息文本被部分删除？
 
@@ -127,6 +131,8 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 ## <a name="what-causes-the-direct-line-30-service-to-respond-with-http-status-code-502-bad-gateway"></a>导致 Direct Line 3.0 服务使用 HTTP 状态代码 502“错误的网关”进行响应的原因是什么？
 当 Direct Line 3.0 尝试联系你的机器人但请求未成功完成时会返回 HTTP 状态代码 502。 此错误表示机器人返回错误或请求超时。有关机器人生成的错误的详细信息，请转到 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a>中的机器人仪表板，然后单击受影响通道的“问题”链接。 如果为机器人配置了 Application Insights，则还可以在那里找到详细的错误信息。 
 
+::: moniker range="azure-bot-service-3.0"
+
 ## <a name="what-is-the-idialogstackforward-method-in-the-bot-builder-sdk-for-net"></a>Bot Builder SDK for .NET 中的 IDialogStack.Forward 方法是什么？
 
 `IDialogStack.Forward` 的主要目的是重用一个通常为“被动”的现有子对话框，其中子对话框（在 `IDialog.StartAsync` 中）等待带有一些 `ResumeAfter` 处理程序的对象 `T`。 特别是，如果你有一个等待 `IMessageActivity` `T` 的子对话框，则可以使用 `IDialogStack.Forward` 方法转发传入的 `IMessageActivity`（已由某个父对话框接收）。 例如，要将传入的 `IMessageActivity` 转发到 `LuisDialog`，请调用 `IDialogStack.Forward` 以将 `LuisDialog` 推送到对话框堆栈，运行 `LuisDialog.StartAsync` 中的代码，直到它安排等待下一条消息，然后立即通过转发的 `IMessageActivity` 满足该等待。
@@ -134,6 +140,8 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 `T` 通常是一个 `IMessageActivity`，因为通常会构造 `IDialog.StartAsync` 以等待该类型的活动。 在将消息转发到现有的 `LuisDialog` 之前，可以对 `LuisDialog` 使用 `IDialogStack.Forward` 作为一种机制，截获来自用户的消息进行某些处理。 或者，还可以将 `DispatchDialog` 与 `ContinueToNextGroup` 结合使用来实现此目的。
 
 你可能希望在由 `StartAsync` 计划的第一个 `ResumeAfter` 处理程序（例如，`LuisDialog.MessageReceived`）中找到转发项。
+
+::: moniker-end
 
 ## <a name="what-is-the-difference-between-proactive-and-reactive"></a>“主动”和“被动”之间的区别是什么？
 

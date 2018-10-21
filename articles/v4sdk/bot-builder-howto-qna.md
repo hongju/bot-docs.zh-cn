@@ -7,47 +7,36 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 03/13/2018
+ms.date: 10/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7dd973e2b5a151e754925e6f19c6e4f82507f745
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: e3d7c0a541a4b7f8c2065c5db724e5d79ced54b8
+ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42906171"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49315173"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答问题
 
+[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-要为机器人添加简单的问答支持，你可以使用 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/home) 服务。
+可以使用 QnA Maker 服务为机器人添加问答支持。 创建自己的 QnA Maker 服务的基本要求之一是为其提供问题和答案。 在许多情况下，问题和答案已经存在于常见问题解答或其他文档等内容中。 其他时候，你希望以更自然的会话方式自定义问题的答案。
 
+## <a name="prerequisites"></a>先决条件
+- 创建 [QnA Maker](https://www.qnamaker.ai/) 帐户
+- 下载 QnA Maker 示例 [[C#](https://aka.ms/cs-qna) | [JavaScript](https://aka.ms/js-qna-sample)]
 
-编写自己的 QnA Maker 服务的基本要求之一是为其提供问题和答案。 在许多情况下，问题和答案已经存在于常见问题解答或其他文档等内容中。 其他时候，你希望以更自然的会话方式自定义问题的答案。 
+## <a name="create-a-qna-maker-service-and-publish-a-knowledge-base"></a>创建 QnA Maker 服务并发布知识库
 
-## <a name="create-a-qna-maker-service"></a>创建 QnA Maker 服务
-首先创建一个帐户并登录 [QnA Maker](https://qnamaker.ai/)。 导航到“创建知识库”。 单击“创建 QnA 服务”，然后按照创建 Azure QnA 服务的说明进行操作。
+创建 QnA Maker 帐户之后，请根据说明创建 [QnA Maker 服务](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure)和[知识库](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/create-publish-knowledge-base)。 
 
-![Qna 图像 1](media/QnA_1.png)
-
-此时重定向到[创建 QnA Maker](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesQnAMaker)。 完成表单，并单击“创建”。
-
-![Qna 图像 2](media/QnA_2.png)
- 
-在 Azure 门户中创建 QnA 服务后，你将获得“资源管理”标题下的密钥，你可以忽略这些密钥。 继续执行步骤 2 以连接 Azure QnA 服务。 刷新页面以选择刚刚创建的 Azure 服务，并输入知识库的名称。
-
-![Qna 图像 3](media/QnA_3.png)
-
-单击“创建知识库”。 输入你自己的问题和答案，或复制以下示例。 
-
-![Qna 图像 4](media/QnA_4.png)
-
-或者，你可以选择“填充知识库”并提供文件或 URL。 用于生成简单 QnA Maker 服务的示例源文件在[此处](https://aka.ms/qna-tsv)。
-
-添加新的 QnA 对或填充知识库后，单击“保存并定型”。 完成后，在“发布”选项卡上，单击“发布”。
-
-要将 QnA 服务连接到机器人，你将需要包含知识库 ID 和 QnA Maker 订阅密钥的 HTTP 请求字符串。 从发布的结果复制示例 HTTP 请求。 
-
-![Qna 图像 5](media/QnA_5.png)
+发布知识库以后，需记录以下值，以便通过编程方式将机器人连接到知识库。
+- 在 [QnA Maker](https://www.qnamaker.ai/) 站点中选择知识库。
+- 打开知识库以后，选择“设置”。 将针对“服务名称”显示的值记录为 <your_kb_name>
+- 向下滚动，找到“部署详细信息”并记录以下值：
+   - POST /knowledgebases/<your_knowledge_base_id>/generateAnswer
+   - 主机: https://<you_hostname>.azurewebsites.net/qnamaker
+   - 授权: EndpointKey <your_endpoint_key>
 
 ## <a name="installing-packages"></a>安装程序包
 
@@ -55,236 +44,310 @@ ms.locfileid: "42906171"
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
-在以下 NuGet 包的 v4 预发布版本中[添加引用](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui)：
+将以下 [NuGet 包](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui)添加到机器人。
 
-* `Microsoft.Bot.Builder.Ai.QnA`
+* `Microsoft.Bot.Builder.AI.QnA`
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-可使用 botbuilder-ai 包向机器人添加上述任一服务。 可以通过 npm 将此包添加到项目中：
+QnA Maker 功能位于 `botbuilder-ai` 包中。 可通过 npm 向项目添加以下包：
 
-* `npm install --save botbuilder@preview`
-* `npm install --save botbuilder-ai@preview`
+```shell
+npm install --save botbuilder-ai
+```
 
 ---
 
+## <a name="using-cli-tools-to-update-your-bot-configuration"></a>使用 CLI 工具更新 .bot 配置
+
+若要获取知识库访问值，另一种方法是使用 [qnamaker](https://aka.ms/botbuilder-tools-qnaMaker) 和 [msbot](https://aka.ms/botbuilder-tools-msbot-readme) BotBuilder CLI 工具获取知识库的元数据并将其添加到 .bot 文件。
+
+1. 打开终端或命令提示符，导航到机器人项目的根目录。
+2. 运行 `qnamaker init`，创建一个 QnA Maker 资源文件 (**.qnamakerrc**)。 它会提示输入 QnA Maker 订阅密钥。
+3. 运行以下命令，下载元数据并将其添加到机器人的配置文件。
+
+    ```shell
+    qnamaker get kb --kbId <your-kb-id> --msbot | msbot connect qna --stdin [--secret <your-secret>]
+    ```
+如果已加密配置文件，则需提供密钥才能更新该文件。
 
 ## <a name="using-qna-maker"></a>使用 QnA Maker
-
-QnA Maker 首先作为中间件添加。 然后我们可以在机器人逻辑中使用结果。
+初始化机器人时，先添加对 QnA Maker 的引用。 然后，我们可以在机器人逻辑中调用它。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
+打开此前下载的 QnA Maker 示例。 我们会根据需要修改此代码。
+首先，请将访问知识库所需的信息（包括主机名、终结点密钥和知识库 ID (KbId)）添加到 `BotConfiguration.bot` 中。 这些是在 QnA Maker 中通过知识库的“设置”保存的值。
 
-更新 `Startup.cs` 文件中的 `ConfigureServices` 方法以添加 `QnAMakerMiddleware` 对象。 只需将知识库添加到机器人的中间件堆栈，即可将机器人配置为检查从用户收到的每条消息的知识库。
-
-
-```csharp
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Bot.Builder.Ai.Qna;
-using Microsoft.Bot.Builder.BotFramework;
-using Microsoft.Bot.Builder.Core.Extensions;
-using Microsoft.Bot.Builder.Integration.AspNet.Core;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using System;
-
-public void ConfigureServices(IServiceCollection services)
+```json
 {
-    services.AddSingleton(_ => Configuration);
-    services.AddBot<AiBot>(options =>
+  "name": "QnABotSample",
+  "services": [
     {
-        options.CredentialProvider = new ConfigurationCredentialProvider(Configuration);
-
-        var endpoint = new QnAMakerEndpoint
-        {
-           KnowledgeBaseId = "YOUR-KB-ID",
-           // Get the Host from the HTTP request example at https://www.qnamaker.ai
-           // For GA services: https://<Service-Name>.azurewebsites.net/qnamaker
-           // For Preview services: https://westus.api.cognitive.microsoft.com/qnamaker/v2.0           
-           Host = "YOUR-HTTP-REQUEST-HOST",
-           EndpointKey = "YOUR-QNA-MAKER-SUBSCRIPTION-KEY"
-        };
-        options.Middleware.Add(new QnAMakerMiddleware(endpoint));
-    });
+      "type": "endpoint",
+      "name": "development",
+      "endpoint": "http://localhost:3978/api/messages",
+      "appId": "",
+      "id": "1",
+      "appPassword": ""
+    },
+    {
+      "type": "qna",
+      "name": "QnABot",
+      "KbId": "<YOUR_KNOWLEDGE_BASE_ID>",
+      "Hostname": "https://<YOUR_HOSTNAME>.azurewebsites.net/qnamaker",
+      "EndpointKey": "<YOUR_ENDPOINT_KEY>"
+    }
+  ],
+  "version": "2.0",
+  "padlock": ""
 }
 ```
 
-
-
-编辑 EchoBot.cs 文件中的代码，以便 `OnTurn` 在 QnA Maker 中间件未向用户的问题发送响应的情况下发送回退消息：
+接下来，在 `Startup.cs` 中创建 QnA Maker 实例。 这样会从 `BotConfiguration.bot` 文件中获取上述信息。 这些字符串还可以进行测试所需的硬编码。
 
 ```csharp
-using System.Threading.Tasks;
-using Microsoft.Bot;
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Schema;
-
-namespace Bot_Builder_Echo_Bot_QnA
+private static BotServices InitBotServices(BotConfiguration config)
 {
-    public class EchoBot : IBot
-    {    
-        public async Task OnTurn(ITurnContext context)
+    var qnaServices = new Dictionary<string, QnAMaker>();
+    foreach (var service in config.Services)
+    {
+        switch (service.Type)
         {
-            // This bot is only handling Messages
-            if (context.Activity.Type == ActivityTypes.Message)
-            {             
-                if (!context.Responded)
+            case ServiceTypes.QnA:
+            {
+                // Create a QnA Maker that is initialized and suitable for passing
+                // into the IBot-derived class (QnABot).
+                var qna = (QnAMakerService)service;
+                if (qna == null)
                 {
-                    // QnA didn't send the user an answer
-                    await context.SendActivity("Sorry, I couldn't find a good match in the KB.");
-
+                    throw new InvalidOperationException("The QnA service is not configured correctly in your '.bot' file.");
                 }
+
+                if (string.IsNullOrWhiteSpace(qna.KbId))
+                {
+                    throw new InvalidOperationException("The QnA KnowledgeBaseId ('kbId') is required to run this sample. Please update your '.bot' file.");
+                }
+
+                if (string.IsNullOrWhiteSpace(qna.EndpointKey))
+                {
+                    throw new InvalidOperationException("The QnA EndpointKey ('endpointKey') is required to run this sample. Please update your '.bot' file.");
+                }
+
+                if (string.IsNullOrWhiteSpace(qna.Hostname))
+                {
+                    throw new InvalidOperationException("The QnA Host ('hostname') is required to run this sample. Please update your '.bot' file.");
+                }
+
+                var qnaEndpoint = new QnAMakerEndpoint()
+                {
+                    KnowledgeBaseId = qna.KbId,
+                    EndpointKey = qna.EndpointKey,
+                    Host = qna.Hostname,
+                };
+
+                var qnaMaker = new QnAMaker(qnaEndpoint);
+                qnaServices.Add(qna.Name, qnaMaker);
+                break;
             }
         }
     }
+    var connectedServices = new BotServices(qnaServices);
+    return connectedServices;
 }
 ```
 
+然后，我们需向机器人提供此 QnAMaker 实例。 打开 `QnABot.cs`，并在文件顶部添加以下代码。 若要访问自己的知识库，请更改下面显示的“欢迎”消息，为用户提供有用的初始说明。
 
-有关示例机器人，请参阅 [QnA Maker 示例](https://aka.ms/qna-cs-bot-sample)。
+```csharp
+public class QnABot : IBot
+{
+    public static readonly string QnAMakerKey = "QnABot";
+    private const string WelcomeText = @"This bot will introduce you to QnA Maker.
+                                         Ask a quesiton to get started.";
+    private readonly BotServices _services;
+    public QnABot(BotServices services)
+    {
+        _services = services ?? throw new System.ArgumentNullException(nameof(services));
+        Console.WriteLine($"{_services}");
+        if (!_services.QnAServices.ContainsKey(QnAMakerKey))
+        {
+            throw new System.ArgumentException($"Invalid configuration. Please check your '.bot' file for a QnA service named '{QnAMakerKey}'.");
+        }
+    }
+}
+```
+
+# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
+打开此前下载的 QnA Maker 示例。 我们会根据需要修改此代码。
+在示例中，启动代码位于 **index.js** 文件中，机器人逻辑代码位于 **bot.js** 文件中，其他配置信息位于 **qnamaker.bot** 文件中。
+
+在按说明创建知识库并更新 **.bot** 文件以后，**qnamaker.bot** 文件应包含一个适用于 QnA Maker 知识库的服务条目。
+
+```json
+{
+    "name": "qnamaker",
+    "description": "",
+    "services": [
+        {
+            "type": "endpoint",
+            "name": "development",
+            "id": "1",
+            "appId": "",
+            "appPassword": "",
+            "endpoint": "http://localhost:3978/api/messages"
+        },
+        {
+            "type": "qna",
+            "name": "<YOUR_KB_NAME>",
+            "kbId": "<YOUR_KNOWLEDGE_BASE_ID>",
+            "endpointKey": "<YOUR_ENDPOINT_KEY>",
+            "hostname": "https://<YOUR_HOSTNAME>.azurewebsites.net/qnamaker",
+            "id": "221"
+        }
+    ],
+    "padlock": "",
+    "version": "2.0"
+}
+```
+
+在 **index.js** 文件中，我们读取配置信息，以便生成 QnA Maker 服务并初始化机器人。
+
+将 `QNA_CONFIGURATION` 的值更新为知识库的名称，正如其显示在配置文件中的那样。
+
+```js
+// QnA Maker knowledge base name as specified in .bot file.
+const QNA_CONFIGURATION = '<YOUR_KB_NAME>';
+
+// Get endpoint and QnA Maker configurations by service name.
+const endpointConfig = botConfig.findServiceByNameOrId(BOT_CONFIGURATION);
+const qnaConfig = botConfig.findServiceByNameOrId(QNA_CONFIGURATION);
+
+// Map the contents to the required format for `QnAMaker`.
+const qnaEndpointSettings = {
+    knowledgeBaseId: qnaConfig.kbId,
+    endpointKey: qnaConfig.endpointKey,
+    host: qnaConfig.hostname
+};
+
+// Create adapter...
+
+// Create the QnAMakerBot.
+let bot;
+try {
+    bot = new QnAMakerBot(qnaEndpointSettings, {});
+} catch (err) {
+    console.error(`[botInitializationError]: ${ err }`);
+    process.exit();
+}
+```
+
+然后创建 HTTP 服务器并侦听传入请求，此类请求会生成对机器人逻辑的调用。
+
+```js
+// Create HTTP server.
+let server = restify.createServer();
+server.listen(process.env.port || process.env.PORT || 3978, function() {
+    console.log(`\n${ server.name } listening to ${ server.url }.`);
+    console.log(`\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator.`);
+    console.log(`\nTo talk to your bot, open qnamaker.bot file in the emulator.`);
+});
+
+// Listen for incoming requests.
+server.post('/api/messages', (req, res) => {
+    adapter.processActivity(req, res, async (turnContext) => {
+        await bot.onTurn(turnContext);
+    });
+});
+```
+
+---
+
+## <a name="calling-qna-maker-from-your-bot"></a>通过机器人调用 QnA Maker
+
+# <a name="ctabcs"></a>[C#](#tab/cs)
+
+当机器人需要来自 QnAMaker 的答案时，请通过机器人代码调用 `GetAnswersAsync()`，以便根据当前的上下文获取适当的答案。 若要访问自己的知识库，请更改下面的“没有答案”消息，为用户提供有用的说明。
+
+```csharp
+// Check QnA Maker model
+var response = await _services.QnAServices[QnAMakerKey].GetAnswersAsync(turnContext);
+if (response != null && response.Length > 0)
+{
+    await turnContext.SendActivityAsync(response[0].Answer, cancellationToken: cancellationToken);
+}
+else
+{
+    var msg = @"No QnA Maker answers were found. This example uses a QnA Maker Knowledge Base that focuses on smart light bulbs.
+                To see QnA Maker in action, ask the bot questions like 'Why won't it turn on?' or 'I need help'.";
+    await turnContext.SendActivityAsync(msg, cancellationToken: cancellationToken);
+}
+
+    /// ...
+```
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-首先请求/导入 [QnAMaker](https://github.com/Microsoft/botbuilder-js/tree/master/doc/botbuilder-ai/classes/botbuilder_ai.qnamaker.md) 类：
+在 **bot.js** 文件中，我们将用户的输入传递给 QnA Maker 服务的 `generateAnswer` 方法，以便从知识库获取答案。 若要访问自己的知识库，请更改下面的“没有答案”和“欢迎”消息，为用户提供有用的说明。
 
-```js
-const { QnAMaker } = require('botbuilder-ai');
-```
+```javascript
+const { ActivityTypes, TurnContext } = require('botbuilder');
+const { QnAMaker, QnAMakerEndpoint, QnAMakerOptions } = require('botbuilder-ai');
 
-通过基于 QnA 服务的 HTTP 请求使用字符串初始化 `QnAMaker` 来创建它。 可以从“设置”>“部署详细信息”下的 [QnA Maker 门户](https://qnamaker.ai)复制服务的示例请求。
-
-
-字符串的格式取决于 QnA Maker 服务是使用 GA 还是 QnA Maker 的预览版本。 复制示例 HTTP 请求，并在初始化 `QnAMaker` 时获取要使用的知识库 ID、订阅密钥和主机。
-
-<!--
-**Preview**
-```js
-const qnaEndpointString = 
-    // Replace xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx with your knowledge base ID
-    "POST /knowledgebases/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/generateAnswer\r\n" + 
-    "Host: https://westus.api.cognitive.microsoft.com/qnamaker/v2.0\r\n" +
-    // Replace xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx with your QnAMaker subscription key
-    "Ocp-Apim-Subscription-Key: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\n"
-const qna = new QnAMaker(qnaEndpointString);
-```
-
-**GA**
-```js
-const qnaEndpointString = 
-    // Replace xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx with your knowledge base ID
-    "POST /knowledgebases/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/generateAnswer\r\n" + 
-    // Replace <Service-Name> to match the Azure URL where your service is hosted
-    "Host: https://<Service-Name>.azurewebsites.net/qnamaker\r\n" +
-    // Replace xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx with your QnAMaker subscription key
-    "Authorization: EndpointKey xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\n"
-const qna = new QnAMaker(qnaEndpointString);
-```
--->
-**预览**
-```js
-const qna = new QnAMaker(
-    {
-        knowledgeBaseId: '<KNOWLEDGE-BASE-ID>',
-        endpointKey: '<QNA-SUBSCRIPTION-KEY>',
-        host: 'https://westus.api.cognitive.microsoft.com/qnamaker/v2.0'
-    },
-    {
-        // set this to true to send answers from QnA Maker
-        answerBeforeNext: true
+/**
+ * A simple bot that responds to utterances with answers from QnA Maker.
+ * If an answer is not found for an utterance, the bot responds with help.
+ */
+class QnAMakerBot {
+    /**
+     * The QnAMakerBot constructor requires one argument (`endpoint`) which is used to create an instance of `QnAMaker`.
+     * @param {QnAMakerEndpoint} endpoint The basic configuration needed to call QnA Maker. In this sample the configuration is retrieved from the .bot file.
+     * @param {QnAMakerOptions} config An optional parameter that contains additional settings for configuring a `QnAMaker` when calling the service.
+     */
+    constructor(endpoint, qnaOptions) {
+        this.qnaMaker = new QnAMaker(endpoint, qnaOptions);
     }
-);
-```
-**GA**
-```js
-const qna = new QnAMaker(
-    {
-        knowledgeBaseId: '<KNOWLEDGE-BASE-ID>',
-        endpointKey: '<QNA-SUBSCRIPTION-KEY>',
-        host: 'https://<Service-Name>.azurewebsites.net/qnamaker'
-    },
-    {
-        answerBeforeNext: true
+
+    /**
+     * Every conversation turn for our QnAMakerBot will call this method.
+     * @param {TurnContext} turnContext Contains all the data needed for processing the conversation turn.
+     */
+    async onTurn(turnContext) {
+        // By checking the incoming Activity type, the bot only calls QnA Maker in appropriate cases.
+        if (turnContext.activity.type === ActivityTypes.Message) {
+            // Perform a call to the QnA Maker service to retrieve matching Question and Answer pairs.
+            const qnaResults = await this.qnaMaker.generateAnswer(turnContext.activity.text);
+
+            // If an answer was received from QnA Maker, send the answer back to the user.
+            if (qnaResults[0]) {
+                await turnContext.sendActivity(qnaResults[0].answer);
+
+            // If no answers were returned from QnA Maker, reply with help.
+            } else {
+                await turnContext.sendActivity('No QnA Maker answers were found. This example uses a QnA Maker Knowledge Base that focuses on smart light bulbs. To see QnA Maker in action, ask the bot questions like "Why won\'t it turn on?" or "I need help."');
+            }
+
+        // If the Activity is a ConversationUpdate, send a greeting message to the user.
+        } else if (turnContext.activity.type === ActivityTypes.ConversationUpdate &&
+                   turnContext.activity.recipient.id !== turnContext.activity.membersAdded[0].id) {
+            await turnContext.sendActivity('Welcome to the QnA Maker sample! Ask me a question and I will try to answer it.');
+
+        // Respond to all other Activity types.
+        } else if (turnContext.activity.type !== ActivityTypes.ConversationUpdate) {
+            await turnContext.sendActivity(`[${ turnContext.activity.type }]-type activity detected.`);
+        }
     }
-);
-```
-通过简单地将 QNA maker 添加到机器人的中间件堆栈，可以将机器人配置为自动调用它：
+}
 
-```js
-// Add QnA Maker as middleware
-adapter.use(qna);
-
-// Listen for incoming requests 
-server.post('/api/messages', (req, res) => {
-    // Route received request to adapter for processing
-    adapter.processActivity(req, res, async (context) => {
-        // If `!context.responded`, that means an answer wasn't found for the user's utterance.
-        // In this case, we send the user a fallback message.
-        if (context.activity.type === 'message' && !context.responded) {
-            await context.sendActivity('No QnA Maker answers were found.');
-        } else if (context.activity.type !== 'message') {
-            await context.sendActivity(`[${context.activity.type} event detected]`);
-        }
-    });
-});
+module.exports.QnAMakerBot = QnAMakerBot;
 ```
 
-初始化 `QnAMaker` 时，将 `answerBeforeNext` 初始化为 `true` 意味着如果 QnA Maker 中间件找到答案，则它会自动响应，然后才能在 `processActivity` 中获取机器人的主逻辑。 如果与此相反，将 `answerBeforeNext` 设置为 `false`，则机器人只会在 `processActivity` 中运行所有机器人主逻辑后调用 QnA Maker，并且仅适用于机器人未回复用户的情况。 
-
-## <a name="calling-qna-maker-without-using-middleware"></a>不使用中间件调用 QnA Maker
-
-在前面的示例中，`adapter.use(qna);` 语句表示 QnA 作为中间件运行，因此响应机器人收到的每条消息。 为了更好地控制调用 QnA Maker 的方式和时间，可以直接从机器人的逻辑中调用 `qna.answer()`，而不是将其作为一个中间件安装。
-
-删除 `adapter.use(qna);` 语句并使用以下代码直接调用 QnA Maker。
-
-```js
-// Listen for incoming activity 
-server.post('/api/messages', (req, res) => {
-    // Route received activity to adapter for processing
-    adapter.processActivity(req, res, async (context) => {
-        if (context.activity.type === 'message') {
-            var handled = await qna.answer(context)
-                if (!handled) {
-                    await context.sendActivity(`I'm sorry. I didn't understand.`);
-                }
-        }
-    });
-});
-```
-
-另一种自定义 QnA Maker 的方法是使用 `qna.generateAnswer()`。 此方法允许从 QnA Maker 获得有关答案的更多详细信息。
-
-
-```js
-// Listen for incoming activity 
-server.post('/api/messages', (req, res) => {
-    // Route received activity to adapter for processing
-    adapter.processActivity(req, res, async (context) => {
-        if (context.activity.type === 'message') {
-            // Get all the answers QnA Maker finds
-            var results = await qna.generateAnswer(context.activity.text);
-                if (results && results.length > 0) {
-                    await context.sendActivity(results[0].answer);
-                } else {
-                    await context.sendActivity(`I don't know.`);
-                }
-    
-        }
-    });
-});
-```
 ---
 
-询问机器人问题，以查看来自 QnA Maker 服务的回复。
-
-![Qna 图像 6](media/QnA_6.png)
-
-
+询问机器人问题，以查看来自 QnA Maker 服务的回复。 若要详细了解如何测试和发布 QnA 服务，请参阅有关如何[测试知识库](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/test-knowledge-base)的 QnA Maker 文章。
 
 ## <a name="next-steps"></a>后续步骤
 
 QnA Maker 可与其他认知服务结合使用，使机器人更加强大。 调度工具提供了一种在机器人中将 QnA 与语言理解 (LUIS) 相结合的方法。
 
 > [!div class="nextstepaction"]
-> [使用调度工具组合 LUIS 应用和 QnA 服务](./bot-builder-tutorial-dispatch.md)
+> [使用调度工具组合 LUIS 和 QnA 服务](./bot-builder-tutorial-dispatch.md)

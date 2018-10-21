@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: dd8869c26a87718177462db2508e41aa82810e21
-ms.sourcegitcommit: f0b22c6286e44578c11c9f15d22b542c199f0024
+ms.openlocfilehash: ab7e6a8e6bbb2cf12fca0371f2de561f4fb47fd8
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47404073"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326524"
 ---
 # <a name="design-knowledge-bots"></a>设计知识型机器人
 
@@ -129,7 +129,7 @@ ms.locfileid: "47404073"
 2. 首先调用 LUIS，如果没有意向满足特定阈值分数（即触发“None”意向），则调用 QnA Maker。 或者，为 QnA Maker 创建 LUIS 意向，从而向 LUIS 模型提供映射到“QnAIntent”的 QnA 问题示例。 
 3. 首先调用 QnA Maker，如果答案均不符合特定的阈值分数，则调用 LUIS。 
 
-Bot Builder SDK 为 LUIS 和 QnA Maker 提供内置支持。 这让用户能够使用 LUIS 和/或 QnA Maker 触发对话或自动回答问题，而无需对任一工具实现自定义调用。 有关详细信息，请参阅[机器人服务模板](bot-service-concept-templates.md)。
+Bot Builder SDK 为 LUIS 和 QnA Maker 提供内置支持。 这让用户能够使用 LUIS 和/或 QnA Maker 触发对话或自动回答问题，而无需对任一工具实现自定义调用。 有关详细信息，请参阅 [Bot Builder Dispatch 工具教程](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0)。
 
 > [!TIP]
 > 在实现 LUIS、QnA Maker 和/或 Azure 搜索的组合时，通过每个工具测试输入以确定每个模型的阈值分数。 LUIS、QnA Maker 和 Azure 搜索各自使用不同的评分标准生成分数，因此通过这些工具生成的分数无法直接对比。 此外，LUIS 和 QnA Maker 将分数标准化。 某个 LUIS 模型可能认为某一分数是“良好”，而另一模型则不这么认为。 

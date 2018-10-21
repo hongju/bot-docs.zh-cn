@@ -8,12 +8,12 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a192b69b2ffbac428d80b2fe7c3fd9180caacd4f
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 8c1fe15436a00487483755af06897c4af1c70be2
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905579"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326494"
 ---
 # <a name="customize-user-experience-with-pattern-language"></a>使用模式语言自定义用户体验
 

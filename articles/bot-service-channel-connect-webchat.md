@@ -7,32 +7,33 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 12/13/2017
-ms.openlocfilehash: b5a9d20c058fe425d727bf2e39597e7dd29ec077
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.date: 10/10/2018
+ms.openlocfilehash: 6e81b51243afc15714653aed7b9ca6513314071c
+ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389626"
+ms.lasthandoff: 10/13/2018
+ms.locfileid: "49315153"
 ---
 # <a name="connect-a-bot-to-web-chat"></a>将机器人连接到网上聊天
+
+[!INCLUDE pre-release-label]
+
 使用机器人服务[创建机器人](bot-service-quickstart.md)时，将自动配置网上聊天通道。 网上聊天通道包含网上聊天控件，用户可通过该控件直接在网页中与机器人进行交互。
 
-![网上聊天示例](~/media/bot-service-channel-webchat/webchat-sample.png)
+![网上聊天示例](./media/bot-service-channel-webchat/create-a-bot.png)
 
 Bot Framework 门户中的网上聊天通道包含在网页中嵌入网上聊天控件所需的一切内容。 要使用网上聊天控件，只需获取机器人的密钥并将控件嵌入网页即可。
-
-[!INCLUDE [Channel Inspector intro](~/includes/snippet-channel-inspector.md)]
 
 ## <a id="step-1"></a>获取机器人密钥
 
 1. 在 [Azure 门户](http://portal.azure.com)中打开机器人，然后单击“通道”边栏选项卡。
 
 2. 单击“网上聊天”通道的“编辑”。  
-![网上聊天通道](~/media/bot-service-channel-webchat/bot-service-channel-list.png)
+![网上聊天通道](./media/bot-service-channel-webchat/bot-service-channel-list.png)
 
 3. 在“密钥”下，单击第一个密钥下的“显示”。  
-![密钥](~/media/bot-service-channel-webchat/secret-key.png)
+![密钥](./media/bot-service-channel-webchat/secret-key.png)
 
 4. 复制“密钥”和“嵌入代码”。
 
@@ -127,8 +128,8 @@ Bot Framework 门户中的网上聊天通道包含在网页中嵌入网上聊天
 <iframe style="height:480px; width:402px" src="... SEE ABOVE ..."></iframe>
 ```
 
-![聊天控件客户端](~/media/chatwidget-client.png)
+![聊天控件客户端](./media/chatwidget-client.png)
 
 ## <a name="additional-resources"></a>其他资源
 
-可在 GitHub 上为网上聊天控件[下载源代码](https://github.com/Microsoft/BotFramework-WebChat)。
+可在 GitHub 上为网上聊天控件[下载源代码](https://aka.ms/BotFramework-WebChat-V4)。

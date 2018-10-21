@@ -9,18 +9,18 @@ ms.topic: article
 ms.prod: bot-framework
 ms.date: 09/19/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b70f0bfbc76ad06be30fc7f590118b69ab1baf92
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 61e86ce9536bc5d77dc7bd411054b2f65bce8dd9
+ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389736"
+ms.lasthandoff: 10/15/2018
+ms.locfileid: "49326554"
 ---
 # <a name="persist-user-data"></a>保存用户数据
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-当机器人要求用户进行输入时，你可能希望将某些信息保存到某种形式的存储中。 Bot Builder SDK 允许使用内存中存储或数据库存储（如 CosmosDB）来存储用户输入。 本地存储类型主要用于机器人的测试或原型制作过程。 但是，持久性存储类型（例如数据库存储）则最适合生产性机器人。 
+当机器人要求用户进行输入时，你可能希望将某些信息保存到某种形式的存储中。 Bot Builder SDK 允许使用内存中存储或数据库存储（如 CosmosDB）来存储用户输入。 本地存储类型主要用于机器人的测试或原型制作过程。 但是，持久性存储类型（例如数据库存储）则最适合生产性机器人。
 
 本主题介绍如何定义存储对象，以及如何将用户的输入内容保存到存储对象中，使其可持久保留。 我们将使用对话框向用户询问其名称（如果还没有该名称）。 无论你选择使用哪种存储类型，连接和保存数据的过程都是相同的。 本主题中的代码使用 `CosmosDB` 作为存储来持久保存数据。
 
@@ -50,15 +50,18 @@ ms.locfileid: "47389736"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-从 NuGet 包管理器安装这些包。
+我们从一个基本的 EchoBot 模板着手。 有关说明，请参阅[适用于 .NET 的快速入门](~/dotnet/bot-builder-dotnet-quickstart.md)。
+
+从 NuGet 包管理器安装这些额外的包。
 
 * **Microsoft.Bot.Builder.Azure**
 * **Microsoft.Bot.Builder.Dialogs**
-* **Microsoft.Bot.Builder.Integration.AspNet.Core**
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-导航到机器人的项目文件夹并从 NPM 安装 `botbuilder-dialogs` 包：
+我们从一个基本的 EchoBot 模板着手。 有关说明，请参阅[适用于 JavaScript 的快速入门](~/javascript/bot-builder-javascript-quickstart.md)。
+
+安装这些额外的 npm 包。
 
 ```cmd
 npm install --save botbuilder-dialogs
@@ -70,13 +73,15 @@ npm install --save botbuilder-azure
 若要测试在本教程中创建的机器人，需安装 [BotFramework Emulator](https://github.com/Microsoft/BotFramework-Emulator)。
 
 ## <a name="create-a-cosmosdb-service-and-update-your-application-settings"></a>创建 CosmosDB 服务并更新应用程序设置
-若要设置 CosmosDB 服务和数据库，请按[使用 CosmosDB](bot-builder-howto-v4-storage.md#using-cosmos-db) 中的说明操作。 步骤归纳如下：
-   1. 在新浏览器窗口中，登录到 <a href="http://portal.azure.com/" target="_blank">Azure 门户</a>。
-   1. 单击“创建资源”>“数据库”>“Azure Cosmos DB”。
-   1. 在“新建帐户”页的“ID”字段中提供唯一的名称。 至于 **API**，请选择“SQL”，然后提供“订阅”、“位置”、“资源组”信息。
-   1. 单击“创建”。
 
-然后，将集合添加到该服务，以便将其与此机器人配合使用。
+若要设置 CosmosDB 服务和数据库，请按[使用 CosmosDB](bot-builder-howto-v4-storage.md#using-cosmos-db) 中的说明操作。 步骤归纳如下：
+
+1. 在新浏览器窗口中，登录到 <a href="http://portal.azure.com/" target="_blank">Azure 门户</a>。
+1. 单击“创建资源”>“数据库”>“Azure Cosmos DB”。
+1. 在“新建帐户”页的“ID”字段中提供唯一的名称。 至于 **API**，请选择“SQL”，然后提供“订阅”、“位置”、“资源组”信息。
+1. 单击“创建”。
+
+然后，将集合添加到该服务，以便与此机器人配合使用。
 
 记录用于添加集合的数据库 ID 和集合 ID，以及集合的密钥设置中的 URI 和主密钥，因为我们需要有这些才能将机器人连接到服务。
 
@@ -104,18 +109,18 @@ npm install --save botbuilder-azure
 
 **.env**
 
-```cmd
-DB_SERVICE_ENDPOINT=<database service endpoint>
+```text
+DB_SERVICE_ENDPOINT=<your-CosmosDB-endpoint>
 AUTH_KEY=<authentication key>
-DATABASE=<database name>
-COLLECTION=<collection name>
+DATABASE=<your-primary-key>
+COLLECTION=<your-collection-identifier>
 ```
 
 然后在机器人的主 **index.js** 文件中替换 `storage`，以便使用 `CosmosDbStorage` 而不是 `MemoryStorage`。 在运行时会拉入环境变量并用其填充这些字段。
 
 ```javascript
 const storage = new CosmosDbStorage({
-    serviceEndpoint: process.env.DB_SERVICE_ENDPOINT, 
+    serviceEndpoint: process.env.DB_SERVICE_ENDPOINT,
     authKey: process.env.AUTH_KEY, 
     databaseId: process.env.DATABASE,
     collectionId: process.env.COLLECTION
@@ -126,8 +131,7 @@ const storage = new CosmosDbStorage({
 
 ## <a name="create-storage-state-manager-and-state-property-accessor-objects"></a>创建存储、状态管理器和状态属性访问器对象
 
-机器人使用状态管理和存储对象来管理并持久保存状态。 管理器提供一个抽象层，让你可以使用状态属性访问器来访问状态属性（不考虑基础存储的类型）。 使用状态管理器将数据写入存储中。 
-
+机器人使用状态管理和存储对象来管理并持久保存状态。 管理器提供一个抽象层，让你可以使用状态属性访问器来访问状态属性（不考虑基础存储的类型）。 使用状态管理器将数据写入存储中。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -190,13 +194,14 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Azure;
-using Microsoft.Bot.Builder.BotFramework;
 using Microsoft.Bot.Builder.Dialogs;
 using Microsoft.Bot.Builder.Integration;
 using Microsoft.Bot.Builder.Integration.AspNet.Core;
-using Microsoft.Bot.Builder.TraceExtensions;
+using Microsoft.Bot.Configuration;
+using Microsoft.Bot.Connector.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 ```
 
@@ -215,14 +220,14 @@ public void ConfigureServices(IServiceCollection services)
         // ...
 
         // Use persistent storage and create state management objects.
-        var CosmosSettings = Configuration.GetSection("CosmosDB");
+        var cosmosSettings = Configuration.GetSection("CosmosDB");
         IStorage storage = new CosmosDbStorage(
             new CosmosDbStorageOptions
             {
-                DatabaseId = CosmosSettings["DatabaseID"],
-                CollectionId = CosmosSettings["CollectionID"],
-                CosmosDBEndpoint = new Uri(CosmosSettings["EndpointUri"]),
-                AuthKey = CosmosSettings["AuthenticationKey"],
+                DatabaseId = cosmosSettings["DatabaseID"],
+                CollectionId = cosmosSettings["CollectionID"],
+                CosmosDBEndpoint = new Uri(cosmosSettings["EndpointUri"]),
+                AuthKey = cosmosSettings["AuthenticationKey"],
             });
         options.State.Add(new ConversationState(storage));
         options.State.Add(new UserState(storage));
@@ -246,11 +251,12 @@ public void ConfigureServices(IServiceCollection services)
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-### <a name="indexjs"></a>index.js
+### <a name="update-your-server-code"></a>更新服务器代码
 
-在主机器人的 **index.js** 文件中，更新以下 require 语句。
+在项目的 **index.js** 文件中，更新以下 require 语句。
 
 ```javascript
+// Import required bot services.
 const { BotFrameworkAdapter, ConversationState, UserState } = require('botbuilder');
 const { CosmosDbStorage } = require('botbuilder-azure');
 ```
@@ -258,17 +264,49 @@ const { CosmosDbStorage } = require('botbuilder-azure');
 将使用 `UserState` 来存储本教程的数据。 需创建新的 `userState` 对象并更新此行代码，以便将另一个参数传递到 `MainDialog` 类。
 
 ```javascript
-// Create conversation state with in-memory storage provider. 
+// Create conversation state with in-memory storage provider.
 const conversationState = new ConversationState(storage);
 const userState = new UserState(storage);
 
 // Create the main dialog.
-const mainDlg = new MainDialog(conversationState, userState);
+const bot = new MyBot(conversationState, userState);
 ```
 
-### <a name="dialogsmaindialogindexjs"></a>dialogs/mainDialog/index.js
+如果遇到常规错误，请清除聊天和用户状态。
 
-在 `MainDialog` 类中，需要机器人运行所需的库。 在本教程中，我们将使用**对话框**库。
+```javascript
+// Catch-all for errors.
+adapter.onTurnError = async (context, error) => {
+    // This check writes out errors to console log .vs. app insights.
+    console.error(`\n [onTurnError]: ${error}`);
+    // Send a message to the user
+    context.sendActivity(`Oops. Something went wrong!`);
+    // Clear out state
+    await conversationState.load(context);
+    await conversationState.clear(context);
+    await userState.load(context);
+    await userState.clear(context);
+    // Save state changes.
+    await conversationState.saveChanges(context);
+    await userState.saveChanges(context);
+};
+```
+
+另请更新 HTTP 服务器循环，以便调用机器人对象。
+
+```javascript
+// Listen for incoming requests.
+server.post('/api/messages', (req, res) => {
+    adapter.processActivity(req, res, async (context) => {
+        // Route to main dialog.
+        await bot.onTurn(context);
+    });
+});
+```
+
+### <a name="update-your-bot-logic"></a>更新机器人逻辑
+
+在 `MyBot` 类中，需要机器人运行所需的库。 在本教程中，我们将使用**对话框**库。
 
 ```javascript
 // Required packages for this bot
@@ -277,30 +315,29 @@ const { DialogSet, WaterfallDialog, TextPrompt, NumberPrompt } = require('botbui
 
 ```
 
-更新 `MainDialog` 类的构造函数，接受另一个参数作为 `userState`。 另请更新用于定义本教程所需状态、对话框和提示的构造函数。 在此示例中，我们将定义一个双步瀑布框。其中，步骤 1 要求用户提供其名称，步骤 2 返回用户输入。 将由机器人的主逻辑来持久保存该信息。
+更新 `MyBot` 类的构造函数，接受另一个参数：`userState`。 另请更新用于定义本教程所需状态、对话框和提示的构造函数。 在此示例中，我们将定义一个双步瀑布框。其中，步骤 1 要求用户提供其名称，步骤 2 返回用户的响应。 将由机器人的主逻辑来持久保存该信息。
 
 ```javascript
-constructor (conversationState, userState) {
+constructor(conversationState, userState) {
 
-    // creates a new state accessor property. see https://aka.ms/about-bot-state-accessors to learn more about the bot state and state accessors 
+    // creates a new state accessor property.
     this.conversationState = conversationState;
     this.userState = userState;
 
     this.dialogState = this.conversationState.createProperty('dialogState');
-
     this.userDataAccessor = this.userState.createProperty('userData');
 
     this.dialogs = new DialogSet(this.dialogState);
-    
+
     // Add prompts
     this.dialogs.add(new TextPrompt('textPrompt'));
-    
-    // Check in user:
+
+    // Add a waterfall dialog to collect and return the user's name.
     this.dialogs.add(new WaterfallDialog('greetings', [
         async function (step) {
             return await step.prompt('textPrompt', "What is your name?");
         },
-        async function (step){
+        async function (step) {
             return await step.endDialog(step.result);
         }
     ]));
@@ -331,7 +368,7 @@ public class GreetingsDialog : DialogSet
     /// <summary>The ID of the main dialog.</summary>
     public const string MainDialog = "main";
 
-    /// <summary>The ID of the the text prompt to use in the dialog.</summary>
+    /// <summary>The ID of the text prompt to use in the dialog.</summary>
     private const string TextPrompt = "textPrompt";
 
     /// <summary>Creates a new instance of this dialog set.</summary>
@@ -483,14 +520,14 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
                     await turnContext.SendActivityAsync($"Pleased to meet you {userData.Name}.");
                 }
             }
-            // Else, if we don't have the user's name yet, ask for it.
             else if (userData.Name is null)
             {
+                // Else, if we don't have the user's name yet, ask for it.
                 await dc.BeginDialogAsync(GreetingsDialog.MainDialog);
             }
-            // Else, echo the user's message text.
             else
             {
+                // Else, echo the user's message text.
                 await turnContext.SendActivityAsync($"{userData.Name} said, '{turnContext.Activity.Text}'.");
             }
 
@@ -516,20 +553,17 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-更新 `MainDialog` 的 `onTurn` 处理程序。
-
-**dialogs/mainDialog/index.js**
+更新机器人的 `onTurn` 处理程序。
 
 ```javascript
 async onTurn(turnContext) {
-        
     const dc = await this.dialogs.createContext(turnContext); // Create dialog context
     const userData = await this.userDataAccessor.get(turnContext, {});
 
-    switch(turnContext.activity.type){
+    switch (turnContext.activity.type) {
         case ActivityTypes.ConversationUpdate:
             if (turnContext.activity.membersAdded[0].name !== 'Bot') {
-                if(userData.name){
+                if (userData.name) {
                     await turnContext.sendActivity(`Hi ${userData.name}! Welcome back to the User Data bot.`);
                 }
                 else {
@@ -538,12 +572,12 @@ async onTurn(turnContext) {
                     await dc.beginDialog('greetings');
                 }
             }
-        break;
+            break;
         case ActivityTypes.Message:
             // If there is an active dialog running, continue it
-            if(dc.activeDialog){
+            if (dc.activeDialog) {
                 var turnResult = await dc.continueDialog();
-                if(turnResult.status == "complete" && turnResult.result){
+                if (turnResult.status == "complete" && turnResult.result) {
                     // If it completes successfully and returns a value, save the name and greet the user.
                     userData.name = turnResult.result;
                     await this.userDataAccessor.set(turnContext, userData);
@@ -551,50 +585,48 @@ async onTurn(turnContext) {
                 }
             }
             // Else, if we don't have the user's name yet, ask for it.
-            else if(!userData.name){
+            else if (!userData.name) {
                 await dc.beginDialog('greetings');
             }
             // Else, echo the user's message text.
             else {
                 await turnContext.sendActivity(`${userData.name} said, ${turnContext.activity.text}.`);
             }
-        break;
-        case "deleteUserData":
+            break;
+        case ActivityTypes.DeleteUserData:
             // Delete the user's data.
-            // Note: You can use the emuluator to send this activity.
+            // Note: You can use the Emulator to send this activity.
             userData.name = null;
             await this.userDataAccessor.set(turnContext, userData);
             await turnContext.sendActivity("I have deleted your user data.");
-        break;
+            break;
     }
 
-    // Save changes to the user name.
-    await this.userState.saveChanges(turnContext);
-
-    // End this turn by saving changes to the conversation state.
+    // Save changes to the conversation and user states.
     await this.conversationState.saveChanges(turnContext);
-
+    await this.userState.saveChanges(turnContext);
 }
-
 ```
 
 ---
 
 ## <a name="start-your-bot-in-visual-studio"></a>在 Visual Studio 中启动机器人
+
 生成并运行应用程序。
 
 ## <a name="start-the-emulator-and-connect-your-bot"></a>启动模拟器并连接机器人
 
 接下来，启动模拟器，然后在模拟器中连接到机器人：
 
-1. 单击模拟器“欢迎”选项卡中的“打开机器人”链接。 
+1. 单击模拟器“欢迎”选项卡中的“打开机器人”链接。
 2. 选择创建 Visual Studio 解决方案时所在目录中的 .bot 文件。
 
 ## <a name="interact-with-your-bot"></a>与机器人交互
+
 向机器人发送消息，机器人将回复消息。
 ![模拟器运行](../media/emulator-v4/emulator-running.png)
 
-
 ## <a name="next-steps"></a>后续步骤
+
 > [!div class="nextstepaction"]
 > [管理对话和用户状态](bot-builder-howto-v4-state.md)
