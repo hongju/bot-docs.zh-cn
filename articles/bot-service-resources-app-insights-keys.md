@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/2017
-ms.openlocfilehash: 07fb6e9630996a61932da99b0575d43f4604141e
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 1ce24216cfd59259ff4869d4898fb3ad3bbf41c2
+ms.sourcegitcommit: abde9e0468b722892f94caf2029fae165f96092f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389426"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48875684"
 ---
 # <a name="application-insights-keys"></a>Application Insights 密钥
 
@@ -38,6 +38,7 @@ Azure **Application Insights** 在 Microsoft Azure 资源中显示有关应用�
 3. 单击“概览”。
 
 4. 展开“概要”块并找到“检测密钥”。 
+![概览的门户屏幕截图](~/media/portal-app-insights-instrumentation-key-dropdown.png)
 ![检测密钥的门户屏幕截图](~/media/portal-app-insights-instrumentation-key.png)
 
 5. 复制**检测密钥**并将其粘贴到机器人设置的“Application Insights 检测密钥”字段中。

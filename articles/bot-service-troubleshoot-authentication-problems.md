@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
 ms.date: 12/13/17
-ms.openlocfilehash: 5373b18ce5c11dae4e971cb1a70307ae2901ad36
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 9e86ea0fb677105be920e031979980baf479e42f
+ms.sourcegitcommit: abde9e0468b722892f94caf2029fae165f96092f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389656"
+ms.lasthandoff: 10/09/2018
+ms.locfileid: "48875724"
 ---
 # <a name="troubleshooting-bot-framework-authentication"></a>对 Bot Framework 身份验证进行故障排除
 
@@ -41,7 +41,9 @@ ms.locfileid: "47389656"
 
 若要禁用机器人的安全性，请编辑其配置设置，删除应用 ID 和密码值。 
 
-如果使用 Bot Builder SDK for .NET，请在 Web.config 文件中编辑这些设置：
+::: moniker range="azure-bot-service-3.0"
+
+如果使用 Bot Builder SDK for .NET，请在 Web.config 文件中编辑这些设置： 
 
 ```xml
 <appSettings>
@@ -58,6 +60,32 @@ var connector = new builder.ChatConnector({
   appPassword: null
 });
 ```
+
+::: moniker-end
+
+::: moniker range="azure-bot-service-4.0"
+
+如果使用 Bot Builder SDK for .NET，请在 `appsettings.config` 文件中编辑设置：
+
+```xml
+<appSettings>
+  <add key="MicrosoftAppId" value="" />
+  <add key="MicrosoftAppPassword" value="" />
+</appSettings>
+```
+
+如果使用 Bot Builder SDK for Node.js，请编辑这些值（或更新相应的环境变量）：
+
+```javascript
+const adapter = new BotFrameworkAdapter({
+    appId: null,
+    appPassword: null
+});
+```
+
+如果使用 `.bot` 文件进行配置，则可将 `appId` 和 `appPassword` 更新为 `""`。
+
+::: moniker-end
 
 ### <a name="test-your-bot-on-localhost"></a>在 localhost 上测试机器人 
 
@@ -115,7 +143,7 @@ curl -k -X POST https://login.microsoftonline.com/botframework.com/oauth2/v2.0/t
 
 机器人的安全性依赖于 Microsoft 服务，即使机器人仅在 localhost 上运行也是如此。 若要启用机器人的安全性，请编辑其配置设置，使用[步骤 2](#step-2) 中验证的值填充应用 ID 和密码。
 
-如果使用 Bot Builder SDK for .NET，请在 Web.config 文件中填充这些设置：
+如果使用 Bot Builder SDK for .NET，请在 `.bot` 或 `appsettings.config` 文件中填充这些设置：
 
 ```xml
 <appSettings>
