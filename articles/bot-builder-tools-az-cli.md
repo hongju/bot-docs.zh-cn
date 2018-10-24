@@ -6,24 +6,20 @@ ms.author: v-shimma
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 04/25/2018
+ms.date: 08/31/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 1eb47e76ef1bd6765d5ba93c27b97a8d9e6143db
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 96660ecb8bf7a69115e517bfa8ec97a79a3e8c90
+ms.sourcegitcommit: f0b22c6286e44578c11c9f15d22b542c199f0024
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905301"
+ms.lasthandoff: 09/27/2018
+ms.locfileid: "47404013"
 ---
 # <a name="create-bots-with-azure-cli"></a>使用 Azure CLI 创建机器人
 
 [!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
 
-[Bot Builder 工具](https://github.com/microsoft/botbuilder-tools)是一个新的工具集，可用于直接从命令行管理机器人资源并与之进行交互。 
-
-在本教程中我们将介绍如何：
-
-- 启用 Azure CLI 机器人扩展
+本教程介绍以下操作： 
 - 使用 Azure CLI 创建新机器人 
 - 下载用于开发的本地副本
 - 使用新 MSBot 工具来存储所有机器人资源信息
@@ -33,45 +29,34 @@ ms.locfileid: "42905301"
 
 ## <a name="prerequisites"></a>先决条件
 
-若要从命令行启用这些工具，需要在计算机上安装 Node.js： 
-
+若要通过命令行使用这些工具，需要在计算机上安装 Node.js： 
 - [Node.js（v8.5 或更高版本）](https://nodejs.org/en/)
 
-## <a name="1-enable-azure-cli"></a>1.启用 Azure CLI
+## <a name="1-install-tools"></a>1.安装工具
+1. [安装](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)最新版 Azure CLI。
+2. [安装](https://aka.ms/botbuilder-tools-readme) Bot Builder 工具。
 
-现在可以像任何其他 Azure 资源一样使用 [Azure CLI](https://docs.microsoft.com/cli/azure/?view=azure-cli-latest) 来管理机器人。 若要启用 Azure CLI，请完成以下步骤：
-
-1. 如果尚未安装，请[下载](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) Azure CLI。 
-
-2. 输入以下命令以下载 Azure 机器人扩展 dist 包。
-
-```azurecli
-az extension add -n botservice
-```
+现在可以像使用任何其他 Azure 资源一样使用 Azure CLI 来管理机器人。
 
 >[!TIP]
 > Azure 机器人扩展目前只支持 v3 机器人。
   
-3. 通过运行以下命令[登录](https://docs.microsoft.com/en-us/cli/azure/authenticate-azure-cli?view=azure-cli-latest)到 Azure CLI。
+3. 通过运行以下命令登录到 Azure CLI。
 
 ```azurecli
 az login
 ```
-系统将提示你提供唯一的临时身份验证代码。 若要登录，使用 Web 浏览器并访问 Microsoft [设备登录](https://microsoft.com/devicelogin)，然后粘贴 CLI 提供的代码以继续。 
+此时会打开一个用于登录的浏览器窗口。 登录后，会看到以下消息：
 
-![MS 设备登录](media/bot-builder-tools/ms-device-login.png)
+![MS 设备登录](media/bot-builder-tools/az-browser-login.png)
 
-成功登录后，会看到 Azure CLI 欢迎屏幕，以及可用于管理帐户和资源的可用选项列表。
+在命令行窗口中，会看到以下信息：
 
-![Azure 机器人 CLI](media/bot-builder-tools/az-cli-bot.png)
-
-
- 有关 Azure CLI 命令的完整列表，请[单击此处](https://docs.microsoft.com/cli/azure/reference-index?view=azure-cli-latest)。
-
+![Azure 登录命令](media/bot-builder-tools/az-login-command.png)
 
 ## <a name="2-create-a-new-bot-from-azure-cli"></a>2.从 Azure CLI 创建新机器人
 
-使用 Azure CLI 和新机器人扩展，可以完全从命令行创建新机器人。 
+使用 Azure CLI 完全从命令行创建新机器人。 
 
 ```azurecli
 az bot [command]
@@ -88,11 +73,11 @@ az bot [command]
 若要从 CLI 创建新机器人，需要选择一个现有[资源组](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)，或创建一个新的资源组。 
 
 ```azurecli
-az bot create --resource-group "my-resource-group" --name "my-bot-name" --kind "my-resource-type" --description "description-of-my-bot"
+az bot create --resource-group "my-resource-group" --name "my-bot-name" --kind "my-resource-type" --version v3 --description "description-of-my-bot"
 ```
-请求成功后，将看到确认消息。
+`--kind` 的允许值为 `function, registration, webapp`，`--version` 的允许值为 `v3, v4`。  请求成功后，将看到确认消息。
 ```
-obtained msa app id and password. Provisioning bot now.
+Obtained msa app id and password. Provisioning bot now.
 ```
 
 > [!TIP]
@@ -116,35 +101,30 @@ az bot create --resource-group "my-resource-group" --name "my-bot-name" --kind "
 
 ## <a name="3-download-the-bot-locally"></a>3.在本地下载机器人
 
-有两种方法可以下载新机器人源代码。
-- 从 Azure 门户下载。
-- 使用新的 Azure CLI 下载。
+有两种方法可以下载源代码：
+- 通过 Azure 门户。
+- 通过新的 Azure CLI。
 
-若要从门户下载机器人源代码，只需选择机器人资源，然后选择机器人管理下的“生成”。 有几个不同的选项可用于在本地管理或检索机器人源代码。 
+若要从 [Azure 门户](http://portal.azure.com)下载机器人源代码，请直接选择机器人资源，然后选择机器人管理下的“生成”。 有几个不同的选项可用于在本地管理或检索机器人源代码。
 
 ![Azure 门户机器人下载](media/bot-builder-tools/az-portal-manage-code.png)
 
-若要使用 CLI 下载机器人源代码，请输入以下命令。 机器人将下载到一个子目录。 如果子目录尚不存在，该命令将为你创建子目录。
+若要使用 CLI 下载机器人源代码，请输入以下命令。 机器人会下载到本地。
 
 ```azurecli
 az bot download --name "my-bot-name" --resource-group "my-resource-group"
 ```
-但是，也可以指定要将机器人下载至其中的目录。
-例如：
 
 ![CLI 下载命令](media/bot-builder-tools/cli-bot-download-command.png)
 
-![CLI 机器人下载](media/bot-builder-tools/cli-bot-download.png)
-
-可通过以上命令将机器人源代码直接下载到指定位置，以便在本地开发机器人。
-
-
 ## <a name="4-store-your-bot-information-with-msbot"></a>4.使用 MSBot 存储机器人信息
 
-新 [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/MSBot) 工具允许你创建 .bot 文件，该文件将机器人使用的不同服务的相关元数据存储在一个位置。 此文件还使机器人能够从 CLI 连接到这些服务。 该工具以 npm 模块形式提供。若要安装它，请运行：
+新 MSBot 工具用于创建 **.bot** 文件，该文件将机器人使用的不同服务的相关元数据存储在一个位置。 此文件还使机器人能够从 CLI 连接到这些服务。 MSBot 工具支持多个命令。有关详细信息，请参阅[自述](https://aka.ms/botbuilder-tools-msbot-readme)文件。 
+
+若要安装 MSBot，请运行：
 
 ```shell
-npm install -g msbot 
+npm install -g msbot
 ```
 
 若要创建机器人文件，请在 CLI 中输入“msbot init”后跟机器人的名称，并输入目标 URL 终结点，例如：
@@ -152,6 +132,7 @@ npm install -g msbot
 ```shell
 msbot init --name name-of-my-bot --endpoint http://localhost:bot-port-number/api/messages
 ```
+
 若要将机器人连接到服务，请在 CLI 中输入“msbot connect”后跟相应的服务：
 
 ```shell
@@ -166,36 +147,39 @@ msbot connect service-type
 | qna     |将机器人连接到 QnA 知识库|
 |help [cmd]  |显示 [cmd] 帮助|
 
+如需支持的服务的完整列表，请参阅[自述](https://aka.ms/botbuilder-tools-msbot-readme)文件。
+
 ### <a name="connect-your-bot-to-abs-with-the-bot-file"></a>使用 .bot 文件将机器人连接到 ABS
 
-在安装了 MSBot 工具后，可以通过运行 az 机器人 show 命令，轻松将机器人连接到 Azure 机器人服务中的现有资源组。 
+在安装了 MSBot 工具后，可以通过运行 az 机器人 show 命令，轻松将机器人连接到 Azure 机器人服务中的现有资源组。
 
 ```azurecli
 az bot show -n my-bot-name -g my-resource-group --msbot | msbot connect azure --stdin
 ```
 
-这将使用目标资源组中的当前终结点、MSA appID 和密码，并在 .bot 文件中相应地更新信息。 
+这将使用目标资源组中的当前终结点、MSA appID 和密码，并在 .bot 文件中相应地更新信息。
 
 
 ## <a name="5-manage-update-or-create-luis-and-qna-services-with--new-botbuilder-tools"></a>5.使用新 botbuilder-tools 管理、更新或创建 LUIS 和 QnA 服务
 
-[Bot Builder 工具](https://github.com/microsoft/botbuilder-tools)是一个新的工具集，可用于直接从命令行管理机器人资源并与之进行交互。 
+[Bot Builder 工具](https://aka.ms/botbuilder-tools)是一个新的工具集，可用于直接从命令行管理机器人资源并与之进行交互。
 
 >[!TIP]
 > 每个 Bot Builder 工具都包含全局帮助命令，可通过输入 -h 或 --help 从命令行进行访问。 此命令可随时在任何操作中使用，将显示对你可用的有用选项及其描述。
 
 ### <a name="ludown"></a>LUDown
-[LUDown](https://github.com/Microsoft/botbuilder-tools/tree/master/Ludown) 允许你使用 **.lu** 文件为机器人描述和创建功能强大的语言组件。 新的 .lu 文件是 markdown 格式类型，LUDown 工具使用此类型并输出特定于目标服务的 .json 文件。 目前，可以使用 .lu 文件创建新的 [LUIS](https://docs.microsoft.com/azure/cognitive-services/luis/luis-get-started-create-app) 应用程序或 [QnA](https://qnamaker.ai/Documentation/CreateKb) 知识库，对每个使用不同格式。 LUDown 可作为 npm 模块提供，以全局方式安装到计算机后即可使用：
+
+[LUDown](https://aka.ms/botbuilder-ludown) 允许你使用 **.lu** 文件为机器人描述和创建功能强大的语言组件。 新的 .lu 文件是 markdown 格式类型，LUDown 工具使用此类型并输出特定于目标服务的 .json 文件。 目前，可以使用 .lu 文件创建新的 [LUIS](https://docs.microsoft.com/azure/cognitive-services/luis/luis-get-started-create-app) 应用程序或 [QnA](https://qnamaker.ai/Documentation/CreateKb) 知识库，对每个使用不同格式。 LUDown 可作为 npm 模块提供，以全局方式安装到计算机后即可使用：
 
 ```shell
 npm install -g ludown
 ```
-LUDown 工具可用于为 LUIS 和 QnA 创建新的 .json 模型。  
 
+LUDown 工具可用于为 LUIS 和 QnA 创建新的 .json 模型。  
 
 ### <a name="creating-a-luis-application-with-ludown"></a>使用 LUDown 创建 LUIS 应用程序
 
-可以为 LUIS 应用程序定义[意向](https://docs.microsoft.com/azure/cognitive-services/luis/add-intents)和[实体](https://docs.microsoft.com/azure/cognitive-services/luis/add-entities)，就像在 LUIS 门户中那样。 
+可以为 LUIS 应用程序定义[意向](https://docs.microsoft.com/azure/cognitive-services/luis/add-intents)和[实体](https://docs.microsoft.com/azure/cognitive-services/luis/add-entities)，就像在 LUIS 门户中那样。
 
 `# \<intent-name\>` 介绍新的意向定义部分。 后续行包含描述该意向的[表达](https://docs.microsoft.com/azure/cognitive-services/luis/add-example-utterances)。
 
@@ -296,7 +280,7 @@ ludown parse ToQna --in ludown-file-name.lu
 
 ### <a name="connect-to-luis-from-the-cli"></a>从 CLI 连接到 LUIS 
 
-新工具集中包含的是 [LUIS 扩展](https://github.com/Microsoft/botbuilder-tools/tree/master/LUIS)，用于独立管理 LUIS 资源。 它以可下载的 npm 模块形式提供：
+新工具集中包含的是 [LUIS 扩展](https://aka.ms/botbuilder-luis-cli)，用于独立管理 LUIS 资源。 它以可下载的 npm 模块形式提供：
 
 ```shell
 npm install -g luis-apis
@@ -324,7 +308,7 @@ luis import application --in luis-app.json | msbot connect luis --stdin
 
 ### <a name="connect-to-qna-from-the-cli"></a>从 CLI 连接到 QnA
 
-新工具集中包含的是 [QnA 扩展](https://github.com/Microsoft/botbuilder-tools/tree/master/QnAMaker)，允许独立管理 LUIS 资源。 它可以作为 npm 模块提供，可供下载：
+新工具集中包含的是 [QnA 扩展](https://aka.ms/botbuilder-tools-qnaMaker)，允许独立管理 LUIS 资源。 它可以作为 npm 模块提供，可供下载：
 
 ```shell
 npm install -g qnamaker
@@ -351,10 +335,5 @@ az bot publish --name "my-bot-name" --resource-group "my-resource-group"
 ```
 
 ## <a name="references"></a>参考
-- [BotBuilder 工具源代码](https://github.com/Microsoft/botbuilder-tools)
-- [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/MSBot)
-- [ChatDown](https://github.com/Microsoft/botbuilder-tools/tree/master/Chatdown)
-- [LUDown](https://github.com/Microsoft/botbuilder-tools/tree/master/ludown)
+- [Bot Builder 工具](https://aka.ms/botbuilder-tools-readme)
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-
-

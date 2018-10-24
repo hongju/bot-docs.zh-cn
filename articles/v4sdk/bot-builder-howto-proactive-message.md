@@ -1,360 +1,805 @@
 ---
-title: 发送主动消息 | Microsoft Docs
-description: 了解如何使用机器人主动传递消息。
+title: 如何使用主动消息传递功能 | Microsoft Docs
+description: 了解如何使用机器人发送主动消息。
 keywords: 主动消息
 author: jonathanfingold
 ms.author: jonathanfingold
 manager: kamrani
 ms.topic: article
 ms.prod: bot-framework
-ms.date: 05/01/2018
+ms.date: 09/27/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c22ce6a35d4d49506360a78a439f15137c429d9d
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: ffc733eb42842becf955b912fc6c795d7f3a50d2
+ms.sourcegitcommit: bd4f9669c0d26ac2a4be1ab8e508f163a1f465f3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905131"
+ms.lasthandoff: 09/28/2018
+ms.locfileid: "47430366"
 ---
-# <a name="send-proactive-messages"></a>发送主动消息 
+# <a name="how-to-use-proactive-messaging"></a>如何使用主动消息传递功能
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
+通常，机器人向用户发送的每条消息与用户先前的输入直接相关。
+在某些情况下，机器人可能需要向用户发送与当前聊天主题或用户发送的最后一条消息不直接相关的消息。 这些类型的消息称为主动消息。
 
-通常，机器人发送被动消息，但有时候我们也需要能够发送 [主动消息](bot-builder-proactive-messages.md)。 
+## <a name="uses"></a>使用
 
-主动传递消息的一种常见情况是当机器人正在执行耗时不确定的任务时。 在此情况下，你可存储任务的相关消息，告诉用户机器人将在任务完成时再联系他们，并保证继续聊天。 完成任务后，机器人可主动发送确认消息来恢复聊天。
+主动消息在各种场景中都可以发挥作用。 如果机器人设置了计时器或提醒，它将需要在时间到来时通知用户。 或者，如果机器人从外部系统接收通知，则可能需要立即将该信息传达给用户。 例如，如果用户之前已经请求机器人监控产品的价格，则机器人可以在产品价格下降了 20% 时提醒用户。 或者，如果机器人需要一些时间来编译对用户问题的响应，则可以通知用户延迟并允许会话在此期间继续。 当机器人编译完对问题的响应时，将与用户共享该信息。
 
-# <a name="ctabcs"></a>[C#](#tab/cs)
+在机器人中实现主动消息时：
 
-## <a name="notes-about-this-sample"></a>关于此示例的说明
+- 不要在短时间内发送多条主动消息。 某些通道强制限制机器人向用户发送消息的频率，并且如果违反这些限制，将禁用机器人。
+- 不要通过其他方式（如电子邮件或短信）向之前未与机器人交互或未请求与机器人联系的用户发送主动消息。
 
-我们正在修改基本 EchoBot 示例。
-- 我们将使用 `Microsoft.Samples.Proactive` 作为命名空间。
-- 我们会将状态文件替换为 `JobData.cs` 文件。
-- 我们会将机器人文件替换为 `ProactiveBot.cs` 文件。
+**临时主动消息**是最简单的主动消息类型。
+只要触发了消息，机器人就会简单地将消息插入到聊天中，而不考虑用户当前是否正在致力于与机器人进行的聊天的单独主题，并且不会尝试以任何方式更改聊天。
 
-> [!NOTE]
-> 目前，要使用主动消息传递功能，机器人必须具备有效的 ApplicationID 和密码。
+若要更顺畅地处理通知，请考虑将通知集成到聊天流中的其他方法，例如在聊天状态中设置标志或将通知添加到队列。
 
+## <a name="prerequisites"></a>先决条件
 
-## <a name="define-task-data"></a>定义任务数据
+若要发送主动消息，机器人需要有有效的应用 ID 和密码。 不过，在模拟器中进行本地测试时，可以使用占位符应用 ID。
 
-在此情况下，我们要跟踪各个用户可在不同的聊天中创建的任意任务。 因此，我们要使用一般的机器人状态中间件，而不是用户或聊天状态中间件。
+若要获取用于机器人的应用 ID 和密码，可以登录到 [Azure 门户](https://portal.azure.com)，然后创建“机器人通道注册”资源。 随后进行测试时，可以在本地将此应用 ID 和密码用于机器人，不需部署到 Azure。
 
-下面的类定义了我们将用于单个作业的数据结构。
+> [!TIP]
+> 如果尚无订阅，可注册<a href="https://azure.microsoft.com/en-us/free/" target="_blank">免费帐户</a>。
 
+### <a name="required-libraries"></a>所需的库
+
+如果从某个 BotBuilder 模板着手，则所需的库已安装好。 这些库是进行主动消息传递所需的特定 BotBuilder 库。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+**Microsoft.Bot.Builder.Integration.AspNet.Core** NuGet 包。 （安装此包也会安装 **Microsoft.Bot.Builder** 包。）
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+**Microsoft.Bot.Builder** npm 包。
+
+---
+
+## <a name="notes-on-the-sample-code"></a>有关示例代码的说明
+
+本文的代码摘自主动消息示例 [[C#](https://aka.ms/proactive-sample-cs) | [JS](https://aka.ms/proactive-sample-js)]。
+
+此示例对所需时间不确定的用户任务建模。 机器人会存储任务的相关信息，告诉用户它将在任务完成后再联系他们，并让聊天继续。 完成任务后，机器人会在原始聊天中主动发送确认消息。
+
+## <a name="define-job-data-and-state"></a>定义作业数据和状态
+
+在此方案中，我们要跟踪各个用户在不同的聊天中创建的任意作业。 需存储每项作业的相关信息，包括聊天、引用以及作业标识符。
+
+- 需要聊天引用是因为需要将主动消息发送至正确的聊天。
+- 需通过某种方式来标识作业。 例如，使用简单的时间戳。
+- 需存储独立于聊天或用户状态的作业状态。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+需定义作业数据和作业状态的类。 还需注册机器人并为作业日志设置状态属性访问器。
+
+### <a name="define-a-class-for-job-data"></a>定义作业数据的类
+
+**JobLog** 类跟踪按作业编号（时间戳）进行索引的作业数据。 作业数据定义为字典的内部类。
 
 ```csharp
-using Microsoft.Bot.Schema;
-using System.Collections.Generic;
-
-namespace Microsoft.Samples.Proactive
+/// <summary>Contains a dictionary of job data, indexed by job number.</summary>
+/// <remarks>The JobLog class tracks all the outstanding jobs.  Each job is
+/// identified by a unique key.</remarks>
+public class JobLog : Dictionary<long, JobLog.JobData>
 {
-    /// <summary>
-    /// Class for storing job state. 
-    /// </summary>
+    /// <summary>Describes the state of a job.</summary>
     public class JobData
     {
-        /// <summary>
-        /// The name to use to read and write this bot state object to storage.
-        /// </summary>
-        public readonly static string PropertyName = $"BotState:{typeof(Dictionary<int, JobData>).FullName}";
+        /// <summary>Gets or sets the time-stamp for the job.</summary>
+        /// <value>
+        /// The time-stamp for the job when the job needs to fire.
+        /// </value>
+        public long TimeStamp { get; set; } = 0;
 
-        public int JobNumber { get; set; } = 0;
+        /// <summary>Gets or sets a value indicating whether indicates whether the job has completed.</summary>
+        /// <value>
+        /// A value indicating whether indicates whether the job has completed.
+        /// </value>
         public bool Completed { get; set; } = false;
 
         /// <summary>
-        /// The conversation reference to which to send status updates.
+        /// Gets or sets the conversation reference to which to send status updates.
         /// </summary>
+        /// <value>
+        /// The conversation reference to which to send status updates.
+        /// </value>
         public ConversationReference Conversation { get; set; }
     }
 }
 ```
 
+### <a name="define-a-state-middleware-class"></a>定义状态中间件类
 
-我们还需要将状态中间件添加到启动代码中。
+**JobState** 类管理独立于聊天或用户状态的作业状态。
 
-
-在 `StartUp.cs` 文件中，更新 `ConfigureServices` 方法，进而将作业字典添加到机器人状态。 在以下代码中，它是指对 `options.Middleware.Add` 的最后一个调用。
 ```csharp
-// This method gets called by the runtime. Use this method to add services to the container.
-public void ConfigureServices(IServiceCollection services)
+using Microsoft.Bot.Builder;
+
+/// <summary>A <see cref="BotState"/> for managing bot state for "bot jobs".</summary>
+/// <remarks>Independent from both <see cref="UserState"/> and <see cref="ConversationState"/> because
+/// the process of running the jobs and notifying the user interacts with the
+/// bot as a distinct user on a separate conversation.</remarks>
+public class JobState : BotState
 {
-    services.AddBot<ProactiveBot>(options =>
+    /// <summary>The key used to cache the state information in the turn context.</summary>
+    private const string StorageKey = "ProactiveBot.JobState";
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="JobState"/> class.</summary>
+    /// <param name="storage">The storage provider to use.</param>
+    public JobState(IStorage storage)
+        : base(storage, StorageKey)
     {
-        options.CredentialProvider = new ConfigurationCredentialProvider(Configuration);
+    }
 
-        // The CatchExceptionMiddleware provides a top-level exception handler for your bot. 
-        // Any exceptions thrown by other Middleware, or by your OnTurn method, will be 
-        // caught here. To facillitate debugging, the exception is sent out, via Trace, 
-        // to the emulator. Trace activities are NOT displayed to users, so in addition
-        // an "Ooops" message is sent. 
-        options.Middleware.Add(new CatchExceptionMiddleware<Exception>(async (context, exception) =>
-        {
-            await context.TraceActivity($"{nameof(ProactiveBot)} Exception", exception);
-            await context.SendActivity("Sorry, it looks like something went wrong!");
-        }));
-
-        // The Memory Storage used here is for local bot debugging only. When the bot
-        // is restarted, anything stored in memory will be gone. 
-        IStorage dataStore = new MemoryStorage();
-
-        // Using the base BotState here, since the job log is not necessarily tied to a
-        // specific user or conversation.
-        options.Middleware.Add(
-            new BotState<Dictionary<int, JobData>>(
-                dataStore, JobData.PropertyName, (context) => $"jobs/{typeof(Dictionary<int, JobData>)}"));
-    });
+    /// <summary>Gets the storage key for caching state information.</summary>
+    /// <param name="turnContext">A <see cref="ITurnContext"/> containing all the data needed
+    /// for processing this conversation turn.</param>
+    /// <returns>The storage key.</returns>
+    protected override string GetStorageKey(ITurnContext turnContext) => StorageKey;
 }
 ```
 
+### <a name="register-the-bot-and-required-services"></a>注册机器人和所需服务
 
-## <a name="update-your-bot-to-create-and-run-jobs"></a>更新机器人以创建和运行作业
+**Startup.cs** 文件注册机器人和关联的服务。
 
-在每个回合，我们都让用户通过键入 `run` 或 `run job` 来创建作业。
+1. using 语句集已扩展，可以引用以下命名空间：
 
-我们的机器人将在该回合中采取以下步骤进行响应：
-- 创建作业。
-- 记录当前聊天的相关信息，以便我们稍后可发送主动消息。
-- 让用户知道我们正在开始处理他们的作业，并将在完成后告知他们。
-- 启动异步作业。
-- 允许退出回合。
+    ```csharp
+    using System;
+    using System.Linq;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Bot.Builder;
+    using Microsoft.Bot.Builder.Integration;
+    using Microsoft.Bot.Builder.Integration.AspNet.Core;
+    using Microsoft.Bot.Configuration;
+    using Microsoft.Bot.Connector.Authentication;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
+    using Microsoft.Extensions.Options;
+    ```
 
-我们开始的作业是一个简单的 5 秒计时器，作业完成时发送主动消息。
-- 如果调用适配器的“继续聊天”方法，会创建由机器人发起的新的回合。
-- 此轮次具有自身的[轮次上下文](bot-builder-concept-activity-processing.md#turn-context)，可从中检索状态消息。
-- 我们使用此上下文向用户发送主动消息。
+1. `ConfigureServices` 方法注册机器人，包括错误处理和状态管理。 它还注册机器人的终结点服务和作业状态访问器。
 
+    ```csharp
+    public void ConfigureServices(IServiceCollection services)
+    {
+        // The Memory Storage used here is for local bot debugging only. When the bot
+        // is restarted, everything stored in memory will be gone.
+        IStorage dataStore = new MemoryStorage();
 
+        // ...
 
-> [!NOTE]
-> `GetAppId` 方法可用于在 .NET SDK 中启用主动消息传递功能。
+        // Create Job State object.
+        // The Job State object is where we persist anything at the job-scope.
+        // Note: It's independent of any user or conversation.
+        var jobState = new JobState(dataStore);
+
+        // Make it available to our bot
+        services.AddSingleton(sp => jobState);
+
+        // Register the proactive bot.
+        services.AddBot<ProactiveBot>(options =>
+        {
+            var secretKey = Configuration.GetSection("botFileSecret")?.Value;
+            var botFilePath = Configuration.GetSection("botFilePath")?.Value;
+
+            // Loads .bot configuration file and adds a singleton that your Bot can access through dependency injection.
+            var botConfig = BotConfiguration.Load(botFilePath ?? @".\BotConfiguration.bot", secretKey);
+            services.AddSingleton(sp => botConfig ?? throw new InvalidOperationException($"The .bot config file could not be loaded. ({botConfig})"));
+
+            // Retrieve current endpoint.
+            var environment = _isProduction ? "production" : "development";
+            var service = botConfig.Services.Where(s => s.Type == "endpoint" && s.Name == environment).FirstOrDefault();
+            if (!(service is EndpointService endpointService))
+            {
+                throw new InvalidOperationException($"The .bot file does not contain an endpoint with name '{environment}'.");
+            }
+
+            options.CredentialProvider = new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);
+
+            // Creates a logger for the application to use.
+            ILogger logger = _loggerFactory.CreateLogger<ProactiveBot>();
+
+            // Catches any errors that occur during a conversation turn and logs them.
+            options.OnTurnError = async (context, exception) =>
+            {
+                logger.LogError($"Exception caught : {exception}");
+                await context.SendActivityAsync("Sorry, it looks like something went wrong.");
+            };
+
+        });
+
+        services.AddSingleton(sp =>
+        {
+            var config = BotConfiguration.Load(@".\BotConfiguration.bot");
+            var endpointService = (EndpointService)config.Services.First(s => s.Type == "endpoint")
+                                    ?? throw new InvalidOperationException(".bot file 'endpoint' must be configured prior to running.");
+
+            return endpointService;
+        });
+    }
+    ```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+### <a name="set-up-the-server-code"></a>设置服务器代码
+
+**index.js** 文件执行以下操作：
+
+- 包括所需的包和服务
+- 引用机器人类和 **.bot** 文件
+- 创建 HTTP 服务器
+- 创建机器人适配器和存储对象
+- 创建机器人和启动服务器，将活动传递给机器人
+
+```javascript
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+const restify = require('restify');
+const path = require('path');
+
+// Import required bot services. See https://aka.ms/bot-services to learn more about the different part of a bot.
+const { BotFrameworkAdapter, BotState, MemoryStorage } = require('botbuilder');
+const { BotConfiguration } = require('botframework-config');
+
+const { ProactiveBot } = require('./bot');
+
+// Read botFilePath and botFileSecret from .env file.
+// Note: Ensure you have a .env file and include botFilePath and botFileSecret.
+const ENV_FILE = path.join(__dirname, '.env');
+require('dotenv').config({ path: ENV_FILE });
+
+// Create HTTP server.
+let server = restify.createServer();
+server.listen(process.env.port || process.env.PORT || 3978, function() {
+    console.log(`\n${ server.name } listening to ${ server.url }.`);
+    console.log(`\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator.`);
+    console.log(`\nTo talk to your bot, open proactive-messages.bot file in the Emulator.`);
+});
+
+// .bot file path
+const BOT_FILE = path.join(__dirname, (process.env.botFilePath || ''));
+
+// Read the bot's configuration from a .bot file identified by BOT_FILE.
+// This includes information about the bot's endpoints and configuration.
+let botConfig;
+try {
+    botConfig = BotConfiguration.loadSync(BOT_FILE, process.env.botFileSecret);
+} catch (err) {
+    console.error(`\nError reading bot file. Please ensure you have valid botFilePath and botFileSecret set for your environment.`);
+    console.error(`\n - The botFileSecret is available under appsettings for your Azure Bot Service bot.`);
+    console.error(`\n - If you are running this bot locally, consider adding a .env file with botFilePath and botFileSecret.\n\n`);
+    process.exit();
+}
+
+const DEV_ENVIRONMENT = 'development';
+
+// Define the name of the bot, as specified in .bot file.
+// See https://aka.ms/about-bot-file to learn more about .bot files.
+const BOT_CONFIGURATION = (process.env.NODE_ENV || DEV_ENVIRONMENT);
+
+// Load the configuration profile specific to this bot identity.
+const endpointConfig = botConfig.findServiceByNameOrId(BOT_CONFIGURATION);
+
+// Create the adapter. See https://aka.ms/about-bot-adapter to learn more about using information from
+// the .bot file when configuring your adapter.
+const adapter = new BotFrameworkAdapter({
+    appId: endpointConfig.appId || process.env.MicrosoftAppId,
+    appPassword: endpointConfig.appPassword || process.env.MicrosoftAppPassword
+});
+
+// Define the state store for your bot. See https://aka.ms/about-bot-state to learn more about using MemoryStorage.
+// A bot requires a state storage system to persist the dialog and user state between messages.
+const memoryStorage = new MemoryStorage();
+
+// Create state manager with in-memory storage provider.
+const botState = new BotState(memoryStorage, () => 'proactiveBot.botState');
+
+// Create the main dialog, which serves as the bot's main handler.
+const bot = new ProactiveBot(botState, adapter);
+
+// Listen for incoming requests.
+server.post('/api/messages', (req, res) => {
+    adapter.processActivity(req, res, async (turnContext) => {
+        // Route the message to the bot's main handler.
+        await bot.onTurn(turnContext);
+    });
+});
+
+// Catch-all for errors.
+adapter.onTurnError = async (context, error) => {
+    // This check writes out errors to console log .vs. app insights.
+    console.error(`\n [onTurnError]: ${ error }`);
+    // Send a message to the user
+    context.sendActivity(`Oops. Something went wrong!`);
+};
+```
+
+---
+
+<!--TODO: (Post-Ignite) -- link to a second topic on how to write a job completion DirectLine client that will generate appropriate job completed event activities.-->
+
+## <a name="define-the-bot"></a>定义机器人
+
+用户可以要求机器人为其创建并运行作业。 当作业完成时，可以通过单独的作业服务通知机器人。
+
+机器人旨在执行以下操作：
+
+- 创建用于响应用户的 `run` 或 `run job` 消息的作业。
+- 显示用于响应用户的 `show` 或 `show jobs` 消息的所有已注册作业。
+- 完成响应“作业已完成”事件的作业，该事件用于标识已完成的作业。
+- 模拟用于响应 `done <jobIdentifier>` 消息的“作业已完成”事件。
+- 当作业完成后，通过原始聊天向用户发送主动消息。
+
+我们不介绍如何实现一个可以向机器人发送事件活动的系统。
+<!--TODO: DirectLine--Add back in once the DirectLine topic is added back to the TOC.
+See [how to create a Direct Line bot and client](bot-builder-howto-direct-line.md) for information on how to do so.
+-->
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+机器人有多方面的内容：
+
+- 初始化代码
+- 轮次处理程序
+- 创建和完成作业的方法
+
+### <a name="declare-the-class"></a>声明类
 
 ```csharp
-using Microsoft.Bot;
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Connector.Authentication;
-using Microsoft.Bot.Schema;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Security.Principal;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Bot.Builder;
+using Microsoft.Bot.Configuration;
+using Microsoft.Bot.Schema;
 
-namespace Microsoft.Samples.Proactive
+namespace Microsoft.BotBuilderSamples
 {
+    /// <summary>
+    /// For each interaction from the user, an instance of this class is called.
+    /// This is a Transient lifetime service.  Transient lifetime services are created
+    /// each time they're requested. For each Activity received, a new instance of this
+    /// class is created. Objects that are expensive to construct, or have a lifetime
+    /// beyond the single Turn, should be carefully managed.
+    /// </summary>
     public class ProactiveBot : IBot
     {
-        /// <summary>
-        /// Random number generator for job numbers.
-        /// </summary>
-        private static Random NumberGenerator = new Random();
+        /// <summary>The name of events that signal that a job has completed.</summary>
+        public const string JobCompleteEventName = "jobComplete";
 
-        /// <summary>
-        /// Gets the job log from the bot state.
-        /// </summary>
-        /// <param name="context">The current turn context.</param>
-        /// <returns>The job log.</returns>
-        private static Dictionary<int, JobData> GetJobLog(ITurnContext context)
+        public const string WelcomeText = "Type 'run' or 'run job' to start a new job.\r\n" +
+                                          "Type 'show' or 'show jobs' to display the job log.\r\n" +
+                                          "Type 'done <jobNumber>' to complete a job.";
+    }
+}
+```
+
+### <a name="add-initialization-code"></a>添加初始化代码
+
+```csharp
+private readonly JobState _jobState;
+private readonly IStatePropertyAccessor<JobLog> _jobLogPropertyAccessor;
+
+public ProactiveBot(JobState jobState, EndpointService endpointService)
+{
+    _jobState = jobState ?? throw new ArgumentNullException(nameof(jobState));
+    _jobLogPropertyAccessor = _jobState.CreateProperty<JobLog>(nameof(JobLog));
+
+    // Validate AppId.
+    // Note: For local testing, .bot AppId is empty for the Bot Framework Emulator.
+    AppId = string.IsNullOrWhiteSpace(endpointService.AppId) ? "1" : endpointService.AppId;
+}
+
+private string AppId { get; }
+```
+
+### <a name="add-a-turn-handler"></a>添加轮次处理程序
+
+每个机器人必须实现一个轮次处理程序。 适配器将活动转发给此方法。
+
+```csharp
+public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
+{
+    // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
+    if (turnContext.Activity.Type != ActivityTypes.Message)
+    {
+        // Handle non-message activities.
+        await OnSystemActivityAsync(turnContext);
+    }
+    else
+    {
+        // Get the job log.
+        // The job log is a dictionary of all outstanding jobs in the system.
+        JobLog jobLog = await _jobLogPropertyAccessor.GetAsync(turnContext, () => new JobLog());
+
+        // Get the user's text input for the message.
+        var text = turnContext.Activity.Text.Trim().ToLowerInvariant();
+        switch (text)
         {
-            return context.Services.Get<Dictionary<int, JobData>>(JobData.PropertyName);
-        }
+            case "run":
+            case "run job":
 
-        /// <summary>
-        /// Workaround to get the bot's app ID.
-        /// </summary>
-        /// <param name="context">The current turn context.</param>
-        /// <returns>The application ID for the bot.</returns>
-        private static string GetAppId(ITurnContext context)
-        {
-            // The BotFrameworkAdapter sets the identity provider on the context object.
-            var claimsIdentity = context.Services.Get<IIdentity>("BotIdentity") as ClaimsIdentity;
+                // Start a virtual job for the user.
+                JobLog.JobData job = CreateJob(turnContext, jobLog);
 
-            // For requests from a channel, the app ID is in the Audience claim of the JWT token.
-            // For requests from the emulator, it is in the AppId claim.
-            // For unauthenticated requests, we have anonymouse identity provided auth is disabled.
-            // For Activities coming from Emulator AppId claim contains the Bot's AAD AppId.
-            var botAppIdClaim =
-                (claimsIdentity.Claims?.SingleOrDefault(claim => claim.Type == AuthenticationConstants.AudienceClaim)
-                ?? claimsIdentity.Claims?.SingleOrDefault(claim => claim.Type == AuthenticationConstants.AppIdClaim));
+                // Set the new property
+                await _jobLogPropertyAccessor.SetAsync(turnContext, jobLog);
 
-            return botAppIdClaim?.Value;
-        }
+                // Now save it into the JobState
+                await _jobState.SaveChangesAsync(turnContext);
 
-        /// <summary>
-        /// Every Conversation turn calls this method.
-        /// When the user types "run" or "run job", the bot starts a "job".
-        /// When the job finishes, the bot proactively notifies the user.
-        /// </summary>
-        /// <param name="context">The turn context.</param>
-        /// <remarks>When our virtual job finishes, it sends a proactive message
-        /// to notify the user that the job completed.</remarks>
-        public async Task OnTurn(ITurnContext context)
-        {
-            // This bot is only handling Messages
-            if (context.Activity.Type is ActivityTypes.Message)
-            {
-                var text = context.Activity.AsMessageActivity()?.Text?.Trim().ToLower();
-                switch (text)
+                await turnContext.SendActivityAsync(
+                    $"We're starting job {job.TimeStamp} for you. We'll notify you when it's complete.");
+
+                break;
+
+            case "show":
+            case "show jobs":
+
+                // Display information for all jobs in the log.
+                if (jobLog.Count > 0)
                 {
-                    case "run":
-                    case "run job":
-
-                        var jobLog = GetJobLog(context);
-                        var job = CreateJob(context, jobLog);
-                        var appId = GetAppId(context);
-                        var conversation = TurnContext.GetConversationReference(context.Activity);
-
-                        await context.SendActivity($"We're starting job {job.JobNumber} for you. We'll notify you when it's complete.");
-
-                        // Since the context is disposed at the end of the turn, extract and send the
-                        // information we need to send the proactive message later.
-                        var adapter = context.Adapter;
-                        Task.Run(() =>
-                        {
-                            // Simulate a separate process to complete the user's job.
-                            Thread.Sleep(5000);
-
-                            // Perform bookkeeping and send the proactive message.
-                            CompleteJob(adapter, appId, conversation, job.JobNumber);
-                        });
-
-                        break;
-
-                    default:
-
-                        await context.SendActivity("Type 'run' or 'run job' to start a new job.");
-
-                        break;
+                    await turnContext.SendActivityAsync(
+                        "| Job number &nbsp; | Conversation ID &nbsp; | Completed |<br>" +
+                        "| :--- | :---: | :---: |<br>" +
+                        string.Join("<br>", jobLog.Values.Select(j =>
+                            $"| {j.TimeStamp} &nbsp; | {j.Conversation.Conversation.Id.Split('|')[0]} &nbsp; | {j.Completed} |")));
                 }
-            }
+                else
+                {
+                    await turnContext.SendActivityAsync("The job log is empty.");
+                }
+
+                break;
+
+            default:
+                // Check whether this is simulating a job completed event.
+                string[] parts = text?.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                if (parts != null && parts.Length == 2
+                    && parts[0].Equals("done", StringComparison.InvariantCultureIgnoreCase)
+                    && long.TryParse(parts[1], out long jobNumber))
+                {
+                    if (!jobLog.TryGetValue(jobNumber, out JobLog.JobData jobInfo))
+                    {
+                        await turnContext.SendActivityAsync($"The log does not contain a job {jobInfo.TimeStamp}.");
+                    }
+                    else if (jobInfo.Completed)
+                    {
+                        await turnContext.SendActivityAsync($"Job {jobInfo.TimeStamp} is already complete.");
+                    }
+                    else
+                    {
+                        await turnContext.SendActivityAsync($"Completing job {jobInfo.TimeStamp}.");
+
+                        // Send the proactive message.
+                        await CompleteJobAsync(turnContext.Adapter, AppId, jobInfo);
+                    }
+                }
+
+                break;
         }
 
-        /// <summary>
-        /// Creates a simulated job and updates the job log.
-        /// </summary>
-        /// <param name="context">The current turn context.</param>
-        /// <param name="jobLog">The job log.</param>
-        /// <returns>A new job.</returns>
-        private JobData CreateJob(ITurnContext context, Dictionary<int, JobData> jobLog)
+        if (!turnContext.Responded)
         {
-            // Generate a non-duplicate job number;
-            int number;
-            while (jobLog.ContainsKey(number = NumberGenerator.Next())) { }
-
-            // Simulate creaing the job and logging it.
-            var job = new JobData
-            {
-                JobNumber = number,
-                Conversation = TurnContext.GetConversationReference(context.Activity)
-            };
-            jobLog.Add(job.JobNumber, job);
-
-            // Return the created job.
-            return job;
+            await turnContext.SendActivityAsync(WelcomeText);
         }
+    }
+}
 
-        /// <summary>
-        /// Performs bookkeeping and proactively notifies the user that their job completed.
-        /// </summary>
-        /// <param name="adapter">The bot adapter with which to send the message.</param>
-        /// <param name="appId">The app ID of the bot to send the message from.</param>
-        /// <param name="conversation">The conversation in which to put the message.</param>
-        /// <param name="jobNumber">The number of the job that completed.</param>
-        private async void CompleteJob(BotAdapter adapter, string appId, ConversationReference conversation, int jobNumber)
+private static async Task SendWelcomeMessageAsync(ITurnContext turnContext)
+{
+    foreach (var member in turnContext.Activity.MembersAdded)
+    {
+        if (member.Id != turnContext.Activity.Recipient.Id)
         {
-            await adapter.ContinueConversation(appId, conversation, async context =>
-            {
-                // Get the job log from state, and retrieve the job.
-                var jobLog = GetJobLog(context);
-                var job = jobLog[jobNumber];
+            await turnContext.SendActivityAsync($"Welcome to SuggestedActionsBot {member.Name}.\r\n{WelcomeText}");
+        }
+    }
+}
 
-                // Perform bookkeeping.
-                job.Completed = true;
-
-                // Send the user a proactive confirmation message.
-                await context.SendActivity($"Job {job.JobNumber} is complete.");
-            });
+// Handles non-message activities.
+private async Task OnSystemActivityAsync(ITurnContext turnContext)
+{
+    // On a job completed event, mark the job as complete and notify the user.
+    if (turnContext.Activity.Type is ActivityTypes.Event)
+    {
+        var jobLog = await _jobLogPropertyAccessor.GetAsync(turnContext, () => new JobLog());
+        var activity = turnContext.Activity.AsEventActivity();
+        if (activity.Name == JobCompleteEventName
+            && activity.Value is long timestamp
+            && jobLog.ContainsKey(timestamp)
+            && !jobLog[timestamp].Completed)
+        {
+            await CompleteJobAsync(turnContext.Adapter, AppId, jobLog[timestamp]);
+        }
+    }
+    else if (turnContext.Activity.Type is ActivityTypes.ConversationUpdate)
+    {
+        if (turnContext.Activity.MembersAdded.Any())
+        {
+            await SendWelcomeMessageAsync(turnContext);
         }
     }
 }
 ```
 
-# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
+### <a name="add-job-creation-and-completion-methods"></a>添加作业创建和完成方法
 
-用户必须至少向你的机器人发送一个被动样式的消息，然后你才可向该用户发送主动消息。 
+若要启动某个作业，机器人需创建作业并在作业日志中记录其相关信息和当前聊天。 机器人在任何聊天中收到“作业已完成”事件时，会先验证作业 ID，然后再调用完成作业所需的代码。
 
-你需要向机器人发送一条消息，因为它需要获取对活动对象的引用并将其保存在某处以备将来使用。 你可将活动对象视为用户地址，因为其所含信息涉及到其传入通道、用户 ID、聊天 ID，甚至是应接收任何后续消息的服务器。 此对象是简单的 JSON，应完整保存且不得篡改。
+用于完成作业的代码从状态获取作业日志，然后将作业标记为完成，并使用适配器的“继续聊天”方法发送一条主动消息。
 
-首先看一个简短的代码片段，它显示了如何在用户每次要求订阅时保存聊天引用：
+- “继续聊天”调用会提示通道启动一个独立于用户的轮次。
+- 适配器运行关联的回调来代替机器人正常的轮次处理程序。 此轮次具有自身的轮次上下文，可从中检索状态信息并向用户发送主动消息。
+
+```csharp
+// Creates and "starts" a new job.
+private JobLog.JobData CreateJob(ITurnContext turnContext, JobLog jobLog)
+{
+    JobLog.JobData jobInfo = new JobLog.JobData
+    {
+        TimeStamp = DateTime.Now.ToBinary(),
+        Conversation = turnContext.Activity.GetConversationReference(),
+    };
+
+    jobLog[jobInfo.TimeStamp] = jobInfo;
+
+    return jobInfo;
+}
+
+// Sends a proactive message to the user.
+private async Task CompleteJobAsync(
+    BotAdapter adapter,
+    string botId,
+    JobLog.JobData jobInfo,
+    CancellationToken cancellationToken = default(CancellationToken))
+{
+    await adapter.ContinueConversationAsync(botId, jobInfo.Conversation, CreateCallback(jobInfo), cancellationToken);
+}
+
+// Creates the turn logic to use for the proactive message.
+private BotCallbackHandler CreateCallback(JobLog.JobData jobInfo)
+{
+    return async (turnContext, token) =>
+    {
+        // Get the job log from state, and retrieve the job.
+        JobLog jobLog = await _jobLogPropertyAccessor.GetAsync(turnContext, () => new JobLog());
+
+        // Perform bookkeeping.
+        jobLog[jobInfo.TimeStamp].Completed = true;
+
+        // Set the new property
+        await _jobLogPropertyAccessor.SetAsync(turnContext, jobLog);
+
+        // Now save it into the JobState
+        await _jobState.SaveChangesAsync(turnContext);
+
+        // Send the user a proactive confirmation message.
+        await turnContext.SendActivityAsync($"Job {jobInfo.TimeStamp} is complete.");
+    };
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+机器人在 **bot.js** 中定义，有多方面的内容：
+
+- 初始化代码
+- 轮次处理程序
+- 创建和完成作业的方法
+
+### <a name="declare-the-class-and-add-initialization-code"></a>声明类并添加初始化代码
+
 ```javascript
-const { MemoryStorage } = require('botbuilder');
+const { ActivityTypes, TurnContext } = require('botbuilder');
 
-const storage = new MemoryStorage();
+const JOBS_LIST = 'jobs';
 
-// Listen for incoming activity 
-server.post('/api/messages', (req, res) => {
-    // Route received activity to adapter for processing
-    adapter.processActivity(req, res, async (context) => {
-        if (context.activity.type === 'message') {
-            const utterances = (context.activity.text || '').trim().toLowerCase()
-            if (utterances === 'subscribe') {
-                var userId = await saveReference(TurnContext.getConversationReference(context.activity));
-                await subscribeUser(userId)
-                await context.sendActivity(`Thank You! We will message you shortly.`);
-               
-            } else{
-                await context.sendActivity("Say 'subscribe' to start proactive message");
+class ProactiveBot {
+    constructor(botState, adapter) {
+        this.botState = botState;
+        this.adapter = adapter;
+
+        this.jobsList = this.botState.createProperty(JOBS_LIST);
+    }
+
+    // ...
+};
+
+// Helper function to check if object is empty.
+function isEmpty(obj) {
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            return false;
+        }
+    }
+    return true;
+};
+
+module.exports.ProactiveBot = ProactiveBot;
+```
+
+### <a name="the-turn-handler"></a>轮次处理程序
+
+`onTurn` 和 `showJobs` 方法在 `ProactiveBot` 类中定义。 `onTurn` 处理用户的输入。 它还会从假设的作业履行系统接收事件活动。 `showJobs` 负责作业日志的格式化和发送。
+
+```javascript
+/**
+    *
+    * @param {TurnContext} turnContext A TurnContext object representing an incoming message to be handled by the bot.
+    */
+async onTurn(turnContext) {
+    // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
+    if (turnContext.activity.type === ActivityTypes.Message) {
+        const utterance = (turnContext.activity.text || '').trim().toLowerCase();
+        var jobIdNumber;
+
+        // If user types in run, create a new job.
+        if (utterance === 'run') {
+            await this.createJob(turnContext);
+        } else if (utterance === 'show') {
+            await this.showJobs(turnContext);
+        } else {
+            const words = utterance.split(' ');
+
+            // If the user types done and a Job Id Number,
+            // we check if the second word input is a number.
+            if (words[0] === 'done' && !isNaN(parseInt(words[1]))) {
+                jobIdNumber = words[1];
+                await this.completeJob(turnContext, jobIdNumber);
+            } else if (words[0] === 'done' && (words.length < 2 || isNaN(parseInt(words[1])))) {
+                await turnContext.sendActivity('Enter the job ID number after "done".');
             }
-    
         }
-    });
-});
-```
-上述片段调用 `saveReference()` 函数，该函数将使用 `MemoryStorage` 保存用户的引用并返回 `userId`。 该引用成功保存后，我们将调用 `subscribeUser()`，它会通知用户其已获得订阅。 
 
-`subscribeUser()` 函数用于设置实际订阅。 让我们看一个简单的实现，它启动一个 2 秒计时器，并在计时器结束后立即向用户主动发送消息：
+        if (!turnContext.responded) {
+            await turnContext.sendActivity(`Say "run" to start a job, or "done <job>" to complete one.`);
+        }
+    } else if (turnContext.activity.type === ActivityTypes.Event && turnContext.activity.name === 'jobCompleted') {
+        jobIdNumber = turnContext.activity.value;
+        if (!isNaN(parseInt(jobIdNumber))) {
+            await this.completeJob(turnContext, jobIdNumber);
+        }
+    }
+
+    await this.botState.saveChanges(turnContext);
+}
+
+// Show a list of the pending jobs
+async showJobs(turnContext) {
+    const jobs = await this.jobsList.get(turnContext, {});
+    if (Object.keys(jobs).length) {
+        await turnContext.sendActivity(
+            '| Job number &nbsp; | Conversation ID &nbsp; | Completed |<br>' +
+            '| :--- | :---: | :---: |<br>' +
+            Object.keys(jobs).map((key) => {
+                return `${ key } &nbsp; | ${ jobs[key].reference.conversation.id.split('|')[0] } &nbsp; | ${ jobs[key].completed }`;
+            }).join('<br>'));
+    } else {
+        await turnContext.sendActivity('The job log is empty.');
+    }
+}
+```
+
+### <a name="logic-to-start-a-job"></a>用于启动作业的逻辑
+
+`createJob` 方法在 `ProactiveBot` 类中定义。 它创建并记录用户的新作业。 理论上，它还会将此信息转发给作业履行系统。
 
 ```javascript
-// Persist info to storage
-async function saveReference(reference){
-    const userId = reference.activityId
-    const changes = {};
-    changes['reference/' + userId] = reference;
-    await storage.write(changes); // Write reference info to persisted storage
-    return userId;
-}
+// Save job ID and conversation reference.
+async createJob(turnContext) {
+    // Create a unique job ID.
+    var date = new Date();
+    var jobIdNumber = date.getTime();
 
-// Subscribe user to a proactive call. In this case, we are using a setTimeOut() to trigger the proactive call
-async function subscribeUser(userId) {
-    setTimeout(async () => {
-        const reference = await findReference(userId);
-        if (reference) {
-            await adapter.continueConversation(reference, async (context) => {
-                await context.sendActivity("You have been notified");
-            });
-            
+    // Get the conversation reference.
+    const reference = TurnContext.getConversationReference(turnContext.activity);
+
+    // Get the list of jobs. Default it to {} if it is empty.
+    const jobs = await this.jobsList.get(turnContext, {});
+
+    // Try to find previous information about the saved job.
+    const jobInfo = jobs[jobIdNumber];
+
+    try {
+        if (isEmpty(jobInfo)) {
+            // Job object is empty so we have to create it
+            await turnContext.sendActivity(`Need to create new job ID: ${ jobIdNumber }`);
+
+            // Update jobInfo with new info
+            jobs[jobIdNumber] = { completed: false, reference: reference };
+
+            try {
+                // Save to storage
+                await this.jobsList.set(turnContext, jobs);
+                // Notify the user that the job has been processed
+                await turnContext.sendActivity('Successful write to log.');
+            } catch (err) {
+                await turnContext.sendActivity(`Write failed: ${ err.message }`);
+            }
         }
-    }, 2000); // Trigger after 2 secs
-}
-
-// Read the stored reference info from storage
-async function findReference(userId){
-    const referenceKey = 'reference/' + userId;
-    var rows = await storage.read([referenceKey])
-    var reference = await rows[referenceKey]
-
-    return reference;
+    } catch (err) {
+        await turnContext.sendActivity(`Read rejected. ${ err.message }`);
+    }
 }
 ```
 
-`subscribeUser()` 函数设置一个计时器，它通过从存储中读取引用对象来找到此对象。 如果找到引用对象，则可继续与用户聊天。 通过 `continueConversation` 方法，机器人可主动向已与之通信的聊天或用户发送消息。
+### <a name="logic-to-complete-a-job"></a>用于完成作业的逻辑
+
+`completeJob` 方法在 `ProactiveBot` 类中定义。 它执行某些簿记操作并在用户的原始聊天中向用户发送主动消息，告知作业已完成。
+
+```javascript
+async completeJob(turnContext, jobIdNumber) {
+    // Get the list of jobs from the bot's state property accessor.
+    const jobs = await this.jobsList.get(turnContext, {});
+
+    // Find the appropriate job in the list of jobs.
+    let jobInfo = jobs[jobIdNumber];
+
+    // If no job was found, notify the user of this error state.
+    if (isEmpty(jobInfo)) {
+        await turnContext.sendActivity(`Sorry no job with ID ${ jobIdNumber }.`);
+    } else {
+        // Found a job with the ID passed in.
+        const reference = jobInfo.reference;
+        const completed = jobInfo.completed;
+
+        // If the job is not yet completed and conversation reference exists,
+        // use the adapter to continue the conversation with the job's original creator.
+        if (reference && !completed) {
+            // Since we are going to proactively send a message to the user who started the job,
+            // we need to create the turnContext based on the stored reference value.
+            await this.adapter.continueConversation(reference, async (proactiveTurnContext) => {
+                // Complete the job.
+                jobInfo.completed = true;
+                // Save the updated job.
+                await this.jobsList.set(turnContext, jobs);
+                // Notify the user that the job is complete.
+                await proactiveTurnContext.sendActivity(`Your queued job ${ jobIdNumber } just completed.`);
+            });
+
+            // Send a message to the person who completed the job.
+            await turnContext.sendActivity('Job completed. Notification sent.');
+        } else if (completed) { // The job has already been completed.
+            await turnContext.sendActivity('This job is already completed, please start a new job.');
+        };
+    };
+};
+```
 
 ---
 
 ## <a name="test-your-bot"></a>测试机器人
 
-要测试智能机器人，请将其作为唯一注册的机器人部署到 Azure，并在网上聊天中进行测试，或使用模拟器在本地测试。
+在本地生成和运行机器人，并打开两个模拟器窗口。
+
+1. 注意，两个窗口中的聊天 ID 不同。
+1. 在第一个窗口中，键入 `run` 数次即可启动多个作业。
+1. 在第二个窗口中，键入 `show` 可查看日志中作业的列表。
+1. 在第二个窗口中键入 `done <jobNumber>`，其中 `<jobNumber>` 是日志中的一个作业编号，没有尖括号。 （根据设计，机器人代码会按照它是 jobComplete 事件的情况对此进行解释。）
+1. 请注意，在第一个窗口中，机器人向用户发送一条主动消息。
+
+<!--TODO: Recreate the screen shots once we're happy with both the C# and JS versions of the code.-->
+
+从用户的角度来看，聊天看起来可能如下所示：
+
+![用户的模拟器会话](~/v4sdk/media/how-to-proactive/user.png)
+
+从模拟作业系统的角度来看，聊天看起来如下所示：
+
+![作业系统的模拟器会话](~/v4sdk/media/how-to-proactive/job-system.png)
+
+<!-- Add a next steps section. -->
