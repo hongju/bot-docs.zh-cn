@@ -5,15 +5,16 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: eb99be4699bba71a1fdc55bab19d035e4e31f536
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 943b206e4991c52f22928d2113977249ff9d9e04
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574553"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997574"
 ---
 # <a name="dialogs-in-the-bot-builder-sdk-for-net"></a>Bot Builder SDK for .NET 中的对话框
 
@@ -109,7 +110,7 @@ ms.locfileid: "39574553"
 虽然可以使用 `IDialogStack.Call<R>` 和 `IDialogStack.Done<R>` 来显式管理活动对话框堆栈，还是可以通过使用这些流畅的 [Chain][chain] 方法隐式管理活动对话框堆栈。
 
 
-|           方法            |  Type   |                                 说明                                  |
+|           方法            |  类型   |                                 说明                                  |
 |-----------------------------|---------|------------------------------------------------------------------------|
 |     Chain.Select<T, R>      |  LINQ   |           支持 LINQ 查询语法中的“select”和“let”。            |
 |  Chain.SelectMany<T, C, R>  |  LINQ   |            支持 LINQ 查询语法中的连续“from”。            |

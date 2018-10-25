@@ -5,15 +5,16 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 34a4cb3623c4265b062eb66ebfb2180551ac1985
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 3b01a0e672b2c020462289384ddf68aafedf5314
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574563"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997254"
 ---
 # <a name="key-concepts-in-the-bot-builder-sdk-for-net"></a>Bot Builder SDK for .NET 中的重要概念
 
@@ -47,7 +48,7 @@ ms.locfileid: "39574563"
 
 可以在 Bot Builder SDK for .NET 中使用 [FormFlow](bot-builder-dotnet-formflow.md) 来简化构建从用户收集信息的机器人。 例如，接受三明治订单的机器人必须从用户收集几条信息，例如面包类型、配料选择、尺寸等。 根据基本准则，FormFlow 可以自动生成管理这样的引导式聊天所必需的对话。
 
-## <a name="state"></a>省/直辖市/自治区
+## <a name="state"></a>状态
 
 [!INCLUDE [State concept overview](../includes/snippet-dotnet-concept-state.md)]
 

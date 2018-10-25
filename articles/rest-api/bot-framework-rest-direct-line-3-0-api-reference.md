@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 2e47591b04a91ce02cfeb6bd6485080426d201b5
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: d69f1f658520790ff429ecd25a190319e321164d
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297864"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998100"
 ---
 # <a name="api-reference---direct-line-api-30"></a>API 参考 - Direct Line API 3.0
 
@@ -42,7 +43,7 @@ Authorization: Bearer SECRET_OR_TOKEN
 |----|----|
 | 200 | 请求成功。 |
 | 201 | 请求成功。 |
-| 202 | 已接受处理请求。 |
+| 202 | 已接受请求，将进行处理。 |
 | 204 | 请求成功，但未返回任何内容。 |
 | 400 | 请求格式不正确或者其他方面不正确。 |
 | 401 | 客户端未获授权，无法发出请求。 通常情况下，出现此状态代码是因为 `Authorization` 标头缺失或格式不正确。 |
@@ -54,9 +55,9 @@ Authorization: Bearer SECRET_OR_TOKEN
 > [!NOTE]
 > HTTP 状态代码 101 在 WebSocket 连接路径中使用，尽管 WebSocket 客户端很有可能会处理此代码。
 
-### <a name="errors"></a>Errors
+### <a name="errors"></a>错误
 
-指定 4xx 范围或 5xx 范围中 HTTP 状态代码的任何响应都会将 [ErrorResponse](bot-framework-rest-connector-api-reference.md#errorresponse-object) 对象包含在提供错误相关信息的响应正文中。 如果收到 4xx 范围中的错误响应，请检查 ErrorResponse 对象以确定错误原因并在重新提交请求之前解决问题。
+指定 4xx 范围或 5xx 范围内的 HTTP 状态代码的任何响应都将在响应正文中包含 [ErrorResponse](bot-framework-rest-connector-api-reference.md#errorresponse-object) 对象，该对象提供错误相关信息。 如果收到 4xx 范围中的错误响应，请检查 ErrorResponse 对象以确定错误原因并在重新提交请求之前解决问题。
 
 > [!NOTE]
 > 在 ErrorResponse 对象内的 `code` 属性中指定的 HTTP 状态代码和值是稳定的。 在 ErrorResponse 对象内的 `message` 属性中指定的值可能会随时间而变化。
@@ -191,7 +192,7 @@ Direct Line 3.0 架构包含所有由 [Bot Framework v3 架构](bot-framework-re
 ### <a name="activityset-object"></a>ActivitySet 对象 
 定义一组活动。<br/><br/>
 
-| 属性 | Type | Description |
+| 属性 | 类型 | Description |
 |----|----|----|
 | **activities** | [Activity](bot-framework-rest-connector-api-reference.md#activity-object)[] | Activity 对象的数组。 |
 | **watermark** | 字符串 | 集内活动的最大水印。 客户端可以使用 `watermark` 值来指示[从机器人检索活动](bot-framework-rest-direct-line-3-0-receive-activities.md#http-get)时或[生成 WebSocket 流 URL](bot-framework-rest-direct-line-3-0-reconnect-to-conversation.md) 时所看到的最新消息。 |
@@ -199,7 +200,7 @@ Direct Line 3.0 架构包含所有由 [Bot Framework v3 架构](bot-framework-re
 ### <a name="conversation-object"></a>Conversation 对象
 定义 Direct Line 聊天。<br/><br/>
 
-| 属性 | Type | Description |
+| 属性 | 类型 | Description |
 |----|----|----|
 | **conversationId** | 字符串 | 一个 ID，可以唯一标识指定的令牌所适用的聊天。 |
 | **expires_in** | 数字 | 令牌过期前需经历的秒数。 |

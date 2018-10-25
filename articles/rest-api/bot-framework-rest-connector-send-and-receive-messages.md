@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 60d96297ea4bdc6ba920b4f8f990fabb0af8b8d9
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: d0b7b3250a62a995113bc9c7e087e2e62af0f413
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297058"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997060"
 ---
 # <a name="send-and-receive-messages"></a>发送和接收消息
 
@@ -26,7 +27,7 @@ Bot Connector 服务可让机器人跨多个通道（例如 Skype、电子邮件
 
 | 属性 | 值 |
 |----|----|
-| conversation | 将此属性设置为用户消息中 `conversation` 属性的内容。 |
+| 聊天 | 将此属性设置为用户消息中 `conversation` 属性的内容。 |
 | from | 将此属性设置为用户消息中 `recipient` 属性的内容。 |
 | 区域设置 | 将此属性设置为用户消息中 `locale` 属性的内容（如果已指定）。 |
 | recipient | 将此属性设置为用户消息中 `from` 属性的内容。 |
@@ -92,7 +93,7 @@ POST /v3/conversations/{conversationId}/activities
 > [!NOTE]
 > Bot Framework 不会对机器人可以发送的消息数量施加任何限制。 但是，大多数通道都会强制实施限制，以限制机器人在短时间内发送大量的消息。 此外，如果机器人快速连续地发送多条消息，则通道可能无法始终以正确的顺序呈现消息。
 
-## <a name="start-a-conversation"></a>开始聊天
+## <a name="start-a-conversation"></a>启动会话
 
 有时，机器人需要与一个或多个用户发起聊天。 若要开始与通道上的某个用户聊天，机器人必须知道自身的帐户信息，以及该用户在该通道上的帐户信息。 
 

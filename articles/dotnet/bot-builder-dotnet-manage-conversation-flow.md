@@ -5,17 +5,18 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 81f403e9affa38f61ccb42c4c32a47683bbcbf33
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: 94690f58526e8ee322a73c68136d2b52667e1c89
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574803"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999944"
 ---
-# <a name="manage-conversation-flow-with-dialogs"></a>使用对话管理聊天流
+# <a name="manage-conversation-flow-with-dialogs"></a>使用对话框管理会话流
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
@@ -132,7 +133,7 @@ private async Task NameDialogResumeAfter(IDialogContext context, IAwaitable<stri
 
 ## <a name="additional-resources"></a>其他资源
 
-- [对话](bot-builder-dotnet-dialogs.md)
+- [对话框](bot-builder-dotnet-dialogs.md)
 - [设计和控制聊天流](../bot-service-design-conversation-flow.md)
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-BasicMultiDialog" target="_blank">基本多对话示例 (GitHub)</a>
 - <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">用于 .NET 的 Bot Builder SDK 参考</a>

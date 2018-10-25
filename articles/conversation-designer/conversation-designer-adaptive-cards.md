@@ -4,15 +4,15 @@ description: 了解如何配置自适应卡。
 author: vkannan
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 12/13/2017
 ROBOTS: NoIndex, NoFollow
-ms.openlocfilehash: 2dec87fbdce1cc556c15f7220200da98a4496513
-ms.sourcegitcommit: a2f3d87c0f252e876b3e63d75047ad1e7e110b47
+ms.openlocfilehash: d41c2c24ed38fffe76cd73a6bb8a685d3861ac55
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/25/2018
-ms.locfileid: "42928212"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000424"
 ---
 # <a name="configure-adaptive-cards"></a>配置自适应卡
 > [!IMPORTANT]

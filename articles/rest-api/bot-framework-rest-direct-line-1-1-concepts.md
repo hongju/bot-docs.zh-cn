@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: f37d8e9215b0a2cd640431f237d1b8c53fad576b
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: a049d77d506fa3fa678a079de52aa424264847c9
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297645"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997044"
 ---
 # <a name="key-concepts-in-direct-line-api-11"></a>Direct Line API 1.1 中的重要概念
 
@@ -27,7 +28,7 @@ ms.locfileid: "39297645"
 
 ## <a name="starting-a-conversation"></a>开始聊天
 
-Direct Line 聊天由客户端显式打开，只要机器人和客户端参与并拥有有效凭据，就可以运行。 有关详细信息，请参阅[开始聊天](bot-framework-rest-direct-line-1-1-start-conversation.md)。
+Direct Line 聊天由客户端显式发起，只要机器人和客户端参与并拥有有效凭据，就可以运行。 有关详细信息，请参阅[开始聊天](bot-framework-rest-direct-line-1-1-start-conversation.md)。
 
 ## <a name="sending-messages"></a>发送消息
 

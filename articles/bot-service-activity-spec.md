@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 03/07/2018
-ms.openlocfilehash: 0406d489f7d1e27131b4b01411e86850ca4a17b8
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 06e2289dd0176364467d34846ffa7716483f6578
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297063"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000404"
 ---
 # <a name="bot-framework----activity"></a>Bot Framework -- 活动
 
@@ -77,10 +78,10 @@ Bot Framework Activity 架构表示由人类和自动化软件在聊天应用程
 
 ### <a name="terminology"></a>术语
 
-活动
+activity
 > 由机器人、通道或客户端表达的符合活动架构的操作。
 
-通道
+channel
 > 用来发送和接收活动，并将其与聊天或应用程序行为进行相互转换的软件。 通道是活动数据的权威存储。
 
 机器人
@@ -95,7 +96,7 @@ Bot Framework Activity 架构表示由人类和自动化软件在聊天应用程
 接收方
 > 接受活动的软件。
 
-终结点
+endpoint
 > 机器人或通道可以在其中接收活动的可编程寻址位置。
 
 地址
@@ -176,7 +177,7 @@ Bot Framework Activity 架构表示由人类和自动化软件在聊天应用程
 
 `R2033`：接收方“可以”按 ID 删除重复的活动，不过，发送方“不应当”指望接收方执行此重复数据删除。
 
-### <a name="timestamp"></a>时间戳
+### <a name="timestamp"></a>Timestamp
 
 `timestamp` 字段记录活动发生时的确切 UTC 时间。 由于计算系统的分布式性质，重要的时间是通道（权威存储）记录活动的时间。 客户端或机器人启动活动的时间可以单独在 `localTimestamp` 字段中传输。 `timestamp` 字段的值是字符串内的 [ISO 8601](https://www.iso.org/iso-8601-date-and-time-format.html) [[2](#references)] 编码的日期时间。
 
@@ -212,7 +213,7 @@ Bot Framework Activity 架构表示由人类和自动化软件在聊天应用程
 
 `R2063`：机器人和客户端“不应当”包括 `from.name` 字段，除非它在通道内在语义上有价值。
 
-### <a name="recipient"></a>接收者
+### <a name="recipient"></a>Recipient
 
 `recipient` 字段描述哪个客户端或机器人接收此活动。 只有当活动仅传输给一个接收者时此字段才有意义；当活动广播到多个接收者时（像活动发送到通道时发生的情况一样），此字段没有意义。 此字段的用途是使接收者可以识别它们自己。 当客户端或机器人在通道内有多个标识时，此字段比较有用。 `recipient` 字段的值是[通道帐户](#channel-account)类型的复杂对象。
 
@@ -224,7 +225,7 @@ Bot Framework Activity 架构表示由人类和自动化软件在聊天应用程
 
 `R2072`：如果 `recipient` 字段存在并且 `recipient.name` 可用，则通道“应当”包括 `recipient.name` 字段。
 
-### <a name="conversation"></a>聊天
+### <a name="conversation"></a>对话
 
 `conversation` 字段描述了活动所在的聊天。 `conversation` 字段的值是[聊天帐户](#conversation-account)类型的复杂对象。
 
@@ -394,7 +395,7 @@ Bot Framework Activity 架构表示由人类和自动化软件在聊天应用程
 
 `R3090`：发送方“应当”始终对 `expiration` 字段使用 UTC 编码格式的值，并且它们“应当”始终在该值中使用 Z 作为显式 UTC 标记。
 
-### <a name="importance"></a>重要性
+### <a name="importance"></a>Importance
 
 `importance` 字段包含一组枚举的值，用以向接收者表明活动的相对重要性。  接收方负责将这些重要性提示映射到用户体验。 `importance` 字段的值是字符串类型的，具有定义的值 `low`、`normal` 和 `high`。 默认值为 `normal`。
 
@@ -684,7 +685,7 @@ Bot Framework Activity 架构表示由人类和自动化软件在聊天应用程
 
 `R7210`：通道“不应当”处理 `title` 字段内的标记（例如 Markdown）。
 
-#### <a name="image"></a>图像
+#### <a name="image"></a>映像
 
 `image` 字段包含引用了要在按钮的表面上显示的图像的 URL。 通道通常情况下支持数据 URI（如 [RFC 2397](https://tools.ietf.org/html/rfc2397) [[9](#references)] 中所定义）。 `image` 字段的值是字符串类型的。
 
@@ -870,7 +871,7 @@ Bot Framework Activity 架构表示由人类和自动化软件在聊天应用程
 
 `R7432`：在事先不知道通道是否支持数据 URI 的情况下，发送方“不应当”发送数据 URI，如 [RFC 2397](https://tools.ietf.org/html/rfc2397) [[9](#references)] 中所定义。
 
-#### <a name="call"></a>呼叫
+#### <a name="call"></a>调用
 
 `call` 操作表示可以呼叫的电话号码。 呼叫使用以下字段：
 * `type` ("`call`")
@@ -962,7 +963,7 @@ Bot Framework Activity 架构表示由人类和自动化软件在聊天应用程
 
 `R7701`：如果 `actions` 字段为空，则发送方“应当”省略 `suggestedActions` 字段。
 
-#### <a name="to"></a>显示给
+#### <a name="to"></a>目标
 
 `to` 字段包含应当向其显示建议的操作的通道帐户 ID。 可以使用此字段对操作进行筛选，使其仅应用于聊天中的一部分参与者。
 
@@ -1006,11 +1007,11 @@ Bot Framework Activity 架构表示由人类和自动化软件在聊天应用程
 
 活动[实体](#entity)传达关于活动的额外元数据，例如用户的位置或他们使用的消息传送应用的版本。 活动类型应当是 IRI，但有少量非 IRI 名称也很常用。 本附录是支持的非 IRI 实体类型的详尽列表。
 
-| 类型           | 等效 URI                          | 说明               |
+| 类型           | 等效 URI                          | Description               |
 | -------------- | --------------------------------------- | ------------------------- |
-| GeoCoordinates | https://schema.org/GeoCoordinates       | Schema.org 地理坐标 |
+| 地理坐标 | https://schema.org/GeoCoordinates       | Schema.org 地理坐标 |
 | Mention        | https://botframework.com/schema/mention | @-mention                 |
-| Place          | https://schema.org/Place                | Schema.org 位置          |
+| 位置          | https://schema.org/Place                | Schema.org 位置          |
 | Thing          | https://schema.org/Thing                | Schema.org 事物          |
 | clientInfo     | 不适用                                     | Skype 客户端信息         |
 

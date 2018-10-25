@@ -5,15 +5,16 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 03478431822c8be0e696577a18a2e693d441509b
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 8bcc957dbe2d69790cdfa7c2d7c377ed28b5fa12
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42904548"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000324"
 ---
 # <a name="define-a-form-using-json-schema"></a>使用 JSON 架构定义表单
 

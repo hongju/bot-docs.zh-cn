@@ -5,15 +5,15 @@ author: darrenj
 ms.author: darrenj
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2c6736cc8aa607da73c392b04ea894a19c86ff29
-ms.sourcegitcommit: 87b5b0ca9b0d5e028ece9f7cc4948c5507062c2b
+ms.openlocfilehash: fc7b168cc8c509b81539682a3717b54ed5c2109c
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/24/2018
-ms.locfileid: "47029775"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997114"
 ---
 # <a name="enterprise-bot-template---creating-a-new-project"></a>企业机器人模板 - 创建新项目
 
@@ -52,4 +52,4 @@ ms.locfileid: "47029775"
 > 必须运行此步骤，否则机器人初始化 (AppInsights) 和 LUIS 依赖项将不可用。
 ## <a name="customize-your-bot"></a>自定义机器人
 
-验证已成功将机器人部署为开箱即用后，可以根据方案和需求自定义机器人。 继续[自定义机器人](bot-builder-enterprise-template-customize.md)。
+验证已成功将机器人部署为现成可用后，可以根据你的方案和需求自定义机器人。 继续[自定义机器人](bot-builder-enterprise-template-customize.md)。

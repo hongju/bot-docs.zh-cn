@@ -5,15 +5,16 @@ author: DucVo
 ms.author: v-ducvo
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 27e2840680b2c9551915057c1b431afa97236acc
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 78f1660aaa91888655515d3402c8ad7702a5b6f6
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42906251"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997124"
 ---
 # <a name="dialogs-in-the-bot-builder-sdk-for-nodejs"></a>Bot Builder SDK for Node.js 中的对话
 

@@ -5,21 +5,22 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 1557941d4e5413108ea3ce788f7d5d684252b657
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: b0d5ca6893d70a73bc005a949ef6cc2518d3862f
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297652"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000020"
 ---
 # <a name="manage-state-data"></a>管理状态数据
 
 Bot State 服务使机器人能够在特定聊天的上下文中存储和检索与用户、聊天或特定用户关联的状态数据。 对于通道上的每个用户、通道上的每个聊天，以及通道上聊天上下文中的每个用户，最多可以存储 32 KB 的数据。 状态数据可用于多种目的，例如确定先前聊天中断的位置或仅按名称来问候返回的用户。 如果存储用户的首选项，则可以在下次聊天时使用该信息自定义聊天。 例如，可以提醒用户注意有关他们感兴趣的主题的新闻文章，或者在约会可用时提醒用户。 
 
 > [!IMPORTANT]
-> 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展之一用于生产性机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”主题。
+> 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展之一用于生产机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”主题。
 
 ## <a id="concurrency"></a> 数据并发
 

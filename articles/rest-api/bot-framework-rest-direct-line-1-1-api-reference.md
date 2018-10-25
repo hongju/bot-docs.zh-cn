@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 3569e3bfbb3be51cf9023b4686ed4693e90ed50c
-ms.sourcegitcommit: ee63d9dc1944a6843368bdabf5878950229f61d0
+ms.openlocfilehash: 3607957cd5cb8738e8268ece6eba4417250bc596
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/23/2018
-ms.locfileid: "42795176"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997954"
 ---
 # <a name="api-reference---direct-line-api-11"></a>API 参考 - Direct Line API 1.1
 
@@ -154,7 +155,7 @@ Direct Line 1.1 架构是 Bot Framework v1 架构的简化副本，其中包含�
 
 定义客户端发送给机器人或者从机器人接收的消息。
 
-| 属性 | Type | Description |
+| 属性 | 类型 | Description |
 |----|----|----|
 | **id** | 字符串 | 用于唯一标识消息的 ID（由 Direct Line 分配）。 | 
 | **conversationId** | 字符串 | 用于标识聊天的 ID。  | 
@@ -196,7 +197,7 @@ Direct Line 1.1 架构是 Bot Framework v1 架构的简化副本，其中包含�
 ### <a name="messageset-object"></a>MessageSet 对象 
 定义一组消息。<br/><br/>
 
-| 属性 | Type | Description |
+| 属性 | 类型 | Description |
 |----|----|----|
 | **messages** | [Message](#message-object)[] | **消息**对象的数组。 |
 | **watermark** | 字符串 | 组中消息的最大水印。 客户端可以使用 `watermark` 值来指示它在[从机器人处检索消息](bot-framework-rest-direct-line-1-1-receive-messages.md)时看到的最新消息。 |
@@ -204,7 +205,7 @@ Direct Line 1.1 架构是 Bot Framework v1 架构的简化副本，其中包含�
 ### <a name="attachment-object"></a>附件对象
 定义非图像附件。<br/><br/> 
 
-| 属性 | Type | Description |
+| 属性 | 类型 | Description |
 |----|----|----|
 | **contentType** | 字符串 | 附件中内容的媒体类型。 |
 | **url** | 字符串 | 附件内容的 URL。 |
@@ -212,7 +213,7 @@ Direct Line 1.1 架构是 Bot Framework v1 架构的简化副本，其中包含�
 ### <a name="conversation-object"></a>聊天对象
 定义 Direct Line 聊天。<br/><br/>
 
-| 属性 | Type | Description |
+| 属性 | 类型 | Description |
 |----|----|----|
 | **conversationId** | 字符串 | 一个 ID，可以唯一标识指定的令牌所适用的聊天。 |
 | **token** | 字符串 | 对指定的聊天有效的令牌。 |
@@ -221,7 +222,7 @@ Direct Line 1.1 架构是 Bot Framework v1 架构的简化副本，其中包含�
 ### <a name="error-object"></a>错误对象
 定义错误。<br/><br/> 
 
-| 属性 | Type | Description |
+| 属性 | 类型 | Description |
 |----|----|----|
 | **code** | 字符串 | 错误代码。 下列值之一：**MissingProperty**、**MalformedData**、**NotFound**、**ServiceError**、**Internal**、**InvalidRange**、**NotSupported**、**NotAllowed**、**BadCertificate**。 |
 | **message** | 字符串 | 对错误的说明。 |
@@ -231,7 +232,7 @@ Direct Line 1.1 架构是 Bot Framework v1 架构的简化副本，其中包含�
 标准化消息错误有效负载。<br/><br/> 
 
 
-|        属性        |          Type          |                                 Description                                 |
+|        属性        |          类型          |                                 Description                                 |
 |------------------------|------------------------|-----------------------------------------------------------------------------|
 | <strong>error</strong> | [错误](#error-object) | 一个包含错误相关信息的 <strong>Error</strong> 对象。 |
 

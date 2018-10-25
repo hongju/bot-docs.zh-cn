@@ -6,14 +6,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: abs
 ms.date: 12/13/2017
-ms.openlocfilehash: 3b0032db8e99c75ec8697f79a78cd6b0bd915db9
-ms.sourcegitcommit: e8c513d3af5f0c514cadcbcd0a737a7393405afa
+ms.openlocfilehash: 27dc7786554af14a24fc8d65b2f7ee31bc4864ef
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/20/2018
-ms.locfileid: "42756717"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997907"
 ---
 # <a name="bot-analytics"></a>机器人分析
 Analytics 是 [Application Insights](/azure/application-insights/app-insights-analytics) 的扩展。 Application Insights 提供服务级和检测数据，例如流量、延迟和集成。 Analytics 提供有关用户、消息和通道数据的聊天级报告。

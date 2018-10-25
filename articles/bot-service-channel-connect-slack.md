@@ -6,14 +6,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: e2176d3eb5584a1d9a234d4ab94c69451f0db6ef
-ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
+ms.openlocfilehash: f69cfa4c67a1f628d835f0d96903065b8b033d32
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/13/2018
-ms.locfileid: "49315223"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000124"
 ---
 # <a name="connect-a-bot-to-slack"></a>将机器人连接到 Slack
 
@@ -40,7 +41,7 @@ ms.locfileid: "49315223"
 1. 选择“OAuth 和权限”选项卡。
 2. 单击“添加新的重定向 URL”。
 3. 输入 https://slack.botframework.com。
-4. 单击 **“添加”**。
+4. 单击“添加”。
 5. 单击“保存 URL”。
 
 ![添加重定向 URL](~/media/channels/slack-RedirectURL.png)

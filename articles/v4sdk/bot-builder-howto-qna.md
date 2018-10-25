@@ -6,15 +6,16 @@ author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: cognitive-services
 ms.date: 10/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e3d7c0a541a4b7f8c2065c5db724e5d79ced54b8
-ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
+ms.openlocfilehash: 3d488cc2bb61ef460ed45707596cb7db9e6c23e8
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/13/2018
-ms.locfileid: "49315173"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999074"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答问题
 
@@ -69,7 +70,7 @@ npm install --save botbuilder-ai
     ```shell
     qnamaker get kb --kbId <your-kb-id> --msbot | msbot connect qna --stdin [--secret <your-secret>]
     ```
-如果已加密配置文件，则需提供密钥才能更新该文件。
+如果已加密配置文件，则需要提供机密密钥才能更新该文件。
 
 ## <a name="using-qna-maker"></a>使用 QnA Maker
 初始化机器人时，先添加对 QnA Maker 的引用。 然后，我们可以在机器人逻辑中调用它。

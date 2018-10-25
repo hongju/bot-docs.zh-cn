@@ -6,14 +6,15 @@ author: v-royhar
 ms.author: v-royhar
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: cognitive-services
 ms.date: 12/13/2017
-ms.openlocfilehash: ba2aec255cf160a72c11c3ddfda021baae304568
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 5cb47be530f9f82d83272684e6405730c72f3cb7
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389636"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997145"
 ---
 # <a name="configure-speech-priming"></a>配置语音启动
 
@@ -37,7 +38,7 @@ ms.locfileid: "47389636"
 1. 单击机器人服务边栏选项卡上的“语音启动”。 将显示你可以使用的 LUIS 应用列表。
 2. 选择你希望必应语音使用的 LUIS 应用。
  
-    a. 若要在列表中选择 LUIS 应用，请将鼠标悬停在 LUIS 模型上，直到出现一个复选框，然后选中此复选框。
+    a.在“解决方案资源管理器”中，右键单击项目文件夹下的“引用”文件夹，并单击“添加引用”。 若要在列表中选择 LUIS 应用，请将鼠标悬停在 LUIS 模型上，直到出现一个复选框，然后选中此复选框。
      
     b. 若要选择不在列表中的 LUIS 应用，请滚动到底部并在文本框中输入 LUIS 应用程序 ID GUID。
      

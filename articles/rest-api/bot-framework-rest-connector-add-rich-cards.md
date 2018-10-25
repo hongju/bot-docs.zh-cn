@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 04f70777003ef5298de264f5ee8685b3a5005395
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: e38bb7ca93c5fc4174d67d1c5ebb0655eef68653
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298230"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997906"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>向消息添加资讯卡附件
 > [!div class="op_single_selector"]
@@ -48,7 +49,7 @@ Bot Framework 目前支持八种类型的资讯卡：
 
 若要处理资讯卡中的事件，请使用 [CardAction][CardAction] 对象指定当用户单击按钮或点击卡的某个部分时应发生的情况。 每个 [CardAction][CardAction] 对象都包含以下属性：
 
-| 属性 | Type | Description | 
+| 属性 | 类型 | Description | 
 |----|----|----|
 | type | 字符串 | 操作类型（下表中指定的某个值） |
 | title | 字符串 | 按钮的标题 |
@@ -63,8 +64,8 @@ Bot Framework 目前支持八种类型的资讯卡：
 | type | 值 | 
 |----|----|
 | openUrl | 要在内置浏览器中打开的 URL |
-| imBack | 要发送到机器人的消息文本（来自单击按钮或点击卡的用户）。 通过托管聊天的客户端应用程序，所有聊天参与者都可看到此消息（从用户到机器人）。 |
-| postBack | 要发送到机器人的消息文本（来自单击按钮或点击卡的用户）。 某些客户端应用程序可能会在消息源中显示此文本，所有聊天参与者都可在此处看到该文本。 |
+| imBack | 要发送到机器人的消息文本（来自单击按钮或点击卡的用户）。 通过托管会话的客户端应用程序，所有会话参与者都可看到此消息（从用户到机器人）。 |
+| postBack | 要发送到机器人的消息文本（来自单击按钮或点击卡的用户）。 某些客户端应用程序可能会在消息源中显示此文本，所有会话参与者都可看到该文本。 |
 | call | 格式如下的电话呼叫的目标：电话:123123123123 |
 | playAudio | 要播放的音频的 URL |
 | playVideo | 要播放的视频的 URL |

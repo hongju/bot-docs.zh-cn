@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 3f881f353f04be95ce3785c2fd82b724dd58cb88
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 290a2733b96a458eb3529b0b0854703631e05f22
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298098"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000034"
 ---
 # <a name="send-an-activity-to-the-bot"></a>向机器人发送活动
 
@@ -80,7 +81,7 @@ HTTP/1.1 200 OK
 
 通常情况下，客户端可能在设备上包含要发送给机器人的图像或文档，但没有对应这些文件的 URL。 在此情况下，客户端可以发出 `POST /v3/directline/conversations/{conversationId}/upload` 请求通过上传向机器人发送附件。 请求的格式和内容将取决于客户端是[发送单个附件](#upload-one-attachment)还是[发送多个附件](#upload-multiple-attachments)。
 
-### <a id="upload-one-attachment"></a> 通过上传发送单个附件
+### <a id="upload-one-attachment"></a>通过上传发送单个附件
 
 若要通过上传发送附件，请发出此请求： 
 
@@ -94,7 +95,7 @@ Content-Disposition: ATTACHMENT_INFO
 [file content]
 ```
 
-在此请求 URI 中，将 {conversationId} 替换为会话 ID，将 {userId} 替换为发送消息的用户的 ID。 `userId` 参数是必需的。 在请求标头中，设置 `Content-Type` 以指定附件类型并设置 `Content-Disposition` 来指定附件的文件名。
+在此请求 URI 中，将 {conversationId} 替换为会话 ID，将 {userId} 替换为发送消息的用户的 ID。 `userId` 参数是必需的。 在请求标头中，设置 `Content-Type` 以指定附件的类型，设置 `Content-Disposition` 以指定附件的文件名。
 
 以下代码片段提供了 Send (single) Attachment 请求和响应的示例。
 
@@ -131,7 +132,7 @@ HTTP/1.1 200 OK
 
 可以通过添加指定 `Content-Type` 标头值 `application/vnd.microsoft.activity` 的部件在请求中包含 [Activity](bot-framework-rest-connector-api-reference.md#activity-object) 对象。 如果请求包含 Activity，在发送之前，由有效负载的其他部分指定的附件要先添加为该 Activity 的附件。 如果请求不包含 Activity，将创建空的 Activity 以充当在其中发送指定附件的容器。
 
-以下代码片段提供了 Send (multiple) Attachments 请求和响应的示例。 在此示例中，请求将发送包含一些文本和单个图像附加的消息。 其他部分可以添加到请求中，以在此消息中包含多个附件。
+以下代码片段提供了 Send (multiple) Attachments 请求和响应的示例。 在此示例中，请求发送包含一些文本和单张图像附件的消息。 其他部分可以添加到请求中，以在此消息中包含多个附件。
 
 #### <a name="request"></a>请求
 

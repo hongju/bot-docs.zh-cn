@@ -6,15 +6,16 @@ author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 9/25/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c70711d747e9646acf63b6ee206d0b8db25ef202
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 07035c8f0dfc7473192d8c51667ed1f5cefbc555
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389678"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999386"
 ---
 # <a name="manage-simple-conversation-flow-with-dialogs"></a>使用对话管理简单的聊天流
 
@@ -42,11 +43,11 @@ ms.locfileid: "47389678"
 
 ---
 
-## <a name="using-dialogs-to-guide-the-user-through-steps"></a>使用对话来指导用户完成各步骤
+## <a name="using-dialogs-to-guide-the-user-through-steps"></a>使用对话框来指导用户完成各步骤
 
 在此示例中，我们将创建一个多步骤对话，以使用对话集提示用户输入信息。
 
-### <a name="create-a-dialog-with-waterfall-steps"></a>使用瀑布图步骤创建一个对话
+### <a name="create-a-dialog-with-waterfall-steps"></a>使用瀑布图步骤创建一个对话框
 
 **WaterfallDialog** 是对话的特定实现，通常用于从用户那里收集信息或指导用户完成一系列任务。 聊天的每个步骤都是作为函数实现的。 在每个步骤中，机器人会[提示用户输入](bot-builder-prompts.md)，等待响应，然后将结果传递到下一步。 第一个函数的结果作为参数传递给下一个函数，依此类推。
 

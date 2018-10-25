@@ -5,27 +5,28 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 3cb6f552bee4857d3562e637b2a5728b30ac48a5
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: d69013c721552483cfd38b204936cb1c7f508f82
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297795"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49996894"
 ---
 # <a name="implement-channel-specific-functionality"></a>实现特定于通道的功能
 
 某些通道提供的功能仅使用[消息文本和附件](bot-framework-rest-connector-create-messages.md)无法实现。 若要实现特定于通道的功能，可以将本机元数据传递给 [Activity][Activity] 对象的 `channelData` 属性中的通道。 例如，机器人可以使用 `channelData` 属性来指示 Telegram 发送贴纸或指示 Office365 发送电子邮件。
 
-本文介绍如何使用消息活动的 `channelData` 属性实现此特定于通道的功能：
+本文介绍如何使用消息活动的 `channelData` 属性来实现此通道特定的功能：
 
 | 通道 | 功能 |
 |----|----|
 | 电子邮件 | 发送和接收包含正文、主题和重要性元数据的电子邮件 |
-| Slack | 发送完全保真的 Slack 消息 |
+| Slack | 发送全保真的 Slack 消息 |
 | Facebook | 本机发送 Facebook 通知 |
-| Telegram | 执行特定于 Telegram 的操作，例如共享语音备忘录或贴纸 |
+| Telegram | 执行 Telegram 特定操作，例如共享语音备忘录或贴纸 |
 | Kik | 发送和接收本机 Kik 消息 | 
 
 > [!NOTE]
@@ -111,9 +112,9 @@ ms.locfileid: "39297795"
 }
 ```
 
-当用户单击 Slack 消息中的按钮时，机器人将收到一条响应消息，其中 `channelData` 属性填充了 `payload` JSON对象。 `payload` 对象指定原始消息的内容，标识单击的按钮，并标识单击该按钮的用户。 
+当用户单击 Slack 消息中的按钮时，机器人将收到一条答复消息，其中 `channelData` 属性中填充了 `payload` JSON 对象。 `payload` 对象指定原始消息的内容，标识单击的按钮，并标识单击该按钮的用户。 
 
-此代码片段显示了当用户单击 Slack 消息中的按钮时机器人收到的消息中的 `channelData` 属性的示例。
+此代码片段显示了当用户单击 Slack 消息中的按钮时，机器人收到的消息中 `channelData` 属性的示例。
 
 ```json
 "channelData": {
@@ -131,7 +132,7 @@ ms.locfileid: "39297795"
 }
 ```
 
-机器人可以按[常规方式](bot-framework-rest-connector-send-and-receive-messages.md#create-reply)回复此消息，也可以将其响应直接发布到由 `payload` 对象的 `response_url` 属性指定的终结点。 有关何时以及如何将响应发布到 `response_url` 的信息，请参阅 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按钮</a>。 
+机器人可以按[常规方式](bot-framework-rest-connector-send-and-receive-messages.md#create-reply)回复此消息，也可以将其答复直接发布到由 `payload` 对象的 `response_url` 属性指定的终结点。 要了解何时以及如何将答复发布到 `response_url`，请参阅 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按钮</a>。 
 
 ## <a name="create-a-facebook-notification"></a>创建 Facebook 通知
 
@@ -139,11 +140,11 @@ ms.locfileid: "39297795"
 
 | 属性 | Description |
 |----|----|
-| notification_type | 通知的类型（例如，**REGULAR**、**SILENT_PUSH**、**NO_PUSH**）。
+| notification_type | 通知的类型（例如 REGULAR、SILENT_PUSH 和 NO_PUSH）。
 | attachment | 附件（用于指定图像、视频或其他多媒体类型）或模板化附件（如收据）。 |
 
 > [!NOTE]
-> 有关 `notification_type` 属性 和`attachment` 属性的格式和内容的详细信息，请参阅 <a href="https://developers.facebook.com/docs/messenger-platform/send-api-reference#guidelines" target="_blank">Facebook API 文档</a>。 
+> 要详细了解 `notification_type` 属性和`attachment` 属性的格式和内容，请参阅 <a href="https://developers.facebook.com/docs/messenger-platform/send-api-reference#guidelines" target="_blank">Facebook API 文档</a>。 
 
 此代码片段显示了Facebook 收据附件的 `channelData` 属性示例。
 
@@ -167,7 +168,7 @@ ms.locfileid: "39297795"
 | 属性 | Description |
 |----|----|
 | 方法 | 要调用的 Telegram 机器人 API 方法。 |
-| parameters | 指定方法的参数。 |
+| parameters | 已指定的方法的参数。 |
 
 支持以下 Telegram 方法： 
 
@@ -190,12 +191,12 @@ ms.locfileid: "39297795"
 - sendVoice
 - unbanChateMember
 
-有关这些 Telegram 方法及其参数的详细信息，请参阅 <a href="https://core.telegram.org/bots/api#available-methods" target="_blank">Telegram 机器人 API 文档</a>。
+要详细了解这些 Telegram 方法及其参数，请参阅 <a href="https://core.telegram.org/bots/api#available-methods" target="_blank">Telegram 机器人 API 文档</a>。
 
 > [!NOTE]
-> <ul><li><code>chat_id</code> 参数对所有 Telegram 方法都是通用的。 如果未将 <code>chat_id</code> 指定为参数，则框架将为你提供 ID。</li>
+> <ul><li><code>chat_id</code> 参数可通用于所有 Telegram 方法。 如果未将 <code>chat_id</code> 指定为参数，则框架将为你提供 ID。</li>
 > <li>不要内联传递文件内容，而是使用 URL 和媒体类型指定文件，如下面的示例所示。</li>
-> <li>在机器人从 Telegram 通道接收的每条消息中，<code>channelData</code> 属性将包含机器人之前发送的消息。</li></ul>
+> <li>在机器人从 Telegram 通道接收的每条消息中，<code>channelData</code> 属性都将包含机器人之前发送的消息。</li></ul>
 
 此代码片段显示了一个指定单个 Telegram 方法的 `channelData` 属性的示例。
 

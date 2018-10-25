@@ -6,15 +6,16 @@ author: DeniseMak
 ms.author: v-demak
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: tools
 ms.date: 5/16/17
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f0e428ca0aa1b0208538e2de7fc0a293763062a1
-ms.sourcegitcommit: 54ed5000c67a5b59e23b667547565dd96c7302f9
+ms.openlocfilehash: e1817179d8459ace444f669791d8a302fb6fb5c9
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/13/2018
-ms.locfileid: "49315203"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999774"
 ---
 # <a name="extract-intents-and-entities-using-luisgen"></a>使用 LUISGen 提取意向和实体
 
@@ -84,7 +85,7 @@ public _Entities Entities;
 > 所有实体类型都是数组，因为 LUIS 可能在用户的话语中检测到多个指定类型的实体。 例如，如果用户说“明天下午 5 点和下周六晚上 9 点预订”，则 `datetime` 结果中将返回“明天下午 5 点”和“下周六晚上 9 点”。
 >
 
-|实体 | Type | 示例 | 说明 |
+|实体 | 类型 | 示例 | 说明 |
 |-------|-----|------|---|
 |partySize| string[]| `four` 人的聚会| 简单实体会识别字符串。 在此示例中，Entities.partySize[0] 是 `"four"`。
 |datetime| [DateTimeSpec](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.ai.luis.datetimespec?view=botbuilder-4.0.0-alpha)[]| 在 `9pm tomorrow` 预订| 每个 **DateTimeSpec** 对象都有一个 timex 字段，其中包含以 **timex** 格式指定的可能时间值。 有关 timex 的更多信息，请访问： http://www.timeml.org/publications/timeMLdocs/timeml_1.2.1.html#timex3；有关进行识别的库的更多信息，请访问： https://github.com/Microsoft/Recognizers-Text

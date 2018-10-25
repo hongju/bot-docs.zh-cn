@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 2993b75a26ed987a472c241133a62727e3b285d2
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: c2d4b9a8e2b8ffc1656df44e04ee1bde912e36ea
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298272"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998154"
 ---
 # <a name="receive-activities-from-the-bot"></a>从机器人接收活动
 
@@ -164,7 +165,7 @@ HTTP/1.1 200 OK
 
 - 服务到服务应用程序通常使用 5 秒或 10 秒的轮询间隔。
 
-- 面向客户端的应用程序通常使用 1 秒的轮询间隔，并在客户端发送的每条消息之后发出额外的请求 ~300 毫秒（以快速检索机器人的响应）。 应根据机器人的速度和传输时间调整这一 300 毫秒的延迟。
+- 面向客户端的应用程序通常使用 1 秒的轮询间隔，并在客户端发送的每条消息之后 ~300ms 发出额外的请求（以快速检索机器人的响应）。 应根据机器人的速度和传输时间调整此 300ms 延迟。
 
 ## <a name="additional-resources"></a>其他资源
 

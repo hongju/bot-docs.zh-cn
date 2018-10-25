@@ -5,15 +5,16 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: c35e651f674d65728ac93a815cc7116515790f53
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: f3f40e41605bfd309d480465a05b91acf5a52d5c
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707873"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000384"
 ---
 # <a name="create-messages"></a>创建消息
 
@@ -45,9 +46,9 @@ ms.locfileid: "46707873"
 
 许多通道支持机器人或用户在聊天上下文中“提及”某人。 要在消息中提及某位用户，请使用 `Mention` 对象填充消息的 `Entities` 属性。 `Mention` 对象包含以下属性： 
 
-| 属性 | Description | 
+| 属性 | 说明 | 
 |----|----|
-| Type | 实体（“mention”）的类型 | 
+| 类型 | 实体（“mention”）的类型 | 
 | Mentioned | `ChannelAccount` 对象，它指示提及了哪位用户 | 
 | 文本 | `Activity.Text` 属性中的文本，它表示 mention 本身（可能为空或为 NULL） |
 
@@ -64,9 +65,9 @@ ms.locfileid: "46707873"
 
 `Place` 对象包含以下属性：
 
-| 属性 | Description | 
+| 属性 | 说明 | 
 |----|----|
-| Type | 实体（“Place”）的类型 |
+| 类型 | 实体（“Place”）的类型 |
 | 地址 | 说明或 `PostalAddress` 对象（未来值） | 
 | 地域 | 地理坐标 | 
 | HasMap | 地图或 `Map` 对象的 URL（未来值） |
@@ -74,9 +75,9 @@ ms.locfileid: "46707873"
 
 `GeoCoordinates` 对象包含以下属性：
 
-| 属性 | Description | 
+| 属性 | 说明 | 
 |----|----|
-| Type | 实体（“GeoCoordinates”）类型 |
+| 类型 | 实体（“GeoCoordinates”）类型 |
 | 名称 | 位置的名称 |
 | 经度 | 位置的经度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 
 | 纬度 | 位置的纬度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) | 

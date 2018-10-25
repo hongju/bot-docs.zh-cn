@@ -6,15 +6,16 @@ author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 09/10/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 87862e8fcbfa357c27a1c8fac0e8dd71d9bc2998
-ms.sourcegitcommit: bd4f9669c0d26ac2a4be1ab8e508f163a1f465f3
+ms.openlocfilehash: 35ec8968493eb024b2724d0729a8a2cd6e14ba82
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/28/2018
-ms.locfileid: "47430326"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000360"
 ---
 # <a name="add-media-to-messages"></a>向消息添加媒体
 
@@ -142,7 +143,7 @@ await turnContext.sendActivity(reply);
 
 若要正常运行，请为卡上的每个可点击项目指定一种操作类型。 此表列出了 card action 对象 type 属性的有效值，并描述了每种类型的 value 属性的预期内容。
 
-| Type | 值 |
+| 类型 | 值 |
 | :---- | :---- |
 | openUrl | 要在内置浏览器中打开的 URL。 通过打开 URL 响应点击或单击。 |
 | imBack | 要发送到机器人的消息文本（来自单击按钮或点击卡的用户）。 通过托管会话的客户端应用程序，所有会话参与者都可看到此消息（从用户到机器人）。 |

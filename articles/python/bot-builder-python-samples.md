@@ -5,15 +5,16 @@ author: jonathanfingold
 ms.author: jonathanfingold
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 05/03/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7a752d6849737dcb298b09ce65d9eb9fb41da6d3
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 5211e3582372c22f1477f08e46fcb33c8b34f8de
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297940"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49996814"
 ---
 # <a name="python-samples-for-bot-builder-sdk"></a>Bot Builder SDK 的 Python 示例
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]

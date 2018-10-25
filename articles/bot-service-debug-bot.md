@@ -6,14 +6,15 @@ ms.author: v-ducvo
 keywords: Bot Builder SDK, 持续部署, 应用服务, 模拟器
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 07/13/2018
-ms.openlocfilehash: 73cf6cedecd9acaef828bd41f4fccdaad2ae5731
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 3312aa3508a7d9e57f1adc3e36c9d0325cdf6df6
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707163"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997544"
 ---
 # <a name="debug-a-bot-service-bot"></a>调试机器人服务机器人
 

@@ -5,15 +5,16 @@ keywords: Bot Framework, Cortana 技能, 语音, .NET, Bot Builder, SDK, 关键�
 author: DeniseMak
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a3d049e349a86437f8c342df1702281600aeddd4
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 030d17fa25a436ee8e8a1d093924e61f12e14e18
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42904389"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998298"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能构建支持语音的机器人
 

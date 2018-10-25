@@ -6,14 +6,15 @@ author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 03/01/2018
-ms.openlocfilehash: f6bf1d99922351a66a4e5401e744fad190746747
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: d2f4692580843f530641827707d250fa726830e3
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389802"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000394"
 ---
 # <a name="entities-and-activity-types"></a>实体和活动类型
 
@@ -31,9 +32,9 @@ ms.locfileid: "47389802"
 要在消息中提及某个用户，请使用 mention 对象填充消息的 entities 属性。
 mention 对象包含以下属性：
 
-| 属性 | Description |
+| 属性 | 说明 |
 |----|----|
-| Type | 实体（“mention”）的类型 |
+| 类型 | 实体（“mention”）的类型 |
 | Mentioned | 指示提及了哪个用户的通道帐户对象 | 
 | 文本 | activity.text 属性中的文本，表示 mention 本身（可能为空或为 null） |
 
@@ -69,9 +70,9 @@ entity = [mention];
 
 place 对象包含以下属性：
 
-| 属性 | Description |
+| 属性 | 说明 |
 |----|----|
-| Type | 实体（“Place”）的类型 |
+| 类型 | 实体（“Place”）的类型 |
 | 地址 | 说明或邮寄地址对象（未来） |
 | 地域 | 地理坐标 |
 | HasMap | 地图或地图对象的 URL（未来） |
@@ -79,9 +80,9 @@ place 对象包含以下属性：
 
 geoCoordinates 对象包含以下属性：
 
-| 属性 | Description |
+| 属性 | 说明 |
 |----|----|
-| Type | 实体（“GeoCoordinates”）类型 |
+| 类型 | 实体（“GeoCoordinates”）类型 |
 | 名称 | 位置的名称 |
 | 经度 | 位置的经度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |
 | 经度 | 位置的纬度 (<a href="https://en.wikipedia.org/wiki/World_Geodetic_System" target="_blank">WGS 84</a>) |

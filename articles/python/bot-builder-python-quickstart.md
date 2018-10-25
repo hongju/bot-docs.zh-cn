@@ -6,15 +6,16 @@ author: jonathanfingold
 ms.author: jonathanfingold
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 08/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6b63fe2780c51e57ee16c5e3dba5a83f46566157
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 4536bef820bc1e6e21ba2905fb643fe5608b3788
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46707274"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999014"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-python"></a>使用 Bot Builder SDK for Python 创建机器人
 
@@ -134,7 +135,7 @@ python main.py
 接下来，启动模拟器，然后在模拟器中连接到机器人：
 
 1. 单击模拟器“欢迎”选项卡中的“打开机器人”链接。 
-2. 选择位于创建项目的目录中的 .bot 文件。
+2. 选择创建项目时所在目录中的 .bot 文件。
 
 ## <a name="interact-with-your-bot"></a>与机器人交互
 

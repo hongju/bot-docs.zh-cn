@@ -5,15 +5,16 @@ author: MalarGit
 ms.author: malarch
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 35aca6f5f50602d0a90c41997eff2e8b1d2cdb4e
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 6ceeca9adc9cad9e60a73c1c7c91bea43b97fdd9
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905609"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997908"
 ---
 # <a name="build-a-real-time-media-bot-for-skype"></a>为 Skype 构建实时媒体机器人
 
@@ -34,7 +35,7 @@ ms.locfileid: "42905609"
 
 * 机器人服务必须具有由公认的证书颁发机构颁发的证书。 证书指纹必须存储在机器人的云服务配置中，并在服务启动期间读取。
 
-* 必须预配公共<a href="/azure/cloud-services/cloud-services-enable-communication-role-instances#instance-input-endpoint">实例输入终结点</a>。 这将为机器人服务中的每个虚拟机 (VM) 实例分配一个唯一的公共端口。 此端口被实时媒体平台用来与 Skype 呼叫云进行通信。
+* 必须预配公共<a href="/azure/cloud-services/cloud-services-enable-communication-role-instances#instance-input-endpoint">实例输入终结点</a>。 这将为机器人服务中的每个虚拟机 (VM) 实例分配一个唯一的公共端口。 此端口被实时媒体平台用来与 Skype 呼叫云进行通信。
   ```xml
   <InstanceInputEndpoint name="InstanceMediaControlEndpoint" protocol="tcp" localPort="20100">
     <AllocatePublicPortFrom>
@@ -65,12 +66,12 @@ ms.locfileid: "42905609"
   </NetworkConfiguration>
   ```
 
-* 在服务实例启动期间，脚本 `MediaPlatformStartupScript.bat`（作为 Nuget 包的一部分）需要作为启动任务在提升的权限下运行。 在调用平台的初始化方法之前，必须完成脚本执行。 
+* 在服务实例启动期间，脚本 `MediaPlatformStartupScript.bat`（作为 Nuget 包的一部分）需要作为启动任务在提升的权限下运行。 在调用平台的初始化方法之前，必须完成脚本执行。 
 
 ```xml
 <Startup>
-<Task commandLine="MediaPlatformStartupScript.bat" executionContext="elevated" taskType="simple" />      
-</Startup> 
+<Task commandLine="MediaPlatformStartupScript.bat" executionContext="elevated" taskType="simple" />      
+</Startup> 
 ```
 
 ## <a name="initialize-the-media-platform-on-service-startup"></a>在服务启动时初始化媒体平台
@@ -237,25 +238,25 @@ private Task OnIncomingCallReceived(RealTimeMediaIncomingCallEvent incomingCallE
 当完成 `AnswerAppHostedMedia` 操作，将引发 `OnAnswerAppHostedMediaCompleted`。 `AnswerAppHostedMediaOutcomeEvent` 中的 `Outcome` 属性指示成功或失败。 如果无法建立呼叫，机器人应处理它为呼叫创建的 AudioSocket 和 VideoSocket 对象。
 
 ## <a name="receive-audio-media"></a>接收音频媒体
-如果创建的 `AudioSocket` 能够接收音频，则将在每次接收音频帧时调用 `AudioMediaReceived` 事件。 机器人应该能够以每秒 50 次的速度处理该事件，而不考虑任何可以提供音频内容的对等点（因为如果没有从对等点接收到音频，会在本地生成舒适噪音缓冲区）。 每个包的音频内容都在 `AudioMediaBuffer` 对象中提供。 此对象包含一个指向本机堆分配的内存缓冲区的指针，其中包含解码音频内容。 
+如果创建的 `AudioSocket` 能够接收音频，则将在每次接收音频帧时调用 `AudioMediaReceived` 事件。 机器人应该能够以每秒 50 次的速度处理该事件，而不考虑任何可以提供音频内容的对等点（因为如果没有从对等点接收到音频，会在本地生成舒适噪音缓冲区）。 每个包的音频内容都在 `AudioMediaBuffer` 对象中提供。 此对象包含一个指向本机堆分配的内存缓冲区的指针，其中包含解码音频内容。 
 
 ```cs
 void OnAudioMediaReceived(
-            object sender,
-            AudioMediaReceivedEventArgs args)
+            object sender,
+            AudioMediaReceivedEventArgs args)
 {
-   var buffer = args.Buffer;
+   var buffer = args.Buffer;
 
    // native heap-allocated memory containing decoded content
-   IntPtr rawData = buffer.Data;            
+   IntPtr rawData = buffer.Data;            
 }
 ```
 
-事件处理程序必须快速返回。 建议应用程序对 `AudioMediaBuffer` 进行排列以便以异步方式进行处理。 `OnAudioMediaReceived` 事件将由实时媒体平台序列化（也就是说，在当前事件返回之前不会引发下一个事件）。 一旦使用了 `AudioMediaBuffer`，应用程序就必须调用缓冲区的 Dispose 方法，以便基础非托管内存可以被媒体平台回收。 
+事件处理程序必须快速返回。 建议应用程序对 `AudioMediaBuffer` 进行排列以便以异步方式进行处理。 `OnAudioMediaReceived` 事件将由实时媒体平台序列化（也就是说，在当前事件返回之前不会引发下一个事件）。 一旦使用了 `AudioMediaBuffer`，应用程序就必须调用缓冲区的 Dispose 方法，以便基础非托管内存可以被媒体平台回收。 
 
 ```cs
-   // release/dispose buffer when done 
-   buffer.Dispose();
+   // release/dispose buffer when done 
+   buffer.Dispose();
 ```
 
 > [!IMPORTANT]
@@ -269,15 +270,15 @@ void OnAudioMediaReceived(
 
 ```cs
 void AudioSocket_OnSendStatusChanged(
-             object sender,
-             AudioSendStatusChangedEventArgs args)
+             object sender,
+             AudioSendStatusChangedEventArgs args)
 {
     switch (args.MediaSendStatus)
     {
     case MediaSendStatus.Active:
-        // notify bot to begin sending audio 
+        // notify bot to begin sending audio 
         break;
-     
+     
     case MediaSendStatus.Inactive:
         // notify bot to stop sending audio
         break;
@@ -294,19 +295,19 @@ void AudioSocket_OnSendStatusChanged(
 
 ```cs
 void VideoSocket_OnSendStatusChanged(
-            object sender,
-            VideoSendStatusChangedEventArgs args)
+            object sender,
+            VideoSendStatusChangedEventArgs args)
 {
     VideoFormat preferredVideoFormat;
 
     switch (args.MediaSendStatus)
     {
     case MediaSendStatus.Active:
-        // notify bot to begin sending audio 
+        // notify bot to begin sending audio 
         // bot is recommended to use this format for sourcing video content.
         preferredVideoFormat = args.PreferredVideoSourceFormat;
         break;
-     
+     
     case MediaSendStatus.Inactive:
         // notify bot to stop sending audio
         break;

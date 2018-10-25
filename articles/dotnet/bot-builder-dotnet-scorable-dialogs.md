@@ -5,15 +5,16 @@ author: matthewshim-ms
 ms.author: v-shimma
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8ba63ad99c772c7cf5884180a62244e0dfe11db2
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: a6a69bd1001c51b44ad42824a0da6a079c5ac5a0
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574903"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999514"
 ---
 # <a name="global-message-handlers-using-scorables"></a>使用可评分项的全局消息处理程序
 

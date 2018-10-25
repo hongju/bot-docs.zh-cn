@@ -5,15 +5,16 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 9eb07a4ac63816b84830956bca0c3a3910669e0d
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: f5687cc7faf4201485ced9535f2e98b0b4c2225a
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574533"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998174"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>向消息添加资讯卡附件
 
@@ -51,9 +52,9 @@ Bot Framework 目前支持八个类型的富卡：
 
 若要处理富卡中的事件，请定义 `CardAction` 对象以指定当用户单击按钮或点击卡的某个部分时应发生的情况。 每个 `CardAction` 对象包含以下属性：
 
-| 属性 | Type | Description | 
+| 属性 | 类型 | Description | 
 |----|----|----|
-| Type | 字符串 | 操作类型（下表中指定的某个值） |
+| 类型 | 字符串 | 操作类型（下表中指定的某个值） |
 | 标题 | 字符串 | 按钮的标题 |
 | 映像 | 字符串 | 按钮的图像 URL |
 | 值 | 字符串 | 执行指定类型的操作所需的值 |

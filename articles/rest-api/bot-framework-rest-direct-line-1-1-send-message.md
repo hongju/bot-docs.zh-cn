@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 3bc56d08f45ffd1e389a2dca1868a788d65e087e
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 360ec3a6a6c9a3be16370aaf445f24a237a702e3
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298372"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998010"
 ---
 # <a name="send-a-message-to-the-bot"></a>向机器人发送消息
 
@@ -56,7 +57,7 @@ HTTP/1.1 204 No Content
 将消息发布到 Direct Line 聊天的总时间是以下时间的总和：
 
 - HTTP 请求从客户端传输到 Direct Line 服务的传输时间
-- Direct Line 中的内部处理时间（通常少于 120ms）
+- Direct Line 中的内部处理时间（通常少于 120 ms）
 - 从 Direct Line 服务到机器人的传输时间
 - 机器人中的处理时间
 - HTTP 响应传输回客户端的传输时间
@@ -87,7 +88,7 @@ Content-Disposition: ATTACHMENT_INFO
 [file content]
 ```
 
-在此请求 URI 中，将 {conversationId} 替换为聊天 ID，将 {userId} 替换为发送消息的用户的 ID。 在请求标头中，设置 `Content-Type` 以指定附件的类型，设置 `Content-Disposition` 以指定附件的文件名。
+在此请求 URI 中，将 {conversationId} 替换为会话 ID，将 {userId} 替换为发送消息的用户的 ID。 在请求标头中，设置 `Content-Type` 以指定附件的类型，设置 `Content-Disposition` 以指定附件的文件名。
 
 以下代码片段提供了 Send (single) Attachment 请求和响应的示例。
 
@@ -160,5 +161,5 @@ HTTP/1.1 204 No Content
 
 - [关键概念](bot-framework-rest-direct-line-1-1-concepts.md)
 - [身份验证](bot-framework-rest-direct-line-1-1-authentication.md)
-- [启动聊天](bot-framework-rest-direct-line-1-1-start-conversation.md)
+- [启动会话](bot-framework-rest-direct-line-1-1-start-conversation.md)
 - [从机器人接收消息](bot-framework-rest-direct-line-1-1-receive-messages.md)

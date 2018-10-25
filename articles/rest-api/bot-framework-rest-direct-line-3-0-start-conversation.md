@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: ead16c0ff41ae93daff8952ca135fa0771bbbe78
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 6754935070fefb890c3d5b7bd90f1c1a4c5d401d
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39297945"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "50000294"
 ---
 # <a name="start-a-conversation"></a>启动会话
 

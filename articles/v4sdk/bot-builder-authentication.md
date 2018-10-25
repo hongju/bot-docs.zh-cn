@@ -5,15 +5,16 @@ author: JonathanFingold
 ms.author: JonathanFingold
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: abs
 ms.date: 09/27/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 444440c3861e2a0b68eb49c5f3469419ad55ec99
-ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
+ms.openlocfilehash: 93d32d5d0ac35dead8e9f1c48b526058449fabad
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/15/2018
-ms.locfileid: "49326584"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998784"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
 
@@ -98,7 +99,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
    1. 单击“保存”并记录密钥值。 稍后需要提供该值作为“应用程序密码”。
    1. 关闭“密钥”面板。
 1. 单击“所需权限”打开“所需权限”面板。
-   1. 单击 **“添加”**。
+   1. 单击“添加”。
    1. 单击“选择 API”，然后选择“Microsoft Graph”并单击“选择”。
    1. 单击“选择权限”。 选择应用程序将使用的应用程序权限。
 

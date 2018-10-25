@@ -6,14 +6,15 @@ author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 09/26/2018
-ms.openlocfilehash: ee7a7a9f1b4c06f8ad762f750099383e218d98f2
-ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
+ms.openlocfilehash: afb1c4a0e766df7ac2d122b3c7ca4e7959871dbb
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/15/2018
-ms.locfileid: "49326424"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997274"
 ---
 # <a name="download-and-redeploy-bot-code"></a>下载并重新部署机器人代码
 可以通过 Azure 机器人服务下载适用于机器人的整个源项目，以便使用所选 IDE 在本地进行工作。 更新完代码以后，即可将所做的更改发布回 Azure 门户。 我们会介绍如何使用 Azure 门户和 `az` cli 来下载代码。 我们还会介绍如何使用 Visual Studio 和 `az` cli 工具来重新部署更新的机器人代码。 你可以选择最适合自己的方法。

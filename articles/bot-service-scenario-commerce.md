@@ -5,21 +5,21 @@ author: BrianRandell
 ms.author: v-brra
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 15745bc25013df2fd18b0a2045ae2314d6c361e2
-ms.sourcegitcommit: 67445b42796d90661afc643c6bb6533e9a662cbc
+ms.openlocfilehash: f880bc9a424fd9905f7e4ced25e97e2c37155072
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/06/2018
-ms.locfileid: "39574853"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49996824"
 ---
 # <a name="commerce-bot-scenario"></a>商业机器人方案
 
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
-[商业机器人](bot-service-scenario-commerce.md)方案描述了一种机器人，它使用酒店的礼宾服务代替人们通常进行的传统电子邮件和电话交互。 机器人利用认知服务通过文本和语音更好地处理客户请求，并通过与后端服务集成收集上下文。
+[商业机器人](bot-service-scenario-commerce.md)方案描述的机器人使用酒店的礼宾服务代替人们通常进行的传统电子邮件和电话交互。 机器人利用认知服务通过文本和语音更好地处理客户请求，并通过与后端服务集成收集上下文。
 
 ![应用程序机器人关系图](~/media/scenarios/bot-service-scenario-commerce-bot.png)
 
@@ -45,13 +45,13 @@ ms.locfileid: "39574853"
 -   Application Insights
 
 ### <a name="azure-active-directory-azure-ad"></a>Azure Active Directory (Azure AD)
-Azure Active Directory (Azure AD) 是 Microsoft 提供的基于多租户云的目录和标识管理服务。 作为机器人开发人员，Azure AD 让你可以快速轻松地与世界各地数百万组织使用的世界一流标识管理解决方案集成，从而专注于构建机器人。 Azure AD 支持使用 B2C 连接器，目的是确定使用外部 ID（例如 Google、Facebook 或 Microsoft 帐户）的用户。 Azure AD 消除了你必须管理用户凭据的责任，而让你专注于机器人解决方案，因为知道你可以将机器人的用户与应用程序公开的正确数据相关联。
+Azure Active Directory (Azure AD) 是 Microsoft 提供的基于多租户云的目录和标识管理服务。 作为机器人开发工具，Azure AD 让你可以快速轻松地与世界各地数百万组织使用的世界一流标识管理解决方案集成，从而专注于构建机器人。 Azure AD 支持使用 B2C 连接器，目的是确定使用外部 ID（例如 Google、Facebook 或 Microsoft 帐户）的用户。 Azure AD 消除了你必须管理用户凭据的责任，而让你专注于机器人解决方案，因为知道你可以将机器人的用户与应用程序公开的正确数据相关联。
 
 ### <a name="cognitive-services-luis"></a>认知服务：LUIS
 作为认知服务技术系列的成员，语言理解 (LUIS) 为你的应用带来了机器学习的强大功能。 目前，LUIS 支持多种语言，使机器人能够理解人们想要的内容。 与 LUIS 集成时，你表达意向并定义机器人理解的实体。 然后，通过使用示例话语训练机器人，教机器人理解这些意向和实体。 你可以使用短语列表和正则表达式功能调整集成，以便机器人尽可能流利，满足你的特定聊天需求。
 
 ### <a name="application-insights"></a>Application Insights
-Application Insights 可帮助你通过应用程序性能管理 (APM) 和即时分析获取可付诸实施的见解。 开箱即可获得丰富的性能监视、功能强大的警报和易于使用的仪表板，帮助确保机器人可用且行为符合预期。 你可以快速了解是否有问题，然后执行根本原因分析以便查找并解决问题。
+Application Insights 可帮助你通过应用程序性能管理 (APM) 和即时分析获取可付诸实施的见解。 开箱即可获得丰富的性能监视、功能强大的警报和易于使用的仪表板，帮助确保机器人可用且行为符合预期。 可以快速了解是否有问题，然后执行根本原因分析以便查找并解决问题。
 
 ## <a name="next-steps"></a>后续步骤
 接下来，了解 Cortana 技能机器人方案。
