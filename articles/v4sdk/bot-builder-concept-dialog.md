@@ -6,15 +6,16 @@ author: johnataylor
 ms.author: johtaylo
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 9/22/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2cf5da32b563c310ee201090c938da9ff410a70c
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 45bca42ddce527826d2723bc9a20a3c3e6c5aebe
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46708578"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998604"
 ---
 # <a name="dialogs-library"></a>对话框库
 
@@ -29,7 +30,7 @@ ms.locfileid: "46708578"
 - ContinueDialog
 - ResumeDialog
 
-在运行时，Dialogs 和 DialogContext 类会一起选择适用于处理活动的对话框。 DialogContext 类会将保留的对话框堆栈、入站活动和 DialogSet 类绑定在一起。 DialogSet 包含机器人可以调用的对话框。
+在运行时，可以配合使用 Dialogs 和 DialogContext 类来选择适用于处理活动的对话框。 DialogContext 类会将保留的对话框堆栈、入站活动和 DialogSet 类绑定在一起。 DialogSet 包含机器人可以调用的对话框。
 
 DialogContext 的接口反映对话框的开始和继续这样的基础概念。 应用程序的常规模式始终是首先调用 ContinueDialog。 如果没有堆栈，因此也没有 ActiveDialog，应用程序就会在 DialogContext 上调用 BeginDialog，启动所选的对话框。 这会导致相应的对话框条目从 DialogSet 推送到堆栈（严格说来，添加到堆栈中的是对话框的 ID），然后会在特定的对话框对象上委托对 BeginDialog 的调用。 如果已经有 ActiveDialog，则会在处理过程中直接委托对该对话框的 ContinueDialog 的调用，为该对话框提供任何关联的保留属性。
 

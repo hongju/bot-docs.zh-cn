@@ -5,15 +5,15 @@ author: darrenj
 ms.author: darrenj
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6f295794ca7d3cc17688337e70df2a52cdb665ed
-ms.sourcegitcommit: 3bf3dbb1a440b3d83e58499c6a2ac116fe04b2f6
+ms.openlocfilehash: 2ee47d472518e54cf07b86648e270e40f8f015c0
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/23/2018
-ms.locfileid: "46708562"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997224"
 ---
 # <a name="enterprise-template---detailed-overview"></a>企业模板 - 详细概述
 
@@ -28,7 +28,7 @@ ms.locfileid: "46708562"
 
 我们提供了一张简单的介绍卡作为标准，你可以根据需要对其进行修改。
 
-## <a name="basic-language-understanding-luis-intents"></a>基本语言理解 (LUIS) 意向
+## <a name="basic-language-understanding-luis-intents"></a>基本的语言理解 (LUIS) 意向
 
 每个机器人都应该能够基本上理解聊天语言。 例如，每个机器人都应该能够轻松地进行问候。 通常，开发人员需要创建这些基本意向并提供开始训练所需的初始训练数据。 企业机器人模板提供入门所需的示例 LU 文件，避免每个项目每次都必须创建这些文件，确保提供现成的基本功能。
 

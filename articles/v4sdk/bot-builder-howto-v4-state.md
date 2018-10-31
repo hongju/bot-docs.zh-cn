@@ -6,15 +6,16 @@ author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 09/18/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 21f864ba6f5beba5205e860f4a56697997048dfb
-ms.sourcegitcommit: 6c2426c43cd2212bdea1ecbbf8ed245145b3c30d
+ms.openlocfilehash: 972df2a12ffa7901ed4e4ecf14ce99233293c5a2
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/08/2018
-ms.locfileid: "48852292"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997704"
 ---
 # <a name="manage-conversation-and-user-state"></a>管理聊天和用户状态
 
@@ -58,7 +59,7 @@ public class UserProfile
 `TopicState` 类有一个用于跟踪我们在聊天中的位置的标记，并使用聊天状态来存储它。 提示会初始化为“askName”，以便启动聊天。 机器人收到用户的响应以后，提示会被重新定义为“askNumber”，以便启动下一轮聊天。 `UserProfile` 类跟踪用户名称和电话号码，并将其存储在用户状态中。
 
 ### <a name="property-accessors"></a>属性访问器
-示例中的 `EchoBotAccessors` 类作为单一实例创建，通过依赖项注入传递到 `class EchoWithCounterBot : IBot` 构造函数中。 `EchoBotAccessors` 类构造函数初始化 `EchoBotAccessors` 类的新实例。 它包含 `ConversationState`、`UserState` 和关联的 `IStatePropertyAccessor`。 `conversationState` 对象存储主题状态，`userState` 对象存储用户配置文件信息。 `ConversationState` 和 `UserState` 对象在 Startup.cs 文件中创建。 可以在聊天和用户状态对象中持久保存聊天和用户范围内的任何内容。 
+示例中的 `EchoBotAccessors` 类作为单一实例创建，通过依赖项注入传递到 `class EchoWithCounterBot : IBot` 构造函数中。 `EchoBotAccessors` 类包含 `ConversationState`、`UserState` 和关联的 `IStatePropertyAccessor`。 `conversationState` 对象存储主题状态，`userState` 对象存储用户配置文件信息。 `ConversationState` 和 `UserState` 对象稍后会在 Startup.cs 文件中创建。 可以在聊天和用户状态对象中持久保存聊天和用户范围内的任何内容。 
 
 更新了构造函数，使之包含 `UserState`，如下所示：
 ```csharp
@@ -121,17 +122,17 @@ services.AddSingleton<EchoBotAccessors>(sp =>
 services.AddSingleton<EchoBotAccessors>(sp =>
 {
    ...
-    var accessors = new BotAccessors(conversationState, userState)
+    var accessors = new EchoBotAccessors(conversationState, userState)
     {
-        TopicState = conversationState.CreateProperty<TopicState>("TopicState"),
-        UserProfile = userState.CreateProperty<UserProfile>("UserProfile"),
+        TopicState = conversationState.CreateProperty<TopicState>(EchoBotAccessors.TopicStateName),
+        UserProfile = userState.CreateProperty<UserProfile>(EchoBotAccessors.UserProfileName),
      };
 
      return accessors;
  });
 ```
 
-聊天和用户状态通过 `services.AddSingleton` 代码块链接到单一实例，并通过代码中以 `var accessors = new BotAccessor(conversationState, userState)` 开头的状态存储访问器进行保存。
+聊天和用户状态通过 `services.AddSingleton` 代码块链接到单一实例，并通过代码中以 `var accessors = new EchoBotAccessor(conversationState, userState)` 开头的状态存储访问器进行保存。
 
 ### <a name="use-conversation-and-user-state-properties"></a>使用聊天和用户状态属性 
 在 `EchoWithCounterBot : IBot` 类的 `OnTurnAsync` 处理程序中修改代码，提示用户先输入用户名称，然后输入电话号码。 若要跟踪自己在聊天中的位置，请使用在 TopicState 中定义的 Prompt 属性。 该属性已初始化为“askName”。 获得用户名称以后，请将该属性设置为“askNumber”，然后将 UserName 设置为用户键入的名称。 电话号码收到以后，请发送一条确认消息，并将 Prompt 设置为 'confirmation'，因为你位于聊天的末尾。

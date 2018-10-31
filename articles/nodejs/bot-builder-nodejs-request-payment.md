@@ -5,15 +5,16 @@ author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 783d9e1fb3b90f6ba977440b3eefae5c16a1b8ca
-ms.sourcegitcommit: 2dc75701b169d822c9499e393439161bc87639d2
+ms.openlocfilehash: 5bdb699e242784883f7c1a5dda895a31ff80efb1
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 08/24/2018
-ms.locfileid: "42905832"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999155"
 ---
 # <a name="request-payment"></a>请求付款
 
@@ -101,7 +102,8 @@ HTTP 回调将发送给机器人，以指示它应执行某些操作。 每个�
 ### <a name="shipping-address-update-and-shipping-option-update-callbacks"></a>送货地址更新和送货选项更新回调
 
 收到“发货地址更新”或“发货选项更新”回调时，机器人将从该事件的 `value` 属性中的客户端获取付款详细信息的当前状态。
-作为商家，你应该将这些回调视为静态，根据给定的输入付款详细信息，你将计算某些输出付款详细信息，如果客户端提供的输入状态因任何原因无效，则会失败。 如果机器人确定给定信息按原样有效，则只需发送 HTTP 状态代码 `200 OK` 以及未修改的付款详细信息。 或者，机器人可以发送 HTTP 状态代码 `200 OK` 以及在处理订单之前应该应用的更新付款详细信息。 在某些情况下，机器人可能会确定更新的信息无效，并且无法按原样处理订单。 例如，用户的送货地址可能会指定产品供应商不发货的国家/地区。 在这种情况下，机器人可能会发送 HTTP 状态代码 `200 OK` 以及一个填充了付款详细信息对象的错误属性的消息。 发送 `400` 或 `500` 范围内的任何 HTTP 状态代码会导致客户出现一般错误。
+作为商家，你应该将这些回调视为静态，根据给定的输入付款详细信息计算某些输出付款详细信息。如果客户端提供的输入状态因故无效，则操作会失败。 
+如果机器人确定给定信息按原样有效，则只需发送 HTTP 状态代码 `200 OK` 以及未修改的付款详细信息。 或者，机器人可以发送 HTTP 状态代码 `200 OK` 以及在处理订单之前应该应用的更新付款详细信息。 在某些情况下，机器人可能会确定更新的信息无效，并且无法按原样处理订单。 例如，用户的送货地址可能会指定产品供应商不发货的国家/地区。 在这种情况下，机器人可能会发送 HTTP 状态代码 `200 OK` 以及一个填充了付款详细信息对象的错误属性的消息。 发送 `400` 或 `500` 范围内的任何 HTTP 状态代码会导致客户出现一般错误。
 
 ### <a name="payment-complete-callbacks"></a>支付完成回调
 

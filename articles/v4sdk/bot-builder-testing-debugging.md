@@ -6,15 +6,15 @@ author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 04/09/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4195ae016513c809e4677879e0abe1b2bf8d799e
-ms.sourcegitcommit: 3cb288cf2f09eaede317e1bc8d6255becf1aec61
+ms.openlocfilehash: 27516a73f625eea9c6d2cf8a09234f4068d380e3
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 09/27/2018
-ms.locfileid: "47389776"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49997454"
 ---
 # <a name="testing-and-debugging-guidelines"></a>测试和调试指南
 
@@ -50,7 +50,8 @@ ms.locfileid: "47389776"
 
 ### <a name="level-2-use-a-direct-line-client"></a>级别 2：使用 Direct Line 客户端
 
-验证机器人的运行在表面上是否符合预期以后，下一步是将其连接到某个通道。 为此，可以将机器人部署到过渡服务器，并创建你自己的 <!--IBTODO [Direct Line client](bot-builder-howto-direct-line.md)--> Direct Line 客户端，供机器人进行连接。
+验证机器人的运行在表面上是否符合预期以后，下一步是将其连接到某个通道。 为此，可以将机器人部署到过渡服务器，并创建你自己的 Direct Line 客户端，供机器人进行连接。
+<!--IBTODO [Direct Line client](bot-builder-howto-direct-line.md)-->
 
 创建自己的客户端以后，即可定义通道的内部运作，并对机器人对某些活动交换操作的响应进行具体测试。 连接到客户端以后，请运行测试，以便设置机器人状态并验证功能。 如果机器人使用语音之类的功能，则可通过这些通道来验证该功能。
 

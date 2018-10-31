@@ -6,15 +6,16 @@ author: kamrani
 ms.author: kamrani
 manager: kamrani
 ms.topic: get-started-article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 09/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d299e4bdfd503475bf1ec560da2aff1d3a199e47
-ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
+ms.openlocfilehash: 32743e895f2390fe018dc3801ed5b8a67b32a8cc
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/15/2018
-ms.locfileid: "49326384"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999374"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-net"></a>通过 Bot Builder SDK for .NET 创建机器人
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -30,7 +31,7 @@ ms.locfileid: "49326384"
 ## <a name="create-a-bot"></a>创建机器人
 安装在先决条件部分中下载的 BotBuilderVSIX.vsix 模板。 
 
-在 Visual Studio 中创建一个新的机器人项目。
+在 Visual Studio 中使用 Bot Builder Echo Bot V4 模板创建一个新的机器人项目。
 
 ![Visual Studio 项目](../media/azure-bot-quickstarts/bot-builder-dotnet-project.png)
 

@@ -5,15 +5,15 @@ author: darrenj
 ms.author: darrenj
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0f4c5e0db9dae86f81414ccd9bbb1e5de4dce624
-ms.sourcegitcommit: b8bd66fa955217cc00b6650f5d591b2b73c3254b
+ms.openlocfilehash: 32be8e2a4047c3c25dcdf2598eea3a7bbd12fbcc
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/15/2018
-ms.locfileid: "49326394"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49999024"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企业机器人模板 - 部署机器人
 
@@ -30,7 +30,7 @@ ms.locfileid: "49326394"
 npm install -g ludown luis-apis qnamaker botdispatch msbot luisgen chatdown
 ```
 
-- 从[此处](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)安装 Azure 命令行工具 (CLI)
+- 从[此处](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)安装 Azure 命令行工具 (CLI)。 如果已安装 Azure 机器人服务命令行 (CLI) 工具，请确保将其更新为最新版本，方法是：卸载当前版本，然后安装新版本。
 
 - 安装适用于机器人服务的 AZ 扩展
 ```shell
@@ -101,6 +101,8 @@ msbot 工具将概述部署计划，包括位置和 SKU。 在继续操作之前
 
 任何，键入 ```hi``` 来验证是否一切都正常工作。
 
+如果 Bot Framework Emulator 出现问题，请先确保 Bot Framework Emulator 为最新版本。 如果旧版模拟器尚未正确更新，请将其卸载并重新安装。
+
 ## <a name="deploy-to-azure"></a>“部署到 Azure”
 
 可以在本地执行端到端测试。 当准备好将机器人部署到 Azure 进行额外测试时，可以使用以下命令来发布源代码，任何时候希望推送源代码更新时，都可以运行此命令。
@@ -123,7 +125,7 @@ az bot publish -g YOUR_BOT_NAME -n YOUR_BOT_NAME --proj-file YOUR_BOT_NAME.cspro
 
 在代码中在所需位置添加以下内容来测试简单的登录流：
     
-`var signInResult = await dc.BeginAsync(SignInDialog.Name);`
+`var signInResult = await dc.BeginDialogAsync(nameof(SignInDialog));`
 
 ### <a name="content-moderation"></a>内容审核
 

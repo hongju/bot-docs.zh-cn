@@ -6,15 +6,16 @@ author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 08/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5b7faaae63bdc084dac570cb33ebbc755ccbcc19
-ms.sourcegitcommit: aef7d80ceb9c3ec1cfb40131709a714c42960965
+ms.openlocfilehash: 2e2c5f54d4ca077ad2b916787613f782779707ac
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/17/2018
-ms.locfileid: "49383112"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49996780"
 ---
 # <a name="send-text-and-spoken-messages"></a>发送文本和语音消息
 
@@ -30,10 +31,10 @@ ms.locfileid: "49383112"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-在机器人的 OnTurn 方法中，使用轮次上下文对象的 SendActivity 方法发送单个消息响应。 此外可以使用该对象的 SendActivities 方法一次性发送多个响应。
+在机器人的 OnTurn 方法中，使用轮次上下文对象的 SendActivityAsync 方法发送单个消息响应。 此外可以使用该对象的 SendActivitiesAsync 方法一次性发送多个响应。
 
 ```cs
-await context.SendActivity("Greetings from sample message.");
+await context.SendActivityAsync("Greetings from sample message.");
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -58,7 +59,7 @@ await context.sendActivity("Greetings from sample message.");
 使用可选语音参数来提供作为响应语音部分的文本。
 
 ```cs
-await context.SendActivity(
+await context.SendActivityAsync(
     "This is the text to be displayed.",
     "This is the text to be spoken.");
 ```

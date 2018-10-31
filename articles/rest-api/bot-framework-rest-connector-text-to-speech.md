@@ -5,14 +5,15 @@ author: RobStand
 ms.author: kamrani
 manager: kamrani
 ms.topic: article
-ms.prod: bot-framework
+ms.service: bot-service
+ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 91385fa3e8ae1410679ca5274e40db7fe38bafea
-ms.sourcegitcommit: f576981342fb3361216675815714e24281e20ddf
+ms.openlocfilehash: 2aac000b7e8dd52b00659ffecde5184df6c29991
+ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 07/18/2018
-ms.locfileid: "39298453"
+ms.lasthandoff: 10/24/2018
+ms.locfileid: "49998684"
 ---
 # <a name="add-speech-to-messages"></a>向消息添加语音
 > [!div class="op_single_selector"]
@@ -20,7 +21,7 @@ ms.locfileid: "39298453"
 > - [Node.js](../nodejs/bot-builder-nodejs-text-to-speech.md)
 > - [REST](../rest-api/bot-framework-rest-connector-text-to-speech.md)
 
-如果要为支持语音的通道（如 Cortana）构建机器人，则可以构造指定机器人要说出的文本的消息。 还可以通过指定[输入提示](bot-framework-rest-connector-add-input-hints.md)来尝试影响客户端麦克风的状态，以指示机器人是在接受、期望还是忽略用户输入。
+如果要为支持语音的通道（如 Cortana）构建机器人，可以构造可指定机器人要说出的文本的消息。 还可以通过指定[输入提示](bot-framework-rest-connector-add-input-hints.md)来尝试影响客户端麦克风的状态，以指示机器人是在接受、期望还是忽略用户输入。
 
 ## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定机器人要朗读的文本
 
@@ -58,7 +59,7 @@ Content-Type: application/json
 
 ## <a name="input-hints"></a>输入提示
 
-在支持语音的通道上发送消息时，可以尝试通过还包含输入提示来影响客户端麦克风的状态，以指示机器人是在接受、期望还是忽略用户输入。 有关详细信息，请参阅[向消息添加输入提示](bot-framework-rest-connector-add-input-hints.md)。
+在支持语音的通道上发送消息时，可以尝试通过同时包含输入提示来影响客户端麦克风的状态，以指示机器人是在接受、期望还是忽略用户输入。 有关详细信息，请参阅[向消息添加输入提示](bot-framework-rest-connector-add-input-hints.md)。
 
 ## <a name="additional-resources"></a>其他资源
 
