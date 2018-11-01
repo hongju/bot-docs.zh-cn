@@ -28,7 +28,6 @@
 ### [物联网机器人](bot-service-scenario-internet-things.md)
 # 操作说明
 ## [设计](design/TOC.md)
-## [管理](manage/TOC.md)
 ## 开发
 ### [发送欢迎消息给用户](v4sdk/bot-builder-send-welcome-message.md)
 ### [发送文本和语音消息](v4sdk/bot-builder-howto-send-messages.md)
@@ -48,13 +47,15 @@
 ### [使用 LUIS 进行语言理解](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答问题](v4sdk/bot-builder-howto-qna.md)
 ### [向机器人添加身份验证](v4sdk/bot-builder-authentication.md)
-### [下载并重新部署机器人代码](bot-service-build-download-source-code.md)
-### [设置持续部署](bot-service-build-continuous-deployment.md)
-### [将本地机器人部署到 Azure](bot-builder-howto-deploy-azure.md)
 ### [实现通道特定的功能](v4sdk/bot-builder-channeldata.md)
 ### [.NET](dotnet/TOC.md)
 ### [Node.js](nodejs/TOC.md)
 ## [调试](debug/TOC.md)
+## 部署
+### [下载并重新部署机器人代码](bot-service-build-download-source-code.md)
+### [设置持续部署](bot-service-build-continuous-deployment.md)
+### [将本地机器人部署到 Azure](bot-builder-howto-deploy-azure.md)
+## [管理](manage/TOC.md)
 # 引用
 ## [Bot Builder 工具](bot-builder-tools.md)
 ## [.NET SDK v4](https://aka.ms/dotnetsdk4)

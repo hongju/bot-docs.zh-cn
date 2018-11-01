@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 10/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3d488cc2bb61ef460ed45707596cb7db9e6c23e8
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 4558a90b7d205d416657450224e2ab4892586b25
+ms.sourcegitcommit: 6ed90a4c90add925a0a865be1127041b7775fd3d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999074"
+ms.lasthandoff: 10/30/2018
+ms.locfileid: "50234460"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答问题
 
@@ -68,7 +68,7 @@ npm install --save botbuilder-ai
 3. 运行以下命令，下载元数据并将其添加到机器人的配置文件。
 
     ```shell
-    qnamaker get kb --kbId <your-kb-id> --msbot | msbot connect qna --stdin [--secret <your-secret>]
+    qnamaker get kb --kbId <your-kb-id> --msbot | msbot connect qna --stdin [ --secret <your-secret>]
     ```
 如果已加密配置文件，则需要提供机密密钥才能更新该文件。
 
