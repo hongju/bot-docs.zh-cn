@@ -40,7 +40,7 @@ ms.locfileid: "50000124"
 
 1. 选择“OAuth 和权限”选项卡。
 2. 单击“添加新的重定向 URL”。
-3. 输入 https://slack.botframework.com。
+3. 输入 https://slack.botframework.com 。
 4. 单击“添加”。
 5. 单击“保存 URL”。
 

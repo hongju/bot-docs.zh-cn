@@ -86,7 +86,7 @@ LUIS 应用开始时为 4 个意向：Cancel、Greeting、Help 和 None。 <!-- 
 
 
 3.  单击右上角的“训练”按钮，训练应用。
-4.  单击顶部导航栏中的“发布”，打开“发布”页。 单击“发布到生产槽”按钮。 发布成功后，会将一个 LUIS 应用部署到“发布应用”页的“终结点”列中显示的 URL（位于以资源名称 Starter_Key 开头的行中）。 该 URL 的格式类似于以下示例：`https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx?subscription-key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&timezoneOffset=0&verbose=true&q=` 此 URL 中的应用 ID 和订阅密钥，与“应用服务设置”>“应用程序设置”>“应用设置”中的 LuisAppId 和 LuisAPIKey 相同。
+4.  单击顶部导航栏中的“发布”，打开“发布”页。 单击“发布到生产槽”按钮。 发布成功后，会将一个 LUIS 应用部署到“发布应用”页的“终结点”列中显示的 URL（位于以资源名称 Starter_Key 开头的行中）。 该 URL 的格式类似于以下示例：`https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx?subscription-key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&timezoneOffset=0&verbose=true&q=` 此 URL 中的应用 ID 和订阅密钥，与 ** “应用服务设置”>“应用程序设置”>“应用设置” ** 中的 LuisAppId 和 LuisAPIKey 相同。
 
 
 ## <a name="modify-the-bot-code"></a>修改机器人代码
