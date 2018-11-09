@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/18/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 972df2a12ffa7901ed4e4ecf14ce99233293c5a2
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 2a3709111b048730805b5578306c669591122dda
+ms.sourcegitcommit: 633008f8db06f1bb5be7bacdb7dd8de6f8165328
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997704"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50753605"
 ---
 # <a name="manage-conversation-and-user-state"></a>管理聊天和用户状态
 
@@ -63,8 +63,6 @@ public class UserProfile
 
 更新了构造函数，使之包含 `UserState`，如下所示：
 ```csharp
-using EchoBotWithCounter;
-
 public EchoBotAccessors(ConversationState conversationState, UserState userState)
 {
     ConversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
@@ -138,8 +136,6 @@ services.AddSingleton<EchoBotAccessors>(sp =>
 在 `EchoWithCounterBot : IBot` 类的 `OnTurnAsync` 处理程序中修改代码，提示用户先输入用户名称，然后输入电话号码。 若要跟踪自己在聊天中的位置，请使用在 TopicState 中定义的 Prompt 属性。 该属性已初始化为“askName”。 获得用户名称以后，请将该属性设置为“askNumber”，然后将 UserName 设置为用户键入的名称。 电话号码收到以后，请发送一条确认消息，并将 Prompt 设置为 'confirmation'，因为你位于聊天的末尾。
 
 ```csharp
-using EchoBotWithCounter;
-
 if (turnContext.Activity.Type == ActivityTypes.Message)
 {
     // Get the conversation state from the turn context.
@@ -305,7 +301,7 @@ if (turnContext.activity.type === 'message') {
     
 }
 else {
-    await turnContext.sendActivity(`[${context.activity.type} event detected]`);
+    await turnContext.sendActivity(`[${turnContext.activity.type} event detected]`);
 }
 ```
 
@@ -322,8 +318,9 @@ else {
 
 ### <a name="interact-with-your-bot"></a>与机器人交互
 
-向机器人发送消息，机器人将回复消息。
-![模拟器运行](../media/emulator-v4/emulator-running.png)
+向机器人发送消息“Hi”，机器人会要求你提供姓名和电话号码。 在你提供该信息后，机器人会发送确认消息。 如果你此后继续聊天，机器人会再次执行相同的循环。
+
+![正在运行的模拟器](../media/emulator-v4/emulator-running-manage-state.png)
 
 如果决定自行管理状态，请参阅[使用自己的提示管理聊天流](bot-builder-primitive-prompts.md)。 还可使用瀑布对话框。 该对话持续跟踪聊天状态，因此你无需创建标记进行跟踪。 有关详细信息，请参阅[使用对话框管理简单的聊天](bot-builder-dialog-manage-conversation-flow.md)。
 
