@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/10/2018
+ms.date: 10/25/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 35ec8968493eb024b2724d0729a8a2cd6e14ba82
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: fcbe28110ec71da7263d125e79ca59d15efa9d5f
+ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000360"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916774"
 ---
 # <a name="add-media-to-messages"></a>向消息添加媒体
 
@@ -45,7 +45,7 @@ var attachment = new Attachment
         ContentType = "image/png",
         Name = "imageName",
     };
-    
+
 // Add the attachment to our reply.
 reply.Attachments = new List<Attachment>() { attachment };
 
@@ -354,5 +354,11 @@ await context.sendActivity(messageWithCarouselOfCards);
 
 ---
 
+<!-- TODO: Add a media card, such as video or audion. Revisit which examples we put here and link to the 06 through 08 samples. -->
+
 ## <a name="additional-resources"></a>其他资源
-可以在此处找到以下卡的示例代码：[C#](https://aka.ms/bot-cards-sample-code)/[JS](https://aka.ms/bot-cards-js-sample-code) 自适应卡：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)，附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-sample-code-js)，以及建议的操作：[C#](https://aka.ms/SuggestedActionsCSharp)/[JS](https://aka.ms/SuggestedActionsJS)。 如需其他示例，请参阅 [GitHub](https://github.com/Microsoft/BotBuilder-Samples) 上的 Bot Builder 示例存储库。
+
+有关卡片架构的详细信息，请参阅 [Bot Framework 卡片架构](https://aka.ms/botSpecs-cardSchema)。
+
+可在以下页面中找到卡片的示例代码：[C#](https://aka.ms/bot-cards-sample-code)/[JS](https://aka.ms/bot-cards-js-sample-code) 自适应卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)，附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-sample-code-js)，以及建议的操作：[C#](https://aka.ms/SuggestedActionsCSharp)/[JS](https://aka.ms/SuggestedActionsJS)。
+如需其他示例，请参阅 [GitHub](https://aka.ms/bot-samples-readme) 上的 Bot Builder 示例存储库。

@@ -1,5 +1,5 @@
 ---
-title: 将多个 LUIS 和 QnA 服务与 Dispatch 工具相集成 | Microsoft Docs
+title: 将 LUIS 和 QnA 服务与 Dispatch 工具配合使用 | Microsoft Docs
 description: 了解如何在机器人中使用 LUIS 和 QnA Maker。
 keywords: Luis, QnA, Dispatch 工具, 多个服务
 author: DeniseMak
@@ -8,16 +8,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/09/2018
+ms.date: 10/31/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e59a7fd86e3802ea23d59a439165a194314639f8
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 4d029dc7361ac8a7fadb61141faf60d8a62eab3c
+ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997394"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50736675"
 ---
-# <a name="integrate-multiple-luis-and-qna-services-with-the-dispatch-tool"></a>将多个 LUIS 和 QnA 服务与 Dispatch 工具相集成
+# <a name="use-luis-and-qna-services-with-the-dispatch-tool"></a>将 LUIS 和 QnA 服务与 Dispatch 工具配合使用
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -31,7 +31,9 @@ ms.locfileid: "49997394"
 | LUIS 应用 | 天气 | 识别包含位置数据的 Weather.GetForecast 和 Weather.GetCondition 意向。|
 | QnAMaker 服务 | 常见问题解答  | 提供有关机器人的一些简单问题的答案。 |
 
-本文中的代码摘自**使用 Dispatch 的 NLP** 示例 [[C#](https://aka.ms/dispatch-sample-cs)<!-- | [JS](https://aka.ms/dispatch-sample-js)-->]。
+本文的代码摘自**使用 Dispatch 的 NLP** 示例 [[C#](https://aka.ms/dispatch-sample-cs)]。
+
+<!-- | [JS](https://aka.ms/dispatch-sample-js)-->
 
 请参阅[语言理解](bot-builder-concept-luis.md)获取语言服务的概述。 请参阅 [LUIS](bot-builder-howto-v4-luis.md) 和 [QnA Maker](bot-builder-howto-qna.md) 的相关文章，获取有关在机器人中实现这些功能的说明。
 

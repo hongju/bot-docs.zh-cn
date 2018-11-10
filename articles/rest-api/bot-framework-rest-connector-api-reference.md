@@ -1,19 +1,19 @@
 ---
 title: API 参考 | Microsoft Docs
 description: 了解 Bot Connector 服务和 Bot State 服务中的标头、操作、对象和错误。
-author: RobStand
-ms.author: kamrani
+author: ivorb
+ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: cd4a0dd73feb18aa6f82699a51ab086c55c5d2cf
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 10/25/2018
+ms.openlocfilehash: 81192c9b5806d467c2a1fd292ee3d5db539e9ead
+ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998297"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916864"
 ---
 # <a name="api-reference"></a>API 参考
 
@@ -130,6 +130,7 @@ Authorization: Bearer ACCESS_TOKEN
 | [发送到聊天](#send-to-conversation) | 将活动（消息）发送到指定聊天的末尾。 | 
 | [回复活动](#reply-to-activity) | 将活动（消息）发送到指定聊天，作为对指定活动的回复。 | 
 | [获取聊天成员](#get-conversation-members) | 获取指定聊天的成员。 |
+| [获取聊天分页成员](#get-conversation-paged-members) | 获取指定聊天的成员，一次一页。 |
 | [获取活动成员](#get-activity-members) | 获取指定聊天中指定活动的成员。 | 
 | [更新活动](#update-activity) | 更新现有活动。 | 
 | [删除活动](#delete-activity) | 删除现有活动。 | 
@@ -178,6 +179,17 @@ GET /v3/conversations/{conversationId}/members
 |----|----|
 | **请求正文** | 不适用 |
 | **返回** | [ChannelAccount](#channelaccount-object) 对象数组 | 
+
+### <a name="get-conversation-paged-members"></a>获取聊天分页成员
+获取指定聊天的成员，一次一页。
+```http
+GET /v3/conversations/{conversationId}/pagedmembers
+```
+
+| | |
+|----|----|
+| **请求正文** | 不适用 |
+| **返回** | 一个 [ChannelAccount](#channelaccount-object) 对象数组和一个可用于获取更多值的继续标记|
 
 ### <a name="get-activity-members"></a>获取活动成员
 获取指定聊天中指定活动的成员。
@@ -386,7 +398,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | [ThumbnailCard 对象](#thumbnailcard-object) | 定义具有缩略图、标题、文本和操作按钮的卡。 |
 | [ThumbnailUrl 对象](#thumbnailurl-object) | 定义图像源的 URL。 |
 | [VideoCard 对象](#videocard-object) | 定义可播放视频的卡。 |
-
+| [SemanticAction 对象](#semanticaction-object) | 定义对编程操作的引用。 |
 
 ### <a name="activity-object"></a>Activity 对象
 定义在机器人与用户之间交换的消息。<br/><br/> 
@@ -423,6 +435,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **topicName** | 字符串 | 活动所属聊天的主题。 |
 | type | 字符串 | 活动的类型。 下列值之一：**contactRelationUpdate**、**conversationUpdate**、**deleteUserData**、**message**、**typing**、**endOfConversation**。 有关活动类型的详细信息，请参阅[活动概述](bot-framework-rest-connector-activities.md)。 |
 | **值** | 对象 | 开放式值。 |
+| **semanticAction** |[SemanticAction](#semanticaction-object) | 一个 **SemanticAction** 对象，表示对编程操作的引用。 |
 
 <a href="#objects">返回到架构表</a>
 
@@ -434,6 +447,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **autoloop** | 布尔值 | 一个标志，指示在最后一个动态 GIF 结束后是否重播动态 GIF 列表。 若要自动重播动画，请将此属性设置为 **true**；否则设置为 **false**。 默认值为 **true**。 |
 | **autostart** | 布尔值 | 一个标志，指示是否在显示卡时自动播放动画。 若要自动播放动画，请将此属性设置为 **true**；否则设置为 **false**。 默认值为 **true**。 |
 | **buttons** | [CardAction](#cardaction-object)[] | 一个 **CardAction** 对象数组，允许用户执行一项或多项操作。 通道决定了可指定的按钮数。 |
+| **duration** | 字符串 | 媒体内容的长度，采用 [ISO 8601 持续时间格式](https://www.iso.org/iso-8601-date-and-time-format.html)。 |
 | **图片** | [ThumbnailUrl](#thumbnailurl-object) | 一个 **ThumbnailUrl** 对象，用于指定要在卡上显示的图像。 |
 | **media** | [MediaUrl](#mediaurl-object)[] | 一个 **MediaUrl** 对象数组，用于指定要播放的动态 GIF 的列表。 |
 | **shareable** | 布尔值 | 一个标志，指示是否可以与其他人共享动画。 如果可以共享动画，则将此属性设置为 **true**；否则设置为 **false**。 默认值为 **true**。 |
@@ -510,6 +524,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **autoloop** | 布尔值 | 一个标志，指示在最后一个音频文件结束后是否重播音频文件列表。 若要自动重播音频文件，请将此属性设置为 **true**；否则设置为 **false**。 默认值为 **true**。 |
 | **autostart** | 布尔值 | 一个标志，指示是否在显示卡时自动播放音频。 若要自动播放音频，请将此属性设置为 **true**；否则设置为 **false**。 默认值为 **true**。 |
 | **buttons** | [CardAction](#cardaction-object)[] | 一个 **CardAction** 对象数组，允许用户执行一项或多项操作。 通道决定了可指定的按钮数。 |
+| **duration** | 字符串 | 媒体内容的长度，采用 [ISO 8601 持续时间格式](https://www.iso.org/iso-8601-date-and-time-format.html)。 |
 | **图片** | [ThumbnailUrl](#thumbnailurl-object) | 一个 **ThumbnailUrl** 对象，用于指定要在卡上显示的图像。 |
 | **media** | [MediaUrl](#mediaurl-object)[] | 一个 **MediaUrl** 对象数组，用于指定要播放的音频文件的列表。 |
 | **shareable** | 布尔值 | 一个标志，指示是否可以与其他人共享音频文件。 如果可以共享音频，则将此属性设置为 **true**；否则设置为 **false**。 默认值为 **true**。 |
@@ -845,6 +860,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **autoloop** | 布尔值 | 一个标志，指示在最后一个视频结束后是否重播视频列表。 若要自动重播视频，请将此属性设置为 **true**；否则设置为 **false**。 默认值为 **true**。 |
 | **autostart** | 布尔值 | 一个标志，指示是否在显示卡时自动播放视频。 若要自动播放视频，请将此属性设置为 **true**；否则设置为 **false**。 默认值为 **true**。 |
 | **buttons** | [CardAction](#cardaction-object)[] | 一个 **CardAction** 对象数组，允许用户执行一项或多项操作。 通道决定了可指定的按钮数。 |
+| **duration** | 字符串 | 媒体内容的长度，采用 [ISO 8601 持续时间格式](https://www.iso.org/iso-8601-date-and-time-format.html)。 |
 | **图片** | [ThumbnailUrl](#thumbnailurl-object) | 一个 **ThumbnailUrl** 对象，用于指定要在卡上显示的图像。 |
 | **media** | [MediaUrl](#mediaurl-object)[] | 一个 **MediaUrl** 对象数组，用于指定要播放的视频的列表。 |
 | **shareable** | 布尔值 | 一个标志，指示是否可以与其他人共享视频。 如果可以共享视频，则将此属性设置为 **true**；否则设置为 **false**。 默认值为 **true**。 |
@@ -852,5 +868,15 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **text** | 字符串 | 要在卡的标题或副标题下显示的描述或提示。 |
 | **title** | 字符串 | 卡的标题。 |
 | **值** | 对象 | 此卡的补充参数|
+
+<a href="#objects">返回到架构表</a>
+
+### <a name="semanticaction-object"></a>SemanticAction 对象
+定义对编程操作的引用。<br/><br/>
+
+| 属性 | 类型 | Description |
+|----|----|----|
+| **id** | 字符串 | 此操作的 ID |
+| **entities** | [实体](#entity-object) | 与此操作关联的实体 |
 
 <a href="#objects">返回到架构表</a>

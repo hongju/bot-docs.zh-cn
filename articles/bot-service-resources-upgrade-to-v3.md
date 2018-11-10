@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 6ee7120536d42257dde2ed1411df32d807268e33
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3e99828e7c26b10c39bef4c8db79f92ff5f2b30c
+ms.sourcegitcommit: 49a76dd34d4c93c683cce6c2b8b156ce3f53280e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000014"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "50134707"
 ---
 # <a name="upgrade-your-bot-to-bot-framework-api-v3"></a>将机器人升级到 Bot Framework API v3
 
@@ -23,53 +23,73 @@ ms.locfileid: "50000014"
 
 ## <a name="step-1-get-your-app-id-and-password-from-the-bot-framework-portal"></a>步骤 1：从 Bot Framework 门户获取应用 ID 和密码
 
-登录到 [Bot Framework 门户](https://dev.botframework.com/)，单击“我的机器人”，然后选择机器人以打开其仪表板。 接下来，单击页面右上角附近的“设置”链接。 
+登录到 [Bot Framework 门户](https://dev.botframework.com/)，单击“我的机器人”，然后选择机器人以打开其仪表板。 接下来，单击页面左侧“机器人管理”下的“设置”链接。 
 
-在设置页的“配置”部分，检查“应用 ID”字段的内容，然后继续执行后续步骤，具体取决于是否已填充“应用 ID”字段。
+在设置页的“配置”部分，检查“Microsoft 应用 ID”字段的内容，然后继续执行后续步骤。
 
-### <a name="case-1-app-id-field-is-already-populated"></a>案例 1：应用 ID 字段已填充
+<!-- TODO: Remove this 
+### Case 1: App ID field is already populated
 
-如果已填充“应用 ID“字段，完成以下步骤：
+If the **App ID** field is already populated, complete these steps:
+-->
 
 1. 单击“管理 Microsoft 应用 ID 和密码”。  
-![配置](~/media/upgrade/manage-app-id.png)
+![配置](./media/upgrade/manage-app-id.png)
 
 2. 单击“生成新密码”。  
-![生成新密码](~/media/upgrade/generate-new-password.png)
+![生成新密码](./media/upgrade/generate-new-password.png)
 
 3. 复制并保存新密码以及 MSA 应用 ID；将在以后用到这些值。  
-![新密码](~/media/upgrade/new-password-generated.png)
+![新密码](./media/upgrade/new-password-generated.png)
 
-### <a name="case-2-app-id-field-is-empty"></a>案例 2：应用 ID 字段为空
+可以按照这些[说明](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret/)操作，以另一种方法检索 **Microsoft 应用 ID 和密码**。
 
-如果“应用 ID”字段为空，完成以下步骤：
+<!-- TODO: These steps are no longer valid. AppID will always be generated, confirmed with Support Engineers
+### Case 2: App ID field is empty
 
-1. 单击“创建 Microsoft 应用 ID 和密码”。  
-   ![创建应用 ID 和密码](~/media/upgrade/generate-appid-and-password.png)
+If the **App ID** field is empty, complete these steps:
+
+1. Click **Create Microsoft App ID and password**.  
+   ![Create App ID and password](~/media/upgrade/generate-appid-and-password.png)
    > [!IMPORTANT]
-   > 不要选择“3.0 版”单选按钮。 将在[更新机器人代码](#update-code)后执行此操作。</div>
+   > Do not select the **Version 3.0** radio button yet. You will do this later, after you have [updated your bot code](#update-code).</div>
 
-2. 单击“生成密码以继续”。  
-   ![生成应用密码](~/media/upgrade/generate-a-password-to-continue.png)
+2. Click **Generate a password to continue**.  
+   ![Generate app password](~/media/upgrade/generate-a-password-to-continue.png)
 
-3. 复制并保存新密码以及 MSA 应用 ID；将在以后用到这些值。  
-   ![新密码](~/media/upgrade/new-password-generated.png)
+3. Copy and save the new password along with the MSA App Id; you will need these values in the future.  
+   ![New password](~/media/upgrade/new-password-generated.png)
 
-4. 单击“完成并返回到 Bot Framework”。  
-   ![完成并返回到门户](~/media/upgrade/finish-and-go-back-to-bot-framework.png)
+4. Click **Finish and go back to Bot Framework**.  
+   ![Finish and go back to Portal](~/media/upgrade/finish-and-go-back-to-bot-framework.png)
 
-5. 返回 Bot Framework 门户中的机器人设置页，滚动到页面底部，单击“保存更改”。  
-   ![保存更改](~/media/upgrade/save-changes.png)
+5. Back on the bot settings page in the Bot Framework Portal, scroll to the bottom of the page and click **Save changes**.  
+   ![Save changes](~/media/upgrade/save-changes.png)
+-->
 
-## <a id="update-code"></a> 步骤 2：将机器人更新到 3.0 版
+## <a id="update-code"></a> 步骤 2：将机器人代码更新到 4.0 版
 
-若要将机器人更新到 3.0 版，请完成以下步骤：
+不再兼容 V1 机器人。 若要更新机器人，需改为在 V3 中创建新的机器人。 若要保留任何旧的代码，需手动迁移代码。
 
-1. 更新到机器人语言的最新版本的 [Bot Builder SDK](https://github.com/Microsoft/BotBuilder)。
-2. 根据以下指南更新代码以应用必要的更改。
-3. 使用 [Bot Framework Emulator](~/bot-service-debug-emulator.md) 依次在本地和云中测试机器人。
+最简单的解决方案是使用新的 [SDK](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0) 重新创建机器人，然后进行部署。 
 
-以下各节介绍 API v1 和 API v3 之间的主要差异。 将代码更新为 API v3 后，可以通过在 Bot Framework 门户中[更新机器人设置](#step-3)完成升级过程。
+如果希望保留旧的代码，请按以下步骤操作：
+
+1. 创建新的机器人应用程序。
+2. 将旧代码复制到新机器人应用程序中。
+3. 通过 Nuget 包管理器将 SDK 升级到最新版本。
+4. 修复出现的任何错误，参考新的 [SDK](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)。
+5. 按照这些[说明](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)将机器人部署到 Azure
+
+<!-- TODO: Remove outdated code 
+To update your bot code to version 3.0, complete these steps:
+
+1. Update to the latest version of the [Bot Builder SDK](https://github.com/Microsoft/BotBuilder) for your bot's language.
+2. Update your code to apply the necessary changes, according the guidance below.
+3. Use the [Bot Framework Emulator](~/bot-service-debug-emulator.md) to test your bot locally and then in the cloud.
+
+The following sections describe the key differences between API v1 and API v3. After you have updated your code to API v3, you can finish the upgrade process by [updating your bot settings](#step-3) in the Bot Framework Portal.
+-->
 
 ### <a name="botbuilder-and-connector-are-now-one-sdk"></a>BotBuilder 和 Connector 现在是一个 SDK
 
@@ -143,21 +163,23 @@ Bot Framework API v3 在 Web.Config 中使用这些密钥存储身份验证属�
 - `MicrosoftAppID`
 - `MicrosoftAppPassword`
 
-## <a id="step-3"></a> 步骤 3：在 Bot Framework 门户中更新机器人设置
+## <a id="step-3"></a> 步骤 3：将更新的机器人部署到 Azure。
 
-在将机器人升级到 API v3 并部署到云后，请通过以下步骤完成升级过程： 
+将机器人代码升级到 API v3 以后，请直接按照这些[说明](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)将机器人部署到 Azure。 由于 V1 不再受支持，因此所有机器人在部署到 Azure 服务时都会自动使用 V3 API。
 
-1. 登录 [Bot Framework 门户](https://dev.botframework.com/)。
+<!-- TODO: Documentation set for removal 
+1. Sign in to the [Bot Framework Portal](https://dev.botframework.com/).
 
-2. 单击“我的机器人”，然后选择机器人打开其仪表板。 
+2. Click **My bots** and select your bot to open its dashboard. 
 
-3. 单击页面右上角附近的“设置”链接。 
+3. Click the **SETTINGS** link that is located near the top-right corner of the page. 
 
-4. 在“3.0 版”下的“配置”部分，将机器人的终结点粘贴到“消息终结点”字段。  
-![版本 3 配置](~/media/upgrade/paste-new-v3-enpoint-url.png)
+4. Under **Version 3.0** within the **Configuration** section, paste your bot's endpoint into the **Messaging endpoint** field.  
+![Version 3 configuration](~/media/upgrade/paste-new-v3-enpoint-url.png)
 
-5. 选择“3.0 版”单选按钮。  
-![选择 3.0 版](~/media/upgrade/switch-to-v3-endpoint.png)
+5. Select the **Version 3.0** radio button.  
+![Select version 3.0](~/media/upgrade/switch-to-v3-endpoint.png)
 
-6. 滚动到页面底部，单击“保存更改”。  
-![保存更改](~/media/upgrade/save-changes.png)
+6. Scroll to the bottom of the page and click **Save changes**.  
+![Save changes](~/media/upgrade/save-changes.png)
+-->

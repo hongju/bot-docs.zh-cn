@@ -7,13 +7,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 10/08/2018
-ms.openlocfilehash: 3ca80439a44ac7e715d19f8e47683ac9b5a5721a
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 10/31/2018
+ms.openlocfilehash: 616c3bfd5fcb36c06f4e2acf032ba3cf5fc125d3
+ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998874"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50736695"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -89,14 +89,15 @@ Azure 机器人服务提供的工具可用于在一个位置构建、测试、�
 机器人可以完成其他类型的软件可以完成的任务 - 读写文件、使用数据库和 API，以及执行常规的计算任务。 使机器人不同于其他软件的是，它们使用的通信机制通常是人与人之间通信才会使用的。 
 
 机器人通常包含以下组件：
-* Web 服务器，通常在公共 Internet 上提供
-* Bot Builder SDK 和 Bot Builder Tools，提供开发机器人所需的界面
-* Azure 认知服务 
-* Azure 存储
+
+- Web 服务器，通常在公共 Internet 上提供
+- Bot Builder SDK 和 Bot Builder Tools，提供开发机器人所需的界面
+- Azure 认知服务
+- Azure 存储
 
 ## <a name="building-a-bot"></a>构建机器人 
 
-Azure 机器人服务提供一组集成的工具和服务来加快此过程。 请选择最喜欢的开发环境或命令行工具在 C#、JavaScript 或 Typescript 中创建机器人。 （Java 和 Python 即将推出！）我们提供用户机器人开发各个阶段的工具，可用来构架机器人，帮助你入门。
+Azure 机器人服务提供一组集成的工具和服务来加快此过程。 请选择最喜欢的开发环境或命令行工具以创建机器人。 提供用于 C#、JavaScript 和 Typescript 的 SDK。 （用于 Java 和 Python 的 SDK 正在开发。）我们提供适合各个机器人开发阶段的工具，方便你设计和生成机器人。
 
 ![机器人概述](media/bot-service-overview.png) 
 

@@ -1,45 +1,25 @@
 ---
-title: 使用 Bot Builder 工具管理机器人
+title: 使用 CLI 工具管理机器人
 description: 可以使用 Bot Builder 工具直接从命令行管理机器人资源
-keywords: botbuilder 模板, ludown, qna, luis, msbot
+keywords: botbuilder 模板, ludown, qna, luis, msbot, 管理, cli, .bot, 机器人
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: tools
-ms.date: 09/18/2018
+ms.date: 11/07/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ef57cdf6a202679f9fc3a83e3e44640b43adb67f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 357f9fdc3da4c703dbcd5c1fa347176002006567
+ms.sourcegitcommit: a54a70106b9fdf278fd7270b25dd51c9bd454ab1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998350"
+ms.lasthandoff: 11/08/2018
+ms.locfileid: "51273104"
 ---
-# <a name="bot-builder-tools"></a>Bot Builder 工具
+# <a name="manage-bots-using-cli-tools"></a>使用 CLI 工具管理机器人
 
-Bot Builder [工具][cliTools]涵盖端到端机器人开发工作流，其中包括规划、生成、测试、发布、连接和评估阶段。 让我们看看如何在开发周期的每个阶段使用这些工具。
-
-[规划](#plan)
-- 一开始请查看机器人[设计指南](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-design-principles)，了解最佳做法。
-- 使用 [Chatdown](#create-mock-conversations-using-chatdown) 工具创建模拟聊天
-
-[生成](#build)
-- 使用 [Ludown](#bootstrap-language-understanding-with-ludown) 启动语言理解
-- 使用 [MSBot](#keep-track-of-service-references-using-bot-file) 跟踪服务引用
-- 使用 [LUIS CLI](#create-and-manage-luis-applications-using-luis-cli) 创建和管理 LUIS 应用程序
-- 使用 [QnA Maker CLI](#create-qna-maker-kb-using-qna-maker-cli) 创建 QnA Maker KB
-- 使用 [Dispatch CLI](#create-dipsatch-model-using-dispatch-cli) 创建调度模型
-
-[Test](#test)
-- 使用 [Bot Framework Emulator V4](https://aka.ms/bot-framework-emulator-v4-overview) 测试机器人
-
-[发布](#publish)
-- 使用 [Azure CLI][azureCli] 创建、下载机器人以及将其发布到 Azure 机器人服务
-
-[连接](#configure-channels)
-- 使用 [Azure CLI][azureCli] 将机器人连接到 Azure 机器人服务
+Bot Builder 工具涵盖端到端机器人开发工作流，其中包括规划、生成、测试、发布、连接和评估阶段。 让我们看看如何在开发周期的每个阶段使用这些工具。
 
 ## <a name="plan"></a>计划
 
@@ -165,10 +145,9 @@ ludown parse ToLuis --in <luFile>
 ludown parse ToQna --in <luFile> 
 ```
 
-生成的 JSON 文件可由 LUIS 和 QnA 通过各自的门户或新的 CLI 工具来使用。
+生成的 JSON 文件可由 LUIS 和 QnA 通过各自的门户或新的 CLI 工具来使用。 若要了解详细信息，请参阅 [LUdown CLI][ludown] GitHub 存储库。
 
-若要了解详细信息，请参阅 [LUdown CLI][ludown] GitHub 存储库。
-## <a name="track-service-references-using-bot-file"></a>使用 .bot 文件跟踪服务引用
+### <a name="track-service-references-using-bot-file"></a>使用 .bot 文件跟踪服务引用
 
 新 [MSBot][msbotCli] 工具用于创建 **.bot** 文件，该文件将机器人使用的不同服务的相关元数据存储在一个位置。 此文件还使机器人能够从 CLI 连接到这些服务。 该工具以 npm 模块形式提供。若要安装它，请运行：
 
@@ -189,7 +168,7 @@ msbot connect [Service]
 
 若要获取支持的服务的列表，请参阅[自述][msbotCli]文件。
 
-## <a name="create-and-manage-luis-applications-using-luis-cli"></a>使用 LUIS CLI 创建和管理 LUIS 应用程序
+### <a name="create-and-manage-luis-applications-using-luis-cli"></a>使用 LUIS CLI 创建和管理 LUIS 应用程序
 
 新工具集中包含的是 [LUIS 扩展][luisCli]，用于独立管理 LUIS 资源。 它以可下载的 npm 模块形式提供：
 
@@ -215,7 +194,7 @@ luis import application --in luis-app.json | msbot connect luis --stdin
 ```
 若要了解详细信息，请参阅 [LUIS CLI][luisCli] GitHub 存储库。
 
-## <a name="create-qna-maker-kb-using-qna-maker-cli"></a>使用 QnA Maker CLI 创建 QnA Maker KB
+### <a name="create-qna-maker-kb-using-qna-maker-cli"></a>使用 QnA Maker CLI 创建 QnA Maker KB
 
 新工具集中包含的是 [QnA 扩展][qnaCli]，用于独立管理 LUIS 资源。 它以可下载的 npm 模块形式提供。
 
@@ -230,7 +209,7 @@ qnamaker create --in qnaKB.json --msbot | msbot connect qna --stdin
 
 若要了解详细信息，请参阅 [QnA Maker CLI][qnaCli] GitHub 存储库。
 
-## <a name="create-dispatch-model-using-dispatch-cli"></a>使用 Dispatch CLI 创建调度模型
+### <a name="create-dispatch-model-using-dispatch-cli"></a>使用 Dispatch CLI 创建调度模型
 
 Dispatch 是一项创建和评估 LUIS 模型的工具，使用此类模型调度的意向可以跨多个机器人模块，例如 LUIS 模型、QnA 知识库等（作为一个文件类型添加到 Dispatch）。
 
@@ -253,12 +232,14 @@ dispatch create -b <YOUR-BOT-FILE> | msbot connect dispatch --stdin
 
 ## <a name="publish"></a>发布
 
-可以使用 [Azure CLI][azureCli] 来[创建](#create-azure-bot-service-bot)、[下载](#download-azure-bot-service-bot)机器人以及将其[发布](#publish-azure-bot-service-bot)到 Azure 机器人服务。 通过以下命令安装机器人扩展： 
+可以使用 Azure CLI 来创建、下载机器人以及将其发布到 Azure 机器人服务。 通过以下命令安装机器人扩展： 
 ```shell
 az extension add -n botservice
 ```
 
-## <a name="create-azure-bot-service-bot"></a>创建 Azure 机器人服务机器人
+### <a name="create-azure-bot-service-bot"></a>创建 Azure 机器人服务机器人
+
+注意：必须使用最新版本的 `az cli`。 请升级此服务，使 az cli 可与 MSBot 工具配合工作。 
 
 通过以下命令登录到 Azure 帐户： 
 ```shell
@@ -322,7 +303,7 @@ Group
 ```
 
 ## <a name="additional-information"></a>其他信息
-- [Bot Builder 工具][cliTools]
+- [GitHub 上的 Bot Builder 工具][cliTools]
 
 <!-- Footnote links -->
 

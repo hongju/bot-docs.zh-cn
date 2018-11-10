@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 32be8e2a4047c3c25dcdf2598eea3a7bbd12fbcc
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 06e91d4b7d320078e83c3523e1326b82ee3fe759
+ms.sourcegitcommit: 49a76dd34d4c93c683cce6c2b8b156ce3f53280e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999024"
+ms.lasthandoff: 10/26/2018
+ms.locfileid: "50134697"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企业机器人模板 - 部署机器人
 
@@ -21,6 +21,8 @@ ms.locfileid: "49999024"
 > 本主题适用于 SDK 的 v4 版本。 
 
 ## <a name="prerequisites"></a>先决条件
+
+- 确保已将 [.NET Core](https://www.microsoft.com/net/download) 更新到最新版本。
 
 - 确保安装了[节点包管理器](https://nodejs.org/en/)。
 
@@ -40,7 +42,7 @@ az extension add -n botservice
 ## <a name="configuration"></a>配置
 
 - 检索你的 LUIS 创作密钥
-   - 查看[此](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-reference-regions)文档页来了解适用于你打算部署到的区域的正确 LUIS 门户。 
+   - 查看[此](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-reference-regions)文档页来了解适用于你打算部署到的区域的正确 LUIS 门户。 请注意，www.luis.ai 是指美国区域，从该门户检索的创作密钥不适用于欧洲部署。
    - 登录后，在右上角单击你的名字。
    - 选择”设置”并记下”创作密钥“以在下一步中使用。
 
@@ -68,13 +70,13 @@ az account set --subscription "YOUR_SUBSCRIPTION_NAME"
 
 > 在部署后，复查已创建的服务的定价层，并进行调整以适应你的方案。
 
-你创建的项目中的 README.md 包含一个示例 msbot 克隆服务命令行，它使用你创建的机器人名称进行了更新，下面显示了一个常规版本。 确保更新来自上一步骤的创作密钥并选择要使用的 Azure 数据中心位置（例如 westus 或 westeurope）。
-
-> 确保在上一步骤中检索的 LUIS 创作密钥适用于你在下方指定的区域。
+你创建的项目中的 README.md 包含一个示例 msbot 克隆服务命令行，它使用你创建的机器人名称进行了更新，下面显示了一个常规版本。 确保更新来自上一步骤的创作密钥并选择要使用的 Azure 数据中心位置（例如 westus 或 westeurope）。 确保在上一步检索的 LUIS 创作密钥适用于在下面指定的区域（例如，luis.ai 的 westus 或 eu.luis.ai 的 westeurope）。
 
 ```shell
-msbot clone services --name "YOUR_BOT_NAME" --luisAuthoringKey "YOUR_AUTHORING_KEY" --folder "DeploymentScripts\msbotClone" --location "westus"
+msbot clone services --name "YOUR_BOT_NAME" --luisAuthoringKey "YOUR_AUTHORING_KEY" --folder "DeploymentScripts\msbotClone" --location "YOUR_REGION"
 ```
+
+> 某些用户会出现一个已知的问题，即在运行部署时可能会遇到以下错误`ERROR: Unable to provision MSA id automatically. Please pass them in as parameters and try again`。 在这种情况下，请浏览到 https://apps.dev.microsoft.com 并手动创建一个检索 ApplicationID 和密码/机密的新应用程序。 请运行上面的 msbot clone services 命令，但需提供两个新的参数（`appId` 和 `appSecret`），用于传递刚检索的值。
 
 msbot 工具将概述部署计划，包括位置和 SKU。 在继续操作之前，请确保进行复查。
 

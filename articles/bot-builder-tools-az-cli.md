@@ -7,14 +7,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: tools
-ms.date: 08/31/2018
+ms.date: 10/31/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b614b11852516ec8dd426d210aacc85a0f39c813
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 8a59c0a8b7ee664cdb38ab9d0cb186114938d73f
+ms.sourcegitcommit: 782b3a2e788c25effd7d150a070bd2819ea92dad
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999410"
+ms.lasthandoff: 11/01/2018
+ms.locfileid: "50743661"
 ---
 # <a name="create-bots-with-azure-cli"></a>使用 Azure CLI 创建机器人
 
@@ -74,9 +74,11 @@ az bot [command]
 若要从 CLI 创建新机器人，需要选择一个现有[资源组](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)，或创建一个新的资源组。 
 
 ```azurecli
-az bot create --resource-group "my-resource-group" --name "my-bot-name" --kind "my-resource-type" --version v3 --description "description-of-my-bot"
+az bot create --resource-group "my-resource-group" --name "my-bot-name" --kind "my-resource-type" --version v3 --description "description-of-my-bot" --lang "programming-language"
 ```
-`--kind` 的允许值为 `function, registration, webapp`，`--version` 的允许值为 `v3, v4`。  请求成功后，将看到确认消息。
+`--kind` 的允许值为 `function, registration, webapp`，`--version` 的允许值为 `v3, v4`。  如果未指定 `--lang` 参数，则会创建 .NET 机器人。 若要创建 Node 机器人，请使用 `Node`。
+
+请求成功后，将看到确认消息。
 ```
 Obtained msa app id and password. Provisioning bot now.
 ```
@@ -91,11 +93,6 @@ Obtained msa app id and password. Provisioning bot now.
 > az account list
 > ```
 
-默认情况下，将创建新的 .NET 机器人。 可以通过使用 -- lang 参数指定语言来指定平台 SDK。 目前，机器人扩展包支持 C# 和 Node.js 机器人 SDK。 例如，若要创建 Node.js 机器人：
-
-```azurecli
-az bot create --resource-group "my-resource-group" --name "my-bot-name" --kind "my-resource-type" --description "description-of-my-bot" --lang Node 
-```
 新的回显机器人将自动预配到 Azure 的资源组中，若要对其进行测试，只需选择 Web 应用机器人视图的机器人管理标头下的“在网上聊天中测试”。 
 
 ![Azure 回显机器人](media/bot-builder-tools/az-echo-bot.png) 

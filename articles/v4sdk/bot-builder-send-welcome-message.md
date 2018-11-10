@@ -1,7 +1,7 @@
 ---
-title: 开发欢迎用户功能 | Microsoft Docs
+title: 向用户发送欢迎消息 | Microsoft Docs
 description: 了解如何开发提供欢迎用户体验的机器人。
-keywords: 概述, 开发, 用户体验, 欢迎, 个性化体验, C#, JS
+keywords: 概述, 开发, 用户体验, 欢迎, 个性化体验, C#, JS, 欢迎消息, 机器人, 问候, 欢迎
 author: dashel
 ms.author: dashel
 manager: kamrani
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/31/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f5549385106cab890269e9a5fafacc00dc331520
-ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
+ms.openlocfilehash: b3582d962911b6024062942a6d9f6ff1efab4022
+ms.sourcegitcommit: a54a70106b9fdf278fd7270b25dd51c9bd454ab1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/01/2018
-ms.locfileid: "50736605"
+ms.lasthandoff: 11/08/2018
+ms.locfileid: "51273084"
 ---
 # <a name="send-welcome-message-to-users"></a>向用户发送欢迎消息
 
@@ -418,4 +418,4 @@ switch (text)
 
 ## <a name="next-steps"></a>后续步骤
 > [!div class="nextstepaction"]
-> [使用“对话”库提示用户输入](bot-builder-prompts.md)
+> [收集用户输入](bot-builder-prompts.md)

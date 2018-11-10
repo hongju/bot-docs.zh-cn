@@ -7,13 +7,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: 2a2cc13020c87616799ee768fbab6e72ab81cc8b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 10/25/2018
+ms.openlocfilehash: eb08ca3b560f5058526387c71eca4b790d033a1e
+ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997634"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916804"
 ---
 # <a name="add-media-attachments-to-messages"></a>向消息添加媒体附件
 > [!div class="op_single_selector"]
@@ -24,7 +24,7 @@ ms.locfileid: "49997634"
 机器人和通道通常会交换文本字符串，但某些通道也支持交换附件，这样机器人就可向用户发送更丰富的消息。 例如，机器人可以发送媒体附件（例如，图像、视频、音频、文件）和[富卡](bot-framework-rest-connector-add-rich-cards.md)。 本文介绍如何使用 Bot Connector 服务向消息添加媒体附件。
 
 > [!TIP]
-> 若要确定通道支持的附件的类型和数量以及通道如何呈现附件，请参阅[通道检查器][ChannelInspector]。
+> 若要确定通道支持的附件的类型和数量以及通道如何呈现附件，请参阅 [通道检查器][ChannelInspector]。
 
 ## <a name="add-a-media-attachment"></a>添加媒体附件  
 
@@ -126,6 +126,7 @@ Content-Type: application/json
         "title": "Allegro in C Major",
         "subtitle": "Allegro Duet",
         "text": "No Image, No Buttons, Autoloop, Autostart, Sharable",
+        "duration": "PT2M55S",
         "media": [
           {
             "url": "https://contoso.com/media/AllegrofromDuetinCMajor.mp3"
@@ -175,9 +176,7 @@ Content-Type: application/json
 - [创建消息](bot-framework-rest-connector-create-messages.md)
 - [发送和接收消息](bot-framework-rest-connector-send-and-receive-messages.md)
 - [向消息添加富卡](bot-framework-rest-connector-add-rich-cards.md)
-- [通道检查器][ChannelInspector]
-
-[ChannelInspector]: ../bot-service-channel-inspector.md
+- [Bot Framework 卡片架构](https://aka.ms/botSpecs-cardSchema)
 
 [Activity]: bot-framework-rest-connector-api-reference.md#activity-object
 [Attachment]: bot-framework-rest-connector-api-reference.md#attachment-object

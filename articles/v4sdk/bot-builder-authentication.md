@@ -2,19 +2,19 @@
 title: 通过 Azure 机器人服务向机器人添加身份验证 | Microsoft Docs
 description: 了解如何使用 Azure 机器人服务身份验证功能向机器人添加 SSO。
 author: JonathanFingold
-ms.author: JonathanFingold
+ms.author: v-jofing
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 09/27/2018
+ms.date: 10/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 93d32d5d0ac35dead8e9f1c48b526058449fabad
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 14a56749c68cfe89ed4a0da3c046a39a8e0783fe
+ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998784"
+ms.lasthandoff: 11/02/2018
+ms.locfileid: "50916784"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
 
@@ -46,7 +46,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 | [Node Auth](http://aka.ms/v4cnodeauth) | v4 |  演示 v4 Node/JavaScript SDK 中的 OAuthCard 支持 |
 
 > [!NOTE]
-> 身份验证功能还适用于 BotBuilder v3。 但是，本文只介绍 v4 代码示例。
+> 身份验证功能也适用于 BotBuilder v3。 但是，本文只介绍 v4 代码示例。
 
 有关其他信息和支持，请参阅 [Bot Framework 的其他资源](https://docs.microsoft.com/azure/bot-service/bot-service-resources-links-help)。
 
@@ -296,7 +296,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 ### <a name="check-for-a-cached-token"></a>检查缓存的令牌
 
-在此代码中，机器人首先会进行快速检查，确定 Azure 机器人服务是否已有用户（由当前活动发件人标识）和给定 ConnectionName（配置中使用的连接名）的令牌。 Azure 机器人服务要么已缓存令牌，要么没有缓存。 调用 GetUserTokenAsync 时，会执行此“快速检查”操作。 如果 Azure 机器人服务有令牌并将其返回，则可以立即使用该令牌。 如果 Azure 机器人服务没有令牌，则此方法将返回 NULL。 在这种情况下，机器人可以发送自定义的 OAuthCard 供用户登录。
+在此代码中，机器人首先会进行快速检查，确定 Azure 机器人服务是否已有用户（由当前活动发件人标识）和给定 ConnectionName（配置中使用的连接名）的令牌。 Azure 机器人服务要么已缓存令牌，要么没有缓存。 调用 GetUserTokenAsync 即可执行此快速检查。 如果 Azure 机器人服务有令牌并将其返回，则可以立即使用该令牌。 如果 Azure 机器人服务没有令牌，则此方法将返回 NULL。 在这种情况下，机器人可以发送自定义的 OAuthCard 供用户登录。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -363,7 +363,7 @@ private async Task SendOAuthCardAsync(ITurnContext turnContext, IMessageActivity
             },
         },
     });
-    
+
     await turnContext.SendActivityAsync(message, cancellationToken).ConfigureAwait(false);
 }
 ```
@@ -386,7 +386,7 @@ private async sendOAuthCardAsync(context: TurnContext, prompt?: string|Partial<A
             this.settings.text
         ));
     }
-    
+
     // Send prompt
     await context.sendActivity(msg);
 }
@@ -481,7 +481,6 @@ private isTeamsVerificationInvoke(context: TurnContext): boolean {
 ```
 
 ---
-
 
 ### <a name="message-controller"></a>消息控制器
 

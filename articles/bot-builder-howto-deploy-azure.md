@@ -1,5 +1,5 @@
 ---
-title: 将机器人部署到 Azure | Microsoft Docs
+title: 将 C# 机器人部署到 Azure | Microsoft Docs
 description: 将机器人部署到 Azure 云。
 keywords: 部署机器人, azure 部署, 机器人通道注册, 发布 visual studio
 author: ivorb
@@ -8,22 +8,24 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 09/19/2018
-ms.openlocfilehash: 5f3fc43bed16d50c347d4e07a9154dfd307f0dc0
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 11/05/2018
+ms.openlocfilehash: f30a038c6bc5e435ade421e24b05d0b31a143538
+ms.sourcegitcommit: 9acac75f85d36c81b8bf4edec916dd0b52a4a5c7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999364"
+ms.lasthandoff: 11/06/2018
+ms.locfileid: "51028734"
 ---
-# <a name="deploy-your-bot-to-azure"></a>将机器人部署到 Azure
+# <a name="deploy-your-c-bot-to-azure"></a>将 C# 机器人部署到 Azure
 
 [!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
 
-创建机器人并在本地对其进行验证后，可以将其推送到 Azure，以便可以从任何位置访问它。 对于 C# 机器人，可以使用 Visual Studio 或 Azure CLI 将机器人发布到 Azure。 
+创建机器人并在本地对其进行测试后，可将其发布到 Azure，以便可以从任何位置访问它。
 
 ## <a name="publish-from-visual-studio"></a>从 Visual Studio 发布
 你将首先在应用服务中从 Visual Studio 将机器人部署到 Azure。 然后，你将使用机器人通道注册通过 Azure 机器人服务配置机器人。
+
+**注意：如果 Visual Studio 项目名称包含空格，则无法执行下面所述的部署步骤。**
 
 在“解决方案资源管理器”窗口中右键单击项目的节点，然后选择“发布”。
 
