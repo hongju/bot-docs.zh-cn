@@ -31,12 +31,12 @@
 <!-- ## [Best practice for welcoming the user](v4sdk/bot-builder-welcome-user.md) -->
 ### [发送和接收文本消息](v4sdk/bot-builder-howto-send-messages.md)
 ### [向消息添加媒体](v4sdk/bot-builder-howto-add-media-attachments.md)
-### [将按钮用于输入](v4sdk/bot-builder-howto-add-suggested-actions.md)
+### [添加按钮以指导用户操作](v4sdk/bot-builder-howto-add-suggested-actions.md)
+### [保存用户和聊天数据](v4sdk/bot-builder-howto-v4-state.md) 
+### [提示用户输入](v4sdk/bot-builder-primitive-prompts.md) 
 ### [发送欢迎消息给用户](v4sdk/bot-builder-send-welcome-message.md)
 <!-- ## [Add input hints to messages](v4sdk/bot-builder-howto-add-input-hints.md) -->
 ### [从机器人获取通知](v4sdk/bot-builder-howto-proactive-message.md)
-<!-- ## [Save user input](v4sdk/bot-builder-primitive-prompts.md) -->
-### [保存用户和聊天数据](v4sdk/bot-builder-howto-v4-state.md) 
 ### [向机器人添加自然语言理解](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答用户的问题](v4sdk/bot-builder-howto-qna.md)
 ### 使用对话库管理聊天 
