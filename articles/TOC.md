@@ -13,6 +13,7 @@
 ## [GitHub 上的示例存储库](https://github.com/Microsoft/BotBuilder-Samples/blob/master/readme.md)
 # 概念
 ## [机器人工作原理](v4sdk/bot-builder-basics.md)
+## [使用机器人文件管理机器人资源](v4sdk/bot-file-basics.md)
 ## [中间件](v4sdk/bot-builder-concept-middleware.md)
 ## [关于对话库](v4sdk/bot-builder-concept-dialog.md)
 ## [了解对话状态](v4sdk/bot-builder-dialog-state.md)
