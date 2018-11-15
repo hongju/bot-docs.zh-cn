@@ -8,28 +8,28 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/23/2018
+ms.date: 11/13/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 32743e895f2390fe018dc3801ed5b8a67b32a8cc
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 77e24d58fb377ec2390671517204526bf076f78e
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999374"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645537"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-net"></a>通过 Bot Builder SDK for .NET 创建机器人
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-本快速入门将指导你使用 C# 模板构建机器人，然后使用 Bot Framework Emulator 对其进行测试。 
+本快速入门将指导你使用 C# 模板构建机器人，然后使用 Bot Framework Emulator 对其进行测试。
 
 ## <a name="prerequisites"></a>先决条件
 - Visual Studio [2017](https://www.visualstudio.com/downloads)
 - 面向 [C#](https://botbuilder.myget.org/feed/aitemplates/package/vsix/BotBuilderV4.fbe0fc50-a6f1-4500-82a2-189314b7bea2) 的 Bot Builder SDK v4 模板
-- Bot Framework [Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases)
+- Bot Framework [Emulator](https://aka.ms/Emulator-wiki-getting-started)
 - 了解 [ASP.Net Core](https://docs.microsoft.com/aspnet/core/) 和 [C#](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/index) 中的异步编程
 
 ## <a name="create-a-bot"></a>创建机器人
-安装在先决条件部分中下载的 BotBuilderVSIX.vsix 模板。 
+安装在先决条件部分中下载的 BotBuilderVSIX.vsix 模板。
 
 在 Visual Studio 中使用 Bot Builder Echo Bot V4 模板创建一个新的机器人项目。
 

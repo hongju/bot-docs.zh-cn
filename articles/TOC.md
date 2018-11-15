@@ -41,8 +41,8 @@
 ### [向机器人添加自然语言理解](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答用户的问题](v4sdk/bot-builder-howto-qna.md)
 ### 使用对话库管理聊天 
-#### [收集用户输入](v4sdk/bot-builder-prompts.md)
 #### [实现顺序聊天流](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
+#### [使用对话提示收集用户输入](v4sdk/bot-builder-prompts.md)
 #### [使用分支和循环创建高级聊天流](v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)
 #### [处理用户中断](v4sdk/bot-builder-howto-handle-user-interrupt.md)
 #### [保存用户数据](v4sdk/bot-builder-tutorial-persist-user-inputs.md)

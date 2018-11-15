@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/26/2018
-ms.openlocfilehash: afb1c4a0e766df7ac2d122b3c7ca4e7959871dbb
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 19dd474c16224cc811a214acea6e9cb51da95b3f
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997274"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332761"
 ---
 # <a name="download-and-redeploy-bot-code"></a>下载并重新部署机器人代码
 可以通过 Azure 机器人服务下载适用于机器人的整个源项目，以便使用所选 IDE 在本地进行工作。 更新完代码以后，即可将所做的更改发布回 Azure 门户。 我们会介绍如何使用 Azure 门户和 `az` cli 来下载代码。 我们还会介绍如何使用 Visual Studio 和 `az` cli 工具来重新部署更新的机器人代码。 你可以选择最适合自己的方法。
@@ -39,14 +39,14 @@ ms.locfileid: "49997274"
   "botFileSecret": "ukxxxxxxxxxxxs="
 }
 ```
-`botFilePath` 引用机器人的名称，请直接将“yourbasicBot.bot”替换为自己的机器人名称。 若要获取 `botFileSecret` 密钥，请参阅 [Bot 文件加密](https://aka.ms/bot-file-encryption)一文，了解如何为机器人生成密钥。
-
 
 如果有一个 node.js 机器人，请添加一个包含以下条目的 `.env` 文件：
 ```
 botFilePath=yourbasicBot.bot
 botFileSecret=ukxxxxxxxxxxxxs=
 ```
+
+`botFilePath` 引用机器人的名称，请直接将“yourbasicBot.bot”替换为自己的机器人名称。 若要获取 `botFileSecret` 密钥，请参阅 [Bot 文件加密](https://aka.ms/bot-file-encryption)一文，了解如何为机器人生成密钥。
 
 接下来，请编辑现有的源文件或将新的源文件添加到项目中，以便对源进行更改。 使用模拟器测试代码。 准备好将修改的代码重新部署到 Azure 门户以后，请按以下说明操作。
 

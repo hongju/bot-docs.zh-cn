@@ -7,20 +7,20 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 09/20/2018
-ms.openlocfilehash: b1a20875eb25cbf4a07d8a96d79eed665b26157b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 11/13/2018
+ms.openlocfilehash: f3a6a57a5fd01061493e5c216875f0c4210483f6
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996794"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645607"
 ---
 # <a name="debug-with-the-emulator"></a>使用模拟器进行调试
 
 Bot Framework Emulator 是一个桌面应用程序，允许机器人开发人员在本地或远程测试和调试机器人。 使用此模拟器，你可以和机器人聊天并检查机器人发送和接收的消息。 模拟器会显示消息，因为它们会出现在网上聊天 UI 中，并在与机器人交换消息时记录 JSON 请求和响应。 在将机器人部署到云之前，请使用模拟器在本地运行和测试。 可以使用模拟器测试机器人，即使还没有使用 Azure 机器人服务[创建](./bot-service-quickstart.md)它或将其配置为在任何通道上运行。
 
 ## <a name="prerequisites"></a>先决条件
-- 安装[模拟器](https://github.com/Microsoft/BotFramework-Emulator/releases)
+- 安装[模拟器](https://aka.ms/Emulator-wiki-getting-started)
 - 安装 [ngrok][ngrokDownload] 隧道软件
 
 ## <a name="connect-to-a-bot-running-on-localhost"></a>连接到在 localhost 上运行的机器人
