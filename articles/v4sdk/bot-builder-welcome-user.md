@@ -1,22 +1,18 @@
 ---
-title: 欢迎用户 | Microsoft Docs
-description: 了解如何设计机器人来提供欢迎用户体验。
-keywords: 概述, 设计, 用户体验, 欢迎, 个性化体验
-author: dashel
-ms.author: dashel
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 8/30/2018
-monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f9c58762e0733fbb379b43375710e651424095fc
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+redirect_url: /bot-framework/bot-builder-send-welcome-message
+ms.openlocfilehash: ef281fd1b6539484c06f68caffbd4e87ec8acc2b
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998744"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332901"
 ---
+<a name="--"></a><!--
+---
+title: 欢迎用户 | Microsoft Docs description: 了解如何设计机器人来提供欢迎用户体验。
+keywords: 概述, 设计, 用户体验, 欢迎, 个性化体验 author: dashel ms.author: dashel manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date: 8/30/2018 monikerRange: 'azure-bot-service-4.0'
+---
+
 # <a name="welcoming-the-user"></a>欢迎用户
 
 创建任何机器人的主要目标都是让用户参与富有意义的聊天。 实现此目标的最佳方法之一是确保从用户首次连接的那一刻起，他们就了解你的机器人主要用途和功能，以及创建它的原因。
@@ -74,3 +70,5 @@ ms.locfileid: "49998744"
 ## <a name="next-steps"></a>后续步骤
 > [!div class="nextstepaction"]
 > [发送欢迎消息给用户](bot-builder-send-welcome-message.md)
+
+-->

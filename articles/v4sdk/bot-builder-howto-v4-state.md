@@ -1,5 +1,5 @@
 ---
-title: 管理聊天和用户状态 | Microsoft Docs
+title: 保存用户和聊天数据 | Microsoft Docs
 description: 了解如何使用 Bot Builder SDK for .NET 来保存和检索状态数据。
 keywords: 聊天状态, 用户状态, 聊天流
 author: ivorb
@@ -8,16 +8,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/18/18
+ms.date: 11/14/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2a3709111b048730805b5578306c669591122dda
-ms.sourcegitcommit: 633008f8db06f1bb5be7bacdb7dd8de6f8165328
+ms.openlocfilehash: 5698c50b167e7162ef6910b7c428dab5ceb51d0e
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/01/2018
-ms.locfileid: "50753605"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645637"
 ---
-# <a name="manage-conversation-and-user-state"></a>管理聊天和用户状态
+# <a name="save-user-and-conversation-data"></a>保存用户和聊天数据
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -308,7 +308,9 @@ else {
 ---
 
 ## <a name="start-your-bot"></a>启动机器人
-在本地运行机器人。
+- 对于 JavaScript 机器人：在终端或命令提示符中，将目录切换到为机器人创建的目录，并使用 `npm start` 启动机器人。 此时，机器人在本地运行。
+
+- 对于 C# 机器人：使用 Visual Studio 在本地运行机器人。 单击运行按钮，Visual Studio 将生成应用程序，将其部署到 localhost，然后启动 Web 浏览器以显示应用程序 ``default.htm`` 页。 此时，机器人在本地运行。
 
 ### <a name="start-the-emulator-and-connect-your-bot"></a>启动模拟器并连接机器人
 接下来，启动模拟器，然后在模拟器中连接到机器人：

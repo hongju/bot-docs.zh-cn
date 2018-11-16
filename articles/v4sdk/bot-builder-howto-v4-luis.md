@@ -1,5 +1,5 @@
 ---
-title: 将 LUIS 用于语言理解 | Microsoft Docs
+title: 向机器人添加自然语言理解 | Microsoft Docs
 description: 了解如何借助 Bot Builder SDK 将 LUIS 用于自然语言理解。
 keywords: 语言理解, LUIS, 意向, 识别器, 实体, 中间件
 author: ivorb
@@ -8,20 +8,20 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 10/12/18
+ms.date: 11/08/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 395db5e1913b840340e5887cf09e6c59f90742a4
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: eab8e2f9d437748d0bb0fefd31c03c8fb350c6b1
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997664"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645697"
 ---
-# <a name="using-luis-for-language-understanding"></a>将 LUIS 用于语言理解
+# <a name="add-natural-language-understanding-to-your-bot"></a>向机器人添加自然语言理解
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-理解用户在会话和上下文中表达的含义是一项艰巨的任务，但可以让机器人更自然地进行聊天。 使用语言理解（称为 LUIS）能够实现此目标，使机器人能够识别用户消息的意向，接收用户更自然的语言，并更好地指导会话流程。 如果需要了解 LUIS 与机器人集成的更多背景信息，请参阅[机器人语言理解](./bot-builder-concept-LUIS.md).
+理解用户在会话和上下文中表达的含义是一项艰巨的任务，但可以让机器人更自然地进行聊天。 使用语言理解（称为 LUIS）能够实现此目标，使机器人能够识别用户消息的意向，接收用户更自然的语言，并更好地指导会话流程。 如果需要了解 LUIS 的更多背景知识，请参阅机器人的[语言理解](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/what-is-luis)。
 
 ## <a name="prerequisites"></a>先决条件
 本主题将指导你设置一个可使用 LUIS 识别多个不同意向的简单机器人。 本文中的代码基于采用 LUIS 的 NLP [C#](https://aka.ms/cs-luis-sample) 和 [JavaScript](https://aka.ms/js-luis-sample) 示例。
@@ -253,7 +253,7 @@ public class LuisBot : IBot
 }
 ```
 
-在 **index.js** 文件中，读取配置信息以生成 LUIS 服务并初始化机器人。
+在 **bot.js** 文件中，我们读取配置信息以生成 LUIS 服务并初始化机器人。
 如配置文件中所示，将 `LUIS_CONFIGURATION` 的值更新为 LUIS 应用的名称。
 
 ```javascript

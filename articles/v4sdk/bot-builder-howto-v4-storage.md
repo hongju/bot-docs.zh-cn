@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/14/18
+ms.date: 11/13/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9e63390d157c75e1079654549831cf4936c62710
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 803574e5d224b0556162fd677145d29cafa2cab1
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997984"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645677"
 ---
 # <a name="write-directly-to-storage"></a>直接写入存储
 
@@ -25,7 +25,7 @@ ms.locfileid: "49997984"
 
 ## <a name="prerequisites"></a>先决条件
 - 如果没有 Azure 订阅，请在开始之前创建一个[免费](https://azure.microsoft.com/en-us/free/)帐户。
-- 安装 Bot Framework [Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases)
+- 安装 Bot Framework [Emulator](https://aka.ms/Emulator-wiki-getting-started)
 
 ## <a name="memory-storage"></a>内存存储
 
@@ -33,7 +33,7 @@ ms.locfileid: "49997984"
 
 #### <a name="build-a-basic-bot"></a>生成基础机器人
 
-本主题的其余部分构建了一个回显机器人。 可以用 [C#](../dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [JS](../javascript/bot-builder-javascript-quickstart.md) 创建一个。 可以使用 Bot Framework Emulator 连接到机器人，与之聊天并对其进行测试。 下面的示例将来自用户的每个消息添加到列表。 包含列表的数据结构保存到存储中。
+本主题的其余部分在 Echo 机器人的基础上进行构建。 可以用 [C#](../dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [JS](../javascript/bot-builder-javascript-quickstart.md) 创建一个。 可以使用 Bot Framework Emulator 连接到机器人，与之聊天并对其进行测试。 下面的示例将来自用户的每个消息添加到列表。 包含列表的数据结构保存到存储中。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -203,7 +203,7 @@ async function logMessageText(storage, context) {
 
  
 ## <a name="using-cosmos-db"></a>使用 Cosmos DB
-在你使用内存存储以后，我们会更新使用 Azure Cosmos DB 的代码。 Cosmos DB 由 Microsoft 推出的全球分布式多模型数据库。 使用 Azure Cosmos DB 可跨任意数量的 Azure 地理区域弹性且独立地缩放吞吐量和存储。 它通过综合服务级别协议 (SLA) 提供吞吐量、延迟、可用性和一致性保证。 
+使用内存存储以后，我们现在要更新代码，以便使用 Azure Cosmos DB。 Cosmos DB 由 Microsoft 推出的全球分布式多模型数据库。 使用 Azure Cosmos DB 可跨任意数量的 Azure 地理区域弹性且独立地缩放吞吐量和存储。 它通过综合服务级别协议 (SLA) 提供吞吐量、延迟、可用性和一致性保证。 
 
 ### <a name="set-up"></a>设置
 若要在机器人中使用 Cosmos DB，需在编写代码之前进行一些设置。
@@ -285,7 +285,7 @@ npm install --save dotenv
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 以下示例代码运行时，使用的是与上面提供的[内存存储](#memory-storage)示例相同的机器人代码。
-以下代码片段演示如何为替换本地内存存储的“_myStorage_”实现 Cosmos DB 存储。 
+以下代码片段演示如何为“_myStorage_”实现 Cosmos DB 存储，替换本地内存存储。 
 
 ```csharp
 using Microsoft.Bot.Builder.Azure;
@@ -305,7 +305,7 @@ private static readonly CosmosDbStorage _myStorage = new CosmosDbStorage(new Cos
 
 以下示例代码类似于[内存存储](#memory-storage)，但有一些小的变化。
 
-需要来自 botbuilder-azure 的 `CosmosDbStorage`，并请将 dotenv 配置为读取 `.env` 文件。
+需要来自 botbuilder-azure 的 `CosmosDbStorage`，并将 dotenv 配置为读取 `.env` 文件。
 
 **app.js**
 ```javascript
@@ -350,7 +350,7 @@ adapter.use(conversationState);
 ![数据资源管理器示例](./media/data_explorer.PNG)
 
 ### <a name="manage-concurrency-using-etags"></a>使用 eTag 管理并发
-在机器人代码示例中，我们将每个 `IStoreItem` 的 `eTag` 属性设置为 `*`。 存储对象的 `eTag`（实体标记）成员在 Cosmos DB 中用于管理并发。 如果机器人正要向存储中写入内容，而该机器人的另一实例更改了同一存储中的对象，`eTag` 会指示数据库执行所需操作。 
+在机器人代码示例中，我们将每个 `IStoreItem` 的 `eTag` 属性设置为 `*`。 存储对象的 `eTag`（实体标记）成员在 Cosmos DB 中用于管理并发。 如果在机器人向存储中写入内容时，该机器人的另一实例更改了同一存储中的对象，`eTag` 会指示数据库应该如何处理。 
 
 <!-- define optimistic concurrency -->
 

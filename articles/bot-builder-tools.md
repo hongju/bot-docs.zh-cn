@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: tools
-ms.date: 11/07/2018
+ms.date: 11/13/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 357f9fdc3da4c703dbcd5c1fa347176002006567
-ms.sourcegitcommit: a54a70106b9fdf278fd7270b25dd51c9bd454ab1
+ms.openlocfilehash: 5ffaf9a946e1a540b82819b7f745200f47384819
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/08/2018
-ms.locfileid: "51273104"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645657"
 ---
 # <a name="manage-bots-using-cli-tools"></a>使用 CLI 工具管理机器人
 
@@ -228,7 +228,7 @@ dispatch create -b <YOUR-BOT-FILE> | msbot connect dispatch --stdin
 
 ## <a name="test"></a>测试
 
-[Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases) 是一个桌面应用程序，允许机器人开发人员对 localhost 上的或者通过隧道远程运行的机器人进行测试和调试。
+Bot Framework [Emulator](bot-service-debug-emulator.md) 是一个桌面应用程序，允许机器人开发人员对 localhost 上的或者通过隧道远程运行的机器人进行测试和调试。
 
 ## <a name="publish"></a>发布
 

@@ -1,5 +1,5 @@
 ---
-title: 向消息添加建议的操作 | Microsoft Docs
+title: 使用按钮进行输入 | Microsoft Docs
 description: 了解如何使用 Bot Builder SDK for JavaScript 在消息中发送建议的操作。
 keywords: 建议的操作, 按钮, 额外输入
 author: Kaiqb
@@ -8,24 +8,24 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 03/13/2018
+ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 88186d3c6c925220fba099a5983c86b305f2dcae
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 5e97bc4a991a9c9b27e9c14eb44f5fd1e230985f
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997095"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332783"
 ---
-# <a name="add-suggested-actions-to-messages"></a>向消息添加建议的操作
+# <a name="use-button-for-input"></a>使用按钮进行输入
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-[!include[Introduction to suggested actions](../includes/snippet-suggested-actions-intro.md)] 
+你可以使机器人能够显示按钮供用户点击来提供输入。 按钮改进了用户体验，因为用户只需点击按钮便可回答问题或进行选择，而不必使用键盘输入响应。 与资讯卡中显示的按钮（即使在点击后仍然可见且可供用户访问）不同，建议的操作窗格中显示的按钮将在用户进行选择后消失。 这可以防止用户在会话中点击过时按钮并简化机器人开发（因为将不需要说明该场景）。 
 
-## <a name="send-suggested-actions"></a>发送建议的操作
+## <a name="suggest-action-using-button"></a>使用按钮提供操作建议
 
-可以创建一个建议的操作列表（也称为“快速回复”），该列表将作为单轮聊天显示给用户： 
+*建议的操作*让机器人能够显示按钮。 可以创建一个建议的操作列表（也称为“快速回复”），该列表将作为单轮聊天显示给用户： 
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 

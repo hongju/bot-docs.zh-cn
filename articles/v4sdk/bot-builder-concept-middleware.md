@@ -8,20 +8,20 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/24/2018
+ms.date: 11/8/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 38d876e11d00a5471f2dcbfca44eb23290b7476c
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 713a53947a8ea6681f1793f9796a86c6d8014e29
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997974"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332921"
 ---
 # <a name="middleware"></a>中间件
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-中间件只是一个位于适配器和机器人逻辑之间的类，它是在初始化期间添加到适配器的中间件集合的。 SDK 可让用户自行编写中间件或添加其他人创建的中间件的可重用组件。 进出机器人的每个活动都流经中间件。
+中间件只是一个位于适配器和机器人逻辑之间的类，它是在初始化期间添加到适配器的中间件集合的。 SDK 可让用户自行编写中间件或添加其他人创建的中间件。 进出机器人的每个活动都流经中间件。
 
 适配器处理传入的活动并通过机器人中间件管道将其定向到机器人的逻辑，然后再返回。 当每个活动流入和流出机器人时，每个中间件都可以在机器人逻辑运行前后对其进行检查或执行操作。
 
@@ -66,7 +66,7 @@ SDK 定义了可记录传入和传出活动的日志记录中间件，但你也�
 机器人特定的中间件应该排在中间件管道中的最后面，此类中间件可对发送到机器人的每个消息进行某些处理。 如果中间件使用状态信息或机器人上下文中设置的其他信息，请将其添加到中间件管道中用于修改状态或上下文的中间件的后面。
 
 ## <a name="short-circuiting"></a>短路
-有关中间件（和[响应处理程序](bot-builder-basics.md#response-event-handlers)）的一个重要概念便是短路。 如果要通过后续的层继续执行，需使用中间件（或响应处理程序）调用该执行的_下一个_委托，将执行传递下去。  如果未在该中间件（或响应处理程序）中调用下一个委托，则关联的管道将发生短路并且不会执行后续层。 这意味着将跳过所有机器人逻辑以及管道中后面的所有中间件。 对于将一个轮次短路而言，中间件和响应处理程序之间存在细微差别。
+有关中间件和响应处理程序的一个重要概念是“短路”。 如果要通过后续的层继续执行，需使用中间件（或响应处理程序）调用该执行的_下一个_委托，将执行传递下去。  如果未在该中间件（或响应处理程序）中调用下一个委托，则关联的管道将发生短路并且不会执行后续层。 这意味着将跳过所有机器人逻辑以及管道中后面的所有中间件。 对于将一个轮次短路而言，中间件和响应处理程序之间存在细微差别。
 
 当中间件将一个轮次短路时，将不会调用机器人轮次处理程序，但是在此之前在管道中执行的所有中间件代码仍然会运行到结束。 
 
@@ -75,5 +75,14 @@ SDK 定义了可记录传入和传出活动的日志记录中间件，但你也�
 > [!TIP]
 > 如果响应事件（如 `SendActivities`）短路，请确保这是意料中的行为。 否则，它可能会导致难以修复 bug。
 
+## <a name="response-event-handlers"></a>响应事件处理程序
+除了应用程序和中间件逻辑以外，还可将响应处理程序（有时也称为事件处理程序或活动事件处理程序）添加到上下文对象中。 在执行实际响应之前，当前上下文对象上出现相关响应时，将调用这些处理程序。 当知道要在实际事件之前或之后对其余当前响应的该类型的所有活动执行某些操作时，这些处理程序非常有用。
+
+> [!WARNING] 
+> 注意，请勿从它的相应响应事件处理程序中调用活动响应方法，例如，从发送活动处理程序中调用发送活动方法。 执行此操作可以生成一个无限循环。
+
+请记住，每个新活动都会获得一个要执行的新线程。 创建处理活动的线程后，该活动的处理程序列表将复制到该新线程。 不会针对该特定活动事件执行在此之后添加的任何处理程序。
+在上下文对象上注册的处理程序的处理方式与适配器管理中间件管道的方式非常相似。 也就是说，处理程序按照它们添加的顺序进行调用，并且调用下一个委托将控制权传递给下一个已注册的事件处理程序。 如果处理程序未调用下一个委托，则不会调用任何后续事件处理程序，事件会短路，并且适配器不会将响应发送到通道。
+
 ## <a name="additional-resources"></a>其他资源
-可以查看一下用 Bot Builder SDK [[C#](https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Builder/TranscriptLoggerMiddleware.cs)|[JS](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-core/src/transcriptLogger.ts)] 实现的脚本记录器中间件。
+可以查看一下用 Bot Builder SDK [[C#](https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Builder/TranscriptLoggerMiddleware.cs) | [JS](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-core/src/transcriptLogger.ts)] 实现的脚本记录器中间件。

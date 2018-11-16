@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 03/01/2018
-ms.openlocfilehash: d2f4692580843f530641827707d250fa726830e3
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d329fcbe5b4a34cb3e9c1fbf0160c5248020a508
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000394"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332961"
 ---
 # <a name="entities-and-activity-types"></a>实体和活动类型
 
@@ -177,13 +177,19 @@ if(context.activity.type === 'message'){
 ## <a name="message"></a>message
 
 <!-- Only the last link is different. -->
+
 ::: moniker range="azure-bot-service-3.0"
+
 机器人将发送消息活动向用户传达信息，并接收来自用户的消息活动。
-某些消息可能只包含纯文本，而其他消息可能包含更丰富的内容，例如[要说的文本](v4sdk/bot-builder-howto-send-messages.md#send-a-spoken-message)、[建议的操作](v4sdk/bot-builder-howto-add-suggested-actions.md)、[媒体附件](v4sdk/bot-builder-howto-add-media-attachments.md)、[富卡](v4sdk/bot-builder-howto-add-media-attachments.md#send-a-hero-card)和[特定于通道的数据](~/dotnet/bot-builder-dotnet-channeldata.md)。
+某些消息可能只包含纯文本，而其他消息可能包含更丰富的内容，例如要说的文本、[建议的操作](v4sdk/bot-builder-howto-add-suggested-actions.md)、[媒体附件](v4sdk/bot-builder-howto-add-media-attachments.md)、[富卡](v4sdk/bot-builder-howto-add-media-attachments.md#send-a-hero-card)和[特定于通道的数据](~/dotnet/bot-builder-dotnet-channeldata.md)。
+
 ::: moniker-end
+
 ::: moniker range="azure-bot-service-4.0"
+
 机器人将发送消息活动向用户传达信息，并接收来自用户的消息活动。
-某些消息可能只包含纯文本，而其他消息可能包含更丰富的内容，例如[要说的文本](v4sdk/bot-builder-howto-send-messages.md#send-a-spoken-message)、[建议的操作](v4sdk/bot-builder-howto-add-suggested-actions.md)、[媒体附件](v4sdk/bot-builder-howto-add-media-attachments.md)、[富卡](v4sdk/bot-builder-howto-add-media-attachments.md#send-a-hero-card)和[特定于通道的数据](~/v4sdk/bot-builder-channeldata.md)。
+某些消息可能只包含纯文本，而其他消息可能包含更丰富的内容，例如要说的文本、[建议的操作](v4sdk/bot-builder-howto-add-suggested-actions.md)、[媒体附件](v4sdk/bot-builder-howto-add-media-attachments.md)、[富卡](v4sdk/bot-builder-howto-add-media-attachments.md#send-a-hero-card)和[特定于通道的数据](~/v4sdk/bot-builder-channeldata.md)。
+
 ::: moniker-end
 
 ## <a name="contactrelationupdate"></a>contactRelationUpdate
@@ -237,6 +243,7 @@ message reaction 活动可以对应于通道定义的任意数量的消息反应
 机器人可以发送 typing 活动，向用户表明它正在努力完成请求或编译响应。
 
 ::: moniker range="azure-bot-service-3.0"
+
 ## <a name="additional-resources"></a>其他资源
 
 - <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 类</a>

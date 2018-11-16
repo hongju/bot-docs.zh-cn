@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 12/13/2017
-ms.openlocfilehash: c1d8adef58c688b3678af7a80964021292d0b1d0
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: e68db6c1fe9d3d136a8643652df034fb6df2858f
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997604"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645597"
 ---
 # <a name="manage-a-bot"></a>管理机器人
 
@@ -32,7 +32,7 @@ ms.locfileid: "49997604"
 
 ![机器人管理](~/media/azure-manage-a-bot/bot-management.png)
 
-| 选项 |  Description |
+| 选项 |  说明 |
 | ---- | ---- |
 | **生成** | “生成”选项卡提供了对机器人进行更改的选项。 此选项不适用于仅注册机器人。 |
 | **通过网上聊天执行测试** | 使用集成的网上聊天控件，帮助你快速测试机器人。 |
@@ -50,7 +50,7 @@ ms.locfileid: "49997604"
 
 ### <a name="microsoftappid-and-microsoftapppassword"></a>MicrosoftAppID 和 MicrosoftAppPassword
 
-可以在“应用程序设置”边栏选项卡中找到机器人的 MicrosoftAppID 和 MicrosoftAppPassword。
+可以在“设置”边栏选项卡中找到你的机器人的 **MicrosoftAppID**。 只有在首次创建你的机器人时，才会显示机器人的 **MicrosoftAppPassword**。
 
 ![Microsoft 应用 ID 和密码](~/media/azure-manage-a-bot/app-settings.png)
 

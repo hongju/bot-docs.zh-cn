@@ -8,24 +8,38 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/31/2018
+ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b3582d962911b6024062942a6d9f6ff1efab4022
-ms.sourcegitcommit: a54a70106b9fdf278fd7270b25dd51c9bd454ab1
+ms.openlocfilehash: 25745d380e53173c4dc67d280c120ced5845078b
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/08/2018
-ms.locfileid: "51273084"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332911"
 ---
 # <a name="send-welcome-message-to-users"></a>向用户发送欢迎消息
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-我们之前的设计文章[欢迎用户](./bot-builder-welcome-user.md)讨论了可以实施的各种最佳做法，以确保用户与机器人进行良好的初始交互。 本文通过提供简短的代码示例来帮助你欢迎用户使用机器人，从而扩展了该主题。
+创建任何机器人的主要目标都是让用户参与富有意义的聊天。 实现此目标的最佳方法之一是确保从用户首次连接的那一刻起，他们就了解你的机器人主要用途和功能，以及创建它的原因。 本文提供了帮助你欢迎用户使用机器人的代码示例。
 
 ## <a name="same-welcome-for-different-channels"></a>不同通道的相同欢迎方式
+每当用户首次与你的机器人进行互动时，都应当生成欢迎消息。 要实现此目的，可以监视机器人的活动类型并关注新连接。 每个新连接可以生成最多两个聊天更新活动，具体取决于通道。
 
-以下示例监视新的_聊天更新_活动，仅基于加入聊天的用户发送一条欢迎消息，并设置提示状态标志以忽略用户的初始聊天输入。 以下示例代码使用 [C#](https://aka.ms/bot-welcome-sample-cs) 和 [JS](https://aka.ms/bot-welcome-sample-js) 代码的 GitHub 存储库中的欢迎用户示例。
+- 当用户的机器人连接到聊天时生成一个。
+- 当用户加入聊天时生成一个。
+
+每当检测到新的聊天更新时简单地生成欢迎消息很容易，但当跨各种通道访问机器人时，这可能会导致意外结果。
+
+有些通道在用户最初连接到该通道时创建一个聊天更新，并且只有在从用户那里收到首个输入消息后才会创建另一个聊天更新。 另一些通道会在用户最初连接到通道时同时生成这两个活动。 在具有两个聊天更新活动的通道上，如果你只是简单地关注聊天更新事件并显示欢迎消息，则用户可能会收到以下内容：
+
+![双重欢迎消息](./media/double_welcome_message.png)
+
+可以通过仅为第二个聊天更新事件生成初始欢迎消息来避免此重复的消息。 当同时满足以下两个条件时可以检测到第二个事件：
+- 已发生了一个聊天更新事件。
+- 已将新成员（用户）添加到聊天。
+
+以下示例监视新的*聊天更新*活动，仅基于加入聊天的用户发送一条欢迎消息，并设置提示状态标志以忽略用户的初始聊天输入。 可以从 GitHub 下载采用 [[C#](https://aka.ms/bot-welcome-sample-cs) 或 [JS](https://aka.ms/bot-welcome-sample-js)] 的完整源代码。
 
 [!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
 
@@ -231,8 +245,7 @@ module.exports = MainDialog;
 ---
 
 ## <a name="discard-initial-user-input"></a>放弃初始用户输入
-
-为了确保用户在所有可能的通道上都获得良好的体验，我们通过提供初始提示并设置要在用户的回复中查找的关键字来避免处理无效的响应数据。
+考虑用户的输入何时可能实际包含有用的信息也很重要，并且这可能也因通道而异。 为了确保用户在所有可能的通道上都获得良好的体验，我们通过提供初始提示并设置要在用户的回复中查找的关键字来避免处理无效的响应数据。
 
 ## <a name="ctabcsharpmulti"></a>[C#](#tab/csharpmulti)
 
@@ -363,12 +376,12 @@ private static async Task SendIntroCardAsync(ITurnContext turnContext, Cancellat
 }
 ```
 
-接下来，我们可以使用以下 await 命令发送卡。 让我们将此项放入机器人 _switch (text)_ _case "hel
+接下来，我们可以使用以下 await 命令发送卡。 让我们将此项放入机器人 _switch (text) case "help"_。
 
 ```csharp
 switch (text)
 {
-    case "hello":
+    case "hello":"
     case "hi":
         await turnContext.SendActivityAsync($"You said {text}.", cancellationToken: cancellationToken);
         break;

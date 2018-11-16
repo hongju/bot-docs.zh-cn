@@ -10,20 +10,22 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 9/22/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 45bca42ddce527826d2723bc9a20a3c3e6c5aebe
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 88022c387d5f9ef7f645be74010aba3c676efadc
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998604"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51332931"
 ---
 # <a name="dialogs-library"></a>对话框库
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-在 SDK 中，用于管理聊天的核心概念是“对话框”。 对话框对象处理入站活动并生成出站响应。 机器人的业务逻辑在对话框类中直接或间接运行。
+通过“对话框”概念来管理聊天是 SDK 的核心。 对话框对象处理入站活动并生成出站响应。 机器人的业务逻辑在对话框类中直接或间接运行。
 
 对话框实例在运行时以堆栈的形式排列。 堆栈顶部的对话框称为 ActiveDialog。 当前的活动对话框处理入站活动。 在每轮聊天（没有时限，可能持续数天以上）之间，会保留堆栈。 
+
+## <a name="dialog-lifecycle"></a>对话框生命周期
 
 对话框实现三个主要函数：
 - BeginDialog
@@ -71,7 +73,7 @@ Bot Builder SDK 中的“对话框”库包含内置功能（例如提示、瀑�
 
 一个对话框可以调用对话框上下文的 _begin dialog_ 方法并提供新对话框的 ID，以便启动同一对话框集中的新对话框，随后使新对话框成为当前的活动对话框。 原始对话框仍保留在堆栈中，但对对话框上下文的 _continue dialog_ 方法的调用只会发送到位于堆栈顶层的对话框，即“活动对话框”。 将某个对话框从堆栈中弹出后，对话框上下文会在堆栈中弹出原始对话框的位置处继续执行瀑布框的下一步。
 
-因此，可以在一个对话框中包含一个步骤（该步骤可按条件选择一个对话框来启动一组可用对话框），以便在聊天流中创建分支。
+因此，可以在聊天流中创建分支，方法是在一个对话框中包含一个选择步骤（该步骤可按条件从一组可用对话框中选出一个要启动的对话框）。
 
 ## <a name="component-dialog"></a>组件对话框
 有时需编写一个可重用的对话框，在不同的场景中使用。 例如，编写一个地址对话框，要求用户提供邮政编码、城市和街道的值。 

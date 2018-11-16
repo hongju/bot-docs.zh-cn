@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 06e91d4b7d320078e83c3523e1326b82ee3fe759
-ms.sourcegitcommit: 49a76dd34d4c93c683cce6c2b8b156ce3f53280e
+ms.openlocfilehash: a286d9d77869899854cebde38483026475c5e622
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/26/2018
-ms.locfileid: "50134697"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645587"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企业机器人模板 - 部署机器人
 
@@ -76,7 +76,7 @@ az account set --subscription "YOUR_SUBSCRIPTION_NAME"
 msbot clone services --name "YOUR_BOT_NAME" --luisAuthoringKey "YOUR_AUTHORING_KEY" --folder "DeploymentScripts\msbotClone" --location "YOUR_REGION"
 ```
 
-> 某些用户会出现一个已知的问题，即在运行部署时可能会遇到以下错误`ERROR: Unable to provision MSA id automatically. Please pass them in as parameters and try again`。 在这种情况下，请浏览到 https://apps.dev.microsoft.com 并手动创建一个检索 ApplicationID 和密码/机密的新应用程序。 请运行上面的 msbot clone services 命令，但需提供两个新的参数（`appId` 和 `appSecret`），用于传递刚检索的值。
+> 某些用户会出现一个已知的问题，即在运行部署时可能会遇到以下错误`ERROR: Unable to provision MSA id automatically. Please pass them in as parameters and try again`。 在这种情况下，请浏览到 https://apps.dev.microsoft.com 并手动创建一个检索 ApplicationID 和密码/机密的新应用程序。 请运行上面的 msbot clone services 命令，但需提供两个新的参数（`appId` 和 `appSecret`），用于传递刚检索的值。 确保将机密括在引号中以防止出现分析问题，例如：`-appSecret "YOUR_SECRET"`
 
 msbot 工具将概述部署计划，包括位置和 SKU。 在继续操作之前，请确保进行复查。
 
@@ -87,7 +87,7 @@ msbot 工具将概述部署计划，包括位置和 SKU。 在继续操作之前
 - 使用新创建的 .bot 文件名和 .bot 文件机密更新 `appsettings.json` 文件。
 - 运行以下命令并检索你的 Application Insights 实例的 InstrumentationKey，更新 `appsettings.json` 文件中的 InstrumentationKey。
 
-`msbot list --bot YOURBOTFILE.bot --secret YOUR_BOT_SECRET`
+`msbot list --bot YOURBOTFILE.bot --secret "YOUR_BOT_SECRET"`
 
         {
           "botFilePath": ".\\YOURBOTFILE.bot",

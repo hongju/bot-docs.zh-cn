@@ -1,5 +1,5 @@
 ---
-title: 使用对话管理复杂的聊天流 | Microsoft Docs
+title: 使用分支和循环创建高级聊天流 | Microsoft Docs
 description: 了解如何在 Bot Builder SDK for Node.js 中使用对话管理复杂的聊天流。
 keywords: 复杂的聊天流, 重复, 循环, 菜单, 对话, 提示, 瀑布, 对话集
 author: v-ducvo
@@ -8,24 +8,24 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/03/2018
+ms.date: 11/03/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bbb038554801f4585cbc1e3186d139232405b47d
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 9605a2f078be753023e6d178247a211ace107873
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999824"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51333021"
 ---
-# <a name="manage-complex-conversation-flows-with-dialogs"></a>使用对话管理复杂的聊天流
+# <a name="create-advance-conversation-flow-using-branches-and-loops"></a>使用分支和循环创建高级聊天流
 
 [!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
-在上一篇文章中，我们演示了如何使用对话库来管理简单聊天。 在[简单的聊天流](bot-builder-dialog-manage-conversation-flow.md)中，用户从瀑布的第一个步骤开始一直执行到最后一个步骤，聊天交换最终将会完成。 在本文中，我们将使用对话来管理包含可分支和循环部分的较复杂聊天。 为此，我们将使用在对话上下文和瀑布步骤上下文中定义的各种方法，并在对话的不同部分之间传递参数。
+在上一篇文章中，我们演示了如何使用对话库来管理简单聊天。 在[顺序聊天流](bot-builder-dialog-manage-conversation-flow.md)中，用户从瀑布的第一个步骤开始一直执行到最后一个步骤，聊天交换最终将会完成。 在本文中，我们将使用对话来管理包含可分支和循环部分的较复杂聊天。 为此，我们将使用在对话上下文和瀑布步骤上下文中定义的各种方法，并在对话的不同部分之间传递参数。
 
 有关对话的更多背景信息，请参阅[对话库](bot-builder-concept-dialog.md)。
 
-为了让你更好地控制对话堆栈，“对话”库提供了“替换对话”方法。 使用此方法可将当前处于活动状态的对话交换为另一个对话，同时保持聊天的状态和流。 使用“开始对话”和“替换对话”方法可按需执行分支和循环语句，以创建更复杂的交互。 如果聊天复杂性增大，以致瀑布对话变得难以管理，请考虑使用[组件对话](bot-builder-compositcontrol.md)，或者基于 `Dialog` 基类生成一个自定义对话管理类。
+为了让你更好地控制对话堆栈，“对话”库提供了“替换对话”方法。 使用此方法可将当前处于活动状态的对话交换为另一个对话，同时保持聊天的状态和流。 使用“开始对话”和“替换对话”方法可按需执行分支和循环语句，以创建更复杂的交互。 如果聊天复杂性增大，以致瀑布对话变得难以管理，请考虑[重复使用对话](bot-builder-compositcontrol.md)，或者基于 `Dialog` 基类构建一个自定义对话管理类。
 
 在本文中，我们将为某个酒店接待机器人创建示例对话，宾客可以使用这些对话来访问常用的服务：在酒店的餐厅预订餐桌，以及通过客房服务订餐。  其中的每项功能及其连接的菜单将创建为对话集中的对话。
 

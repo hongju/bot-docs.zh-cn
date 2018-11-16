@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b9c8a0bc04cfcf96f6c81b624464e9698eab1699
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: ea507bbdf916ff1955aea0db17b765791432f430
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998946"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645577"
 ---
 # <a name="enterprise-bot-template---customize-your-bot"></a>企业机器人模板 - 自定义机器人
 
@@ -108,7 +108,28 @@ ms.locfileid: "49998946"
     dispatch refresh -bot "YOURBOT.bot" -secret YOURSECRET
 ```
 
-## <a name="adding-a-new-dialog"></a>添加新对话 
+### <a name="adding-an-additional-qnamaker-knowledgebase"></a>添加额外的 QnAMaker 知识库
+
+在某些情况下，你可能希望向机器人添加额外的 QnAMaker 知识库，可以通过以下步骤来执行此操作。
+
+1. 使用在助手目录中执行的以下命令基于 JSON 文件创建一个新的 QnAMaker 知识库
+```shell
+qnamaker create kb --in <KB.json> --msbot | msbot connect qna --stdin --bot "YOURBOT.bot" --secret YOURSECRET
+```
+2. 运行以下命令来更新调度模型以反映更改
+```shell
+dispatch refresh --bot "YOURBOT.bot" --secret YOURSECRET
+```
+3. 更新强类型调度类来反映新的 QnA 源
+```shell
+msbot get dispatch --bot "YOURBOT.bot" | luis export version --stdin > dispatch.json
+luisgen dispatch.json -cs Dispatch -o Dialogs\Shared
+```
+4.  根据提供的示例更新 `Dialogs\Main\MainDialog.cs` 文件以包括你的新 QnA 源的对应调用意向。
+
+你现在应当能够将多个 QnA 源用作机器人的一部分。
+
+## <a name="adding-a-new-dialog"></a>添加新对话
 
 若要向机器人添加新对话，需要首先在对话下创建一个新文件夹，并确保此类派生自 `EnterpriseDialog`。 然后，你需要连接对话基础结构。 “加入”对话显示了一个你可以引用的简单示例，下面显示了一个摘录和步骤概述。
 

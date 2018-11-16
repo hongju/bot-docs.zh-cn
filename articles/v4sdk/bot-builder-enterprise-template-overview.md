@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f81bba9077f4935a29f47eddf078932731cdec20
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f5aacc693fb2e8987d6b59db67d0272423a4cf44
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997284"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645550"
 ---
 # <a name="enterprise-bot-template"></a>企业机器人模板 
 
@@ -24,7 +24,7 @@ ms.locfileid: "49997284"
 
 此模板大大简化了新机器人项目的创建工作。 该模板将利用 [Bot Builder SDK v4](https://github.com/Microsoft/botbuilder) 和 [Bot Builder 工具](https://github.com/Microsoft/botbuilder-tools)提供以下开箱即用功能。
 
-功能 | Description |
+Feature | Description |
 ------------ | -------------
 介绍消息 | 在聊天开始时使用自适应卡的介绍消息。 它解释了机器人的功能，并提供了指导初始问题的按钮。 然后，开发人员可以根据需要自定义此项。
 自动键入指示符  | 在聊天期间发送视觉输入指示符，并对长时间运行的操作重复此操作。

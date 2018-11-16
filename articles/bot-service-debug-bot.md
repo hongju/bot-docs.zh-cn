@@ -1,59 +1,52 @@
 ---
-title: 使用机器人服务调试机器人 | Microsoft Docs
+title: 调试机器人 | Microsoft Docs
 description: 了解如何使用机器人服务调试机器人。
 author: v-ducvo
 ms.author: v-ducvo
-keywords: Bot Builder SDK, 持续部署, 应用服务, 模拟器
+keywords: Bot Builder SDK, 调试机器人, 测试机器人, 机器人模拟器, 模拟器
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 07/13/2018
-ms.openlocfilehash: 3312aa3508a7d9e57f1adc3e36c9d0325cdf6df6
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 11/13/2018
+ms.openlocfilehash: 997d907bfabb284e079f21437418645a7dac061e
+ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997544"
+ms.lasthandoff: 11/14/2018
+ms.locfileid: "51645647"
 ---
-# <a name="debug-a-bot-service-bot"></a>调试机器人服务机器人
+# <a name="debug-a-bot"></a>调试机器人
 
-本文介绍如何使用 Visual Studio 或 Visual Studio Code 和 Bot Framework Emulator 等集成开发环境 (IDE) 调试机器人。 虽然可以使用这些方法在本地调试任何机器人，但本文使用通过[使用机器人服务创建机器人](bot-service-quickstart.md)一文创建的 EchoBot。
+本文介绍如何使用 Visual Studio 或 Visual Studio Code 和 Bot Framework Emulator 等集成开发环境 (IDE) 调试机器人。 虽然可以使用这些方法在本地调试任何机器人，但本文使用了在快速入门中创建的 [C#](~/dotnet/bot-builder-dotnet-sdk-quickstart.md) 和 [JS](~/javascript/bot-builder-javascript-quickstart.md) 机器人。
 
-## <a name="debug-a-javascript-bot"></a>调试 JavaScript 机器人
-
-按照本文中的步骤操作，调试采用 JavaScript 编写的机器人。
-
-### <a name="prerequisites"></a>先决条件
-
-在调试 JavaScript 机器人之前，必须完成以下任务。
-
-- （从 Azure）下载机器人源代码，如[下载机器人源代码](bot-service-build-download-source-code.md)中所述。
-- 下载并安装 [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases)。
-- 下载并安装一个代码编辑器，如 <a href="https://code.visualstudio.com" target="_blank">Visual Studio Code</a>。
+## <a name="prerequisites"></a>先决条件 
+- 下载并安装 [Bot Framework Emulator](https://aka.ms/Emulator-wiki-getting-started)。
+- 下载并安装 [Visual Studio Code](https://code.visualstudio.com) 或 [Visual Studio](https://www.visualstudio.com/downloads)（Community Edition 或更高版本）。
 
 ### <a name="debug-a-javascript-bot-using-command-line-and-emulator"></a>使用命令行和模拟器调试 JavaScript 机器人
 
 若要使用命令行运行 JavaScript 机器人，并使用模拟器测试机器人，请执行以下步骤：
 1. 在命令行中，将目录更改为机器人项目目录。
-2. 运行命令 node app.js，启动机器人。
-3. 启动模拟器并连接到机器人的终结点（例如： **http://localhost:3978/api/messages** ）。 如果这是首次运行机器人，请单击“文件”>“新建机器人”，然后按照屏幕上的说明操作。 否则，单击“文件”>“打开机器人”打开现有机器人。 由于此机器人正在你的计算机上本地运行，可以将“MSA 应用 ID”和“MSA 应用密码”字段留空。 有关详细信息，请参阅[使用模拟器调试](bot-service-debug-emulator.md)。
-4. 在模拟器中向机器人发送一条消息（例如：发送消息“Hi”）。 
-5. 使用模拟器窗口右侧的“检查器”和“日志”窗格调试机器人。 例如，单击任何消息气泡（例如，下面屏幕截图中的“Hi”消息气泡），将在“检查器”面板中显示该消息的详细信息。 由于消息是在模拟器和机器人之间交换，因此，可以使用它来查看请求和响应。 或者，可以在“日志”窗格中单击任何链接的文本，在“检查器”窗格中查看详细信息。
+1. 运行命令 node app.js，启动机器人。
+1. 单击模拟器的“欢迎”选项卡中的“打开机器人”链接。
+1. 选择创建项目时所在目录中的 .bot 文件。
+1. 在模拟器中向机器人发送一条消息（例如：发送消息“Hi”）。 
+1. 使用模拟器窗口右侧的“检查器”和“日志”窗格调试机器人。 例如，单击任何消息气泡（例如，下面屏幕截图中的“Hi”消息气泡），将在“检查器”面板中显示该消息的详细信息。 由于消息是在模拟器和机器人之间交换，因此，可以使用它来查看请求和响应。 另外，还可以在“日志”窗格中单击任何链接的文本，在“检查器”窗格中查看详细信息。
 
    ![模拟器上的“检查器”窗格](~/media/bot-service-debug-bot/emulator_inspector.png)
 
 ### <a name="debug-a-javascript-bot-using-breakpoints-in-visual-studio-code"></a>在 Visual Studio Code 中使用断点调试 JavaScript 机器人
 
-使用 Visual Studio Code 等 IDE，可以设置断点并以调试模式运行机器人，逐步执行代码。 若要在 VS Code 中设置断点，请执行以下操作：
+在 Visual Studio Code 中，可以设置断点并以调试模式运行机器人，逐步执行代码。 若要在 VS Code 中设置断点，请执行以下操作：
 
 1. 启动 VS Code 并打开机器人项目文件夹。
 2. 在菜单栏中单击“调试”，然后单击“开始调试”。 如果系统提示你选择一个运行时引擎来运行代码，请选择“Node.js”。 此时，机器人在本地运行。 
-
+<!--
    > [!NOTE]
-   > 如果收到“值不能为 null”错误，请检查并确保“表存储”设置有效。
-   > EchoBot 默认使用表存储。 若要在机器人中使用表存储，需要具有表名和表键。 如果你没有准备好表存储实例，可以创建一个，或者，处于测试目的，可以注释掉使用 TableBotDataStore 的代码，并取消注释使用 InMemoryDataStore 的代码行。 InMemoryDataStore 仅用于测试和原型制作。
-
+   > If you get the "Value cannot be null" error, check to make sure your **Table Storage** setting is valid.
+   > The **EchoBot** is default to using **Table Storage**. To use Table Storage in your bot, you need the table *name* and *key*. If you do not have a Table Storage instance ready, you can create one or for testing purposes, you can comment out the code that uses **TableBotDataStore** and uncomment the line of code that uses **InMemoryDataStore**. The **InMemoryDataStore** is intended for testing and prototyping only.
+-->
 3. 根据需要设置断点。 在 VS Code 中，可以将鼠标悬停在行号左边的列上方设置断点。 将出现一个小红点。 单击该点即可设置断点。 再次单击该点可移除断点。
 
    ![在 VS Code 中设置断点](~/media/bot-service-debug-bot/breakpoint-set.png)
@@ -63,39 +56,25 @@ ms.locfileid: "49997544"
 
    ![在 VS Code 中调试](~/media/bot-service-debug-bot/breakpoint-caught.png)
 
-
-## <a name="debug-a-c-bot"></a>调试 C# 机器人
-
-按照本文中的步骤操作，调试采用 C# 编写的机器人。
-
-
-### <a name="prerequisites"></a>先决条件
-
-在调试 Web 应用 C# 机器人之前，必须完成以下任务。
-
-- （从 Azure）下载机器人源代码，如[下载机器人源代码](bot-service-build-download-source-code.md)中所述。
-- 下载并安装 [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases)。
-- 下载并安装 <a href="https://www.visualstudio.com/downloads/" target="_blank">Visual Studio 2017</a>（Community Edition 或更高版本）。
-
 ### <a name="debug-a-c-bot-using-breakpoints-in-visual-studio"></a>在 Visual Studio 中使用断点调试 C# 机器人
 
-使用 Visual Studio (VS) 等 IDE，可以设置断点并以调试模式运行机器人，逐步执行代码。 若要在 VS 中设置断点，请执行以下操作：
+在 Visual Studio (VS) 中，可以设置断点并以调试模式运行机器人，逐步执行代码。 若要在 VS 中设置断点，请执行以下操作：
 
 1. 导航到你的机器人文件夹并打开 .sln 文件。 这将在 VS 中打开解决方案。
 2. 在菜单栏中单击“生成”，并单击“生成解决方案”。
-3. 在“解决方案资源管理器”中，展开“对话框”文件夹，然后单击“EchoDialog.cs”。 此文件定义机器人主要逻辑。
-4. 在菜单栏中单击“调试”，然后单击“开始调试”。 此时，机器人在本地运行。 
+3. 在**解决方案资源管理器**中，单击“EchoWithCounterBot.cs”。 此文件根据需要定义你的主要机器人 logic.Set 断点。 在 VS 中，可以将鼠标悬停在行号左边的列上方设置断点。 将出现一个小红点。 单击该点即可设置断点。 再次单击该点可移除断点。
+5. 在菜单栏中单击“调试”，然后单击“开始调试”。 此时，机器人在本地运行。 
 
+<!--
    > [!NOTE]
-   > 如果收到“值不能为 null”错误，请检查并确保“表存储”设置有效。
-   > EchoBot 默认使用表存储。 若要在机器人中使用表存储，需要具有表名和表键。 如果你没有准备好表存储实例，可以创建一个，或者，处于测试目的，可以注释掉使用 TableBotDataStore 的代码，并取消注释使用 InMemoryDataStore 的代码行。 InMemoryDataStore 仅用于测试和原型制作。
-
-5. 根据需要设置断点。 在 VS 中，可以将鼠标悬停在行号左边的列上方设置断点。 将出现一个小红点。 单击该点即可设置断点。 再次单击该点可移除断点。
+   > If you get the "Value cannot be null" error, check to make sure your **Table Storage** setting is valid.
+   > The **EchoBot** is default to using **Table Storage**. To use Table Storage in your bot, you need the table *name* and *key*. If you do not have a Table Storage instance ready, you can create one or for testing purposes, you can comment out the code that uses **TableBotDataStore** and uncomment the line of code that uses **InMemoryDataStore**. The **InMemoryDataStore** is intended for testing and prototyping only.
+-->
 
    ![在 VS 中设置断点](~/media/bot-service-debug-bot/breakpoint-set-vs.png)
 
-6. 启动 Bot Framework Emulator 并连接到机器人，如以上部分所述。 
-7. 在模拟器中向机器人发送一条消息（例如：发送消息“Hi”）。 执行操作会在你放置断点所在的行停止。
+7. 启动 Bot Framework Emulator 并连接到机器人，如以上部分所述。 
+8. 在模拟器中向机器人发送一条消息（例如：发送消息“Hi”）。 执行操作会在你放置断点所在的行停止。
 
    ![在 VS 中调试](~/media/bot-service-debug-bot/breakpoint-caught-vs.png)
 
@@ -110,7 +89,7 @@ ms.locfileid: "49997544"
 在调试消耗计划 C# 机器人之前，必须完成以下任务。
 
 - （从 Azure）下载机器人源代码，如[设置持续开发](bot-service-continuous-deployment.md)中所述。
-- 下载并安装 [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/releases)。
+- 下载并安装 [Bot Framework Emulator](https://aka.ms/Emulator-wiki-getting-started)。
 - 安装 <a href="https://www.npmjs.com/package/azure-functions-cli" target="_blank">Azure Functions CLI</a>。
 - 安装 <a href="https://github.com/dotnet/cli" target="_blank">DotNet CLI</a>。
   
@@ -153,4 +132,4 @@ ms.locfileid: "49997544"
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [使用模拟器进行调试](bot-service-debug-emulator.md)。
+> [使用脚本文件调试机器人](~/v4sdk/bot-builder-debug-transcript.md)。
