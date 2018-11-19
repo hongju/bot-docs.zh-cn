@@ -1,5 +1,5 @@
 ---
-title: Bot Builder SDK 中的机器人活动 | Microsoft Docs
+title: 机器人的工作原理 | Microsoft Docs
 description: 介绍 Bot Builder SDK 中的活动和 http 工作原理。
 keywords: 聊天流, 轮次, 机器人聊天, 对话, 提示, 瀑布, 对话集
 author: johnataylor
@@ -8,16 +8,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 9/26/2018
+ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fde88929c688c25d473ce8242ebfd5d44dc3a22f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 852740695f4d5719ba4dc4cc3d49c6820d95b3ef
+ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998124"
+ms.lasthandoff: 11/09/2018
+ms.locfileid: "51333001"
 ---
-# <a name="understanding-how-bots-work"></a>了解机器人的工作原理
+# <a name="how-bots-work"></a>机器人的工作原理
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
@@ -41,7 +41,7 @@ ms.locfileid: "49998124"
 
 ### <a name="defining-a-turn"></a>定义轮次
 
-与机器人相关的轮次用于描述活动抵达时的所有相关处理工作。 
+在聊天时，人们通常一次说一句话，并且会轮流说话。 使用机器人时，通常是由机器人对用户输入进行响应。 在 Bot Builder SDK 中，一轮通话既包含用户传给机器人的活动，又包含机器人发回用户的作为即时响应的活动。 可以将一个轮次视为给定活动抵达时的相关处理。
 
 轮次上下文对象提供有关活动的信息，例如发送方和接收方、通道，以及处理该活动所需的其他数据。 使用该对象还能在机器人的不同层中处理轮次期间添加信息。
 
@@ -55,47 +55,23 @@ ms.locfileid: "49998124"
 
 在上述示例中，机器人使用包含相同文本消息的另一个消息活动回复了原始消息活动。 处理工作从 HTTP POST 请求开始，该请求包含作为 JSON 有效负载承载的活动，抵达 Web 服务器。 在 C# 中，这通常是一个 ASP.NET 项目；在 JavaScript Node.js 项目中，这可能是 Express 或 Restify 等常用框架之一。
 
-适配器（SDK 的集成组件）充当框架指挥者。 服务使用活动信息创建活动对象，然后调用适配器的“处理活动”方法，同时传入活动对象和身份验证信息（此调用封装在 C# 库中，但可以在 JavaScript 中看到它）。 收到该活动时，适配器会创建轮次上下文对象并调用[中间件](#middleware)。 调用中间件之后，处理工作转到机器人逻辑，完成管道，然后适配器释放轮次上下文对象。
+适配器（SDK 的集成组件）是 SDK 运行时的核心。 活动以 JSON 形式承载在 HTTP POST 正文中。 将反序列化此 JSON 以创建 Activity 对象，然后通过调用 *process activity* 方法将此对象传递给适配器。 收到活动时，适配器会创建轮次上下文并调用中间件。 之所以称作“轮次上下文”，是因为使用了“轮次”一词来描述与活动抵达相关的所有处理。 轮次上下文是 SDK 中最重要的抽象之一，它不仅将入站活动传递到所有中间件组件和应用程序逻辑，而且还提供所需的机制让中间件组件和应用程序逻辑发送出站活动。 轮次上下文提供 _send、update 和 delete activity_ 响应方法来响应活动。 每个响应方法都在异步进程中运行。 
 
-构成大部分应用程序逻辑的机器人轮次处理程序采用轮次上下文作为参数。 轮次处理程序通常处理入站活动的内容并在响应中生成一个或多个活动，然后使用轮次上下文的“发送活动”方法发出这些活动。 除非处理中断，否则调用“发送活动”方法会将活动发送到用户的通道。 该活动先通过注册的[事件处理程序](#response-event-handlers)，然后发送到通道。
+[!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
+
 
 ## <a name="middleware"></a>中间件
-
-中间件是按顺序添加和执行的每个组件的线性集，因此，每个组件都有机会在机器人的轮次处理程序之前和之后针对活动运行，并有权访问该活动的轮次上下文。 除非中间件[短路](~/v4sdk/bot-builder-concept-middleware.md#short-circuiting)，否则中间件管道的最后一个阶段是回调机器人的轮次处理程序，然后返回堆栈。 有关中间件的更深入信息，请参阅[中间件主题](~/v4sdk/bot-builder-concept-middleware.md)。
-
-## <a name="generating-responses"></a>生成响应
-
-轮次上下文提供允许代码响应活动的活动响应方法：
-
-* _send activity_ 和 _send activities_ 方法将一个或多个活动发送到聊天。
-* 如果通道支持，则 update activity 方法会更新会话中的活动。
-* 如果通道支持，则delete activity 方法会从会话中删除活动。
-
-每个响应方法都在异步进程中运行。 在调用活动响应方法时，它会在开始调用处理程序之前克隆关联的[事件处理程序](#response-event-handlers)列表，这意味着它将包含截至此时添加的所有处理程序，但不包含在进程启动后添加的任何内容。
-
-这同时也意味着无法保证独立活动调用的响应顺序，特别是当一个任务比另一个任务更复杂时。 如果机器人可以生成对传入活动的多个响应，请确保用户以任何顺序接收它们都有效。 唯一的例外是“发送活动”方法，它允许发送一组有序活动。
-
-> [!IMPORTANT]
-> 线程处理主机器人轮次完成后处理上下文对象释放。 确保 `await` 任何活动调用，以便主线程等待生成的活动，再完成处理并释放轮次上下文。 如果响应（包括其处理程序）占用了大量时间并尝试对上下文对象执行操作，则可能会出现 `Context was disposed` 错误。 
-
-## <a name="response-event-handlers"></a>响应事件处理程序
-
-除了应用程序和中间件逻辑以外，还可将响应处理程序（有时也称为事件处理程序或活动事件处理程序）添加到上下文对象中。 在执行实际响应之前，当前上下文对象上出现相关[响应](#generating-responses)时，将调用这些处理程序。 当知道要在实际事件之前或之后对其余当前响应的该类型的所有活动执行某些操作时，这些处理程序非常有用。
-
-> [!WARNING]
-> 注意，请勿从它的相应响应事件处理程序中调用活动响应方法，例如，从发送活动处理程序中调用发送活动方法。 执行此操作可以生成一个无限循环。
-
-请记住，每个新活动都会获得一个要执行的新线程。 创建处理活动的线程后，该活动的处理程序列表将复制到该新线程。 不会针对该特定活动事件执行在此之后添加的任何处理程序。
-
-在上下文对象上注册的处理程序的处理方式与适配器管理[中间件管道](~/v4sdk/bot-builder-concept-middleware.md#the-bot-middleware-pipeline)的方式非常相似。 也就是说，处理程序按照它们添加的顺序进行调用，并且调用下一个委托将控制权传递给下一个已注册的事件处理程序。 如果处理程序未调用下一个委托，则不会调用任何后续事件处理程序，事件会[短路](~/v4sdk/bot-builder-concept-middleware.md#short-circuiting)，并且适配器不会将响应发送到通道。
+中间件非常类似于其他任何消息传送中间件，由一组线性组件构成，其中每个组件按顺序执行，并有机会对活动运行。 中间件管道的最后一个阶段是一个回调，该回调针对已由应用程序注册到适配器的机器人类调用轮次处理程序（C# 中的 `OnTurnAsync`，以及 JS 中的 `onTurn`）函数。 轮次处理程序采用轮次上下文作为参数。通常，在轮次处理程序函数内部运行的应用程序逻辑将处理入站活动的内容，在响应中生成一个或多个活动，并使用轮次上下文中的 *send activity* 函数发出这些活动。 调用轮次上下文中的 *send activity* 会导致针对出站活动调用中间件组件。 中间件组件在机器人的轮次处理程序函数之前和之后执行。 执行在本质上是嵌套的，因此，有时称作“俄罗斯套娃”或类似叫法。 有关中间件的更深入信息，请参阅[中间件主题](~/v4sdk/bot-builder-concept-middleware.md)。
 
 ## <a name="bot-structure"></a>机器人结构
 
 让我们查看“使用计数器的聊天机器人”[[C#](https://aka.ms/EchoBotWithStateCSharp) | [JS](https://aka.ms/EchoBotWithStateJS)] 示例，并探讨机器人的关键组成部分。
 
+[!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
+
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
-机器人是一种 [ASP.NET Core](https://docs.microsoft.com/aspnet/core/?view=aspnetcore-2.1) Web 应用程序。 在 [ASP.NET 基础知识](https://docs.microsoft.com/aspnet/core/fundamentals/index?view=aspnetcore-2.1&tabs=aspnetcore2x)中，可以看到 Program.cs 和 Startup.cs 等文件包含类似的代码。 这些文件并非特定于机器人，所有 Web 应用都需要它们。 此处未复制其中一些文件中的代码，但可以参考“使用计数器的聊天机器人”示例。
+机器人是一种 [ASP.NET Core](https://docs.microsoft.com/aspnet/core/?view=aspnetcore-2.1) Web 应用程序。 在 [ASP.NET](https://docs.microsoft.com/aspnet/core/fundamentals/index?view=aspnetcore-2.1&tabs=aspnetcore2x) 基础知识中，可以看到 **Program.cs** 和 **Startup.cs** 等文件包含类似的代码。 这些文件并非特定于机器人，所有 Web 应用都需要它们。 此处未复制其中一些文件中的代码，但可以参考 [C# echobot-with-counter](https://aka.ms/EchoBot-With-Counter) 示例。
 
 ### <a name="echowithcounterbotcs"></a>EchoWithCounterBot.cs
 
@@ -244,7 +220,7 @@ public class EchoBotAccessors
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-system 节主要包含 **package.json**、**.env**、**index.js** 和 **README.md** 文件。 此处未复制某些文件中的代码，但运行机器人时会看到这些代码。
+Yeoman 生成器创建 [restify](http://restify.com/) 类型的 Web 应用程序。 如果在相应文档中查看 restify 快速入门，会看到类似于生成的 **index.js** 文件的应用。 本部分主要介绍 **package.json**、**.env**、**index.js**、**bot.js** 和 **echobot-with-counter.bot** 文件。 此处未复制某些文件中的代码，但在运行机器人时会看到这些文件，或者可以参考 [Node.js echobot-with-counter](https://aka.ms/js-echobot-with-counter) 示例。
 
 ### <a name="packagejson"></a>package.json
 

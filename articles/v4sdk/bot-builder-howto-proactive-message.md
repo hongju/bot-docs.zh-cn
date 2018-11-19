@@ -1,23 +1,23 @@
 ---
-title: 如何使用主动消息传递功能 | Microsoft Docs
-description: 了解如何使用机器人发送主动消息。
-keywords: 主动消息
+title: 从机器人获取通知 | Microsoft Docs
+description: 了解如何发送通知消息
+keywords: 主动消息, 通知消息, 机器人通知
 author: jonathanfingold
 ms.author: jonathanfingold
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/27/2018
+ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 032d7027db3ce83c54bbacf913c2021a22c3f356
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: fac1e026ac92fcbe1b5c5bb9363c29e1d9e9b02a
+ms.sourcegitcommit: b6327fa0b4547556d2d45d8910796e0c02948e43
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997584"
+ms.lasthandoff: 11/15/2018
+ms.locfileid: "51681584"
 ---
-# <a name="how-to-use-proactive-messaging"></a>如何使用主动消息传递功能
+# <a name="get-notification-from-a-bot"></a>从机器人获取通知
 
 [!INCLUDE [pre-release-label](~/includes/pre-release-label.md)]
 
@@ -38,111 +38,67 @@ ms.locfileid: "49997584"
 
 若要更顺畅地处理通知，请考虑将通知集成到聊天流中的其他方法，例如在聊天状态中设置标志或将通知添加到队列。
 
-## <a name="prerequisites"></a>先决条件
+### <a name="prerequisites"></a>先决条件
+- 以 [C#](https://aka.ms/proactive-sample-cs) 或 [JS](https://aka.ms/proactive-sample-js) 语言编写的**主动消息示例**的副本。
+- 对于 JS，请安装 [Bot Builder](https://www.npmjs.com/package/botbuilder) for Node.js
 
-若要发送主动消息，机器人需要有有效的应用 ID 和密码。 不过，在模拟器中进行本地测试时，可以使用占位符应用 ID。
 
-若要获取用于机器人的应用 ID 和密码，可以登录到 [Azure 门户](https://portal.azure.com)，然后创建“机器人通道注册”资源。 随后进行测试时，可以在本地将此应用 ID 和密码用于机器人，不需部署到 Azure。
+### <a name="about-the-sample-code"></a>关于示例代码
 
-> [!TIP]
-> 如果尚无订阅，可注册<a href="https://azure.microsoft.com/en-us/free/" target="_blank">免费帐户</a>。
+“主动消息示例”对所需时间不确定的用户任务建模。 机器人会存储任务的相关信息，告诉用户它将在任务完成后再联系他们，并让聊天继续。 完成任务后，机器人会在原始聊天中主动发送确认消息。
 
-### <a name="required-libraries"></a>所需的库
+#### <a name="define-job-data-and-state"></a>定义作业数据和状态
 
-如果从某个 BotBuilder 模板着手，则所需的库已安装好。 这些库是进行主动消息传递所需的特定 BotBuilder 库。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-**Microsoft.Bot.Builder.Integration.AspNet.Core** NuGet 包。 （安装此包也会安装 **Microsoft.Bot.Builder** 包。）
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-**Microsoft.Bot.Builder** npm 包。
-
----
-
-## <a name="notes-on-the-sample-code"></a>有关示例代码的说明
-
-本文的代码摘自主动消息示例 [[C#](https://aka.ms/proactive-sample-cs) | [JS](https://aka.ms/proactive-sample-js)]。
-
-此示例对所需时间不确定的用户任务建模。 机器人会存储任务的相关信息，告诉用户它将在任务完成后再联系他们，并让聊天继续。 完成任务后，机器人会在原始聊天中主动发送确认消息。
-
-## <a name="define-job-data-and-state"></a>定义作业数据和状态
-
-在此方案中，我们要跟踪各个用户在不同的聊天中创建的任意作业。 需存储每项作业的相关信息，包括聊天、引用以及作业标识符。
-
-- 需要聊天引用是因为需要将主动消息发送至正确的聊天。
-- 需通过某种方式来标识作业。 例如，使用简单的时间戳。
-- 需存储独立于聊天或用户状态的作业状态。
+在此方案中，我们要跟踪各个用户在不同的聊天中创建的任意作业。 需存储每项作业的相关信息，包括聊天、引用以及作业标识符。 我们需要：
+- 聊天引用，以便可将主动消息发送到正确的聊天。
+- 通过某种方式来标识作业。 例如，使用简单的时间戳。
+- 存储独立于聊天或用户状态的作业状态。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 需定义作业数据和作业状态的类。 还需注册机器人并为作业日志设置状态属性访问器。
 
-### <a name="define-a-class-for-job-data"></a>定义作业数据的类
+#### <a name="define-a-class-for-job-data"></a>定义作业数据的类
 
-**JobLog** 类跟踪按作业编号（时间戳）进行索引的作业数据。 作业数据定义为字典的内部类。
+`JobLog` 类跟踪按作业编号（时间戳）进行索引的作业数据。 `JobLog` 类跟踪所有未完成的作业。  每个作业由唯一键标识。 `Job data` 描述作业的状态，定义为字典的内部类。
 
 ```csharp
-/// <summary>Contains a dictionary of job data, indexed by job number.</summary>
-/// <remarks>The JobLog class tracks all the outstanding jobs.  Each job is
-/// identified by a unique key.</remarks>
 public class JobLog : Dictionary<long, JobLog.JobData>
 {
-    /// <summary>Describes the state of a job.</summary>
     public class JobData
     {
-        /// <summary>Gets or sets the time-stamp for the job.</summary>
-        /// <value>
-        /// The time-stamp for the job when the job needs to fire.
-        /// </value>
+        // Gets or sets the time-stamp for the job.
         public long TimeStamp { get; set; } = 0;
 
-        /// <summary>Gets or sets a value indicating whether indicates whether the job has completed.</summary>
-        /// <value>
-        /// A value indicating whether indicates whether the job has completed.
-        /// </value>
+        // Gets or sets a value indicating whether indicates whether the job has completed.
         public bool Completed { get; set; } = false;
 
-        /// <summary>
-        /// Gets or sets the conversation reference to which to send status updates.
-        /// </summary>
-        /// <value>
-        /// The conversation reference to which to send status updates.
-        /// </value>
+        // Gets or sets the conversation reference to which to send status updates.
         public ConversationReference Conversation { get; set; }
     }
 }
 ```
 
-### <a name="define-a-state-middleware-class"></a>定义状态中间件类
+#### <a name="define-a-state-middleware-class"></a>定义状态中间件类
 
 **JobState** 类管理独立于聊天或用户状态的作业状态。
 
 ```csharp
 using Microsoft.Bot.Builder;
 
-/// <summary>A <see cref="BotState"/> for managing bot state for "bot jobs".</summary>
-/// <remarks>Independent from both <see cref="UserState"/> and <see cref="ConversationState"/> because
-/// the process of running the jobs and notifying the user interacts with the
-/// bot as a distinct user on a separate conversation.</remarks>
+/// A BotState for managing bot state for "bot jobs".
 public class JobState : BotState
 {
-    /// <summary>The key used to cache the state information in the turn context.</summary>
+    // The key used to cache the state information in the turn context.
     private const string StorageKey = "ProactiveBot.JobState";
 
-    /// <summary>
-    /// Initializes a new instance of the <see cref="JobState"/> class.</summary>
-    /// <param name="storage">The storage provider to use.</param>
+    // Initializes a new instance of the JobState class.
     public JobState(IStorage storage)
         : base(storage, StorageKey)
     {
     }
 
-    /// <summary>Gets the storage key for caching state information.</summary>
-    /// <param name="turnContext">A <see cref="ITurnContext"/> containing all the data needed
-    /// for processing this conversation turn.</param>
-    /// <returns>The storage key.</returns>
+    // Gets the storage key for caching state information.
     protected override string GetStorageKey(ITurnContext turnContext) => StorageKey;
 }
 ```
@@ -150,24 +106,6 @@ public class JobState : BotState
 ### <a name="register-the-bot-and-required-services"></a>注册机器人和所需服务
 
 **Startup.cs** 文件注册机器人和关联的服务。
-
-1. using 语句集已扩展，可以引用以下命名空间：
-
-    ```csharp
-    using System;
-    using System.Linq;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Bot.Builder;
-    using Microsoft.Bot.Builder.Integration;
-    using Microsoft.Bot.Builder.Integration.AspNet.Core;
-    using Microsoft.Bot.Configuration;
-    using Microsoft.Bot.Connector.Authentication;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using Microsoft.Extensions.Options;
-    ```
 
 1. `ConfigureServices` 方法注册机器人，包括错误处理和状态管理。 它还注册机器人的终结点服务和作业状态访问器。
 
@@ -233,20 +171,12 @@ public class JobState : BotState
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-### <a name="set-up-the-server-code"></a>设置服务器代码
-
-**index.js** 文件执行以下操作：
-
-- 包括所需的包和服务
+**index.js** 文件中的代码执行以下操作：
 - 引用机器人类和 **.bot** 文件
-- 创建 HTTP 服务器
-- 创建机器人适配器和存储对象
+- 创建 HTTP 服务器、机器人适配器和存储对象
 - 创建机器人和启动服务器，将活动传递给机器人
 
 ```javascript
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
-
 const restify = require('restify');
 const path = require('path');
 
@@ -329,24 +259,15 @@ adapter.onTurnError = async (context, error) => {
 
 ---
 
-<!--TODO: (Post-Ignite) -- link to a second topic on how to write a job completion DirectLine client that will generate appropriate job completed event activities.-->
+### <a name="define-the-bot"></a>定义机器人
 
-## <a name="define-the-bot"></a>定义机器人
-
-用户可以要求机器人为其创建并运行作业。 当作业完成时，可以通过单独的作业服务通知机器人。
-
-机器人旨在执行以下操作：
+用户可以要求机器人为其创建并运行作业。 当作业完成时，可以通过单独的作业服务通知机器人。 机器人旨在执行以下操作：
 
 - 创建用于响应用户的 `run` 或 `run job` 消息的作业。
 - 显示用于响应用户的 `show` 或 `show jobs` 消息的所有已注册作业。
 - 完成响应“作业已完成”事件的作业，该事件用于标识已完成的作业。
 - 模拟用于响应 `done <jobIdentifier>` 消息的“作业已完成”事件。
 - 当作业完成后，通过原始聊天向用户发送主动消息。
-
-我们不介绍如何实现一个可以向机器人发送事件活动的系统。
-<!--TODO: DirectLine--Add back in once the DirectLine topic is added back to the TOC.
-See [how to create a Direct Line bot and client](bot-builder-howto-direct-line.md) for information on how to do so.
--->
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -356,29 +277,19 @@ See [how to create a Direct Line bot and client](bot-builder-howto-direct-line.m
 - 轮次处理程序
 - 创建和完成作业的方法
 
-### <a name="declare-the-class"></a>声明类
+#### <a name="declare-the-class"></a>声明类
 
 ```csharp
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Configuration;
-using Microsoft.Bot.Schema;
-
 namespace Microsoft.BotBuilderSamples
 {
-    /// <summary>
-    /// For each interaction from the user, an instance of this class is called.
-    /// This is a Transient lifetime service.  Transient lifetime services are created
-    /// each time they're requested. For each Activity received, a new instance of this
-    /// class is created. Objects that are expensive to construct, or have a lifetime
-    /// beyond the single Turn, should be carefully managed.
-    /// </summary>
+    // For each interaction from the user, an instance of this class is called.
+    // This is a Transient lifetime service.  Transient lifetime services are created
+    // each time they're requested. For each Activity received, a new instance of this
+    // class is created. Objects that are expensive to construct, or have a lifetime
+    // beyond the single Turn, should be carefully managed.
     public class ProactiveBot : IBot
     {
-        /// <summary>The name of events that signal that a job has completed.</summary>
+        // The name of events that signal that a job has completed.
         public const string JobCompleteEventName = "jobComplete";
 
         public const string WelcomeText = "Type 'run' or 'run job' to start a new job.\r\n" +
@@ -388,7 +299,7 @@ namespace Microsoft.BotBuilderSamples
 }
 ```
 
-### <a name="add-initialization-code"></a>添加初始化代码
+#### <a name="add-initialization-code"></a>添加初始化代码
 
 ```csharp
 private readonly JobState _jobState;
@@ -407,14 +318,13 @@ public ProactiveBot(JobState jobState, EndpointService endpointService)
 private string AppId { get; }
 ```
 
-### <a name="add-a-turn-handler"></a>添加轮次处理程序
+#### <a name="add-a-turn-handler"></a>添加轮次处理程序
 
 每个机器人必须实现一个轮次处理程序。 适配器将活动转发给此方法。
 
 ```csharp
 public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
 {
-    // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
     if (turnContext.Activity.Type != ActivityTypes.Message)
     {
         // Handle non-message activities.
@@ -537,7 +447,7 @@ private async Task OnSystemActivityAsync(ITurnContext turnContext)
 }
 ```
 
-### <a name="add-job-creation-and-completion-methods"></a>添加作业创建和完成方法
+#### <a name="add-job-creation-and-completion-methods"></a>添加作业创建和完成方法
 
 若要启动某个作业，机器人需创建作业并在作业日志中记录其相关信息和当前聊天。 机器人在任何聊天中收到“作业已完成”事件时，会先验证作业 ID，然后再调用完成作业所需的代码。
 
@@ -602,7 +512,7 @@ private BotCallbackHandler CreateCallback(JobLog.JobData jobInfo)
 - 轮次处理程序
 - 创建和完成作业的方法
 
-### <a name="declare-the-class-and-add-initialization-code"></a>声明类并添加初始化代码
+#### <a name="declare-the-class-and-add-initialization-code"></a>声明类并添加初始化代码
 
 ```javascript
 const { ActivityTypes, TurnContext } = require('botbuilder');
@@ -633,7 +543,7 @@ function isEmpty(obj) {
 module.exports.ProactiveBot = ProactiveBot;
 ```
 
-### <a name="the-turn-handler"></a>轮次处理程序
+#### <a name="the-turn-handler"></a>轮次处理程序
 
 `onTurn` 和 `showJobs` 方法在 `ProactiveBot` 类中定义。 `onTurn` 处理用户的输入。 它还会从假设的作业履行系统接收事件活动。 `showJobs` 负责作业日志的格式化和发送。
 
@@ -695,7 +605,7 @@ async showJobs(turnContext) {
 }
 ```
 
-### <a name="logic-to-start-a-job"></a>用于启动作业的逻辑
+#### <a name="logic-to-start-a-job"></a>用于启动作业的逻辑
 
 `createJob` 方法在 `ProactiveBot` 类中定义。 它创建并记录用户的新作业。 理论上，它还会将此信息转发给作业履行系统。
 
@@ -738,7 +648,7 @@ async createJob(turnContext) {
 }
 ```
 
-### <a name="logic-to-complete-a-job"></a>用于完成作业的逻辑
+#### <a name="logic-to-complete-a-job"></a>用于完成作业的逻辑
 
 `completeJob` 方法在 `ProactiveBot` 类中定义。 它执行某些簿记操作并在用户的原始聊天中向用户发送主动消息，告知作业已完成。
 
@@ -783,7 +693,7 @@ async completeJob(turnContext, jobIdNumber) {
 
 ---
 
-## <a name="test-your-bot"></a>测试机器人
+### <a name="test-your-bot"></a>测试机器人
 
 在本地生成和运行机器人，并打开两个模拟器窗口。
 
