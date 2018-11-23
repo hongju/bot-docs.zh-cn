@@ -42,7 +42,7 @@ az extension add -n botservice
 ## <a name="configuration"></a>配置
 
 - 检索你的 LUIS 创作密钥
-   - 查看[此](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-reference-regions)文档页来了解适用于你打算部署到的区域的正确 LUIS 门户。 请注意，www.luis.ai 是指美国区域，从该门户检索的创作密钥不适用于欧洲部署。
+   - 查看[此](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-reference-regions)文档页来了解适用于你打算部署到的区域的正确 LUIS 门户。 请注意， www.luis.ai 是指美国区域，从该门户检索的创作密钥不适用于欧洲部署。
    - 登录后，在右上角单击你的名字。
    - 选择”设置”并记下”创作密钥“以在下一步中使用。
 
