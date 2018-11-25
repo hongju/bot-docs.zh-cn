@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/08/2018
+ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 852740695f4d5719ba4dc4cc3d49c6820d95b3ef
-ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
+ms.openlocfilehash: 15cd6c998abf37b1c7b9a9e2659b7390370f7f10
+ms.sourcegitcommit: d92fd6233295856052305e0d9e3cba29c9ef496e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51333001"
+ms.lasthandoff: 11/16/2018
+ms.locfileid: "51715121"
 ---
 # <a name="how-bots-work"></a>机器人的工作原理
 
@@ -64,16 +64,16 @@ ms.locfileid: "51333001"
 中间件非常类似于其他任何消息传送中间件，由一组线性组件构成，其中每个组件按顺序执行，并有机会对活动运行。 中间件管道的最后一个阶段是一个回调，该回调针对已由应用程序注册到适配器的机器人类调用轮次处理程序（C# 中的 `OnTurnAsync`，以及 JS 中的 `onTurn`）函数。 轮次处理程序采用轮次上下文作为参数。通常，在轮次处理程序函数内部运行的应用程序逻辑将处理入站活动的内容，在响应中生成一个或多个活动，并使用轮次上下文中的 *send activity* 函数发出这些活动。 调用轮次上下文中的 *send activity* 会导致针对出站活动调用中间件组件。 中间件组件在机器人的轮次处理程序函数之前和之后执行。 执行在本质上是嵌套的，因此，有时称作“俄罗斯套娃”或类似叫法。 有关中间件的更深入信息，请参阅[中间件主题](~/v4sdk/bot-builder-concept-middleware.md)。
 
 ## <a name="bot-structure"></a>机器人结构
+以下部分介绍机器人的关键组成部分。
 
-让我们查看“使用计数器的聊天机器人”[[C#](https://aka.ms/EchoBotWithStateCSharp) | [JS](https://aka.ms/EchoBotWithStateJS)] 示例，并探讨机器人的关键组成部分。
-
-[!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
+### <a name="prerequisites"></a>先决条件
+- [C#](https://aka.ms/EchoBotWithStateCSharp) 或 [JS](https://aka.ms/EchoBotWithStateJS) **EchoBotWithCounter** 示例的副本。 此处仅显示相关代码，但你可以参考示例中的完整源代码。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
-机器人是一种 [ASP.NET Core](https://docs.microsoft.com/aspnet/core/?view=aspnetcore-2.1) Web 应用程序。 在 [ASP.NET](https://docs.microsoft.com/aspnet/core/fundamentals/index?view=aspnetcore-2.1&tabs=aspnetcore2x) 基础知识中，可以看到 **Program.cs** 和 **Startup.cs** 等文件包含类似的代码。 这些文件并非特定于机器人，所有 Web 应用都需要它们。 此处未复制其中一些文件中的代码，但可以参考 [C# echobot-with-counter](https://aka.ms/EchoBot-With-Counter) 示例。
+机器人是一种 [ASP.NET Core](https://docs.microsoft.com/aspnet/core/?view=aspnetcore-2.1) Web 应用程序。 在 [ASP.NET](https://docs.microsoft.com/aspnet/core/fundamentals/index?view=aspnetcore-2.1&tabs=aspnetcore2x) 基础知识中，可以看到 **Program.cs** 和 **Startup.cs** 等文件包含类似的代码。 这些文件并非特定于机器人，所有 Web 应用都需要它们。 
 
-### <a name="echowithcounterbotcs"></a>EchoWithCounterBot.cs
+### <a name="bot-logic"></a>机器人逻辑
 
 主要机器人逻辑在派生自 `IBot` 接口的 `EchoWithCounterBot` 类中定义。 `IBot` 定义单个方法 `OnTurnAsync`。 应用程序必须实现此方法。 `OnTurnAsync` 包含 turnContext，后者提供有关传入活动的信息。 传入活动对应于入站 HTTP 请求。 活动可以属于不同的类型，因此，让我们先检查机器人是否收到了消息。 如果收到的是消息，则我们可以从轮次上下文获取聊天状态、递增轮次计数器，然后将新的轮次计数器值保存到聊天状态中。 然后使用 SendActivityAsync 调用将一条消息发回给用户。 传出活动对应于出站 HTTP 请求。
 
@@ -105,9 +105,9 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
 }
 ```
 
-### <a name="startupcs"></a>Startup.cs
+### <a name="set-up-services"></a>设置服务
 
-`ConfigureServices` 方法从 [.bot](bot-builder-basics.md#the-bot-file) 文件加载连接服务，捕获并记录聊天轮次期间发生的任何错误，设置凭据提供程序，然后创建一个聊天状态对象用于在内存中存储聊天数据。
+startup.cs 文件中的 `ConfigureServices` 方法从 [.bot](bot-builder-basics.md#the-bot-file) 文件加载连接服务，捕获并记录聊天轮次期间发生的任何错误，设置凭据提供程序，然后创建一个聊天状态对象用于在内存中存储聊天数据。
 
 ```csharp
 services.AddBot<EchoWithCounterBot>(options =>
@@ -162,10 +162,9 @@ services.AddBot<EchoWithCounterBot>(options =>
 });
 ```
 
-它还会创建并注册 **EchoBotStateAccessors.cs** 文件中定义的、并使用 ASP.NET Core 中的依赖项注入框架传递到公共 `EchoWithCounterBot` 构造函数的 `EchoBotAccessors`。
+`ConfigureServices` 方法还会创建并注册 **EchoBotStateAccessors.cs** 文件中定义的、并使用 ASP.NET Core 中的依赖项注入框架传递到公共 `EchoWithCounterBot` 构造函数的 `EchoBotAccessors`。
 
 ```csharp
-// Create and register state accessors.
 // Accessors created here are passed into the IBot-derived class on every turn.
 services.AddSingleton<EchoBotAccessors>(sp =>
 {
@@ -187,7 +186,7 @@ services.AddSingleton<EchoBotAccessors>(sp =>
 
 `Configure` 方法通过指定应用需使用 Bot Framework 和其他几个文件来完成应用的配置。 使用 Bot Framework 的所有机器人需要该配置调用。 应用启动时，运行时会调用 `ConfigureServices` 和 `Configure`。
 
-### <a name="counterstatecs"></a>CounterState.cs
+### <a name="manage-state"></a>管理状态
 
 此文件包含机器人用来保持当前状态的简单类。 其中仅包含一个用于递增计数器的 `int`。
 
@@ -198,7 +197,7 @@ public class CounterState
 }
 ```
 
-### <a name="echobotaccessorscs"></a>EchoBotAccessors.cs
+### <a name="accessor-class"></a>访问器类
 
 `EchoBotAccessors` 类创建为 `Startup` 类中的单一实例，并传递给 IBot 派生的类。 在本例中为 `public class EchoWithCounterBot : IBot`。 机器人使用访问器来保存聊天数据。 `EchoBotAccessors` 构造函数传入到 Startup.cs 文件中创建的聊天对象。
 
@@ -401,7 +400,7 @@ exports.EchoBot = EchoBot;
 
 ---
 
-### <a name="the-bot-file"></a>bot 文件
+## <a name="the-bot-file"></a>bot 文件
 
 **.bot** 文件包含信息，其中包括终结点、应用 ID、密码，以及对机器人所用服务的引用。 此文件是在通过模板构建机器人时创建的，但你可以通过仿真器或其他工具创建自己的文件。 可以指定在[仿真器](../bot-service-debug-emulator.md)中测试机器人时要使用的 .bot 文件。
 
@@ -425,7 +424,7 @@ exports.EchoBot = EchoBot;
 
 ## <a name="additional-resources"></a>其他资源
 
-有关状态管理的详细信息，请参阅[如何管理聊天和用户状态](bot-builder-howto-v4-state.md)
+若要了解机器人文件在资源管理中发挥的作用，请参阅[机器人文件](bot-file-basics.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

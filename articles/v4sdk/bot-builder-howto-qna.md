@@ -1,21 +1,21 @@
 ---
 title: 使用 QnA Maker 回答问题 | Microsoft Docs
 description: 了解如何在机器人中使用 QnA maker。
-keywords: 问题和答案, QnA, 常见问题解答, 中间件
+keywords: 问题和解答, QnA, 常见问题解答, qna maker
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 10/08/2018
+ms.date: 11/19/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4558a90b7d205d416657450224e2ab4892586b25
-ms.sourcegitcommit: 6ed90a4c90add925a0a865be1127041b7775fd3d
+ms.openlocfilehash: 984032373ce2b156c71dc39631838ed67b128a10
+ms.sourcegitcommit: 392c581aa2f59cd1798ee2136b6cfee56aa3ee6d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50234460"
+ms.lasthandoff: 11/20/2018
+ms.locfileid: "52156686"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答问题
 
@@ -23,73 +23,41 @@ ms.locfileid: "50234460"
 
 可以使用 QnA Maker 服务为机器人添加问答支持。 创建自己的 QnA Maker 服务的基本要求之一是为其提供问题和答案。 在许多情况下，问题和答案已经存在于常见问题解答或其他文档等内容中。 其他时候，你希望以更自然的会话方式自定义问题的答案。
 
+在本主题中，我们将创建一个知识库并在机器人中使用它。
+
 ## <a name="prerequisites"></a>先决条件
-- 创建 [QnA Maker](https://www.qnamaker.ai/) 帐户
-- 下载 QnA Maker 示例 [[C#](https://aka.ms/cs-qna) | [JavaScript](https://aka.ms/js-qna-sample)]
+- [QnA Maker](https://www.qnamaker.ai/) 帐户
+- 本文中的代码基于 **QnA Maker** 示例。 需要获取 [C# ](https://aka.ms/cs-qna) 或 [JS](https://aka.ms/js-qna-sample) 示例的副本。
+- [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download)
+- 了解[机器人基础知识](bot-builder-basics.md)、[QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 和 [.bot](bot-file-basics.md) 文件。
 
 ## <a name="create-a-qna-maker-service-and-publish-a-knowledge-base"></a>创建 QnA Maker 服务并发布知识库
+1. 首先需要创建 [QnA Maker 服务](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure)。
+1. 接下来，使用项目的 CognitiveModels 文件夹中的 `smartLightFAQ.tsv` 文件创建一个知识库。 QnA Maker 文档中列出了创建、训练和发布 QnA Maker [知识库](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/create-publish-knowledge-base)的步骤。 在执行以下步骤的过程中，请将知识库命名为 `qna`，并使用 `smartLightFAQ.tsv` 文件来填充知识库。
 
-创建 QnA Maker 帐户之后，请根据说明创建 [QnA Maker 服务](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure)和[知识库](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/create-publish-knowledge-base)。 
-
-发布知识库以后，需记录以下值，以便通过编程方式将机器人连接到知识库。
-- 在 [QnA Maker](https://www.qnamaker.ai/) 站点中选择知识库。
-- 打开知识库以后，选择“设置”。 将针对“服务名称”显示的值记录为 <your_kb_name>
-- 向下滚动，找到“部署详细信息”并记录以下值：
+## <a name="obtain-values-to-connect-to-your-connect-your-bot-to-the-knowledge-base"></a>获取用于将机器人连接到知识库的值
+1. 在 [QnA Maker](https://www.qnamaker.ai/) 站点中选择知识库。
+1. 打开知识库以后，选择“设置”。 将针对“服务名称”显示的值记录为 <your_kb_name>
+1. 向下滚动，找到“部署详细信息”并记录以下值：
    - POST /knowledgebases/<your_knowledge_base_id>/generateAnswer
    - 主机: https://<you_hostname>.azurewebsites.net/qnamaker
    - 授权: EndpointKey <your_endpoint_key>
 
-## <a name="installing-packages"></a>安装程序包
-
-在我们编码之前，请确保你拥有 QnA Maker 所需的程序包。
-
-# <a name="ctabcs"></a>[C#](#tab/cs)
-
-将以下 [NuGet 包](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui)添加到机器人。
-
-* `Microsoft.Bot.Builder.AI.QnA`
-
-# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
-
-QnA Maker 功能位于 `botbuilder-ai` 包中。 可通过 npm 向项目添加以下包：
-
-```shell
-npm install --save botbuilder-ai
-```
-
----
-
-## <a name="using-cli-tools-to-update-your-bot-configuration"></a>使用 CLI 工具更新 .bot 配置
-
-若要获取知识库访问值，另一种方法是使用 [qnamaker](https://aka.ms/botbuilder-tools-qnaMaker) 和 [msbot](https://aka.ms/botbuilder-tools-msbot-readme) BotBuilder CLI 工具获取知识库的元数据并将其添加到 .bot 文件。
-
-1. 打开终端或命令提示符，导航到机器人项目的根目录。
-2. 运行 `qnamaker init`，创建一个 QnA Maker 资源文件 (**.qnamakerrc**)。 它会提示输入 QnA Maker 订阅密钥。
-3. 运行以下命令，下载元数据并将其添加到机器人的配置文件。
-
-    ```shell
-    qnamaker get kb --kbId <your-kb-id> --msbot | msbot connect qna --stdin [ --secret <your-secret>]
-    ```
-如果已加密配置文件，则需要提供机密密钥才能更新该文件。
-
-## <a name="using-qna-maker"></a>使用 QnA Maker
-初始化机器人时，先添加对 QnA Maker 的引用。 然后，我们可以在机器人逻辑中调用它。
-
-# <a name="ctabcs"></a>[C#](#tab/cs)
-打开此前下载的 QnA Maker 示例。 我们会根据需要修改此代码。
-首先，请将访问知识库所需的信息（包括主机名、终结点密钥和知识库 ID (KbId)）添加到 `BotConfiguration.bot` 中。 这些是在 QnA Maker 中通过知识库的“设置”保存的值。
+## <a name="update-the-bot-file"></a>更新 .bot 文件
+首先，请将访问知识库所需的信息（包括主机名、终结点密钥和知识库 ID (KbId)）添加到 `qnamaker.bot` 中。 这些是在 QnA Maker 中通过知识库的“设置”保存的值。
 
 ```json
 {
-  "name": "QnABotSample",
+  "name": "qnamaker",
   "services": [
     {
       "type": "endpoint",
       "name": "development",
       "endpoint": "http://localhost:3978/api/messages",
       "appId": "",
-      "id": "1",
       "appPassword": ""
+      "id": "25",
+    
     },
     {
       "type": "qna",
@@ -97,14 +65,16 @@ npm install --save botbuilder-ai
       "KbId": "<YOUR_KNOWLEDGE_BASE_ID>",
       "Hostname": "https://<YOUR_HOSTNAME>.azurewebsites.net/qnamaker",
       "EndpointKey": "<YOUR_ENDPOINT_KEY>"
+      "id": "117"
     }
   ],
-  "version": "2.0",
-  "padlock": ""
+  "padlock": "",
+   "version": "2.0"
 }
 ```
 
-接下来，在 `Startup.cs` 中创建 QnA Maker 实例。 这样会从 `BotConfiguration.bot` 文件中获取上述信息。 这些字符串还可以进行测试所需的硬编码。
+# <a name="ctabcs"></a>[C#](#tab/cs)
+接下来，在 BotServices.cs 中初始化 BotService 类的新实例，以便从 .bot 文件中获取上述信息。 使用 BotConfiguration 类配置外部服务。
 
 ```csharp
 private static BotServices InitBotServices(BotConfiguration config)
@@ -157,7 +127,7 @@ private static BotServices InitBotServices(BotConfiguration config)
 }
 ```
 
-然后，我们需向机器人提供此 QnAMaker 实例。 打开 `QnABot.cs`，并在文件顶部添加以下代码。 若要访问自己的知识库，请更改下面显示的“欢迎”消息，为用户提供有用的初始说明。
+然后在 `QnABot.cs 中，将此 QnAMaker 实例分配到机器人。 若要访问自己的知识库，请更改下面显示的“欢迎”消息，为用户提供有用的初始说明。
 
 ```csharp
 public class QnABot : IBot
@@ -179,37 +149,8 @@ public class QnABot : IBot
 ```
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
-打开此前下载的 QnA Maker 示例。 我们会根据需要修改此代码。
+
 在示例中，启动代码位于 **index.js** 文件中，机器人逻辑代码位于 **bot.js** 文件中，其他配置信息位于 **qnamaker.bot** 文件中。
-
-在按说明创建知识库并更新 **.bot** 文件以后，**qnamaker.bot** 文件应包含一个适用于 QnA Maker 知识库的服务条目。
-
-```json
-{
-    "name": "qnamaker",
-    "description": "",
-    "services": [
-        {
-            "type": "endpoint",
-            "name": "development",
-            "id": "1",
-            "appId": "",
-            "appPassword": "",
-            "endpoint": "http://localhost:3978/api/messages"
-        },
-        {
-            "type": "qna",
-            "name": "<YOUR_KB_NAME>",
-            "kbId": "<YOUR_KNOWLEDGE_BASE_ID>",
-            "endpointKey": "<YOUR_ENDPOINT_KEY>",
-            "hostname": "https://<YOUR_HOSTNAME>.azurewebsites.net/qnamaker",
-            "id": "221"
-        }
-    ],
-    "padlock": "",
-    "version": "2.0"
-}
-```
 
 在 **index.js** 文件中，我们读取配置信息，以便生成 QnA Maker 服务并初始化机器人。
 
@@ -344,7 +285,14 @@ module.exports.QnAMakerBot = QnAMakerBot;
 
 ---
 
-询问机器人问题，以查看来自 QnA Maker 服务的回复。 若要详细了解如何测试和发布 QnA 服务，请参阅有关如何[测试知识库](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/test-knowledge-base)的 QnA Maker 文章。
+## <a name="test-the-bot"></a>测试机器人
+
+在计算机本地运行示例。 如需说明，请参阅 [C#](https://github.com/Microsoft/BotBuilder-Samples/tree/master/samples/csharp_dotnetcore/11.qnamaker) 或 [JS](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/javascript_nodejs/11.qnamaker/README.md) 示例的自述文件。
+
+在仿真器中，按如下所示将消息发送到机器人。
+
+![测试 qna 示例](~/media/emulator-v4/qna-test-bot.png)
+
 
 ## <a name="next-steps"></a>后续步骤
 

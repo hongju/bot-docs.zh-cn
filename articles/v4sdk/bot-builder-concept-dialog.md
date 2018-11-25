@@ -1,21 +1,21 @@
 ---
 title: Bot Builder SDK 中的对话框 | Microsoft Docs
 description: 介绍什么是对话框，以及如何在 Bot Builder SDK 中使用对话框。
-keywords: 聊天流, 识别意向, 单轮次, 多轮次, 机器人聊天, 对话框, 提示, 瀑布, 对话框集
+keywords: 聊天流, 提示, 对话状态, 识别意向, 单轮次, 多轮次, 机器人聊天, 对话, 提示, 瀑布, 对话集
 author: johnataylor
 ms.author: johtaylo
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 9/22/2018
+ms.date: 11/22/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 88022c387d5f9ef7f645be74010aba3c676efadc
-ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
+ms.openlocfilehash: 52a2867f4d62be4969ed77d8d83e1e752edd7f92
+ms.sourcegitcommit: 6cb37f43947273a58b2b7624579852b72b0e13ea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51332931"
+ms.lasthandoff: 11/22/2018
+ms.locfileid: "52288836"
 ---
 # <a name="dialogs-library"></a>对话框库
 
@@ -40,7 +40,7 @@ DialogContext 的接口反映对话框的开始和继续这样的基础概念。
 
 若要支持对话框嵌套（对话框包含子对话框），可以使用另一类型的继续，即恢复。 当子对话框完成后，DialogContext 会在父对话框上调用 ResumeDialog 方法。
 
-提示和瀑布框都是 SDK 提供的对话框的具体示例。 许多方案是通过将这些抽象的东西组合在一起来生成的，但实际上，执行的逻辑自始至终都没有变，这就是此处介绍的继续和恢复模式。 从头开始实现一个对话框类是相对高级的主题，此处不做介绍，但你可以查看[示例](https://github.com/Microsoft/BotBuilder-samples)中提供的示例。
+提示和瀑布框都是 SDK 提供的对话框的具体示例。 许多方案是通过将这些抽象的东西组合在一起来生成的，但实际上，执行的逻辑自始至终都没有变，这就是此处介绍的继续和恢复模式。 
 
 Bot Builder SDK 中的“对话框”库包含内置功能（例如提示、瀑布对话框、组件对话框），有助于管理机器人的聊天。 可以使用提示来要求用户提供不同类型的信息，使用瀑布框将多个步骤组合到一个序列中，使用组件对话框将对话框逻辑打包到单独的类中，然后将这些类集成到其他机器人中。
 ## <a name="waterfall-dialogs-and-prompts"></a>瀑布对话框和提示
@@ -63,6 +63,18 @@ Bot Builder SDK 中的“对话框”库包含内置功能（例如提示、瀑�
 在瀑布步骤中，对话框在瀑布步骤上下文的 _result_ 属性中提供返回值。
 通常只需通过机器人的轮次逻辑检查对话框轮次结果的状态。
 
+## <a name="dialog-state"></a>对话框状态
+
+对话是实现多轮次聊天的一种方法，因此，在依赖于跨多个轮次的持久化状态的 SDK 中，对话可以充当特征的示例。 如果对话中没有状态，则机器人就不知道它在对话集中所处的位置，也不知道它已收集的信息。
+
+通常，基于对话的机器人在其机器人实现中以成员变量的形式保存对话集集合。 该对话集是使用称作“访问器”（可用于访问持久性状态）的对象句柄创建的。 有关机器人中的状态的背景信息，请参阅[管理状态](bot-builder-concept-state.md)。 
+
+![对话框状态](media/bot-builder-dialog-state.png)
+
+调用机器人的轮次处理程序时，机器人会通过针对对话集调用 *create context*（这会返回对话上下文）来初始化对话子系统。 创建对话上下文需要状态，可以使用创建对话集时提供的访问器来访问状态。 对话集可以使用访问器获得相应的对话状态 JSON。 该对话上下文包含对话所需的信息。
+
+在[保存聊天和用户数据](bot-builder-howto-v4-state.md)中可以找到有关状态访问器的详细信息。
+
 ## <a name="repeating-a-dialog"></a>重复某个对话框
 
 若要重复某个对话框，请使用 *replace dialog* 方法。 对话框上下文的 *replace dialog* 方法会将当前对话框从堆栈中弹出，并将用于替换的对话框推送到堆栈顶层，然后启动该对话框。 可以使用此方法并将某个对话替换为其自身，来创建循环。 请注意，如需暂存当前对话框的内部状态，则需在调用 _replace dialog_ 方法时将信息传递给对话框的新实例，然后适当地初始化对话框。 传递到新对话框中的选项可以在对话框的任何步骤中通过步骤上下文的 _options_ 属性进行访问。 这是处理复杂聊天流或管理菜单的极佳方法。
@@ -78,7 +90,7 @@ Bot Builder SDK 中的“对话框”库包含内置功能（例如提示、瀑�
 ## <a name="component-dialog"></a>组件对话框
 有时需编写一个可重用的对话框，在不同的场景中使用。 例如，编写一个地址对话框，要求用户提供邮政编码、城市和街道的值。 
 
-ComponentDialog 可以进行某种程度的隔离，因为它有单独的 DialogSet。 有单独的 DialogSet 意味着，它可以避免与包含对话框的父项发生名称冲突，可以通过创建自己的 DialogContext 来创建自己的独立的内部对话框运行时，还可以将活动调度到该运行时。 这个辅助调度意味着，它有机会截获活动。 这特别适用于需要实现“帮助”和“取消”之类功能的情况。  请参阅企业机器人模板示例。 
+ComponentDialog 可以进行某种程度的隔离，因为它有单独的 DialogSet。 有单独的 DialogSet 意味着，它可以避免与包含对话框的父项发生名称冲突，可以通过创建自己的 DialogContext 来创建自己的独立的内部对话框运行时，还可以将活动调度到该运行时。 这个辅助调度意味着，它有机会截获活动。 这特别适用于需要实现“帮助”和“取消”之类功能的情况。  参阅[企业机器人模板](https://aka.ms/abs/templates/cabot)示例。 
 
 ## <a name="next-steps"></a>后续步骤
 

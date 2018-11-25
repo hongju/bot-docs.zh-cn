@@ -8,20 +8,24 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/08/2018
+ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 25745d380e53173c4dc67d280c120ced5845078b
-ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
+ms.openlocfilehash: eb62df9bd1f74ab6de9b67fe352b1af4620a6bc6
+ms.sourcegitcommit: d92fd6233295856052305e0d9e3cba29c9ef496e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51332911"
+ms.lasthandoff: 11/16/2018
+ms.locfileid: "51715101"
 ---
 # <a name="send-welcome-message-to-users"></a>向用户发送欢迎消息
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 创建任何机器人的主要目标都是让用户参与富有意义的聊天。 实现此目标的最佳方法之一是确保从用户首次连接的那一刻起，他们就了解你的机器人主要用途和功能，以及创建它的原因。 本文提供了帮助你欢迎用户使用机器人的代码示例。
+
+## <a name="prerequisites"></a>先决条件
+- 了解[机器人基础知识](bot-builder-basics.md)。 
+- [C#](https://aka.ms/proactive-sample-cs) 或 [JS](https://aka.ms/proactive-sample-js) **欢迎用户示例**的副本。 示例中的代码用于解释如何发送欢迎消息。
 
 ## <a name="same-welcome-for-different-channels"></a>不同通道的相同欢迎方式
 每当用户首次与你的机器人进行互动时，都应当生成欢迎消息。 要实现此目的，可以监视机器人的活动类型并关注新连接。 每个新连接可以生成最多两个聊天更新活动，具体取决于通道。
@@ -39,25 +43,13 @@ ms.locfileid: "51332911"
 - 已发生了一个聊天更新事件。
 - 已将新成员（用户）添加到聊天。
 
-以下示例监视新的*聊天更新*活动，仅基于加入聊天的用户发送一条欢迎消息，并设置提示状态标志以忽略用户的初始聊天输入。 可以从 GitHub 下载采用 [[C#](https://aka.ms/bot-welcome-sample-cs) 或 [JS](https://aka.ms/bot-welcome-sample-js)] 的完整源代码。
+以下示例监视新的*聊天更新*活动，仅基于加入聊天的用户发送一条欢迎消息，并设置提示状态标志以忽略用户的初始聊天输入。 
 
 [!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-此组库用于支持以下所有 C# 代码示例
-
-```csharp
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Bot.Builder;
-using Microsoft.Bot.Builder.Dialogs;
-using Microsoft.Bot.Schema;
-```
-
-现在我们需要为聊天中的给定用户创建一个状态对象及其访问器。
+我们需要为聊天中的给定用户创建一个状态对象及其访问器。
 
 ```csharp
 /// The state object is used to keep track of various state related to a user in a conversation.
@@ -428,6 +420,8 @@ switch (text)
 }
 ```
 ---
+## <a name="test-the-bot"></a>测试机器人
+参阅[自述文件](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/csharp_dotnetcore/03.welcome-user/readme.md)，获取有关运行和测试机器人的说明。 
 
 ## <a name="next-steps"></a>后续步骤
 > [!div class="nextstepaction"]

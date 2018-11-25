@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 09/18/2018
-ms.openlocfilehash: b5b02773ab71801132f2a73f81123588e7ddfcdb
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.date: 11/15/2018
+ms.openlocfilehash: 3c5b12bb804477ae41cf70d2ce955066801f5916
+ms.sourcegitcommit: d92fd6233295856052305e0d9e3cba29c9ef496e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645687"
+ms.lasthandoff: 11/16/2018
+ms.locfileid: "51715131"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -85,19 +85,19 @@ ms.locfileid: "51645687"
 
 Azure 机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Builder SDK 和用于将机器人连接到通道的机器人服务。 在本主题中，还可以选择 .NET 或 Node.js 模板，以便使用 Bot Builder SDK v4 创建机器人。
 
-## <a name="log-in-to-azure"></a>登录 Azure
-登录到 [Azure 门户](http://portal.azure.com)。
+## <a name="prerequisites"></a>先决条件
+- [Azure](http://portal.azure.com) 帐户
 
-> [!TIP]
-> 如果尚无订阅，可注册<a href="https://azure.microsoft.com/en-us/free/" target="_blank">免费帐户</a>。
+### <a name="create-a-new-bot-service"></a>创建新的机器人服务
 
-## <a name="create-a-new-bot-service"></a>创建新的机器人服务
+1. 登录到 [Azure 门户](http://portal.azure.com/)。
+1. 在 Azure 门户左上角单击“创建新资源”链接，然后选择“AI + 机器学习”>“Web 应用机器人”。 
 
-1. 在 Azure 门户左上角单击“创建新资源”链接，然后选择“AI + 计算机学习”>“Web 应用机器人”。 
+![创建机器人](~/media/azure-bot-quickstarts/abs-create-blade.png)
 
-2. 此时会打开一个包含有关“Web 应用机器人”信息的新边栏选项卡。  
+2. 此时会打开一个新的边栏选项卡，其中包含有关 **Web 应用机器人**的信息。  
 
-3. 在“机器人服务”边栏选项卡中，提供有关机器人的请求信息，如下图中的表所示。  <br/>
+3. 在“机器人服务”边栏选项卡中，提供有关机器人的请求信息，如图片下方的表中所示。  <br/>
  ![“创建 Web 应用机器人”边栏选项卡](~/media/azure-bot-quickstarts/sdk-create-bot-service-blade.png)
 
  | 设置 | 建议的值 | Description |
@@ -132,6 +132,6 @@ Azure 机器人服务提供了用于创建机器人的核心组件，包括用�
 本主题介绍了如何使用 Azure 机器人服务来创建**回显** Web 应用机器人，并使用内置的网上聊天控件验证了机器人的功能。 现在需了解如何管理机器人并开始使用其源代码。
 
 > [!div class="nextstepaction"]
-> [管理机器人](bot-service-manage-overview.md)
+> [机器人工作原理](~/v4sdk/bot-builder-basics.md)
 
 ::: moniker-end

@@ -8,45 +8,30 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/13/2018
+ms.date: 11/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 06eb7d80ca8baa91c619b31dc61c7f78856a3b7c
-ms.sourcegitcommit: 873361802bd1802f745544ba903aecf658cce639
+ms.openlocfilehash: e774d6360968e5059588dbdb476cfd1f35fb464e
+ms.sourcegitcommit: 6cb37f43947273a58b2b7624579852b72b0e13ea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/13/2018
-ms.locfileid: "51611044"
+ms.lasthandoff: 11/22/2018
+ms.locfileid: "52288826"
 ---
 # <a name="implement-sequential-conversation-flow"></a>实现顺序聊天流
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-可以使用对话库来管理简单的和复杂的聊天流。
+可以使用对话库来管理简单的和复杂的聊天流。 在简单的交互中，机器人将按固定的顺序运行一组步骤，直到聊天完成。 在本文中，我们将使用一个瀑布对话、几个提示和一个对话集来创建简单的交互，向用户提出一系列问题。
 
-在简单的交互中，机器人将按固定的顺序运行一组步骤，直到聊天完成。
-在本文中，我们将使用一个瀑布对话、几个提示和一个对话集来创建简单的交互，向用户提出一系列问题。
-代码摘自**多轮提示** [[C#](https://aka.ms/cs-multi-prompts-sample) | [JS](https://aka.ms/js-multi-prompts-sample)] 示例。
+## <a name="prerequisites"></a>先决条件
+- [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download)
+- 本文中的代码基于 **multi-turn-prompt** 示例。 需要获取 [C# ](https://aka.ms/cs-multi-prompts-sample) 或 [JS](https://aka.ms/js-multi-prompts-sample) 示例的副本。
+- 了解[机器人基础知识](bot-builder-basics.md)、[对话库](bot-builder-concept-dialog.md)、[对话状态](bot-builder-dialog-state.md)和 [.bot](bot-file-basics.md) 文件。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-通常情况下，若要使用对话，需要为项目或解决方案安装 `Microsoft.Bot.Builder.Dialogs` NuGet 程序包。
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-若要以一般方式使用对话，需要通过 NPM 下载 `botbuilder-dialogs` 库。
-
-若要安装此包并将其保存为依赖项，请导航到项目所在的目录，然后使用以下命令。
-
-```shell
-npm install botbuilder-dialogs --save
-```
-
----
 以下部分说明了为大多数机器人实现简单对话所要执行的步骤：
 
 ## <a name="configure-your-bot"></a>配置机器人
-
-需要向对话集分配一个状态属性访问器，机器人可使用该访问器来管理[对话状态](bot-builder-dialog-state.md)。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -132,7 +117,7 @@ const bot = new MultiTurnBot(conversationState, userState);
 
 ## <a name="update-the-bot-turn-handler-to-call-the-dialog"></a>更新机器人轮次处理程序以调用对话
 
-若要运行对话，机器人的轮次处理程序需要为包含机器人对话的对话集创建对话上下文。 （机器人可以定义多个对话集，但根据一般经验法则，只应为机器人定义一个对话集。 [对话库](bot-builder-concept-dialog.md)描述了对话的重要方面。）
+若要运行对话，机器人的轮次处理程序需要为包含机器人对话的对话集创建对话上下文。 机器人可以定义多个对话集，但根据一般经验法则，只应为机器人定义一个对话集。 
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -228,8 +213,6 @@ async onTurn(turnContext) {
 
 状态属性访问器的 _get_ 和 _set_ 方法在状态管理对象的缓存中获取和设置属性值。 首次在某个轮次中请求状态属性的值时，将填充该缓存，但是，必须显式持久保存该值。 为了持久保存对这两个状态属性所做的更改，我们将调用相应状态管理对象的 _save changes_ 方法。
 
-有关详细信息，请参阅[对话状态](bot-builder-dialog-state.md)。
-
 ## <a name="initialize-your-bot-and-define-your-dialog"></a>初始化机器人并定义对话
 
 我们的简单聊天建模为一系列向用户提出的问题。 适用于 C# 和 JavaScript 版本的步骤略有不同：
@@ -260,7 +243,7 @@ async onTurn(turnContext) {
 下面是在定义自己的瀑布步骤时要记住的几个要点。
 
 * 每个机器人轮次会反映用户提供的输入，后接机器人提供的响应。 因此，将在瀑布步骤结束时请求用户输入，并在下一个瀑布步骤中接收用户的回答。
-* 每个提示实际上是由两个步骤组成的对话，该对话会循环显示提示，直到收到“有效”输入。 （可以依赖适用于每种提示的内置验证，也可以将自己的自定义验证添加到提示。 有关详细信息，请参阅[获取用户输入](bot-builder-prompts.md)。）
+* 每个提示实际上是由两个步骤组成的对话，该对话会循环显示提示，直到收到“有效”输入。 
 
 在此示例中，对话在机器人文件中定义，并在机器人的构造函数中初始化。
 
@@ -528,7 +511,7 @@ async displayProfile(step) {
 
 ## <a name="test-your-dialog"></a>测试对话
 
-在本地生成并运行机器人，然后使用[仿真器](../bot-service-debug-emulator.md)来与机器人交互。
+在本地生成并运行机器人，然后使用仿真器来与机器人交互。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -551,6 +534,9 @@ async displayProfile(step) {
    * 机器人启动单步 `hello_user` 对话，这会显示收集的数据中的信息，并立即结束。
 
 ---
+
+## <a name="additional-resources"></a>其他资源
+可以依赖适用于每种提示的内置验证（如下所示），也可以将自己的自定义验证添加到提示。 有关详细信息，请参阅[使用对话提示收集用户输入](bot-builder-prompts.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

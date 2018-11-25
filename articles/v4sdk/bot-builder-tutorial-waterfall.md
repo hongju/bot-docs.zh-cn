@@ -1,22 +1,18 @@
 ---
-title: 向用户提问 | Microsoft Docs
-description: 了解如何使用瀑布模型要求用户在 Bot Builder SDK 中进行多次输入。
-keywords: 瀑布, 对话, 提问, 提示
-author: v-ducvo
-ms.author: v-ducvo
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 5/10/2018
-monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 84c86e9cc295cd2a1dce0857fa7ab629c219dab1
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+redirect_url: /bot-framework/bot-builder-prompts
+ms.openlocfilehash: e7cfbad19290b3ef61d40dc90493db8f530a9a4e
+ms.sourcegitcommit: 4661b9bb31d74731dbbb16e625be088b44ba5899
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997466"
+ms.lasthandoff: 11/16/2018
+ms.locfileid: "51826934"
 ---
+<a name="--"></a><!--
+---
+title: 向用户提问 | Microsoft Docs description: 了解如何使用瀑布模型要求用户在 Bot Builder SDK 中提供多个输入。
+keywords: 瀑布, 对话, 提问, 提示 author: v-ducvo ms.author: v-ducvo manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date: 5/10/2018 monikerRange: 'azure-bot-service-4.0'
+---
+
 # <a name="ask-the-user-questions"></a>向用户提问
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -500,3 +496,5 @@ server.post('/api/messages', (req, res) => {
 
 > [!div class="nextstepaction"]
 > [保存用户数据](bot-builder-tutorial-persist-user-inputs.md)
+
+-->
