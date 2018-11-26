@@ -13,10 +13,10 @@
 ## [GitHub 上的示例存储库](https://github.com/Microsoft/BotBuilder-Samples/blob/master/readme.md)
 # 概念
 ## [机器人工作原理](v4sdk/bot-builder-basics.md)
-## [使用机器人文件管理机器人资源](v4sdk/bot-file-basics.md)
 ## [管理状态](v4sdk/bot-builder-concept-state.md)
-## [中间件](v4sdk/bot-builder-concept-middleware.md)
 ## [对话框库](v4sdk/bot-builder-concept-dialog.md)
+## [中间件](v4sdk/bot-builder-concept-middleware.md)
+## [使用 .bot 文件管理资源](v4sdk/bot-file-basics.md)
 <!-- [Language understanding](v4sdk/bot-builder-concept-luis.md) -->
 ## [机器人服务模板](bot-service-concept-templates.md)
 ## [认知服务](bot-service-concept-intelligence.md)
