@@ -7,7 +7,7 @@
 ### [.NET](dotnet/bot-builder-dotnet-sdk-quickstart.md)
 ### [JavaScript](javascript/bot-builder-javascript-quickstart.md)
 # 教程
-## [将 LUIS 和 QnA 服务与 Dispatch 工具配合使用](v4sdk/bot-builder-tutorial-dispatch.md)
+## [使用多个 LUIS 和 QnA 模型](v4sdk/bot-builder-tutorial-dispatch.md)
 ## [向机器人添加身份验证](bot-builder-tutorial-authentication.md)
 # 示例
 ## [GitHub 上的示例存储库](https://github.com/Microsoft/BotBuilder-Samples/blob/master/readme.md)
