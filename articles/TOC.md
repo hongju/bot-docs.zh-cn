@@ -10,7 +10,7 @@
 ## [使用多个 LUIS 和 QnA 模型](v4sdk/bot-builder-tutorial-dispatch.md)
 ## [向机器人添加身份验证](bot-builder-tutorial-authentication.md)
 # 示例
-## [GitHub 上的示例存储库](https://github.com/Microsoft/BotBuilder-Samples/blob/master/readme.md)
+## [GitHub 上的示例存储库](https://github.com/Microsoft/BotBuilder-Samples/blob/master/README.md)
 # 概念
 ## [机器人工作原理](v4sdk/bot-builder-basics.md)
 ## [管理状态](v4sdk/bot-builder-concept-state.md)
