@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/8/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bd431da58d13f3024617900bbeabd8007a2e3bb8
-ms.sourcegitcommit: 6cb37f43947273a58b2b7624579852b72b0e13ea
+ms.openlocfilehash: dacf952e6554eb76e0a41418791fb954e82d4f38
+ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "52288797"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52452059"
 ---
 # <a name="middleware"></a>中间件
 
@@ -82,7 +82,7 @@ SDK 定义了可记录传入和传出活动的日志记录中间件，但你也�
 > 注意，请勿从它的相应响应事件处理程序中调用活动响应方法，例如，从发送活动处理程序中调用发送活动方法。 执行此操作可以生成一个无限循环。
 
 请记住，每个新活动都会获得一个要执行的新线程。 创建处理活动的线程后，该活动的处理程序列表将复制到该新线程。 不会针对该特定活动事件执行在此之后添加的任何处理程序。
-在上下文对象上注册的处理程序的处理方式与适配器管理中间件管道的方式非常相似。 也就是说，处理程序按照它们添加的顺序进行调用，并且调用下一个委托将控制权传递给下一个已注册的事件处理程序。 如果处理程序未调用下一个委托，则不会调用任何后续事件处理程序，事件会短路，并且适配器不会将响应发送到通道。
+在上下文对象中注册的处理程序的处理方式与适配器管理中间件管道的方式非常相似。 也就是说，处理程序按照它们添加的顺序进行调用，并且调用下一个委托将控制权传递给下一个已注册的事件处理程序。 如果处理程序未调用下一个委托，则不会调用任何后续事件处理程序，事件会短路，并且适配器不会将响应发送到通道。
 
 ## <a name="handling-state-in-middleware"></a>处理中间件中的状态
 

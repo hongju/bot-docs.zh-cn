@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1c69b438c739ac9c47d40e53f1300a4773fc1a1d
-ms.sourcegitcommit: 6cb37f43947273a58b2b7624579852b72b0e13ea
+ms.openlocfilehash: 9d8caf19a98fb595e4b1e27b0635d2a752b88390
+ms.sourcegitcommit: bbfb171f515c50a3c8bba5ca898daf25cf764378
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "52288786"
+ms.lasthandoff: 11/23/2018
+ms.locfileid: "52293599"
 ---
 # <a name="gather-user-input-using-a-dialog-prompt"></a>使用对话提示收集用户输入
 
@@ -24,28 +24,10 @@ ms.locfileid: "52288786"
 通过发布问题来收集信息是机器人与用户交互的主要方式之一。 使用对话库可以轻松提问和验证响应，以确保响应与特定的数据类型匹配或符合自定义的验证规则。 本主题详细介绍如何从瀑布对话创建和调用提示。
 
 ## <a name="prerequisites"></a>先决条件
-- 本文中的代码基于 dialog-prompt 示例。 需要获取 [C# ](https://aka.ms/dialog-prompt-cs) 或 [JS](https://aka.ms/dialog-prompt-js) 示例的副本。
+
+- 本文中的代码基于 **DialogPromptBot** 示例。 需要获取 [C# ](https://aka.ms/dialog-prompt-cs) 或 [JS](https://aka.ms/dialog-prompt-js) 示例的副本。
 - 需要基本了解[对话库](bot-builder-concept-dialog.md)以及如何[管理聊天](bot-builder-dialog-manage-conversation-flow.md)。 
 - 用于测试的 [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator)。
-
-## <a name="about-prompt-types"></a>关于提示类型
-
-在幕后，提示是由两个步骤组成的对话。 首先，提示会请求输入；其次，它会返回有效值，或者使用重新提示从头开始。 对话库提供多种基本提示，每个提示用于收集不同类型的响应。 基本提示可以解释解释自然语言输入，例如，“ten”或“a dozen”表示数字，“tomorrow”或“Friday at 10am”表示日期时间。
-
-| Prompt | Description | 返回值 |
-|:----|:----|:----|
-| 附件提示 | 请求提供一个或多个附件，例如文档或图像。 | 附件对象的集合。 |
-| 选项提示 | 请求从一组选项中选择一个选项。 | 找到的选项对象。 |
-| 确认提示 | 请求确认。 | 布尔值。 |
-| 日期时间提示 | 请求提供日期时间。 | 日期时间解析对象的集合。 |
-| 数字提示 | 要求提供数字。 | 数字值。 |
-| 文本提示 | 请求提供常规文本输入。 | 一个字符串。 |
-
-若要提示用户输入，请使用某个内置类（例如“文本提示”）定义一个提示，并将其添加到对话集。 提示具有固定的 ID，该 ID 必须在对话集中唯一。 可为每个提示创建自定义的验证程序。对于某些提示，可以指定默认区域设置。 
-
-### <a name="prompt-locale"></a>提示区域设置
-
-使用区域设置来确定**选项**、**确认**、**日期时间**和**数字**提示的特定于语言的行为。 对于用户提供的任何给定输入，如果通道在用户的消息中提供了 _locale_ 属性，则使用该属性。 否则，如果设置了提示的默认区域设置（通过在调用提示的构造函数时提供，或者在以后进行设置），则会使用该区域设置。 如果未提供上述任一属性，则使用“英语”("en-us") 作为区域设置。 注意：区域设置是由 2、3 或 4 个字符组成的 ISO 639 代码，代表某种语言或语言系列。
 
 ## <a name="using-prompts"></a>使用提示
 

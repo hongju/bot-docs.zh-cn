@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ea507bbdf916ff1955aea0db17b765791432f430
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: 319700f8b7b236ce74058bac5fabb84f21e04d69
+ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645577"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52452009"
 ---
 # <a name="enterprise-bot-template---customize-your-bot"></a>企业机器人模板 - 自定义机器人
 
@@ -36,7 +36,13 @@ ms.locfileid: "51645577"
     | - CognitiveModels     
         | - LUIS            // .LU file containing base conversational intents (Greeting, Help, Cancel)
         | - QnA             // .LU file containing example QnA items
-    | - DeploymentScripts   // msbot clone recipe for deployment
+    | - DeploymentScripts   // msbot clone recipes for deployment
+        | - de              // Deployment files for German
+        | - en              // Deployment files for English        
+        | - es              // Deployment files for Spanish
+        | - fr              // Deployment files for French
+        | - it              // Deployment files for Italian
+        | - zh              // Deployment files for Chinese
     | - Dialogs             // All Bot dialogs sit under this folder
         | - Main            // Root Dialog for all messages
             | - MainDialog.cs       // Dialog Logic
@@ -69,26 +75,26 @@ ms.locfileid: "51645577"
 
 ## <a name="updating-your-cognitive-models"></a>更新认知模型
 
-默认情况下，企业模板包括了两个认知模型：一个示例 FAQ QnAMaker 知识库和一个用于一般意向（问候、帮助、取消，等等）的 LUIS 模型。 可以自定义这些模型来满足你的需求。 此外，还可以添加新的 LUIS 模型和 QnAMaker 知识库来扩展机器人的功能。
+企业模板默认随附两个认知模型：一个示例 FAQ QnA Maker 知识库，以及一个用于一般意向（问候、帮助、取消，等等）的 LUIS 模型。 可以自定义这些模型来满足你的需求。 此外，还可以添加新的 LUIS 模型和 QnA Maker 知识库来扩展机器人的功能。
 
 ### <a name="updating-an-existing-luis-model"></a>更新现有 LUIS 模型
 若要更新企业模板的现有 LUIS 模型，请执行以下步骤：
 1. 在 [LUIS 门户](http://luis.ai)中或使用 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 和 [Luis](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUIS) CLI 工具对 LUIS 模型进行更改。 
 2. 运行以下命令来更新调度模型以反映更改（确保正确的消息路由）：
 ```shell
-    dispatch refresh --bot "YOURBOT.bot" --secret YOURSECRET
+    dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
 ```
 3. 从项目根目录为每个更新的模型运行以下命令来更新其关联的 LuisGen 类： 
 ```shell
     luis export version --appId [LUIS_APP_ID] --versionId [LUIS_APP_VERSION] --authoringKey [YOUR_LUIS_AUTHORING_KEY] | luisgen --cs [CS_FILE_NAME] -o "\Dialogs\Shared\Resources"
 ```
 
-### <a name="updating-an-existing-qnamaker-knowledge-base"></a>更新现有 QnAMaker 知识库
-若要更新现有 QnAMaker 知识库，请执行以下步骤：
-1. 通过 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 和 [QnAMaker](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/QnAMaker) CLI 工具或 [QnAMaker 门户](https://qnamaker.ai)对 QnAMaker 知识库进行更改。
+### <a name="updating-an-existing-qna-maker-knowledge-base"></a>更新现有 QnA Maker 知识库
+若要更新现有 QnA Maker 知识库，请执行以下步骤：
+1. 通过 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 和 [QnA Maker](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/QnAMaker) CLI 工具或 [QnA Maker 门户](https://qnamaker.ai)对 QnA Maker 知识库进行更改。
 2. 运行以下命令来更新调度模型以反映更改（确保正确的消息路由）：
 ```shell
-    dispatch refresh --bot "YOURBOT.bot" --secret YOURSECRET
+    dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
 ```
 
 ### <a name="adding-a-new-luis-model"></a>添加新的 LUIS 模型
@@ -101,28 +107,28 @@ ms.locfileid: "51645577"
 ```
 3. 通过以下命令将此新的 LUIS 模型添加到调度程序
 ```shell
-    dispatch add -t luis -id YOUR_LUIS_APPID -bot "YOURBOT.bot" -secret YOURSECRET
+    dispatch add -t luis -id LUIS_APP_ID -bot "YOUR_BOT.bot" -secret YOURSECRET
 ```
 4. 通过以下命令刷新调度模型以反映 LUIS 模型更改
 ```shell
-    dispatch refresh -bot "YOURBOT.bot" -secret YOURSECRET
+    dispatch refresh -bot "YOUR_BOT.bot" -secret YOUR_SECRET
 ```
 
-### <a name="adding-an-additional-qnamaker-knowledgebase"></a>添加额外的 QnAMaker 知识库
+### <a name="adding-an-additional-qna-maker-knowledge-base"></a>添加额外的 QnA Maker 知识库
 
-在某些情况下，你可能希望向机器人添加额外的 QnAMaker 知识库，可以通过以下步骤来执行此操作。
+在某些情况下，你可能希望向机器人添加额外的 QnA Maker 知识库。可通过以下步骤来执行此操作。
 
-1. 使用在助手目录中执行的以下命令基于 JSON 文件创建一个新的 QnAMaker 知识库
+1. 使用在助手目录中执行的以下命令基于 JSON 文件创建一个新的 QnA Maker 知识库
 ```shell
-qnamaker create kb --in <KB.json> --msbot | msbot connect qna --stdin --bot "YOURBOT.bot" --secret YOURSECRET
+qnamaker create kb --in <KB.json> --msbot | msbot connect qna --stdin --bot "YOUR_BOT.bot" --secret YOURSECRET
 ```
 2. 运行以下命令来更新调度模型以反映更改
 ```shell
-dispatch refresh --bot "YOURBOT.bot" --secret YOURSECRET
+dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
 ```
 3. 更新强类型调度类来反映新的 QnA 源
 ```shell
-msbot get dispatch --bot "YOURBOT.bot" | luis export version --stdin > dispatch.json
+msbot get dispatch --bot "YOUR_BOT.bot" | luis export version --stdin > dispatch.json
 luisgen dispatch.json -cs Dispatch -o Dialogs\Shared
 ```
 4.  根据提供的示例更新 `Dialogs\Main\MainDialog.cs` 文件以包括你的新 QnA 源的对应调用意向。
@@ -141,52 +147,57 @@ luisgen dispatch.json -cs Dispatch -o Dialogs\Shared
 - 将 InitialDialogId 设置为你希望组件运行的第一个对话
 
 ```
-InitialDialogId = nameof(OnboardingDialog);
+    InitialDialogId = nameof(OnboardingDialog);
 
-var onboarding = new WaterfallStep[]
-{
-    AskForName,
-    AskForEmail,
-    AskForLocation,
-    FinishOnboardingDialog,
-};
+    var onboarding = new WaterfallStep[]
+    {
+        AskForName,
+        AskForEmail,
+        AskForLocation,
+        FinishOnboardingDialog,
+    };
 
-AddDialog(new WaterfallDialog(InitialDialogId, onboarding));
-AddDialog(new TextPrompt(NamePrompt));
-AddDialog(new TextPrompt(EmailPrompt));
-AddDialog(new TextPrompt(LocationPrompt));
+    AddDialog(new WaterfallDialog(InitialDialogId, onboarding));
+    AddDialog(new TextPrompt(DialogIds.NamePrompt));
+    AddDialog(new TextPrompt(DialogIds.EmailPrompt));
+    AddDialog(new TextPrompt(DialogIds.LocationPrompt));
 ```
 
 然后，你需要创建模板管理器来处理响应。 创建一个新类并从 TemplateManager 进行派生，OnboardingResponses.cs 文件中提供了一个示例，下面显示了摘录。
 
-```
-public const string _namePrompt = "namePrompt";
-public const string _haveName = "haveName";
-public const string _emailPrompt = "emailPrompt";
-      
-private static LanguageTemplateDictionary _responseTemplates = new LanguageTemplateDictionary
-{
-    ["default"] = new TemplateIdMap
-    {
-        {
-            _namePrompt,
-            (context, data) => OnboardingStrings.NAME_PROMPT
-        },
-        {
-            _haveName,
-            (context, data) => string.Format(OnboardingStrings.HAVE_NAME, data.name)
-        },
-        {
-            _emailPrompt,
-            (context, data) => OnboardingStrings.EMAIL_PROMPT
-        },
+```    
+ ["default"] = new TemplateIdMap
+            {
+                { ResponseIds.EmailPrompt,
+                    (context, data) =>
+                    MessageFactory.Text(
+                        text: OnboardingStrings.EMAIL_PROMPT,
+                        ssml: OnboardingStrings.EMAIL_PROMPT,
+                        inputHint: InputHints.ExpectingInput)
+                },
+                { ResponseIds.HaveEmailMessage,
+                    (context, data) =>
+                    MessageFactory.Text(
+                        text: string.Format(OnboardingStrings.HAVE_EMAIL, data.email),
+                        ssml: string.Format(OnboardingStrings.HAVE_EMAIL, data.email),
+                        inputHint: InputHints.IgnoringInput)
+                },
+                { ResponseIds.HaveLocationMessage,
+                    (context, data) =>
+                    MessageFactory.Text(
+                        text: string.Format(OnboardingStrings.HAVE_LOCATION, data.Name, data.Location),
+                        ssml: string.Format(OnboardingStrings.HAVE_LOCATION, data.Name, data.Location),
+                        inputHint: InputHints.IgnoringInput)
+                },
+                
+                ...
 ```
 
 要呈现响应，可以通过用于提示的 `ReplyWith` 或 `RenderTemplate` 使用模板管理器实例来访问这些响应。 下面显示了示例。
 
 ```
-Prompt = await _responder.RenderTemplate(sc.Context, "en", OnboardingResponses._namePrompt),
-await _responder.ReplyWith(sc.Context, OnboardingResponses._haveName, new { name });
+Prompt = await _responder.RenderTemplate(sc.Context, sc.Context.Activity.Locale, OnboardingResponses.ResponseIds.NamePrompt)
+await _responder.ReplyWith(sc.Context, OnboardingResponses.ResponseIds.HaveNameMessage, new { name });
 ```
 
 对话基础结构的最后一部分用于创建作用域仅限于你的对话的一个状态类。 创建一个新类并确保它派生自 `DialogState`
@@ -195,4 +206,3 @@ await _responder.ReplyWith(sc.Context, OnboardingResponses._haveName, new { name
 
 ## <a name="conversational-insights-using-powerbi-dashboard-and-application-insights"></a>使用 PowerBI 仪表板和 Application Insights 的聊天式见解
 - 若要开始获取聊天式见解，请继续执行[使用 PowerBI 仪表板配置聊天式分析](bot-builder-enterprise-template-powerbi.md)。
-

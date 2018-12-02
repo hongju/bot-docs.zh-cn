@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a286d9d77869899854cebde38483026475c5e622
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: c7977400a53af916217e595dda8e9c9a0ff85496
+ms.sourcegitcommit: 958a28bbab7dd29b384bb2e2d58d866e88f53316
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645587"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52500665"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企业机器人模板 - 部署机器人
 
@@ -29,7 +29,7 @@ ms.locfileid: "51645587"
 - 安装 Azure 机器人服务命令行 (CLI) 工具。 请务必执行此操作以确保你具有最新版本，即使以前已使用过这些工具。
 
 ```shell
-npm install -g ludown luis-apis qnamaker botdispatch msbot luisgen chatdown
+npm install -g ludown luis-apis qnamaker botdispatch msbot chatdown
 ```
 
 - 从[此处](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)安装 Azure 命令行工具 (CLI)。 如果已安装 Azure 机器人服务命令行 (CLI) 工具，请确保将其更新为最新版本，方法是：卸载当前版本，然后安装新版本。
@@ -37,6 +37,12 @@ npm install -g ludown luis-apis qnamaker botdispatch msbot luisgen chatdown
 - 安装适用于机器人服务的 AZ 扩展
 ```shell
 az extension add -n botservice
+```
+
+- 安装 LUISGen 工具
+
+```shell
+dotnet tool install -g luisgen
 ```
 
 ## <a name="configuration"></a>配置
@@ -48,7 +54,7 @@ az extension add -n botservice
 
 ## <a name="deployment"></a>部署
 
->如果你有多个 Azure 订阅并且希望确保部署选择正确的一个，请先运行以下命令，然后再继续操作。
+> 如果你有多个 Azure 订阅并且希望确保部署选择正确的一个，请先运行以下命令，然后再继续操作。
 
  执行浏览器登录过程来登录到你的 Azure 帐户
 ```shell
@@ -63,17 +69,17 @@ az account set --subscription "YOUR_SUBSCRIPTION_NAME"
 - Azure Application Insights（遥测）
 - Azure CosmosDb（状态）
 - Azure 认知服务 - 语言理解
-- Azure 认知服务 - QnAMaker（包括 Azure 搜索、Azure Web 应用）
+- Azure 认知服务 - QnA Maker（包括 Azure 搜索、Azure Web 应用）
 - Azure 认知服务 - 内容审查器（可选的手动步骤）
 
-新的机器人项目有一个部署配方，它使得 `msbot clone services` 命令能够自动将上述所有服务部署到你的 Azure 订阅并确保更新项目中 .bot 文件中的所有服务（包括服务密钥），以实现机器人的平稳运行。
+新的机器人项目有一个部署配方，它使得 `msbot clone services` 命令能够自动将上述所有服务部署到你的 Azure 订阅并确保更新项目中 .bot 文件中的所有服务（包括服务密钥），以实现机器人的平稳运行。 它还为以下语言提供多个配置选项：中文、英语、法语、德语、意大利语和西班牙语。
 
 > 在部署后，复查已创建的服务的定价层，并进行调整以适应你的方案。
 
-你创建的项目中的 README.md 包含一个示例 msbot 克隆服务命令行，它使用你创建的机器人名称进行了更新，下面显示了一个常规版本。 确保更新来自上一步骤的创作密钥并选择要使用的 Azure 数据中心位置（例如 westus 或 westeurope）。 确保在上一步检索的 LUIS 创作密钥适用于在下面指定的区域（例如，luis.ai 的 westus 或 eu.luis.ai 的 westeurope）。
+创建的项目中的 README.md 包含一个示例 `msbot clone services` 命令行，该命令行根据创建的机器人名称进行更新，下面显示了一个通用版本。 确保更新来自上一步骤的创作密钥并选择要使用的 Azure 数据中心位置（例如 westus 或 westeurope）。 确保在上一步检索的 LUIS 创作密钥适用于在下面指定的区域（例如，luis.ai 的 westus 或 eu.luis.ai 的 westeurope）。 最后，引用要使用的语言的文件夹（例如 `DeploymentScripts\en`）。
 
 ```shell
-msbot clone services --name "YOUR_BOT_NAME" --luisAuthoringKey "YOUR_AUTHORING_KEY" --folder "DeploymentScripts\msbotClone" --location "YOUR_REGION"
+msbot clone services --name "YOUR_BOT_NAME" --luisAuthoringKey "YOUR_AUTHORING_KEY" --folder "DeploymentScripts\LOCALE_FOLDER" --location "REGION"
 ```
 
 > 某些用户会出现一个已知的问题，即在运行部署时可能会遇到以下错误`ERROR: Unable to provision MSA id automatically. Please pass them in as parameters and try again`。 在这种情况下，请浏览到 https://apps.dev.microsoft.com 并手动创建一个检索 ApplicationID 和密码/机密的新应用程序。 请运行上面的 msbot clone services 命令，但需提供两个新的参数（`appId` 和 `appSecret`），用于传递刚检索的值。 确保将机密括在引号中以防止出现分析问题，例如：`-appSecret "YOUR_SECRET"`
@@ -82,15 +88,15 @@ msbot 工具将概述部署计划，包括位置和 SKU。 在继续操作之前
 
 ![部署确认](./media/enterprise-template/EnterpriseBot-ConfirmDeployment.png)
 
->在部署完成后，**必须**记下所提供的 .bot 文件机密，因为后续步骤将需要使用它。
+>在部署完成后，**必须**记下所提供的 .bot 文件机密，因为后续步骤将需要使用它。 还可以运行 `msbot secret --clear --secret YOUR_BOT_SECRET` 以从机器人文件中删除机密，并在准备好将机器人发布到生产环境之前简化开发。 运行 `msbot secret --new` 以生成新机密。
 
 - 使用新创建的 .bot 文件名和 .bot 文件机密更新 `appsettings.json` 文件。
 - 运行以下命令并检索你的 Application Insights 实例的 InstrumentationKey，更新 `appsettings.json` 文件中的 InstrumentationKey。
 
-`msbot list --bot YOURBOTFILE.bot --secret "YOUR_BOT_SECRET"`
+`msbot list --bot YOUR_BOT_FILE.bot --secret "YOUR_BOT_SECRET"`
 
         {
-          "botFilePath": ".\\YOURBOTFILE.bot",
+          "botFilePath": ".\\YOUR_BOT_FILE.bot",
           "botFileSecret": "YOUR_BOT_SECRET",
           "ApplicationInsights": {
             "InstrumentationKey": "YOUR_INSTRUMENTATION_KEY"
@@ -119,15 +125,15 @@ az bot publish -g YOUR_BOT_NAME -n YOUR_BOT_NAME --proj-file YOUR_BOT_NAME.cspro
 
 ### <a name="authentication"></a>身份验证
 
-若要启用身份验证，请先在 Azure 门户中在你的机器人的设置中配置身份验证连接名称，然后执行以下步骤。 可以在此[文档](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-3.0)中找到更多信息。
+若要启用身份验证，请先在 Azure 门户中在你的机器人的设置中配置身份验证连接名称，然后执行以下步骤。 可以在此[文档](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-authentication?view=azure-bot-service-4.0&tabs=csharp)中找到更多信息。
 
-在 MainDialog 构造函数中注册 `SignInDialog`：
+在 MainDialog 构造函数中注册 `AuthenticationDialog`：
     
-`AddDialog(new SignInDialog(_services.AuthConnectionName));`
+`AddDialog(new AuthenticationDialog(_services.AuthConnectionName));`
 
 在代码中在所需位置添加以下内容来测试简单的登录流：
     
-`var signInResult = await dc.BeginDialogAsync(nameof(SignInDialog));`
+`var authResult = await dc.BeginDialogAsync(nameof(AuthenticationDialog));`
 
 ### <a name="content-moderation"></a>内容审核
 

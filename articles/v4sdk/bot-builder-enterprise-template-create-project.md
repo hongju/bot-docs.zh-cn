@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4b85b0e2d3c1ae8c30ea9d5d9fa62783c2968744
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: bb2f8abccc75fcc1c63589bc41289443cf1fc211
+ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645479"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52451999"
 ---
 # <a name="enterprise-bot-template---creating-a-new-project"></a>企业机器人模板 - 创建新项目
 
@@ -49,7 +49,8 @@ ms.locfileid: "51645479"
 
 现在你已经创建了项目，下一步是创建支持 Azure 基础结构，并执行配置/部署，使机器人开箱即可正常工作。 继续[部署机器人](bot-builder-enterprise-template-deployment.md)。
 
-> 必须运行此步骤，否则机器人初始化 (AppInsights) 和 LUIS 依赖项将不可用。
+> 必须运行此步骤，否则，机器人的依赖项（Azure 机器人服务、Application Insights、LUIS 等）将不可用。
+
 ## <a name="customize-your-bot"></a>自定义机器人
 
 验证已成功将机器人部署为现成可用后，可以根据你的方案和需求自定义机器人。 继续[自定义机器人](bot-builder-enterprise-template-customize.md)。

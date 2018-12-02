@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 11/16/18
+ms.date: 11/28/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: faf26b1c4ba87061631f217ee074283759f77c97
-ms.sourcegitcommit: 392c581aa2f59cd1798ee2136b6cfee56aa3ee6d
+ms.openlocfilehash: a512cb92f35374b457c4d4cef05667edbd8d2f1f
+ms.sourcegitcommit: 892bf81d306ba607c293ee8639d5c6b66ab3710a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/20/2018
-ms.locfileid: "52156696"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52460006"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>向机器人添加自然语言理解
 
@@ -33,7 +33,7 @@ ms.locfileid: "52156696"
 
 1. 选择“导入新应用”。 
 1. 单击“选择应用文件(JSON 格式)...” 
-1. 选择示例的 `CognitiveModels` 文件夹中的 `reminders.json` 文件。 在“可选名称”中，输入 **LuisBot**。 此文件包含三个意向：Calendar-Add、Calendar-Find 和 None。 当用户向机器人发送消息时，我们将使用这些意向来了解其意图。 
+1. 选择示例的 `CognitiveModels` 文件夹中的 `reminders.json` 文件。 在“可选名称”中，输入 **LuisBot**。 此文件包含三个意向：Calendar_Add、Calendar_Find 和 None。 当用户向机器人发送消息时，我们将使用这些意向来了解其意图。 若要包含实体，请参阅本文末尾处的[“可选”部分](#optional---extract-entities)。
 1. [训练](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-how-to-train)应用。
 1. 将应用[发布](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)到生产环境。
 
@@ -83,7 +83,7 @@ ms.locfileid: "52156696"
 ```
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
-## <a name="configure-your-bot-to-use-your-luis-app"></a>将机器人配置为使用你的 LUIS 应用
+### <a name="configure-your-bot-to-use-your-luis-app"></a>将机器人配置为使用你的 LUIS 应用
 
 接下来，在 `BotServices.cs` 中初始化 BotService 类的新实例，以便从 `.bot` 文件中获取上述信息。 使用 `BotConfiguration` 类配置外部服务。
 
@@ -241,7 +241,7 @@ server.post('/api/messages', (req, res) => {
 
 现在，为机器人配置了 LUIS。 接下来，让我们看看如何从 LUIS 中获取意向。
 
-## <a name="get-the-intent-by-calling-luis"></a>通过调用 LUIS 获取意向
+### <a name="get-the-intent-by-calling-luis"></a>通过调用 LUIS 获取意向
 
 你的机器人通过调用 LUIS 识别器从 LUIS 获取结果。
 
@@ -351,106 +351,166 @@ LUIS 识别器将返回有关话语与可用意向的匹配程度的信息。 �
 
 ---
 
-<!--
-## Extract entities
-
-Besides recognizing intent, a LUIS app can also extract entities, which are important words for fulfilling a user's request. For example, for a weather bot, the LUIS app might be able to extract the location for the weather report from the user's message.
-
-A common way to structure your conversation is to identify any entities in the user's message, and prompt for any of the required entities that are not found. Then, the subsequent steps handle the response to the prompt.
-
-
-# [C#](#tab/cs)
-
-Let's say the message from the user was "What's the weather in Seattle"? The [LuisRecognizer](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.ai.luis.luisrecognizer) gives you a [RecognizerResult](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.core.extensions.recognizerresult) with an [`Entities` property](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.core.extensions.recognizerresult#properties-) that has this structure:
-
-```json
-{
-"$instance": {
-    "Weather_Location": [
-        {
-            "startIndex": 22,
-            "endIndex": 29,
-            "text": "seattle",
-            "score": 0.8073087
-        }
-    ]
-},
-"Weather_Location": [
-        "seattle"
-    ]
-}
-```
-
-The following helper function can be added to your bot to get entities out of the `RecognizerResult` from LUIS. It will require the use of the `Newtonsoft.Json.Linq` library, which you'll have to add to your **using** statements.
-
-```cs
-// Get entities from LUIS result
-private T GetEntity<T>(RecognizerResult luisResult, string entityKey)
-{
-    var data = luisResult.Entities as IDictionary<string, JToken>;
-    if (data.TryGetValue(entityKey, out JToken value))
-    {
-        return value.First.Value<T>();
-    }
-    return default(T);
-}
-```
-
-When gathering information like entities from multiple steps in a conversation, it can be helpful to save the information you need in your state. If an entity is found, it can be added to the appropriate state field. In your conversation if the current step already has the associated field completed, the step to prompt for that information can be skipped.
-
-# [JavaScript](#tab/js)
-
-Let's say the message from the user was "What's the weather in Seattle"? The [LuisRecognizer](https://docs.microsoft.com/en-us/javascript/api/botbuilder-ai/luisrecognizer) gives you a [RecognizerResult](https://docs.microsoft.com/en-us/javascript/api/botbuilder-core-extensions/recognizerresult) with an `entities` property that has this structure:
-
-```json
-{
-"$instance": {
-    "Weather_Location": [
-        {
-            "startIndex": 22,
-            "endIndex": 29,
-            "text": "seattle",
-            "score": 0.8073087
-        }
-    ]
-},
-"Weather_Location": [
-        "seattle"
-    ]
-}
-```
-
-This `findEntities` function looks for any entities recognized by the LUIS app that match the incoming `entityName`.
-
-```javascript
-// Helper function for finding a specified entity
-// entityResults are the results from LuisRecognizer.get(context)
-function findEntities(entityName, entityResults) {
-    let entities = []
-    if (entityName in entityResults) {
-        entityResults[entityName].forEach(entity => {
-            entities.push(entity);
-        });
-    }
-    return entities.length > 0 ? entities : undefined;
-}
-
-
-When gathering information like entities from multiple steps in a conversation, it can be helpful to save the information you need in your state. If an entity is found, it can be added to the appropriate state field. In your conversation if the current step already has the associated field completed, the step to prompt for that information can be skipped.
-
-/Snip -->
-
-## <a name="test-the-bot"></a>测试机器人
+### <a name="test-the-bot"></a>测试机器人
 
 1. 在计算机本地运行示例。 如需说明，请参阅 [C#](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/csharp_dotnetcore/12.nlp-with-luis/README.md) 或 [JS](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/javascript_nodejs/12.nlp-with-luis/README.md) 示例的自述文件。
 
 1. 在仿真器中键入一条消息，如下所示。 
 
-![测试 nlp 示例](~/media/emulator-v4/nlp-luis-sample-testing.png)
+![测试 nlp 示例输入](./media/nlp-luis-sample-message.png)
 
-机器人将会响应分数最高的意向（在本例中为 `Calendar-Add` 意向）。 回顾前文，在 luis.ai 门户中导入的 `reminders.json` 文件定义了意向。
+机器人将会响应分数最高的意向（在本例中为“Calendar_Add”意向）。 回顾前文，在 luis.ai 门户中导入的 `reminders.json` 文件定义了“Calendar_Add”、“Calendar_Find”和“None”意向。 
+
+![测试 nlp 示例响应](./media/nlp-luis-sample-response.png) 
 
 预测分数表示 LUIS 对预测结果的置信度。 预测分数在零 (0) 到一 (1) 之间。 例如，一个置信度很高的 LUIS 分数可以是 0.99。 置信度低的分数可以是 0.01。 
+
+## <a name="optional---extract-entities"></a>可选 - 提取实体
+
+除了识别用户意向以外，LUIS 应用还可以返回实体。 实体是与意向相关的重要单词；有时，若要实现用户的请求或者使机器人的行为更智能，实体可能至关重要。 
+
+### <a name="why-use-entities"></a>为何使用实体
+
+LUIS 实体可让机器人智能理解不同于标准意向的某些事物或事件。 这样，你便可以从用户收集额外的信息，让机器人以更高的智能做出响应，或者在某些情况下跳过它向用户提出的有关该信息的问题。 例如，在天气机器人中，LUIS 应用可以使用实体 _Location_ 从用户消息内部提取所请求的天气报告的位置。 这样，机器人便可以跳过用户所在位置的问题，并向用户提供更智能、更简洁的聊天。
+
+### <a name="prerequisites"></a>先决条件
+
+若要在本示例中使用实体，需要创建包含实体的 LUIS 应用。 遵循上面有关[创建 LUIS 应用](#create-a-luis-app-in-the-luis-portal)的部分中的步骤，但不要使用文件 `reminders.json`，而要使用 [reminders-with-entities.json](https://github.com/Microsoft/BotFramework-Samples/tree/master/SDKV4-Samples/dotnet_core/nlp-with-luis) 文件来生成 LUIS 应用。 此文件提供相同的意向以及三个附加实体：Appointment、Meeting 和 Schedule。 这些实体可帮助 LUIS 确定用户消息的意向。 
+
+### <a name="extract-and-display-entities"></a>提取并显示实体
+可将以下可选代码添加到本示例应用，以便在 LUIS 使用某个实例来帮助识别用户的意向时提取并显示实体信息。 
+
+# <a name="ctabcs"></a>[C#](#tab/cs)
+
+可以向机器人添加以下帮助程序函数来通过 LUIS 从 `RecognizerResult` 外部获取实体。 它将需要使用 `Newtonsoft.Json.Linq` 库，必须将该库添加到 **using** 语句中。 如果在分析从 LUIS 返回的 JSON 时找到了实体信息，则 Newtonsoft _DeserializeObject_ 函数会将此 JSON 转换为动态对象，并提供对实体信息的访问。
+
+```cs
+using Newtonsoft.Json.Linq;
+
+private string ParseLuisForEntities(RecognizerResult recognizerResult)
+{
+   var result = string.Empty;
+
+   // recognizerResult.Entities returns type JObject.
+   foreach (var entity in recognizerResult.Entities)
+   {
+       // Parse JObject for a known entity types: Appointment, Meeting, and Schedule.
+       var appointFound = JObject.Parse(entity.Value.ToString())["Appointment"];
+       var meetingFound = JObject.Parse(entity.Value.ToString())["Meeting"];
+       var schedFound = JObject.Parse(entity.Value.ToString())["Schedule"];
+
+       // We will return info on the first entity found.
+       if (appointFound != null)
+       {
+           // use JsonConvert to convert entity.Value to a dynamic object.
+           dynamic o = JsonConvert.DeserializeObject<dynamic>(entity.Value.ToString());
+           if (o.Appointment[0] != null)
+           {
+              // Find and return the entity type and score.
+              var entType = o.Appointment[0].type;
+              var entScore = o.Appointment[0].score;
+              result = "Entity: " + entType + ", Score: " + entScore + ".";
+              
+              return result;
+            }
+        }
+
+        if (meetingFound != null)
+        {
+            // use JsonConvert to convert entity.Value to a dynamic object.
+            dynamic o = JsonConvert.DeserializeObject<dynamic>(entity.Value.ToString());
+            if (o.Meeting[0] != null)
+            {
+                // Find and return the entity type and score.
+                var entType = o.Meeting[0].type;
+                var entScore = o.Meeting[0].score;
+                result = "Entity: " + entType + ", Score: " + entScore + ".";
+                
+                return result;
+            }
+        }
+
+        if (schedFound != null)
+        {
+            // use JsonConvert to convert entity.Value to a dynamic object.
+            dynamic o = JsonConvert.DeserializeObject<dynamic>(entity.Value.ToString());
+            if (o.Schedule[0] != null)
+            {
+                // Find and return the entity type and score.
+                var entType = o.Schedule[0].type;
+                var entScore = o.Schedule[0].score;
+                result = "Entity: " + entType + ", Score: " + entScore + ".";
+                
+                return result;
+            }
+        }
+    }
+
+    // No entities were found, empty string returned.
+    return result;
+}
+```
+
+然后，可与识别到的用户意向一同显示这些检测到的实体信息。 若要显示这些信息，请在显示意向信息之后，随即将以下几行代码添加到示例代码的 _OnTurnAsync_ 任务。
+
+```cs
+// See if LUIS found and used an entity to determine user intent.
+var entityFound = ParseLuisForEntities(recognizerResult);
+
+// Inform the user if LUIS used an entity.
+if (entityFound.ToString() != string.Empty)
+{
+   await turnContext.SendActivityAsync($"==>LUIS Entity Found: {entityFound}\n");
+}
+else
+{
+   await turnContext.SendActivityAsync($"==>No LUIS Entities Found.\n");
+}
+```
+# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
+
+可将以下代码添加到机器人，以便在从 LUIS 返回的 `luisRecognizer` 结果中提取实体信息。 在代码示例文件 bot.js 的 `onTurn` 处理中，紧接在常量 _topIntent_ 的声明后面添加以下代码行。 此代码行将捕获所有返回的实体信息： 
+
+```javascript
+// Since the LuisRecognizer was configured to include the raw results, get returned entity data.
+var entityData = results.luisResult.entities;
+
+```
+
+若要向用户显示所有返回的实体信息，请紧接在示例代码中使用的 _sendActivity_ 调用后面添加以下代码行，以便在找到 topIntent 时通知用户。
+
+```javascript
+// See if LUIS found and used an entity to determine user intent.
+if (entityData.length > 0)
+{
+   if ((entityData[0].type == "Appointment") || (entityData[0].type == "Meeting") || (entityData[0].type == "Schedule") )
+   {
+      // inform user if LUIS used an entity.
+      await turnContext.sendActivity(`LUIS Entity Found: Entity: ${entityData[0].entity}, Score: ${entityData[0].score}.`);
+   }
+}
+else{
+       await turnContext.sendActivity(`No LUIS Entities Found.`);
+}
+```
+
+此代码首先检查 LUIS 是否在返回的结果中返回了任何实体信息，如果已返回，则显示与检测到的第一个实体相关的信息。
+
+---
+
+### <a name="test-bot-with-entities"></a>测试包含实体的机器人
+
+1. 若要测试包含实体的机器人，请根据[上面](#test-the-bot)所述在本地运行该示例。
+
+1. 在仿真器中，输入如下所示的消息。 
+
+![测试 nlp 示例输入](./media/nlp-luis-sample-message.png)
+
+现在，机器人的响应中将返回评分最高的意向“Calendar_Add”，加上 LUIS 用来确定用户意向的“Meetings”实体。
+
+![测试 nlp 示例响应](./media/nlp-luis-sample-entity-response.png) 
+
+检测实体可以帮助提高机器人的整体性能。 例如，检测“Meeting”实体（如上所示）可让应用程序调用一个专用函数，以根据用户的日历创建新会议。
 
 ## <a name="next-steps"></a>后续步骤
 

@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 13/12/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e93f7d24396b4e35fc81960d42148dd8942362d7
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3a3074ff9e8de36d7a7cf7b86fef62979bc53fa8
+ms.sourcegitcommit: 958a28bbab7dd29b384bb2e2d58d866e88f53316
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998948"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52500654"
 ---
 # <a name="virtual-assistant-solution-overview"></a>虚拟助手解决方案概述
 
@@ -24,7 +24,7 @@ ms.locfileid: "49998948"
 
 虚拟助手的功能范围很广，通常会为最终用户提供各种功能。 为了提高开发人员的工作效率，并且为了实现一个包含可重用聊天体验在内的充满活力的生态系统，我们为开发人员提供可重用聊天技能的初始示例。 这些技能可以添加到聊天应用程序中，开启特定的聊天体验，例如查找兴趣点，与日历、任务、电子邮件和许多其他的方案交互。 技能可完全自定义，包含的语言模型适合多种语言、对话框和代码。
 
-目前，我们运行的是初始预览版，正与初始客户和合作伙伴在一个开源存储库中密切合作，以便推出初始体验，并使之过几个月后可以在更广泛的范围内使用。
+目前，我们正在与开源存储库的初始客户与合作伙伴密切合作，以推出第一款体验。
 
 ![虚拟助手图](./media/enterprise-template/customassistantdiagram.jpg)
 
@@ -32,7 +32,7 @@ ms.locfileid: "49998948"
 
 虚拟助手构建在[企业模板](./bot-builder-enterprise-template-overview.md)功能之上，后者为聊天体验提供基本的功能，包括多语言形式的基本聊天意向、调度、QnA 和聊天见解。 下述与助手相关的功能是目前提供的，其他功能仍在计划中。我们会与客户及合作伙伴密切合作，及时将路线图告知他们。
 
-功能 | Description |
+Feature | Description |
 ------------ | -------------
 登记 | 示例 OnBoarding 流允许助手问候用户并收集初始信息。
 事件处理体系结构 | 使用虚拟助手上下文中的事件，在 Web 浏览器或者汽车或扬声器之类的设备上托管助手的客户端应用程序就可以交换有关用户或设备事件的信息，同时还可以在收到事件后执行设备操作。
@@ -97,5 +97,5 @@ ms.locfileid: "49998948"
 
 ## <a name="getting-started"></a>入门
 
-目前，我们运行的是初始预览版，正与初始客户和合作伙伴在一个开源存储库中密切合作，以便推出初始体验，并使之过几个月后可以在更广泛的范围内使用。 若要登记你的意向并开始使用，请填写[此表](https://aka.ms/customassistantpreviewform)，我们会联系你。
+虚拟助手解决方案在[此 GitHub 存储库](https://github.com/Microsoft/AI/tree/master/solutions/Virtual-Assistant)中提供。虚拟助手团队会定期更新此存储库。 同一存储库中提供了更详细的文档。可以通过 GitHub 反馈机制直接提供问题/反馈。 如果你想要与我们讨论某个重要方案，请填写[此表单](https://aka.ms/customassistantpreviewform)，我们将与你取得联系。
 

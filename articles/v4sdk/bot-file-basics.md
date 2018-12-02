@@ -1,5 +1,5 @@
 ---
-title: 使用机器人文件管理机器人资源 | Microsoft Docs
+title: 使用 .bot 文件管理资源 | Microsoft Docs
 description: 介绍机器人文件的用途和用法。
 keywords: 机器人文件, .bot, .bot 文件, msbot, 机器人资源, 管理机器人资源
 author: ivorb
@@ -8,16 +8,16 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/13/2018
+ms.date: 11/23/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0ff3f0e68d58a8768bb785a88ee7664ab430e453
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: 276b553a6990ed286acbf073825afa7c4656de32
+ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645627"
+ms.lasthandoff: 11/28/2018
+ms.locfileid: "52452019"
 ---
-# <a name="manage-bot-resources-with-a-bot-file"></a>使用机器人文件管理机器人资源
+# <a name="manage-resources-with-a-bot-file"></a>使用 .bot 文件管理资源
 
 机器人往往使用大量不同的服务，例如 [LUIS.ai](https://luis.ai) 或 [QnaMaker.ai](https://qnamaker.ai)。 开发机器人时，没有一个统一的位置用于存储有关所用服务的元数据。  这样，我们就无法构建可将机器人视为一个整体的工具。
 
@@ -45,15 +45,14 @@ ms.locfileid: "51645627"
 ## <a name="what-does-a-bot-file-look-like"></a>机器人文件的外观是怎样的？ 
 请看看一个示例 [.bot](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/docs/sample-bot-file.json) 文件。
 若要了解如何加密和解密 .bot 文件，请参阅[机器人机密](https://github.com/Microsoft/botbuilder-tools/blob/master/packages/MSBot/docs/bot-file-encryption.md)。
-## <a name="why-do-i-need-a-bot-file"></a>为何需要 .bot 文件？
 
+## <a name="why-do-i-need-a-bot-file"></a>为何需要 .bot 文件？
 通过 Bot Builder SDK 生成机器人时**不一定**非要使用 .bot 文件。 可以继续使用 appsettings.json、web.config、env、keyvault 或其他任何机制，只要它们适合用于跟踪机器人依赖的服务引用和密钥即可。 但是，若要使用仿真器测试机器人，则需要 .bot 文件。 好消息是，仿真器可以创建用于测试的 .bot 文件。 为此，请启动仿真器，并在“欢迎”页上单击“创建新机器人配置”链接。 在显示的对话框中，键入**机器人名称**和**终结点 URL**。 然后建立连接。
 
 使用 .bot 文件的优势包括：
 - 不管使用哪种语言/平台，都能通过标准的方式存储存储资源。   
 - Bot Framework Emulator 和 CLI 工具依赖于跟踪采用一致格式的连接服务（在 .bot 文件中），并且非常适合进行这种跟踪 
 - 如果没有完善定义的架构（.bot 文件），则很难围绕服务的创建和管理开发精巧的工具解决方案。  
-
 
 ## <a name="using-bot-file-in-your-bot-builder-sdk-bot"></a>在 Bot Builder SDK 机器人中使用 .bot 文件
 可以在机器人代码中使用 .bot 文件获取服务配置信息。 适用于 [C#](https://www.nuget.org/packages/Microsoft.Bot.Configuration) 和 [JS](https://www.npmjs.com/package/botframework-config) 的 BotFramework-Configuration 库可帮助你加载机器人文件，并支持通过多种方法来查询和获取相应的服务配置信息。

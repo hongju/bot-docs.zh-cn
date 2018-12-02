@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 366a985e839c8a79fcd8794c139e2e8130a05335
-ms.sourcegitcommit: 6cb37f43947273a58b2b7624579852b72b0e13ea
+ms.openlocfilehash: 940dba389205ff339b80f741b8a8aec87ff54f1d
+ms.sourcegitcommit: bcde20bd4ab830d749cb835c2edb35659324d926
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/22/2018
-ms.locfileid: "52288867"
+ms.lasthandoff: 11/27/2018
+ms.locfileid: "52338560"
 ---
 # <a name="managing-state"></a>管理状态
 
@@ -33,7 +33,13 @@ ms.locfileid: "52288867"
 
 从后端开始，实际存储状态信息的位置是存储层。 可将存储层视为物理存储，例如内存中服务器、Azure 服务器或第三方服务器。
 
-Bot Framework SDK 提供存储层的实现（例如内存中存储）用于本地测试，并提供 Azure 存储或 CosmosDB 的实现用于测试和部署到云。
+Bot Framework SDK 包含存储层的某些实现：
+
+- **内存存储**实现内存中存储用于测试。 内存中数据存储仅用于本地测试，因为它是易失性的临时存储。 每次重启机器人时都会清除数据。
+- **Azure Blob 存储**连接到 Azure Blob 存储对象数据库。
+- **Azure Cosmos DB 存储**连接到 Cosmos DB NoSQL 数据库。
+
+有关如何连接到其他存储选项的说明，请参阅[直接写入存储](bot-builder-howto-v4-storage.md)。
 
 ## <a name="state-management"></a>状态管理
 
@@ -45,7 +51,7 @@ Bot Framework SDK 提供存储层的实现（例如内存中存储）用于本�
 - 聊天状态
 - 私人聊天状态
 
-所有这些桶都是 *bot state* 类的子类，可以派生该类来定义其他类型的桶。
+所有这些桶都是 *bot state* 类的子类，可以派生该类来定义具有不同范围的其他类型的桶。
 
 只能根据具体的桶，在特定的可见范围内使用这些预定义的桶：
 
@@ -53,13 +59,40 @@ Bot Framework SDK 提供存储层的实现（例如内存中存储）用于本�
 - 不管用户是谁（例如群组聊天），特定聊天中的任何轮次都会提供聊天状态
 - 私人聊天状态的范围限定为特定聊天和特定用户
 
+> [!TIP]
+> 用户状态和聊天状态的范围根据通道进行限定。
+> 使用不同的通道访问机器人的同一个人显示为不同的用户，每个通道有一个用户，并且每个用户具有不同的用户状态。
+
 用于其中每个预定义桶的键特定于用户和/或聊天。 设置状态属性的值时，将在内部使用轮次上下文中包含的信息定义键，以确保将每个用户或聊天置于适当的桶和属性中。 具体而言，将按如下所述定义键：
 
 - 用户状态使用通道 ID 和源 ID 创建键。 例如 _{Activity.ChannelId}/users/{Activity.From.Id}#YourPropertyName_
 - 聊天状态使用通道 ID 和聊天 ID 创建键。 例如 _{Activity.ChannelId}/conversations/{Activity.Conversation.Id}#YourPropertyName_
 - 私人聊天状态使用通道 ID、源 ID 和聊天 ID 创建键。 例如 _{Activity.ChannelId}/conversations/{Activity.Conversation.Id}/users/{Activity.From.Id}#YourPropertyName_
 
+### <a name="when-to-use-each-type-of-state"></a>何时使用每种类型的状态
+
+聊天状态非常适合用于跟踪聊天的上下文，例如：
+
+- 机器人是否向用户提出了问题，问题是什么
+- 聊天的当前主题或最后一个主题是什么
+
+用户状态非常适合用于跟踪有关用户的信息，例如：
+
+- 非关键性用户信息，例如姓名和首选项、警报设置或警报首选项
+- 有关用户与机器人上次展开的聊天的信息
+  - 例如，产品支持机器人可以跟踪用户咨询过的产品。
+
+私人聊天状态非常适合用于支持群组聊天的通道，但在其中需要同时跟踪用户和聊天特定的信息。 例如，如果你有一个课堂抢答机器人：
+
+- 该机器人可以聚合并显示学生对给定问题的回答。
+- 该机器人可以聚合每位学生的成绩，并在会话结束时，以私密方式将该信息中继回到相应的学生。
+
 有关使用这些预定义桶的详细信息，请参阅[状态操作方法文章](bot-builder-howto-v4-state.md)。
+
+### <a name="connecting-to-multiple-databases"></a>连接到多个数据库
+
+如果机器人需要连接到多个数据库，请为每个数据库创建一个存储层。
+对于每个存储层，创建支持状态属性所需的状态管理对象。
 
 ## <a name="state-property-accessors"></a>状态属性访问器
 
@@ -78,15 +111,14 @@ Bot Framework SDK 提供存储层的实现（例如内存中存储）用于本�
 
 访问器方法是机器人与状态交互的主要方法。 下面介绍了每个方法的工作原理以及基础层的交互方式：
 
-- 访问器的 *get*
-    - 访问器从状态缓存请求属性
-    - 如果该属性在缓存中，则返回它。 否则，从状态管理对象获取该属性。
-        - 如果该属性尚未保存到状态中，则使用访问器 *get* 调用中提供的工厂方法。
-- 访问器的 *set*
-    - 使用新属性值更新状态缓存。
-- 状态管理对象的 *save changes*
-    - 检查对状态缓存中属性所做的更改。
-    - 将属性写入存储。
+- 访问器的 *get* 方法：
+  - 访问器从状态缓存请求属性。
+  - 如果该属性在缓存中，则返回它。 否则，从状态管理对象获取该属性。
+    （如果该属性尚未保存到状态中，则使用访问器 *get* 调用。）- 访问器的 *set* 方法：
+  - 使用新属性值更新状态缓存。
+- 状态管理对象的 *save changes* 方法：
+  - 检查对状态缓存中属性所做的更改。
+  - 将属性写入存储。
 
 ## <a name="saving-state"></a>保存状态
 
