@@ -55,9 +55,9 @@
 ### [Node.js](nodejs/TOC.md)
 ## [调试](debug/TOC.md)
 ## 部署
-### [下载并重新部署机器人代码](bot-service-build-download-source-code.md)
+### [将机器人部署到 Azure](bot-builder-howto-deploy-azure.md)
+<!-- ### [Download and redeploy bot code](bot-service-build-download-source-code.md) -->
 ### [设置持续部署](bot-service-build-continuous-deployment.md)
-### [将 C# 机器人部署到 Azure](bot-builder-howto-deploy-azure.md)
 ## [管理](manage/TOC.md)
 # 引用
 ## [.NET SDK v4](https://aka.ms/dotnetsdk4)
