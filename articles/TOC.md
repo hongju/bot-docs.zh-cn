@@ -55,7 +55,8 @@
 ### [Node.js](nodejs/TOC.md)
 ## [调试](debug/TOC.md)
 ## 部署
-### [将机器人部署到 Azure](bot-builder-howto-deploy-azure.md)
+### [使用 Azure CLI 部署机器人](bot-builder-deploy-az-cli.md)
+### [使用 Visual Studio 部署 C# 机器人](bot-builder-howto-deploy-azure.md)
 <!-- ### [Download and redeploy bot code](bot-service-build-download-source-code.md) -->
 ### [设置持续部署](bot-service-build-continuous-deployment.md)
 ## [管理](manage/TOC.md)
