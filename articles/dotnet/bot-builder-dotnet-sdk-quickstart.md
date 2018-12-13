@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/13/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 77e24d58fb377ec2390671517204526bf076f78e
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: 20a7dad4398874febfbd71024cd68763107f7bd8
+ms.sourcegitcommit: 0b421ff71617f03faf55ea175fb91d1f9e348523
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645537"
+ms.lasthandoff: 12/12/2018
+ms.locfileid: "53286623"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-net"></a>通过 Bot Builder SDK for .NET 创建机器人
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -24,7 +24,7 @@ ms.locfileid: "51645537"
 
 ## <a name="prerequisites"></a>先决条件
 - Visual Studio [2017](https://www.visualstudio.com/downloads)
-- 面向 [C#](https://botbuilder.myget.org/feed/aitemplates/package/vsix/BotBuilderV4.fbe0fc50-a6f1-4500-82a2-189314b7bea2) 的 Bot Builder SDK v4 模板
+- 面向 [C#](https://aka.ms/bot-vsix) 的 Bot Builder SDK v4 模板
 - Bot Framework [Emulator](https://aka.ms/Emulator-wiki-getting-started)
 - 了解 [ASP.Net Core](https://docs.microsoft.com/aspnet/core/) 和 [C#](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/index) 中的异步编程
 
