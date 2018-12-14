@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/26/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8f979aed3bc1c4bb4c74629bcffb258e139ce77d
-ms.sourcegitcommit: bcde20bd4ab830d749cb835c2edb35659324d926
+ms.openlocfilehash: 8c3aad54a9e80e8a046a6e31a5109a1de8c61a8b
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52338550"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010502"
 ---
 # <a name="save-user-and-conversation-data"></a>保存用户和聊天数据
 
@@ -386,7 +386,7 @@ async onTurn(turnContext) {
 
 **状态管理：** 所有状态管理调用都是异步的，默认采用“上次写入优先”。 在实践中，应在机器人中获取、设置和保存尽量邻近的状态。
 
-**关键的业务数据：** 使用机器人状态存储首选项、用户名或用户订购的最后一个商品，但不要用它来存储关键的业务数据。 对于关键数据，请[创建自己的存储组件](bot-builder-custom-storage.md)或将数据直接写入[存储](bot-builder-howto-v4-storage.md)。
+**关键业务数据：** 请使用机器人状态来存储首选项、用户名或订购的最后一个项目，但不要用它来存储关键的业务数据。 对于关键数据，请[创建自己的存储组件](bot-builder-custom-storage.md)或将数据直接写入[存储](bot-builder-howto-v4-storage.md)。
 
 **Recognizer-Text：** 该示例使用 Microsoft/Recognizers-Text 库来分析和验证用户输入。 有关详细信息，请参阅[概述](https://github.com/Microsoft/Recognizers-Text#microsoft-recognizers-text-overview)页。
 

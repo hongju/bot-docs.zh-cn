@@ -1,28 +1,35 @@
 ---
-title: 将 C# 机器人部署到 Azure | Microsoft Docs
+title: 使用 Visual Studio 部署 C# 机器人 | Microsoft Docs
 description: 将机器人部署到 Azure 云。
-keywords: 部署机器人, azure 部署, 机器人通道注册, 发布 visual studio
+keywords: 部署机器人, azure 部署, 发布机器人, az 部署机器人, visual studio 部署机器人, msbot 发布, msbot 克隆
 author: ivorb
 ms.author: v-ivorb
 manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 11/05/2018
-ms.openlocfilehash: f30a038c6bc5e435ade421e24b05d0b31a143538
-ms.sourcegitcommit: 9acac75f85d36c81b8bf4edec916dd0b52a4a5c7
+ms.date: 12/08/2018
+ms.openlocfilehash: ac4e5f2ea385cb8318ad59e04c8ca8787480f5c8
+ms.sourcegitcommit: 77664484e1b0780a15f686ef08bd23716b049b4a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/06/2018
-ms.locfileid: "51028734"
+ms.lasthandoff: 12/09/2018
+ms.locfileid: "53121783"
 ---
-# <a name="deploy-your-c-bot-to-azure"></a>将 C# 机器人部署到 Azure
+# <a name="deploy-your-c-bot-using-visual-studio"></a>使用 Visual Studio 部署 C# 机器人
 
 [!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
 
-创建机器人并在本地对其进行测试后，可将其发布到 Azure，以便可以从任何位置访问它。
+创建机器人并在本地对其进行测试后，可将其部署到 Azure，以便可以从任何位置访问它。 将机器人部署到 Azure 需要支付服务使用费。 [计费和成本管理](https://docs.microsoft.com/en-us/azure/billing/)一文可帮助你了解 Azure 计费方式、如何监视使用量与费用，以及如何管理帐户和订阅。
 
-## <a name="publish-from-visual-studio"></a>从 Visual Studio 发布
+本文介绍如何使用 Visual Studio 和 Azure 门户部署 C# 机器人。 在执行相关步骤之前最好是先阅读本文，以完全了解在部署机器人时所涉及到的工作。
+
+## <a name="prerequisites"></a>先决条件
+- 安装 [Bot Framework Emulator](https://aka.ms/Emulator-wiki-getting-started)。
+- 安装并配置 [ngrok](https://github.com/Microsoft/BotFramework-Emulator/wiki/Tunneling-%28ngrok%29)。
+- 了解 [.bot](v4sdk/bot-file-basics.md) 文件。
+
+## <a name="deploy-your-bot-in-app-service"></a>在应用服务中部署机器人
 你将首先在应用服务中从 Visual Studio 将机器人部署到 Azure。 然后，你将使用机器人通道注册通过 Azure 机器人服务配置机器人。
 
 **注意：如果 Visual Studio 项目名称包含空格，则无法执行下面所述的部署步骤。**
@@ -138,6 +145,22 @@ ms.locfileid: "51028734"
 ![通过网上聊天执行测试](media/azure-bot-quickstarts/getting-started-test-webchat.png)
 
 4. 键入 `Hi` 之类的消息，然后按 Enter。 机器人将回显 `Turn 1: You sent Hi`。
+
+---
+
+## <a name="additional-resources"></a>其他资源
+
+部署机器人时，通常会在 Azure 门户中创建以下资源：
+
+| 资源      | Description |
+|----------------|-------------|
+| Web 应用机器人 | 部署到 Azure 应用服务的 Azure 机器人服务机器人。|
+| [应用服务](https://docs.microsoft.com/en-us/azure/app-service/)| 用于生成和托管 Web 应用程序。|
+| [应用服务计划](https://docs.microsoft.com/en-us/azure/app-service/azure-web-sites-web-hosting-plans-in-depth-overview)| 为要运行的 Web 应用定义一组计算资源。|
+| [Application Insights](https://docs.microsoft.com/en-us/azure/application-insights/app-insights-overview)| 提供用于收集和分析遥测数据的工具。|
+| [存储帐户](https://docs.microsoft.com/en-us/azure/storage/common/storage-introduction)| 提供高度可用、安全、持久、可缩放且冗余的云存储。|
+
+如果你不熟悉 Azure 资源组，请参阅此[术语](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview#terminology)主题。
 
 ## <a name="next-steps"></a>后续步骤
 > [!div class="nextstepaction"]

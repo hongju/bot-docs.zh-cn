@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 03/01/2018
-ms.openlocfilehash: d329fcbe5b4a34cb3e9c1fbf0160c5248020a508
-ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
+ms.openlocfilehash: 818017a81b497b13ee181dbb6b87c03a0182736d
+ms.sourcegitcommit: 75f32b3325dd0fc4d8128dee6c22ebf91e5785b3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51332961"
+ms.lasthandoff: 12/09/2018
+ms.locfileid: "53120674"
 ---
 # <a name="entities-and-activity-types"></a>实体和活动类型
 
@@ -173,6 +173,11 @@ if(context.activity.type === 'message'){
 | [invoke](#invoke) | IInvokeActivity (C#) <br> Activity (JS) | 表示发送到机器人以请求它执行特定操作的通信。 保留此活动类型以供 Microsoft Bot Framework 内部使用。 |
 | [messageReaction](#messagereaction) | IMessageReactionActivity (C#) <br> Activity (JS) | 指示用户已对现有活动做出反应。 例如，用户单击消息上的“赞”按钮。 |
 | [typing](#typing) | ITypingActivity (C#) <br> Activity (JS) | 指示位于聊天另一端的用户或机器人正在编写答复。 |
+| messageUpdate | IMessageUpdateActivity (C#) <br> Activity (JS) | 表示更新聊天中上一消息活动的请求。 |
+| messageDelete | IMessageDeleteActivity (C#) <br> Activity (JS) | 表示删除聊天中上一消息活动的请求。 |
+| suggestion | ISuggestionActivity (C#) <br> Activity (JS) | 表示向接收方提供的有关另一个特定活动的私人建议。 |
+| trace | ITraceActivity (C#) <br> Activity (JS) | 机器人在记录的聊天脚本中记录内部信息所依据的活动。 |
+| handoff | IHandoffActivity (C#) <br> Activity (JS) | 聊天控制权已转移，或者发出了转移聊天控制权的请求。 |
 
 ## <a name="message"></a>message
 

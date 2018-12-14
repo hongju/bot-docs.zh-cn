@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9d8caf19a98fb595e4b1e27b0635d2a752b88390
-ms.sourcegitcommit: bbfb171f515c50a3c8bba5ca898daf25cf764378
+ms.openlocfilehash: a8a0976e6f553e52e13ae13bbb719dd7bdead8f6
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/23/2018
-ms.locfileid: "52293599"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010534"
 ---
 # <a name="gather-user-input-using-a-dialog-prompt"></a>使用对话提示收集用户输入
 
@@ -168,7 +168,7 @@ public DialogPromptBot(DialogPromptBotAccessors accessors, ILoggerFactory logger
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-在构造函数中创建状态访问器属性。 
+在构造函数中创建状态访问器属性。
 
 ```javascript
 constructor(conversationState) {
@@ -192,6 +192,7 @@ constructor(conversationState) {
 ```
 
 然后定义瀑布对话的步骤，并将该对话添加到该集。
+
 ```javascript
     // ...
     this.dialogSet.add(new WaterfallDialog(RESERVATION_DIALOG, [
@@ -207,7 +208,7 @@ constructor(conversationState) {
 
 ### <a name="implement-dialog-steps"></a>实现对话步骤
 
-在机器人主文件中，实现瀑布对话的每个步骤。 添加提示后，在瀑布对话的某个步骤中调用它，并在下一个对话步骤中获取提示结果。 若要从瀑布步骤内部调用提示，请调用瀑布步骤上下文对象的 _prompt_ 方法。 第一个参数是要使用的提示的 ID，第二个参数包含提示的选项，例如，用于请求用户输入的文本。     
+在机器人主文件中，实现瀑布对话的每个步骤。 添加提示后，在瀑布对话的某个步骤中调用它，并在下一个对话步骤中获取提示结果。 若要从瀑布步骤内部调用提示，请调用瀑布步骤上下文对象的 _prompt_ 方法。 第一个参数是要使用的提示的 ID，第二个参数包含提示的选项，例如，用于请求用户输入的文本。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -250,6 +251,7 @@ private async Task<DialogTurnResult> PromptForLocationAsync(WaterfallStepContext
         cancellationToken);
 }
 ```
+
 上述示例演示如何使用提供了所有三个属性的选项提示。 `PromptForLocationAsync` 方法用作瀑布对话中的步骤，对话集包含瀑布对话以及 ID 为 `locationPrompt` 的选项提示。
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -291,8 +293,6 @@ _prompt_ 方法的第二个参数采用提示选项对象，该对象包含以�
 当用户输入采用的是提示无法分析的格式（例如，用于数字提示的“tomorrow”），或者不符合验证条件，因而无法验证时，指定 retry prompt 很有用。 在这种情况下，如果未提供 retry prompt，则提示将使用初始提示活动来重新提示用户输入。
 
 对于选项提示，应始终提供可用选项的列表。
-
-
 
 ## <a name="custom-validation"></a>自定义验证
 
@@ -470,14 +470,13 @@ async dateValidator(promptContext) {
    1. 控制权将传递给活动对话中的下一个步骤，这是提示的第二个轮次。
    1. 提示验证用户的输入。
 
-      
 **处理提示结果**
 
 如何处理提示结果取决于从用户请求信息的原因。 选项包括：
 
-* 使用信息来控制对话流（例如，在用户对确认或选项提示做出响应时）。
-* 在对话的状态中缓存信息（例如，在瀑布步骤上下文的 _values_ 属性中设置一个值），然后在对话结束时返回收集的信息。
-* 将信息保存到机器人状态。 这需要将对话设计为有权访问机器人的状态属性访问器。 
+- 使用信息来控制对话流（例如，在用户对确认或选项提示做出响应时）。
+- 在对话的状态中缓存信息（例如，在瀑布步骤上下文的 _values_ 属性中设置一个值），然后在对话结束时返回收集的信息。
+- 将信息保存到机器人状态。 这需要将对话设计为有权访问机器人的状态属性访问器。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -600,17 +599,17 @@ async onTurn(turnContext) {
 
 ---
 
-
-
 可以使用类似技术来验证任何提示类型的提示响应。
 
 ## <a name="test-your-bot"></a>测试机器人
+
 1. 在计算机本地运行示例。 如需说明，请参阅适用于 [C#](https://aka.ms/dialog-prompt-cs) 或 [JS](https://aka.ms/dialog-prompt-js) 的自述文件。
 2. 启动仿真器，并按如下所示发送消息来测试机器人。
 
 ![测试对话提示示例](~/media/emulator-v4/test-dialog-prompt.png)
 
 ## <a name="additional-resources"></a>其他资源
+
 若要直接从轮次处理程序调用提示，请参阅 [C#](https://aka.ms/cs-prompt-validation-sample) 或 [JS](https://aka.ms/js-prompt-validation-sample) _prompt-validations_ 示例。
 
 对话库还包含用于获取 OAuth 令牌的 OAuth 提示，代表用户访问另一应用程序时需要该令牌。 有关身份验证的详细信息，请参阅如何[将身份验证添加到机器人](bot-builder-authentication.md)。

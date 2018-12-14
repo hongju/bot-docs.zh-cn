@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 15cd6c998abf37b1c7b9a9e2659b7390370f7f10
-ms.sourcegitcommit: d92fd6233295856052305e0d9e3cba29c9ef496e
+ms.openlocfilehash: c4d4879f7ad127838de9d2563dee8f8d7320d61e
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/16/2018
-ms.locfileid: "51715121"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010572"
 ---
 # <a name="how-bots-work"></a>机器人的工作原理
 
@@ -424,9 +424,6 @@ exports.EchoBot = EchoBot;
 
 ## <a name="additional-resources"></a>其他资源
 
-若要了解机器人文件在资源管理中发挥的作用，请参阅[机器人文件](bot-file-basics.md)。
-
-## <a name="next-steps"></a>后续步骤
-
-> [!div class="nextstepaction"]
-> [创建机器人](~/bot-service-quickstart.md)
+- 若要了解机器人中的状态的作用，请参阅[管理状态](bot-builder-concept-state.md)。
+- 若要了解 .bot 文件在资源管理中发挥的作用，请参阅[使用 .bot 文件管理资源](bot-file-basics.md)。
+- 若要创建第一个机器人，请参阅以下快速入门之一：[使用 Azure 机器人服务](../bot-service-quickstart.md)、[使用 C#](../dotnet/bot-builder-dotnet-sdk-quickstart.md) 或[使用 JavaScript](../javascript/bot-builder-javascript-quickstart.md)

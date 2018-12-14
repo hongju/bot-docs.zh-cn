@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 10/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 14a56749c68cfe89ed4a0da3c046a39a8e0783fe
-ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
+ms.openlocfilehash: 27e0b54b4e790e76c55deb858e50d8c81507443a
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916784"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010592"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
 
@@ -41,9 +41,8 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 | 示例 | BotBuilder 版本 | Description |
 |:---|:---:|:---|
-| [C# Auth](http://aka.ms/v4csharpauth) | v4 | 演示 v4 C# SDK 中的 OAuthCard 支持 |
-| [C# Auth Graph](http://aka.ms/v4csharpauthgraph) | v4 |  演示 v4 C# SDK 中的 OAuthCard 支持（使用 AAD 和 Microsoft Graph API） |
-| [Node Auth](http://aka.ms/v4cnodeauth) | v4 |  演示 v4 Node/JavaScript SDK 中的 OAuthCard 支持 |
+| **机器人身份验证** ([C#](https://aka.ms/v4cs-bot-auth-sample) / [JS](https://aka.ms/v4js-bot-auth-sample)) | v4 | 演示 OAuthCard 支持。 |
+| **机器人身份验证 MSGraph** ([C#](https://aka.ms/v4cs-auth-msgraph-sample) / [JS](https://aka.ms/v4js-auth-msgraph-sample)) | v4 |  演示使用 OAuth 2 的 Microsoft Graph API 支持。 |
 
 > [!NOTE]
 > 身份验证功能也适用于 BotBuilder v3。 但是，本文只介绍 v4 代码示例。
@@ -52,7 +51,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 ## <a name="overview"></a>概述
 
-本教程创建一个机器人示例，它使用 Azure AD v1 或 v2 令牌连接到 Microsoft Graph。 在此过程中，你将使用 GitHub 存储库中的代码。本教程介绍如何进行此方面的设置，包括机器人应用程序的设置。
+本教程创建一个机器人示例，它使用 Azure AD v1 或 v2 令牌连接到 Microsoft Graph。 在此过程中，你将使用 [Microsoft/BotBuilder-Samples](https://github.com/Microsoft/BotBuilder-Samples) GitHub 存储库中的代码。本教程介绍如何进行此方面的设置，包括机器人应用程序的设置。
 
 - **创建机器人和身份验证应用程序**
 - **准备机器人示例代码**
@@ -208,7 +207,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 1. 单击“服务提供程序连接设置”窗格顶部的“测试连接”。
 1. 第一次进行此操作时，应该会打开一个新的浏览器选项卡（其中列出了应用请求的权限）并提示你接受。
 1. 单击“接受”。
-1. 然后，此操作应该会将你重定向到“‘<your-connection-name>’的连接测试成功”页面。
+1. 然后，应会重定向到“<连接名称> 的连接测试成功”页。
 
 ## <a name="prepare-the-bot-sample-code"></a>准备机器人示例代码
 
@@ -228,7 +227,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
     > [!IMPORTANT]
     > 根据密码中的字符，可能需要 XML 转义密码。 例如，任何连字符 (&) 都需要编码为 `&amp;`。
 
-    ```xml
+    ```json
     {
         "name": "BotAuthentication",
         "secretKey": "",

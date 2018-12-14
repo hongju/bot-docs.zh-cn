@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/8/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dacf952e6554eb76e0a41418791fb954e82d4f38
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 1bfa180967c55aac6012e02887ac2893947263f9
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452059"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010582"
 ---
 # <a name="middleware"></a>中间件
 
@@ -78,7 +78,7 @@ SDK 定义了可记录传入和传出活动的日志记录中间件，但你也�
 ## <a name="response-event-handlers"></a>响应事件处理程序
 除了应用程序和中间件逻辑以外，还可将响应处理程序（有时也称为事件处理程序或活动事件处理程序）添加到上下文对象中。 在执行实际响应之前，当前上下文对象上出现相关响应时，将调用这些处理程序。 当知道要在实际事件之前或之后对其余当前响应的该类型的所有活动执行某些操作时，这些处理程序非常有用。
 
-> [!WARNING] 
+> [!WARNING]
 > 注意，请勿从它的相应响应事件处理程序中调用活动响应方法，例如，从发送活动处理程序中调用发送活动方法。 执行此操作可以生成一个无限循环。
 
 请记住，每个新活动都会获得一个要执行的新线程。 创建处理活动的线程后，该活动的处理程序列表将复制到该新线程。 不会针对该特定活动事件执行在此之后添加的任何处理程序。
@@ -90,9 +90,11 @@ SDK 定义了可记录传入和传出活动的日志记录中间件，但你也�
 
 ![状态中间件问题](media/bot-builder-dialog-state-problem.png)
 
-此方法的问题是，在机器人的轮次处理程序返回后，从某些自定义中间件进行状态更新时，更新不会保存到持久存储。 解决方法是通过将 AutoSaveChangesMiddleware 添加到中间件堆栈的开头，或至少添加到可能更新状态的任一中间件之前，在自定义中间件完成后，移动对 save changes 方法的调用。 执行情况如下所示。
+此方法的问题是，在机器人的轮次处理程序返回后，从某些自定义中间件进行状态更新时，更新不会保存到持久存储。 解决方法是通过将“自动保存更改”中间件的实例添加到中间件堆栈的开头，或至少添加到可能更新状态的任一中间件之前，在自定义中间件完成后，将调用转移到 save changes 方法。 执行情况如下所示。
 
 ![状态中间件解决方案](media/bot-builder-dialog-state-solution.png)
+
+添加需要更新机器人状态集对象的状态管理对象，然后在创建“自动保存更改”中间件时使用这些对象。
 
 ## <a name="additional-resources"></a>其他资源
 可以查看一下用 Bot Builder SDK [[C#](https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Builder/TranscriptLoggerMiddleware.cs) | [JS](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-core/src/transcriptLogger.ts)] 实现的脚本记录器中间件。

@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 940dba389205ff339b80f741b8a8aec87ff54f1d
-ms.sourcegitcommit: bcde20bd4ab830d749cb835c2edb35659324d926
+ms.openlocfilehash: bf7d6a574cc4e63d22e3f34462a1ec00dbdac75e
+ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52338560"
+ms.lasthandoff: 12/07/2018
+ms.locfileid: "53010533"
 ---
 # <a name="managing-state"></a>管理状态
 
@@ -27,7 +27,11 @@ ms.locfileid: "52338560"
 
 维护状态可以记住有关用户或聊天的某些信息，使机器人能够进行更有意义的聊天。 例如，如果你以前与某个用户交谈过，则可以事先保存有关该用户的信息，这样，下次就不再需要请求提供这些信息。 状态还能以长于当前轮次的时间保留数据，使机器人能够在整个多轮次聊天过程中保留信息。
 
-由于本文所述的状态与机器人相关，在使用状态时，需要创建几个层：存储层、状态管理和状态属性访问器。
+由于本文所述的状态与机器人相关，在使用状态时，需要创建几个层：存储层、状态管理（包含在下图所示的机器人状态中）和状态属性访问器。 此图演示了这些层之间的交互序列部分，实线箭头表示方法调用，虚线箭头表示响应（包括或不包括返回值）。
+
+![机器人状态](media/bot-builder-state.png)
+
+以下部分解释了此图的流程，并详细描述了其中的每个层。
 
 ## <a name="storage-layer"></a>存储层
 

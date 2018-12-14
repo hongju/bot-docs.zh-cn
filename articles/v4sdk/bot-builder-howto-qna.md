@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 11/19/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2c25ce4ed815e33a7bdc10c1cc2c1c59dad7fda3
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 0708244b9f9e4859ba069ed463cef83a0ecdf20d
+ms.sourcegitcommit: b9482670285295a2af0dfbb8f4b7e543c1c10542
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52451959"
+ms.lasthandoff: 12/13/2018
+ms.locfileid: "53327153"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答问题
 
@@ -41,7 +41,7 @@ ms.locfileid: "52451959"
 1. 向下滚动，找到“部署详细信息”并记录以下值：
    - POST /knowledgebases/<your_knowledge_base_id>/generateAnswer
    - 主机: https://<you_hostname>.azurewebsites.net/qnamaker
-   - 授权: EndpointKey <your_endpoint_key>
+   - Authorization:EndpointKey <your_endpoint_key>
 
 ## <a name="update-the-bot-file"></a>更新 .bot 文件
 首先，请将访问知识库所需的信息（包括主机名、终结点密钥和知识库 ID (KbId)）添加到 `qnamaker.bot` 中。 这些是在 QnA Maker 中通过知识库的“设置”保存的值。
@@ -63,8 +63,9 @@ ms.locfileid: "52451959"
       "type": "qna",
       "name": "QnABot",
       "KbId": "<YOUR_KNOWLEDGE_BASE_ID>",
-      "Hostname": "https://<YOUR_HOSTNAME>.azurewebsites.net/qnamaker",
-      "EndpointKey": "<YOUR_ENDPOINT_KEY>"
+      "subscriptionKey": "<Your_Azure_Subscription_Key>", // Used when creating your QnA service.
+      "endpointKey": "<Your_Recorded_Endpoint_Key>",
+      "hostname": "<Your_Recorded_Hostname>",
       "id": "117"
     }
   ],
