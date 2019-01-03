@@ -19,4 +19,6 @@
 # [机器人服务符合性](../v4sdk/bot-service-compliance.md)
 # 故障排除
 ## [排查常见问题](../bot-service-troubleshoot-general-problems.md)
+## [排查机器人配置问题](../bot-service-troubleshoot-bot-configuration.md)
+## [排查 HTTP 500 错误](../bot-service-troubleshoot-500-errors.md)
 ## [排查身份验证问题](../bot-service-troubleshoot-authentication-problems.md)
