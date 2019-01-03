@@ -2,20 +2,20 @@
 title: 向用户发送欢迎消息 | Microsoft Docs
 description: 了解如何开发提供欢迎用户体验的机器人。
 keywords: 概述, 开发, 用户体验, 欢迎, 个性化体验, C#, JS, 欢迎消息, 机器人, 问候, 欢迎
-author: dashel
-ms.author: dashel
+author: DanDev33
+ms.author: v-dashel
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/15/2018
+ms.date: 12/20/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 02fb57d5d766ddd72c2dcface673c5c6355cf184
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 7e6ea963ce018833b362be3f413f15da4d4bf658
+ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452029"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53735937"
 ---
 # <a name="send-welcome-message-to-users"></a>向用户发送欢迎消息
 
@@ -25,7 +25,7 @@ ms.locfileid: "52452029"
 
 ## <a name="prerequisites"></a>先决条件
 - 了解[机器人基础知识](bot-builder-basics.md)。 
-- [C#](https://aka.ms/proactive-sample-cs) 或 [JS](https://aka.ms/proactive-sample-js) **欢迎用户示例**的副本。 示例中的代码用于解释如何发送欢迎消息。
+- [C#](https://aka.ms/bot-welcome-sample-cs) 或 [JS](https://aka.ms/bot-welcome-sample-js) **欢迎用户示例**的副本。 示例中的代码用于解释如何发送欢迎消息。
 
 ## <a name="same-welcome-for-different-channels"></a>不同通道的相同欢迎方式
 每当用户首次与你的机器人进行互动时，都应当生成欢迎消息。 要实现此目的，可以监视机器人的活动类型并关注新连接。 每个新连接可以生成最多两个聊天更新活动，具体取决于通道。
@@ -421,7 +421,7 @@ switch (text)
 ```
 ---
 ## <a name="test-the-bot"></a>测试机器人
-参阅[自述文件](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/csharp_dotnetcore/03.welcome-user/readme.md)，获取有关运行和测试机器人的说明。 
+参阅[自述文件](https://aka.ms/bot-welcome-sample-cs)，获取有关运行和测试机器人的说明。
 
 ## <a name="next-steps"></a>后续步骤
 > [!div class="nextstepaction"]
