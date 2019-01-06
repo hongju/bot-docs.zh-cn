@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/13/2018
+ms.date: 11/19/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 20a7dad4398874febfbd71024cd68763107f7bd8
-ms.sourcegitcommit: 0b421ff71617f03faf55ea175fb91d1f9e348523
+ms.openlocfilehash: d40b203ccd044992c026a592d5f86b0881754a41
+ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/12/2018
-ms.locfileid: "53286623"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53735917"
 ---
 # <a name="create-a-bot-with-the-bot-builder-sdk-for-net"></a>通过 Bot Builder SDK for .NET 创建机器人
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -59,6 +59,10 @@ ms.locfileid: "53286623"
 
 > [!NOTE]
 > 如果发现消息无法发送，则可能需要重启计算机，因为 ngrok 尚未在系统上获得所需特权（只需重启一次）。
+
+## <a name="additional-resources"></a>其他资源
+
+请参阅 [Tunneling (ngrok)](https://github.com/Microsoft/BotFramework-Emulator/wiki/Tunneling-(ngrok))（隧道 (ngrok)），了解如何以远程方式连接到托管的机器人。
 
 ## <a name="next-steps"></a>后续步骤
 

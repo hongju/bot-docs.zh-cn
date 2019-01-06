@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/25/2018
+ms.date: 12/17/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fcbe28110ec71da7263d125e79ca59d15efa9d5f
-ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
+ms.openlocfilehash: fd908335c69aab7c8b68925b8ecdece79e89ab4b
+ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916774"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53735957"
 ---
 # <a name="add-media-to-messages"></a>向消息添加媒体
 
@@ -60,7 +60,9 @@ await turnContext.SendActivityAsync(reply, cancellationToken);
 
 ```javascript
 const { ActionTypes, ActivityTypes, CardFactory } = require('botbuilder');
+
 // Call function to get an attachment.
+const reply = { type: ActivityTypes.Message };
 reply.attachments = [this.getInternetAttachment()];
 reply.text = 'This is an internet attachment.';
 // Send the activity to the user.
@@ -130,30 +132,32 @@ const card = CardFactory.heroCard('', undefined,
 buttons, { text: 'You can upload an image or select one of the following choices.' });
 
 // add card to Activity.
+const reply = { type: ActivityTypes.Message };
 reply.attachments = [card];
 
 // Send hero card to the user.
 await turnContext.sendActivity(reply);
 ```
+
 ---
 
 ## <a name="process-events-within-rich-cards"></a>处理资讯卡中的事件
 
-若要处理富卡中的事件，请使用 card action 对象指定当用户单击按钮或点击卡的某个部分时应发生的情况。
+若要处理富卡中的事件，请使用 card action 对象指定当用户单击按钮或点击卡的某个部分时应发生的情况。 每个卡片操作都有类型和值。
 
-若要正常运行，请为卡上的每个可点击项目指定一种操作类型。 此表列出了 card action 对象 type 属性的有效值，并描述了每种类型的 value 属性的预期内容。
+若要正常运行，请为卡上的每个可点击项目指定一种操作类型。 下表列出并描述了可用的操作类型以及应该存在于相关联的值属性中的内容。
 
-| 类型 | 值 |
-| :---- | :---- |
-| openUrl | 要在内置浏览器中打开的 URL。 通过打开 URL 响应点击或单击。 |
-| imBack | 要发送到机器人的消息文本（来自单击按钮或点击卡的用户）。 通过托管会话的客户端应用程序，所有会话参与者都可看到此消息（从用户到机器人）。 |
-| postBack | 要发送到机器人的消息文本（来自单击按钮或点击卡的用户）。 某些客户端应用程序可能会在消息源中显示此文本，所有会话参与者都可看到该文本。 |
-| call | 采用 `tel:123123123123` 格式的电话呼叫的目的地。通过发起呼叫来响应点击或单击。|
-| playAudio | 要播放的音频的 URL。 通过播放音频响应点击或单击。 |
-| playVideo | 要播放的视频的 URL。 通过播放视频响应点击或单击。 |
-| showImage | 要显示的图像的 URL。 通过显示图像响应点击或单击。 |
-| downloadFile | 要下载的文件的 URL。  通过下载文件响应点击或单击。 |
-| signin | 要启动的 OAuth 流的 URL。 通过启动登录响应点击或单击。 |
+| 类型 | Description | 值 |
+| :---- | :---- | :---- |
+| openUrl | 在内置浏览器中打开一个 URL。 | 要打开的 URL。 |
+| imBack | 向机器人发送一条消息，并在聊天中发布一个可见的响应。 | 要发送的消息文本。 |
+| postBack | 向机器人发送一条消息，可能不在聊天中发布一个可见的响应。 | 要发送的消息文本。 |
+| call | 拨打电话。 | 电话呼叫的目标采用 `tel:123123123123` 格式。 |
+| playAudio | 播放音频。 | 要播放的音频的 URL。 |
+| playVideo | 播放视频。 | 要播放的视频的 URL。 |
+| showImage | 显示图像。 | 要显示的图像的 URL。 |
+| downloadFile | 下载一个文件。 | 要下载的文件的 URL。 |
+| signin | 启动 OAuth 登录过程。 | 要启动的 OAuth 流的 URL。 |
 
 ## <a name="hero-card-using-various-event-types"></a>使用各种事件类型的英雄卡
 
@@ -360,5 +364,5 @@ await context.sendActivity(messageWithCarouselOfCards);
 
 有关卡片架构的详细信息，请参阅 [Bot Framework 卡片架构](https://aka.ms/botSpecs-cardSchema)。
 
-可在以下页面中找到卡片的示例代码：[C#](https://aka.ms/bot-cards-sample-code)/[JS](https://aka.ms/bot-cards-js-sample-code) 自适应卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)，附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-sample-code-js)，以及建议的操作：[C#](https://aka.ms/SuggestedActionsCSharp)/[JS](https://aka.ms/SuggestedActionsJS)。
+可以在下面找到卡片的示例代码：[C#](https://aka.ms/bot-cards-sample-code)/[JS](https://aka.ms/bot-cards-js-sample-code)，自适应卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)，附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-sample-code-js) 和建议的操作：[C#](https://aka.ms/SuggestedActionsCSharp)/[JS](https://aka.ms/SuggestedActionsJS)。
 如需其他示例，请参阅 [GitHub](https://aka.ms/bot-samples-readme) 上的 Bot Builder 示例存储库。

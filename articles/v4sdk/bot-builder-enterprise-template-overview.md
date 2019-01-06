@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 43bc3c7606a12084690d71f8b6ea2dc3b2e5984d
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 3abfb82f555f458bc9cdd5125fafa1cfa70921cb
+ms.sourcegitcommit: 66769e697d94f7bf5e0441dfacf2c0e3768845ea
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52451989"
+ms.lasthandoff: 12/20/2018
+ms.locfileid: "53654958"
 ---
 # <a name="enterprise-bot-template"></a>企业机器人模板 
 
@@ -34,10 +34,10 @@ Feature | Description |
 不适当的内容或 PII（个人身份信息）检测  |通过在中间件组件中使用[内容审查器](https://azure.microsoft.com/en-us/services/cognitive-services/content-moderator/)来检测传入聊天中的不适当内容或 PII 数据。
 脚本  | Azure 存储中存储的所有聊天内容的脚本
 调度程序 | 一个集成的[调度](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig)模型，用于识别给定的话语是应由 LUIS + 代码处理还是应传递给 QnA Maker。
-QnA Maker 集成  | 与 [QnA Maker](https://www.qnamaker.ai) 集成可回答知识库中的一般问题，这些问题可以是如何利用现有数据源（例如 PDF手册）。
+QnA Maker 集成  | 与 [QnA Maker](https://www.qnamaker.ai) 集成可回答知识库中的一般问题，这些问题可以是如何利用现有数据源（例如 PDF手册）。 此外还包括一个 QnA Maker 聊天模型，为常见查询提供标准答案（[了解详情](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/chit-chat-knowledge-base)）。
 聊天见解  | 与 [Application Insights](https://azure.microsoft.com/en-gb/services/application-insights/) 集成可收集所有聊天和示例 PowerBI 仪表板的遥测数据，让你开始深入了解聊天体验。
 
-此外，将自动部署机器人所需的所有 Azure 资源：机器人注册、Azure 应用服务、LUIS、QnA Maker、内容审查器、CosmosDB、Azure 存储和 Application Insights。 此外，还将创建、训练和发布基本 LUIS、QnA Maker 和调度模型，以便立即测试基本意向和路由。
+此外，机器人所需的所有 Azure资源均自动部署：机器人注册、Azure 应用服务、LUIS、QnAMaker、内容审查器、CosmosDB、Azure 存储和 Application Insights。 此外，还将创建、训练和发布基本 LUIS、QnA Maker 和调度模型，以便立即测试基本意向和路由。
 
 创建模板并执行部署步骤后，可以按 F5 进行端到端测试。 这为开始你的聊天体验提供了坚实的基础，减少了每个项目必须承担的多天工作量并提高了聊天质量标准。
 

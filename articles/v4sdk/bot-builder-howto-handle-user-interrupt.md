@@ -11,12 +11,12 @@ ms.subservice: sdk
 ms.date: 09/20/2018
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 74d4bb07274643d61da332d6ee1cdfb1a14372dc
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: af659dd1c2a75af03cfa45df54a815d2dd2306fc
+ms.sourcegitcommit: 561185b9c83f3e082e8b7aba1122b1706e431540
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998424"
+ms.lasthandoff: 12/26/2018
+ms.locfileid: "53785420"
 ---
 # <a name="handle-user-interruptions"></a>处理用户中断
 
@@ -471,7 +471,7 @@ async onTurn(turnContext) {
 
 可以检查机器人逻辑末尾的上下文响应标记，查看机器人在整个流程期间是否向用户发送了任何内容。 如果机器人处理了用户输入却没有响应，很可能是因为机器人不知道如何处理输入。 在这种情况下，可将其捕获并向用户发送默认消息。
 
-如果机器人的默认设置是为用户提供 `mainMenu` 对话框， 这种情况下机器人为用户提供何种体验完全由你决定。
+如果机器人的默认设置是为用户提供 `mainMenu` 对话框，你必须确定这种情况下为用户提供什么机器人体验。
 
 # <a name="ctabcsharptab"></a>[C#](#tab/csharptab)
 

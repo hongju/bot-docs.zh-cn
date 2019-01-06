@@ -4,10 +4,11 @@
 
 | 参数    | Description |
 |--------------|-------------|
-| `folder`     | `bot.receipe` 文件的位置。 默认会在 `DeploymentsScript/MSBotClone` 中创建脚本文件。 切勿修改此文件。|
+| `folder`     | `bot.recipe` 文件的位置。 默认会在 `DeploymentsScript/MSBotClone` 中创建脚本文件。 切勿修改此文件。|
 | `location`   | 用于创建机器人服务资源的地理位置。 例如 eastus、westus、westus2 等。|
 | `proj-file`  | 对于 C# 机器人，它是 .csproj 文件。 对于 JS 机器人，它是本地机器人的启动项目文件名（例如 index.js）。|
-| `name`       | 用于在 Azure 中部署机器人的唯一名称。 此名称可与本地机器人的名称相同。 切勿在此名称中包含空格。|
+| `name`       | 用于在 Azure 中部署机器人的唯一名称。 此名称可与本地机器人的名称相同。 切勿在此名称中包含空格或下划线。|
+| `luisAuthoringKey` | LUIS 资源的相应 LUIS 创作区域的创作密钥。 |
 
 在创建 Azure 资源之前，系统会提示你完成身份验证。 请遵照屏幕上的说明完成此步骤。
 

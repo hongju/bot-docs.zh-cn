@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a8a0976e6f553e52e13ae13bbb719dd7bdead8f6
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: 4acb12a5e06032db898a651c6c8bf1dae06765ef
+ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010534"
+ms.lasthandoff: 12/21/2018
+ms.locfileid: "53735967"
 ---
 # <a name="gather-user-input-using-a-dialog-prompt"></a>使用对话提示收集用户输入
 
@@ -313,6 +313,32 @@ _prompt_ 方法的第二个参数采用提示选项对象，该对象包含以�
 | _值_ | 识别器的返回值。 如果必要，验证代码可以修改此值。 |
 
 ### <a name="implement-validation-code"></a>实现验证代码
+
+在初始化时，请在机器人的构造函数中将自定义验证关联到提示。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+```csharp
+// ...
+_dialogSet = new DialogSet(_accessors.DialogStateAccessor);
+_dialogSet.Add(new NumberPrompt<int>(PartySizePrompt, PartySizeValidatorAsync));
+_dialogSet.Add(new ChoicePrompt(LocationPrompt));
+_dialogSet.Add(new DateTimePrompt(ReservationDatePrompt, DateValidatorAsync));
+// ...
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+```javascript
+// ...
+this.dialogSet = new DialogSet(this.dialogStateAccessor);
+this.dialogSet.add(new NumberPrompt(PARTY_SIZE_PROMPT, this.partySizeValidator));
+this.dialogSet.add(new ChoicePrompt (LOCATION_PROMPT));
+this.dialogSet.add(new DateTimePrompt(RESERVATION_DATE_PROMPT, this.dateValidator));
+// ...
+```
+
+---
 
 **聚会规模验证程序**
 

@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 08/28/2018
-ms.openlocfilehash: 2a78ec6f8c453bfcfa3b6aba0d73257f35db76b8
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 660c10c400bb68e807f39eb1b7ccc38f500991e6
+ms.sourcegitcommit: 0f65857943d318da48df0a8654cde53e9a699116
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997214"
+ms.lasthandoff: 12/14/2018
+ms.locfileid: "53389310"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常见问题
 
@@ -26,6 +26,38 @@ ms.locfileid: "49997214"
 ### <a name="what-is-the-v4-sdk"></a>什么是 v4 SDK？
 Bot Builder v4 SDK 基于先前的机器人生成器 SDK 的反馈和学习而创建。 它引入了正确的抽象层次，同时实现了机器人构建基块的丰富组件化。 可以从一个简单的机器人开始，使用模块化和可扩展的框架来增强机器人的复杂性。 可以在 GitHub 上找到针对 SDK 的[常见问题解答](https://github.com/Microsoft/botbuilder-dotnet/wiki/FAQ)。
 
+## <a name="bot-framework-sdk-version-3-lifetime-support"></a>Bot Framework SDK 版本 3 生存期支持 
+SDK V3 机器人会继续运行 Azure 机器人服务并由其提供支持。  发布 Bot Framework SDK V4 后，就像对待其他框架一样，我们会继续在安全性、高优先级 Bug 修复以及连接器/协议层更新方面为 SDK V3 提供支持。  客户在 2019 年可以继续获得 V3 支持。
+
+### <a name="what-is-microsoft-plan-for-supporting-existing-v3-bots-what-happens-to-my-v3-bots-will-my-v3-bots-stop-working"></a>对于为现有 V3 机器人提供支持这件事，Microsoft 的计划是什么？ 我的 V3 机器人会出现什么情况？ 我的 V3 机器人会停止运行吗？
+SDK V3 机器人会继续运行 Azure 机器人服务并由其提供支持。  发布 Bot Framework SDK V4 后，就像对待其他框架一样，我们会继续在安全性、高优先级 Bug 修复以及连接器/协议层更新方面为 SDK V3 提供支持。  客户在 2019 年可以继续获得 V3 支持。
+- Azure 机器人服务和 Bot Framework V3 都是 GA 产品，都会获得全面的支持。 基础 Bot Framework 协议和连接器库并未更改，可以在 V3 和 V4 SDK 之间共享。  
+- 通过 Bot Framework (BotBuilder) V3 SDK 创建的机器人可以在 2019 年继续获得支持。 
+- 客户可以继续使用 Azure 门户或 Azure CLI 工具创建 V3 机器人。
+
+### <a name="what-happens-to-my-bot-written-to-rest--bot-framework-protocol-31"></a>我的通过 REST 和 Bot Framework Protocol 3.1 编写的机器人会出现什么情况？
+- Azure 机器人服务和 Bot Framework V3 都是 GA 产品，都会获得全面的支持。
+- Bot Framework 协议并未更改，可以在 V3 和 V4 SDK 之间共享。  
+
+### <a name="will-there-be-more-updates-additional-development-for-the-v3-sdk-or-just-bugfixes"></a>会有更多针对 V3 SDK 的更新或额外开发内容吗？还是只有 Bug 修复？  
+- 我们会使用次要增强功能对 V3 进行更新（主要在连接器层），以及使用安全内容和高优先级 Bug 修复对其进行更新。  
+- 对 V3 的更新将会每年发布两次，具体取决于需要、Bug 修复和/或所需协议更改。 
+- 目前的计划是针对 C# 和 JavaScript SDK 将次要版和修补程序版 V3 发布到 NuGet 和 NPM。
+
+### <a name="why-v4-is-not-backwards-compatible-with-v3"></a>为何 V4 不后向兼容 V3？
+- 在协议级别，在聊天应用（即机器人）与不同通道之间进行的通信使用 Bot Framework Activity 协议，该协议在 V3 和 V4 中是相同的。 同样的底层 Azure 机器人服务基础结构既支持 V3 机器人，也支持 V4 机器人。
+- Bot Framework SDK V4 为以聊天为中心的开发体验提供 SDK 体系结构，该体系结构已经模块化并且可以扩展，使开发人员能够创建可靠且复杂的聊天应用程序。 V4 可扩展设计基于客户反馈，客户认为 SDK V3 对话框模型和基元过于严苛且约束可扩展性。  
+
+### <a name="what-is-the-general-migration-strategy-i-have-a-v3-bot-how-can-i-migrate-it-to-v4-can-i-migrate-my-v3-bot-to-v4"></a>常规迁移策略是什么？ 我有一个 V3 机器人，如何将它迁移到 V4/我可以将 V3 机器人迁移到 V4 吗？
+- 目前，有关如何将使用 SDK V3 创建的机器人迁移到 SDK V4 的帮助在提供时采用文档和示例的形式。 我们目前并未计划在 SDK V4 中提供任何允许 V3 版机器人在 V4 机器人中工作的 SDK V3 兼容层。 
+- 如果你已经在生产 Bot Framework SDK V3 机器人，请勿担心，这些机器人在可预见的将来仍会按原样继续工作。 
+- Bot Framework SDK V4 是已经很成功的 V3 SDK 的进化版。 V4 是一个主要的发行版本，其中包含的中断性变更会妨碍 V3 机器人在更新的 V4 SDK 上运行。 
+
+### <a name="should-i-build-new-a-bot-using-v3-or-v4"></a>我应该使用 V3 还是 V4 生成新的机器人？
+- 若要获得新的聊天体验，建议使用 Bot Framework SDK V4 来启动新的机器人。
+- 如果已熟悉 Bot Framework SDK V3，则应抽时间了解通过新的 [Bot Framework SDK V4](http://aka.ms/botframeowrkoverview) 提供的新版本和功能。
+- 如果你已经在生产 Bot Framework SDK V3 机器人，请勿担心，这些机器人在可预见的将来仍会按原样继续工作。
+- 可以通过 Azure 门户和 Azure 命令行创建 Bot Framework SDK V4 机器人和更早的 V3 机器人。 
 
 ## <a name="channels"></a>声道
 ### <a name="when-will-you-add-more-conversation-experiences-to-the-bot-framework"></a>何时可以向 Bot Framework 添加更多会话体验？

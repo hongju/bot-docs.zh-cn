@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/26/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9b0ddf5cf8af61048ba78f10824c9573da82fc08
-ms.sourcegitcommit: a722f960cd0a8513d46062439eb04de3a0275346
+ms.openlocfilehash: 62cf3663a6e1c9b9321d7b74393b95e4a2ed3a69
+ms.sourcegitcommit: fd7781a06303fee5f39a253da5b3a3818d54b2ba
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/27/2018
-ms.locfileid: "52336267"
+ms.lasthandoff: 12/28/2018
+ms.locfileid: "53806768"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多个 LUIS 和 QnA 模型
 
@@ -37,7 +37,97 @@ ms.locfileid: "52336267"
 
 ## <a name="create-the-services-and-test-the-bot"></a>创建服务并测试机器人
 
-使用仿真器遵照 [C#](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/csharp_dotnetcore/14.nlp-with-dispatch/README.md) 或 [JS](https://github.com/Microsoft/BotBuilder-Samples/blob/master/samples/javascript_nodejs/14.nlp-with-dispatch/README.md) **自述文件**中的说明生成并运行示例。 
+可以按照 [C#](https://aka.ms/dispatch-sample-readme-cs) 或 [JS](https://aka.ms/dispatch-sample-readme-js) 的**自述文件**说明操作，以便通过命令行界面调用创建此机器人，也可执行下面的步骤，通过 Azure、LUIS 和 QnAMaker 用户界面手动创建机器人。
+
+ ### <a name="create-your-bot-using-service-ui"></a>通过服务 UI 创建机器人
+ 
+若要开始手动创建机器人，请将 GitHub [BotFramework-Samples](https://github.com/Microsoft/BotFramework-Samples) 存储库中的下述 4 个文件下载到本地文件夹：[home-automation.json](https://aka.ms/dispatch-home-automation-json)、[weather.json](https://aka.ms/dispatch-weather-json)、[nlp-with-dispatchDispatch.json](https://aka.ms/dispatch-dispatch-json)、[QnAMaker.tsv](https://aka.ms/dispatch-qnamaker-tsv)
+
+### <a name="manually-create-luis-apps"></a>手动创建 LUIS 应用
+
+登录到 [LUIS Web 门户](https://www.luis.ai/)。 在“我的应用”部分，选择“导入新应用”选项卡。 此时会出现以下对话框：
+
+![导入 LUIS json 文件](./media/tutorial-dispatch/import-new-luis-app.png)
+
+选择“选择应用文件”按钮，然后选择已下载文件“home-automation.json”。 将可选名称字段留空。 选择“完成”。
+
+当 LUIS 打开“家庭自动化”应用以后，请选择“训练”按钮。 这样就会使用刚刚通过“home-automation.json”文件导入的话语集来训练应用。
+
+训练完成后，请选择“发布”按钮。 此时会出现以下对话框：
+
+![发布 LUIS 应用](./media/tutorial-dispatch/publish-luis-app.png)
+
+选择“生产”环境，然后选择“发布”按钮。
+
+发布新的 LUIS 应用以后，请选择“管理”选项卡。在“应用程序信息”页中，记录 `Application ID` 和 `Display name` 值。 在“密钥和终结点”页中，记录 `Authoring Key` 和 `Region` 值。 这些值稍后由“nlp-with-dispatch.bot”文件使用。
+
+完成后，即可训练并发布 LUIS 天气应用和 LUIS 调度应用，方法是针对已下载到本地的“weather.json”和“nlp-with-dispatchDispatch.json”文件重复这些相同的步骤。
+
+### <a name="manually-create-qna-maker-app"></a>手动创建 QnA Maker 应用
+
+若要设置 QnA Maker 知识库，第一步是在 Azure 中设置 QnA Maker 服务。 为此，请按[此处](https://aka.ms/create-qna-maker)提供的分步说明操作。 现在登录到 [QnAMaker Web 门户](https://qnamaker.ai)。 向下移动到步骤 2
+
+![创建 QnA 的步骤 2](./media/tutorial-dispatch/create-qna-step-2.png)
+
+并选择
+1. Azure AD 帐户。
+1. Azure 订阅名称。
+1. 为 QnA Maker 服务创建的名称。 （如果你的 Azure QnA 服务一开始没有显示在此下拉列表中，请尝试刷新页面。） 
+
+移动到步骤 3
+
+![创建 QnA 的步骤 3](./media/tutorial-dispatch/create-qna-step-3.png)
+
+为 QnA Maker 知识库提供一个名称。 对于本示例，我们将使用名称“sample-qna”。
+
+移动到步骤 4
+
+![创建 QnA 的步骤 4](./media/tutorial-dispatch/create-qna-step-4.png)
+
+选择“+ 添加文件”选项，然后选择已下载文件“QnAMaker.tsv”
+
+可以通过其他选项向知识库添加聊天个性化内容，但我们的示例不包括该选项。
+
+选择“保存并训练”，完成后，选择“发布”选项卡来发布应用。
+
+发布 QnA Maker 应用以后，请选择“设置”选项卡，然后向下滚动到“部署详细信息”。 记录 _Postman_ 示例 HTTP 请求中的以下值。
+
+```
+POST /knowledgebases/<Your_Knowledgebase_Id>/generateAnswer
+Host: <Your_Hostname>
+Authorization: EndpointKey <Your_Endpoint_Key>
+```
+这些值稍后由“nlp-with-dispatch.bot”文件使用。
+
+### <a name="manually-update-your-bot-file"></a>手动更新 .bot 文件
+
+创建所有服务应用以后，需将每个应用的信息添加到“nlp-with-dispatch.bot”文件中。 打开以前下载的 C# 或 JS 示例文件中的此文件。 将以下值添加到 "type": "luis" 或 "type": "dispatch" 所在的每个节
+
+```
+"appId": "<Your_Recorded_App_Id>",
+"authoringKey": "<Your_Recorded_Authoring_Key>",
+"subscriptionKey": "<Your_Recorded_Authoring_Key>",
+"version": "0.1",
+"region": "<Your_Recorded_Region>",
+```
+
+对于 "type": "qna" 所在的节，请添加以下值：
+
+```
+"type": "qna",
+"name": "sample-qna",
+"id": "201",
+"kbId": "<Your_Recorded_Knowledgebase_Id>",
+"subscriptionKey": "<Your_Azure_Subscription_Key>", // Used when creating your QnA service.
+"endpointKey": "<Your_Recorded_Endpoint_Key>",
+"hostname": "<Your_Recorded_Hostname>"
+```
+
+当所有更改都已完成后，保存此文件。
+
+### <a name="test-your-bot"></a>测试机器人
+
+现在，请使用模拟器运行示例。 打开模拟器以后，选择“nlp-with-dispatch.bot”文件。
 
 为便于参考，下面提供了所包含的服务使用的某些问题和命令：
 
@@ -145,13 +235,44 @@ private static BotServices InitBotServices(BotConfiguration config)
 }
 ```
 
-<!--
-# [JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+示例代码使用预定义的命名常量来标识 .bot 文件的各个节。 如果已修改 _nlp-with-dispatch.bot_ 文件的原始示例命名中的任何节名称，请确保找到 **bot.js**、**homeAutomation.js**、**qna.js** 或 **weather.js** 文件中的关联常量声明，并将该条目更改为已修改的名称。  
+```javascript
+// In file bot.js
+// this is the LUIS service type entry in the .bot file.
+const DISPATCH_CONFIG = 'nlp-with-dispatchDispatch';
+
+// In file homeAutomation.js
+// this is the LUIS service type entry in the .bot file.
+const LUIS_CONFIGURATION = 'Home Automation';
+
+// In file qna.js
+// Name of the QnA Maker service in the .bot file.
+const QNA_CONFIGURATION = 'sample-qna';
+
+// In file weather.js
+// this is the LUIS service type entry in the .bot file.
+const WEATHER_LUIS_CONFIGURATION = 'Weather';
+```
+
+在 **bot.js** 中，包含在配置文件 _nlp-with-dispatch.bot_ 中的信息用于将调度机器人连接到各种服务。 每个构造函数都会根据上面详述的节名称来查找并使用配置文件的相应节。
 
 ```javascript
-```
--->
+class DispatchBot {
+    constructor(conversationState, userState, botConfig) {
+        //...
+        this.homeAutomationDialog = new HomeAutomation(conversationState, userState, botConfig);
+        this.weatherDialog = new Weather(botConfig);
+        this.qnaDialog = new QnA(botConfig);
 
+        this.conversationState = conversationState;
+        this.userState = userState;
+
+        // dispatch recognizer
+        const dispatchConfig = botConfig.findServiceByNameOrId(DISPATCH_CONFIG);
+        //...
+```
 ---
 
 ### <a name="calling-the-services-from-your-bot"></a>从机器人调用服务
@@ -190,13 +311,19 @@ else
 }
 ```
 
-<!--
-# [JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+在 **bot.js** `onTurn` 方法中，我们检查是否有来自用户的传入消息。 如果收到类型 _ActivityType.Message_，则表明该消息是通过机器人的 _dispatchRecognizer_ 发送出去的。
 
 ```javascript
+if (turnContext.activity.type === ActivityTypes.Message) {
+    // determine which dialog should fulfill this request
+    // call the dispatch LUIS model to get results.
+    const dispatchResults = await this.dispatchRecognizer.recognize(turnContext);
+    const dispatchTopIntent = LuisRecognizer.topIntent(dispatchResults);
+    //...
+ }
 ```
--->
-
 ---
 
 ### <a name="working-with-the-recognition-results"></a>处理识别结果
@@ -284,32 +411,88 @@ private async Task DispatchToLuisModelAsync(
 }
 ```
 
-<!--
-# [JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+当模型生成结果时，它会指示哪个服务最适合用于处理话语。 此机器人中的代码将请求路由到相应的服务。
 
 ```javascript
+switch (dispatchTopIntent) {
+   case HOME_AUTOMATION_INTENT:
+      await this.homeAutomationDialog.onTurn(turnContext);
+      break;
+   case WEATHER_INTENT:
+      await this.weatherDialog.onTurn(turnContext);
+      break;
+   case QNA_INTENT:
+      await this.qnaDialog.onTurn(turnContext);
+      break;
+   case NONE_INTENT:
+      default:
+      // Unknown request
+       await turnContext.sendActivity(`I do not understand that.`);
+       await turnContext.sendActivity(`I can help with weather forecast, turning devices on and off and answer general questions like 'hi', 'who are you' etc.`);
+ }
+ 
+ // In homeAutomation.js
+ async onTurn(turnContext) {
+    // make call to LUIS recognizer to get home automation intent + entities
+    const homeAutoResults = await this.luisRecognizer.recognize(turnContext);
+    const topHomeAutoIntent = LuisRecognizer.topIntent(homeAutoResults);
+    // depending on intent, call turn on or turn off or return unknown
+    switch (topHomeAutoIntent) {
+       case HOME_AUTOMATION_INTENT:
+          await this.handleDeviceUpdate(homeAutoResults, turnContext);
+          break;
+       case NONE_INTENT:
+       default:
+         await turnContext.sendActivity(`HomeAutomation dialog cannot fulfill this request.`);
+    }
+}
+    
+// In weather.js
+async onTurn(turnContext) {
+   // Call weather LUIS model.
+   const weatherResults = await this.luisRecognizer.recognize(turnContext);
+   const topWeatherIntent = LuisRecognizer.topIntent(weatherResults);
+   // Get location entity if available.
+   const locationEntity = (LOCATION_ENTITY in weatherResults.entities) ? weatherResults.entities[LOCATION_ENTITY][0] : undefined;
+   const locationPatternAnyEntity = (LOCATION_PATTERNANY_ENTITY in weatherResults.entities) ? weatherResults.entities[LOCATION_PATTERNANY_ENTITY][0] : undefined;
+   // Depending on intent, call "Turn On" or "Turn Off" or return unknown.
+   switch (topWeatherIntent) {
+      case GET_CONDITION_INTENT:
+         await turnContext.sendActivity(`You asked for current weather condition in Location = ` + (locationEntity || locationPatternAnyEntity));
+         break;
+      case GET_FORECAST_INTENT:
+         await turnContext.sendActivity(`You asked for weather forecast in Location = ` + (locationEntity || locationPatternAnyEntity));
+         break;
+      case NONE_INTENT:
+      default:
+         wait turnContext.sendActivity(`Weather dialog cannot fulfill this request.`);
+   }
+}
+    
+// In qna.js
+async onTurn(turnContext) {
+   // Call QnA Maker and get results.
+   const qnaResult = await this.qnaRecognizer.generateAnswer(turnContext.activity.text, QNA_TOP_N, QNA_CONFIDENCE_THRESHOLD);
+   if (!qnaResult || qnaResult.length === 0 || !qnaResult[0].answer) {
+       await turnContext.sendActivity(`No answer found in QnA Maker KB.`);
+       return;
+    }
+    // respond with qna result
+    await turnContext.sendActivity(qnaResult[0].answer);
+}
 ```
--->
-
 ---
 
-## <a name="evaluate-the-dispatchers-performance"></a>评估调度程序的性能
+## <a name="edit-intents-to-improve-performance"></a>编辑意向以提升性能
 
-有时会在 LUIS 应用和 QnA Maker 服务中提供用户消息作为示例，而针对这些输入，Dispatch 生成的合并 LUIS 应用将无法很好地执行相关操作。 可以使用 `eval` 选项检查应用的性能。
+待机器人运行以后，即可删除类似的或重叠的话语，改进机器人的性能。 例如，假设在 `Home Automation` LUIS 应用中，“开灯”请求将映射到“TurnOnLights”意向，而“为什么灯未打开？”请求 将映射到“None”意向，以便可将其传递给 QnA Maker。 使用 Dispatch 合并 LUIS 应用和 QnA Maker 服务时，需执行以下某个操作：
 
-```shell
-dispatch eval
-```
+* 从原始 `Home Automation` LUIS 应用中删除“None”意向，改将该意向中的话语添加到调度程序应用中的“None”意向。
+* 如果不从原始 LUIS 应用中删除“None”意向，则需在机器人中添加逻辑，将那些与“None”意向匹配的消息传递给 QnA Maker 服务。
 
-运行 `dispatch eval` 生成一个 **Summary.html** 文件，该文件提供有关语言模型的预测性能的统计信息。 可在任何 LUIS 应用上运行 `dispatch eval`，而不仅仅是在 Dispatch 工具创建的 LUIS 应用上运行。
-
-### <a name="edit-intents-for-duplicates-and-overlaps"></a>编辑重复和重叠的意向
-
-在 Summary.html 中查看标记为重复的示例话语，并删除类似或重叠的示例。 例如，假设在 `Home Automation` LUIS 应用中，“开灯”请求将映射到“TurnOnLights”意向，而“为什么灯未打开？”请求 将映射到“None”意向，以便可将其传递给 QnA Maker。 使用 Dispatch 合并 LUIS 应用和 QnA Maker 服务时，需执行以下某个操作：
-
-* 从原始 `Home Automation` LUIS 应用中删除“None”意向，并将该意向中的话语添加到调度程序应用中的“None”意向。
-* 如果不从原始 LUIS 应用中删除“None”意向，则需要在机器人中添加逻辑，以将那些与该意向匹配的消息传递给 QnA Maker 服务。
-
+上述两项操作中的任一操作都会减少机器人使用消息“找不到答案”来回应用户的次数。 
 
 ## <a name="additional-resources"></a>其他资源 
 
