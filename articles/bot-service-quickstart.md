@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 11/15/2018
-ms.openlocfilehash: 3c5b12bb804477ae41cf70d2ce955066801f5916
-ms.sourcegitcommit: d92fd6233295856052305e0d9e3cba29c9ef496e
+ms.date: 01/08/2019
+ms.openlocfilehash: fd852a75b911f57743b40d252b24c6ef33b0420d
+ms.sourcegitcommit: ddc8c116887ada67642d49ee5166e7f1ae287263
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/16/2018
-ms.locfileid: "51715131"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114891"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -81,6 +81,7 @@ ms.locfileid: "51715131"
 ::: moniker range="azure-bot-service-4.0"
 
 # <a name="create-a-bot-with-azure-bot-service"></a>使用 Azure 机器人服务创建机器人
+
 [!INCLUDE [pre-release-label](includes/pre-release-label.md)]
 
 Azure 机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Builder SDK 和用于将机器人连接到通道的机器人服务。 在本主题中，还可以选择 .NET 或 Node.js 模板，以便使用 Bot Builder SDK v4 创建机器人。
@@ -126,6 +127,15 @@ Azure 机器人服务提供了用于创建机器人的核心组件，包括用�
 ![Azure 网上聊天测试](./media/azure-bot-quickstarts/azure-webchat-test.png)
 
 输入一条信息，机器人就会响应。
+
+## <a name="download-code"></a>下载代码
+可以下载代码以在本地进行处理。 
+1. 在“机器人管理”部分中，单击“生成”。 
+1. 单击右窗格中的“下载机器人源代码”链接。 
+1. 按照提示下载代码，然后解压缩该文件夹。
+
+下载的代码使用加密的 [.bot 文件](./v4sdk/bot-file-basics.md)。 需要更新 appsettings.json 或 .env 文件中的 `botFilePath` 和 `botFileSecret` 项。 
+为此，请转到 Azure 门户。 在门户中选择机器人，然后在“应用服务设置”部分下，单击“应用程序设置”。 在“应用程序设置”窗格中，你将看到 `botFilePath` 和 `botFileSecret` 值。 复制这些值并更新 .env 或 appsettings.json 文件。 
 
 ## <a name="next-steps"></a>后续步骤
 

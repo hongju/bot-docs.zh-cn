@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c7977400a53af916217e595dda8e9c9a0ff85496
-ms.sourcegitcommit: 958a28bbab7dd29b384bb2e2d58d866e88f53316
+ms.openlocfilehash: 622d5b4924a4739900659d6be8eebd1888191eab
+ms.sourcegitcommit: ddc8c116887ada67642d49ee5166e7f1ae287263
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52500665"
+ms.lasthandoff: 01/08/2019
+ms.locfileid: "54114881"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企业机器人模板 - 部署机器人
 
@@ -34,10 +34,7 @@ npm install -g ludown luis-apis qnamaker botdispatch msbot chatdown
 
 - 从[此处](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)安装 Azure 命令行工具 (CLI)。 如果已安装 Azure 机器人服务命令行 (CLI) 工具，请确保将其更新为最新版本，方法是：卸载当前版本，然后安装新版本。
 
-- 安装适用于机器人服务的 AZ 扩展
-```shell
-az extension add -n botservice
-```
+> 对于 msbot 4.3.2 和更高版本，唯一的 AZ CLI 先决条件是具有不低于 2.0.53 版本的 AZ CLI。 如果还安装了 botservice 扩展，请通过执行“az extension remove --name botservice”删除此扩展。
 
 - 安装 LUISGen 工具
 
@@ -72,7 +69,7 @@ az account set --subscription "YOUR_SUBSCRIPTION_NAME"
 - Azure 认知服务 - QnA Maker（包括 Azure 搜索、Azure Web 应用）
 - Azure 认知服务 - 内容审查器（可选的手动步骤）
 
-新的机器人项目有一个部署配方，它使得 `msbot clone services` 命令能够自动将上述所有服务部署到你的 Azure 订阅并确保更新项目中 .bot 文件中的所有服务（包括服务密钥），以实现机器人的平稳运行。 它还为以下语言提供多个配置选项：中文、英语、法语、德语、意大利语和西班牙语。
+新的机器人项目有一个部署配方，它使得 `msbot clone services` 命令能够自动将上述所有服务部署到你的 Azure 订阅并确保更新项目中 .bot 文件中的所有服务（包括服务密钥），以实现机器人的平稳运行。 对于以下语言，它还提供了多个配置选项：中文、英语、法语、德语、意大利语和西班牙语。
 
 > 在部署后，复查已创建的服务的定价层，并进行调整以适应你的方案。
 
