@@ -1,10 +1,10 @@
-# [用于 .NET 的 Bot Builder SDK](bot-builder-dotnet-overview.md)
+# [用于 .NET 的 Bot Framework SDK](bot-builder-dotnet-overview.md)
 # [关键概念](bot-builder-dotnet-concepts.md)
 # 消息和活动
 ## [活动概述](bot-builder-dotnet-activities.md)
 ## [创建消息](bot-builder-dotnet-create-messages.md)
 ## [向消息添加媒体附件](bot-builder-dotnet-add-media-attachments.md)
-## [向消息添加丰富的卡片](bot-builder-dotnet-add-rich-card-attachments.md)
+## [向消息添加资讯卡](bot-builder-dotnet-add-rich-card-attachments.md)
 <!-- ## [Send carousel of cards](bot-builder-dotnet-add-carousel-card.md) -->
 ## [向消息添加语音](bot-builder-dotnet-text-to-speech.md)
 ## [向消息添加输入提示](bot-builder-dotnet-add-input-hints.md)
@@ -25,7 +25,7 @@
 ## [本地化](bot-builder-dotnet-formflow-localize.md)
 ## [JSON 架构](bot-builder-dotnet-formflow-json-schema.md)
 # 声道
-## [实现特定于通道的功能](bot-builder-dotnet-channeldata.md)
+## [实现通道特定的功能](bot-builder-dotnet-channeldata.md)
 ## [生成 Cortana 技能](bot-builder-dotnet-cortana-skill.md)
 ## [使用 Skype 进行音频通话](bot-builder-dotnet-audio-calls.md)
 ## 使用 Skype 进行实时媒体通话

@@ -1,4 +1,4 @@
-# [用于 Node.js 的 Bot Builder SDK](bot-builder-nodejs-overview.md)
+# [用于 Node.js 的 Bot Framework SDK](bot-builder-nodejs-overview.md)
 # [关键概念](bot-builder-nodejs-concepts.md)
 # 对话
 ## [对话概述](bot-builder-nodejs-dialog-overview.md)
