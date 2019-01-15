@@ -89,8 +89,8 @@ Bot Framework 旨在为 Skype 和许多其他通道构建、连接和部署高�
 
 用户可以通过目录中的机器人联系卡报告存在不当行为的机器人。 开发人员必须遵守 Microsoft 服务条款才能参与该服务。
 
-### <a name="which-specific-urls-do-i-need-to-whitelist-in-my-corporate-firewall-to-access-bot-framework-services"></a>需要在企业防火墙中将哪些特定的 URL 列入白名单才能访问 Bot Framework 服务？
-如果出站防火墙阻止了机器人的流量发往 Internet，则你需要在防火墙中将以下 URL 列入白名单：
+### <a name="which-specific-urls-do-i-need-to-whitelist-in-my-corporate-firewall-to-access-bot-framework-services"></a>需要在企业防火墙中将哪些特定的 URL 列入允许列表才能访问 Bot Framework 服务？
+如果出站防火墙阻止了机器人的流量发往 Internet，则你需要在防火墙中将以下 URL 列入允许列表：
 - login.botframework.com（机器人身份验证）
 - login.microsoftonline.com（机器人身份验证）
 - westus.api.cognitive.microsoft.com（用于 Luis.ai NLP 集成）
@@ -100,7 +100,7 @@ Bot Framework 旨在为 Skype 和许多其他通道构建、连接和部署高�
 - *.botframework.com（通道）
 
 ### <a name="can-i-block-all-traffic-to-my-bot-except-traffic-from-the-bot-connector-service"></a>是否可以阻止发往机器人的所有流量，但来自机器人连接器服务的流量除外？
-不是。 这种 IP 地址或 DNS 白名单不切实际。 Bot Framework 连接器服务托管在全球的 Azure 数据中心，Azure IP 列表会不断变化。 将特定的 IP 地址列入白名单可能只管用一天，当 Azure IP 地址发生变化时，这种做法就不起作用。
+不是。 这种 IP 地址或 DNS 允许列表不切实际。 Bot Framework 连接器服务托管在全球的 Azure 数据中心，Azure IP 列表会不断变化。 将特定的 IP 地址列入允许列表可能只管用一天，当 Azure IP 地址发生变化时，这种做法就不起作用。
  
 ### <a name="what-keeps-my-bot-secure-from-clients-impersonating-the-bot-framework-connector-service"></a>当客户端模拟 Bot Framework 连接器服务时，机器人受到哪种保护？
 1. 向机器人发出的每个请求所随附的安全令牌中包含一个编码的 ServiceUrl，这意味着，即使攻击者获取了该令牌的访问权限，也无法将聊天重定向到新的 ServiceUrl。 SDK 的所有实现都会强制实施此机制，身份验证[参考](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-connector-authentication?view=azure-bot-service-3.0#bot-to-connector)材料中对此做了阐述。
@@ -109,7 +109,7 @@ Bot Framework 旨在为 Skype 和许多其他通道构建、连接和部署高�
 3. 在机器人内部，可以手动检查令牌中提供的 ServiceUrl。 当服务拓扑发生更改时，此机制会使机器人变得更脆弱，因此，这种机制是可行的，但不建议。
 
 
-请注意，机器人与 Internet 之间存在出站连接。 Bot Framework 连接器服务不是使用 IP 地址或 DNS 名称的列表来与机器人通信。 不支持入站 IP 地址白名单。
+请注意，机器人与 Internet 之间存在出站连接。 Bot Framework 连接器服务不是使用 IP 地址或 DNS 名称的列表来与机器人通信。 不支持入站 IP 地址允许列表。
 
 ## <a name="rate-limiting"></a>速率限制
 ### <a name="what-is-rate-limiting"></a>什么是速率限制？
