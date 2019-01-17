@@ -8,13 +8,13 @@ ms.topic: landing-page
 layout: LandingPage
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/27/2018
-ms.openlocfilehash: 905b8592ebbc3fb4344af60b6bcbb219d0a2ee70
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 01/16/2019
+ms.openlocfilehash: 5c7851bdc05180605d20698f3e94e07c9bcace2b
+ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224312"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "54360767"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -101,8 +101,8 @@ ms.locfileid: "54224312"
 </div>
 
 <h2 style="margin-top: 36px">分步教程</h2>
-<p><a href="/bot-framework/bot-builder-tutorial-dispatch">将 LUIS 应用和 QnA 服务与 Dispatch 工具集成</a></p>
-
+<p><a href="/bot-framework/bot-builder-tutorial-basic-deploy">创建和部署基本机器人</a></p>
+<p><a href="/bot-framework/bot-builder-tutorial-add-qna">添加 QnA Maker 并重新部署机器人</a></p>
 <h2 style="margin-top: 36px">引用</h2>
 <ul class="panelContent cardsD">
     <li>

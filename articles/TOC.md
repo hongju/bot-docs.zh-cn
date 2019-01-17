@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 73149f8137144ee34c1ab1e8fc6a645d1405b694
+ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "54360757"
+---
 # [Azure 机器人服务文档](index.md)
 # 概述
 ## [关于 Azure 机器人服务](bot-service-overview-introduction.md)
@@ -7,7 +15,8 @@
 ### [.NET](dotnet/bot-builder-dotnet-sdk-quickstart.md)
 ### [JavaScript](javascript/bot-builder-javascript-quickstart.md)
 # 教程
-## [使用多个 LUIS 和 QnA 模型](v4sdk/bot-builder-tutorial-dispatch.md)
+## [创建和部署基本机器人](v4sdk/bot-builder-tutorial-basic-deploy.md)
+## [添加 QnA Maker 并重新部署机器人](v4sdk/bot-builder-tutorial-add-qna.md)
 ## [向机器人添加身份验证](bot-builder-tutorial-authentication.md)
 # 示例
 ## [GitHub 上的 botbuilder-samples 存储库](https://github.com/Microsoft/BotBuilder-Samples/blob/master/README.md)
@@ -41,6 +50,7 @@
 ### [从机器人获取通知](v4sdk/bot-builder-howto-proactive-message.md)
 ### [向机器人添加自然语言理解](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答用户的问题](v4sdk/bot-builder-howto-qna.md)
+### [使用多个 LUIS 和 QnA 模型](v4sdk/bot-builder-tutorial-dispatch.md)
 ### 使用对话库管理聊天 
 #### [实现顺序聊天流](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
 #### [使用对话提示收集用户输入](v4sdk/bot-builder-prompts.md)
