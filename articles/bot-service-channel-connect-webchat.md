@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/04/2018
-ms.openlocfilehash: 6c3cc52514988172e5c2cc85168aef401fbc1f22
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: 20ee5a5a0849cef91e59aece7a87f8e9ac4e86ec
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010492"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317627"
 ---
 # <a name="connect-a-bot-to-web-chat"></a>将机器人连接到网上聊天
 
@@ -61,10 +61,12 @@ Bot Framework 门户中的网上聊天通道包含在网页中嵌入网上聊天
 
 ##### <a name="example-request"></a>示例请求
 
-```requestGET https://webchat.botframework.com/api/tokens Authorization:BotConnector YOUR_SECRET_HERE
+```
+requestGET https://webchat.botframework.com/api/tokens
+Authorization: BotConnector YOUR_SECRET_HERE
 ```
 
-##### Example response 
+##### <a name="example-response"></a>示例响应 
 
 ```response
 "IIbSpLnn8sA.dBB.MQBhAFMAZwBXAHoANgBQAGcAZABKAEcAMwB2ADQASABjAFMAegBuAHYANwA.bbguxyOv0gE.cccJjH-TFDs.ruXQyivVZIcgvosGaFs_4jRj1AyPnDt1wk1HMBb5Fuw"

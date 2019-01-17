@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 622d5b4924a4739900659d6be8eebd1888191eab
-ms.sourcegitcommit: ddc8c116887ada67642d49ee5166e7f1ae287263
+ms.openlocfilehash: e557b359da09615d2998c4c729f57ffb9faf0de1
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114881"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224962"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企业机器人模板 - 部署机器人
 
@@ -35,6 +35,12 @@ npm install -g ludown luis-apis qnamaker botdispatch msbot chatdown
 - 从[此处](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?view=azure-cli-latest)安装 Azure 命令行工具 (CLI)。 如果已安装 Azure 机器人服务命令行 (CLI) 工具，请确保将其更新为最新版本，方法是：卸载当前版本，然后安装新版本。
 
 > 对于 msbot 4.3.2 和更高版本，唯一的 AZ CLI 先决条件是具有不低于 2.0.53 版本的 AZ CLI。 如果还安装了 botservice 扩展，请通过执行“az extension remove --name botservice”删除此扩展。
+
+- 安装 LUISGen 工具
+
+```shell
+dotnet tool install -g luisgen
+```
 
 - 安装 LUISGen 工具
 
