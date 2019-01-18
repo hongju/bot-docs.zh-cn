@@ -1,6 +1,6 @@
 ---
 title: 向消息添加语音 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for Node.js 向消息添加语音。
+description: 了解如何使用 Bot Framework SDK for Node.js 向消息添加语音。
 author: v-ducvo
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3c17097197ba4b6ed0523d84a81974d9cc9fe3b5
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f7e68b9ab6ef1fca189108ed4117c0ab17f4d9f2
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999125"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224292"
 ---
 # <a name="add-speech-to-messages"></a>向消息添加语音
 
@@ -27,9 +27,9 @@ ms.locfileid: "49999125"
 
 如果要为支持语音的通道（如 Cortana）构建机器人，可以构造可指定机器人要说出的文本的消息。 还可以通过指定[输入提示](bot-builder-nodejs-send-input-hints.md)来尝试影响客户端麦克风的状态，以指示机器人是在接受、期望还是忽略用户输入。
 
-## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定机器人要说的文本
+## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定机器人要朗读的文本
 
-使用 Bot Builder SDK for Node.js，有多种方法可以指定机器人要在支持语音的通道上说出的文本。 可以设置 `IMessage.speak` 属性并使用 `session.send()` 方法发送消息、使用 `session.say()` 方法（传递可指定显示文本、语音文本和选项的参数）发送消息，或者使用内置提示（指定 `speak` 和 `retrySpeak` 选项）发送消息。
+使用 Bot Framework SDK for Node.js，有多种方法可以指定机器人要在支持语音的通道上说出的文本。 可以设置 `IMessage.speak` 属性并使用 `session.send()` 方法发送消息、使用 `session.say()` 方法（传递可指定显示文本、语音文本和选项的参数）发送消息，或者使用内置提示（指定 `speak` 和 `retrySpeak` 选项）发送消息。
 
 ### <a id="message-speak"></a> IMessage.speak 
 
@@ -72,13 +72,13 @@ ms.locfileid: "49999125"
 
 ## <a name="sample-code"></a>代码示例 
 
-有关演示如何使用 Bot Builder SDK for .NET 创建支持语音的机器人的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">掷骰子示例</a>。
+有关演示如何使用 Bot Framework SDK for .NET 创建支持语音的机器人的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">掷骰子示例</a>。
 
 ## <a name="additional-resources"></a>其他资源
 
 - <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言 (SSML)</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">掷骰子示例 (GitHub)</a>
-- [Bot Builder SDK for Node.js 参考][SDKReference]
+- [Bot Framework SDK for Node.js 参考][SDKReference]
 
 [SDKReference]: https://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_.html
 

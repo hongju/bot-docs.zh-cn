@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 41cc36b7e4abc12bf57df7bf4272dd35031cf251
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 1cb9143e5ab2d5eb7e92e263b838cdd9217492ef
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997994"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225352"
 ---
 # <a name="authentication"></a>身份验证
 
@@ -22,7 +22,7 @@ ms.locfileid: "49997994"
 > [!IMPORTANT]
 > 如果正在编写自己的身份验证代码，则必须正确实现所有安全程序。 通过实现本文中的所有步骤，可以降低攻击者能够读取发送到机器人的消息、发送模拟机器人的消息以及窃取密钥的风险。 
 
-如果使用的是 [Bot Builder SDK for .NET](../dotnet/bot-builder-dotnet-overview.md) 或 [Bot Builder SDK for Node.js](../nodejs/index.md)，则不需要实现本文所述的安全程序，因为 SDK 会自动为你完成。 只需使用在[注册](../bot-service-quickstart-registration.md)期间为机器人获得的应用 ID 和密码配置项目，SDK 将处理其余部分。
+如果使用的是 [Bot Framework SDK for .NET](../dotnet/bot-builder-dotnet-overview.md) 或 [Bot Framework SDK for Node.js](../nodejs/index.md)，则不需要实现本文所述的安全程序，因为 SDK 会自动为你完成。 只需使用在[注册](../bot-service-quickstart-registration.md)期间为机器人获得的应用 ID 和密码配置项目，SDK 将处理其余部分。
 
 > [!WARNING]
 > 在 2016 年 12 月，v3.1 Bot Framework 安全协议引入了对在令牌生成和验证期间使用的几个值的更改。 在 2017 年秋末已推出 Bot Framework 安全协议 v3.2，其中包含对在令牌生成和验证期间使用的值的更改。
@@ -171,7 +171,7 @@ GET https://login.botframework.com/v1/.well-known/openidconfiguration
 }
 ```
 
-### <a id="connector-to-bot-step-3"></a> 步骤 3：获取有效的签名密钥列表
+### <a id="connector-to-bot-step-3"></a> 步骤 3：获取有效签名密钥的列表
 
 若要获取有效的签名密钥列表，请通过 HTTPS 向 OpenID 元数据文档中的 `jwks_uri` 属性指定的 URL 发出 `GET` 请求。 例如：
 
@@ -179,7 +179,7 @@ GET https://login.botframework.com/v1/.well-known/openidconfiguration
 GET https://login.botframework.com/v1/.well-known/keys
 ```
 
-响应正文指定 [JWK 格式](https://tools.ietf.org/html/rfc7517)的文档，还包括每个密钥的其他属性：`endorsements`。 密钥列表相对稳定，并可能会缓存较长时间（默认情况下，在 Bot Builder SDK 中为 5 天）。
+响应正文指定 [JWK 格式](https://tools.ietf.org/html/rfc7517)的文档，还包括每个密钥的其他属性：`endorsements`。 密钥列表相对稳定，并可能会缓存较长时间（默认情况下，在 Bot Framework SDK 中为 5 天）。
 
 每个密钥中的 `endorsements` 属性包含一个或多个字符串，可用于验证在传入请求的 [Activity][Activity] 对象的 `channelId` 属性中定义的通道 ID 是否可信。 需要认可的通道 ID 列表在每个机器人中都可配置。 默认情况下，它将是所有已发布通道 ID 的列表，尽管机器人开发人员可能会通过任何一种方式重写选定通道的 ID 值。 如果需要认可通道 ID：
 
@@ -264,7 +264,7 @@ GET https://login.microsoftonline.com/botframework.com/v2.0/.well-known/openid-c
 }
 ```
 
-### <a id="emulator-to-bot-step-3"></a> 步骤 3：获取有效的签名密钥列表
+### <a id="emulator-to-bot-step-3"></a> 步骤 3：获取有效签名密钥的列表
 
 若要获取有效的签名密钥列表，请通过 HTTPS 向 OpenID 元数据文档中的 `jwks_uri` 属性指定的 URL 发出 `GET` 请求。 例如：
 
@@ -323,7 +323,7 @@ payload:
 ## <a name="security-protocol-changes"></a>安全协议更改
 
 > [!WARNING]
-> 对 v3.0 安全协议的支持已于 2017 年 7 月 31 日停用。 如果已编写自己的身份验证代码（即，未使用 Bot Builder SDK 创建机器人），则必须通过更新应用程序升级到 v3.1 安全协议，以便使用下面列出的 v3.1 值。 
+> 对 v3.0 安全协议的支持已于 2017 年 7 月 31 日停用。 如果已编写自己的身份验证代码（即，未使用 Bot Framework SDK 创建机器人），则必须通过更新应用程序升级到 v3.1 安全协议，以便使用下面列出的 v3.1 值。 
 
 ### <a name="bot-to-connector-authenticationbot-to-connector"></a>[机器人到 Connector 身份验证](#bot-to-connector)
 

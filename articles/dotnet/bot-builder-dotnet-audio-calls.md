@@ -1,6 +1,6 @@
 ---
 title: 使用 Skype 进行音频通话 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for .NET 通过 Skype 进行音频通话。
+description: 了解如何使用 Bot Framework SDK for .NET 通过 Skype 进行音频通话。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 0d0489c23cd24a7323ba0160d5e8e5e914be3011
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 72b2c42acb4743c67c63f158fa37c2bdd0e09ab9
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998844"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224412"
 ---
 # <a name="conduct-audio-calls-with-skype"></a>使用 Skype 进行音频通话
 
@@ -22,7 +22,7 @@ ms.locfileid: "49998844"
 
 [!INCLUDE [Introduction to conducting audio calls](../includes/snippet-audio-call-intro.md)]
 
-支持音频通话的机器人体系结构与典型的机器人非常类似。 下面的代码示例展示了如何启用对使用 Bot Builder SDK for .NET 通过 Skype 进行音频通话的支持。 
+支持音频通话的机器人体系结构与典型的机器人非常类似。 以下代码示例展示如何使用 Bot Framework SDK for .NET 通过 Skype 实现对音频通话的支持。 
 
 ## <a name="enable-support-for-audio-calls"></a>启用对音频通话的支持
 
@@ -169,9 +169,9 @@ private async Task OnRecordCompleted(RecordOutcomeEvent recordOutcomeEvent)
 
 ## <a name="sample-code"></a>代码示例
 
-有关演示如何使用 Bot Builder SDK for .NET 通过 Skype 支持音频通话的完整示例，请参阅 GitHub 中的 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/skype-CallingBot" target="_blank">Skype 呼叫机器人示例</a>。
+有关演示如何使用 Bot Framework SDK for .NET 通过 Skype 支持音频通话的完整示例，请参阅 GitHub 中的 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/skype-CallingBot" target="_blank">Skype 呼叫机器人示例</a>。
 
 ## <a name="additional-resources"></a>其他资源
 
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/skype-CallingBot" target="_blank">Skype 呼叫机器人示例 (GitHub)</a>

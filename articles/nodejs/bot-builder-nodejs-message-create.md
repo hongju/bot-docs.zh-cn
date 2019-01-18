@@ -1,6 +1,6 @@
 ---
 title: 创建消息 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for Node.js 创建消息。
+description: 了解如何使用 Bot Framework SDK for Node.js 创建消息。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/7/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8011611aa11e81cf322ba841f616fa2797038e84
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3a4f9e1dc3c5598c3aa79996b01f11e8b1339fe2
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998164"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225212"
 ---
 # <a name="create-messages"></a>创建消息
 
@@ -26,7 +26,7 @@ ms.locfileid: "49998164"
 
 ## <a name="default-message-handler"></a>默认消息处理程序
 
-Bot Builder SDK for Node.js 附带内置于 [`session`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html) 对象的默认消息处理程序。 此消息处理程序允许在机器人和用户之间发送和接收文本消息。
+Bot Framework SDK for Node.js 附带内置于 [`session`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html) 对象的默认消息处理程序。 此消息处理程序允许在机器人和用户之间发送和接收文本消息。
 
 ### <a name="send-a-text-message"></a>发送文本消息
 
@@ -93,7 +93,7 @@ session.send(customMessage);
 | [`sourceEvent(map:ISourceEventMap)`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#sourceevent) | 对于传出消息，可用来传递特定于源的事件数据，如自定义附件。 |
 | [`speak(ssml:TextType, ...args:any[])`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#speak) | 将消息的“语音”字段设置为“语音合成标记语言 (SSML)”。 将在支持设备上向用户陈述。 |
 | [`suggestedActions(suggestions:ISuggestedActions `&#124;` IIsSuggestedActions)`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#suggestedactions) | 向用户发送的可选建议操作。 将仅在支持建议操作的通道上显示建议操作。 |
-| [`summary(text:TextType, ...argus:any[])`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#summary) | 显示为回退或消息内容简短说明的文本（例如：最新会话列表中的文本。） |
+| [`summary(text:TextType, ...argus:any[])`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#summary) | 显示为回退或消息内容简短说明的文本（例如：最新聊天列表中的文本。） |
 | [`text(text:TextType, ...args:any[])`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#text) | 设置消息文本。 |
 | [`textFormat(style:string)`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#textformat) | 设置文本格式。 默认格式为“markdown”。 |
 | [`textLocale(locale:string)`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message.html#textlocale) | 设置消息的目标语言。 |

@@ -1,6 +1,6 @@
 ---
 title: 使用瀑布图定义会话步骤 | Microsoft Docs
-description: 了解如何使用瀑布图来定义使用 Bot Builder SDK for Node.js 的会话的步骤。
+description: 了解如何使用瀑布图来定义使用 Bot Framework SDK for Node.js 的聊天的步骤。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 2fa857e57d5be4751476874b8c193c7053a1bf39
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 526091d61f10ac0c241b994aa3ea99c1d2a70074
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000274"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225322"
 ---
 # <a name="define-conversation-steps-with-waterfalls"></a>使用瀑布图定义会话步骤
 
@@ -45,7 +45,7 @@ bot.dialog('greetings', [
 ]);
 ```
 
-可以实现此做法的是使用提示。 Bot Builder SDK for Node.js 提供多种不同类型的内置[提示](bot-builder-nodejs-dialog-prompt.md)，可用于要求用户提供不同类型的信息。
+可以实现此做法的是使用提示。 Bot Framework SDK for Node.js 提供多种不同类型的内置[提示](bot-builder-nodejs-dialog-prompt.md)，可用于要求用户提供不同类型的信息。
 
 下面的示例代码显示了一个对话框，该对话框通过 4 步骤瀑布图使用提示从用户那里收集各种信息。
 
@@ -173,7 +173,7 @@ bot.dialog('ensureProfile', [
   });
   ```
 
-* `session.endConversation`：如果瀑布图结束表示会话结束，则使用此方法结束瀑布图。
+* `session.endConversation`：如果瀑布图结束表示聊天结束，则使用此方法结束瀑布图。
 
 作为使用这三种方法之一来结束瀑布图的替代方法，可以将 `endConversationAction` 触发器附加到对话框。 例如：
 

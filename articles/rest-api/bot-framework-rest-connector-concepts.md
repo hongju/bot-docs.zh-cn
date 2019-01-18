@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 20ae641a23399f5ee10aed9b31c4521f355903cf
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: a3d6bd957b835a0b8d86e47595ce28506c32d636
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998945"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224552"
 ---
 # <a name="key-concepts"></a>关键概念
 
@@ -44,10 +44,10 @@ Bot Connector 服务和 Bot State 服务均可通过 JWT 持有者令牌实现�
 
 Bot Framework 提供了可用于在 C# 或 Node.js 中生成机器人的客户端库。 
 
-- 若要使用 C# 生成机器人，请使用 [Bot Builder SDK for C#](../dotnet/bot-builder-dotnet-overview.md)。 
-- 若要使用 Node.js 生成机器人，请使用 [Bot Builder SDK for Node.js](../nodejs/index.md)。 
+- 若要使用 C# 生成机器人，请使用 [Bot Framework SDK for C#](../dotnet/bot-builder-dotnet-overview.md)。 
+- 若要使用 Node.js 生成机器人，请使用 [Bot Framework SDK for Node.js](../nodejs/index.md)。 
 
-除了对 Bot Connector 服务和 Bot State 服务进行建模之外，每个 Bot Builder SDK 还提供了一个强大的系统，用于构建封装聊天逻辑的对话、简单事情的内置提示（如是/否、字符串、数字和枚举）、对强大 AI 框架的内置支持，例如 <a href="https://www.luis.ai/" target="_blank">LUIS</a> 等等。 
+除了对 Bot Connector 服务和 Bot State 服务进行建模之外，每个 Bot Framework SDK 还提供了一个强大的系统，用于构建封装聊天逻辑的对话框、简单事情的内置提示（如是/否、字符串、数字和枚举）、对强大 AI 框架的内置支持，例如 <a href="https://www.luis.ai/" target="_blank">LUIS</a>，等等。 
 
 > [!NOTE]
 > 作为使用 C# SDK 或 Node.js SDK 的替代方法，可使用 <a href="https://raw.githubusercontent.com/Microsoft/BotBuilder/master/CSharp/Library/Microsoft.Bot.Connector.Shared/Swagger/ConnectorAPI.json" target="_blank">Bot Connector Swagger 文件</a>和 <a href="https://raw.githubusercontent.com/Microsoft/BotBuilder/master/CSharp/Library/Microsoft.Bot.Connector.Shared/Swagger/StateAPI.json" target="_blank">Bot State Swagger 文件</a>以所选的语言生成自己的客户端库。

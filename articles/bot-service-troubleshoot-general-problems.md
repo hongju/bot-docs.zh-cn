@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 09/26/2018
-ms.openlocfilehash: 3d9c41d0c0c51d00dc5ce86dfb774228e53ff3a3
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 34a23910c76a22fe39d1ce5457bb74dd285ca939
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999064"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225514"
 ---
 # <a name="troubleshooting-general-problems"></a>排查常见问题
 这些常见问题有助于排查常见的机器人开发或操作问题。
@@ -21,7 +21,7 @@ ms.locfileid: "49999064"
 
 1. 通过 [Visual Studio Code](debug-bots-locally-vscode.md) 或 [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/debugger/navigating-through-code-with-the-debugger?view=vs-2017) 调试机器人的源代码。
 2. 先使用[模拟器](bot-service-debug-emulator.md)测试机器人，然后再将其部署到云。
-3. 将机器人部署到类似于 Azure 的云托管平台，然后使用 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a>中机器人仪表板上的内置 Web 聊天控件测试与机器人的连接性。 如果在将机器人部署到 Azure 后遇到问题，可以考虑使用此博客文章：[了解 Azure 故障排除和支持](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)。
+3. 将机器人部署到类似于 Azure 的云托管平台，然后使用 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a>中机器人仪表板上的内置 Web 聊天控件测试与机器人的连接性。 如果在将机器人部署到 Azure 后遇到问题，可以考虑参阅此博客文章：[Understanding Azure troubleshooting and support](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)（了解 Azure 故障排除和支持）。
 4. 排除[身份验证][TroubleshootingAuth]可能存在问题的可能性。
 5. 在 Skype 上测试机器人。 这将有助于验证端到端的用户体验。
 6. 考虑在具有其他身份验证要求的渠道（例如 Direct Line 或网上聊天）上测试机器人。
@@ -30,7 +30,7 @@ ms.locfileid: "49999064"
 
 有关排查机器人身份验证问题的详细信息，请参阅[故障排除][TroubleshootingAuth] Bot Framework 身份验证。
 
-## <a name="im-using-the-bot-builder-sdk-for-net-how-can-i-troubleshoot-issues-with-my-bot"></a>我使用的是 Bot Builder SDK for .NET。 如何排查机器人的问题？
+## <a name="im-using-the-bot-framework-sdk-for-net-how-can-i-troubleshoot-issues-with-my-bot"></a>我使用的是 Bot Framework SDK for .NET。 如何排查机器人的问题？
 
 **查找异常。**  
 在 Visual Studio 2017 中，转到“调试” > “Windows” > “异常设置”。 在“异常设置”窗口中，选中“公共语言运行时异常”旁边的“引发时中断”复选框。 当存在引发的异常或未处理的异常时，还可能会在“输出”窗口中看到诊断输出。
@@ -81,7 +81,7 @@ Bot Framework 将尽可能地保留消息顺序。 例如，如果先发送消�
 
 ## <a name="how-can-i-intercept-all-messages-between-the-user-and-my-bot"></a>如何截获用户和我的机器人之间的所有消息？
 
-使用 Bot Builder SDK for .NET，可以为 `Autofac` 依赖关系注入容器提供 `IPostToBot` 和 `IBotToUser` 接口的实现。 使用适用于任何语言的 Bot Builder SDK，可以将中间件用于几乎相同的目的。 [BotBuilder-Azure](https://github.com/Microsoft/BotBuilder-Azure) 存储库包含将此数据记录到 Azure 表的 C# 和 Node.js 库。
+使用 Bot Framework SDK for .NET，可以为 `Autofac` 依赖关系注入容器提供 `IPostToBot` 和 `IBotToUser` 接口的实现。 使用适用于任何语言的 Bot Framework SDK，可以将中间件用于几乎相同的目的。 [BotBuilder-Azure](https://github.com/Microsoft/BotBuilder-Azure) 存储库包含将此数据记录到 Azure 表的 C# 和 Node.js 库。
 
 ## <a name="why-are-parts-of-my-message-text-being-dropped"></a>为什么我的消息文本被部分删除？
 
@@ -133,7 +133,7 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 
 ::: moniker range="azure-bot-service-3.0"
 
-## <a name="what-is-the-idialogstackforward-method-in-the-bot-builder-sdk-for-net"></a>Bot Builder SDK for .NET 中的 IDialogStack.Forward 方法是什么？
+## <a name="what-is-the-idialogstackforward-method-in-the-bot-framework-sdk-for-net"></a>Bot Framework SDK for .NET 中的 IDialogStack.Forward 方法是什么？
 
 `IDialogStack.Forward` 的主要目的是重用一个通常为“被动”的现有子对话框，其中子对话框（在 `IDialog.StartAsync` 中）等待带有一些 `ResumeAfter` 处理程序的对象 `T`。 特别是，如果你有一个等待 `IMessageActivity` `T` 的子对话框，则可以使用 `IDialogStack.Forward` 方法转发传入的 `IMessageActivity`（已由某个父对话框接收）。 例如，要将传入的 `IMessageActivity` 转发到 `LuisDialog`，请调用 `IDialogStack.Forward` 以将 `LuisDialog` 推送到对话框堆栈，运行 `LuisDialog.StartAsync` 中的代码，直到它安排等待下一条消息，然后立即通过转发的 `IMessageActivity` 满足该等待。
 
@@ -166,7 +166,7 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 
 使用 Connector 的 `IBotState` 接口存储用户、会话和私人会话属性包中的数据。 按机器人的 ID 划分每个属性包的作用范围。 用户属性包由用户 ID 键入，会话属性包由会话 ID 键入，私人会话属性包由用户 ID 和会话 ID 键入。 
 
-如果使用 Bot Builder SDK for .NET 或 Bot Builder SDK for Node.js 来构建机器人，则对话框堆栈和对话框数据将自动存储为私人会话属性包中的条目。 C# 实现使用二进制序列化，Node.js 实现使用 JSON 序列化。
+如果使用 Bot Framework SDK for .NET 或 Bot Framework SDK for Node.js 来构建机器人，则对话框堆栈和对话框数据将自动存储为私人聊天属性包中的条目。 C# 实现使用二进制序列化，Node.js 实现使用 JSON 序列化。
 
 `IBotState` REST 接口由两个服务实现。
 
@@ -193,8 +193,8 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 
 Connector 的 `IBotState` 服务用于存储机器人数据包（即，用户、会话和机器人专用数据包，其中机器人专用数据包包含对话框堆栈“控制流”状态）。 `IBotState` 服务中的并发控制通过 ETag 由乐观并发进行管理。 如果在“读取-修改-写入"序列期间（由于单个机器人数据包的并发更新）存在更新冲突，则：
 
-* 如果保留 ETag，则会从 `IBotState` 服务引发 HTTP 状态代码 412“不满足前提条件”错误。 这是 Bot Builder SDK for .NET 中的默认行为。
-* 如果未保留 ETag（即，ETag 设置为 `\*`），则“最后写入为准”策略将生效，这可防止“不满足前提条件”错误，但存在导致数据丢失的风险。 这是 Bot Builder SDK for Node.js 中的默认行为。
+* 如果保留 ETag，则会从 `IBotState` 服务引发 HTTP 状态代码 412“不满足前提条件”错误。 这是 Bot Framework SDK for .NET 中的默认行为。
+* 如果未保留 ETag（即，ETag 设置为 `\*`），则“最后写入为准”策略将生效，这可防止“不满足前提条件”错误，但存在导致数据丢失的风险。 这是 Bot Framework SDK for Node.js 中的默认行为。
 
 ## <a name="how-can-i-fix-precondition-failed-412-or-conflict-409-errors"></a>如何修复“不满足前提条件”（412）或“冲突”（409）错误？
 
@@ -202,7 +202,7 @@ Connector 的 `IBotState` 服务用于存储机器人数据包（即，用户、
 
 ::: moniker range="azure-bot-service-3.0"
 
-Bot Builder SDK for .NET 提供一种机制（实现 `IScope` 的类 `LocalMutualExclusion`）以保守地使用内存中的信号量来序列化单个会话的处理。 可以扩展此实现以使用 Redis 租用，按会话地址划分其作用范围。
+Bot Framework SDK for .NET 提供一种机制（实现 `IScope` 的类 `LocalMutualExclusion`）以保守地使用内存中的信号灯来序列化单个聊天的处理。 可以扩展此实现以使用 Redis 租用，按会话地址划分其作用范围。
 
 如果机器人未连接到外部服务，或者如果并行处理来自同一会话的消息是可接受的操作，则可以添加此代码以忽略 Bot State API 中发生的任何冲突。 这将允许最后一个回复设置会话状态。
 
@@ -231,7 +231,7 @@ builder.Update(Conversation.Container);
 借助状态服务，可以通过会话中的对话框保留进度，以便用户稍后可以返回到与机器人的会话，而不会丢失其位置。 为保留这功能，修改机器人代码时，不会自动清除通过状态 API 存储的机器人数据属性包。 应根据修改后的代码是否与旧版数据兼容来决定是否应清除机器人数据。 
 
 * 如果要在开发机器人期间手动重置会话的对话框堆栈和状态，可以使用 ` /deleteprofile` 命令删除状态数据。 确保在此命令中包含前导空格，以防通道解释该命令。
-* 将机器人部署到生产环境后，可以对机器人数据进行版本控制，以便在版本冲突时清除关联的状态数据。 对于 Bot Builder SDK for Node.js，这可以使用中间件完成，对于 Bot Builder SDK for .NET，这可以使用 `IPostToBot` 实现来完成。
+* 将机器人部署到生产环境后，可以对机器人数据进行版本控制，以便在版本冲突时清除关联的状态数据。 对于 Bot Framework SDK for Node.js，这可以使用中间件来完成；对于 Bot Framework SDK for .NET，这可以使用 `IPostToBot` 实现来完成。
 
 > [!NOTE]
 > 如果无法正确反序列化对话框堆栈，则由于序列化格式更改或因为代码更改太多，将重置会话状态。
@@ -248,11 +248,11 @@ builder.Update(Conversation.Container);
 
 ## <a name="how-can-i-use-more-than-one-luis-model"></a>如何使用多个 LUIS 模型？
 
-Bot Builder SDK for Node.js 和 Bot Builder SDK for .NET 均支持从单个 LUIS 意向对话框调用多个 LUIS 模型。 请注意以下几个警告：
+Bot Framework SDK for Node.js 和 Bot Framework SDK for .NET 均支持从单个 LUIS 意向对话框调用多个 LUIS 模型。 请注意以下几个警告：
 
 * 使用多个 LUIS 模型假设 LUIS 模型具有非重叠的意向集。
 * 使用多个 LUIS 模型假设来自不同模型的分数是可比较的，以在多个模型中选择“最佳匹配意向”。
-* 使用多个 LUIS 模型意味着，如果一个意向与一个模型匹配，它也将完全匹配其他模型的“none”意向。 在这种情况下，可以避免选择“none”意向；Bot Builder SDK for Node.js 将自动缩小“none”意向的分数以避免此问题。
+* 使用多个 LUIS 模型意味着，如果一个意向与一个模型匹配，它也将完全匹配其他模型的“none”意向。 在这种情况下，可以避免选择“none”意向；Bot Framework SDK for Node.js 会自动降低“none”意向的分数以避免此问题。
 
 ## <a name="where-can-i-get-more-help-on-luis"></a>从哪里可以获得有关 LUIS 的详细帮助信息？
 
@@ -306,7 +306,7 @@ Bot Builder SDK for Node.js 和 Bot Builder SDK for .NET 均支持从单个 LUIS
 ## <a name="where-can-i-get-more-help"></a>从哪里可以获得更多帮助？
 
 * 利用 [Stack Overflow](https://stackoverflow.com/questions/tagged/botframework) 上以前回答过的问题中的信息，或使用 `botframework` 标记发布你自己的问题。 请注意，Stack Overflow 有一些准则，例如要求具有描述性的标题、完整而简明的问题陈述以及重现问题的足够详细信息。 功能请求或过于宽泛的问题都是偏离主题的；新用户应访问 [Stack Overflow 帮助中心](https://stackoverflow.com/help/how-to-ask)了解更多详细信息。
-* 请查阅 GitHub 中的 [BotBuilder 问题](https://github.com/Microsoft/BotBuilder/issues)，了解有关机器人生成器 SDK 的已知问题的信息，或报告新问题。
+* 请查阅 GitHub 中的 [BotBuilder 问题](https://github.com/Microsoft/BotBuilder/issues)，了解 Bot Framework SDK 的已知问题，或报告新问题。
 * 利用 BotBuilder 社区中有关 [Gitter ](https://gitter.im/Microsoft/BotBuilder) 讨论的信息。
 
 

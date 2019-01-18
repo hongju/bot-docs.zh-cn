@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 82541c4ac0848c3e995ab3ad1ed874436072fe63
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 211800211b422bb9c90c00705585be89737c77a9
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998075"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225552"
 ---
 # <a name="recognize-user-intent-from-message-content"></a>识别消息内容中的用户意向
 
@@ -57,11 +57,11 @@ ms.locfileid: "49998075"
 
 ## <a name="disambiguate-between-multiple-intents"></a>区分多个意向
 
-机器人可以注册多个识别器。 请注意，自定义识别器示例涉及到将数值分数分配给每个意向。 这是因为机器人可能有多个识别器，并且 Bot Builder SDK 提供了内置逻辑来区分多个识别器返回的意向。 分配给意向的得分通常介于 0.0 和 1.0 之间，但自定义识别器可定义大于 1.1 的意向，从而确保 Bot Builder SDK 的区分逻辑始终会选择该意向。 
+机器人可以注册多个识别器。 请注意，自定义识别器示例涉及到将数值分数分配给每个意向。 这是因为机器人可能有多个识别器，并且 Bot Framework SDK 提供了内置逻辑来区分多个识别器返回的意向。 分配给意向的得分通常介于 0.0 和 1.0 之间，但自定义识别器可定义大于 1.1 的意向，确保 Bot Framework SDK 的区分逻辑始终会选择该意向。 
 
 默认情况下，识别器以并行方式运行，但你可设置 [IIntentRecognizerSetOptions][IntentRecognizerSetOptions] 中的 recognizeOrder，以便在机器人找到得分为 1.0 的意向时进程立即退出。
 
-Bot Builder SDK 包括一个[示例][DisambiguationSample]，用于演示如何通过实现 [IDisambiguateRouteHandler][IDisambiguateRouteHandler] 在机器人中提供自定义区分逻辑。
+Bot Framework SDK 包括一个[示例][DisambiguationSample]，用于演示如何通过实现 [IDisambiguateRouteHandler][IDisambiguateRouteHandler] 在机器人中提供自定义区分逻辑。
 
 ## <a name="next-steps"></a>后续步骤
 使用正则表达式和检查消息内容的逻辑可能会变复杂，尤其是在机器人采用开放式聊天流的情况下。 要帮助机器人处理来自用户的各种文本和语音输入，可使用意向识别服务（如 [LUIS][LUIS]）向机器人添加自然语言理解。

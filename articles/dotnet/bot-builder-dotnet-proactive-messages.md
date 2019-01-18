@@ -1,6 +1,6 @@
 ---
 title: 发送主动消息 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for .NET 发送主动消息。
+description: 了解如何使用 Bot Framework SDK for .NET 发送主动消息。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 201f1aa1aca0d75190335fa114ef8a26caed2a03
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d86ee290ebf33dbfd13017c3fe882ecfdd9102e4
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998328"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225722"
 ---
 # <a name="send-proactive-messages"></a>发送主动消息
 
@@ -32,7 +32,7 @@ ms.locfileid: "49998328"
 
 ## <a name="send-an-ad-hoc-proactive-message"></a>发送临时主动消息
 
-下面的代码示例演示如何使用 Bot Builder SDK for .NET 发送临时主动消息。
+下面的代码示例演示如何使用 Bot Framework SDK for .NET 发送临时主动消息。
 
 为了能够向用户发送临时消息，机器人必须先从当前聊天中收集和存储一些有关用户的信息。 
 
@@ -97,7 +97,7 @@ await connector.Conversations.SendToConversationAsync((Activity)message);
 
 ## <a name="send-a-dialog-based-proactive-message"></a>发送基于对话的主动消息
 
-下面的代码示例演示如何使用 Bot Builder SDK for .NET 发送基于对话的主动消息。
+下面的代码示例演示如何通过使用 Bot Framework SDK for .NET 发送基于对话框的主动消息。
 
 为了能够向用户发送基于对话的主动消息，机器人必须先从当前聊天中收集和保存信息。 
 
@@ -177,11 +177,11 @@ public class SurveyDialog : IDialog<object>
 
 ## <a name="sample-code"></a>代码示例
 
-有关演示如何使用 Bot Builder SDK for .NET 发送主动消息的完整示例，请参阅 GitHub 中的<a href="https://aka.ms/proactive-messaging-cs-v3 " target="_blank">主动消息示例</a>。 在主动消息示例中，<a href="https://aka.ms/proactive-sendmessage-cs-v3 " target="_blank">simpleSendMessage</a> 演示了如何发送临时主动消息，而 <a href="https://aka.ms/proactive-newdialog-cs-v3 " target="_blank">startNewDialog</a> 演示了如何发送基于对话的主动消息。 
+有关演示如何通过使用 Bot Framework SDK for .NET 发送主动消息的完整示例，请参阅 GitHub 中的<a href="https://aka.ms/proactive-messaging-cs-v3 " target="_blank">主动消息示例</a>。 在主动消息示例中，<a href="https://aka.ms/proactive-sendmessage-cs-v3 " target="_blank">simpleSendMessage</a> 演示了如何发送临时主动消息，而 <a href="https://aka.ms/proactive-newdialog-cs-v3 " target="_blank">startNewDialog</a> 演示了如何发送基于对话的主动消息。 
 
 ## <a name="additional-resources"></a>其他资源
 
 - [设计和控制聊天流](../bot-service-design-conversation-flow.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-proactiveMessages" target="_blank">主动消息示例 (GitHub)</a>
 

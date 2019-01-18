@@ -8,16 +8,16 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: bdc86e5e64971e503157fe69a8b962e1d9b88542
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 85ef0fde39980bab1b891518e338fddbd56b275a
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998860"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224452"
 ---
 # <a name="how-bot-service-works"></a>机器人服务的工作方式
 
-机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Builder SDK 和用于将机器人连接到通道的 Bot Framework。 机器人服务提供了五个模板，你可以在创建支持 .NET 和 Node.js 的机器人时选择这些模板。
+机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Framework SDK 以及用于将机器人连接到通道的 Bot Framework。 机器人服务提供了五个模板，你可以在创建支持 .NET 和 Node.js 的机器人时选择这些模板。
 
 > [!IMPORTANT]
 > 你必须拥有 Microsoft Azure 订阅才能使用机器人服务。 如果尚无订阅，可注册<a href="https://azure.microsoft.com/en-us/free/" target="_blank">免费帐户</a>。
@@ -32,7 +32,7 @@ ms.locfileid: "49998860"
 * 使用高级浏览器内代码编辑器联机编辑机器人源代码。
 * 使用 Visual Studio 下载、调试和重新发布 C# 机器人。
 * 为 Visual Studio Online 和 Github 轻松设置持续部署。
-* 使用为 Bot Builder SDK 准备的示例代码。
+* 使用为 Bot Framework SDK 准备的示例代码。
 
 ### <a name="consumption-plan"></a>消耗量计划
 使用消耗计划的机器人是在 <a href="http://go.microsoft.com/fwlink/?linkID=747839" target="_blank">Azure Functions</a> 上运行的无服务器机器人，并使用按运行付费的 Azure Functions 定价。 使用此托管计划的机器人可以扩展以处理巨大的流量峰值。 可以使用基本的浏览器内代码编辑器联机编辑机器人源代码。 有关消耗计划机器人的运行时环境的更多信息，请参阅 <a target='_blank' href='/azure/azure-functions/functions-scale'>Azure Functions 消耗计划和应用服务计划</a>。
@@ -49,7 +49,7 @@ ms.locfileid: "49998860"
 
 默认情况下，机器人服务可让你使用联机代码编辑器直接在浏览器中开发机器人，而无需任何工具链。 
 
-可以使用 Bot Builder SDK 和 IDE（例如 Visual Studio 2017）在本地开发和调试机器人。 可以使用 Visual Studio 2017 或 Azure CLI 将机器人直接发布到 Azure。 还可以使用所选的源代码管理系统（例如 VSTS 或 GitHub）[设置持续部署](bot-service-continuous-deployment.md)。 配置持续部署后，你可以在本地计算机上的 IDE 中进行开发和调试，并且你提交给源代码管理的任何代码更改都会自动部署到 Azure。  
+可以使用 Bot Framework SDK 和 IDE（例如 Visual Studio 2017）在本地开发和调试机器人。 可以使用 Visual Studio 2017 或 Azure CLI 将机器人直接发布到 Azure。 还可以使用所选的源代码管理系统（例如 VSTS 或 GitHub）[设置持续部署](bot-service-continuous-deployment.md)。 配置持续部署后，你可以在本地计算机上的 IDE 中进行开发和调试，并且你提交给源代码管理的任何代码更改都会自动部署到 Azure。  
 
 > [!TIP]
 > 启用持续部署后，请确保仅通过持续部署修改代码，而不是通过其他机制来修改代码以避免冲突。

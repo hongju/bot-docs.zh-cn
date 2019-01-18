@@ -1,6 +1,6 @@
 ---
 title: 发送和接收活动 | Microsoft Docs
-description: 了解如何通过 Bot Builder SDK for .NET 使用 Connector 服务跨各种通道与用户交换信息。
+description: 了解如何通过 Bot Framework SDK for .NET 使用 Connector 服务跨各种通道与用户交换信息。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 393490fd97ce0d09b4087ad7598ee30b0fdc8c0e
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 0407ec0d90c58e10aa14616e2aa9205bb8840d55
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997784"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225222"
 ---
 # <a name="send-and-receive-activities"></a>发送和接收活动
 
@@ -22,10 +22,10 @@ ms.locfileid: "49997784"
 
 Bot Framework Connector 提供单个 REST API，让机器人能够跨多个通道（如 Skype、电子邮件、Slack 等）进行通信。 它通过从机器人到通道以及从通道到机器人的消息中继来促进机器人与用户之间的通信。 
 
-本文介绍了如何通过 Bot Builder SDK for .NET 使用 Connector 在通道上交换机器人与用户之间的信息。 
+本文介绍如何通过 Bot Framework SDK for .NET 使用 Connector 在通道上交换机器人与用户之间的信息。 
 
 > [!NOTE]
-> 虽然可以通过专门使用本文中描述的技术来构建机器人，但是 Bot Builder SDK 提供了[对话框](bot-builder-dotnet-dialogs.md)和 [FormFlow](bot-builder-dotnet-formflow.md) 之类的附加功能，这些功能可以简化管理会话流和状态的过程，并使融合认知服务（例如语言理解）变得更加简单。
+> 虽然可以通过专门使用本文中描述的技术来构建机器人，但是 Bot Framework SDK 提供了[对话框](bot-builder-dotnet-dialogs.md)和 [FormFlow](bot-builder-dotnet-formflow.md) 之类的附加功能，这些功能可以简化管理聊天流和状态的过程，并使融合认知服务（例如语言理解）变得更加简单。
 
 ## <a name="create-a-connector-client"></a>创建连接器客户端
 
@@ -44,7 +44,7 @@ Connector 使用 [Activity](bot-builder-dotnet-activities.md) 对象在机器人
 
 当机器人从 Connector 接收活动时，传入活动的 `Recipient` 属性指定机器人在该会话中的身份。 因为某些通道（例如，Slack）在将机器人添加到会话时会为其分配新身份，所以机器人应始终将传入活动的 `Recipient` 属性的值用作其响应中的 `From` 属性的值。
 
-虽然可以从头开始创建和初始化传出的 `Activity` 对象，但是 Bot Builder SDK 提供了一种创建回复的更简单的方法。 通过使用传入活动的 `CreateReply` 方法，你只需指定响应的消息文本并创建传出活动，其中 `Recipient`、`From` 和 `Conversation` 属性将自动填充。
+虽然你可以自行从头开始创建和初始化传出的 `Activity` 对象，但最好是使用 Bot Framework SDK 提供的一种更简单的创建回复的方法。 通过使用传入活动的 `CreateReply` 方法，你只需指定响应的消息文本并创建传出活动，其中 `Recipient`、`From` 和 `Conversation` 属性将自动填充。
 
 [!code-csharp[Create reply](../includes/code/dotnet-send-and-receive.cs#createReply)]
 
@@ -87,7 +87,7 @@ Connector 使用 [Activity](bot-builder-dotnet-activities.md) 对象在机器人
 
 - [活动概述](bot-builder-dotnet-activities.md)
 - [创建消息](bot-builder-dotnet-create-messages.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
 - <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 类</a>
 - <a href="/dotnet/api/microsoft.bot.connector.connectorclient" target="_blank">ConnectorClient 类</a>
 

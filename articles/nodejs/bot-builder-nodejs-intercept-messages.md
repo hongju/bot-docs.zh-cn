@@ -1,6 +1,6 @@
 ---
 title: 截获消息 | Microsoft Docs
-description: 了解如何通过使用 Bot Builder SDK for Node.js 来截获和处理信息交换，以创建日志或其他记录。
+description: 了解如何通过使用 Bot Framework SDK for Node.js 来截获和处理信息交换，以创建日志或其他记录。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/02/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 31380961f117a2b4a3ffaae3c82d682a63001c0c
-ms.sourcegitcommit: 984705927561cc8d6a84f811ff24c8c71b71c76b
+ms.openlocfilehash: b262e936cd48bb73d7b5aa3fa4f7b6318ea7c2a0
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50965675"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225622"
 ---
 # <a name="intercept-messages"></a>截获消息
 
@@ -28,7 +28,7 @@ ms.locfileid: "50965675"
 
 ## <a name="example"></a>示例
 
-以下代码示例演示了如何使用 Bot Builder SDK for Node.js 中的中间件的概念来截获用户和机器人之间交换的消息。 
+以下代码示例演示了如何使用 Bot Framework SDK for Node.js 中的中间件的概念来截获用户和机器人之间交换的消息。 
 
 首先，为传入消息 (`botbuilder`) 和传出消息 (`send`) 配置处理程序。
 
@@ -65,4 +65,4 @@ module.exports = {
 
 ## <a name="sample-code"></a>代码示例
 
-有关演示如何使用 Bot Builder SDK for Node.j 来截获和记录消息的完整示例，请参阅 GitHub 中的<a href="https://aka.ms/v3-js-capability-middlewareLogging" target="_blank">中间件和日志记录示例</a>。
+有关演示如何使用 Bot Framework SDK for Node.j 来截获和记录消息的完整示例，请参阅 GitHub 中的<a href="https://aka.ms/v3-js-capability-middlewareLogging" target="_blank">中间件和日志记录示例</a>。

@@ -1,6 +1,6 @@
 ---
-title: 对话概述 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for Node.js 中的对话来为聊天建模和管理聊天流。
+title: 对话框概述 | Microsoft Docs
+description: 了解如何使用 Bot Framework SDK for Node.js 中的对话框为聊天建模和管理聊天流。
 author: DucVo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,14 +9,14 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 78f1660aaa91888655515d3402c8ad7702a5b6f6
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: dfa52914b3f0a2e81f4ff3a2f90c7404bfe53d4a
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997124"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225992"
 ---
-# <a name="dialogs-in-the-bot-builder-sdk-for-nodejs"></a>Bot Builder SDK for Node.js 中的对话
+# <a name="dialogs-in-the-bot-framework-sdk-for-nodejs"></a>Bot Framework SDK for Node.js 中的对话框
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
@@ -24,13 +24,13 @@ ms.locfileid: "49997124"
 > - [.NET](../dotnet/bot-builder-dotnet-dialogs.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-dialog-overview.md)
 
-使用 Bot Builder SDK for Node.js 中的对话可为聊天建模和管理聊天流。 机器人通过聊天来与用户通信。 聊天组织成对话。 对话可以包含瀑布式步骤和提示。 当用户与机器人交互时，机器人会启动、停止和切换不同的对话，以便对用户消息做出响应。 若要成功设计和创建强大的机器人，了解对话的工作原理非常关键。 
+可以使用 Bot Framework SDK for Node.js 中的对话框为聊天建模和管理聊天流。 机器人通过聊天来与用户通信。 聊天组织成对话。 对话可以包含瀑布式步骤和提示。 当用户与机器人交互时，机器人会启动、停止和切换不同的对话，以便对用户消息做出响应。 若要成功设计和创建强大的机器人，了解对话的工作原理非常关键。 
 
 本文介绍对话的概念。 阅读本文后，请单击[后续步骤](#next-steps)部分中的链接来深入探讨这些概念。
 
 ## <a name="conversations-through-dialogs"></a>通过对话展开的聊天
 
-Bot Builder SDK for Node.js 将聊天定义为通过一个或多个对话在机器人与用户之间进行的通信。 从根本上讲，对话是一个执行操作或者从用户收集信息的可重用模块。 可以在可重用的对话代码中封装机器人的复杂逻辑。
+Bot Framework SDK for Node.js 将聊天定义为通过一个或多个对话框在机器人与用户之间进行的通信。 从根本上讲，对话是一个执行操作或者从用户收集信息的可重用模块。 可以在可重用的对话代码中封装机器人的复杂逻辑。
 
 可通过多种方式来构建和更改聊天：
 

@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/26/2018
+ms.date: 01/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 62cf3663a6e1c9b9321d7b74393b95e4a2ed3a69
-ms.sourcegitcommit: fd7781a06303fee5f39a253da5b3a3818d54b2ba
+ms.openlocfilehash: c798c26f108458e1caeb16aa22c02c6e7c70fb61
+ms.sourcegitcommit: 3cc768a8e676246d774a2b62fb9c688bbd677700
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/28/2018
-ms.locfileid: "53806768"
+ms.lasthandoff: 01/16/2019
+ms.locfileid: "54323653"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多个 LUIS 和 QnA 模型
 
@@ -41,7 +41,7 @@ ms.locfileid: "53806768"
 
  ### <a name="create-your-bot-using-service-ui"></a>通过服务 UI 创建机器人
  
-若要开始手动创建机器人，请将 GitHub [BotFramework-Samples](https://github.com/Microsoft/BotFramework-Samples) 存储库中的下述 4 个文件下载到本地文件夹：[home-automation.json](https://aka.ms/dispatch-home-automation-json)、[weather.json](https://aka.ms/dispatch-weather-json)、[nlp-with-dispatchDispatch.json](https://aka.ms/dispatch-dispatch-json)、[QnAMaker.tsv](https://aka.ms/dispatch-qnamaker-tsv)
+若要开始手动创建机器人，请将 GitHub [BotFramework-Samples](https://aka.ms/botdispatchgitsamples) 存储库中的下述 4 个文件下载到本地文件夹：[home-automation.json](https://aka.ms/dispatch-home-automation-json)、[weather.json](https://aka.ms/dispatch-weather-json)、[nlp-with-dispatchDispatch.json](https://aka.ms/dispatch-dispatch-json)、[QnAMaker.tsv](https://aka.ms/dispatch-qnamaker-tsv) 若要完成此操作，一种方法是打开上面的 GitHub 存储库链接，单击“BotFramework-Samples”，然后将存储库“克隆或下载”到本地计算机。 请注意，这些文件所在的存储库不同于在先决条件中提到的示例。
 
 ### <a name="manually-create-luis-apps"></a>手动创建 LUIS 应用
 
@@ -494,7 +494,10 @@ async onTurn(turnContext) {
 
 上述两项操作中的任一操作都会减少机器人使用消息“找不到答案”来回应用户的次数。 
 
-## <a name="additional-resources"></a>其他资源 
+## <a name="additional-resources"></a>其他资源
+
+**更新或创建新的 LUIS 模型：** 此示例基于预先配置的 LUIS 模型。 有关如何更新此模型或创建新的 LUIS 模型的其他信息，可参阅[此文](https://aka.ms/create-luis-model#updating-your-cognitive-models
+)。
 
 **删除资源：** 此示例将创建许多应用程序和资源，可以使用下面列出的步骤将其删除，但不应删除其他任何应用或服务依赖的资源。 
 

@@ -1,6 +1,6 @@
 ---
 title: 使用 CLI 工具管理机器人
-description: 可以使用 Bot Builder 工具直接从命令行管理机器人资源
+description: 可以使用 Bot Framework 工具直接从命令行管理机器人资源
 keywords: botbuilder 模板, ludown, qna, luis, msbot, 管理, cli, .bot, 机器人
 author: ivorb
 ms.author: v-ivorb
@@ -10,16 +10,16 @@ ms.service: bot-service
 ms.subservice: tools
 ms.date: 11/13/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5ffaf9a946e1a540b82819b7f745200f47384819
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: f9eafa708be2ce597ec2679fb6975d7da71951ea
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645657"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225872"
 ---
 # <a name="manage-bots-using-cli-tools"></a>使用 CLI 工具管理机器人
 
-Bot Builder 工具涵盖端到端机器人开发工作流，其中包括规划、生成、测试、发布、连接和评估阶段。 让我们看看如何在开发周期的每个阶段使用这些工具。
+Bot Framework 工具涵盖端到端机器人开发工作流，其中包括规划、生成、测试、发布、连接和评估阶段。 让我们看看如何在开发周期的每个阶段使用这些工具。
 
 ## <a name="plan"></a>计划
 
@@ -60,7 +60,6 @@ user: thanks
 bot:
 Here's a form for you
 [Attachment=card.json adaptivecard]
-
 ```
 
 ### <a name="create-a-transcript-file-from-chat-file"></a>从 .chat 文件创建脚本文件
@@ -98,30 +97,33 @@ LUDown 工具可用于为 LUIS 和 QnA 创建新的 .json 模型。
 
 .lu 文件格式还支持使用以下表示法的 QnA 配对： 
 
-```LUDown
+~~~LUDown
 > comment
 ### ? question ?
   ```markdown
     answer
   ```
+~~~
 
 LUDown 工具会自动将问题和解答分离到 qnamaker JSON 文件，然后即可用其创建新的 [QnaMaker.ai](http://qnamaker.ai) 知识库。
 
-```LUDown
+~~~LUDown
 ### ? How do I change the default message for QnA Maker?
   ```markdown
   You can change the default message if you use the QnAMakerDialog. 
-  See [this link](https://docs.botframework.com/en-us/azure-bot-service/templates/qnamaker/#navtitle) for details. 
+  See [this link](https://docs.botframework.com/en-us/azure-bot-service/templates/qnamaker/#navtitle) for details.
   ```
+~~~
 
 此外可以将多个问题添加到相同答案，只需为单个答案新添几行问题变体。
 
-```LUDown
+~~~LUDown
 ### ? What is your name?
 - What should I call you?
   ```markdown
     I'm the echoBot! Nice to meet you.
   ```
+~~~
 
 ### <a name="generate-json-models-with-ludown"></a>使用 LUDown 生成 .json 模型
 
@@ -232,21 +234,37 @@ Bot Framework [Emulator](bot-service-debug-emulator.md) 是一个桌面应用程
 
 ## <a name="publish"></a>发布
 
-可以使用 Azure CLI 来创建、下载机器人以及将其发布到 Azure 机器人服务。 通过以下命令安装机器人扩展： 
+可以使用 Azure CLI 来创建、下载机器人以及将其发布到 Azure 机器人服务。
+
+使用 msbot 4.3.2 及更高版本时，需要 Azure CLI 2.0.53 或更高版本。 如果安装了 botservice 扩展，请使用此命令将其删除。
+
 ```shell
-az extension add -n botservice
+az extension remove --name botservice
 ```
 
 ### <a name="create-azure-bot-service-bot"></a>创建 Azure 机器人服务机器人
 
-注意：必须使用最新版本的 `az cli`。 请升级此服务，使 az cli 可与 MSBot 工具配合工作。 
+注意：必须使用最新版本的 `az cli`。 请升级此服务，使 az cli 可与 MSBot 工具配合工作。
 
-通过以下命令登录到 Azure 帐户： 
+通过以下命令登录到 Azure 帐户：
+
 ```shell
 az login
 ```
 
-登录以后，即可使用以下命令创建新的 Azure 机器人服务机器人： 
+如果还没有可以向其发布机器人的资源组，请创建一个：
+
+```shell
+az group create --name <resource-group-name> --location <geographic-location> --verbose
+```
+
+| 选项 | Description |
+|:---|:---|
+| --name | 资源组的唯一名称。 切勿在此名称中包含空格或下划线。 |
+| --location | 用于创建资源组的地理位置。 例如 `eastus`、`westus`、`westus2` 等。 使用 `az account list-locations` 来列出位置。 |
+
+然后创建机器人资源，以便将机器人发布到其中。
+
 ```shell
 az bot create [options]
 ```
@@ -303,7 +321,7 @@ Group
 ```
 
 ## <a name="additional-information"></a>其他信息
-- [GitHub 上的 Bot Builder 工具][cliTools]
+- [GitHub 上的 Bot Framework 工具][cliTools]
 
 <!-- Footnote links -->
 

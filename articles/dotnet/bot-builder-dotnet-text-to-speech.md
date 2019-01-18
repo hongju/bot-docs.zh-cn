@@ -1,6 +1,6 @@
 ---
 title: 向消息添加语音 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for .NET 向消息添加语音。
+description: 了解如何使用 Bot Framework SDK for .NET 向消息添加语音。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: dc542c7e85b3a79e1071edebea65d93c99742beb
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3eef1ec583764449554a223ec9dc339ff505ace6
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000354"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225592"
 ---
 # <a name="add-speech-to-messages"></a>向消息添加语音
 
@@ -27,9 +27,9 @@ ms.locfileid: "50000354"
 
 如果要为支持语音的通道（如 Cortana）构建机器人，可以构造可指定机器人要说出的文本的消息。 还可以通过指定[输入提示](bot-builder-dotnet-add-input-hints.md)来尝试影响客户端麦克风的状态，以指示机器人是在接受、期望还是忽略用户输入。
 
-## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定机器人要说的文本
+## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定机器人要朗读的文本
 
-使用 Bot Builder SDK for .NET，有多种方法可以指定机器人要在支持语音的通道上说的文本。 可以设置[消息][IMessageActivity]的 `Speak` 属性、调用 `IDialogContext.SayAsync()` 方法，或者在使用内置提示发送消息时指定提示选项 `speak` 和 `retrySpeak`。
+使用 Bot Framework SDK for .NET，有多种方法可以指定机器人要在支持语音的通道上说出的文本。 可以设置[消息][IMessageActivity]的 `Speak` 属性、调用 `IDialogContext.SayAsync()` 方法，或者在使用内置提示发送消息时指定提示选项 `speak` 和 `retrySpeak`。
 
 ### <a id="message-speak"></a> IMessageActivity.Speak
 
@@ -59,7 +59,7 @@ ms.locfileid: "50000354"
 
 ## <a name="sample-code"></a>代码示例 
 
-有关演示如何使用 Bot Builder SDK for .NET 创建支持语音的机器人的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp" target="_blank">掷骰子技能示例</a>。
+有关演示如何使用 Bot Framework SDK for .NET 创建支持语音的机器人的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp" target="_blank">掷骰子技能示例</a>。
 
 ## <a name="additional-resources"></a>其他资源
 

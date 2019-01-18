@@ -1,6 +1,6 @@
 ---
 title: 管理状态数据 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for Node.js 来保存和检索状态数据。
+description: 了解如何使用 Bot Framework SDK for Node.js 来保存和检索状态数据。
 author: DucVo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 519f188a29db2b9b37061ee0eff5361a63d2acac
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 6d653e47d2e906c6306134804c7731b374d830ba
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999984"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225002"
 ---
 # <a name="manage-state-data"></a>管理状态数据
 
@@ -56,7 +56,7 @@ var bot = new builder.UniversalBot(connector, [..waterfall steps..])
 
 ## <a name="storage-containers"></a>存储容器
 
-在 Bot Builder SDK for Node.js 中，`session` 对象公开以下用于存储状态数据的属性。
+在 Bot Framework SDK for Node.js 中，`session` 对象公开以下用于存储状态数据的属性。
 
 | 属性 | 范围 | Description |
 | ---- | ---- | ---- |
@@ -129,7 +129,7 @@ session.userdata.start = startDate.toISOString();
 
 ### <a name="saving-data"></a>保存数据
 
-保存容器之前，在每个存储容器中创建的数据都将保留在内存中。 Bot Builder SDK for Node.js 向 `ChatConnector` 服务分批发送数据，以便在发送消息时保存数据。 若要保存存储容器中的现有数据而不发送任何消息，可以手动调用 [`save`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#save) 方法。 如果不调用 `save` 方法，存储容器中的现有数据将保留为批处理的一部分。
+保存容器之前，在每个存储容器中创建的数据都将保留在内存中。 Bot Framework SDK for Node.js 向 `ChatConnector` 服务分批发送数据，以便在发送消息时保存数据。 若要保存存储容器中的现有数据而不发送任何消息，可以手动调用 [`save`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#save) 方法。 如果不调用 `save` 方法，存储容器中的现有数据将保留为批处理的一部分。
 
 ```javascript
 session.userData.favoriteColor = "Red";

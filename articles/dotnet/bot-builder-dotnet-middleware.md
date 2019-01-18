@@ -1,6 +1,6 @@
 ---
 title: 截获消息 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for .NET 截获用户和机器人之间的消息。
+description: 了解如何使用 Bot Framework SDK for .NET 截获用户和机器人之间的消息。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 21607dae5c2a8d08ed4b7bf1b6e6983cd9bf1196
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 54ab447fac81ba17f1fa277347cf7a5aaaab8850
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999724"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54223772"
 ---
 # <a name="intercept-messages"></a>截获消息
 
@@ -28,7 +28,7 @@ ms.locfileid: "49999724"
 
 ## <a name="intercept-and-log-messages"></a>截获并记录消息
 
-以下代码示例演示如何使用 Bot Builder SDK for .NET 中的中间件概念来截获用户和机器人之间交换的消息。 
+以下代码示例演示如何使用 Bot Framework SDK for .NET 中的中间件概念来截获用户和机器人之间交换的消息。 
 
 首先，创建 `DebugActivityLogger` 类并定义 `LogAsync` 方法，以指定针对每条截获的消息要采取的操作。 此示例仅输出每条消息的部分信息。
 
@@ -62,9 +62,9 @@ public class DebugActivityLogger : IActivityLogger
 
 ## <a name="sample-code"></a>代码示例 
 
-有关演示如何使用 Bot Builder SDK for .NET 来截获并记录消息的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-Middleware" target="_blank">中间件示例</a>。 
+有关演示如何使用 Bot Framework SDK for .NET 来截获并记录消息的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-Middleware" target="_blank">中间件示例</a>。 
 
 ## <a name="additional-resources"></a>其他资源
 
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-Middleware" target="_blank">中间件示例 (GitHub)</a>

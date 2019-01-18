@@ -9,21 +9,20 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 01/08/2019
-ms.openlocfilehash: fd852a75b911f57743b40d252b24c6ef33b0420d
-ms.sourcegitcommit: ddc8c116887ada67642d49ee5166e7f1ae287263
+ms.openlocfilehash: da809023338847374715f7576481fc8d17a21ded
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/08/2019
-ms.locfileid: "54114891"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225392"
 ---
 ::: moniker range="azure-bot-service-3.0"
-
 
 # <a name="create-a-bot-with-azure-bot-service"></a>使用 Azure 机器人服务创建机器人
 
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
-机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Builder SDK 和用于将机器人连接到通道的 Bot Framework。 机器人服务提供了五个模板，你可以在创建支持 .NET 和 Node.js 的机器人时选择这些模板。 本主题介绍如何使用机器人服务创建使用 Bot Builder SDK 的新机器人。
+机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Framework SDK 以及用于将机器人连接到通道的 Bot Framework。 机器人服务提供了五个模板，你可以在创建支持 .NET 和 Node.js 的机器人时选择这些模板。 本主题介绍如何使用机器人服务创建使用 Bot Framework SDK 的新机器人。
 
 ## <a name="log-in-to-azure"></a>登录 Azure
 登录到 [Azure 门户](http://portal.azure.com)。
@@ -84,7 +83,7 @@ ms.locfileid: "54114891"
 
 [!INCLUDE [pre-release-label](includes/pre-release-label.md)]
 
-Azure 机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Builder SDK 和用于将机器人连接到通道的机器人服务。 在本主题中，还可以选择 .NET 或 Node.js 模板，以便使用 Bot Builder SDK v4 创建机器人。
+Azure 机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Framework SDK 以及用于将机器人连接到通道的机器人服务。 在本主题中，还可以选择 .NET 或 Node.js 模板，以便使用 Bot Framework SDK v4 创建机器人。
 
 ## <a name="prerequisites"></a>先决条件
 - [Azure](http://portal.azure.com) 帐户

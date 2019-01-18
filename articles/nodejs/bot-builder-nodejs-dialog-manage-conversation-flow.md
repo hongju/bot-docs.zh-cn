@@ -1,6 +1,6 @@
 ---
-title: 使用对话管理聊天流 | Microsoft Docs
-description: 了解如何在 Bot Builder SDK for Node.js 中使用对话管理机器人与用户之间的聊天。
+title: 使用对话框管理会话流 | Microsoft Docs
+description: 了解如何在 Bot Framework SDK for Node.js 中使用对话框管理机器人与用户之间的聊天。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 133f085a857d1bb8bf7622e7adab19374902327d
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 96c28101c3ea72c70c6ad53b06306f4ea00b2929
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997764"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225602"
 ---
 # <a name="manage-conversation-flow-with-dialogs"></a>使用对话框管理会话流
 
@@ -24,9 +24,9 @@ ms.locfileid: "49997764"
 > - [.NET](../dotnet/bot-builder-dotnet-manage-conversation-flow.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-dialog-manage-conversation-flow.md)
 
-管理聊天流是构建机器人不可或缺的任务。 机器人需要能够漂亮地执行核心任务，并优雅地处理中断情况。 借助 Bot Builder SDK for Node.js，可使用对话来管理聊天流。
+管理聊天流是构建机器人不可或缺的任务。 机器人需要能够漂亮地执行核心任务，并优雅地处理中断情况。 使用 Bot Framework SDK for Node.js 时，可通过对话框来管理聊天流。
 
-对话就像程序中的函数。 这通常是为了执行特定操作，并可根据需要随时调用。 如果将多个对话串联在一起，还可处理希望机器人处理的几乎任何聊天流。 可使用 Bot Builder SDK for Node.js 中的内置功能（如[提示](bot-builder-nodejs-dialog-prompt.md)和[瀑布](bot-builder-nodejs-dialog-waterfall.md)）帮助管理聊天流。
+对话框就像程序中的函数。 这通常是为了执行特定操作，并可根据需要随时调用。 就像希望机器人处理的任何会话流一样，可以将多个对话框串联在一起处理。 可使用 Bot Framework SDK for Node.js 中的内置功能（如[提示](bot-builder-nodejs-dialog-prompt.md)和[瀑布图](bot-builder-nodejs-dialog-waterfall.md)）来管理聊天流。
 
 本文列举了一系列示例，说明如何同时管理简单的聊天流和复杂的聊天流，其中机器人可使用对话完美地处理中断并继续聊天流。 这些示例基于以下场景： 
 
@@ -95,7 +95,7 @@ var bot = new builder.UniversalBot(connector, [..waterfall steps..]).set('storag
 
 此示例的每个步骤都将使用提示要求用户进行输入。 提示是特殊类型的对话，用于提醒用户输入、等待响应以及向瀑布的下一步返回响应。 有关可在机器人中使用的各种类型的提示信息，请参阅[提示用户输入](bot-builder-nodejs-dialog-prompt.md)。
 
-在此示例中，机器人使用 `Prompts.text()` 以文本格式形式向用户请求自由格式的响应。 用户可使用任何文本进行响应，并且机器人必须决定处理响应的方式。 `Prompts.time()` 使用 [Chrono](https://github.com/wanasit/chrono) 库分析字符串中的日期和时间信息。 这样，机器人便可理解更多用于指定日期和时间的自然语言。 例如，“2017 年 6 月 6 日晚上 9 点”、“今天晚上 7:30”、“下周星期一下午 6 点”等等。
+在此示例中，机器人使用 `Prompts.text()` 以文本格式形式向用户请求自由格式的响应。 用户可使用任何文本进行响应，并且机器人必须决定处理响应的方式。 `Prompts.time()` 使用 [Chrono](https://github.com/wanasit/chrono) 库分析字符串中的日期和时间信息。 这样，机器人便可理解更多用于指定日期和时间的自然语言。 例如：“2017 年 6 月 6 日晚上 9 点”、“今天晚上 7:30”、“下星期一下午 6 点”，等等。
 
 > [!TIP] 
 > 根据托管机器人的服务器的时区，将用户输入的时间转换为 UTC 时间。 服务器与用户所在的时区可能不同，因此请务必考虑到时区。 若要将日期和时间转换为用户的本地时间，请考虑请求用户指定他们所在的时区。
@@ -174,7 +174,7 @@ bot.dialog('askForReserverName', [
 
 在引导用户完成一系列任务的过程中，如果用户有问题或想要在回答前请求其他信息，如何处理这些请求？ 例如，不考虑用户在聊天中的所在位置，如果用户输入“help”、“Support”或“Cancel”，机器人会如何响应？ 如果用户需要有关某个步骤的其他信息，将会怎么样？ 如果用户改变主意，想要放弃当前任务，而启动一个完全不同的任务，会发生什么情况？
 
-Bot Builder SDK for Node.js 允许机器人侦听全局上下文中的某些输入或当前对话范围内的本地上下文。 这些输入被称为[操作](bot-builder-nodejs-dialog-actions.md)，使机器人能够基于 `matches` 子句侦听用户输入。 由机器人来决定如何对特定用户输入作出响应。
+Bot Framework SDK for Node.js 允许机器人侦听全局上下文中的某些输入，或侦听当前对话框范围内本地上下文中的输入。 这些输入被称为[操作](bot-builder-nodejs-dialog-actions.md)，使机器人能够基于 `matches` 子句侦听用户输入。 由机器人来决定如何对特定用户输入作出响应。
 
 ### <a name="handle-global-action"></a>处理全局操作
 

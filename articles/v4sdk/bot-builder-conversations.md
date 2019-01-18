@@ -1,6 +1,6 @@
 ---
-title: Bot Builder SDK 中的会话 | Microsoft Docs
-description: 介绍 Bot Builder SDK 中的会话内容。
+title: Bot Framework SDK 中的聊天 | Microsoft Docs
+description: 介绍 Bot Framework SDK 中的聊天。
 keywords: 聊天流, 识别意向, 单轮次, 多轮次, 机器人聊天
 author: jonathanfingold
 ms.author: jonathanfingold
@@ -10,19 +10,19 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/01/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 19f0b67454a8c0a4bf171579f8e481e630db83ac
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: b94150e168942370a38d39742157e57d0118f0eb
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998914"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225075"
 ---
 # <a name="conversation-flow"></a>会话流
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 设计机器人的会话流涉及决定机器人在用户向其说出某些内容时如何响应。 机器人首先根据来自用户的消息识别任务或会话主题。 要确定与用户消息相关联的任务或主题（称为“意向”），机器人可以在用户消息的文本中查找单词或模式，或者可以利用[语言理解](bot-builder-concept-luis.md)和 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 等服务。
 
-一旦机器人识别出用户意向，根据场景，机器人可以通过单个回复完成用户的请求，一个轮次完成会话，或者可能需要一系列轮次才能完成。 对于多个轮次会话流，Bot Builder SDK 提供用于跟踪会话的[状态管理](./bot-builder-howto-v4-state.md)、用于请求信息的[提示](bot-builder-prompts.md)、以及用于封装会话流的[对话框](bot-builder-dialog-manage-conversation-flow.md)。
+一旦机器人识别出用户意向，根据场景，机器人可以通过单个回复完成用户的请求，一个轮次完成会话，或者可能需要一系列轮次才能完成。 对于多个轮次的聊天流，Bot Framework SDK 提供用于跟踪聊天的[状态管理](./bot-builder-howto-v4-state.md)、用于请求信息的[提示](bot-builder-prompts.md)，以及用于封装聊天流的[对话框](bot-builder-dialog-manage-conversation-flow.md)。
 
 在具有多个子系统的复杂机器人中，可以使用多个服务来识别意向，每项服务针对机器人的每个子组件。 当将聊天子系统组合到一个机器人中时，[调度工具](bot-builder-tutorial-dispatch.md)可以在一个位置获得多个服务的结果。
 
@@ -73,7 +73,7 @@ A bot communicates with a user on a channel by receiving activities from, and se
 
 ### <a name="recognize-intent"></a>识别意向
 
-Bot Builder SDK 提供识别器，用于处理消息以确定意向，因此机器人可以启动适当的聊天流。 调用识别器的 _recognize_ 异步方法，以根据其消息内容确定用户的意向。 然后，可以对结果调用_获取最高得分意向_方法，以获取识别器的最高预测。
+Bot Framework SDK 提供识别器，用于处理消息以确定意向，因此机器人可以启动适当的聊天流。 调用识别器的 _recognize_ 异步方法，以根据其消息内容确定用户的意向。 然后，可以对结果调用_获取最高得分意向_方法，以获取识别器的最高预测。
 
 识别器可以使用正则表达式、语言理解或你开发的其他逻辑。 下面是可能的识别器的示例：
 
@@ -111,7 +111,7 @@ Bot Builder SDK 提供识别器，用于处理消息以确定意向，因此机�
 <!--  Types of conversations -->
 
 机器人可以支持多轮次交互，在交互中它会提示用户输入多条信息。 它可以专注于非常特定的任务或支持多种类型的任务。
-Bot Builder SDK 具有对语言理解 (LUIS) 和 QnA Maker 的某种内置支持，可以向机器人添加自然语言“问答”功能。
+Bot Framework SDK 具有对语言理解 (LUIS) 和 QnA Maker 的某种内置支持，可以向机器人添加自然语言“问答”功能。
 
 ## <a name="conversations-channels-and-users"></a>会话、通道和用户
 

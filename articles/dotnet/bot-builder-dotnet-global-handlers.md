@@ -1,6 +1,6 @@
 ---
 title: 实现全局消息处理程序 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for .NET 让机器人侦听并处理包含某些关键字的用户输入。
+description: 了解如何使用 Bot Framework SDK for .NET 让机器人侦听并处理包含某些关键字的用户输入。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3f180e721dc6ca2cf1ca85f5ff54137f16b36be5
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 86964bc39a95a23f397af649cfac6e2784dd588a
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998358"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224362"
 ---
 # <a name="implement-global-message-handlers"></a>实现全局消息处理程序
 
@@ -24,7 +24,7 @@ ms.locfileid: "49998358"
 
 ## <a name="listen-for-keywords-in-user-input"></a>侦听用户输入中的关键字
 
-以下演练将逐步介绍如何使用 Bot Builder SDK for .NET 来实现全局消息处理程序。
+以下演练逐步介绍如何使用 Bot Framework SDK for .NET 来实现全局消息处理程序。
 
 首先，`Global.asax.cs` 注册 `GlobalMessageHandlersBotModule`，其实现方法如下所示。 在此示例中，该模块会注册两个 scorable：一个用于管理要更改设置的请求 (`SettingsScorable`)，另一个用于管理要取消的请求 (`CancelScoreable`)。
 
@@ -92,10 +92,10 @@ protected override async Task PostAsync(IActivity item, string state, Cancellati
 
 ## <a name="sample-code"></a>代码示例
 
-有关演示如何使用 Bot Builder SDK for .NET 实现全局消息处理程序的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-GlobalMessageHandlers" target="_blank">全局消息处理程序示例</a>。
+有关演示如何使用 Bot Framework SDK for .NET 实现全局消息处理程序的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-GlobalMessageHandlers" target="_blank">全局消息处理程序示例</a>。
 
 ## <a name="additional-resources"></a>其他资源
 
 - [设计和控制聊天流](../bot-service-design-conversation-flow.md)
-- <a href="/dotnet/api/?view=botbuilder-3.12.2.4" target="_blank">Bot Builder SDK for .NET 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.12.2.4" target="_blank">Bot Framework SDK for .NET 参考</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-GlobalMessageHandlers" target="_blank">全局消息处理程序示例 (GitHub)</a>

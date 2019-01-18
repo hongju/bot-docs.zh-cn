@@ -9,28 +9,28 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6b80fb9e38f19af5076cd578fdb8058a2d5cf932
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 211717ba4ac8a9a2459035d3e2404410cd70ba93
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998380"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224432"
 ---
 # <a name="bot-framework-reference"></a>Bot Framework 参考
 
 [!INCLUDE [pre-release-label](./includes/pre-release-label-v3.md)]
 
-Bot Framework 包括用于 .NET 的 Bot Builder SDK、用于 Node.js 的 Bot Builder SDK 以及 Bot Framework REST API 的综合参考文档。
+Bot Framework 包含针对 Bot Framework SDK for .NET、Bot Framework SDK for Node.js 以及 Bot Framework REST API 的综合性参考文档。
 
-## <a name="bot-builder-sdk-for-net"></a>用于 .NET 的 Bot Builder SDK
-若要了解用于 .NET 的 Bot Builder SDK 的结构，请参阅[用于 .NET 的 Bot Builder SDK 参考文档](/dotnet/api/)。
+## <a name="bot-framework-sdk-for-net"></a>Bot Framework SDK for .NET
+若要了解 Bot Framework SDK for .NET 的结构，请参阅 [Bot Framework SDK for .NET 参考文档](/dotnet/api/)。
 
-还可以在 GitHub 上浏览用于 .NET 的 Bot Builder SDK [源代码](https://github.com/Microsoft/BotBuilder/tree/master/CSharp)。 
+还可以在 GitHub 上浏览 Bot Framework SDK for .NET [源代码](https://github.com/Microsoft/BotBuilder/tree/master/CSharp)。 
 
-## <a name="bot-builder-sdk-for-nodejs"></a>用于 Node.js 的 Bot Builder SDK
-若要了解用于 Node.js 的 Bot Builder SDK 的结构，请参阅[用于 Node.js 的 Bot Builder SDK 参考文档](https://docs.botframework.com/en-us/node/builder/calling-reference/modules/_botbuilder_d_.html)。
+## <a name="bot-framework-sdk-for-nodejs"></a>Bot Framework SDK for Node.js
+若要了解 Bot Framework SDK for Node.js 的结构，请参阅 [Bot Framework SDK for Node.js 参考文档](https://docs.botframework.com/en-us/node/builder/calling-reference/modules/_botbuilder_d_.html)。
 
-还可以在 GitHub 上浏览用于 Node.js 的 Bot Builder SDK [源代码](https://github.com/Microsoft/BotBuilder/tree/master/Node)。
+还可以在 GitHub 上浏览 Bot Framework SDK for Node.js [源代码](https://github.com/Microsoft/BotBuilder/tree/master/Node)。
 
 ## <a name="bot-framework-rest-apis"></a>Bot Framework REST API
 若要了解 Bot Connector 服务，请参阅 [Bot Framework REST API 参考文档](~/rest-api/bot-framework-rest-connector-api-reference.md)。 

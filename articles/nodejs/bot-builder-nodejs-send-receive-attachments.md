@@ -1,6 +1,6 @@
 ---
 title: 发送和接收附件 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for Node.js 发送和接收包含附件的消息。
+description: 了解如何使用 Bot Framework SDK for Node.js 发送和接收包含附件的消息。
 author: DeniseMak
 ms.author: v-demak
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 41e1e9e6fe59f00b8b8c873c2dd5fd2d698dabcb
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 1911a5b0f8e8f8b53de6f661c0a939767df1efbb
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998184"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224692"
 ---
 # <a name="send-and-receive-attachments"></a>发送和接收附件
 
@@ -27,7 +27,7 @@ ms.locfileid: "49998184"
 
 用户与机器人之间的消息交换可以包含媒体附件，例如图像、视频、音频和文件。 可以发送的附件类型因通道而异，但以下是基本类型：
 
-* **媒体和文件**：可通过将 contentType 设置为 [IAttachment object][IAttachment] 的 MIME 类型来发送图像、音频和视频等文件，然后将链接传递给 contentUrl 中的文件。
+* **媒体和文件**：可通过将 contentType 设置为 [IAttachment 对象][IAttachment]的 MIME 类型来发送图像、音频和视频等文件，然后将链接传递给 contentUrl 中的文件。
 * **卡片**：可通过将 contentType 设置为所需的卡类型来发送一组丰富的可视卡片 <!-- and custom keyboards -->，然后传递卡片 JSON。 如果使用其中一个资讯卡生成器类（如 HeroCard），则会自动为你填写附件。 有关此示例，请参阅[发送资讯卡](bot-builder-nodejs-send-rich-cards.md)。
 
 ## <a name="add-a-media-attachment"></a>添加媒体附件

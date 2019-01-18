@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 10/30/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 27e0b54b4e790e76c55deb858e50d8c81507443a
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: 3bfbcb27aa6e38792f96e0d3fe042f02f6e11083
+ms.sourcegitcommit: d385ec5fe61c469ab17e6f21b4a0d50e5110d0fd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010592"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54298314"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
 
@@ -34,7 +34,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 - 改进了通道，支持新的身份验证功能（如新的 WebChat 和 DirectLineJS 库），无需 6 位数幻码验证。
 - 改进了 Azure 门户，可添加、删除和配置各种 OAuth 标识提供者的连接设置。
 - 支持各种现成的标识提供者，包括 Azure AD（v1 和 v2 终结点）、GitHub 等。
-- 更新了 C# 和 Node.js Bot Builder SDK，可检索令牌、创建 OAuthCards 并处理 TokenResponse 事件。
+- 更新了 C# 和 Node.js Bot Framework SDK，使之可检索令牌、创建 OAuthCard 并处理 TokenResponse 事件。
 - 提供用于向 Azure AD 进行身份验证的机器人的开发方法示例。
 
 你可以根据本文中的步骤进行推断，将此类功能添加到现有机器人。 以下是演示新身份验证功能的示例机器人
@@ -256,7 +256,8 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 1. 启动机器人（无论有无调试）。
 1. 请注意页面的 localhost 端口号。 与机器人交互时将需要此信息。
 1. 启动模拟器。
-1. 连接到机器人。
+1. 连接到机器人。 确保机器人配置在使用身份验证时使用“Microsoft 应用 ID”和“Microsoft 应用密码”
+1. 确保在模拟器设置中勾选“使用登录验证代码作为 OAuthCard”并启用“ngrok”，以便 Azure 机器人服务能够在令牌可用时将其返回给模拟器。
 
    如果尚未配置连接，请提供地址和机器人的 Microsoft 应用 ID 和密码。 将 `/api/messages` 添加到机器人的 URL。 URL 应类似于 `http://localhost:portNumber/api/messages`。
 
@@ -486,4 +487,4 @@ private isTeamsVerificationInvoke(context: TurnContext): boolean {
 在之后调用机器人时，注意该示例机器人绝不会缓存令牌。 这是因为机器人始终可以向 Azure 机器人服务询问令牌。 这样机器人就无需管理令牌生存期、刷新令牌等，因为 Azure 机器人服务会为你完成所有这些操作。
 
 ## <a name="additional-resources"></a>其他资源
-[Bot Builder SDK](https://github.com/microsoft/botbuilder)
+[Bot Framework SDK](https://github.com/microsoft/botbuilder)

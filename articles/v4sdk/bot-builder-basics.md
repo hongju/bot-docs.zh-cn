@@ -1,6 +1,6 @@
 ---
 title: 机器人的工作原理 | Microsoft Docs
-description: 介绍 Bot Builder SDK 中的活动和 http 工作原理。
+description: 介绍 Bot Framework SDK 中的活动和 http 工作原理。
 keywords: 聊天流, 轮次, 机器人聊天, 对话, 提示, 瀑布, 对话集
 author: johnataylor
 ms.author: johtaylo
@@ -8,40 +8,40 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/15/2018
+ms.date: 1/10/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c4d4879f7ad127838de9d2563dee8f8d7320d61e
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: a1b155db3ec717a1084ae0e098e8f22997a80b0e
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010572"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225932"
 ---
 # <a name="how-bots-work"></a>机器人的工作原理
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-机器人是用户使用文本、图形（例如卡片或图像）或语音通过聊天的方式进行交互的应用。 用户与机器人之间的每次交互会生成一个活动。 机器人服务在用户的机器人联网应用（例如 Facebook、Skype、Slack 等，称为“通道”）与机器人之间发送信息。 每个通道可以在发送的活动中包含其他信息。 在创建机器人之前，必须了解机器人如何使用活动对象来与其用户通信。 首先，让我们了解在运行简单的聊天机器人时交换的活动。
+机器人是用户使用文本、图形（例如卡片或图像）或语音通过聊天的方式与之进行交互的应用。 用户与机器人之间的每次交互会生成一个活动。 Bot Framework Service 是 Azure 机器人服务的组件，可在连接机器人的用户应用（例如 Facebook、Skype、Slack 等，称为“通道”）与机器人之间发送信息。 每个通道可以在发送的活动中包含其他信息。 在创建机器人之前，必须了解机器人如何使用活动对象来与其用户通信。 首先，让我们了解在运行简单的聊天机器人时交换的活动。 
 
 ![活动示意图](media/bot-builder-activity.png)
 
 此处演示了两种活动类型：聊天更新和消息。
 
-当某一方参与聊天时，Bot Framework Service 可以发送聊天更新。 例如，使用 Bot Framework Emulator 开始聊天时，会看到两个聊天更新活动（一个活动指出用户正在参与聊天，另一个活动指出机器人正在参与聊天）。 若要区分这些聊天更新活动，请检查“成员已添加”属性是否包含除机器人以外的成员。 
+当某一方参与聊天时，Bot Framework Service 可以发送聊天更新。 例如，使用 Bot Framework Emulator 开始聊天时，会看到两个聊天更新活动（一个活动指出用户正在参与聊天，另一个活动指出机器人正在参与聊天）。 若要区分这些聊天更新活动，请检查“已添加成员”属性是否包含除机器人以外的成员。 
 
-消息活动承载参与方之间的聊天信息。 在聊天机器人示例中，消息活动承载简单的文本，通道呈现这些文本。 或者，消息活动可能承载要讲述的文本、建议的操作或要显示的卡片。
+消息活动承载参与方之间的聊天信息。 在聊天机器人示例中，消息活动承载简单的文本，通道呈现这些文本。 消息活动也可以承载要讲述的文本、建议的操作或要显示的卡片。
 
 在此示例中，机器人创建并发送了一个消息活动，以响应它收到的入站消息活动。 但是，机器人可通过其他方式响应收到的消息活动；机器人经常通过在消息活动中发送一些欢迎文本来响应聊天更新活动。 在[欢迎用户](bot-builder-welcome-user.md)中可以找到更多信息。
 
 ### <a name="http-details"></a>HTTP 详细信息
 
-活动通过 HTTP POST 请求从 Bot Framework Service 抵达机器人。 机器人使用 200 HTTP 状态代码响应入站 POST 请求。 从机器人发送到通道的活动通过单独的 HTTP POST 发送到 Bot Framework Service。 而此请求将通过 200 HTTP 状态代码得到确认。
+活动通过 HTTP POST 请求从 Bot Framework Service 抵达机器人。 机器人使用 200 HTTP 状态代码响应入站 POST 请求。 从机器人发送到通道的活动通过单独的 HTTP POST 发送到 Bot Framework Service。 而此请求也会通过 200 HTTP 状态代码得到确认。
 
-协议不会指定这些 POST 请求及其确认的发送顺序。 但是，为了适应常见的 HTTP 服务框架，这些请求通常会嵌套，这意味着，出站 HTTP 请求将在入站 HTTP 请求的范围内从机器人发出。 上图演示了此模式。 由于后端之间存在两个不同的 HTTP 连接，安全模型必须提供这两个连接。
+协议不会指定这些 POST 请求及其确认的发送顺序。 但是，为了适应常见的 HTTP 服务框架，这些请求通常会嵌套，这意味着，出站 HTTP 请求将在入站 HTTP 请求的范围内从机器人发出。 上图演示了此模式。 由于两个不同的 HTTP 连接相继出现，安全模型必须能够应对这种情况。
 
 ### <a name="defining-a-turn"></a>定义轮次
 
-在聊天时，人们通常一次说一句话，并且会轮流说话。 使用机器人时，通常是由机器人对用户输入进行响应。 在 Bot Builder SDK 中，一轮通话既包含用户传给机器人的活动，又包含机器人发回用户的作为即时响应的活动。 可以将一个轮次视为给定活动抵达时的相关处理。
+在聊天时，人们通常一次说一句话，并且会轮流说话。 使用机器人时，通常是由机器人对用户输入进行响应。 在 Bot Framework SDK 中，一轮通话既包含用户传给机器人的活动，又包含机器人发回用户的作为即时响应的活动。 可以将一个轮次视为给定活动抵达时的相关处理。
 
 轮次上下文对象提供有关活动的信息，例如发送方和接收方、通道，以及处理该活动所需的其他数据。 使用该对象还能在机器人的不同层中处理轮次期间添加信息。
 
@@ -53,7 +53,7 @@ ms.locfileid: "53010572"
 
 ![活动处理堆栈](media/bot-builder-activity-processing-stack.png)
 
-在上述示例中，机器人使用包含相同文本消息的另一个消息活动回复了原始消息活动。 处理工作从 HTTP POST 请求开始，该请求包含作为 JSON 有效负载承载的活动，抵达 Web 服务器。 在 C# 中，这通常是一个 ASP.NET 项目；在 JavaScript Node.js 项目中，这可能是 Express 或 Restify 等常用框架之一。
+在上述示例中，机器人使用包含相同文本消息的另一个消息活动回复了原始消息活动。 处理工作从 HTTP POST 请求（包含以 JSON 有效负载形式传递的活动信息）抵达 Web 服务器时开始。 在 C# 中，这通常是一个 ASP.NET 项目；在 JavaScript Node.js 项目中，这可能是 Express 或 Restify 等常用框架之一。
 
 适配器（SDK 的集成组件）是 SDK 运行时的核心。 活动以 JSON 形式承载在 HTTP POST 正文中。 将反序列化此 JSON 以创建 Activity 对象，然后通过调用 *process activity* 方法将此对象传递给适配器。 收到活动时，适配器会创建轮次上下文并调用中间件。 之所以称作“轮次上下文”，是因为使用了“轮次”一词来描述与活动抵达相关的所有处理。 轮次上下文是 SDK 中最重要的抽象之一，它不仅将入站活动传递到所有中间件组件和应用程序逻辑，而且还提供所需的机制让中间件组件和应用程序逻辑发送出站活动。 轮次上下文提供 _send、update 和 delete activity_ 响应方法来响应活动。 每个响应方法都在异步进程中运行。 
 

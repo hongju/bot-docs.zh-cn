@@ -1,6 +1,6 @@
 ---
 title: 使用对话管理聊天流 | Microsoft Docs
-description: 了解如何使用对话和 Bot Builder SDK for .NET 为聊天建模和管理聊天流。
+description: 了解如何使用对话框和 Bot Framework SDK for .NET 为聊天建模和管理聊天流。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 94690f58526e8ee322a73c68136d2b52667e1c89
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d8e482d8f4003ad7bcd807e8fd12e3c68c4ce8c8
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999944"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225892"
 ---
 # <a name="manage-conversation-flow-with-dialogs"></a>使用对话框管理会话流
 
@@ -26,7 +26,7 @@ ms.locfileid: "49999944"
 
 [!INCLUDE [Dialog flow example](../includes/snippet-dotnet-manage-conversation-flow-intro.md)]
 
-本文介绍如何使用[对话](bot-builder-dotnet-dialogs.md)和 Bot Builder SDK for .NET 为此聊天流建模。 
+本文介绍如何使用[对话框](bot-builder-dotnet-dialogs.md)和 Bot Framework SDK for .NET 为此聊天流建模。 
 
 ## <a name="invoke-the-root-dialog"></a>调用根对话
 
@@ -129,11 +129,11 @@ private async Task NameDialogResumeAfter(IDialogContext context, IAwaitable<stri
 
 ## <a name="sample-code"></a>代码示例 
 
-有关演示如何使用 Bot Builder SDK for .NET 中的对话管理聊天的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-BasicMultiDialog" target="_blank">基本多对话示例</a>。
+有关演示如何使用 Bot Framework SDK for .NET 中的对话框管理聊天的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-BasicMultiDialog" target="_blank">基本的多对话框示例</a>。
 
 ## <a name="additional-resources"></a>其他资源
 
 - [对话框](bot-builder-dotnet-dialogs.md)
 - [设计和控制聊天流](../bot-service-design-conversation-flow.md)
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-BasicMultiDialog" target="_blank">基本多对话示例 (GitHub)</a>
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">用于 .NET 的 Bot Builder SDK 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>

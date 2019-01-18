@@ -7,13 +7,13 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 10/31/2018
-ms.openlocfilehash: 616c3bfd5fcb36c06f4e2acf032ba3cf5fc125d3
-ms.sourcegitcommit: a496714fb72550a743d738702f4f79e254c69d06
+ms.date: 1/10/2019
+ms.openlocfilehash: 4e11ecfa2d42b93b85d186a5078b612ef64e7cdd
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/01/2018
-ms.locfileid: "50736695"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317647"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -88,12 +88,15 @@ Azure 机器人服务提供的工具可用于在一个位置构建、测试、�
 
 机器人可以完成其他类型的软件可以完成的任务 - 读写文件、使用数据库和 API，以及执行常规的计算任务。 使机器人不同于其他软件的是，它们使用的通信机制通常是人与人之间通信才会使用的。 
 
-机器人通常包含以下组件：
+Azure 机器人服务套餐：
+- 用于开发机器人的 Bot Framework SDK
+- 涵盖端到端机器人开发工作流的 Bot Framework 工具
+- Bot Framework Service (BFS)，用于在机器人和通道之间发送和接收消息和事件
+- Azure 中的机器人部署和通道配置
 
-- Web 服务器，通常在公共 Internet 上提供
-- Bot Builder SDK 和 Bot Builder Tools，提供开发机器人所需的界面
-- Azure 认知服务
-- Azure 存储
+另外，机器人可能使用其他 Azure 服务，例如：
+- 用于生成智能应用程序的 Azure 认知服务 
+- 用于云存储解决方案的 Azure 存储
 
 ## <a name="building-a-bot"></a>构建机器人 
 
@@ -105,11 +108,11 @@ Azure 机器人服务提供一组集成的工具和服务来加快此过程。 �
 与任何类型的软件一样，若要创建成功的机器人，必须全面了解目标、流程和用户需求。 在编写代码之前，请参阅[设计指南](bot-service-design-principles.md) ，了解最佳做法并确定机器人的需求。 可以创建简单的机器人，也可以让机器人包含较复杂的功能，例如语音、自然语言理解和问题解答。
 
 ### <a name="build"></a>构建
-机器人是一项 Web 服务，可实现聊天式界面并与 Bot Framework Service 通信，以便发送和接收消息和事件。 可在任意数目的环境和语言中创建机器人。 可在 [Azure 门户](bot-service-quickstart.md)中开始机器人开发，也可使用 [[C#](dotnet/bot-builder-dotnet-sdk-quickstart.md) | [JavaScript](javascript/bot-builder-javascript-quickstart.md)] 模板进行本地开发。
+机器人是一项 Web 服务，可实现聊天式界面并与 Bot Framework Service 通信，以便发送和接收消息和事件。 Bot Framework Service 是 Azure 机器人服务的一个组件。 可在任意数目的环境和语言中创建机器人。 可在 [Azure 门户](bot-service-quickstart.md)中开始机器人开发，也可使用 [[C#](dotnet/bot-builder-dotnet-sdk-quickstart.md) | [JavaScript](javascript/bot-builder-javascript-quickstart.md)] 模板进行本地开发。
 
 我们提供其他组件作为 Azure 机器人服务的一部分来扩展机器人的功能
 
-| 功能 | Description | 链接 |
+| Feature | Description | 链接 |
 | --- | --- | --- |
 | 添加自然语言处理 | 可让机器人理解自然语言、了解拼写错误、使用语音和识别用户的意向 | 如何使用 [LUIS](~/v4sdk/bot-builder-howto-v4-luis.md) 
 | 回答问题 | 添加知识库，以更自然的聊天形式回答用户的提问 | 如何使用 [QnA Maker](~/v4sdk/bot-builder-howto-qna.md) 

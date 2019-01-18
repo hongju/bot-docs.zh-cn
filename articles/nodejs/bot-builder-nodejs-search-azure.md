@@ -1,6 +1,6 @@
 ---
 title: 使用 Azure 搜索创建数据驱动体验 | Microsoft Docs
-description: 了解如何使用 Azure 搜索创建数据驱动体验，并帮助用户在机器人中使用 Bot Builder SDK for Node.js 和 Azure 搜索导航大量内容。
+description: 了解如何使用 Azure 搜索创建数据驱动体验，并帮助用户在机器人中使用 Bot Framework SDK for Node.js 和 Azure 搜索导航大量内容。
 author: matthewshim-ms
 ms.author: v-shimma
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 204fb5d8f4838c78d771bfad5c0ed6511b27932b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: ac4597e93f8cdaa4c9b015a4136ab09e9b7adc95
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999994"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224712"
 ---
 # <a name="create-data-driven-experiences-with-azure-search"></a>使用 Azure 搜索创建数据驱动体验 
 
@@ -85,7 +85,7 @@ bot.library(SearchLibrary.create({
 
 ## <a name="create-a-search-dialog"></a>创建搜索对话框
 
-可以选择根据需要组织对话框。 设置 Azure 搜索对话框的唯一要求是从 `SearchLibrary` 对象调用 `.begin` 方法，同时传入 Bot Builder SDK 生成的 `session` 对象。 
+可以选择根据需要组织对话框。 设置 Azure 搜索对话框的唯一要求是从 `SearchLibrary` 对象调用 `.begin` 方法，同时传入 Bot Framework SDK 生成的 `session` 对象。 
 
 ```javascript
 function (session) {
@@ -151,7 +151,7 @@ function searchHitAsCard(showSave, searchHit) {
 
 ## <a name="sample-code"></a>代码示例
 
-有关显示如何通过 Bot Builder SDK for Node.js 使用机器人支持 Azure 搜索的两个完整示例，请参阅 GitHub 中的[房地产机器人示例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-Search/RealEstateBot)或[作业清单机器人示例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-Search/JobListingBot)。 
+如需通过两个完整的示例来了解如何通过 Bot Framework SDK for Node.js 使用机器人来支持 Azure 搜索，请参阅 GitHub 中的[房地产机器人示例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-Search/RealEstateBot)或[作业清单机器人示例](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-Search/JobListingBot)。 
 
 ## <a name="additional-resources"></a>其他资源
 

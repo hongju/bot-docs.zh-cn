@@ -1,6 +1,6 @@
 ---
 title: 替换对话 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for Node.js 来替换对话，以便重新提示用户输入并管理聊天流。
+description: 了解如何使用 Bot Framework SDK for Node.js 来替换对话框，以便重新提示用户输入并管理聊天流。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,22 +9,22 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 30ac28f5ce700829b8c382c49905883ffa45da29
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 58d2c3fc4a1fb266b74402541fc937f0b52fa189
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000054"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224982"
 ---
 # <a name="replace-dialogs"></a>替换对话
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-在聊天过程中需要验证用户输入或重复某个操作时，可以使用替换对话的功能。 使用 Bot Builder SDK for Node.js 时，可以通过 [`session.replaceDialog`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#replacedialog) 方法来替换对话。 此方法可以结束当前对话，在不返回到调用方的情况下将其替换为新的对话。 
+在聊天过程中需要验证用户输入或重复某个操作时，可以使用替换对话的功能。 使用 Bot Framework SDK for Node.js 时，可以通过 [`session.replaceDialog`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#replacedialog) 方法来替换对话框。 此方法可以结束当前对话，在不返回到调用方的情况下将其替换为新的对话。 
 
 ## <a name="create-custom-prompts-to-validate-input"></a>创建自定义提示来验证输入
 
-Bot Builder SDK for Node.js 包含的输入验证适用于某些类型的[提示](bot-builder-nodejs-dialog-prompt.md)，例如 `Prompts.time` 和 `Prompts.choice`。 若要验证收到的用于响应 `Prompts.text` 的文本输入，必须创建你自己的验证逻辑和自定义提示。 
+Bot Framework SDK for Node.js 包含的输入验证适用于某些类型的[提示](bot-builder-nodejs-dialog-prompt.md)，例如 `Prompts.time` 和 `Prompts.choice`。 若要验证收到的用于响应 `Prompts.text` 的文本输入，必须创建你自己的验证逻辑和自定义提示。 
 
 如果输入必须符合所定义的特定值、模式、范围或条件，则可能需要对输入进行验证。 如果输入没有通过验证，机器人可以使用 `session.replaceDialog` 方法提示用户再次输入该信息。
 

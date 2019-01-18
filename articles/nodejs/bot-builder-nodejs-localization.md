@@ -1,6 +1,6 @@
 ---
 title: 支持本地化 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for Node.js 确定用户所在位置并启用本地化功能。
+description: 了解如何使用 Bot Framework SDK for Node.js 确定用户所在位置并启用本地化功能。
 author: DeniseMak
 ms.author: v-demak
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5ac9fabcb0c6626e1b0133b7718b135a88d4c846
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d592aa8b37e1d73e3cf9003209b985b8ca0f03f8
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998056"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224392"
 ---
 # <a name="support-localization"></a>支持本地化
 
@@ -98,7 +98,7 @@ bot.use({
 将上述代码片段添加到机器人后，调用 [session.preferredLocale()][preferredLocal] 将自动返回检测到的语言。 `preferredLocale()` 的搜索顺序如下所示：
 1. 通过调用 `session.preferredLocale()` 保存的区域设置。 此值存储在 `session.userData['BotBuilder.Data.PreferredLocale']` 中。
 2. 检测到分配给 `session.message.textLocale` 的区域设置。
-3. 机器人配置的默认区域设置（例如：英语 (‘en’)）。
+3. 为机器人配置的默认区域设置（例如：英语(‘en’)）。
 
 可以使用机器人的构造函数配置其默认区域设置：
 
@@ -111,9 +111,9 @@ var bot = new builder.UniversalBot(connector, {
 ```
 
 ## <a name="localize-prompts"></a>本地化提示
-Bot Builder SDK 的默认本地化系统是基于文件的，并允许机器人使用存储在磁盘上的 JSON 文件支持多种语言。 默认情况下，本地化系统将在 **./locale/<IETF TAG>/index.json** 文件中搜索机器人的提示，其中 <IETF TAG> 是有效的 [IETF 语言标记][IEFT]，表示要查找其提示的首选区域设置。 
+Bot Framework SDK 的默认本地化系统是基于文件的，并允许机器人使用存储在磁盘上的 JSON 文件来支持多种语言。 默认情况下，本地化系统将在 **./locale/<IETF TAG>/index.json** 文件中搜索机器人的提示，其中 <IETF TAG> 是有效的 [IETF 语言标记][IEFT]，表示要查找其提示的首选区域设置。 
 
-以下屏幕截图显示了支持三种语言的机器人的目录结构：英语、意大利语和西班牙语。
+以下屏幕截图显示了支持下述三种语言的机器人的目录结构：英语、意大利语和西班牙语。
 
 ![三个区域设置的目录结构](../media/locale-dir.png)
 

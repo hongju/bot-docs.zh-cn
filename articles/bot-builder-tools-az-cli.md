@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: tools
 ms.date: 10/31/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8a59c0a8b7ee664cdb38ab9d0cb186114938d73f
-ms.sourcegitcommit: 782b3a2e788c25effd7d150a070bd2819ea92dad
+ms.openlocfilehash: 4b09ca152f99faa66d2da55ebeb93fb9cce090db
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/01/2018
-ms.locfileid: "50743661"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317687"
 ---
 # <a name="create-bots-with-azure-cli"></a>使用 Azure CLI 创建机器人
 
@@ -35,7 +35,7 @@ ms.locfileid: "50743661"
 
 ## <a name="1-install-tools"></a>1.安装工具
 1. [安装](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)最新版 Azure CLI。
-2. [安装](https://aka.ms/botbuilder-tools-readme) Bot Builder 工具。
+2. [安装](https://aka.ms/botbuilder-tools-readme) Bot Framework 工具。
 
 现在可以像使用任何其他 Azure 资源一样使用 Azure CLI 来管理机器人。
 
@@ -64,12 +64,12 @@ az bot [command]
 ```
 |命令|  |
 |----|----|
-| create      |添加资源|
-| delete     |克隆资源|
-| 下载   | 下载机器人源代码|
-| 发布   |发布到现有机器人服务|
-| show |显示现有机器人资源。|
-| update| 更新现有机器人服务|
+| create      |创建新机器人|
+| delete     |删除现有机器人|
+| 下载   |下载现有机器人|
+| 发布   |发布到机器人的关联应用服务|
+| show |获取现有机器人|
+| update|更新现有机器人|
 
 若要从 CLI 创建新机器人，需要选择一个现有[资源组](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)，或创建一个新的资源组。 
 
@@ -160,10 +160,10 @@ az bot show -n my-bot-name -g my-resource-group --msbot | msbot connect azure --
 
 ## <a name="5-manage-update-or-create-luis-and-qna-services-with--new-botbuilder-tools"></a>5.使用新 botbuilder-tools 管理、更新或创建 LUIS 和 QnA 服务
 
-[Bot Builder 工具](https://aka.ms/botbuilder-tools)是一个新的工具集，可用于直接从命令行管理机器人资源并与之进行交互。
+[Bot Framework 工具](https://aka.ms/botbuilder-tools)是一个新的工具集，可用于直接从命令行管理机器人资源并与之进行交互。
 
 >[!TIP]
-> 每个 Bot Builder 工具都包含全局帮助命令，可通过输入 -h 或 --help 从命令行进行访问。 此命令可随时在任何操作中使用，将显示对你可用的有用选项及其描述。
+> 每个 Bot Framework 工具都包含全局帮助命令，可通过输入 -h 或 --help 从命令行进行访问。 此命令可随时在任何操作中使用，将显示对你可用的有用选项及其描述。
 
 ### <a name="ludown"></a>LUDown
 
@@ -333,5 +333,5 @@ az bot publish --name "my-bot-name" --resource-group "my-resource-group"
 ```
 
 ## <a name="references"></a>参考
-- [Bot Builder 工具](https://aka.ms/botbuilder-tools-readme)
+- [Bot Framework 工具](https://aka.ms/botbuilder-tools-readme)
 - [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)

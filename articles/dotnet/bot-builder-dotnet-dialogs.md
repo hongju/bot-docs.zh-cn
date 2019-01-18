@@ -1,6 +1,6 @@
 ---
 title: 对话框概述 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for .NET 中的对话框来为会话建模和管理会话流。
+description: 了解如何使用 Bot Framework SDK for .NET 中的对话框为聊天建模和管理聊天流。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,14 +9,14 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 943b206e4991c52f22928d2113977249ff9d9e04
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3089e7a073f6a6d9af3a3720954af3a915106888
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997574"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224992"
 ---
-# <a name="dialogs-in-the-bot-builder-sdk-for-net"></a>Bot Builder SDK for .NET 中的对话框
+# <a name="dialogs-in-the-bot-framework-sdk-for-net"></a>Bot Framework SDK for .NET 中的对话框
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
@@ -24,9 +24,9 @@ ms.locfileid: "49997574"
 > - [.NET](../dotnet/bot-builder-dotnet-dialogs.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-dialog-overview.md)
 
-使用 Bot Builder SDK for .NET 创建机器人时，可以使用对话框为会话建模并管理[会话流](../bot-service-design-conversation-flow.md)。 每个对话框都是一个抽象，在实现 `IDialog` 的 C# 类中封装自己的状态。 对话框可以由其他对话框组成以最大限度地重用，并且对话框上下文可以维护在任何时间点都在会话中处于活动状态的[对话框堆栈](../bot-service-design-conversation-flow.md#dialog-stack)。 
+使用 Bot Framework SDK for .NET 创建机器人时，可以使用对话框为聊天建模并管理[聊天流](../bot-service-design-conversation-flow.md)。 每个对话框都是一个抽象，在实现 `IDialog` 的 C# 类中封装自己的状态。 对话框可以由其他对话框组成以最大限度地重用，并且对话框上下文可以维护在任何时间点都在会话中处于活动状态的[对话框堆栈](../bot-service-design-conversation-flow.md#dialog-stack)。 
 
-包含对话框的会话可以跨计算机移植，这使得机器人实现可以扩展。 在 Bot Builder SDK for .NET 中使用对话框时，会话状态（对话框堆栈和堆栈中的每个对话框状态）会自动存储到所选择的[状态数据](bot-builder-dotnet-state.md)存储中。 这让机器人的服务代码可以是无状态，类似于不需要在 Web 服务器内存中存储会话状态的 Web 应用程序。 
+包含对话框的会话可以跨计算机移植，这使得机器人实现可以扩展。 在 Bot Framework SDK for .NET 中使用对话框时，聊天状态（对话框堆栈和堆栈中每个对话框的状态）会自动存储到所选择的[状态数据](bot-builder-dotnet-state.md)存储中。 这让机器人的服务代码可以是无状态，类似于不需要在 Web 服务器内存中存储会话状态的 Web 应用程序。 
 
 ## <a name="echo-bot-example"></a>回显机器人示例
 
@@ -37,7 +37,7 @@ ms.locfileid: "49997574"
 
 ### <a name="messagescontrollercs"></a>MessagesController.cs 
 
-在 Bot Builder SDK for .NET 中，使用 [Builder][builderLibrary] 库可以管理对话框。 若要访问相关类，导入 `Dialogs` 命名空间。
+在 Bot Framework SDK for .NET 中，可以使用[生成器][builderLibrary]库实现对话框。 若要访问相关类，导入 `Dialogs` 命名空间。
 
 [!code-csharp[Using statement](../includes/code/dotnet-dialogs.cs#usingStatement)]
 
@@ -53,7 +53,7 @@ ms.locfileid: "49997574"
 
 `Post` 方法标记为 `async`，因为 Bot Builder 使用 C# 设施来处理异步通信。 它将返回 `Task` 对象，代表负责向传入消息发送答复的任务。 如果出现异常，该方法返回的 `Task` 将包含异常信息。 
 
-`Conversation.SendAsync` 方法是使用 Bot Builder SDK for .NET 实现对话框的关键。 它遵循<a href="https://en.wikipedia.org/wiki/Dependency_inversion_principle" target="_blank">依赖关系反转原则</a>并执行以下步骤：
+`Conversation.SendAsync` 方法是使用 Bot Framework SDK for .NET 实现对话框的关键。 它遵循<a href="https://en.wikipedia.org/wiki/Dependency_inversion_principle" target="_blank">依赖关系反转原则</a>并执行以下步骤：
 
 1. 实例化所需组件  
 2. 从 `IBotDataStore` 反序列化会话状态（对话框堆栈和堆栈中的每个对话框状态）
