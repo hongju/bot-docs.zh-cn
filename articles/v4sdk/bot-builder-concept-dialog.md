@@ -1,6 +1,6 @@
 ---
-title: Bot Builder SDK 中的对话框 | Microsoft Docs
-description: 介绍什么是对话框，以及如何在 Bot Builder SDK 中使用对话框。
+title: Bot Framework SDK 中的对话 | Microsoft Docs
+description: 介绍了什么是对话，以及如何在 Bot Framework SDK 中使用对话。
 keywords: 聊天流, 提示, 对话状态, 识别意向, 单轮次, 多轮次, 机器人聊天, 对话, 提示, 瀑布, 对话集
 author: johnataylor
 ms.author: johtaylo
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/28/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a1187efd3280d9ec2d74af29d1c013e916b79e5b
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: fc44701d7739ecfca662d27cad4f521caa7f4d6d
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010602"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225482"
 ---
 # <a name="dialogs-library"></a>对话框库
 
@@ -71,7 +71,7 @@ ms.locfileid: "53010602"
 
 在幕后，提示是由两个步骤组成的对话。 首先，提示会请求输入；其次，它会返回有效值，或者使用重新提示从头开始。 对话库提供多种基本提示，每个提示用于收集不同类型的响应。 基本提示可以解释解释自然语言输入，例如，“ten”或“a dozen”表示数字，“tomorrow”或“Friday at 10am”表示日期时间。
 
-| Prompt | Description | 返回值 |
+| Prompt | 说明 | 返回值 |
 |:----|:----|:----|
 | 附件提示 | 请求提供一个或多个附件，例如文档或图像。 | 附件对象的集合。 |
 | 选项提示 | 请求从一组选项中选择一个选项。 | 找到的选项对象。 |

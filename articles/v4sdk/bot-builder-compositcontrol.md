@@ -1,6 +1,6 @@
 ---
 title: 重复使用对话 | Microsoft Docs
-description: 了解如何使用对话容器在 Bot Builder SDK for Node.js 和 C# 中模块化机器人逻辑。
+description: 了解如何使用对话容器在 Bot Framework SDK for Node.js 和 C# 中模块化机器人逻辑。
 keywords: 复合控件, 模块化机器人逻辑
 author: v-ducvo
 ms.author: v-ducvo
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5e1ddbef6181e265213ffa1fdcb65909e524be51
-ms.sourcegitcommit: cb0b70d7cf1081b08eaf1fddb69f7db3b95b1b09
+ms.openlocfilehash: 3f4b2dd49b738132affd19fea8fd5dbfbd6ff99e
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/09/2018
-ms.locfileid: "51332991"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224562"
 ---
 # <a name="reuse-dialogs"></a>重复使用对话
 

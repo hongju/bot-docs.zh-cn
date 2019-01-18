@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 08/28/2018
-ms.openlocfilehash: 660c10c400bb68e807f39eb1b7ccc38f500991e6
-ms.sourcegitcommit: 0f65857943d318da48df0a8654cde53e9a699116
+ms.openlocfilehash: 9b77f05b77017b17ba63e83fa2a8b58e483f9bf8
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/14/2018
-ms.locfileid: "53389310"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225802"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常见问题
 
@@ -24,7 +24,7 @@ ms.locfileid: "53389310"
 虽然我们已经推出会话用户界面 (CUI)，但目前很少有开发人员拥有所需的相关专业知识和工具，从而创建新会话体验，或者使现有的应用程序和服务拥有让用户可以顺畅使用的会话界面。 我们创建了 Bot Framework，让开发人员可以更轻松地为用户构建和连接功能强大的机器人，无需考虑他们的交谈位置（其中包括 Microsoft 的主要通道）。
 
 ### <a name="what-is-the-v4-sdk"></a>什么是 v4 SDK？
-Bot Builder v4 SDK 基于先前的机器人生成器 SDK 的反馈和学习而创建。 它引入了正确的抽象层次，同时实现了机器人构建基块的丰富组件化。 可以从一个简单的机器人开始，使用模块化和可扩展的框架来增强机器人的复杂性。 可以在 GitHub 上找到针对 SDK 的[常见问题解答](https://github.com/Microsoft/botbuilder-dotnet/wiki/FAQ)。
+Bot Framework v4 SDK 基于先前的 Bot Framework SDK 的反馈和学习而创建。 它引入了正确的抽象层次，同时实现了机器人构建基块的丰富组件化。 可以从一个简单的机器人开始，使用模块化和可扩展的框架来增强机器人的复杂性。 可以在 GitHub 上找到针对 SDK 的[常见问题解答](https://github.com/Microsoft/botbuilder-dotnet/wiki/FAQ)。
 
 ## <a name="bot-framework-sdk-version-3-lifetime-support"></a>Bot Framework SDK 版本 3 生存期支持 
 SDK V3 机器人会继续运行 Azure 机器人服务并由其提供支持。  发布 Bot Framework SDK V4 后，就像对待其他框架一样，我们会继续在安全性、高优先级 Bug 修复以及连接器/协议层更新方面为 SDK V3 提供支持。  客户在 2019 年可以继续获得 V3 支持。
@@ -73,7 +73,7 @@ SDK V3 机器人会继续运行 Azure 机器人服务并由其提供支持。  �
 
 Bot Framework 旨在为 Skype 和许多其他通道构建、连接和部署高质量、响应迅速、高性能的可扩展机器人。 可以使用 SDK 创建文本/短信、图像、按钮和支持卡的机器人（构成先进跨会话体验的大多数机器人交互）以及特定于 Skype 的机器人交互，例如丰富的音频和视频体验。
 
-如果你已经有一个很棒的机器人，并且想要与 Skype 受众沟通，你的机器人可以通过 Bot Builder for REST API 轻松连接到 Skype（或任何支持的通道），前提是它具有可通过 Internet 访问的 REST 终结点。
+如果你已经有一个很棒的机器人，并且想要与 Skype 受众沟通，你的机器人可以通过 Bot Framework for REST API 轻松连接到 Skype（或任何支持的通道），前提是它具有可通过 Internet 访问的 REST 终结点。
 
 ## <a name="security-and-privacy"></a>安全性和隐私
 ### <a name="do-the-bots-registered-with-the-bot-framework-collect-personal-information-if-yes-how-can-i-be-sure-the-data-is-safe-and-secure-what-about-privacy"></a>注册到 Bot Framework 的机器人是否会收集个人信息？ 如果是，我如何确保数据的安全性？ 如何保护隐私？

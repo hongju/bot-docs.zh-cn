@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: e3833595003edda46a6ffd1d508237262aad94e1
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 20ca2864b6498b0d80bea13ce97ffffc4cf1f22d
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999224"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225922"
 ---
 # <a name="integrate-your-bot-with-a-web-browser"></a>将机器人与 Web 浏览器集成
 
@@ -73,7 +73,7 @@ ms.locfileid: "49999224"
 
 ### <a id="website-signal-to-bot"></a>网站如何向机器人“发出信号”？
 
-当机器人[生成超链接](#generate-hyperlink)（用户单击该超链接可启动网站流）时，该超链接会通过目标 URL 中的查询字符串参数包括有关当前聊天上下文的信息，例如聊天 ID、通道 ID 和通道中的用户 ID。 随后，网站可使用此信息读取和写入该用户或使用 Bot Builder SDK 或 REST API 的聊天的状态变量。 请参阅上述[步骤 6](#signal-to-bot)，了解网站如何向机器人“发出信号”，指示网站流已完成。
+当机器人[生成超链接](#generate-hyperlink)（用户单击该超链接可启动网站流）时，该超链接会通过目标 URL 中的查询字符串参数包括有关当前聊天上下文的信息，例如聊天 ID、通道 ID 和通道中的用户 ID。 随后，网站可使用此信息读取和写入该用户或使用 Bot Framework SDK 或 REST API 的聊天的状态变量。 请参阅上述[步骤 6](#signal-to-bot)，了解网站如何向机器人“发出信号”，指示网站流已完成。
 
 ## <a name="sample-code"></a>代码示例
 

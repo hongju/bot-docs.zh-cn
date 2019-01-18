@@ -1,6 +1,6 @@
 ---
 title: 实时媒体机器人的要求和注意事项 | Microsoft Docs
-description: 了解使用 Bot Builder SDK for .NET SDK 创建用于 Skype 的实时媒体机器人的相关重要要求和注意事项。
+description: 了解使用 Bot Framework SDK for .NET 创建用于 Skype 的实时媒体机器人的相关重要要求和注意事项。
 author: ssulzer
 ms.author: ssulzer
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 209fb3d16310754d192d66c8f757b354b99b643b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d8cd326a3027fe5fcb440d9b205ba7d32a8b1640
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997324"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224932"
 ---
 # <a name="requirements-and-considerations-for-real-time-media-bots"></a>实时媒体机器人的要求和注意事项
 

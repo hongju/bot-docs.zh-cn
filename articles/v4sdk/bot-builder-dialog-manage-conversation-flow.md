@@ -1,6 +1,6 @@
 ---
 title: 实现顺序聊天流 | Microsoft Docs
-description: 了解如何在 Bot Builder SDK for Node.js 中使用对话管理简单的聊天流。
+description: 了解如何在 Bot Framework SDK for Node.js 中使用对话管理简单的聊天流。
 keywords: 简单聊天流, 顺序聊天流, 对话, 提示, 瀑布, 对话集
 author: JonathanFingold
 ms.author: v-jofing
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2264b6927ccb863f153f2feb829cc0fb99c711f7
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 554d040dd4c9d126fa70c24f1af5a1ac97a39204
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452079"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317609"
 ---
 # <a name="implement-sequential-conversation-flow"></a>实现顺序聊天流
 
@@ -58,7 +58,7 @@ public class MultiTurnPromptsBotAccessors
 }
 ```
 
-在 `Statup` 类的 `ConfigureServices` 方法中注册访问器类。
+在 `Startup` 类的 `ConfigureServices` 方法中注册访问器类。
 同样，此处只显示了代码的某些部分。
 
 ```csharp

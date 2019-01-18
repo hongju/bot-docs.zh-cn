@@ -1,6 +1,6 @@
 ---
 title: 使用对话提示收集用户输入 | Microsoft Docs
-description: 了解如何在 Bot Builder SDK 中使用对话框库提示用户输入。
+description: 了解如何在 Bot Framework SDK 中使用对话框库提示用户输入。
 keywords: 提示, 用户输入, 对话框, AttachmentPrompt, ChoicePrompt, ConfirmPrompt, DatetimePrompt, NumberPrompt, TextPrompt, 重新提示, 验证
 author: JonathanFingold
 ms.author: v-jofing
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/21/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4acb12a5e06032db898a651c6c8bf1dae06765ef
-ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
+ms.openlocfilehash: 57e43e6f0ad8673634bd8faafac79636a672eefd
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/21/2018
-ms.locfileid: "53735967"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225842"
 ---
 # <a name="gather-user-input-using-a-dialog-prompt"></a>使用对话提示收集用户输入
 
@@ -280,7 +280,7 @@ async promptForLocation(stepContext) {
 
 _prompt_ 方法的第二个参数采用提示选项对象，该对象包含以下属性。
 
-| 属性 | Description |
+| 属性 | 说明 |
 | :--- | :--- |
 | _prompt_ | 发送给用户的、以请求输入的初始活动。 |
 | _retry prompt_ | 未验证用户的第一次输入时发送给用户的活动。 |
@@ -300,14 +300,14 @@ _prompt_ 方法的第二个参数采用提示选项对象，该对象包含以�
 
 提示验证程序上下文包含以下属性：
 
-| 属性 | Description |
+| 属性 | 说明 |
 | :--- | :--- |
 | _上下文_ | 机器人的当前轮次上下文。 |
 | _Recognized_ | 提示识别器结果，包含识别器处理的有关用户输入的信息。 |
 
 提示识别器结果包含以下属性：
 
-| 属性 | Description |
+| 属性 | 说明 |
 | :--- | :--- |
 | 成功 | 指示识别器是否能够分析输入。 |
 | _值_ | 识别器的返回值。 如果必要，验证代码可以修改此值。 |

@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
-ms.openlocfilehash: 6b50df60c3a8165198e8f9a55964f2f596d62406
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f18b375a1e4ebcf06d00d045e383db8b05fb5111
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998724"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225732"
 ---
 # <a name="transition-conversations-from-bot-to-human"></a>将会话从机器人转给人工
 
@@ -74,7 +74,7 @@ ms.locfileid: "49998724"
 
 ## <a name="sample-code"></a>代码示例
 
-有关显示如何使用 Bot Builder SDK for Node.js 将会话从机器人转给人工的完整示例，请参阅 GitHub 中的<a href="https://github.com/palindromed/Bot-HandOff" target="_blank">机器人移交示例</a>。
+有关显示如何使用 Bot Framework SDK for Node.js 将会话从机器人转给人工的完整示例，请参阅 GitHub 中的<a href="https://github.com/palindromed/Bot-HandOff" target="_blank">机器人移交示例</a>。
 
 ## <a name="additional-resources"></a>其他资源
 

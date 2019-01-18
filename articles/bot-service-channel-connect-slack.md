@@ -2,19 +2,19 @@
 title: 将机器人连接到 Slack | Microsoft Docs
 description: 了解如何配置机器人与 Slack 的连接。
 keywords: 连接机器人, 机器人通道, Slack 机器人, Slack 消息传递应用
-author: RobStand
-ms.author: kamrani
+author: JonathanFingold
+ms.author: v-jofing
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: f69cfa4c67a1f628d835f0d96903065b8b033d32
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 01/09/2019
+ms.openlocfilehash: 3573103e1d1c55e3ad648ad68d84674a98b397f7
+ms.sourcegitcommit: 8161753641368567f239e24a35ad61768acccd8e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000124"
+ms.lasthandoff: 01/10/2019
+ms.locfileid: "54202554"
 ---
 # <a name="connect-a-bot-to-slack"></a>将机器人连接到 Slack
 
@@ -68,9 +68,11 @@ ms.locfileid: "50000124"
 
 1. 选择“事件订阅”选项卡。
 2. 将“启用事件”设置为“开启”。
-3. 在“请求 URL”中，输入此 URL，但将 `{YourBotHandle}` 替换为你的机器人句柄。 本教程中使用的机器人句柄为 testChannels。
-        `https://slack.botframework.com/api/Events/{YourBotHandle}`
-4. 在“订阅工作区事件”中，单击“添加工作区事件”。
+3. 在“请求 URL”中，输入 `https://slack.botframework.com/api/Events/{YourBotHandle}`，其中 `{YourBotHandle}` 是你的机器人句柄（不带括号）。 此示例中使用的机器人句柄是 **ContosoBot**。
+
+   ![订阅事件：顶部](~/media/channels/slack-SubscribeEvents-a.png)
+
+4. 在“订阅机器人事件”中，单击“添加机器人用户事件”。
 5. 在事件列表中，选择以下六种事件类型：
     * `member_joined_channel`
     * `member_left_channel`
@@ -79,8 +81,11 @@ ms.locfileid: "50000124"
     * `message.im`
     * `message.mpim`
 
-![订阅事件](~/media/channels/slack-SubscribeEvents.png)
+   ![订阅事件：中部](~/media/channels/slack-SubscribeEvents-b.png)
+
 6. 单击“保存更改”。
+
+   ![订阅事件：底部](~/media/channels/slack-SubscribeEvents-c.png)
 
 ## <a name="add-and-configure-interactive-messages-optional"></a>添加和配置交互式消息（可选）
 

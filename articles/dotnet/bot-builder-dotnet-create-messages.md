@@ -1,6 +1,6 @@
 ---
-title: 通过 Bot Builder SDK for .NET 创建消息 | Microsoft Docs
-description: 了解 Bot Builder SDK for .NET 中的常用消息属性。
+title: 通过 Bot Framework SDK for .NET 创建消息 | Microsoft Docs
+description: 了解 Bot Framework SDK for .NET 中的常用消息属性。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f3f40e41605bfd309d480465a05b91acf5a52d5c
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 96a0c63575b1e77418262a22050013413f39141f
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000384"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225912"
 ---
 # <a name="create-messages"></a>创建消息
 

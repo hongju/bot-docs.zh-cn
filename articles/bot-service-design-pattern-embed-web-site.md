@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: e11b99aeb8475ff27304c57c515e02a5c031e4ea
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 03c7e1316e463caf84b8dfd503e1502bb66469e6
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998374"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224842"
 ---
 # <a name="embed-a-bot-in-a-website"></a>在网站中嵌入机器人
 
@@ -47,7 +47,7 @@ Skype Web 控件本质上是启用了 Web 的控件中的 Skype 客户端。 机
 
 ## <a name="sample-code"></a>代码示例
 
-可通过 GitHub 获得<a href="https://aka.ms/BotFramework-WebChat" target="_blank">开源网上聊天控件</a>。 有关如何使用开源网上聊天控件和 Bot Builder SDK for Node.js 实施反向通道机制的详细信息，请参阅[使用反向通道机制](~/nodejs/bot-builder-nodejs-backchannel.md)。
+可通过 GitHub 获得<a href="https://aka.ms/BotFramework-WebChat" target="_blank">开源网上聊天控件</a>。 有关如何使用开源网上聊天控件和 Bot Framework SDK for Node.js 实施反向通道机制的详细信息，请参阅[使用反向通道机制](~/nodejs/bot-builder-nodejs-backchannel.md)。
 
 ## <a name="additional-resources"></a>其他资源
 

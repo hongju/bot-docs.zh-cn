@@ -1,5 +1,5 @@
 ---
-title: Bot Builder REST API | Microsoft Docs
+title: Bot Framework REST API | Microsoft Docs
 description: 开始使用可用于构建机器人和连接到机器人的客户端的 Bot Framework REST API。
 author: RobStand
 ms.author: kamrani
@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 632d0b1e603445954eb4894fcfc256d5ac738539
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: eace4852feaadcc180f7329261990fc8eaf7f522
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998434"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224262"
 ---
 # <a name="bot-framework-rest-apis"></a>Bot Framework REST API
 > [!div class="op_single_selector"]
@@ -28,7 +28,7 @@ ms.locfileid: "49998434"
 可以使用 Bot Connector 服务与 Bot Framework 门户中配置的通道交换消息，从而使用任何编程语言创建机器人。 
 
 > [!TIP]
-> Bot Framework 提供了可用于在 C# 或 Node.js 中生成机器人的客户端库。 若要使用 C# 生成机器人，请使用 [Bot Builder SDK for C#](../dotnet/bot-builder-dotnet-overview.md)。 若要生成使用 Node.js 的机器人，请使用 [Bot Builder SDK for Node.js](../nodejs/index.md)。 
+> Bot Framework 提供了可用于在 C# 或 Node.js 中生成机器人的客户端库。 若要使用 C# 生成机器人，请使用 [Bot Framework SDK for C#](../dotnet/bot-builder-dotnet-overview.md)。 若要使用 Node.js 生成机器人，请使用 [Bot Framework SDK for Node.js](../nodejs/index.md)。 
 
 若要了解使用 Bot Connector 服务生成机器人的详细信息，请参阅[关键概念](bot-framework-rest-connector-concepts.md)。
 

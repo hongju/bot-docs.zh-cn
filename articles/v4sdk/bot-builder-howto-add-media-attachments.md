@@ -1,6 +1,6 @@
 ---
 title: 向消息添加媒体 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK 向消息添加媒体。
+description: 了解如何使用 Bot Framework SDK 向消息添加媒体。
 keywords: 媒体, 消息, 图像, 音频, 视频, 文件, MessageFactory, 富卡, 消息, 自适应卡, 英雄卡, 建议的操作
 author: ivorb
 ms.author: v-ivorb
@@ -10,18 +10,18 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/17/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fd908335c69aab7c8b68925b8ecdece79e89ab4b
-ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
+ms.openlocfilehash: 1ea9daeb35033e49232d64bfe98a223807dabf75
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/21/2018
-ms.locfileid: "53735957"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317597"
 ---
 # <a name="add-media-to-messages"></a>向消息添加媒体
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-用户与机器人之间的消息交换可以包含媒体附件，例如图像、视频、音频和文件。 Bot Builder SDK 支持向用户发送富消息的任务。 若要确定某个通道（Facebook、Skype、Slack 等）支持的富消息的类型，请查看该通道的文档，了解存在哪些限制。 如需可用卡的列表，请参阅[设计用户体验](../bot-service-design-user-experience.md)。 
+用户与机器人之间的消息交换可以包含媒体附件，例如图像、视频、音频和文件。 Bot Framework SDK 支持向用户发送富消息的任务。 若要确定某个通道（Facebook、Skype、Slack 等）支持的富消息的类型，请查看该通道的文档，了解存在哪些限制。 如需可用卡的列表，请参阅[设计用户体验](../bot-service-design-user-experience.md)。 
 
 ## <a name="send-attachments"></a>发送附件
 
@@ -29,7 +29,8 @@ ms.locfileid: "53735957"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-`Activity` 对象的 `Attachments` 属性包含一组 `Attachment` 对象，表示媒体附件和附加到消息的富卡。 若要向消息添加媒体附件，请为 `message` 活动创建 `Attachment` 对象，并设置 `ContentType`、`ContentUrl` 和 `Name` 属性。 `Activity` 对象的 `Attachments` 属性包含一组 `Attachment` 对象，表示媒体附件和附加到消息的富卡。 若要向消息添加媒体附件，请使用 `Attachment` 方法为 `message` 活动创建 `Attachment` 对象，并设置 `ContentType`、`ContentUrl`、`Name` 属性。 此处显示的源代码基于[处理附件](https://aka.ms/bot-attachments-sample-code)示例。 
+`Activity` 对象的 `Attachments` 属性包含一组 `Attachment` 对象，表示媒体附件和附加到消息的富卡。 若要向消息添加媒体附件，请为 `message` 活动创建 `Attachment` 对象，并设置 `ContentType`、`ContentUrl` 和 `Name` 属性。
+此处显示的源代码基于[处理附件](https://aka.ms/bot-attachments-sample-code)示例。 
 
 ```csharp
 using Microsoft.Bot.Builder;
@@ -147,7 +148,7 @@ await turnContext.sendActivity(reply);
 
 若要正常运行，请为卡上的每个可点击项目指定一种操作类型。 下表列出并描述了可用的操作类型以及应该存在于相关联的值属性中的内容。
 
-| 类型 | Description | 值 |
+| 类型 | 说明 | 值 |
 | :---- | :---- | :---- |
 | openUrl | 在内置浏览器中打开一个 URL。 | 要打开的 URL。 |
 | imBack | 向机器人发送一条消息，并在聊天中发布一个可见的响应。 | 要发送的消息文本。 |
@@ -219,7 +220,7 @@ await context.sendActivity(hero);
 ## <a name="send-an-adaptive-card"></a>发送自适应卡
 自适应卡片和 MessageFactory 用于发送丰富消息（包括文本、图像、视频、音频和文件）来与用户通信。 但是，两者存在一些差异。 
 
-首先，只有某些通道支持自适应卡片，有些通道可能只是部分支持自适应卡片。 例如，如果在 Facebook 中发送自适应卡片，则按钮可能不起作用，而文本和图像可正常使用。 MessageFactory 只是 Bot Builder SDK 中的一个帮助器类，可以自动完成创建步骤，并受大多数通道的支持。 
+首先，只有某些通道支持自适应卡片，有些通道可能只是部分支持自适应卡片。 例如，如果在 Facebook 中发送自适应卡片，则按钮可能不起作用，而文本和图像可正常使用。 MessageFactory 只是 Bot Framework SDK 中的一个帮助器类，可以自动完成创建步骤，并受大多数通道的支持。 
 
 其次，自适应卡片以卡片格式传送消息，通道确定卡片的布局。 MessageFactory 传送消息的格式取决于通道，除非在附件中包含自适应卡片，否则不一定采用卡片格式。 
 

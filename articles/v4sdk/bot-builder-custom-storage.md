@@ -1,6 +1,6 @@
 ---
 title: 为机器人实现自定义存储 | Microsoft Docs
-description: 如何在 Bot Builder SDK v4.0 中构建自定义存储
+description: 如何在 Bot Framework SDK v4.0 中构建自定义存储
 keywords: 自定义, 存储, 状态, 对话
 author: johnataylor
 ms.author: johtaylo
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/31/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b005b9f024c5813ba22cd8663c196a8c3a5bb716
-ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
+ms.openlocfilehash: 4503e2953543d2ec9c06e8cd60484a5c87d95987
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50918964"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224002"
 ---
 # <a name="implement-custom-storage-for-your-bot"></a>为机器人实现自定义存储
 
@@ -25,7 +25,7 @@ ms.locfileid: "50918964"
 
 在本文中，我们将围绕机器人与 Azure 机器人服务和存储的交互来探索语义。
 
-Bot Builder 框架包含默认的实现，此实现基本上能够满足许多应用程序的需求。若要利用此实现，只需通过少量的初始化代码行将各个片段连接到一起。 有许多示例演示了此操作。
+Bot Framework 包含默认的实现，此实现基本上能够满足许多应用程序的需求。若要利用此实现，只需通过少量的初始化代码行将各个片段连接到一起。 有许多示例演示了此操作。
 
 不过，本文的目标是介绍当默认实现的语义不是十分适合应用程序时可以采取哪些措施。 基本要点在于，这只是一个框架，而不是具有固定行为的打包应用程序，换言之，该框架中许多机制的实现只是默认实现，而不是唯一的实现。
 

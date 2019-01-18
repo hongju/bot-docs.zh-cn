@@ -1,6 +1,6 @@
 ---
 title: 保存用户数据 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK 将用户状态数据保存到存储区。
+description: 了解如何使用 Bot Framework SDK 将用户状态数据保存到存储区。
 keywords: 保存用户数据, 存储, 聊天数据
 author: v-ducvo
 ms.author: v-ducvo
@@ -10,18 +10,18 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/19/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 36e8efefb276e5b9fb45ba6243b1b472476d5046
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 97a89744282ca1e31a99aa0e45345656e43f5cd0
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997940"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225312"
 ---
 # <a name="persist-user-data"></a>保存用户数据
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-当机器人要求用户进行输入时，你可能希望将某些信息保存到某种形式的存储中。 Bot Builder SDK 允许使用内存中存储或数据库存储（如 CosmosDB）来存储用户输入。 本地存储类型主要用于机器人的测试或原型制作过程。 但是，持久性存储类型（例如数据库存储）则最适合生产性机器人。
+当机器人要求用户进行输入时，你可能希望将某些信息保存到某种形式的存储中。 Bot Framework SDK 允许使用内存中存储或数据库存储（如 CosmosDB）来存储用户输入。 本地存储类型主要用于机器人的测试或原型制作过程。 但是，持久性存储类型（例如数据库存储）则最适合生产性机器人。
 
 本主题介绍如何定义存储对象，以及如何将用户的输入内容保存到存储对象中，使其可持久保留。 我们将使用对话框向用户询问其名称（如果还没有该名称）。 无论你选择使用哪种存储类型，连接和保存数据的过程都是相同的。 本主题中的代码使用 `CosmosDB` 作为存储来持久保存数据。
 

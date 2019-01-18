@@ -1,6 +1,6 @@
 ---
 title: 向机器人添加自然语言理解 | Microsoft Docs
-description: 了解如何借助 Bot Builder SDK 将 LUIS 用于自然语言理解。
+description: 了解如何借助 Bot Framework SDK 将 LUIS 用于自然语言理解。
 keywords: 语言理解, LUIS, 意向, 识别器, 实体, 中间件
 author: ivorb
 ms.author: v-ivorb
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 11/28/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a512cb92f35374b457c4d4cef05667edbd8d2f1f
-ms.sourcegitcommit: 892bf81d306ba607c293ee8639d5c6b66ab3710a
+ms.openlocfilehash: 77dbf8658030a18596507129c88156601d4272e5
+ms.sourcegitcommit: d385ec5fe61c469ab17e6f21b4a0d50e5110d0fd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52460006"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54298304"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>向机器人添加自然语言理解
 
@@ -185,7 +185,7 @@ public class LuisBot : IBot
 如配置文件中所示，将 `LUIS_CONFIGURATION` 的值更新为 LUIS 应用的名称。
 
 ```javascript
-// Language Understanding (LUIS) service name as defined in the .bot file.YOUR_LUIS_APP_NAME is "LuisBot" in the C# code.
+// Language Understanding (LUIS) service name as defined in the .bot file.YOUR_LUIS_APP_NAME is "LuisBot" in the JavaScript code.
 const LUIS_CONFIGURATION = '<YOUR_LUIS_APP_NAME>';
 
 // Get endpoint and LUIS configurations by service name.
@@ -375,7 +375,7 @@ LUIS 实体可让机器人智能理解不同于标准意向的某些事物或事
 
 ### <a name="prerequisites"></a>先决条件
 
-若要在本示例中使用实体，需要创建包含实体的 LUIS 应用。 遵循上面有关[创建 LUIS 应用](#create-a-luis-app-in-the-luis-portal)的部分中的步骤，但不要使用文件 `reminders.json`，而要使用 [reminders-with-entities.json](https://github.com/Microsoft/BotFramework-Samples/tree/master/SDKV4-Samples/dotnet_core/nlp-with-luis) 文件来生成 LUIS 应用。 此文件提供相同的意向以及三个附加实体：Appointment、Meeting 和 Schedule。 这些实体可帮助 LUIS 确定用户消息的意向。 
+若要在本示例中使用实体，需要创建包含实体的 LUIS 应用。 遵循上面有关[创建 LUIS 应用](#create-a-luis-app-in-the-luis-portal)的部分中的步骤，但不要使用文件 `reminders.json`，而要使用 [reminders-with-entities.json](https://github.com/Microsoft/BotFramework-Samples/tree/master/SDKV4-Samples/dotnet_core/nlp-with-luis) 文件来生成 LUIS 应用。 此文件提供了相同的意向以及三个附加实体：Appointment、Meeting 和 Schedule。 这些实体可帮助 LUIS 确定用户消息的意向。 
 
 ### <a name="extract-and-display-entities"></a>提取并显示实体
 可将以下可选代码添加到本示例应用，以便在 LUIS 使用某个实例来帮助识别用户的意向时提取并显示实体信息。 

@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3abfb82f555f458bc9cdd5125fafa1cfa70921cb
-ms.sourcegitcommit: 66769e697d94f7bf5e0441dfacf2c0e3768845ea
+ms.openlocfilehash: a0b56b77990c095d1cf8bb28235d06444837d164
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53654958"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224593"
 ---
 # <a name="enterprise-bot-template"></a>企业机器人模板 
 
@@ -22,9 +22,9 @@ ms.locfileid: "53654958"
 
 创建高质量的聊天体验需要一系列基本功能。 为了帮助你成功地构建良好的聊天体验，我们创建了一个企业机器人模板。 此模板汇集了我们通过构建聊天体验确定的所有最佳做法和支持组件。 
 
-此模板大大简化了新机器人项目的创建工作。 该模板将利用 [Bot Builder SDK v4](https://github.com/Microsoft/botbuilder) 和 [Bot Builder 工具](https://github.com/Microsoft/botbuilder-tools)提供以下开箱即用功能。
+此模板大大简化了新机器人项目的创建工作。 该模板将利用 [Bot Framework SDK v4](https://github.com/Microsoft/botbuilder) 和 [Bot Framework 工具](https://github.com/Microsoft/botbuilder-tools)提供以下开箱即用的功能。
 
-Feature | Description |
+功能 | 说明 |
 ------------ | -------------
 介绍消息 | 在聊天开始时使用自适应卡的介绍消息。 它解释了机器人的功能，并提供了指导初始问题的按钮。 然后，开发人员可以根据需要自定义此项。
 自动键入指示符  | 在聊天期间发送视觉输入指示符，并对长时间运行的操作重复此操作。

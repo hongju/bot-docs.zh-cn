@@ -1,6 +1,6 @@
 ---
 title: 发送和接收文本消息 | Microsoft Docs
-description: 了解如何在 Bot Builder SDK 中发送和接收文本消息。
+description: 了解如何在 Bot Framework SDK 中发送和接收文本消息。
 keywords: 发送消息, 消息活动, 简单的文本消息, 消息, 文本消息, 接收消息
 author: ivorb
 ms.author: v-ivorb
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a01a64e032acfde2b3711e3efbb3886439888c42
-ms.sourcegitcommit: 5c40e2e21adb3a779022d45704c29cf11ed7f4a6
+ms.openlocfilehash: 9cfe077c8d8573145625b211c3c1ca05a6a21e19
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/10/2018
-ms.locfileid: "51506192"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224812"
 ---
 # <a name="send-and-receive-text-message"></a>发送和接收文本消息 
 
@@ -29,7 +29,7 @@ ms.locfileid: "51506192"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-在机器人的 `OnTurnAsync` 方法中，使用轮次上下文对象的 `SendActivityAsync` 方法发送单个消息响应。 此外可以使用该对象的 `SendActivitiesAsync` 方法一次性发送多个响应。
+在机器人的 `OnTurnAsync` 方法中，使用轮次上下文对象的 `SendActivityAsync` 方法发送单个消息响应。 还可以使用该对象的 `SendActivitiesAsync` 方法一次性发送多个响应。
 
 ```cs
 await turnContext.SendActivityAsync($"Welcome!");
@@ -43,7 +43,7 @@ await turnContext.SendActivityAsync($"Welcome!");
 await context.sendActivity("Welcome!");
 ```
 ---
-## <a name="receive-a-text-message"></a>接收文本消息
+## <a name="receive-a-text-message"></a>接收短信
 
 若要接收简单的文本消息，请使用 *activity* 对象的 *text* 属性。 
 

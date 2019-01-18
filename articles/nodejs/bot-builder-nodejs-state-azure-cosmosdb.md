@@ -1,6 +1,6 @@
 ---
 title: 使用 Azure Cosmos DB 管理自定义状态数据 | Microsoft Docs
-description: 了解如何将 Azure Cosmos DB 与 Bot Builder SDK for Node.js 配合使用来保存和检索状态数据。
+description: 了解如何将 Azure Cosmos DB 与 Bot Framework SDK for Node.js 配合使用来保存和检索状态数据。
 author: DucVo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 0c0d91a7ec9fd1d72c7c51c042b0f52e28798778
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 92672e9d9ca9949da1ce4741bdc71bc809d982f7
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998114"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224512"
 ---
 # <a name="manage-custom-state-data-with-azure-cosmos-db-for-nodejs"></a>使用 Azure Cosmos DB for Node.js 管理自定义状态数据
 
@@ -24,7 +24,7 @@ ms.locfileid: "49998114"
 
 - 状态 API 吞吐量更高（性能控制更强）
 - 降低地理分布的延迟
-- 控制数据的存储位置（例如美国西部与美国东部）
+- 控制将数据存储在何处（例如：美国西部还是美国东部）
 - 访问实际的状态数据
 - 状态数据 db 不与其他机器人共享
 - 存储超过 32 kb

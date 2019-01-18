@@ -1,6 +1,6 @@
 ---
 title: 使用 Cortana 技能构建支持语音的机器人 | Microsoft Docs
-description: 了解如何借助 Cortana 技能和 Bot Builder SDK for Node.js 构建支持语音的机器人。
+description: 了解如何借助 Cortana 技能和 Bot Framework SDK for Node.js 构建支持语音的机器人。
 author: DeniseMak
 manager: kamrani
 ms.topic: article
@@ -8,12 +8,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e728a3999c484d19a78f03bd8eb7b8bd8833c39f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: e00128ca82ec8b97502d8f2fbf42be10cc91ade6
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998034"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225294"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能构建支持语音的机器人
 
@@ -23,7 +23,7 @@ ms.locfileid: "49998034"
 > - [.NET](../dotnet/bot-builder-dotnet-cortana-skill.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-cortana-skill.md)
 
-Bot Builder SDK for Node.js 通过将支持语音的机器人作为 Cortana 技能连接到 Cortana 通道，使你能够构建支持语音的机器人。 Cortana 技能让你能够通过 Cortana 提供功能，响应用户的语音输入。
+使用 Bot Framework SDK for Node.js 可以通过将支持语音的机器人作为 Cortana 技能连接到 Cortana 通道，来构建该机器人。 Cortana 技能让你能够通过 Cortana 提供功能，响应用户的语音输入。
 
 > [!TIP]
 > 有关技能的概念及其作用的详细信息，请参阅 [Cortana 技能套件][CortanaGetStarted]。
@@ -35,7 +35,7 @@ Bot Builder SDK for Node.js 通过将支持语音的机器人作为 Cortana 技�
 
 ## <a name="adding-speech-to-your-bot"></a>将语音添加到机器人
 
-来自机器人的语音消息以语音合成标记语言 (SSML) 的形式呈现。 使用 Bot Builder SDK 可在机器人的响应中包含 SSML，控制机器人讲述的内容以及显示的内容。
+来自机器人的语音消息以语音合成标记语言 (SSML) 的形式呈现。 使用 Bot Framework SDK 可在机器人的响应中包含 SSML，控制机器人讲述的内容以及显示的内容。
 
 ### <a name="sessionsay"></a>session.say
 
@@ -45,7 +45,7 @@ Bot Builder SDK for Node.js 通过将支持语音的机器人作为 Cortana 技�
 
 ```session.say(displayText: string, speechText: string, options?: object)```
 
-| 参数 | Description |
+| 参数 | 说明 |
 |------|------|
 | **displayText** | 在 Cortana 的 UI 中显示的文本消息。|
 | **speechText** | Cortana 读取给用户的文本或 SSML。 |
@@ -54,7 +54,7 @@ Bot Builder SDK for Node.js 通过将支持语音的机器人作为 Cortana 技�
 inputHint 属性有助于向 Cortana 指示机器人是否期待输入。 如果使用内置提示，此值会自动设置为 expectingInput 的默认值。
 
 
-| 值 | Description |
+| 值 | 说明 |
 |------|------|
 | **acceptingInput** | 机器人被动地准备好接收输入，但并不等待响应。 如果用户按住麦克风按钮，Cortana 接受来自用户的输入。|
 | **expectingInput** | 指示机器人主动期待来自用户的响应。 Cortana 会收听用户对着麦克风的讲话。  |

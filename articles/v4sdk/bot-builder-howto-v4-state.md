@@ -1,6 +1,6 @@
 ---
 title: 保存用户和聊天数据 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK 保存和检索状态数据。
+description: 了解如何使用 Bot Framework SDK 来保存和检索状态数据。
 keywords: 聊天状态, 用户状态, 聊天, 保存状态, 管理机器人状态
 author: ivorb
 ms.author: v-ivorb
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/26/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8c3aad54a9e80e8a046a6e31a5109a1de8c61a8b
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: 8c3696d0642e1b1ce9c3d3e23118a7bd9ab0023b
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010502"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224582"
 ---
 # <a name="save-user-and-conversation-data"></a>保存用户和聊天数据
 

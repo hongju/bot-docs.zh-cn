@@ -1,6 +1,6 @@
 ---
 title: 使用 LUIS 识别意向和实体 | Microsoft Docs
-description: 了解如何在 Bot Builder SDK for .NET 中使用 LUIS 对话，使机器人理解自然语言。
+description: 了解如何在 Bot Framework SDK for .NET 中使用 LUIS 对话，使机器人理解自然语言。
 author: DeniseMak
 ms.author: v-demak
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: ec3c93bfca1ec8554655934d9165e436d88b9466
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 26b23c9beda872b71defd779563531328b63a0c8
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997724"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225372"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 识别意向和实体 
 
@@ -59,7 +59,7 @@ ms.locfileid: "49997724"
 
 使用用于登录 Azure 的相同帐户登录 [https://www.luis.ai](https://www.luis.ai)。 单击“我的应用”。 在应用列表中找到所需应用，该应用的开头为创建机器人服务时在“机器人服务”边栏选项卡的“应用名称”中指定的名称。 
 
-LUIS 应用开始时为 4 个意向：Cancel、Greeting、Help 和 None。 <!-- picture -->
+LUIS 应用起初有 4 个意向：Cancel、Greeting、Help 和 None。 <!-- picture -->
 
 以下步骤添加 Note.Create、Note.ReadAloud 和 Note.Delete 意向： 
 
@@ -388,7 +388,7 @@ using System.Collections.Generic;
 - [对话框](bot-builder-dotnet-dialogs.md)
 - [使用对话框管理会话流](bot-builder-dotnet-manage-conversation-flow.md)
 - <a href="https://www.luis.ai" target="_blank">LUIS</a>
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
 
 [LUIS]: https://www.luis.ai/
 [NotesSample]: https://github.com/Microsoft/BotFramework-Samples/tree/master/docs-samples/CSharp/Simple-LUIS-Notes-Sample

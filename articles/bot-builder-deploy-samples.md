@@ -8,13 +8,14 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 12/17/2018
-ms.openlocfilehash: 831268b1ddc711963c20ca9c99b333f070a6100c
-ms.sourcegitcommit: 8c10aa7372754596a3aa7303a3a893dd4939f7e9
+ms.date: 01/15/2019
+monikerRange: azure-bot-service-4.0
+ms.openlocfilehash: 78e960357d6c4dc1c9751a9921a2338f552738b0
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53654322"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317608"
 ---
 # <a name="deploy-bots-from-botbuilder-samples-repo"></a>从 botbuilder-samples 存储库部署机器人
 
@@ -35,14 +36,18 @@ ms.locfileid: "53654322"
 - 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/)。
 - 安装 [.NET Core SDK](https://dotnet.microsoft.com/download) >= v2.2。 使用 `dotnet --version` 查看所使用的版本。
 - 安装最新版本的 [Azure CLI 工具](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)。 使用 `az --version` 查看所使用的版本。
-- 安装 `az` 工具的最新 `botservice` 扩展。
-  - 首先，使用 `az extension remove -n botservice` 命令删除旧版本。 接下来，使用 `az extension add -n botservice` 命令安装最新版本。
 - 安装最新版本的 [MSBot](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/MSBot) 工具。
   - 如果克隆操作包括 LUIS 或 Dispatch 资源，则需要 [LUIS CLI](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUIS#installation)。
   - 如果克隆操作包括 QnA Maker 资源，则需要 [QnA Maker CLI](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/QnAMaker#as-a-cli)。
 - 安装 [Bot Framework Emulator](https://aka.ms/Emulator-wiki-getting-started)。
 - 安装并配置 [ngrok](https://github.com/Microsoft/BotFramework-Emulator/wiki/Tunneling-%28ngrok%29)。
 - 了解 [.bot](v4sdk/bot-file-basics.md) 文件。
+
+使用 msbot 4.3.2 及更高版本时，需要 Azure CLI 2.0.54 或更高版本。 如果安装了 botservice 扩展，请使用此命令将其删除。
+
+```cmd
+az extension remove --name botservice
+```
 
 ### <a name="c"></a>C\#
 
@@ -152,13 +157,13 @@ Copy this secret and use it to open the <file.bot> the first time.`
 切勿使用 `msbot clone services` 命令更新 Azure 中的机器人代码。 必须按如下所示使用 `az bot publish` 命令：
 
 ```cmd
-az bot publish --name "<your-azure-bot-name>" --proj-file "<your-proj-file>" --resource-group "<azure-resource-group>" --code-dir "<folder>" --verbose --version v4
+az bot publish --name "<your-azure-bot-name>" --proj-name "<your-proj-name>" --resource-group "<azure-resource-group>" --code-dir "<folder>" --verbose --version v4
 ```
 
-| 参数        | Description |
+| 参数        | 说明 |
 |----------------  |-------------|
 | `name`      | 首次将机器人部署到 Azure 时使用的名称。|
-| `proj-file` | 对于 C# 机器人，它是 .csproj 文件。 对于 JS/TS 机器人，它是本地机器人的启动项目文件名（例如 index.js 或 index.ts）。|
+| `proj-name` | 对于 C#，请使用需要发布的启动项目文件名称（不带 .csproj）。 例如：`EnterpriseBot`。 对于 Node.js，请使用机器人的主入口点。 例如，`index.js`。 |
 | `resource-group` | `msbot clone services` 命令使用的 Azure 资源组。|
 | `code-dir`  | 指向本地 bot 文件夹。|
 
@@ -166,7 +171,7 @@ az bot publish --name "<your-azure-bot-name>" --proj-file "<your-proj-file>" --r
 
 部署机器人时，通常会在 Azure 门户中创建以下资源：
 
-| 资源      | Description |
+| 资源      | 说明 |
 |----------------|-------------|
 | Web 应用机器人 | 部署到 Azure 应用服务的 Azure 机器人服务机器人。|
 | [应用服务](https://docs.microsoft.com/en-us/azure/app-service/)| 用于生成和托管 Web 应用程序。|

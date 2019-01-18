@@ -3,18 +3,18 @@ title: 调试机器人 | Microsoft Docs
 description: 了解如何使用机器人服务调试机器人。
 author: v-ducvo
 ms.author: v-ducvo
-keywords: Bot Builder SDK, 调试机器人, 测试机器人, 机器人模拟器, 模拟器
+keywords: Bot Framework SDK, 调试机器人, 测试机器人, 机器人模拟器, 模拟器
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/13/2018
-ms.openlocfilehash: fcda5c57a96b6f93aad965e868c824577616f630
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: b445ce7796c3f7f3180b15fd6dfac1ef82b808ae
+ms.sourcegitcommit: d385ec5fe61c469ab17e6f21b4a0d50e5110d0fd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452039"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54298294"
 ---
 # <a name="debug-a-bot"></a>调试机器人
 
@@ -32,6 +32,7 @@ ms.locfileid: "52452039"
 1. 启动模拟器并连接到机器人的终结点（例如： **http://localhost:3978/api/messages** ）。 如果这是首次运行机器人，请单击“文件”>“新建机器人”，然后按照屏幕上的说明操作。 否则，单击“文件”>“打开机器人”打开现有机器人。 由于此机器人正在你的计算机上本地运行，可以将“MSA 应用 ID”和“MSA 应用密码”字段留空。 有关详细信息，请参阅[使用模拟器调试](bot-service-debug-emulator.md)。
 1. 在模拟器中向机器人发送一条消息（例如：发送消息“Hi”）。 
 1. 使用仿真器窗口右侧的“检查器”和“日志”面板调试机器人。 例如，单击任何消息气泡（例如，下面屏幕截图中的“Hi”消息气泡），将在“检查器”面板中显示该消息的详细信息。 由于消息是在模拟器和机器人之间交换，因此，可以使用它来查看请求和响应。 另外，还可以在“日志”窗格中单击任何链接的文本，在“检查器”窗格中查看详细信息。
+
 
    ![仿真器上的“检查器”窗格](~/media/bot-service-debug-bot/emulator_inspector.png)
 

@@ -1,6 +1,6 @@
 ---
 title: FormFlow 的基本功能 | Microsoft Docs
-description: 了解如何在用于 .NET 的 Bot Builder SDK 中使用 FormFlow 来引导聊天流。
+description: 了解如何在 Bot Framework SDK for .NET 中使用 FormFlow 来引导聊天流。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,18 +9,18 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f5b36e1f916539b78f9bdcdd0970317db723f408
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 710a8ce315faa02a72eaeb753c44b9b212524ec3
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000370"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224672"
 ---
 # <a name="basic-features-of-formflow"></a>FormFlow 的基本功能
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-[对话](bot-builder-dotnet-dialogs.md)是很强大且很灵活的功能，但处理引导式聊天（例如订购三明治）仍需很大周折。 在聊天中，每个时间点接下来要发生的事情都有许多可能性。 例如，可能需要澄清某个不清楚的地方、提供帮助、返回或显示进度。 在用于 .NET 的 Bot Builder SDK 中使用 **FormFlow**，可以大大简化管理此类引导式聊天的过程。 
+[对话](bot-builder-dotnet-dialogs.md)是很强大且很灵活的功能，但处理引导式聊天（例如订购三明治）仍需很大周折。 在聊天中，每个时间点接下来要发生的事情都有许多可能性。 例如，可能需要澄清某个不清楚的地方、提供帮助、返回或显示进度。 通过在 Bot Framework SDK for .NET 中使用 **FormFlow**，可以大大简化管理此类引导式聊天的过程。 
 
 FormFlow 可以根据指定的准则，自动生成管理引导式聊天所需的对话。 虽然与自行创建和管理对话相比，使用 FormFlow 会牺牲一些灵活性，但使用 FormFlow 设计引导式聊天可以大大缩短开发机器人所需的时间。 另外，在构建机器人时，可以组合使用 FormFlow 生成的对话和其他类型的对话。 例如，可以通过 FormFlow 对话引导用户执行完成窗体的过程，同时通过 [LuisDialog][LuisDialog] 评估用户输入，以便确定意向。
 
@@ -323,7 +323,7 @@ FormFlow 可简化对话开发。 FormFlow 的高级功能可用于自定义 For
 - [本地化窗体内容](bot-builder-dotnet-formflow-localize.md)
 - [使用 JSON 架构定义窗体](bot-builder-dotnet-formflow-json-schema.md)
 - [使用模式语言自定义用户体验](bot-builder-dotnet-formflow-pattern-language.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
 
 [LuisDialog]: /dotnet/api/microsoft.bot.builder.dialogs.luisdialog-1
 

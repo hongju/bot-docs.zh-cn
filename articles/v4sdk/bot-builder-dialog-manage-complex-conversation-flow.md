@@ -1,6 +1,6 @@
 ---
 title: 使用分支和循环创建高级聊天流 | Microsoft Docs
-description: 了解如何在 Bot Builder SDK 中使用对话管理复杂的聊天流。
+description: 了解如何在 Bot Framework SDK 中使用对话管理复杂的聊天流。
 keywords: 复杂的聊天流, 重复, 循环, 菜单, 对话, 提示, 瀑布, 对话集
 author: JonathanFingold
 ms.author: v-jofing
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/28/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: da891fad019fc1725242404905565bb1072f8540
-ms.sourcegitcommit: 4db09039effc5259feba163128f4e9a3ccdd3d0d
+ms.openlocfilehash: 27bcd53e9f3d582a1206c5ed74cc844acab795b4
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/29/2018
-ms.locfileid: "52585888"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225882"
 ---
 # <a name="create-advanced-conversation-flow-using-branches-and-loops"></a>使用分支和循环创建高级聊天流
 

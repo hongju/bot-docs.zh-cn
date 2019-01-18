@@ -1,6 +1,6 @@
 ---
 title: 使用模式语言自定义用户体验 | Microsoft Docs
-description: 了解如何在 Bot Builder SDK for .NET 中使用模式语言来自定义 FormFlow 提示和重写 FormFlow 模板。
+description: 了解如何在 Bot Framework SDK for .NET 中使用模式语言来自定义 FormFlow 提示和重写 FormFlow 模板。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: bc0a2819f3adea63b53e464808f3bbaf5b93814a
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f3d46431191638cc41026f6c020a5f04de21ff0d
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998044"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225632"
 ---
 # <a name="customize-user-experience-with-pattern-language"></a>使用模式语言自定义用户体验
 
@@ -35,7 +35,7 @@ ms.locfileid: "49998044"
 
 模式语言使用大括号 (`{}`) 来标识要在运行时替换为实际值的元素。 下表列出了模式语言的元素。
 
-| 元素 | Description |
+| 元素 | 说明 |
 |----|----|
 | `{<format>}` | 显示当前字段（该属性应用到的字段）的值。 |
 | `{&}` | 显示当前字段的说明（除非另有指定，否则是该字段的名称）。 |
@@ -90,7 +90,7 @@ What kind of sandwich would you like?
 
 提示和模板支持以下格式参数。
 
-| 使用情况 | Description |
+| 使用情况 | 说明 |
 |----|----|
 | `AllowDefault` | 适用于 <code>{&#124;&#124;}</code> 模式元素。 确定窗体是否应显示字段的当前值作为可能的选项。 如果为 `true`，则显示当前值作为可能值。 默认为 `true`。 |
 | `ChoiceCase` | 适用于 <code>{&#124;&#124;}</code> 模式元素。 确定是否规范化每个选项的文本（例如，是否将每个单词的第一个字母大写）。 默认为 `CaseNormalization.None`。 有关可能值，请参阅 [CaseNormalization][caseNormalization]。 |
@@ -143,8 +143,8 @@ What kind of sandwich would you like?
 - [FormFlow 的高级功能](bot-builder-dotnet-formflow-advanced.md)
 - [使用 FormBuilder 自定义表单](bot-builder-dotnet-formflow-formbuilder.md)
 - [本地化窗体内容](bot-builder-dotnet-formflow-localize.md)
-- [使用 JSON 架构定义窗体](bot-builder-dotnet-formflow-json-schema.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
+- [使用 JSON 架构定义表单](bot-builder-dotnet-formflow-json-schema.md)
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
 
 [promptAttribute]: /dotnet/api/microsoft.bot.builder.formflow.promptattribute
 

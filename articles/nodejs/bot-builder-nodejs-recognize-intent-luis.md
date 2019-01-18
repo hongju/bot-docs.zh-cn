@@ -1,6 +1,6 @@
 ---
 title: 使用 LUIS 识别意向和实体 | Microsoft Docs
-description: 将机器人与 LUIS 集成可以检测用户的意图，并使用 Bot Builder SDK for Node.js 触发对话，以此做出适当的响应。
+description: 将机器人与 LUIS 集成可以检测用户的意图，并使用 Bot Framework SDK for Node.js 触发对话，以便做出适当的响应。
 author: DeniseMak
 ms.author: v-demak
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 03/28/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5df1352241485bf95a46fa981b9b16c3cb7e3925
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: acdc6053f7d666c2f086dca554efafc93c8af769
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998694"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225282"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 识别意向和实体 
 
@@ -59,7 +59,7 @@ ms.locfileid: "49998694"
 
 使用用于登录 Azure 的相同帐户登录 [https://www.luis.ai](https://www.luis.ai)。 单击“我的应用”。 在应用列表中找到所需应用，该应用的开头为创建机器人服务时在“机器人服务”边栏选项卡的“应用名称”中指定的名称。 
 
-LUIS 应用开始时为 4 个意向：Cancel、Greeting、Help 和 None。 <!-- picture -->
+LUIS 应用起初有 4 个意向：Cancel、Greeting、Help 和 None。 <!-- picture -->
 
 以下步骤添加 Note.Create、Note.ReadAloud 和 Note.Delete 意向： 
 
@@ -77,10 +77,10 @@ LUIS 应用开始时为 4 个意向：Cancel、Greeting、Help 和 None。 <!-- 
    * Note.ReadAloud
    * Note.Create
    * Note.Delete
-   * 无
-   * 帮助
+   * None
+   * Help
    * Greeting
-   * 取消
+   * Cancel
 
      ![LUIS 应用中显示的意向](../media/bot-builder-nodejs-use-luis/luis-intent-list.png)
 

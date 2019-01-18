@@ -1,6 +1,6 @@
 ---
 title: 处理用户操作 | Microsoft Docs
-description: 了解如何通过让机器人能够使用 Bot Builder SDK for Node.js 侦听和处理包含特定关键字的用户输入来处理用户操作。
+description: 了解如何使用 Bot Framework SDK for Node.js 让机器人能够侦听和处理包含特定关键字的用户输入，从而处理用户操作。
 author: DucVo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 26f6e9520fe5d2ebb83ceb4e6a497a35e9d2611f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 7ca595b1c24769addfbdf7975c48d3a052c4a2de
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999254"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54226002"
 ---
 # <a name="handle-user-actions"></a>处理用户操作
 
@@ -32,7 +32,7 @@ ms.locfileid: "49999254"
 
 下表列出了可附加到对话的操作类型。 每个操作名称的链接均会转到一个提供该操作详细信息的部分。
 
-| 操作 | 范围 | Description |
+| 操作 | 范围 | 说明 |
 |------|------| ---- |
 | [triggerAction](#bind-a-triggeraction) | 全局 | 如果将操作绑定到对话，这将清除对话堆栈并将其自身推送到堆栈的底部。 使用 `onSelectAction` 选项替代此默认行为。 |
 | [customAction](#bind-a-customaction) | 全局 | 将自定义操作绑定到可处理信息或执行操作但不影响对话堆栈的机器人。 使用 `onSelectAction` 选项自定义此操作的功能。 |
@@ -236,7 +236,7 @@ bot.dialog('orderDinner', [
 
 ### <a name="bind-an-endconversationaction"></a>绑定 endConversationAction
 
-绑定 `endConversationAction` 会将其注册到对话。 触发后，此操作将结束与用户的聊天。 触发此操作与调用 [endConversation](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#endconversation) 方法类似。 聊天结束后，Bot Builder SDK for Node.js 将清除对话堆栈和持久化的状态数据。 要详细了解持久化的状态数据，请参阅[管理状态数据](bot-builder-nodejs-state.md)。
+绑定 `endConversationAction` 会将其注册到对话。 触发后，此操作将结束与用户的聊天。 触发此操作与调用 [endConversation](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#endconversation) 方法类似。 聊天结束后，Bot Framework SDK for Node.js 将清除对话堆栈和持久化的状态数据。 要详细了解持久化的状态数据，请参阅[管理状态数据](bot-builder-nodejs-state.md)。
 
 以下代码片段展示了如何将 [endConversationAction][endConversationAction] 绑定到对话。
 

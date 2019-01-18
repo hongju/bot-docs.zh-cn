@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: dfc90f4c4c6e3ad00899569f667b5d3d88dcf042
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: a5cb6431988e65a4fa4a889f3095404622d51626
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999954"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224442"
 ---
 # <a name="register-a-bot-with-bot-service"></a>在机器人服务中注册机器人
 
@@ -44,7 +44,7 @@ ms.locfileid: "49999954"
    ![“创建注册机器人”边栏选项卡](~/media/azure-bot-quickstarts/registration-create-bot-service-blade.png)
 
 
-   |                    设置                     |         建议的值         |                                                                                                  Description                                                                                                  |
+   |                    设置                     |         建议的值         |                                                                                                  说明                                                                                                  |
    |------------------------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
    |           <strong>机器人名称</strong>            |     机器人的显示名称     |                                                  通道和目录中显示的机器人的显示名称。 此名称可随时更改。                                                  |
    |         <strong>订阅</strong>          |        订阅        |                                                                                选择要使用的 Azure 订阅。                                                                                 |
@@ -74,12 +74,12 @@ ms.locfileid: "49999954"
 
 ## <a name="update-the-bot"></a>更新机器人
 
-如果使用 Bot Builder SDK for Node.js，请设置以下环境变量：
+如果使用的是 Bot Framework SDK for Node.js，请设置以下环境变量：
 
 * MICROSOFT_APP_ID
 * MICROSOFT_APP_PASSWORD
 
-如果使用 Bot Builder SDK for .NET，请在 web.config 文件中设置以下键值：
+如果使用的是 Bot Framework SDK for .NET，请在 web.config 文件中设置以下键值：
 
 * MicrosoftAppId
 * MicrosoftAppPassword

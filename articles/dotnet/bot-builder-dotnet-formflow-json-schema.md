@@ -1,6 +1,6 @@
 ---
 title: 使用 JSON 架构和 FormFlow 定义表单 | Microsoft Docs
-description: 了解如何通过 Bot Builder SDK for .NET 使用 JSON 架构和 FormFlow 来定义表单。
+description: 了解如何通过 Bot Framework SDK for .NET 使用 JSON 架构和 FormFlow 来定义表单。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 8bcc957dbe2d69790cdfa7c2d7c377ed28b5fa12
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: d84252281baa57a15b093cfd0ba92fe5fe422027
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000324"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225852"
 ---
 # <a name="define-a-form-using-json-schema"></a>使用 JSON 架构定义表单
 
@@ -28,7 +28,7 @@ JSON 架构描述了 <a href="http://www.newtonsoft.com/json/help/html/T_Newtons
 
 FormFlow 支持这些标准 <a href="http://json-schema.org/documentation.html" target="_blank">JSON 架构</a>关键字：
 
-| 关键字 | Description | 
+| 关键字 | 说明 | 
 |----|----|
 | type | 定义字段包含的数据类型。 |
 | 枚举 | 定义字段的有效值。 |
@@ -64,7 +64,7 @@ FormFlow 扩展了标准 <a href="http://json-schema.org/documentation.html" tar
 
 ### <a name="additional-properties-as-peers-of-the-type-property"></a>作为类型属性对等项的其他属性
 
-|   属性   |          内容           |                                                   Description                                                    |
+|   属性   |          内容           |                                                   说明                                                    |
 |--------------|-----------------------------|------------------------------------------------------------------------------------------------------------------|
 |   DateTime   |            bool             |                                  表示字段是否为 `DateTime` 字段。                                  |
 |   Describe   |      字符串或对象       |                  如 [DescribeAttribute][describeAttribute] 中所述的字段描述。                  |
@@ -87,7 +87,7 @@ FormFlow 扩展了标准 <a href="http://json-schema.org/documentation.html" tar
 
 上述几个属性包含脚本作为属性值。 脚本可以是通常会在方法正文中找到的任何 C# 代码片段。 可以通过使用 References 属性和/或 Imports 属性来添加引用。 特殊的全局变量包括：
 
-| 变量 | Description |
+| 变量 | 说明 |
 |----|----|
 | choice | 用于要执行的脚本的内部调度。 |
 | state | 所有脚本的绑定的 `JObject` 表单状态。 |
@@ -317,7 +317,7 @@ FormFlow 扩展了标准 <a href="http://json-schema.org/documentation.html" tar
 - [使用 FormBuilder 自定义表单](bot-builder-dotnet-formflow-formbuilder.md)
 - [本地化处理表单内容](bot-builder-dotnet-formflow-localize.md)
 - [使用模式语言自定义用户体验](bot-builder-dotnet-formflow-pattern-language.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
 
 [numericAttribute]: /dotnet/api/microsoft.bot.builder.formflow.numericattribute
 

@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: b246e9e07243e4064f92e72ee3909541f642714e
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: db09888c5f782b065ff6bd108ce93379cd42527a
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999924"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317667"
 ---
 # <a name="activities-overview"></a>活动概述
 
@@ -23,7 +23,7 @@ Bot Connector 服务通过传递 [Activity][Activity] 对象在机器人和通�
 
 Bot Connector 服务支持以下活动类型。
 
-| 活动类型 | Description |
+| 活动类型 | 说明 |
 |------|------|------|
 | message | 表示机器人和用户之间的通信。 |
 | conversationUpdate | 指示机器人已添加到聊天中、其他成员已添加到聊天或已从中删除，或者聊天元数据已更改。 |

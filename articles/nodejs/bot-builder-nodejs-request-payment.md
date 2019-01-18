@@ -1,6 +1,6 @@
 ---
 title: 请求付款 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for Node.js 发送付款请求。
+description: 了解如何使用 Bot Framework SDK for Node.js 发送支付请求。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5bdb699e242784883f7c1a5dda895a31ff80efb1
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 296004c654cfd59de6c245bf9702a80024526140
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999155"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225742"
 ---
 # <a name="request-payment"></a>请求付款
 
@@ -24,11 +24,11 @@ ms.locfileid: "49999155"
 > - [.NET](../dotnet/bot-builder-dotnet-request-payment.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-request-payment.md)
 
-如果机器人支持用户购买商品，它可通过在[资讯卡](bot-builder-nodejs-send-rich-cards.md)内添加特殊类型的按钮来请求付款。 本文介绍如何使用 Bot Builder SDK for Node.js 发送付款请求。
+如果机器人支持用户购买商品，它可通过在[资讯卡](bot-builder-nodejs-send-rich-cards.md)内添加特殊类型的按钮来请求付款。 本文介绍了如何使用 Bot Framework SDK for Node.js 发送支付请求。
 
 ## <a name="prerequisites"></a>先决条件
 
-必须先完成以下先决条件任务，才能使用 Bot Builder SDK for Node.js 发送付款请求。
+必须先完成以下先决条件任务才能使用 Bot Framework SDK for Node.js 发送支付请求。
 
 ### <a name="register-and-configure-your-bot"></a>注册并配置机器人
 

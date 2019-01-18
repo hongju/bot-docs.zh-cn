@@ -1,6 +1,6 @@
 ---
-title: 将丰富卡片附件添加到消息 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for Node.js 发送有吸引力的交互式丰富卡片。
+title: 向消息添加资讯卡附件 | Microsoft Docs
+description: 了解如何使用 Bot Framework SDK for Node.js 发送有吸引力的交互式丰富卡片。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 12d18e83064cdf8ce43a662198a2fa94eb995b3b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: e3bf4a6868702f24af08e69d5f07c036082ec3b6
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000084"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225232"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>向消息添加资讯卡附件
 
@@ -31,7 +31,7 @@ ms.locfileid: "50000084"
 ## <a name="types-of-rich-cards"></a>丰富卡片的类型 
 Bot Framework 目前支持八个类型的富卡： 
 
-| 卡类型 | Description |
+| 卡类型 | 说明 |
 |------|------|
 | <a href="/adaptive-cards/get-started/bots">自适应卡片</a> | 一种可以包含文本、语音、图像、按钮和输入字段的任意组合的可自定义卡片。  请参阅[每个通道的支持](/adaptive-cards/get-started/bots#channel-status)。 |
 | [动画卡片][animationCard] | 一种可以播放动态 GIF 或短视频的卡片。 |

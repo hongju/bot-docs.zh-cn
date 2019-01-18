@@ -9,18 +9,18 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/22/2018
-ms.openlocfilehash: f5ca01b592266d005c8f000e2351ddcf812acb6d
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: a00e1d0d70e48b1af9cf10fd4e47ea86ae4908e9
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997375"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224252"
 ---
 # <a name="connect-a-bot-to-channels"></a>将机器人连接到通道
 
 通道连接机器人和通信应用。 配置机器人以连接到希望在其上可用的通道。 通过 Azure 门户配置的 Bot Framework Service 将机器人连接到这些通道，并促进机器人与用户之间的通信。 可以连接到许多常用服务，如 [Cortana](bot-service-channel-connect-cortana.md)、[Facebook Messenger](bot-service-channel-connect-facebook.md)、[Kik](bot-service-channel-connect-kik.md) 和 [Slack](bot-service-channel-connect-slack.md) 等。 [Skype](https://dev.skype.com/bots) 和网上聊天为预配置。 除了通过 Bot Connector 服务提供的标准通道，还可以使用 Direct Line 作为通道，将机器人连接到你自己的客户端应用程序。
 
-可以借助 Bot Framework Service 规范化机器人发送到通道的消息，采用与通道无关的方式开发机器人。 这涉及将其从 Bot Builder 架构转换为通道架构。 但是，如果通道不支持 Bot Builder 架构的所有方面，该服务会尝试将消息转换为通道支持的格式。 例如，如果机器人向短信通道发送的消息中包含一张带有操作按钮的卡，Connector 可能会将该卡作为一个图像发送，并包含这些操作作为消息文本中的链接。
+可以借助 Bot Framework Service 规范化机器人发送到通道的消息，采用与通道无关的方式开发机器人。 这涉及将其从 Bot Framework 架构转换为通道架构。 但是，如果通道不支持 Bot Framework 架构的所有方面，该服务会尝试将消息转换为通道支持的格式。 例如，如果机器人向短信通道发送的消息中包含一张带有操作按钮的卡，Connector 可能会将该卡作为一个图像发送，并包含这些操作作为消息文本中的链接。
 
 
 

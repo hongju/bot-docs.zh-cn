@@ -1,6 +1,6 @@
 ---
 title: 向消息添加输入提示 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK 向消息添加输入提示。
+description: 了解如何使用 Bot Framework SDK 向消息添加输入提示。
 keywords: 输入提示, 接受输入, 预期输入, 忽略输入, 语音
 author: ivorb
 ms.author: v-ivorb
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 08/24/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d55accd5ad9ad7db12d0b0e6865e04dcf7718110
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 751d5067d2e4b6b6ad21e1a4fd0ccb3818385d06
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996735"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224872"
 ---
 # <a name="add-input-hints-to-messages"></a>向消息添加输入提示
 
@@ -118,9 +118,9 @@ await context.sendActivity(basicMessage);
 
 ## <a name="default-values-for-input-hint"></a>输入提示的默认值
 
-如果未设置消息的输入提示，Bot Builder SDK 将使用以下逻辑自动进行设置：
+如果未设置消息的输入提示，Bot Framework SDK 将使用以下逻辑自动进行设置：
 
-- 如果机器人发送提示，则消息的输入提示将指定机器人正在预期输入。</li>
+- 如果机器人发送提示，则消息的输入提示将指定机器人期待输入。</li>
 - 如果机器人发送单条消息，则消息的输入提示将指定机器人正在接受输入。</li>
 - 如果机器人发送了一系列连续的消息，那么系列中除最后消息之外的所有消息的输入提示将指定机器人正在忽略输入，并且系列中最后消息的输入提示将指定机器人正在接受输入。
 

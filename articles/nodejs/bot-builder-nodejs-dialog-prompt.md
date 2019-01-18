@@ -1,6 +1,6 @@
 ---
 title: 提示用户输入 | Microsoft Docs
-description: 了解如何在 Bot Builder SDK for Node.js 中使用提示来收集用户输入。
+description: 了解如何在 Bot Framework SDK for Node.js 中使用提示来收集用户输入。
 author: v-ducvo
 ms.author: v-ducvo
 manager: kamrani
@@ -9,18 +9,18 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 0926c15d2c62bfa74ddb465d8c816dee7c8fb576
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 0ee70c1e775780bf884c4237e47cff4edb8934a9
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52451969"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224782"
 ---
 # <a name="prompt-for-user-input"></a>提示用户输入
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-Bot Builder SDK for Node.js 提供一组内置的提示来简化从用户收集输入的过程。 
+Bot Framework SDK for Node.js 提供了一组内置的提示来简化从用户收集输入的过程。 
 
 每当机器人需要用户的输入时，都会使用提示。 可以通过在瀑布中链接提示，使用提示来请求用户提供一系列输入。 可将提示与[瀑布](bot-builder-nodejs-dialog-waterfall.md)相结合，以帮助在机器人中[管理聊天流](bot-builder-nodejs-manage-conversation-flow.md)。 
 
@@ -74,7 +74,7 @@ bot.dialog('askName', [
 ```
 
 ## <a name="prompt-types"></a>提示类型
-Bot Builder SDK for Node.js 包含多种不同类型的内置提示。 
+Bot Framework SDK for Node.js 包含多种不同类型的内置提示。 
 
 |**提示类型**     | **说明** |     
 | ------------------ | --------------- |
@@ -162,7 +162,7 @@ bot.dialog('createAlarm', [
 
 `ListStyle` 枚举值如下所示：
 
-| 索引 | 名称 | Description |
+| 索引 | 名称 | 说明 |
 | ---- | ---- | ---- |
 | 0 | 无 | 不呈现任何列表。 将列表包含为提示的一部分时使用此值。 |
 | 1 | inline | 以窗体“1. red, 2. green, or 3. blue”的内联列表形式呈现选项。 |

@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/10/2018
-ms.openlocfilehash: 93270dd6211d8aef1ff44fb8e272855df2058b8a
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: bd18edb87cdff502ed66177f92f88a8488135431
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997204"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225702"
 ---
 # <a name="connect-a-bot-to-office-365-email"></a>将机器人连接到 Office 365 电子邮件
 
@@ -76,11 +76,11 @@ ms.locfileid: "49997204"
 <!-- Put whole list in monikers, even though it's just the second item that needs to be different. -->
 ::: moniker range="azure-bot-service-3.0"
 * 将机器人连接到[通道](~/bot-service-manage-channels.md)
-* 使用 Bot Builder SDK for .NET [实现特定于通道的功能](dotnet/bot-builder-dotnet-channeldata.md)
+* 使用 Bot Framework SDK for .NET [实现特定于通道的功能](dotnet/bot-builder-dotnet-channeldata.md)
 * 使用[通道检查器](bot-service-channel-inspector.md)查看通道如何显示机器人应用程序的某个功能
 ::: moniker-end
 ::: moniker range="azure-bot-service-4.0"
 * 将机器人连接到[通道](~/bot-service-manage-channels.md)
-* 使用 Bot Builder SDK for .NET [实现特定于通道的功能](~/v4sdk/bot-builder-channeldata.md)
+* 使用 Bot Framework SDK for .NET [实现特定于通道的功能](~/v4sdk/bot-builder-channeldata.md)
 * 使用[通道检查器](bot-service-channel-inspector.md)查看通道如何显示机器人应用程序的某个功能
 ::: moniker-end

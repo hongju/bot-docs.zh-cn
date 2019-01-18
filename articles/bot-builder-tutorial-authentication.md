@@ -6,14 +6,15 @@ ms.author: JonathanFingold
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
+ROBOTS: NOINDEX
 ms.date: 10/04/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 9b9a3594e3a1f6a93ce3d9b3314880c78b88a9c5
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 33c6f22696038ed5e9d2ae09ad2ec99d401f6a60
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998904"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317707"
 ---
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
@@ -32,12 +33,12 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 - 改进了通道，支持新的身份验证功能（如新的 WebChat 和 DirectLineJS 库），无需 6 位数幻码验证。
 - 改进了 Azure 门户，可添加、删除和配置各种 OAuth 标识提供者的连接设置。
 - 支持各种现成的标识提供者，包括 Azure AD（v1 和 v2 终结点）、GitHub 等。
-- 更新了 C# 和 Node.js Bot Builder SDK，可检索令牌、创建 OAuthCards 并处理 TokenResponse 事件。
+- 更新了 C# 和 Node.js Bot Framework SDK，使之可检索令牌、创建 OAuthCard 并处理 TokenResponse 事件。
 - 提供用于向 Azure AD（v1 和 v2 终结点）以及 GitHub 进行身份验证的机器人的开发方法示例。
 
 你可以根据本文中的步骤进行推断，将此类功能添加到现有机器人。 以下是演示新身份验证功能的示例机器人
 
-| 示例 | BotBuilder 版本 | Description |
+| 示例 | BotBuilder 版本 | 说明 |
 |:---|:---:|:---|
 | [AadV1Bot](https://aka.ms/AadV1Bot) | v3 | 演示 v3 C# SDK 中的 OAuthCard 支持（使用 Azure AD v1 终结点） |
 | [AadV2Bot](https://aka.ms/AadV2Bot) | v3 |  演示 v3 C# SDK 中的 OAuthCard 支持（使用 Azure AD v2 终结点） |
@@ -317,7 +318,7 @@ private async Task SendOAuthCardAsync(IDialogContext context, Activity activity)
 
 ### <a name="wait-for-a-tokenresponseevent"></a>等待 TokenResponseEvent
 
-在此代码中，机器人的 dialog 类在等待 `TokenResponseEvent`（请参阅下文，详细了解如何路由到 Dialog 堆栈）。 `WaitForToken` 方法首先确定是否已发送此事件。 如果已发送，那么它就可以供机器人使用。 如果没有发送，则 `WaitForToken` 方法会接受发送到机器人的任何文本并将其传递给 `GetUserTokenAsync`。 原因是某些客户端（如 WebChat）不需要幻码验证码，可以直接在 `TokenResponseEvent` 中发送令牌。 其他客户端（如 Facebook 或 Slack）仍然需要幻码。 Azure 机器人服务将为这些客户端提供一个六位数的幻码，并要求用户在聊天窗口中键入此代码。 虽然不理想，但这是“回退”行为，因此如果 `WaitForToke`n 收到代码，机器人可以将此代码发送到 Azure Bot 服务并获得一个令牌。 如果此调用也失败了，则可以决定报告错误或执行其他操作。 但大多数情况下，机器人此时将有一个用户令牌。
+在此代码中，机器人的 dialog 类在等待 `TokenResponseEvent`（请参阅下文，详细了解如何路由到 Dialog 堆栈）。 `WaitForToken` 方法首先确定是否已发送此事件。 如果已发送，那么它就可以供机器人使用。 如果没有发送，则 `WaitForToken` 方法会接受发送到机器人的任何文本并将其传递给 `GetUserTokenAsync`。 原因是某些客户端（如 WebChat）不需要幻码验证码，可以直接在 `TokenResponseEvent` 中发送令牌。 其他客户端（如 Facebook 或 Slack）仍然需要幻码。 Azure 机器人服务将为这些客户端提供一个六位数的幻码，并要求用户在聊天窗口中键入此代码。 虽然不理想，但这是“回退”行为，因此如果 `WaitForToken` 收到代码，机器人可以将此代码发送到 Azure 机器人服务并取回一个令牌。 如果此调用也失败了，则可以决定报告错误或执行其他操作。 但大多数情况下，机器人此时将有一个用户令牌。
 
 如果查看 MessageController.cs 文件，将看到此类型的 `Event` 活动也被路由到对话堆栈。
 
@@ -363,4 +364,4 @@ else if(message.Type == ActivityTypes.Event)
 }
 ```
 ## <a name="additional-resources"></a>其他资源
-[Bot Builder SDK](https://github.com/microsoft/botbuilder)
+[Bot Framework SDK](https://github.com/microsoft/botbuilder)

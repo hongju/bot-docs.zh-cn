@@ -1,6 +1,6 @@
 ---
 title: 管理状态数据 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for .NET 来保存和检索状态数据。
+description: 了解如何使用 Bot Framework SDK for .NET 来保存和检索状态数据。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/17
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: deb8361a5cca2f37840abb1180c2de571ee08143
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 3ee3af72d1c03faf485a64adb8d9fa2548f5d99d
+ms.sourcegitcommit: 3cc768a8e676246d774a2b62fb9c688bbd677700
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999754"
+ms.lasthandoff: 01/16/2019
+ms.locfileid: "54323663"
 ---
 # <a name="manage-state-data"></a>管理状态数据
 
@@ -94,7 +94,7 @@ GlobalConfiguration.Configure(WebApiConfig.Register);
 
 每个 [Activity][Activity] 对象包含用于管理状态数据的属性。
 
-| 属性 | Description | 使用案例 |
+| 属性 | 说明 | 使用案例 |
 |----|----|----|
 | `From` | 唯一标识通道上的用户 | 存储和检索与用户关联的状态数据 |
 | `Conversation` | 唯一标识聊天 | 存储和检索与聊天关联的状态数据 |
@@ -102,53 +102,6 @@ GlobalConfiguration.Configure(WebApiConfig.Register);
 
 > [!NOTE]
 > 即使你选择在自己的数据库中存储状态数据而不使用 Bot Framework 状态数据存储，也可以使用这些属性值作为键。
-
-## <a id="state-client"></a> 创建状态客户端
-
-使用 `StateClient` 对象可以通过 Bot Builder SDK for .NET 来管理状态数据。 如果你有权访问属于管理状态数据时所在的同一上下文的消息，则可以通过对 `Activity` 对象调用 `GetStateClient` 方法来创建状态客户端。
-
-[!code-csharp[Get State client](../includes/code/dotnet-state.cs#getStateClient1)]
-
-如果你无权访问属于管理状态数据时所在的同一上下文的消息，只需创建 `StateClient` 类的新实例即可创建状态客户端。 在此示例中，`microsoftAppId` 和 `microsoftAppPassword` 是在[创建机器人](../bot-service-quickstart.md)期间为机器人获取的 Bot Framework 身份验证凭据。
-
-> [!NOTE]
-> 若要查找机器人的 **AppID** 和 **AppPassword**，请参阅 [ MicrosoftAppID 和 MicrosoftAppPassword](~/bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
-
-[!code-csharp[Get State client](../includes/code/dotnet-state.cs#getStateClient2)]
-
-> [!NOTE]
-> 默认的状态客户端存储在中心服务中。 对于某些通道，可能需要使用通道本身托管的状态 API，以便可以在通道提供的合规存储中存储状态数据。
-
-## <a name="get-state-data"></a>获取状态数据
-
-每个“**Get...Data**”方法返回 `BotData` 对象，其中包含指定的用户和/或聊天的状态数据。 若要从 `BotData` 对象获取特定的属性值，请调用 `GetProperty` 方法。 
-
-以下代码示例演示如何从用户数据中获取某个类型化属性。 
-
-[!code-csharp[Get state property](../includes/code/dotnet-state.cs#getProperty1)]
-
-以下代码示例演示如何从用户数据中的复杂类型获取某个属性。
-
-[!code-csharp[Get state property](../includes/code/dotnet-state.cs#getProperty2)]
-
-如果为“**Get...Data**”方法调用指定的用户和/或聊天不存在状态数据，返回的 `BotData` 对象将包含以下属性值： 
-- `BotData.Data` = null
-- `BotData.ETag` = "*"
-
-## <a name="save-state-data"></a>保存状态数据
-
-若要保存状态数据，请先调用相应的“**Get...Data**”方法获取 `BotData` 对象，再调用 `SetProperty` 方法为要更新的每个属性更新该对象，然后调用相应的“**Set...Data**”方法保存该对象。 
-
-> [!NOTE]
-> 对于通道上的每个用户、通道上的每个聊天，以及通道上聊天上下文中的每个用户，最多可以存储 32 KB 的数据。 
-
-以下代码示例演示如何保存用户数据中的类型化属性。
-
-[!code-csharp[Set state property](../includes/code/dotnet-state.cs#setProperty1)]
-
-以下代码示例演示如何保存用户数据内的复杂类型中的属性。 
-
-[!code-csharp[Set state property](../includes/code/dotnet-state.cs#setProperty2)]
 
 ## <a name="handle-concurrency-issues"></a>处理并发性问题
 
@@ -159,6 +112,6 @@ GlobalConfiguration.Configure(WebApiConfig.Register);
 ## <a name="additional-resources"></a>其他资源
 
 - [Bot Framework 故障排除指南](../bot-service-troubleshoot-general-problems.md)
-- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Builder SDK for .NET 参考</a>
+- <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
 
 [Activity]: https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html

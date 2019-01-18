@@ -1,6 +1,6 @@
 ---
-title: 向消息添加富卡附件 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for .NET 向消息添加富卡。
+title: 向消息添加资讯卡附件 | Microsoft Docs
+description: 了解如何使用 Bot Framework SDK for .NET 向消息添加富卡。
 author: RobStand
 ms.author: kamrani
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f5687cc7faf4201485ced9535f2e98b0b4c2225a
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 5a6fc63005797a1c645de7506a8f15df2dcd0557
+ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998174"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54317672"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>向消息添加资讯卡附件
 
@@ -34,7 +34,7 @@ ms.locfileid: "49998174"
 
 Bot Framework 目前支持八个类型的富卡： 
 
-| 卡类型 | Description |
+| 卡类型 | 说明 |
 |----|----|
 | <a href="/adaptive-cards/get-started/bots">自适应卡片</a> | 一种可以包含文本、语音、图像、按钮和输入字段的任意组合的可自定义卡片。 请参阅[每个通道的支持](/adaptive-cards/get-started/bots#channel-status)。  |
 | [动画卡片][animationCard] | 一种可以播放动态 GIF 或短视频的卡片。 |
@@ -52,7 +52,7 @@ Bot Framework 目前支持八个类型的富卡：
 
 若要处理富卡中的事件，请定义 `CardAction` 对象以指定当用户单击按钮或点击卡的某个部分时应发生的情况。 每个 `CardAction` 对象包含以下属性：
 
-| 属性 | 类型 | Description | 
+| 属性 | 类型 | 说明 | 
 |----|----|----|
 | 类型 | 字符串 | 操作类型（下表中指定的某个值） |
 | 标题 | 字符串 | 按钮的标题 |
@@ -112,7 +112,7 @@ Bot Framework 目前支持八个类型的富卡：
 
 自适应卡片可包含文本、语音、图像、按钮和输入域的任意组合。 自适应卡使用<a href="http://adaptivecards.io" target="_blank">自适应卡</a>中指定的 JSON 格式创建而成，这让你可以完全控制卡内容和格式。 
 
-若要使用 .NET 创建自适应卡，请安装 `Microsoft.AdaptiveCards` NuGet 包。 然后，利用<a href="http://adaptivecards.io" target="_blank">自适应卡</a>站点中的信息了解自适应卡架构、探索自适应卡元素，并查看 JSON 示例，以便用于创建不同组合和复杂性的卡。 此外，可以使用交互式可视化工具来设计自适应卡有效负载并预览卡输出。
+若要使用 .NET 创建自适应卡，请安装 `AdaptiveCards` NuGet 包。 然后，利用<a href="http://adaptivecards.io" target="_blank">自适应卡</a>站点中的信息了解自适应卡架构、探索自适应卡元素，并查看 JSON 示例，以便用于创建不同组合和复杂性的卡。 此外，可以使用交互式可视化工具来设计自适应卡有效负载并预览卡输出。
 
 此代码示例演示如何创建包含用于日历提醒的自适应卡片的消息： 
 

@@ -1,6 +1,6 @@
 ---
 title: 直接写入存储 | Microsoft Docs
-description: 了解如何使用用于 .NET 的 Bot Builder SDK 将数据直接写入存储。
+description: 了解如何使用 Bot Framework SDK for .NET 将数据直接写入到存储。
 keywords: 存储、读取和写入、内存存储、eTag
 author: DeniseMak
 ms.author: v-demak
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/13/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 803574e5d224b0556162fd677145d29cafa2cab1
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: cd1f8270acf426c84d64efef796b7a007c49c2c1
+ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645677"
+ms.lasthandoff: 01/17/2019
+ms.locfileid: "54360787"
 ---
 # <a name="write-directly-to-storage"></a>直接写入存储
 
@@ -217,12 +217,12 @@ async function logMessageText(storage, context) {
 创建帐户需要几分钟时间。 等待门户中显示“祝贺你! 已创建 Azure Cosmos DB 帐户”页。
 
 ##### <a name="add-a-collection"></a>添加集合
-1. 单击“设置”>“新建集合”。 “添加集合”区域显示在最右侧，可能需要向右滚动才能看到它。
+1. 单击“设置”>“新建集合”。 “添加集合”区域显示在最右侧，可能需要向右滚动才能看到它。 由于最近对 Cosmos DB 进行的更新，请务必添加单个分区键：_/id_。此键将避免跨分区查询错误。
 
 ![添加 Cosmos DB 集合](./media/add_database_collection.png)
 
 2. 新数据库集合为“bot-cosmos-sql-db”，集合 ID 为“bot-storage”。 在随后的编码示例（见下）中，我们会使用这些值。
-
+ -
 ![Cosmos DB](./media/cosmos-db-sql-database.png)
 
 3. 可以在数据库设置的“密钥”选项卡中找到终结点 URI 和密钥。 需要在本文后面使用这些值来配置代码。 
@@ -597,7 +597,7 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
            var count = 0;
            do
            {
-               var pagedTranscript = await _transcriptStore.GetTranscriptActivitiesAsync(activity.ChannelId, activity.Conversation.Id);
+               var pagedTranscript = await _transcriptStore.GetTranscriptActivitiesAsync(activity.ChannelId, activity.Conversation.Id, continuationToken);
                var activities = pagedTranscript.Items
                   .Where(a => a.Type == ActivityTypes.Message)
                   .Select(ia => (Activity)ia)

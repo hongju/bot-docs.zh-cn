@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/8/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1bfa180967c55aac6012e02887ac2893947263f9
-ms.sourcegitcommit: 91156d0866316eda8d68454a0c4cd74be5060144
+ms.openlocfilehash: 231ed330faf9ce777a5acc5f4e6272b747a6f7fc
+ms.sourcegitcommit: d385ec5fe61c469ab17e6f21b4a0d50e5110d0fd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53010582"
+ms.lasthandoff: 01/15/2019
+ms.locfileid: "54298274"
 ---
 # <a name="middleware"></a>中间件
 
@@ -96,5 +96,6 @@ SDK 定义了可记录传入和传出活动的日志记录中间件，但你也�
 
 添加需要更新机器人状态集对象的状态管理对象，然后在创建“自动保存更改”中间件时使用这些对象。
 
+
 ## <a name="additional-resources"></a>其他资源
-可以查看一下用 Bot Builder SDK [[C#](https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Builder/TranscriptLoggerMiddleware.cs) | [JS](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-core/src/transcriptLogger.ts)] 实现的脚本记录器中间件。
+可以查看一下用 Bot Framework SDK [[C#](https://github.com/Microsoft/botbuilder-dotnet/blob/master/libraries/Microsoft.Bot.Builder/TranscriptLoggerMiddleware.cs) | [JS](https://github.com/Microsoft/botbuilder-js/blob/master/libraries/botbuilder-core/src/transcriptLogger.ts)] 实现的脚本记录器中间件。

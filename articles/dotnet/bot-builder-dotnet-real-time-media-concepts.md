@@ -1,6 +1,6 @@
 ---
 title: 使用 Skype 进行实时媒体通话 | Microsoft Docs
-description: 理解通过 Bot Builder SDK for .NET 构建可以使用 Skype 进行实时音频和视频通话的机器人的关键概念。
+description: 了解通过 Bot Framework SDK for .NET 构建可以使用 Skype 进行实时音频和视频通话的机器人的关键概念。
 author: ssulzer
 ms.author: ssulzer
 manager: kamrani
@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: cf11a68c7ccc404506fdfe01dcf12c7c421f4e2b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 893458a484c0e26545c23016ccbf3049adc61960
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998327"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54225252"
 ---
 # <a name="real-time-media-calling-with-skype"></a>使用 Skype 进行实时媒体通话
 
@@ -58,7 +58,7 @@ ms.locfileid: "49998327"
 
 若要开发实时媒体机器人，必须在 Visual Studio 项目中安装这些 NuGet 包：
 
-- [Bot Builder SDK for .NET](bot-builder-dotnet-overview.md)
+- [用于 .NET 的 Bot Framework SDK](bot-builder-dotnet-overview.md)
 - [适用于 .NET 的 Bot Builder 实时媒体通话](https://www.nuget.org/packages?q=Bot.Builder.RealTimeMediaCalling)
 - [Microsoft.Skype.Bots.Media .NET 库](https://www.nuget.org/packages?q=Microsoft.Skype.Bots.Media)
 

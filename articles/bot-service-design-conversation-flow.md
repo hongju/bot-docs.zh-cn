@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/19/2018
-ms.openlocfilehash: 79c37a48f9312d60b61124e15780fe46236aa0c7
-ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
+ms.openlocfilehash: ae019f7da32969821db0c59a4710e32b57623b14
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/21/2018
-ms.locfileid: "53735977"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224483"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -36,9 +36,9 @@ ms.locfileid: "53735977"
 
 [!INCLUDE [Dialog flow example](./includes/snippet-dotnet-manage-conversation-flow-intro.md)]
 
-有关使用对话框和 Bot Builder SDK 管理会话流的详细演练，请参阅：
+有关使用对话框和 Bot Framework SDK 管理会话流的详细演练，请参阅：
 
-- [使用对话框管理会话流 (.NET)](./dotnet/bot-builder-dotnet-manage-conversation-flow.md)
+- [使用对话管理聊天流 (.NET)](./dotnet/bot-builder-dotnet-manage-conversation-flow.md)
 - [使用对话框管理会话流 (Node.js)](./nodejs/bot-builder-nodejs-manage-conversation-flow.md)
 
 ## <a name="dialog-stack"></a>对话框堆栈
@@ -99,7 +99,7 @@ ms.locfileid: "53735977"
 
 在程序会话流中，可以定义问题的顺序，机器人将按你定义的顺序提出问题。 可以将问题组织到逻辑模块中，保持代码的集中性，同时专注于引导会话。 例如，你可能会设计一个模块，其中包含可帮助用户浏览产品的逻辑，以及一个单独的模块，其中包含可帮助用户创建新订单的逻辑。
 
-可以按照自己喜欢的任何方式将这些模块构建到流程中，自由格式或顺序格式均可。 Bot Builder SDK 提供了多个库，使用这些库可以构造机器人所需的任何会话流。 例如，使用 `prompts` 库可以要求用户输入，使用 `waterfall` 库可以定义一系列问题/答案对，使用 `dialog control` 库可以模块化会话流逻辑，等等。所有这些库通过 `dialogs` 对象绑定在一起。 让我们进一步了解如何将模块实现为 `dialogs` 来设计和管理会话流，并查看该流是否类似于传统应用程序流。
+可以按照自己喜欢的任何方式将这些模块构建到流程中，自由格式或顺序格式均可。 Bot Framework SDK 提供了多个库，使用这些库可以构造机器人所需的任何会话流。 例如，使用 `prompts` 库可以要求用户输入，使用 `waterfall` 库可以定义一系列问题/答案对，使用 `dialog control` 库可以模块化会话流逻辑，等等。所有这些库通过 `dialogs` 对象绑定在一起。 让我们进一步了解如何将模块实现为 `dialogs` 来设计和管理会话流，并查看该流是否类似于传统应用程序流。
 
 ![机器人](./media/designing-bots/core/dialogs-screens.png)
 

@@ -1,6 +1,6 @@
 ---
 title: 使用按钮进行输入 | Microsoft Docs
-description: 了解如何使用 Bot Builder SDK for JavaScript 在消息中发送建议的操作。
+description: 了解如何使用 Bot Framework SDK for JavaScript 在消息中发送建议的操作。
 keywords: 建议的操作, 按钮, 额外输入
 author: Kaiqb
 ms.author: kamrani
@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/08/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 10b9fa9664e8c18cdc5dcd2fcf3ae400296a4abb
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: c462af04f6aaf9b1b4257ca5932c00414f469380
+ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52451979"
+ms.lasthandoff: 01/11/2019
+ms.locfileid: "54224382"
 ---
 # <a name="use-button-for-input"></a>使用按钮进行输入
 
