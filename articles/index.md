@@ -9,20 +9,21 @@ layout: LandingPage
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 01/16/2019
-ms.openlocfilehash: 5c7851bdc05180605d20698f3e94e07c9bcace2b
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
+ms.openlocfilehash: 37eaee297c8b0e9483f9baa8a24cf639043d3a25
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360767"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453841"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
-> [!NOTE]
-> 本主题适用于**旧版 SDK (v3)**。 可以在[此处](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)找到当前版 SDK (v4) 的文档。
-
 <div class="content">
     <h1>Azure 机器人服务文档</h1>
+    <div class="alert is-info">
+        <p class="alert-title"><span class="docon docon-status-error-outline"></span>注意</p>
+        <p>本主题适用于<strong>旧版 SDK (v3)</strong>。 可以在<a href="https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0" data-linktype="external">此处</a>找到当前版 SDK (v4) 的文档。</p>
+    </div>
     <div class="intro" style="min-width: 200px">
         <p>机器人服务提供一个专用于机器人开发的集成式环境，使你可以从同一位置生成、连接、测试、部署和管理智能机器人。 Azure 机器人服务利用支持 .NET 和 Node.js 的 Bot Framework SDK。 通过快速入门和示例了解如何使用机器人服务。</p>
     </div>
@@ -67,11 +68,12 @@ ms.locfileid: "54360767"
 
 ::: moniker range="azure-bot-service-4.0"
 
-> [!NOTE] 
-> 本主题适用于当前版 SDK (v4)。 旧版 SDK (v3) 的文档位于[此处](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-3.0)。
-
 <div class="content">
     <h1>Azure 机器人服务文档</h1>
+    <div class="alert is-info">
+        <p class="alert-title"><span class="docon docon-status-error-outline"></span>注意</p>
+        <p>本主题适用于当前版 SDK (v4)。 旧版 SDK (v3) 的文档位于<a href="https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-3.0" data-linktype="external">此处</a>。</p>
+    </div>
     <div class="intro" style="min-width: 200px">
         <p>Azure 机器人服务提供一个专用于机器人开发的集成式环境，使你可以从同一位置生成、连接、测试、部署和管理智能机器人。 Azure 机器人服务利用支持 C# 和 JavaScript 的 Bot Framework SDK。 通过快速入门、教程和示例了解如何使用机器人服务。
 </p>
