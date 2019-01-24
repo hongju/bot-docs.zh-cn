@@ -8,21 +8,23 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/19/2018
+ms.date: 01/17/2019
 monikerRange: azure-bot-service-4.0
 templateName: Echo Bot
-ms.openlocfilehash: ec78b9e2076a93ba7be5ae5175bec848e348b20c
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
+ms.openlocfilehash: 265b1a1c779952cc099f426ddff1bb59846667cc
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360747"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453951"
 ---
 # <a name="create-a-bot-with-the-bot-framework-sdk-for-net"></a>通过 Bot Framework SDK for .NET 创建机器人
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
 本快速入门将指导你使用 C# 模板构建机器人，然后使用 Bot Framework Emulator 对其进行测试。
+
+[!INCLUDE [Azure vs local development](~/includes/snippet-quickstart-paths.md)]
 
 [!INCLUDE [dotnet quickstart](~/includes/quickstart-dotnet.md)]
 

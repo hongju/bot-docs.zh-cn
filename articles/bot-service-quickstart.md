@@ -8,17 +8,17 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 01/08/2019
-ms.openlocfilehash: da809023338847374715f7576481fc8d17a21ded
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 01/17/2019
+ms.openlocfilehash: 515ef592e4ce7f159890db4cb5f61f97cccf3786
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225392"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453941"
 ---
-::: moniker range="azure-bot-service-3.0"
-
 # <a name="create-a-bot-with-azure-bot-service"></a>使用 Azure 机器人服务创建机器人
+
+::: moniker range="azure-bot-service-3.0"
 
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
 
@@ -39,7 +39,7 @@ ms.locfileid: "54225392"
 3. 在“机器人服务”边栏选项卡中，提供有关机器人的请求信息，如下图中的表所示。  <br/>
    ![“创建 Web 应用机器人”边栏选项卡](./media/azure-bot-quickstarts/sdk-create-bot-service-blade.png)
 
-   | 设置 | 建议的值 | Description |
+   | 设置 | 建议的值 | 说明 |
    | ---- | ---- | ---- |
    | **机器人名称** | 机器人的显示名称 | 通道和目录中显示的机器人的显示名称。 此名称可随时更改。 |
    | **订阅** | 订阅 | 选择要使用的 Azure 订阅。 |
@@ -79,13 +79,14 @@ ms.locfileid: "54225392"
 
 ::: moniker range="azure-bot-service-4.0"
 
-# <a name="create-a-bot-with-azure-bot-service"></a>使用 Azure 机器人服务创建机器人
-
 [!INCLUDE [pre-release-label](includes/pre-release-label.md)]
 
 Azure 机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Framework SDK 以及用于将机器人连接到通道的机器人服务。 在本主题中，还可以选择 .NET 或 Node.js 模板，以便使用 Bot Framework SDK v4 创建机器人。
 
+[!INCLUDE [Azure vs local development](~/includes/snippet-quickstart-paths.md)]
+
 ## <a name="prerequisites"></a>先决条件
+
 - [Azure](http://portal.azure.com) 帐户
 
 ### <a name="create-a-new-bot-service"></a>创建新的机器人服务
@@ -100,7 +101,7 @@ Azure 机器人服务提供了用于创建机器人的核心组件，包括用�
 3. 在“机器人服务”边栏选项卡中，提供有关机器人的请求信息，如图片下方的表中所示。  <br/>
  ![“创建 Web 应用机器人”边栏选项卡](~/media/azure-bot-quickstarts/sdk-create-bot-service-blade.png)
 
- | 设置 | 建议的值 | Description |
+ | 设置 | 建议的值 | 说明 |
  | ---- | ---- | ---- |
  | **机器人名称** | 机器人的显示名称 | 通道和目录中显示的机器人的显示名称。 此名称可随时更改。 |
  | **订阅** | 订阅 | 选择要使用的 Azure 订阅。 |

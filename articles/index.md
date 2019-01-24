@@ -9,12 +9,6 @@ layout: LandingPage
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 01/16/2019
-ms.openlocfilehash: 37eaee297c8b0e9483f9baa8a24cf639043d3a25
-ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54453841"
 ---
 ::: moniker range="azure-bot-service-3.0"
 
@@ -31,8 +25,8 @@ ms.locfileid: "54453841"
 <div class="ico48Case">
     <div class="ico48Link">
         <a href="/bot-framework/bot-service-quickstart">
-            <img src="media/index/logo_bot.svg" alt="">
-            <span>机器人服务</span>
+            <img src="media/index/azure_portal.png" alt="">
+            <span>Azure 门户</span>
         </a>
     </div>
 </div>
@@ -84,8 +78,8 @@ ms.locfileid: "54453841"
 <div class="ico48Case">
     <div class="ico48Link">
         <a href="/bot-framework/bot-service-quickstart">
-            <img src="v4sdk/media/logo_bot.svg" alt="">
-            <span>Azure</span>
+            <img src="media/index/azure_portal.png" alt="">
+            <span>Azure 门户</span>
         </a>
     </div>
     <div class="ico48Link">

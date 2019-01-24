@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d8e482d8f4003ad7bcd807e8fd12e3c68c4ce8c8
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: cfb849474c23c62a666e013c700b755519c1868a
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225892"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453802"
 ---
 # <a name="manage-conversation-flow-with-dialogs"></a>使用对话框管理会话流
 
@@ -129,11 +129,11 @@ private async Task NameDialogResumeAfter(IDialogContext context, IAwaitable<stri
 
 ## <a name="sample-code"></a>代码示例 
 
-有关演示如何使用 Bot Framework SDK for .NET 中的对话框管理聊天的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-BasicMultiDialog" target="_blank">基本的多对话框示例</a>。
+有关演示如何使用 Bot Framework SDK for .NET 中的对话框管理聊天的完整示例，请参阅 GitHub 中的[基本的多对话框示例](https://aka.ms/v3cs-MultiDialog-Sample)。
 
 ## <a name="additional-resources"></a>其他资源
 
 - [对话框](bot-builder-dotnet-dialogs.md)
 - [设计和控制聊天流](../bot-service-design-conversation-flow.md)
-- <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-BasicMultiDialog" target="_blank">基本多对话示例 (GitHub)</a>
+- [基本多对话示例 (GitHub)](https://aka.ms/v3cs-MultiDialog-Sample)
 - <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
