@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/28/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fc44701d7739ecfca662d27cad4f521caa7f4d6d
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 31a0497f1422cee8c4966e59d94a89ae359a5cb7
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225482"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453931"
 ---
 # <a name="dialogs-library"></a>对话框库
 
@@ -121,7 +121,7 @@ ms.locfileid: "54225482"
 
 可将对话视为编程堆栈（称为“对话堆栈”），可将轮次处理程序视为对话引导者，以及堆栈为空时的回退机制。 该堆栈最顶端的项被视为“活动对话”，对话上下文会将所有输入定向到活动对话。
 
-开始某个对话时，会将它推送到堆栈，现在，该对话即为活动对话。 该对话在结束之前将一直保留为活动对话；结束后，该对话将被 [replace dialog](#repeating-a-dialog) 方法删除，或者，轮次处理程序或活动对话本身会将另一个对话被推送到堆栈，然后，这另一个对话将成为活动对话。 该新对话结束后，将从堆栈中弹出，而下一个对话将成为活动对话。 这样就可以实现下面所述的[分支和循环](#looping-and-branching)。
+开始某个对话时，会将它推送到堆栈，现在，该对话即为活动对话。 该对话在结束之前将一直保留为活动对话；结束后，该对话将被 [replace dialog](#repeating-a-dialog) 方法删除，或者，轮次处理程序或活动对话本身会将另一个对话被推送到堆栈，然后，这另一个对话将成为活动对话。 该新对话框结束后，将从堆栈中弹出，而下一个对话框将成为活动对话框。 这样就可以实现下面所述的[分支和循环](#looping-and-branching)。
 
 ### <a name="create-the-dialog-context"></a>创建对话上下文
 
@@ -131,11 +131,22 @@ ms.locfileid: "54225482"
 
 ### <a name="to-start-a-dialog"></a>启动对话
 
-若要启动某个对话，请将要启动的对话 ID 传入对话上下文的 *begin dialog*、*prompt* 或 *replace dialog* 方法。 begin dialog 方法会将对话推送到堆栈的顶层，而 replace dialog 方法会将当前对话从堆栈中弹出，并将用于替换的对话推送到堆栈上。
+若要启动某个对话，请将要启动的对话 ID 传入对话上下文的 *begin dialog*、*prompt* 或 *replace dialog* 方法。
+
+* begin dialog 方法会将对话框推送到堆栈顶部。
+* replace dialog 方法会将当前对话框从堆栈中弹出，并将用于替换的对话框推送到堆栈上。 被替换的对话框会被系统取消，该实例包含的任何信息都会被释放。
+
+使用 _options_ 参数将信息传递到对话框的新实例。
+传递到新对话框中的选项可以在对话框的任何步骤中通过步骤上下文的 *options* 属性进行访问。
+请参阅[使用分支和循环创建高级聊天流](bot-builder-dialog-manage-complex-conversation-flow.md)，了解操作方法示例代码。
 
 ### <a name="to-continue-a-dialog"></a>继续对话
 
 若要继续对话，请调用 *continue dialog* 方法。 continue 方法始终继续堆栈最顶端的对话（活动对话，如果有）。 如果继续的对话结束，控制权将传递给同一轮次中继续的父上下文。
+
+使用步骤上下文的 *values* 属性保留轮次之间的状态。
+在上一轮次添加到此集合的任何值都可以在后续轮次中使用。
+请参阅[使用分支和循环创建高级聊天流](bot-builder-dialog-manage-complex-conversation-flow.md)，了解操作方法示例代码。
 
 ### <a name="to-end-a-dialog"></a>结束对话：
 
@@ -152,10 +163,11 @@ ms.locfileid: "54225482"
 
 ### <a name="repeating-a-dialog"></a>重复某个对话框
 
-若要重复某个对话框，请使用 *replace dialog* 方法。 对话上下文的 *replace dialog* 方法会将当前活动对话从堆栈中弹出（但不会以正常方式将其结束），并将用于替换的对话推送到堆栈顶层，然后开始该对话。 这是处理[复杂交互](~/v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)和管理菜单的极佳方法。 可以使用此方法并将某个对话替换为其自身，来创建循环。
+可以使用对话框自身来替换对话框，创建一个循环。
+这是处理[复杂交互](~/v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)和管理菜单的极佳方法。
 
 > [!NOTE]
-> 如需保存当前对话的内部状态，则需要在调用 *replace dialog* 方法时将信息传递给对话的新实例，然后适当地初始化该对话。 传递到新对话框中的选项可以在对话框的任何步骤中通过步骤上下文的 *options* 属性进行访问。
+> 如需保存当前对话的内部状态，则需要在调用 *replace dialog* 方法时将信息传递给对话的新实例，然后适当地初始化该对话。
 
 ### <a name="branch-a-conversation"></a>将聊天分支
 

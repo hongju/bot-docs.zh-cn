@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/08/2018
+ms.date: 01/16/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3f4b2dd49b738132affd19fea8fd5dbfbd6ff99e
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 0a931ad73ed4d7a71978555df0e77d6b2bd2dbbc
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224562"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453921"
 ---
 # <a name="reuse-dialogs"></a>重复使用对话
 
@@ -230,6 +230,14 @@ const myBot = new MyBot(conversationState, userState);
 ```
 
 ---
+
+## <a name="about-component-dialogs"></a>关于组件对话框
+
+可以通过组件对话框创建独立的对话框来处理特定的方案，将大型对话框集分解成更易于管理的片段。 其中的每个片段有自身的对话集，可避免与包含该片段的对话集发生名称冲突。
+
+使用 _add dialog_ 方法将对话框和提示添加到组件对话框。
+使用此方法添加的第一个项将设置为初始对话框，但你可以在组件对话框的构造函数中显式设置 _initial dialog_ 属性，对其进行更改。
+启动组件对话框时，它会启动其 _initial dialog_。
 
 ## <a name="define-the-check-in-component-dialog"></a>定义入住登记组件对话
 
@@ -604,9 +612,9 @@ class SetAlarmDialog extends ComponentDialog {
         this.initialDialogId = dialogId;
 
         // Define the prompts used in this conversation flow.
-        this.dialogs.add(new DateTimePrompt('datePrompt'));
+        this.addDialog(new DateTimePrompt('datePrompt'));
 
-        this.dialogs.add(new WaterfallDialog(dialogId, [
+        this.addDialog(new WaterfallDialog(dialogId, [
             async function (step) {
                 step.values.wakeUp = {};
                 if (step.options && step.options.roomNumber) {

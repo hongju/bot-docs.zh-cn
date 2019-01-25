@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 82811d202e0e20169ae2ebb348949366009d2421
-ms.sourcegitcommit: 4661b9bb31d74731dbbb16e625be088b44ba5899
+ms.openlocfilehash: 7a9a2e4f30d1e9b293e51a921afce57d243376d7
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/16/2018
-ms.locfileid: "51826924"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453961"
 ---
 # <a name="get-notification-from-bots"></a>从机器人获取通知
 
@@ -38,7 +38,8 @@ ms.locfileid: "51826924"
 若要更顺畅地处理通知，请考虑将通知集成到聊天流中的其他方法，例如在聊天状态中设置标志或将通知添加到队列。
 
 ## <a name="prerequisites"></a>先决条件
-- 了解[机器人基础知识](bot-builder-basics.md)。 
+
+- 了解[机器人基础知识](bot-builder-basics.md)以及如何[管理状态](bot-builder-concept-state.md)。
 - 以 [C#](https://aka.ms/proactive-sample-cs) 或 [JS](https://aka.ms/proactive-sample-js) 语言编写的**主动消息示例**的副本。 此示例用于解释本文中所述的主动消息。 
 
 ## <a name="about-the-sample-code"></a>关于示例代码
@@ -48,9 +49,12 @@ ms.locfileid: "51826924"
 ## <a name="define-job-data-and-state"></a>定义作业数据和状态
 
 在此方案中，我们要跟踪各个用户在不同的聊天中创建的任意作业。 需存储每项作业的相关信息，包括聊天、引用以及作业标识符。 我们需要：
+
 - 聊天引用，以便可将主动消息发送到正确的聊天。
 - 通过某种方式来标识作业。 例如，使用简单的时间戳。
 - 存储独立于聊天或用户状态的作业状态。
+
+我们将通过扩展 _bot state_ 来定义自己的机器人范围的状态管理对象。 Bot Framework 使用 _storage key_ 和轮次上下文来保留和检索状态。 有关详细信息，请参阅[管理状态](bot-builder-concept-state.md)。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -77,9 +81,9 @@ public class JobLog : Dictionary<long, JobLog.JobData>
 }
 ```
 
-### <a name="define-a-state-middleware-class"></a>定义状态中间件类
+### <a name="define-a-state-management-class"></a>定义状态管理类
 
-`JobState` 类管理独立于聊天或用户状态的作业状态。
+`JobState` 类会管理独立于聊天或用户状态的作业状态。
 
 ```csharp
 using Microsoft.Bot.Builder;
@@ -129,11 +133,10 @@ public void ConfigureServices(IServiceCollection services)
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-机器人需要使用状态存储系统来保存消息之间的对话和用户状态，在本例中，该状态是使用内存中存储提供程序定义的。 
+机器人需要使用状态存储系统来保存消息之间的对话和用户状态，在本例中，该状态是使用内存中存储提供程序定义的。
 
 ```javascript
-// index.js 
-
+// index.js
 
 const memoryStorage = new MemoryStorage();
 const botState = new BotState(memoryStorage, () => 'proactiveBot.botState');
@@ -173,8 +176,6 @@ server.post('/api/messages', (req, res) => {
 - 创建和完成作业的方法
 
 ### <a name="declare-the-class"></a>声明类
-
-用户的每次交互都会创建 `ProactiveBot` 类的实例。 每次创建用户所需服务的过程称为瞬时性生存期服务。 应该谨慎管理构造开销较高或者生存期超出单个轮次的对象。
 
 用户的每次交互都会创建 `ProactiveBot` 类的实例。 每次创建用户所需服务的过程称为瞬时性生存期服务。 应该谨慎管理构造开销较高或者生存期超出单个轮次的对象。
 

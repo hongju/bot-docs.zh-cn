@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e557b359da09615d2998c4c729f57ffb9faf0de1
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: dd52376e049f1f0e09216e0065ced7443b6eb02a
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224962"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453881"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企业机器人模板 - 部署机器人
 
@@ -81,8 +81,10 @@ az account set --subscription "YOUR_SUBSCRIPTION_NAME"
 
 创建的项目中的 README.md 包含一个示例 `msbot clone services` 命令行，该命令行根据创建的机器人名称进行更新，下面显示了一个通用版本。 确保更新来自上一步骤的创作密钥并选择要使用的 Azure 数据中心位置（例如 westus 或 westeurope）。 确保在上一步检索的 LUIS 创作密钥适用于在下面指定的区域（例如，luis.ai 的 westus 或 eu.luis.ai 的 westeurope）。 最后，引用要使用的语言的文件夹（例如 `DeploymentScripts\en`）。
 
+> **注意** 在下面的 msbot 命令中，YOUR-BOT-NAME 用于创建 Azure 服务名称。 允许用于 Azure 服务名称的字符为小写字母、数字和短划线（“-”）。 请勿在 YOUR-BOT-NAME 中添加下划线（“_”）和其他非字母字符。
+
 ```shell
-msbot clone services --name "YOUR_BOT_NAME" --luisAuthoringKey "YOUR_AUTHORING_KEY" --folder "DeploymentScripts\LOCALE_FOLDER" --location "REGION"
+msbot clone services --name "YOUR-BOT-NAME" --luisAuthoringKey "YOUR_AUTHORING_KEY" --folder "DeploymentScripts\LOCALE_FOLDER" --location "REGION"
 ```
 
 > 某些用户会出现一个已知的问题，即在运行部署时可能会遇到以下错误`ERROR: Unable to provision MSA id automatically. Please pass them in as parameters and try again`。 在这种情况下，请浏览到 https://apps.dev.microsoft.com 并手动创建一个检索 ApplicationID 和密码/机密的新应用程序。 请运行上面的 msbot clone services 命令，但需提供两个新的参数（`appId` 和 `appSecret`），用于传递刚检索的值。 确保将机密括在引号中以防止出现分析问题，例如：`-appSecret "YOUR_SECRET"`
@@ -119,7 +121,7 @@ msbot 工具将概述部署计划，包括位置和 SKU。 在继续操作之前
 可以在本地执行端到端测试。 当准备好将机器人部署到 Azure 进行额外测试时，可以使用以下命令来发布源代码，任何时候希望推送源代码更新时，都可以运行此命令。
 
 ```shell
-az bot publish -g YOUR_BOT_NAME -n YOUR_BOT_NAME --proj-file YOUR_BOT_NAME.csproj --sdk-version v4
+az bot publish -g YOUR-BOT-NAME -n YOUR-BOT-NAME --proj-file YOUR-BOT-NAME.csproj --sdk-version v4
 ```
 
 ## <a name="enabling-more-scenarios"></a>启用更多方案

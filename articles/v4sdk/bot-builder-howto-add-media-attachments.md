@@ -8,20 +8,20 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/17/2018
+ms.date: 01/16/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1ea9daeb35033e49232d64bfe98a223807dabf75
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: 4805e1a3c86ce28833054ce374a57c5c40b717e1
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317597"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453860"
 ---
 # <a name="add-media-to-messages"></a>向消息添加媒体
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
 
-用户与机器人之间的消息交换可以包含媒体附件，例如图像、视频、音频和文件。 Bot Framework SDK 支持向用户发送富消息的任务。 若要确定某个通道（Facebook、Skype、Slack 等）支持的富消息的类型，请查看该通道的文档，了解存在哪些限制。 如需可用卡的列表，请参阅[设计用户体验](../bot-service-design-user-experience.md)。 
+用户与机器人之间的消息交换可以包含媒体附件，例如图像、视频、音频和文件。 Bot Framework SDK 支持向用户发送富消息的任务。 若要确定某个通道（Facebook、Skype、Slack 等）支持的富消息的类型，请查看该通道的文档，了解存在哪些限制。 如需可用卡的列表，请参阅[设计用户体验](../bot-service-design-user-experience.md)。
 
 ## <a name="send-attachments"></a>发送附件
 
@@ -84,11 +84,11 @@ getInternetAttachment() {
 
 ## <a name="send-a-hero-card"></a>发送英雄卡
 
-除了简单的图像或视频附件，还可以附加英雄卡，这样可以将图像和按钮组合在一个对象中，并将其发送给用户。
+除了简单的图像或视频附件，还可以附加英雄卡，这样可以将图像和按钮组合在一个对象中，并将其发送给用户。 大多数文本字段支持 Markdown，但支持可能因通道而异。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-若要撰写含英雄卡和按钮的消息，可以将 `HeroCard` 附加到消息中。 此处显示的源代码基于[处理附件](https://aka.ms/bot-attachments-sample-code)示例。 
+若要撰写含英雄卡和按钮的消息，可以将 `HeroCard` 附加到消息中。 此处显示的源代码基于[处理附件](https://aka.ms/bot-attachments-sample-code)示例。
 
 ```csharp
 using Microsoft.Bot.Builder;
@@ -363,7 +363,7 @@ await context.sendActivity(messageWithCarouselOfCards);
 
 ## <a name="additional-resources"></a>其他资源
 
-有关卡片架构的详细信息，请参阅 [Bot Framework 卡片架构](https://aka.ms/botSpecs-cardSchema)。
+有关架构的详细信息，请参阅 [Bot Framework 卡片架构](https://aka.ms/botSpecs-cardSchema)以及“Bot Framework 活动架构”的[“消息活动”部分](https://aka.ms/botSpecs-activitySchema#message-activity)。
 
 可以在下面找到卡片的示例代码：[C#](https://aka.ms/bot-cards-sample-code)/[JS](https://aka.ms/bot-cards-js-sample-code)，自适应卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)，附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-sample-code-js) 和建议的操作：[C#](https://aka.ms/SuggestedActionsCSharp)/[JS](https://aka.ms/SuggestedActionsJS)。
 如需其他示例，请参阅 [GitHub](https://aka.ms/bot-samples-readme) 上的 Bot Builder 示例存储库。

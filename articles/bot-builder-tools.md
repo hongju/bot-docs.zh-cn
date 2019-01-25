@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: tools
 ms.date: 11/13/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f9eafa708be2ce597ec2679fb6975d7da71951ea
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 07df43111f3b2e57dcf0140f291a771e749de563
+ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225872"
+ms.lasthandoff: 01/22/2019
+ms.locfileid: "54453851"
 ---
 # <a name="manage-bots-using-cli-tools"></a>使用 CLI 工具管理机器人
 
@@ -63,6 +63,7 @@ Here's a form for you
 ```
 
 ### <a name="create-a-transcript-file-from-chat-file"></a>从 .chat 文件创建脚本文件
+
 Chatdown 命令如下所示：
 
 ```bash
@@ -72,13 +73,15 @@ chatdown sample.chat > sample.transcript
 它将使用 `sample.chat` 并输出 `sample.transcript`。 有关详细信息，请参阅 [Chatdown CLI][chatdown]。
 
 ## <a name="build"></a>构建
+
 ### <a name="create-a-luis-application-with-ludown"></a>使用 LUDown 创建 LUIS 应用程序
+
 LUDown 工具可用于为 LUIS 和 QnA 创建新的 .json 模型。  
 可以为 LUIS 应用程序定义[意向](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-intents)和[实体](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-entities)，就像在 LUIS 门户中那样。
 
 '#\<intent-name\>' 介绍新的意向定义部分。 后续行列出用于描述该意向的[话语](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/add-example-utterances)。
 
-例如，可以在单个 .lu 文件中创建多个 LUIS 意向，如下所示： 
+例如，可以在单个 .lu 文件中创建多个 LUIS 意向，如下所示：
 
 ```LUDown
 # Greeting
@@ -95,12 +98,12 @@ LUDown 工具可用于为 LUIS 和 QnA 创建新的 .json 模型。
 
 ### <a name="create-qna-pairs-with-ludown"></a>使用 LUDown 创建 QnA 对
 
-.lu 文件格式还支持使用以下表示法的 QnA 配对： 
+.lu 文件格式还支持使用以下表示法的 QnA 配对：
 
 ~~~LUDown
 > comment
 ### ? question ?
-  ```markdown
+  ```
     answer
   ```
 ~~~
@@ -109,7 +112,7 @@ LUDown 工具会自动将问题和解答分离到 qnamaker JSON 文件，然后�
 
 ~~~LUDown
 ### ? How do I change the default message for QnA Maker?
-  ```markdown
+  ```
   You can change the default message if you use the QnAMakerDialog. 
   See [this link](https://docs.botframework.com/en-us/azure-bot-service/templates/qnamaker/#navtitle) for details.
   ```
@@ -120,14 +123,14 @@ LUDown 工具会自动将问题和解答分离到 qnamaker JSON 文件，然后�
 ~~~LUDown
 ### ? What is your name?
 - What should I call you?
-  ```markdown
+  ```
     I'm the echoBot! Nice to meet you.
   ```
 ~~~
 
 ### <a name="generate-json-models-with-ludown"></a>使用 LUDown 生成 .json 模型
 
-定义了 .lu 格式的 LUIS 或 QnA 语言组件后，可以将其发布到 LUIS.json、QnA.json 或 QnA.tsv 文件。 运行时，LUDown 工具将在同一个工作目录中查找需分析的任何 .lu 文件。 由于 LUDown 工具可以使用 .lu 文件指向 LUIS 或 QnA，因此只需使用常规命令 **ludown parse <Service> -- in <luFile>** 指定要为哪个语言服务生成模块即可。 
+定义了 .lu 格式的 LUIS 或 QnA 语言组件后，可以将其发布到 LUIS.json、QnA.json 或 QnA.tsv 文件。 运行时，LUDown 工具将在同一个工作目录中查找需分析的任何 .lu 文件。 由于 LUDown 工具可以使用 .lu 文件指向 LUIS 或 QnA，因此只需使用常规命令 **ludown parse \<to-service-type> -- in \<lu-file-path>** 指定要为哪个语言服务生成模型即可。
 
 在我们的示例工作目录中，我们有两个 .lu 文件可供分析，“1.lu”用于创建 LUIS 模型，“qna1.lu”用于创建 QnA 知识库。
 
@@ -144,7 +147,7 @@ ludown parse ToLuis --in <luFile>
 同样，若要创建 QnA 知识库，只需更改分析目标。
 
 ```shell
-ludown parse ToQna --in <luFile> 
+ludown parse ToQna --in <luFile>
 ```
 
 生成的 JSON 文件可由 LUIS 和 QnA 通过各自的门户或新的 CLI 工具来使用。 若要了解详细信息，请参阅 [LUdown CLI][ludown] GitHub 存储库。
@@ -258,7 +261,7 @@ az login
 az group create --name <resource-group-name> --location <geographic-location> --verbose
 ```
 
-| 选项 | Description |
+| 选项 | 说明 |
 |:---|:---|
 | --name | 资源组的唯一名称。 切勿在此名称中包含空格或下划线。 |
 | --location | 用于创建资源组的地理位置。 例如 `eastus`、`westus`、`westus2` 等。 使用 `az account list-locations` 来列出位置。 |
@@ -279,7 +282,7 @@ az bot create [options] --msbot | msbot connect bot --stdin
 az bot show [options] --msbot | msbot connect bot --stdin
 ```
 
-| 选项                            | Description                                   |
+| 选项                            | 说明                                   |
 |-----------------------------------|-----------------------------------------------|
 | --kind -k [必需]              | 机器人的类型。  允许的值：function、registration、webapp。|
 | --name -n [必需]              | 机器人的资源名称。 |
@@ -290,10 +293,10 @@ az bot show [options] --msbot | msbot connect bot --stdin
 | --resource-group -g               | 资源组的名称。 可以使用 `az configure --defaults group=<name>` 配置默认组。  默认值：build2018。 |
 | --tags                            | 要添加到机器人的标记集。 |
 
-
 ### <a name="configure-channels"></a>配置通道
 
-可以使用 Azure CLI 管理机器人的通道。 
+可以使用 Azure CLI 管理机器人的通道。
+
 ```shell
 >az bot -h
 Group
@@ -321,7 +324,9 @@ Group
 ```
 
 ## <a name="additional-information"></a>其他信息
+
 - [GitHub 上的 Bot Framework 工具][cliTools]
+- [.lu 文件格式](https://aka.ms/ludown-file-format)
 
 <!-- Footnote links -->
 
