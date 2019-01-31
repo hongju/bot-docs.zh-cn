@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dd52376e049f1f0e09216e0065ced7443b6eb02a
-ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
+ms.openlocfilehash: c9a462c1ff9a1de8bc7929cb11368191aafd031a
+ms.sourcegitcommit: 1ed179ae48bd2e28920a3f1e270e59d15d86fbf7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54453881"
+ms.lasthandoff: 01/24/2019
+ms.locfileid: "54892980"
 ---
 # <a name="enterprise-bot-template---deploying-your-bot"></a>企业机器人模板 - 部署机器人
 
@@ -87,7 +87,10 @@ az account set --subscription "YOUR_SUBSCRIPTION_NAME"
 msbot clone services --name "YOUR-BOT-NAME" --luisAuthoringKey "YOUR_AUTHORING_KEY" --folder "DeploymentScripts\LOCALE_FOLDER" --location "REGION"
 ```
 
-> 某些用户会出现一个已知的问题，即在运行部署时可能会遇到以下错误`ERROR: Unable to provision MSA id automatically. Please pass them in as parameters and try again`。 在这种情况下，请浏览到 https://apps.dev.microsoft.com 并手动创建一个检索 ApplicationID 和密码/机密的新应用程序。 请运行上面的 msbot clone services 命令，但需提供两个新的参数（`appId` 和 `appSecret`），用于传递刚检索的值。 确保将机密括在引号中以防止出现分析问题，例如：`-appSecret "YOUR_SECRET"`
+> 某些用户会出现一个已知的问题，即在运行部署时可能会遇到以下错误`ERROR: Unable to provision MSA id automatically. Please pass them in as parameters and try again`。 在这种情况下，请浏览到 https://apps.dev.microsoft.com 并手动创建一个检索 ApplicationID 和密码/机密的新应用程序。 请运行上面的 msbot clone services 命令，但需提供两个新的参数（`appId` 和 `appSecret`），用于传递刚检索的值。 需要将密码中可能被 shell 解释为命令的任何特殊字符进行转义：
+>   - 对于 *Windows 命令提示符*，请将 appSecret 括在双引号内。 例如 msbt clone services --name xxxx --luisAuthoringKey xxxx --location xxxx --folder bot.recipt ***--appSecret "!|%gr%"***
+>   - 对于 *Windows PowerShell，请尝试在 --% 参数后传入 appSecret。 例如 msbot clone services --name xxxx --luisAuthoringKey xxxx --location xxxx --folder bot.recipt ***--% --appSecret "!|%gr%"***
+>   - 对于 *MacOS 或 Linux*，请将 appSecret 括在单引号内。 例如 msbot clone services --name xxxx --luisAuthoringKey xxxx --location xxxx --folder bot.recipt ***--appSecret '!|%gr%'***
 
 msbot 工具将概述部署计划，包括位置和 SKU。 在继续操作之前，请确保进行复查。
 
