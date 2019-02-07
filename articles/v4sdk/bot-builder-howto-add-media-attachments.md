@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 01/16/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4805e1a3c86ce28833054ce374a57c5c40b717e1
-ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
+ms.openlocfilehash: 4999f08c62d2926be37b5730a2d1025749fc280e
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54453860"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55711981"
 ---
 # <a name="add-media-to-messages"></a>向消息添加媒体
 
@@ -148,7 +148,7 @@ await turnContext.sendActivity(reply);
 
 若要正常运行，请为卡上的每个可点击项目指定一种操作类型。 下表列出并描述了可用的操作类型以及应该存在于相关联的值属性中的内容。
 
-| 类型 | 说明 | 值 |
+| Type | 说明 | 值 |
 | :---- | :---- | :---- |
 | openUrl | 在内置浏览器中打开一个 URL。 | 要打开的 URL。 |
 | imBack | 向机器人发送一条消息，并在聊天中发布一个可见的响应。 | 要发送的消息文本。 |
@@ -241,6 +241,7 @@ using AdaptiveCards;
 using Microsoft.Bot.Builder;
 using Microsoft.Bot.Builder.Core.Extensions;
 using Microsoft.Bot.Schema;
+using Newtonsoft.Json;
 
 // Creates an attachment that contains an adaptive card
 // filePath is the path to JSON file

@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/20/2018
-ms.openlocfilehash: 8ab1cd34f2cc239602db423bccd131d9df39222a
-ms.sourcegitcommit: f7a8f05fc05ff4a7212a437d540485bf68831604
+ms.openlocfilehash: f86cacce5b25f60010f646cf5989123e3abf3bf2
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/21/2018
-ms.locfileid: "53735995"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55711971"
 ---
 # <a name="troubleshoot-http-500-errors"></a>排查 HTTP 500 错误
 
@@ -28,7 +28,7 @@ luis-with-appinsights ([C#](https://aka.ms/cs-luis-with-appinsights-sample) / [J
 
 ## <a name="enable-application-insights-on-nodejs"></a>在 Node.js 上启用 Application Insights
 
-如需基本的 Application Insights 支持，请参阅如何[使用 Application Insights 监视 Node.js 服务和应用](https://docs.microsoft.com/azure/application-insights/app-insights-nodejs)。 Bot Framework（从 v4.2 开始）提供另一级别的 Application Insights 遥测，但它不是诊断 HTTP 500 错误所必需的。
+如需基本的 Application Insights 支持，请参阅如何[使用 Application Insights 监视 Node.js 服务和应用](https://docs.microsoft.com/azure/azure-monitor/learn/nodejs-quick-start)。 Bot Framework（从 v4.2 开始）提供另一级别的 Application Insights 遥测，但它不是诊断 HTTP 500 错误所必需的。
 
 ## <a name="query-for-exceptions"></a>查询异常
 

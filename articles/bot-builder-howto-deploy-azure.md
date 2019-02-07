@@ -9,12 +9,12 @@ ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 12/08/2018
-ms.openlocfilehash: ac4e5f2ea385cb8318ad59e04c8ca8787480f5c8
-ms.sourcegitcommit: 77664484e1b0780a15f686ef08bd23716b049b4a
+ms.openlocfilehash: eb559418bc2925ec6fb64902086dede50e485414
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/09/2018
-ms.locfileid: "53121783"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55712011"
 ---
 # <a name="deploy-your-c-bot-using-visual-studio"></a>使用 Visual Studio 部署 C# 机器人
 
@@ -26,7 +26,6 @@ ms.locfileid: "53121783"
 
 ## <a name="prerequisites"></a>先决条件
 - 安装 [Bot Framework Emulator](https://aka.ms/Emulator-wiki-getting-started)。
-- 安装并配置 [ngrok](https://github.com/Microsoft/BotFramework-Emulator/wiki/Tunneling-%28ngrok%29)。
 - 了解 [.bot](v4sdk/bot-file-basics.md) 文件。
 
 ## <a name="deploy-your-bot-in-app-service"></a>在应用服务中部署机器人
@@ -152,7 +151,7 @@ ms.locfileid: "53121783"
 
 部署机器人时，通常会在 Azure 门户中创建以下资源：
 
-| 资源      | Description |
+| 资源      | 说明 |
 |----------------|-------------|
 | Web 应用机器人 | 部署到 Azure 应用服务的 Azure 机器人服务机器人。|
 | [应用服务](https://docs.microsoft.com/en-us/azure/app-service/)| 用于生成和托管 Web 应用程序。|

@@ -7,13 +7,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/28/2018
-ms.openlocfilehash: 8c63893704f513a420220a47528bada5c4f845d3
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 01/06/2019
+ms.openlocfilehash: 94ef9cc221e67f4f3762eb7a1a006a915e3c5307
+ms.sourcegitcommit: fd60ad0ff51b92fa6495b016e136eaf333413512
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999704"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55764095"
 ---
 # <a name="key-concepts-in-direct-line-api-30"></a>Direct Line API 3.0 中的重要概念
 
@@ -45,15 +45,13 @@ Bot Framework 提供了客户端库，帮助用户通过 C# 和 Node.js 访问 D
 
 - 要使用 Node.js 客户端库，请使用 <a href="https://www.npmjs.com/package/botframework-directlinejs" target="_blank">NPM</a> 安装 `botframework-directlinejs` 库（或<a href="https://github.com/Microsoft/BotFramework-DirectLineJS" target="_blank">下载</a>源）。
 
-作为使用 C# 或 Node.js 客户端库的替代方法，可使用 <a href="https://docs.botframework.com/en-us/restapi/directline3/swagger.json" target="_blank">Direct Line API 3.0 Swagger 文件</a>以所选的语言自行生成客户端库。
-
 ::: moniker range="azure-bot-service-3.0"
 
 ### <a name="sample-code"></a>代码示例
 
 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples" target="_blank">BotBuilder-Samples</a> GitHub 存储库包含多个示例，它们演示了如何结合使用 Direct Line API 3.0 与 C# 和 Node.js。
 
-| 示例 | 语言 | Description |
+| 示例 | 语言 | 说明 |
 |----|----|----|
 | <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/core-DirectLine" target="_blank">Direct Line 机器人示例</a> | C# | 使用 Direct Line API 相互通信的示例机器人和自定义客户端。 |
 | <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/core-DirectLineWebSockets" target="_blank">Direct Line 机器人示例（使用客户端 Websocket）</a> | C# | 使用 Direct Line API 和 Websocket 相互通信的示例机器人和自定义客户端。 |
