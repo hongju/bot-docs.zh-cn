@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 03c7e1316e463caf84b8dfd503e1502bb66469e6
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: f9fa2bee156752f1545d201768040b6106558e01
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224842"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55711831"
 ---
 # <a name="embed-a-bot-in-a-website"></a>在网站中嵌入机器人
 
@@ -25,7 +25,7 @@ Microsoft 提供两种不同的方法来在网站中集成机器人：Skype Web 
 
 ## <a name="skype-web-control"></a>Skype Web 控件
 
-Skype Web 控件本质上是启用了 Web 的控件中的 Skype 客户端。 机器人可通过内置的 Skype 身份验证对用户进行身份验证与识别，而无需开发人员编写任何自定义代码。 Skype 会自动识别在其 Web 客户端中使用的 Microsoft 帐户。 
+[Skype Web 控件](https://aka.ms/bot-skype-web-control)本质上是启用了 Web 的控件中的 Skype 客户端。 机器人可通过内置的 Skype 身份验证对用户进行身份验证与识别，而无需开发人员编写任何自定义代码。 Skype 会自动识别在其 Web 客户端中使用的 Microsoft 帐户。 
 
 由于 Skype Web 控件只用作 Skype 的前端，因此用户的 Skype 客户端可自动访问 Web 控件所促成的任何聊天的完整上下文。 即使在 Web 浏览器关闭之后，用户也可以使用 Skype 客户端继续与机器人交互。 
 

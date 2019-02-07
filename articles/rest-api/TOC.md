@@ -24,6 +24,7 @@
 ## [从机器人接收活动](bot-framework-rest-direct-line-3-0-receive-activities.md)
 ## [结束会话](bot-framework-rest-direct-line-3-0-end-conversation.md)
 ## [API 参考](bot-framework-rest-direct-line-3-0-api-reference.md)
+## [Swagger 文件](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-protocol/directline-3.0.json)
 # Direct Line API 1.1
 ## [关键概念](bot-framework-rest-direct-line-1-1-concepts.md)
 ## [身份验证](bot-framework-rest-direct-line-1-1-authentication.md)
@@ -31,3 +32,4 @@
 ## [向机器人发送消息](bot-framework-rest-direct-line-1-1-send-message.md)
 ## [从机器人接收消息](bot-framework-rest-direct-line-1-1-receive-messages.md)
 ## [API 参考](bot-framework-rest-direct-line-1-1-api-reference.md)
+## [Swagger 文件](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-protocol/directline-1.1.json)

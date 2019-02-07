@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 01/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 78e960357d6c4dc1c9751a9921a2338f552738b0
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: 3ca8ac4bfe14ed20f11a0ab26d8102ac21e60e2b
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317608"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55711951"
 ---
 # <a name="deploy-bots-from-botbuilder-samples-repo"></a>从 botbuilder-samples 存储库部署机器人
 
@@ -101,6 +101,7 @@ cd <local-bot-folder>
 如果使用 [MSA](https://en.wikipedia.org/wiki/Microsoft_account) 电子邮件帐户，则需要创建要在 `msbot clone services` 命令中使用的 appId 和 appSecret。
 
 - 转到[应用程序注册门户](https://apps.dev.microsoft.com/)。 单击“添加应用”以注册应用程序，创建**应用程序 ID**，然后单击“生成新密码”。
+> 注意 - 如果生成的密码包含字符“|”，Azure 将拒绝此密码。 若要解决此问题，请生成另一个新密码。
 - 保存刚刚生成的应用程序 ID 和新密码，以便可以在 `msbot clone services` 命令中使用这些信息。
 - 若要部署机器人，请使用机器人适用的命令。
 

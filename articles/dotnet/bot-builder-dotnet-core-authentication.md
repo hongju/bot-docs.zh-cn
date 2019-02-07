@@ -1,21 +1,18 @@
 ---
-title: 使用 .NET Core 对活动进行身份验证 |Microsoft Docs
-description: 了解如何使用 .NET Core 对机器人活动进行身份验证。
-author: v-ducvo
-ms.author: v-ducvo
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 12/13/17
-monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f3aa350cbada77bd9e423a1910f93440a7a1682d
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+redirect_url: /bot-framework/bot-builder-tutorial-authentication
+ms.openlocfilehash: 6dd1013e870fb749919f272e82b60ee633cddadb
+ms.sourcegitcommit: c7d2e939ec71f46f48383c750fddaf6627b6489d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996984"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "55783366"
 ---
+<a name="--"></a><!--
+---
+title:使用 .NET Core 对活动进行身份验证 |Microsoft Docs description:了解如何使用 .NET Core 对机器人活动进行身份验证。
+author: v-ducvo ms.author: v-ducvo manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date:12/13/17 monikerRange: 'azure-bot-service-3.0'
+---
+
 # <a name="authenticating-activities-using-net-core"></a>使用 .NET Core 对活动进行身份验证
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
@@ -40,7 +37,7 @@ Bot Framework Connector.AspNetCore 支持以下版本的 ASP.NET：
 
 1. 打开 Visual Studio 2017，再依次单击“文件”>“新建”>“项目...”。
 2. 展开 Visual C# 节点并单击“.NET Core”。
-3. 选择“ASP.NET Core Web 应用程序”项目类型，并填写项目信息（例如名称、位置和解决方案名称字段）。
+3. 选择“ASP.NET Core Web 应用程序”项目类型，并填写项目信息（例如“名称”、“位置”和“解决方案名称”字段）。
 4. 单击“确定”。
 5. 确保项目面向的是所需的 .NET Core 和 ASP.NET Core 版本。 例如，下面的屏幕截图显示项目以 .NET Core 和 ASP.NET Core 2.0 为目标：
 
@@ -246,3 +243,4 @@ public async Task<OkResult> Post([FromBody] Activity activity)
     return Ok();
 }
 ```
+-->

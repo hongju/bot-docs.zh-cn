@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 01/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c798c26f108458e1caeb16aa22c02c6e7c70fb61
-ms.sourcegitcommit: 3cc768a8e676246d774a2b62fb9c688bbd677700
+ms.openlocfilehash: bec6f44db929eab43cfcbbd6b2920b79924b7576
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/16/2019
-ms.locfileid: "54323653"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55712001"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多个 LUIS 和 QnA 模型
 
@@ -23,7 +23,7 @@ ms.locfileid: "54323653"
 
 本教程演示当机器人支持对不同的方案使用多个 LUIS 模型和 QnA Maker 服务时，如何使用 Dispatch 服务来路由话语。 在本例中，我们将围绕家庭自动化和天气信息为 Dispatch 配置多个聊天 LUIS 模型，并配置 QnA Maker 服务以基于输入的 FAQ 文本文件来回答问题。 本示例结合了以下服务。
 
-| 名称 | Description |
+| Name | 说明 |
 |------|------|
 | 家庭自动化 | 一个可以识别包含关联实体数据的家庭自动化意向的 LUIS 应用。|
 | 天气 | 一个可以识别包含位置数据的 `Weather.GetForecast` 和 `Weather.GetCondition` 意向的 LUIS 应用。|
@@ -183,7 +183,7 @@ public void ConfigureServices(IServiceCollection services)
 }
 
 ```
-以下代码初始化机器人对外部服务的引用。 例如，此处创建了 LUIS 和 QnaMaker 服务。 这些外部服务是使用 `BotConfiguration` 类基于“.bot”文件的内容配置的。
+以下代码初始化机器人对外部服务的引用。 例如，此处创建了 LUIS 和 QnaMaker 服务。 这些外部服务是使用 `BotConfiguration` 类（基于 `.bot` 文件的内容）配置的。
 
 ```csharp
 private static BotServices InitBotServices(BotConfiguration config)
@@ -237,7 +237,8 @@ private static BotServices InitBotServices(BotConfiguration config)
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-示例代码使用预定义的命名常量来标识 .bot 文件的各个节。 如果已修改 _nlp-with-dispatch.bot_ 文件的原始示例命名中的任何节名称，请确保找到 **bot.js**、**homeAutomation.js**、**qna.js** 或 **weather.js** 文件中的关联常量声明，并将该条目更改为已修改的名称。  
+示例代码使用预定义的命名常量来标识 `.bot` 文件的各个节。 如果已修改 _nlp-with-dispatch.bot_ 文件的原始示例命名中的任何节名称，请确保找到 **bot.js**、**homeAutomation.js**、**qna.js** 或 **weather.js** 文件中的关联常量声明，并将该条目更改为已修改的名称。  
+
 ```javascript
 // In file bot.js
 // this is the LUIS service type entry in the .bot file.
@@ -432,8 +433,11 @@ switch (dispatchTopIntent) {
        await turnContext.sendActivity(`I do not understand that.`);
        await turnContext.sendActivity(`I can help with weather forecast, turning devices on and off and answer general questions like 'hi', 'who are you' etc.`);
  }
+ ```
+
+ 在 `homeAutomation.js` 中
  
- // In homeAutomation.js
+ ```javascript
  async onTurn(turnContext) {
     // make call to LUIS recognizer to get home automation intent + entities
     const homeAutoResults = await this.luisRecognizer.recognize(turnContext);
@@ -448,8 +452,11 @@ switch (dispatchTopIntent) {
          await turnContext.sendActivity(`HomeAutomation dialog cannot fulfill this request.`);
     }
 }
-    
-// In weather.js
+```
+
+在 `weather.js` 中
+
+```javascript
 async onTurn(turnContext) {
    // Call weather LUIS model.
    const weatherResults = await this.luisRecognizer.recognize(turnContext);
@@ -470,8 +477,11 @@ async onTurn(turnContext) {
          wait turnContext.sendActivity(`Weather dialog cannot fulfill this request.`);
    }
 }
-    
-// In qna.js
+```
+
+在 `qna.js` 中
+
+```javascript
 async onTurn(turnContext) {
    // Call QnA Maker and get results.
    const qnaResult = await this.qnaRecognizer.generateAnswer(turnContext.activity.text, QNA_TOP_N, QNA_CONFIDENCE_THRESHOLD);

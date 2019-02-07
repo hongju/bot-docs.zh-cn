@@ -8,19 +8,19 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: f0985f28fd1744bcfb6bf5cea1c2230254670e01
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 438558995f83ade38404856d61ba66ee77480a27
+ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000204"
+ms.lasthandoff: 02/04/2019
+ms.locfileid: "55711931"
 ---
 # <a name="end-a-conversation"></a>结束会话
 
-无论是客户端还是机器人，都可以通过发送 endOfConversation [活动](bot-framework-rest-connector-activities.md)来指示 Direct Line 会话结束。 
+**endOfConversation** [活动](bot-framework-rest-connector-activities.md)意味着通道或机器人已结束聊天。 
 
 > [!NOTE] 
-> 仅 Cortana 通道支持 endOfConversation 事件，其他通道无法实现此功能。 每个通道都需要确定响应 endOfConversation 活动的方式。 如果设计 DirectLine 客户端，需更新该客户端才能确保其行为正常。例如，如果机器人向已结束的聊天发送活动，则会生成错误。
+> 虽然 **endOfConversation** 事件仅由很少几个通道发送，但 Cortana 通道是唯一接受它的通道。 其他通道（包括 Direct Line）不实现此功能，而是删除或转发该活动；每个通道都将确定如何对 endOfConversation 活动做出响应。 如果设计 DirectLine 客户端，需更新该客户端才能确保其行为正常。例如，如果机器人向已结束的聊天发送活动，则会生成错误。
 
 ## <a name="send-an-endofconversation-activity"></a>发送 endOfConversation 活动
 

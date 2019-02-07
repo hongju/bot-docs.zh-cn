@@ -53,6 +53,7 @@
 ### [直接写入到存储](v4sdk/bot-builder-howto-v4-storage.md)
 ### [向机器人添加身份验证](v4sdk/bot-builder-authentication.md)
 ### [为机器人实现自定义存储](v4sdk/bot-builder-custom-storage.md)
+### [将遥测功能添加到机器人](v4sdk/bot-builder-telemetry.md)
 ### [使用 CLI 工具管理机器人](bot-builder-tools.md)
 ### [.NET](dotnet/TOC.md)
 ### [Node.js](nodejs/TOC.md)
@@ -63,6 +64,7 @@
 <!-- ### [Download and redeploy bot code](bot-service-build-download-source-code.md) -->
 ### [设置持续部署](bot-service-build-continuous-deployment.md)
 ## [管理](manage/TOC.md)
+## [迁移](v4sdk/migration/TOC.md)
 # 引用
 ## [.NET SDK v4](https://aka.ms/dotnetsdk4)
 ## [JavaScript SDK v4](https://aka.ms/jssdk4)

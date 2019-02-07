@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 1/10/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a1b155db3ec717a1084ae0e098e8f22997a80b0e
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 70f333cdce15f1d1e908b73d21e706f1af33454b
+ms.sourcegitcommit: c7d2e939ec71f46f48383c750fddaf6627b6489d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225932"
+ms.lasthandoff: 02/07/2019
+ms.locfileid: "55783376"
 ---
 # <a name="how-bots-work"></a>机器人的工作原理
 
@@ -67,7 +67,7 @@ ms.locfileid: "54225932"
 以下部分介绍机器人的关键组成部分。
 
 ### <a name="prerequisites"></a>先决条件
-- [C#](https://aka.ms/EchoBotWithStateCSharp) 或 [JS](https://aka.ms/EchoBotWithStateJS) **EchoBotWithCounter** 示例的副本。 此处仅显示相关代码，但你可以参考示例中的完整源代码。
+- 以 **[C#](https://aka.ms/EchoBotWithStateCSharp) 或 [JS](https://aka.ms/EchoBotWithStateJS)** 编写的 **EchoBotWithCounter** 示例的副本。 此处仅显示相关代码，但你可以参考示例中的完整源代码。
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
 

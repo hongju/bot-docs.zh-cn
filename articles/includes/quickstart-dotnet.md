@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 2096aa342fe954b9f9f1d128bc080c0e0e6efdce
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
-ms.translationtype: HT
-ms.contentlocale: zh-CN
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360797"
----
 ## <a name="prerequisites"></a>先决条件
 - Visual Studio [2017](https://www.visualstudio.com/downloads)
 - 面向 [C#](https://aka.ms/bot-vsix) 的 Bot Framework SDK v4 模板
@@ -15,7 +7,7 @@ ms.locfileid: "54360797"
 ## <a name="create-a-bot"></a>创建机器人
 安装在先决条件部分中下载的 BotBuilderVSIX.vsix 模板。
 
-在 Visual Studio 中使用 Bot Framework Echo Bot V4 模板创建一个新的机器人项目。
+在 Visual Studio 中使用 **Bot Framework Echo Bot** V4 模板创建一个新的机器人项目。
 
 ![Visual Studio 项目](~/media/azure-bot-quickstarts/bot-builder-dotnet-project.png)
 
