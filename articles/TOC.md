@@ -59,17 +59,17 @@
 ### [Node.js](nodejs/TOC.md)
 ## [调试](debug/TOC.md)
 ## 部署
-### [使用 Azure CLI 部署机器人](bot-builder-deploy-az-cli.md)
-### [使用 Visual Studio 部署 C# 机器人](bot-builder-howto-deploy-azure.md)
-<!-- ### [Download and redeploy bot code](bot-service-build-download-source-code.md) -->
-### [设置持续部署](bot-service-build-continuous-deployment.md)
+### [将机器人部署到 Azure](bot-builder-deploy-az-cli.md)
+<!-- ### [Deploy your C# bot using Visual Studio](bot-builder-howto-deploy-azure.md)
+### [Download and redeploy bot code](bot-service-build-download-source-code.md) 
+### [Set up continuous deployment](bot-service-build-continuous-deployment.md) -->
 ## [管理](manage/TOC.md)
 ## [迁移](v4sdk/migration/TOC.md)
 # 引用
 ## [.NET SDK v4](https://aka.ms/dotnetsdk4)
 ## [JavaScript SDK v4](https://aka.ms/jssdk4)
 ## [REST](rest-api/TOC.md)
-## [.NET SDK v3](/dotnet/api/?view=botbuilder-3.12.2.4)
+## [.NET SDK v3](/dotnet/api/?view=botbuilder-dotnet-3.0)
 ## [Node.js SDK v3](https://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_.html)
 ## [实体和活动类型](bot-service-activities-entities.md)
 # [资源](resources/TOC.md)
