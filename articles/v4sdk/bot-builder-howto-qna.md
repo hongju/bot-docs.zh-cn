@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 01/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4a221f6e94324c56f88dd1d4d6851d5cc4d38e6c
-ms.sourcegitcommit: 3cc768a8e676246d774a2b62fb9c688bbd677700
+ms.openlocfilehash: f1e3e3fa05a297aa50a2368a103a7aa00be49009
+ms.sourcegitcommit: fd60ad0ff51b92fa6495b016e136eaf333413512
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/16/2019
-ms.locfileid: "54323673"
+ms.lasthandoff: 02/06/2019
+ms.locfileid: "55764135"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答问题
 
@@ -27,24 +27,28 @@ ms.locfileid: "54323673"
 
 ## <a name="prerequisites"></a>先决条件
 - [QnA Maker](https://www.qnamaker.ai/) 帐户
-- 本文中的代码基于 **QnA Maker** 示例。 需要获取 [C# ](https://aka.ms/cs-qna) 或 [JS](https://aka.ms/js-qna-sample) 示例的副本。
+- 本文中的代码基于 **QnA Maker** 示例。 需要获取 [C# 示例](https://aka.ms/cs-qna)或 [Javascript 示例](https://aka.ms/js-qna-sample)的副本。
 - [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download)
 - 了解[机器人基础知识](bot-builder-basics.md)、[QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 和 [.bot](bot-file-basics.md) 文件。
 
 ## <a name="create-a-qna-maker-service-and-publish-a-knowledge-base"></a>创建 QnA Maker 服务并发布知识库
 1. 首先需要创建 [QnA Maker 服务](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure)。
 1. 接下来，使用项目的 CognitiveModels 文件夹中的 `smartLightFAQ.tsv` 文件创建一个知识库。 QnA Maker 文档中列出了创建、训练和发布 QnA Maker [知识库](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/create-publish-knowledge-base)的步骤。 在执行以下步骤的过程中，请将知识库命名为 `qna`，并使用 `smartLightFAQ.tsv` 文件来填充知识库。
+> 注意。 也可以参考本文来访问用户自己开发的 QnA Maker 知识库。
 
-## <a name="obtain-values-to-connect-to-your-connect-your-bot-to-the-knowledge-base"></a>获取用于将机器人连接到知识库的值
+## <a name="obtain-values-to-connect-your-bot-to-the-knowledge-base"></a>获取用于将机器人连接到知识库的值
 1. 在 [QnA Maker](https://www.qnamaker.ai/) 站点中选择知识库。
-1. 打开知识库以后，选择“设置”。 将针对“服务名称”显示的值记录为 <your_kb_name>
+1. 打开知识库以后，选择“设置”。 记录针对“服务名称”显示的值。 使用 QnA Maker 门户界面时，此值可用于查找所需的知识库。 此值不可用于将机器人应用连接到此知识库。 
 1. 向下滚动，找到“部署详细信息”并记录以下值：
-   - POST /knowledgebases/<your_knowledge_base_id>/generateAnswer
-   - 主机：<your_hostname>/qnamaker
-   - 授权：EndpointKey <your_endpoint_key>
+   - POST /knowledgebases/<知识库 ID>/getAnswers
+   - Host: <主机名>/qnamaker
+   - Authorization:EndpointKey <终结点密钥>
+   
+这三个值为应用提供所需的信息，使其能够通过 Azure QnA 服务连接到 QnA Maker 知识库。  
 
 ## <a name="update-the-bot-file"></a>更新 .bot 文件
-首先，请将访问知识库所需的信息（包括主机名、终结点密钥和知识库 ID (KbId)）添加到 `qnamaker.bot` 中。 这些是在 QnA Maker 中通过知识库的“设置”保存的值。
+首先，请将访问知识库所需的信息（包括主机名、终结点密钥和知识库 ID (KbId)）添加到 `qnamaker.bot` 中。 这些是在 QnA Maker 中通过知识库的“设置”保存的值。 
+> 注意。 如果将 QnA Maker 知识库访问权限添加到现有的机器人应用程序中，请务必在 .bot 文件中添加如下所示的 "type": "qna" 节。 此节中的 "name" 值提供所需的密钥用于从应用内部访问此信息。
 
 ```json
 {
@@ -55,17 +59,16 @@ ms.locfileid: "54323673"
       "name": "development",
       "endpoint": "http://localhost:3978/api/messages",
       "appId": "",
-      "appPassword": ""
-      "id": "25",
-    
+      "appPassword": "",
+      "id": "25"    
     },
     {
       "type": "qna",
       "name": "QnABot",
-      "KbId": "<YOUR_KNOWLEDGE_BASE_ID>",
-      "subscriptionKey": "<Your_Azure_Subscription_Key>", // Used when creating your QnA service.
-      "endpointKey": "<Your_Recorded_Endpoint_Key>",
-      "hostname": "<Your_Recorded_Hostname>",
+      "KbId": "<Your_Knowledge_Base_Id>",
+      "subscriptionKey": "",
+      "endpointKey": "<Your_Endpoint_Key>",
+      "hostname": "<Your_Hostname>",
       "id": "117"
     }
   ],
@@ -75,7 +78,7 @@ ms.locfileid: "54323673"
 ```
 
 # <a name="ctabcs"></a>[C#](#tab/cs)
-接下来，在 BotServices.cs 中初始化 BotService 类的新实例，以便从 .bot 文件中获取上述信息。 使用 BotConfiguration 类配置外部服务。
+接下来，在 **BotServices.cs** 中初始化 BotService 类的新实例，以便从 .bot 文件中获取上述信息。 使用 BotConfiguration 类配置外部服务。
 
 ```csharp
 private static BotServices InitBotServices(BotConfiguration config)
@@ -128,7 +131,7 @@ private static BotServices InitBotServices(BotConfiguration config)
 }
 ```
 
-然后在 `QnABot.cs 中，将此 QnAMaker 实例分配到机器人。 若要访问自己的知识库，请更改下面显示的“欢迎”消息，为用户提供有用的初始说明。
+然后在 **QnABot.cs** 中，将此 QnAMaker 实例分配到机器人。 若要访问自己的知识库，请更改下面显示的“欢迎”消息，为用户提供有用的初始说明。 此类也是定义静态变量 _QnAMakerKey_ 的位置。 此变量指向 .bot 文件中包含用于访问 QnA Mkaer 知识库的连接信息的节。
 
 ```csharp
 public class QnABot : IBot
@@ -155,11 +158,11 @@ public class QnABot : IBot
 
 在 **index.js** 文件中，我们读取配置信息，以便生成 QnA Maker 服务并初始化机器人。
 
-将 `QNA_CONFIGURATION` 的值更新为知识库的名称，正如其显示在配置文件中的那样。
+在 .bot 文件中，将 `QNA_CONFIGURATION` 的值更新为 "name": 值。 这是 .bot 文件中包含用于访问 QnA Maker 知识库的连接参数的 "type": "qna" 节中的密钥。
 
 ```js
-// QnA Maker knowledge base name as specified in .bot file.
-const QNA_CONFIGURATION = '<YOUR_KB_NAME>';
+// Name of the QnA Maker service in the .bot file. 
+const QNA_CONFIGURATION = '<BOT_FILE_NAME>';
 
 // Get endpoint and QnA Maker configurations by service name.
 const endpointConfig = botConfig.findServiceByNameOrId(BOT_CONFIGURATION);
@@ -230,7 +233,7 @@ else
 
 # <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
-在 **bot.js** 文件中，我们将用户的输入传递给 QnA Maker 服务的 `generateAnswer` 方法，以便从知识库获取答案。 若要访问自己的知识库，请更改下面的“没有答案”和“欢迎”消息，为用户提供有用的说明。
+在 **bot.js** 文件中，我们将用户的输入传递给 QnA Maker 服务的 `getAnswers` 方法，以便从知识库获取答案。 若要访问自己的知识库，请更改下面的“没有答案”和“欢迎”消息，为用户提供有用的说明。
 
 ```javascript
 const { ActivityTypes, TurnContext } = require('botbuilder');
@@ -258,7 +261,7 @@ class QnAMakerBot {
         // By checking the incoming Activity type, the bot only calls QnA Maker in appropriate cases.
         if (turnContext.activity.type === ActivityTypes.Message) {
             // Perform a call to the QnA Maker service to retrieve matching Question and Answer pairs.
-            const qnaResults = await this.qnaMaker.generateAnswer(turnContext.activity.text);
+            const qnaResults = await this.qnaMaker.getAnswers(turnContext.activity.text);
 
             // If an answer was received from QnA Maker, send the answer back to the user.
             if (qnaResults[0]) {
