@@ -1,20 +1,17 @@
 ---
-title: 为机器人服务配置持续部署 | Microsoft Docs
-description: 了解如何从源代码管理为机器人服务设置持续部署。
-keywords: 持续部署, 发布, 部署, azure 门户
-author: ivorb
-ms.author: v-ivorb
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.date: 12/06/2018
-ms.openlocfilehash: ffbc3ef83c8fe1cd6f04697a3fff9e229df9956f
-ms.sourcegitcommit: 080b9633925ffe381f2c3cf11c8f8ca4b37e2046
+redirect_url: /bot-framework/bot-builder-deploy-az-cli
+ms.openlocfilehash: 8149471553658df6778e2983bae114e80c846c9b
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/07/2018
-ms.locfileid: "53068710"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971419"
 ---
+<a name="--"></a><!--
+---
+title:为机器人服务配置持续部署 | Microsoft Docs description:了解如何从源代码管理为机器人服务设置持续部署。 keywords: 持续部署, 发布, 部署, azure 门户 author: ivorb ms.author: v-ivorb manager: kamrani ms.topic: article ms.service: bot-service ms.date:12/06/2018
+---
+
 # <a name="set-up-continuous-deployment"></a>设置连续部署
 如果你的代码已签入 **GitHub** 或 **Azure DevOps（以前称为 Visual Studio Team Services）**，请使用持续部署自动将代码更改从源存储库部署到 Azure。 在本主题中，我们将介绍如何为 **GitHub** 和 **Azure DevOps** 设置持续部署。
 
@@ -71,3 +68,6 @@ ms.locfileid: "53068710"
 
 ## <a name="additional-information"></a>其他信息
 - Visual Studio Team Services 现已命名为 [Azure DevOps Services](https://docs.microsoft.com/en-us/azure/devops/?view=vsts)。
+
+
+-->

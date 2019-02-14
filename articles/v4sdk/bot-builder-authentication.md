@@ -7,14 +7,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 10/30/2018
+ms.date: 02/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3bfbcb27aa6e38792f96e0d3fe042f02f6e11083
-ms.sourcegitcommit: d385ec5fe61c469ab17e6f21b4a0d50e5110d0fd
+ms.openlocfilehash: c55909afa0a8942a01d3fca0f8a64331bbcdf963
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54298314"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971517"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
 
@@ -39,7 +39,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 你可以根据本文中的步骤进行推断，将此类功能添加到现有机器人。 以下是演示新身份验证功能的示例机器人
 
-| 示例 | BotBuilder 版本 | Description |
+| 示例 | BotBuilder 版本 | 说明 |
 |:---|:---:|:---|
 | **机器人身份验证** ([C#](https://aka.ms/v4cs-bot-auth-sample) / [JS](https://aka.ms/v4js-bot-auth-sample)) | v4 | 演示 OAuthCard 支持。 |
 | **机器人身份验证 MSGraph** ([C#](https://aka.ms/v4cs-auth-msgraph-sample) / [JS](https://aka.ms/v4js-auth-msgraph-sample)) | v4 |  演示使用 OAuth 2 的 Microsoft Graph API 支持。 |
@@ -51,7 +51,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 ## <a name="overview"></a>概述
 
-本教程创建一个机器人示例，它使用 Azure AD v1 或 v2 令牌连接到 Microsoft Graph。 在此过程中，你将使用 [Microsoft/BotBuilder-Samples](https://github.com/Microsoft/BotBuilder-Samples) GitHub 存储库中的代码。本教程介绍如何进行此方面的设置，包括机器人应用程序的设置。
+本教程创建一个使用 Azure AD v1 或 v2 令牌连接到 Microsoft Graph 的机器人示例，以及关联的 Azure AD 应用。 在此过程中，你将使用 [Microsoft/BotBuilder-Samples](https://github.com/Microsoft/BotBuilder-Samples) GitHub 存储库中的代码。本教程介绍如何进行此方面的设置，包括机器人应用程序的设置。
 
 - **创建机器人和身份验证应用程序**
 - **准备机器人示例代码**

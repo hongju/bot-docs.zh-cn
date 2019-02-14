@@ -1,21 +1,18 @@
 ---
-title: 使用 Visual Studio 部署 C# 机器人 | Microsoft Docs
-description: 将机器人部署到 Azure 云。
-keywords: 部署机器人, azure 部署, 发布机器人, az 部署机器人, visual studio 部署机器人, msbot 发布, msbot 克隆
-author: ivorb
-ms.author: v-ivorb
-manager: kamrani
-ms.topic: get-started-article
-ms.service: bot-service
-ms.subservice: abs
-ms.date: 12/08/2018
-ms.openlocfilehash: eb559418bc2925ec6fb64902086dede50e485414
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+redirect_url: /bot-framework/bot-builder-deploy-az-cli
+ms.openlocfilehash: a300d6602a59c5e7d7cebdf14bb4f720a30ecbf8
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55712011"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971467"
 ---
+<a name="--"></a><!--
+---
+title:使用 Visual Studio 部署 C# 机器人 | Microsoft Docs description:将机器人部署到 Azure 云。
+keywords: 部署机器人, azure 部署, 发布机器人, az 部署机器人, visual studio 部署机器人, msbot 发布, msbot 克隆 author: ivorb ms.author: v-ivorb manager: kamrani ms.topic: get-started-article ms.service: bot-service ms.subservice: abs ms.date:02/07/2019
+---
+
 # <a name="deploy-your-c-bot-using-visual-studio"></a>使用 Visual Studio 部署 C# 机器人
 
 [!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
@@ -28,7 +25,16 @@ ms.locfileid: "55712011"
 - 安装 [Bot Framework Emulator](https://aka.ms/Emulator-wiki-getting-started)。
 - 了解 [.bot](v4sdk/bot-file-basics.md) 文件。
 
+
+## <a name="update-bot-file-properties"></a>更新 .bot 文件属性
+
+开始该部署过程之前，请在 Visual Studio 中更新以下 .bot 文件属性：
+- **生成操作：内容**
+- **复制到输出目录：始终复制**
+
+
 ## <a name="deploy-your-bot-in-app-service"></a>在应用服务中部署机器人
+
 你将首先在应用服务中从 Visual Studio 将机器人部署到 Azure。 然后，你将使用机器人通道注册通过 Azure 机器人服务配置机器人。
 
 **注意：如果 Visual Studio 项目名称包含空格，则无法执行下面所述的部署步骤。**
@@ -164,3 +170,4 @@ ms.locfileid: "55712011"
 ## <a name="next-steps"></a>后续步骤
 > [!div class="nextstepaction"]
 > [设置持续部署](bot-service-build-continuous-deployment.md)
+-->

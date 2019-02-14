@@ -8,30 +8,35 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 02/04/2019
+ms.date: 02/11/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 8bcb2e545cea640f74a37cac20f16b288c690956
-ms.sourcegitcommit: fd60ad0ff51b92fa6495b016e136eaf333413512
+ms.openlocfilehash: 1904bb09d8bd387cc5cec0d85f82df24d1f6ec9d
+ms.sourcegitcommit: 7f418bed4d0d8d398f824e951ac464c7c82b8c3e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/06/2019
-ms.locfileid: "55764182"
+ms.lasthandoff: 02/14/2019
+ms.locfileid: "56240173"
 ---
-# <a name="migrate-a-bot-within-the-same-net-framework-project"></a>在同一 .NET Framework 项目中迁移机器人
+# <a name="migrate-a-net-sdk-v3-bot-to-v4"></a>将.NET SDK v3 机器人迁移到 v4
 
-Bot Framework SDK v4 与 SDK v3 基于相同的基础 REST API。 但是，SDK v4 对以前的 SDK 版本作了重构，使开发人员对其机器人拥有更高的灵活性和控制度。 该 SDK 的主要更改包括：<!--TODO: Replace with a snippet summary of changes that includes a link to the concept topic.-->
+在本文中，我们会将 v3 [ContosoHelpdeskChatBot](https://github.com/Microsoft/intelligent-apps/tree/master/ContosoHelpdeskChatBot/ContosoHelpdeskChatBot) 转换到 v4 机器人，_但不转换项目类型_。 它将仍然是 .NET Framework 项目。
+这种转换划分为以下步骤：
+
+1. 更新和安装 NuGet 包
+1. 更新 Global.asax.cs 文件
+1. 更新 MessagesController 类
+1. 转换对话
+
+<!--TODO: Link to the converted bot...[ContosoHelpdeskChatBot](https://github.com/EricDahlvang/intelligent-apps/tree/v4netframework/ContosoHelpdeskChatBot).-->
+
+Bot Framework SDK v4 与 SDK v3 基于相同的基础 REST API。 但是，SDK v4 对以前的 SDK 版本作了重构，使开发人员对其机器人拥有更高的灵活性和控制度。 该 SDK 的主要更改包括：
 
 - 通过状态管理对象和属性访问器管理状态。
 - 设置轮次处理程序以及向其传递活动的方式发生了变化。
 - 可评分对象不再存在。 在将控制权传递给对话之前，可以检查轮次处理程序中的“全局”命令。
 - 采用新的对话库，该库与以前的版本有很大的不同。 需要使用组件和瀑布对话以及适用于 v4 的 Formflow 对话的社区实现，将旧对话转换为新的对话系统
 
-本文重点介绍 v3 [ContosoHelpdeskChatBot](https://github.com/Microsoft/intelligent-apps/tree/master/ContosoHelpdeskChatBot/ContosoHelpdeskChatBot)，以及如何将其转换为 v4 机器人。 <!--TODO: Link to the converted bot...[ContosoHelpdeskChatBot](https://github.com/EricDahlvang/intelligent-apps/tree/v4netframework/ContosoHelpdeskChatBot).-->我们将在不转换项目类型的情况下转换机器人，因此，这仍旧是一个 .NET Framework 项目。 这种转换划分为以下步骤：
-
-1. 更新和安装 NuGet 包
-1. 更新 Global.asax.cs 文件
-1. 更新 MessagesController 类
-1. 转换对话
+有关特定更改的详细信息，请参阅 [v3 和 v4 .NET SDK 之间的差异](migration-about.md)。
 
 ## <a name="update-and-install-nuget-packages"></a>更新和安装 NuGet 包
 
@@ -343,7 +348,6 @@ v4 中轮次处理程序在此类中执行，因此需要对此类进行一些�
 - 瀑布步骤包含派生自 `DialogContext` 的 `WaterfallStepContext` 参数。
 - 所有具体对话和提示类派生自 `Dialog` 抽象类。
 - 创建组件对话时分配 ID。 需要为对话集中的每个对话分配该集中唯一的 ID。
-- 我们将实现 `PostAsync` 和 `Done` 扩展方法，以转换后的对话更类似于 v3 对话。 可以添加附加的扩展方法来进一步精简转换过程，或者，可以跳过此步骤，使迁移的代码更类似于 v4 代码。
 
 ### <a name="update-the-root-dialog"></a>更新根对话
 

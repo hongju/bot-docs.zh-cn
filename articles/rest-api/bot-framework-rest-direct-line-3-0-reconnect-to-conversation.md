@@ -7,13 +7,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: 812ad04232629e889b0ab5472af07ff986ca787b
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 2/09/2019
+ms.openlocfilehash: 45675e612553e79f51edde60eaee6bf14df0e44d
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000304"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971397"
 ---
 # <a name="reconnect-to-a-conversation"></a>重新连接到聊天
 
@@ -59,6 +59,8 @@ HTTP/1.1 200 OK
 ## <a name="reconnect-to-the-conversation"></a>重新连接到聊天
 
 客户端必须使用新的 WebSocket 流 URL 在 60 秒内[重新连接到聊天](bot-framework-rest-direct-line-3-0-receive-activities.md#connect-via-websocket)。 如果在此期间无法建立连接，则客户端必须发出另一个重新连接请求以生成新的流 URL。
+
+如果 Direct Line 设置中启用了“增强身份验证选项”，可能会收到 400“MissingProperty”错误，其中说明未指定任何用户 ID。
 
 ## <a name="additional-resources"></a>其他资源
 

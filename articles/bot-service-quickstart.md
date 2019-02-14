@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 01/17/2019
-ms.openlocfilehash: 515ef592e4ce7f159890db4cb5f61f97cccf3786
-ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
+ms.date: 02/07/2019
+ms.openlocfilehash: 2648058456677fb009e3fe76c4215f8028aac6bf
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54453941"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971507"
 ---
 # <a name="create-a-bot-with-azure-bot-service"></a>使用 Azure 机器人服务创建机器人
 
@@ -138,10 +138,6 @@ Azure 机器人服务提供了用于创建机器人的核心组件，包括用�
 为此，请转到 Azure 门户。 在门户中选择机器人，然后在“应用服务设置”部分下，单击“应用程序设置”。 在“应用程序设置”窗格中，你将看到 `botFilePath` 和 `botFileSecret` 值。 复制这些值并更新 .env 或 appsettings.json 文件。 
 
 ## <a name="next-steps"></a>后续步骤
-
-本主题介绍了如何使用 Azure 机器人服务来创建**回显** Web 应用机器人，并使用内置的网上聊天控件验证了机器人的功能。 现在需了解如何管理机器人并开始使用其源代码。
-
-> [!div class="nextstepaction"]
-> [机器人工作原理](~/v4sdk/bot-builder-basics.md)
+下载代码后，可以继续在本地计算机上开发机器人。 测试了机器人并已准备好将机器人代码上传到 Azure 门户后，请按照部署主题的[设置存储库](./bot-builder-deploy-az-cli.md#setup-a-repository)部分下列出的说明执行操作。
 
 ::: moniker-end
