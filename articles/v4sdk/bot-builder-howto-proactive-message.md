@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/15/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7a9a2e4f30d1e9b293e51a921afce57d243376d7
-ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
+ms.openlocfilehash: 780fdb05acf2c81d72aaa6c415bdd9a6b0229082
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54453961"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971497"
 ---
 # <a name="get-notification-from-bots"></a>从机器人获取通知
 
@@ -601,4 +601,4 @@ async completeJob(turnContext, jobIdNumber) {
 ![作业系统的模拟器会话](~/v4sdk/media/how-to-proactive/job-system.png)
 
 ## <a name="additional-resources"></a>其他资源
-查看 [GitHub](https://github.com/Microsoft/BotBuilder-Samples/blob/master/readme.md) 中的其他 C# 和 JS 示例。
+查看 [GitHub](https://github.com/Microsoft/BotBuilder-Samples/blob/master/README.md) 中的其他 C# 和 JS 示例。

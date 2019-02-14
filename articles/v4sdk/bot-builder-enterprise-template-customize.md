@@ -6,14 +6,14 @@ ms.author: darrenj
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 09/18/2018
+ms.date: 02/7/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 319700f8b7b236ce74058bac5fabb84f21e04d69
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: d472cbe7c0235862f8dcff1bcc2d53d977bb7657
+ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452009"
+ms.lasthandoff: 02/09/2019
+ms.locfileid: "55971487"
 ---
 # <a name="enterprise-bot-template---customize-your-bot"></a>企业机器人模板 - 自定义机器人
 
@@ -107,11 +107,11 @@ ms.locfileid: "52452009"
 ```
 3. 通过以下命令将此新的 LUIS 模型添加到调度程序
 ```shell
-    dispatch add -t luis -id LUIS_APP_ID -bot "YOUR_BOT.bot" -secret YOURSECRET
+    dispatch add -t luis -id LUIS_APP_ID -bot "YOUR_BOT.bot" --secret YOURSECRET
 ```
 4. 通过以下命令刷新调度模型以反映 LUIS 模型更改
 ```shell
-    dispatch refresh -bot "YOUR_BOT.bot" -secret YOUR_SECRET
+    dispatch refresh -bot "YOUR_BOT.bot" --secret YOUR_SECRET
 ```
 
 ### <a name="adding-an-additional-qna-maker-knowledge-base"></a>添加额外的 QnA Maker 知识库
