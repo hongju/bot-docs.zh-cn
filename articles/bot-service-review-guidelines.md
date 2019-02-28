@@ -25,8 +25,6 @@
 
 - 如果你的应用集成处理用户的个人信息（个人信息包括识别个人或可用于识别个人的所有信息或数据或与此类信息或数据相关联的所有信息或数据。 个人信息的示例包括：姓名和地址、电话号码、生物特征识别符、位置、联系人、照片、录音和录像、文档、短信、电子邮件或其他文本通信、屏幕截图，以及在某些情况下合并的浏览历史记录），你必须从应用集成提供指向适用隐私政策的重要链接，此类隐私政策必须遵守所有适用的法律、法规和政策要求。 此政策应涵盖你正在收集或传输的数据内容、如何处理该数据，以及（如果适用）与何人共享该数据。 如果你没有隐私声明，以下是一些可能对你有所帮助的第三方资源*：
 
-OECD - [隐私声明生成器](http://www.oecd.org/internet/ieconomy/oecdprivacystatementgenerator.htm)
-
 Future of Privacy Forum - [应用程序隐私政策生成器](http://www.applicationprivacy.org/do-tools/privacy-policy-generator/)
 
 Iubenda – [隐私政策生成器](http://www.iubenda.com/en)
