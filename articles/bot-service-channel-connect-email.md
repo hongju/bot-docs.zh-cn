@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/10/2018
-ms.openlocfilehash: bd18edb87cdff502ed66177f92f88a8488135431
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 02/08/2019
+ms.openlocfilehash: e77f6cddac07cdcc06d6d35cda98544f33dd1d43
+ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225702"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56591178"
 ---
 # <a name="connect-a-bot-to-office-365-email"></a>将机器人连接到 Office 365 电子邮件
 
@@ -70,6 +70,10 @@ ms.locfileid: "54225702"
 ::: moniker range="azure-bot-service-4.0"
 有关使用 `channelData` 的详细信息，请参阅[如何实现特定于通道的功能](~/v4sdk/bot-builder-channeldata.md)。
 ::: moniker-end
+
+## <a name="other-considerations"></a>其他注意事项
+
+如果机器人没有在 15 秒内返回 HTTP 状态代码“200 正常”作为对传入电子邮件的响应，则电子邮件通道会尝试重新发送该邮件，因此机器人可能会多次收到同一电子邮件活动。 有关详细信息，请参阅**机器人工作原理**一文和[如何排查超时错误](https://github.com/daveta/analytics/blob/master/troubleshooting_timeout.md)一文中的 [HTTP 详细信息](v4sdk/bot-builder-basics.md#http-details)部分。
 
 ## <a name="additional-resources"></a>其他资源
 

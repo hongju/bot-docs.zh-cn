@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 12/13/2017
-ms.openlocfilehash: e68db6c1fe9d3d136a8643652df034fb6df2858f
-ms.sourcegitcommit: 8b7bdbcbb01054f6aeb80d4a65b29177b30e1c20
+ms.openlocfilehash: fef82d27c6dd4fb61c9a0cf864e76a88128847d7
+ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/14/2018
-ms.locfileid: "51645597"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56591158"
 ---
 # <a name="manage-a-bot"></a>管理机器人
 
@@ -46,13 +46,17 @@ ms.locfileid: "51645597"
 
 ![应用服务设置](~/media/azure-manage-a-bot/app-service-settings.png)
 
-“应用程序设置”边栏选项卡包含有关机器人的详细信息，如机器人的环境、ID、Application Insights 密钥、Microsoft 应用 ID 和 Microsoft 应用密码。
+“应用程序设置”边栏选项卡包含有关机器人的详细信息，如机器人的环境、调试设置以及应用程序设置密钥（例如 botFilePath 和 botFileSecret）。
 
 ### <a name="microsoftappid-and-microsoftapppassword"></a>MicrosoftAppID 和 MicrosoftAppPassword
 
-可以在“设置”边栏选项卡中找到你的机器人的 **MicrosoftAppID**。 只有在首次创建你的机器人时，才会显示机器人的 **MicrosoftAppPassword**。
+**MicrosoftAppID** 和 **MicrosoftAppPassword** 保留在机器人的 `.bot` 文件中。 若要检索它们，请下载机器人文件并将其解密。若要在本地使用 ID 和密码进行测试，该文件可能是必需的。
 
-![Microsoft 应用 ID 和密码](~/media/azure-manage-a-bot/app-settings.png)
+### <a name="bot-file-path-and-secret"></a>机器人文件路径和机密
+
+可以在“应用程序设置”边栏选项卡中找到机器人的 **botFilePath** 和 **botFileSecret**。
+
+![Microsoft 机器人文件路径和机密](~/media/azure-manage-a-bot/app-settings.png)
 
 > [!NOTE]
 > “机器人通道注册”机器人服务附带 MicrosoftAppID，但因为没有与此类型服务相关联的应用服务，因此没有可在其中查找 MicrosoftAppPassword 的“应用程序设置”边栏选项卡。 若要获取密码，必须生成一个。 若要生成“机器人通道注册”密码，请参阅[机器人通道注册密码](bot-service-quickstart-registration.md#bot-channels-registration-password)

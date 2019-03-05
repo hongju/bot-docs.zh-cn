@@ -1,5 +1,3 @@
-# <a name="implement-channel-specific-functionality"></a>实现通道特定的功能
-
 某些通道提供无法仅使用消息文本和附件实现的功能。 若要实现特定于通道的功能，可以将本机元数据传递给活动对象的_通道数据_属性。 例如，机器人可使用通道数据属性来指示 Telegram 发送贴纸或指示 Office365 发送电子邮件。
 
 本文介绍如何使用消息活动的通道数据属性来实现此通道特定的功能：
@@ -21,7 +19,7 @@
 
 若要创建电子邮件，请将活动对象的通道数据属性设置为包含以下属性的 JSON 对象：
 
-| 属性 | Description |
+| 属性 | 说明 |
 |----|----|
 | bccRecipients | 添加到邮件“Bcc(密件抄送)”字段的用分号 (;) 分隔的电子邮件地址字符串。 |
 | ccRecipients | 添加到邮件“Cc(抄送)”字段的用分号 (;) 分隔的电子邮件地址字符串。 |
@@ -242,7 +240,7 @@
 
 若要创建 Facebook 通知，请将活动对象的通道数据属性设置为指定以下属性的 JSON 对象：
 
-| 属性 | Description |
+| 属性 | 说明 |
 |----|----|
 | notification_type | 通知的类型（例如 REGULAR、SILENT_PUSH 和 NO_PUSH）。
 | attachment | 附件（用于指定图像、视频或其他多媒体类型）或模板化附件（如收据）。 |
@@ -269,7 +267,7 @@
 
 若要创建实现特定于 Telegram 的操作的消息，例如共享语音备忘录或贴纸，请将活动对象的通道数据属性设置为指定以下属性的 JSON 对象： 
 
-| 属性 | Description |
+| 属性 | 说明 |
 |----|----|
 | 方法 | 要调用的 Telegram 机器人 API 方法。 |
 | parameters | 已指定的方法的参数。 |
@@ -343,7 +341,7 @@
 
 若要创建本机 Kik 消息，请将活动对象的通道数据属性设置为指定以下属性的 JSON 对象：
 
-| 属性 | Description |
+| 属性 | 说明 |
 |----|----|
 | messages | 一组 Kik 消息。 有关 Kik 消息格式的详细信息，请参阅 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 消息格式</a>。 |
 
@@ -370,6 +368,72 @@
                 }
         }
     ]
+}
+```
+
+## <a name="create-a-line-message"></a>创建 LINE 消息
+
+若要创建一条消息以实现特定于 LINE 的消息类型，例如便签、模板或特定于 LINE 的操作类型（例如打开手机摄像头），请将活动对象的通道数据属性设置为可指定 LINE 消息类型和操作类型的 JSON 对象。 
+
+| 属性 | 说明 |
+|----|----|
+| type | LINE 操作/消息类型名称 |
+
+支持以下 LINE 消息类型：
+* 便签
+* Imagemap 
+* 模板（按钮、确认、轮播） 
+* Flex 
+
+以下 LINE 操作可以在消息类型为 JSON 对象的操作字段中指定： 
+* 回发 
+* 消息 
+* URI 
+* Datetimerpicker 
+* 照相机 
+* 本机照片 
+* 位置 
+
+若要详细了解这些 LINE 方法及其参数，请参阅 [LINE 机器人 API 文档](https://developers.line.biz/en/docs/messaging-api/)。 
+
+此代码片段显示的示例介绍了 `channelData` 属性（用于指定通道消息类型 `ButtonTemplate`）和 3 个操作类型：相机、cameraRoll、Datetimepicker。 
+
+```json
+"channelData": { 
+    "type": "ButtonsTemplate", 
+    "altText": "This is a buttons template", 
+    "template": { 
+        "type": "buttons", 
+        "thumbnailImageUrl": "https://example.com/bot/images/image.jpg", 
+        "imageAspectRatio": "rectangle", 
+        "imageSize": "cover", 
+        "imageBackgroundColor": "#FFFFFF", 
+        "title": "Menu", 
+        "text": "Please select", 
+        "defaultAction": { 
+            "type": "uri", 
+            "label": "View detail", 
+            "uri": "http://example.com/page/123" 
+        }, 
+        "actions": [{ 
+                "type": "cameraRoll", 
+                "label": "Camera roll" 
+            }, 
+            { 
+                "type": "camera", 
+                "label": "Camera" 
+            }, 
+            { 
+                "type": "datetimepicker", 
+                "label": "Select date", 
+                "data": "storeId=12345", 
+                "mode": "datetime", 
+                "initial": "2017-12-25t00:00", 
+                "max": "2018-01-24t23:59", 
+                "min": "2017-12-25t00:00" 
+            } 
+        ] 
+    } 
 }
 ```
 

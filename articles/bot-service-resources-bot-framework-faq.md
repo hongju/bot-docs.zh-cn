@@ -6,13 +6,13 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 08/28/2018
-ms.openlocfilehash: 9b77f05b77017b17ba63e83fa2a8b58e483f9bf8
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 02/21/2019
+ms.openlocfilehash: 54be82eb263c2189fd6bb7a0dc4018b9ecf5c2f2
+ms.sourcegitcommit: e41dabe407fdd7e6b1d6b6bf19bef5f7aae36e61
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225802"
+ms.lasthandoff: 02/27/2019
+ms.locfileid: "56893497"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常见问题
 
@@ -49,9 +49,11 @@ SDK V3 机器人会继续运行 Azure 机器人服务并由其提供支持。  �
 - Bot Framework SDK V4 为以聊天为中心的开发体验提供 SDK 体系结构，该体系结构已经模块化并且可以扩展，使开发人员能够创建可靠且复杂的聊天应用程序。 V4 可扩展设计基于客户反馈，客户认为 SDK V3 对话框模型和基元过于严苛且约束可扩展性。  
 
 ### <a name="what-is-the-general-migration-strategy-i-have-a-v3-bot-how-can-i-migrate-it-to-v4-can-i-migrate-my-v3-bot-to-v4"></a>常规迁移策略是什么？ 我有一个 V3 机器人，如何将它迁移到 V4/我可以将 V3 机器人迁移到 V4 吗？
-- 目前，有关如何将使用 SDK V3 创建的机器人迁移到 SDK V4 的帮助在提供时采用文档和示例的形式。 我们目前并未计划在 SDK V4 中提供任何允许 V3 版机器人在 V4 机器人中工作的 SDK V3 兼容层。 
-- 如果你已经在生产 Bot Framework SDK V3 机器人，请勿担心，这些机器人在可预见的将来仍会按原样继续工作。 
-- Bot Framework SDK V4 是已经很成功的 V3 SDK 的进化版。 V4 是一个主要的发行版本，其中包含的中断性变更会妨碍 V3 机器人在更新的 V4 SDK 上运行。 
+
+- 请参阅 [v3 和 v4 .NET SDK 之间的差异](v4sdk/migration/migration-about.md)，了解如何将 V3 机器人迁移到 V4。
+- 目前，有关如何将使用 SDK V3 创建的机器人迁移到 SDK V4 的帮助在提供时采用文档和示例的形式。 我们目前并未计划在 SDK V4 中提供任何允许 V3 版机器人在 V4 机器人中工作的 SDK V3 兼容层。
+- 如果你已经在生产 Bot Framework SDK V3 机器人，请勿担心，这些机器人在可预见的将来仍会按原样继续工作。
+- Bot Framework SDK V4 是已经很成功的 V3 SDK 的进化版。 V4 是一个主要的发行版本，其中包含的中断性变更会妨碍 V3 机器人在更新的 V4 SDK 上运行。
 
 ### <a name="should-i-build-new-a-bot-using-v3-or-v4"></a>我应该使用 V3 还是 V4 生成新的机器人？
 - 若要获得新的聊天体验，建议使用 Bot Framework SDK V4 来启动新的机器人。

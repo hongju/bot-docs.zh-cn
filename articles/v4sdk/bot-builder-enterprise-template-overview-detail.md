@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 09/18/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b337614b37142dc15f6cf085388dace9f4b7cafe
-ms.sourcegitcommit: 66769e697d94f7bf5e0441dfacf2c0e3768845ea
+ms.openlocfilehash: 0fb59e63dc8786e204085eaa8570ec4b751492ff
+ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 12/20/2018
-ms.locfileid: "53654968"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56591078"
 ---
 # <a name="enterprise-template---detailed-overview"></a>企业模板 - 详细概述
 
@@ -52,7 +52,7 @@ LU 文件通过英语、中文、法语、意大利语、德语、西班牙语�
 
 机器人级别遥测本质上关联到技术和操作遥测，让你可以检查给定用户问题的解答方式，反之亦然。
 
-将中间件组件和围绕 QnA Maker 的包装类以及 LuisRecognizer SDK 类组合使用即可轻松地收集一组一致的事件。 这些一致的事件随后可供 Applicatin Insights 工具以及 PowerBI 之类的工具使用。
+将中间件组件和围绕 QnA Maker 的包装类以及 LuisRecognizer SDK 类组合使用即可轻松地收集一组一致的事件。 这些一致的事件随后可供 Application Insights 工具以及 PowerBI 之类的工具使用。
 
 每个使用企业机器人模板创建的项目都提供了一个示例 PowerBI 仪表板。 有关详细信息，请参阅 [PowerBI](bot-builder-enterprise-template-powerbi.md) 部分。
 

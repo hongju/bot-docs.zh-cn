@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 01/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6722a9c49961857ab53a2d80fca926775e712aae
-ms.sourcegitcommit: 7f418bed4d0d8d398f824e951ac464c7c82b8c3e
+ms.openlocfilehash: 5a5aec71092503dad83827225f7c0adaf22c4d17
+ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/14/2019
-ms.locfileid: "56240163"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56590972"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答问题
 
@@ -47,7 +47,7 @@ ms.locfileid: "56240163"
 这三个值为应用提供所需的信息，使其能够通过 Azure QnA 服务连接到 QnA Maker 知识库。  
 
 ## <a name="update-the-bot-file"></a>更新 .bot 文件
-首先，请将访问知识库所需的信息（包括主机名、终结点密钥和知识库 ID (KbId)）添加到 `qnamaker.bot` 中。 这些是在 QnA Maker 中通过知识库的“设置”保存的值。 
+首先，请将访问知识库所需的信息（包括主机名、终结点密钥和知识库 ID (kbId)）添加到 `qnamaker.bot` 中。 这些是在 QnA Maker 中通过知识库的“设置”保存的值。 
 > 注意。 如果将 QnA Maker 知识库访问权限添加到现有的机器人应用程序中，请务必在 .bot 文件中添加如下所示的 "type": "qna" 节。 此节中的 "name" 值提供所需的密钥用于从应用内部访问此信息。
 
 ```json
@@ -65,7 +65,7 @@ ms.locfileid: "56240163"
     {
       "type": "qna",
       "name": "QnABot",
-      "KbId": "<Your_Knowledge_Base_Id>",
+      "kbId": "<Your_Knowledge_Base_Id>",
       "subscriptionKey": "",
       "endpointKey": "<Your_Endpoint_Key>",
       "hostname": "<Your_Hostname>",
@@ -98,7 +98,7 @@ private static BotServices InitBotServices(BotConfiguration config)
                     throw new InvalidOperationException("The QnA service is not configured correctly in your '.bot' file.");
                 }
 
-                if (string.IsNullOrWhiteSpace(qna.KbId))
+                if (string.IsNullOrWhiteSpace(qna.kbId))
                 {
                     throw new InvalidOperationException("The QnA KnowledgeBaseId ('kbId') is required to run this sample. Please update your '.bot' file.");
                 }
@@ -115,7 +115,7 @@ private static BotServices InitBotServices(BotConfiguration config)
 
                 var qnaEndpoint = new QnAMakerEndpoint()
                 {
-                    KnowledgeBaseId = qna.KbId,
+                    KnowledgeBaseId = qna.kbId,
                     EndpointKey = qna.EndpointKey,
                     Host = qna.Hostname,
                 };

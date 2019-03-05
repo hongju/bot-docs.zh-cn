@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/20/2018
+ms.date: 02/19/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2e591f19f7df8fa6281573c0ac7f1330d95f4c53
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 4b18cc5d32d04b69fa349d22058b51fcec0e12d7
+ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225432"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56591068"
 ---
 # <a name="create-your-own-prompts-to-gather-user-input"></a>创建自己的提示来收集用户输入
 
@@ -84,6 +84,8 @@ ms.locfileid: "54225432"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
+在 **CustomPromptBot.cs** 中获取状态属性并调用 helper 方法。 （注意，`_accessors` 实例属性在机器人的构造函数中设置。）
+
 ```csharp
 public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
 {
@@ -106,6 +108,8 @@ public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancel
 ```
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+在 **bot.js** 中获取状态属性并调用 helper 方法。 （注意，`conversationFlow` 实例属性在机器人的构造函数中设置。）
 
 ```javascript
 // The bot's turn handler.

@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 11/28/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4c43426f508d629c325889da6a9f7b06cac7e846
-ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
+ms.openlocfilehash: a30a3f5dfe4693d67a4cd42a50d35893f8888e07
+ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54453891"
+ms.lasthandoff: 02/21/2019
+ms.locfileid: "56591035"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>向机器人添加自然语言理解
 
@@ -25,7 +25,7 @@ ms.locfileid: "54453891"
 ## <a name="prerequisites"></a>先决条件
 - [luis.ai](https://www.luis.ai) 帐户
 - [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download)
-- 本文中的代码基于**采用 LUIS 的 NLP** 示例。 需要获取 [C# ](https://aka.ms/cs-luis-sample) 或 [JS](https://aka.ms/js-luis-sample) 示例的副本。 
+- 本文中的代码基于**采用 LUIS 的 NLP** 示例。 需要获取 [C# 示例](https://aka.ms/cs-luis-sample)或 [JS 示例](https://aka.ms/js-luis-sample)中的示例副本。 
 - 了解[机器人基础知识](bot-builder-basics.md)、[自然语言处理](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/what-is-luis)和 [.bot](bot-file-basics.md) 文件。
 
 ## <a name="create-a-luis-app-in-the-luis-portal"></a>在 LUIS 门户中创建 LUIS 应用
@@ -84,10 +84,14 @@ ms.locfileid: "54453891"
 # <a name="ctabcs"></a>[C#](#tab/cs)
 
 ### <a name="configure-your-bot-to-use-your-luis-app"></a>将机器人配置为使用你的 LUIS 应用
+确保为项目安装 NuGet 包 **Microsoft.Bot.Builder.AI.Luis**。
 
 接下来，在 `BotServices.cs` 中初始化 BotService 类的新实例，以便从 `.bot` 文件中获取上述信息。 使用 `BotConfiguration` 类配置外部服务。
 
 ```csharp
+using Microsoft.Bot.Builder.AI.Luis;
+using Microsoft.Bot.Configuration;
+
 public class BotServices
 {
     // Initializes a new instance of the BotServices class
@@ -131,10 +135,9 @@ public void ConfigureServices(IServiceCollection services)
     var botConfig = BotConfiguration.Load(botFilePath ?? @".\nlp-with-luis.bot", secretKey);
     services.AddSingleton(sp => botConfig ?? throw new InvalidOperationException($"The .bot config file could not be loaded. ({botConfig})"));
 
-    // Initialize Bot Connected Services clients.
+    // Initialize Bot Connected Services client.
     var connectedServices = new BotServices(botConfig);
     services.AddSingleton(sp => connectedServices);
-    services.AddSingleton(sp => botConfig);
 
     services.AddBot<LuisBot>(options =>
     {
