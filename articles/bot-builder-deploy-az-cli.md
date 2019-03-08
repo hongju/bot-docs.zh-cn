@@ -9,12 +9,12 @@ ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 02/13/2019
-ms.openlocfilehash: 53889703d58983a87a7a2d16622f1298d56c87db
-ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
+ms.openlocfilehash: 2ee66ac335ab9e34d7a73996d44da939e74d5b87
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/21/2019
-ms.locfileid: "56591025"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224915"
 ---
 # <a name="deploy-your-bot"></a>部署机器人
 
@@ -64,12 +64,11 @@ ms.locfileid: "56591025"
 1. 打开机器人的“应用程序设置”。
 1. 在“应用程序设置”窗口中，向下滚动到“应用程序设置”。
 1. 找到 **botFileSecret** 并复制其值。
+1. 使用 `msbot cli` 解密该文件。
 
-使用 `msbot cli` 解密该文件。
-
-```cmd
-msbot secret --bot <name-of-bot-file> --secret "<bot-file-secret>" --clear
-```
+    ```cmd
+    msbot secret --bot <name-of-bot-file> --secret "<bot-file-secret>" --clear
+    ```
 
 ### <a name="update-your-local-bot-file"></a>更新本地 .bot 文件
 
@@ -128,18 +127,24 @@ msbot secret --bot <name-of-bot-file> --secret "<bot-file-secret>" --clear
 
 保存文件。
 
+在发布之前，可以使用 msbot 工具生成新机密并加密 .bot 文件。 如果重新加密了 .bot 文件，请在 Azure 门户中更新机器人的 **botFileSecret** 来包含新机密。
+
+```cmd
+msbot secret --bot <name-of-bot-file> --new
+```
+
 ### <a name="setup-a-repository"></a>设置存储库
 
-若要支持持续部署，请使用你偏好的 git 源代码管理提供程序创建 git 存储库。 将代码提交到该存储库。 
+若要支持持续部署，请使用你偏好的 git 源代码管理提供程序创建 git 存储库。 将代码提交到该存储库。
 
 确保存储库根目录具有正确的文件，详见[准备存储库](https://docs.microsoft.com/azure/app-service/deploy-continuous-deployment#prepare-your-repository)。
 
 ### <a name="update-app-settings-in-azure"></a>在 Azure 中更新应用设置
-本地机器人不使用加密的 .bot 文件，但 Azure 门户已配置为使用加密的 .bot 文件。若要解决此问题，可以删除在 Azure 机器人设置中存储的 botFileSecret。 
+本地机器人不使用加密的 .bot 文件，但 Azure 门户配置为使用加密的 .bot 文件。 可以通过删除 Azure 机器人设置中存储的 **botFileSecret** 来解决此问题。
 1. 在 Azure 门户中，打开机器人的“Web 应用机器人”资源。
 1. 打开机器人的“应用程序设置”。
 1. 在“应用程序设置”窗口中，向下滚动到“应用程序设置”。
-1. 找到 **botFileSecret** 并将其删除。
+1. 找到 **botFileSecret** 并将其删除。 （如果你重新加密了 .bot 文件，请确保 **botFileSecret** 包含新机密且不要删除此设置。）
 1. 更新机器人文件的名称，以便与签入到存储库中的文件相匹配。
 1. 保存更改。
 

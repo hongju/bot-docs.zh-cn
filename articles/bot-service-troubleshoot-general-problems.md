@@ -6,13 +6,13 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 09/26/2018
-ms.openlocfilehash: 34a23910c76a22fe39d1ce5457bb74dd285ca939
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 02/26/2019
+ms.openlocfilehash: 48a0a42d193b0e561a484330222217c18a611e8d
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225514"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224945"
 ---
 # <a name="troubleshooting-general-problems"></a>排查常见问题
 这些常见问题有助于排查常见的机器人开发或操作问题。
@@ -20,11 +20,12 @@ ms.locfileid: "54225514"
 ## <a name="how-can-i-troubleshoot-issues-with-my-bot"></a>如何排查机器人的问题？
 
 1. 通过 [Visual Studio Code](debug-bots-locally-vscode.md) 或 [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/debugger/navigating-through-code-with-the-debugger?view=vs-2017) 调试机器人的源代码。
-2. 先使用[模拟器](bot-service-debug-emulator.md)测试机器人，然后再将其部署到云。
-3. 将机器人部署到类似于 Azure 的云托管平台，然后使用 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a>中机器人仪表板上的内置 Web 聊天控件测试与机器人的连接性。 如果在将机器人部署到 Azure 后遇到问题，可以考虑参阅此博客文章：[Understanding Azure troubleshooting and support](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)（了解 Azure 故障排除和支持）。
-4. 排除[身份验证][TroubleshootingAuth]可能存在问题的可能性。
-5. 在 Skype 上测试机器人。 这将有助于验证端到端的用户体验。
-6. 考虑在具有其他身份验证要求的渠道（例如 Direct Line 或网上聊天）上测试机器人。
+1. 先使用[模拟器](bot-service-debug-emulator.md)测试机器人，然后再将其部署到云。
+1. 将机器人部署到类似于 Azure 的云托管平台，然后使用 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a>中机器人仪表板上的内置 Web 聊天控件测试与机器人的连接性。 如果在将机器人部署到 Azure 后遇到问题，可以考虑参阅此博客文章：[Understanding Azure troubleshooting and support](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)（了解 Azure 故障排除和支持）。
+1. 排除[身份验证][TroubleshootingAuth]可能存在问题的可能性。
+1. 在 Skype 上测试机器人。 这将有助于验证端到端的用户体验。
+1. 考虑在具有其他身份验证要求的渠道（例如 Direct Line 或网上聊天）上测试机器人。
+1. 查看如何[调试机器人](bot-service-debug-bot.md)和该部分中的其他调试文章。
 
 ## <a name="how-can-i-troubleshoot-authentication-issues"></a>如何排查身份验证问题？
 

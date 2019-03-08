@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/15/2018
+ms.date: 02/25/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dfbc9f4ed0f08c7349d758147460b8268c49e372
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 06982f1790bd573e7300cee249042e6e3d60e912
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225862"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224905"
 ---
 # <a name="managing-state"></a>管理状态
 
@@ -118,7 +118,8 @@ Bot Framework SDK 包含存储层的某些实现：
 - 访问器的 *get* 方法：
   - 访问器从状态缓存请求属性。
   - 如果该属性在缓存中，则返回它。 否则，从状态管理对象获取该属性。
-    （如果该属性尚未保存到状态中，则使用访问器 *get* 调用。）- 访问器的 *set* 方法：
+    （如果该属性尚未保存到状态中，则使用访问器 *get* 调用中提供的工厂方法。）
+- 访问器的 *set* 方法：
   - 使用新属性值更新状态缓存。
 - 状态管理对象的 *save changes* 方法：
   - 检查对状态缓存中属性所做的更改。

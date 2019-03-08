@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservices: sdk
-ms.date: 10/18/2018
+ms.date: 2/26/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2c493a27d7829e7c7be21b6ce70cb6f046dad616
-ms.sourcegitcommit: 6c719b51c9e4e84f5642100a33fe346b21360e8a
+ms.openlocfilehash: 997ad82e15a0fcd67d47b2fd6495c8e88a5ea127
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/28/2018
-ms.locfileid: "52452089"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224815"
 ---
 # <a name="debug-your-bot-using-transcript-files"></a>使用脚本文件调试机器人
 [!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
@@ -65,9 +65,10 @@ ms.locfileid: "52452089"
 可以通过许多方式来测试和调试机器人的代码和用户交互，将脚本文件和 Bot Framework Emulator 配合使用的方式只是其中的一种。 如需更多的机器人测试和调试方式，请参阅下面列出的其他资源。
 
 ## <a name="additional-resources"></a>其他资源
+
 如需其他的测试和调试信息，请参阅：
+
 * [机器人测试和调试指南](./bot-builder-testing-debugging.md)
 * [使用 Bot Framework Emulator 进行调试](../bot-service-debug-emulator.md)
+* [排查常见问题](../bot-service-troubleshoot-bot-configuration.md)和该部分中的其他疑难解答文章。
 * [在 Visual Studio 中进行调试](https://docs.microsoft.com/en-us/visualstudio/debugger/index)
-
-

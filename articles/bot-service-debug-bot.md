@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 2/09/2019
-ms.openlocfilehash: 3aae1e212759dd70226fab3b0567ba5b4e345a30
-ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
+ms.date: 2/26/2019
+ms.openlocfilehash: 1e806358ffdba90848f0c8124c8315fd4e2dec76
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/09/2019
-ms.locfileid: "55971447"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224835"
 ---
 # <a name="debug-a-bot"></a>调试机器人
 
@@ -131,8 +131,10 @@ ms.locfileid: "55971447"
 
 ## <a name="additional-resources"></a>其他资源
 
-若要了解如何在生产环境中调试机器人，请参阅[使用 ngrok 在本地调试任何通道](https://blog.botframework.com/2017/10/19/debug-channel-locally-using-ngrok/)博客文章。
+- 请参阅[排查常见问题](bot-service-troubleshoot-bot-configuration.md)和该部分中的其他疑难解答文章。
+- 请参阅如何[使用 ngrok 在本地调试任何通道](https://blog.botframework.com/2017/10/19/debug-channel-locally-using-ngrok/)博客文章。
 
 ## <a name="next-steps"></a>后续步骤
+
 > [!div class="nextstepaction"]
-> [使用脚本文件调试机器人](~/v4sdk/bot-builder-debug-transcript.md)。
+> [使用脚本文件调试机器人](v4sdk/bot-builder-debug-transcript.md)。

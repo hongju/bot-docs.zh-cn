@@ -6,13 +6,13 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 12/13/17
-ms.openlocfilehash: 2335ac34292e224f44a09820574f3bd9de00eda4
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 02/26/2019
+ms.openlocfilehash: 780dcf4d9db48f9ef7f5a92180dc13c41cc63305
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224652"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224935"
 ---
 # <a name="troubleshooting-bot-framework-authentication"></a>对 Bot Framework 身份验证进行故障排除
 
@@ -227,6 +227,7 @@ Bot Framework 要求必须可从 Internet 访问机器人，因此必须将机�
 
 如果完成上述步骤后仍然遇到问题，可执行以下操作：
 
+* 查看如何[调试机器人](bot-service-debug-bot.md)和该部分中的其他调试文章。
 * 使用 Bot Framework Emulator 和 <a href="https://ngrok.com/" target="_blank">ngrok</a> [在云中调试机器人](~/bot-service-debug-emulator.md)。
 * 使用 [Fiddler](https://www.telerik.com/fiddler) 等代理工具检查传入和传出机器人的 HTTPS 流量。 Fiddler 不是 Microsoft 产品。
 * 查阅 [Bot Connector 身份验证指南][BotConnectorAuthGuide]，了解 Bot Framework 使用的身份验证技术。

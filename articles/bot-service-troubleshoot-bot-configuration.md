@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/20/2018
-ms.openlocfilehash: 8a3ff4a30e3041937ba831efc237343c9aa27e62
-ms.sourcegitcommit: 8161753641368567f239e24a35ad61768acccd8e
+ms.date: 2/26/2019
+ms.openlocfilehash: 53cb392dea5ee0e355451e7455a16512f22ebbaa
+ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/10/2019
-ms.locfileid: "54202543"
+ms.lasthandoff: 03/01/2019
+ms.locfileid: "57224845"
 ---
 # <a name="troubleshoot-bot-configuration-issues"></a>排查机器人配置问题
 
@@ -87,3 +87,7 @@ ms.locfileid: "54202543"
 有时候，某些通道可能会出现服务中断的情况。 通常情况下，此类中断不会持续很长时间。 不过，如果怀疑发生了中断，请查看通道网站或社交媒体。
 
 若要确定某个通道是否已中断，另一种方法是创建一个测试机器人（例如简单的 Echo 机器人）并添加一个通道。 如果测试机器人在某些通道中工作，但在其他通道中不工作，则表明问题不在生产机器人中。
+
+## <a name="additional-resources"></a>其他资源
+
+请参阅如何[调试机器人](bot-service-debug-bot.md)和该部分中的其他调试文章。
