@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 12/13/2017
-ms.openlocfilehash: aafbfb2a38e2d5370cb2db5721dd7bc130497d74
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: e463b272385b97e630d4087908aa82e23a70fea9
+ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999214"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "57568184"
 ---
 # <a name="change-the-hosting-plan-for-your-bot-service"></a>更改机器人服务的托管计划
 
@@ -33,6 +33,7 @@ ms.locfileid: "49999214"
 
 1. 在 Azure 机器人中，单击“设置”选项卡并展开“持续部署”部分。  
 2. 单击蓝色按钮以下载包含机器人源代码的 zip 文件。  
+    1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
     ![下载机器人 zip 文件](~/media/continuous-deployment-consumption-download.png)
 3. 将下载的 zip 文件的内容提取到本地文件夹。 
 
