@@ -8,20 +8,19 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 02/7/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d472cbe7c0235862f8dcff1bcc2d53d977bb7657
-ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
+ms.openlocfilehash: 115c81bef6f555bb3404dfb2249dc751d7eed7e5
+ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/09/2019
-ms.locfileid: "55971487"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "57568204"
 ---
 # <a name="enterprise-bot-template---customize-your-bot"></a>企业机器人模板 - 自定义机器人
 
 > [!NOTE]
 > 本主题适用于 SDK 的 v4 版本。 
 
-## <a name="net"></a>.NET
-在按[此处](bot-builder-enterprise-template-deployment.md)的说明部署企业机器人模板并测试其是否自始至终正常工作后，可以根据你的方案和需求轻松自定义机器人。 模板的目标是提供一个坚实的基础，以便基于它构建聊天体验。
+在按[此处](bot-builder-enterprise-template-getting-started.md)的说明部署企业机器人模板并测试其是否自始至终正常工作后，可以根据你的方案和需求轻松自定义机器人。 模板的目标是提供一个坚实的基础，以便基于它构建聊天体验。
 
 ## <a name="project-structure"></a>项目结构
 
@@ -81,56 +80,56 @@ ms.locfileid: "55971487"
 若要更新企业模板的现有 LUIS 模型，请执行以下步骤：
 1. 在 [LUIS 门户](http://luis.ai)中或使用 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 和 [Luis](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/LUIS) CLI 工具对 LUIS 模型进行更改。 
 2. 运行以下命令来更新调度模型以反映更改（确保正确的消息路由）：
-```shell
+    ```shell
     dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
-```
+    ```
 3. 从项目根目录为每个更新的模型运行以下命令来更新其关联的 LuisGen 类： 
-```shell
+    ```shell
     luis export version --appId [LUIS_APP_ID] --versionId [LUIS_APP_VERSION] --authoringKey [YOUR_LUIS_AUTHORING_KEY] | luisgen --cs [CS_FILE_NAME] -o "\Dialogs\Shared\Resources"
-```
+    ```
 
 ### <a name="updating-an-existing-qna-maker-knowledge-base"></a>更新现有 QnA Maker 知识库
 若要更新现有 QnA Maker 知识库，请执行以下步骤：
 1. 通过 [LuDown](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Ludown) 和 [QnA Maker](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/QnAMaker) CLI 工具或 [QnA Maker 门户](https://qnamaker.ai)对 QnA Maker 知识库进行更改。
 2. 运行以下命令来更新调度模型以反映更改（确保正确的消息路由）：
-```shell
+    ```shell
     dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
-```
+    ```
 
 ### <a name="adding-a-new-luis-model"></a>添加新的 LUIS 模型
 
 希望向项目中添加新的 LUIS 模型时，你需要更新机器人配置和调度程序来确保它知道附加的模型。 
 1. 通过 LuDown/LUIS CLI 工具或 LUIS 门户创建 LUIS 模型
 2. 运行以下命令来将新的 LUIS 应用连接到 .bot 文件：
-```shell
+    ```shell
     msbot connect luis --appId [LUIS_APP_ID] --authoringKey [LUIS_AUTHORING_KEY] --subscriptionKey [LUIS_SUBSCRIPTION_KEY] 
-```
+    ```
 3. 通过以下命令将此新的 LUIS 模型添加到调度程序
-```shell
+    ```shell
     dispatch add -t luis -id LUIS_APP_ID -bot "YOUR_BOT.bot" --secret YOURSECRET
-```
+    ```
 4. 通过以下命令刷新调度模型以反映 LUIS 模型更改
-```shell
+    ```shell
     dispatch refresh -bot "YOUR_BOT.bot" --secret YOUR_SECRET
-```
+    ```
 
 ### <a name="adding-an-additional-qna-maker-knowledge-base"></a>添加额外的 QnA Maker 知识库
 
 在某些情况下，你可能希望向机器人添加额外的 QnA Maker 知识库。可通过以下步骤来执行此操作。
 
 1. 使用在助手目录中执行的以下命令基于 JSON 文件创建一个新的 QnA Maker 知识库
-```shell
-qnamaker create kb --in <KB.json> --msbot | msbot connect qna --stdin --bot "YOUR_BOT.bot" --secret YOURSECRET
-```
+    ```shell
+    qnamaker create kb --in <KB.json> --msbot | msbot connect qna --stdin --bot "YOUR_BOT.bot" --secret YOURSECRET
+    ```
 2. 运行以下命令来更新调度模型以反映更改
-```shell
-dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
-```
+    ```shell
+    dispatch refresh --bot "YOUR_BOT.bot" --secret YOUR_SECRET
+    ```
 3. 更新强类型调度类来反映新的 QnA 源
-```shell
-msbot get dispatch --bot "YOUR_BOT.bot" | luis export version --stdin > dispatch.json
-luisgen dispatch.json -cs Dispatch -o Dialogs\Shared
-```
+    ```shell
+    msbot get dispatch --bot "YOUR_BOT.bot" | luis export version --stdin > dispatch.json
+    luisgen dispatch.json -cs Dispatch -o Dialogs\Shared
+    ```
 4.  根据提供的示例更新 `Dialogs\Main\MainDialog.cs` 文件以包括你的新 QnA 源的对应调用意向。
 
 你现在应当能够将多个 QnA 源用作机器人的一部分。
@@ -203,6 +202,3 @@ await _responder.ReplyWith(sc.Context, OnboardingResponses.ResponseIds.HaveNameM
 对话基础结构的最后一部分用于创建作用域仅限于你的对话的一个状态类。 创建一个新类并确保它派生自 `DialogState`
 
 在对话完成后，你需要使用 `AddDialog` 将该对话添加到 `MainDialog` 组件。 若要使用新对话，请从 `RouteAsync` 方法中调用 `dc.BeginDialogAsync()`，通过合适的 LUIS 意向进行触发（如果需要）。
-
-## <a name="conversational-insights-using-powerbi-dashboard-and-application-insights"></a>使用 PowerBI 仪表板和 Application Insights 的聊天式见解
-- 若要开始获取聊天式见解，请继续执行[使用 PowerBI 仪表板配置聊天式分析](bot-builder-enterprise-template-powerbi.md)。

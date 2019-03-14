@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 12/13/2017
-ms.openlocfilehash: 38b26ed5a50409de64518562faabf532f45c857e
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 65de0e4e4be129c9fa467cd8610cf0f0b13e5965
+ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999144"
+ms.lasthandoff: 03/07/2019
+ms.locfileid: "57568174"
 ---
 # <a name="publish-a-bot-to-bot-service"></a>将机器人发布到机器人服务
 
@@ -34,6 +34,7 @@ ms.locfileid: "49999144"
 要使用 `.PublishSettings` 文件通过 Visual Studio 设置发布，请执行以下步骤：
 
 1. 在 Azure 门户中，单击“机器人服务”，再单击“生成”选项卡，然后单击“下载 zip 文件”。
+    1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
 3. 将下载的 zip 文件的内容提取到本地文件夹。
 4. 在资源管理器中，找到机器人的 Visual Studio 解决方案 (.sln) 文件并双击它。
 4. 在 Visual Studio 中，单击“视图”，然后单击“解决方案资源管理器”。
@@ -66,6 +67,7 @@ ms.locfileid: "49999144"
 如果想要使用除 Visual Studio Online 或 Github 之外的源代码管理服务，请执行以下步骤。 Visual Studio Online 和 Github 会从 Azure 拉取机器人的源代码，因此使用这两个服务的用户可以跳过这些步骤。
 
 3. 对于应用服务计划中的机器人，在 Azure 上查找机器人页面，单击“生成”选项卡，再查找“下载源代码”部分，然后单击“下载 zip 文件”。
+    1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
 1. 在 Azure 支持的某个源控制系统中创建空存储库。
 
     ![源代码管理系统](~/media/continuous-integration-sourcecontrolsystem.png)
