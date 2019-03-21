@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/23/2018
+ms.date: 03/11/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fdf0b16cc89b322ffa9d36b5516b09b0338ce9dc
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: db7957c611df4a3010469f86f51184b52d49addb
+ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317567"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58073853"
 ---
 # <a name="manage-resources-with-a-bot-file"></a>使用 .bot 文件管理资源
 
@@ -29,7 +29,7 @@ ms.locfileid: "54317567"
 * [**Azure 机器人服务**](https://azure.microsoft.com/en-us/services/bot-service/) - Azure 机器人服务注册。
 * [**LUIS.AI**](https://www.luis.ai/) - LUIS 使机器人能够使用自然语言与人类沟通。 
 * [**QnA Maker**](https://qnamaker.ai/) - 在几分钟内基于 FAQ URL、结构化文档或编辑内容生成、训练和发布简单的问答机器人。
-* [**Dispatch**](https://github.com/Microsoft/botbuilder-tools/tree/master/Dispatch) 模型 - 在多个服务之间进行调度。
+* [**Dispatch**](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/Dispatch) 模型 - 在多个服务之间进行调度。
 * [**Azure Application Insights**](https://azure.microsoft.com/en-us/services/application-insights/) - 提供见解和机器人分析。
 * [**Azure Blob 存储**](https://azure.microsoft.com/en-us/services/storage/blobs/) - 保存机器人状态。 
 * [**Azure Cosmos DB**](https://azure.microsoft.com/en-us/services/cosmos-db/) - 用于保存机器人状态的全局分布式多模型数据库服务。

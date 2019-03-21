@@ -7,14 +7,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
+ms.date: 03/01/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 54ab447fac81ba17f1fa277347cf7a5aaaab8850
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 0e8873d2914d42b928004c31c14c8d60cb35b2a3
+ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54223772"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58073763"
 ---
 # <a name="intercept-messages"></a>截获消息
 
@@ -62,9 +62,9 @@ public class DebugActivityLogger : IActivityLogger
 
 ## <a name="sample-code"></a>代码示例 
 
-有关演示如何使用 Bot Framework SDK for .NET 来截获并记录消息的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-Middleware" target="_blank">中间件示例</a>。 
+有关演示如何使用 Bot Framework SDK for .NET 来截获并记录消息的完整示例，请参阅 GitHub 中的<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/core-Middleware" target="_blank">中间件示例</a>。 
 
 ## <a name="additional-resources"></a>其他资源
 
 - <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
-- <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/core-Middleware" target="_blank">中间件示例 (GitHub)</a>
+- <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/core-Middleware" target="_blank">中间件示例 (GitHub)</a>
