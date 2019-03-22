@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: tools
 ms.date: 03/01/2019
-ms.openlocfilehash: 0fb0f650b44d320d78a0ada5d46105048019964c
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: 28c4ece705c001d5f80fdc877773c03ac400204c
+ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224955"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58073843"
 ---
 # <a name="categorized-activities-by-channel"></a>按通道分类的活动
 
@@ -71,7 +71,7 @@ Event.*                    | :white_large_square: | :white_check_mark: | :white_
 Event.CreateConversation   | :white_large_square: | :white_large_square: | :white_large_square:   | :white_large_square: | :white_large_square:  | :white_large_square: | :white_large_square: | :white_large_square:  | :white_large_square:  | :white_large_square:  | :white_large_square:           | :white_large_square:     | :white_large_square:  
 Event.ContinueConversation | :white_large_square: | :white_large_square: | :white_large_square:   | :white_large_square: | :white_large_square:  | :white_large_square: | :white_large_square: | :white_large_square:  | :white_large_square:  | :white_large_square:  | :white_large_square:           | :white_large_square:     | :white_large_square:  
 
-- “事件活动”是 Direct Line (_aka Direct Line_) 中的一种扩展性机制。
+- “事件活动”是 Direct Line（又称为“网上聊天”）中的一种扩展性机制。
 - 同时拥有客户端和服务器的应用程序可以选择借助使用此事件活动的服务来以隧道方式传输自己的事件。
 
 
@@ -85,7 +85,7 @@ Invoke.ComposeResponse     | :x:      | :x:          | :x: | :x:   | :x:       |
 
 - 除了许多其他类型的活动外，Microsoft Teams 还定义了一些特定于团队的“调用活动”。
 - “调用活动”特定于某个应用程序，而非特定于客户端将定义的事物。
-- 当前不存在仅调用特定子类型的活动的常规方法。
+- 当前不存在调用特定子类型的活动的常规方法。
 - 调用当前是机器人上触发“请求-回复”行为的唯一活动。
 
 这非常重要：如果使用对话，要想使 OAuth 提示起作用，必须将 Invoke.TeamsVerification 活动转发到对话。

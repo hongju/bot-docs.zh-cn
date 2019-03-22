@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/25/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 06982f1790bd573e7300cee249042e6e3d60e912
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: 7aaf9aedf26682a04fa288ec336afc934a1657aa
+ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224905"
+ms.lasthandoff: 03/19/2019
+ms.locfileid: "58073813"
 ---
 # <a name="managing-state"></a>管理状态
 
@@ -57,7 +57,7 @@ Bot Framework SDK 包含存储层的某些实现：
 
 所有这些桶都是 *bot state* 类的子类，可以派生该类来定义具有不同范围的其他类型的桶。
 
-只能根据具体的桶，在特定的可见范围内使用这些预定义的桶：
+这些预定义的桶已限定到特定的可见范围内，具体取决于桶：
 
 - 不管聊天内容如何，机器人在该通道中与该用户展开的任何聊天轮次都会提供用户状态
 - 不管用户是谁（例如群组聊天），特定聊天中的任何轮次都会提供聊天状态
