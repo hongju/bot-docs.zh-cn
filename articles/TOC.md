@@ -7,8 +7,8 @@
 ### [.NET](dotnet/bot-builder-dotnet-sdk-quickstart.md)
 ### [JavaScript](javascript/bot-builder-javascript-quickstart.md)
 # 教程
-## [创建和部署基本机器人](v4sdk/bot-builder-tutorial-basic-deploy.md)
-## [添加 QnA Maker 并重新部署机器人](v4sdk/bot-builder-tutorial-add-qna.md)
+## [1.创建和部署基本机器人](v4sdk/bot-builder-tutorial-basic-deploy.md)
+## [2.添加 QnA Maker 并重新部署机器人](v4sdk/bot-builder-tutorial-add-qna.md)
 ## [向机器人添加身份验证](bot-builder-tutorial-authentication.md)
 # 示例
 ## [GitHub 上的 botbuilder-samples 存储库](https://github.com/Microsoft/BotBuilder-Samples/blob/master/README.md)
