@@ -9,14 +9,14 @@ ms.service: bot-service
 ROBOTS: NOINDEX
 ms.date: 10/04/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 33c6f22696038ed5e9d2ae09ad2ec99d401f6a60
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: 62b5608de20bb89a31106c7e652b20f32b099d15
+ms.sourcegitcommit: 152760771214865b9c7d0ed481acfba05bdc44dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317707"
+ms.lasthandoff: 03/29/2019
+ms.locfileid: "58655497"
 ---
-[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]
+[!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]  
 
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
 本教程使用 Azure 机器人服务中的新机器人身份验证功能，提供各种功能以帮助轻松开发用于向 Azure AD (Azure Active Directory)、GitHub、Uber 等各种标识提供者验证用户身份的机器人。 这些更新还采取了一些措施，通过免去某些客户端的“幻码验证”来改善用户体验。
@@ -52,7 +52,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 ## <a name="overview"></a>概述
 
-本教程创建一个机器人示例，它使用 Azure AD v1 或 v2 令牌连接到 Microsoft Graph。 <!--verify this info and fix wording--> 此过程将使用 GitHub 存储库中的代码，本教程将介绍如何进行设置（包括机器人应用程序）。
+本教程创建一个机器人示例，它使用 Azure AD v1 或 v2 令牌连接到 Microsoft Graph。 <!--verify this info and fix wording--> 在此过程中，你将使用 GitHub 存储库中的代码。本教程介绍如何进行此方面的设置，包括机器人应用程序的设置。
 
 - [创建机器人和身份验证应用程序](#create-your-bot-and-an-authentication-application)
 - [准备机器人示例代码](#prepare-the-bot-sample-code)

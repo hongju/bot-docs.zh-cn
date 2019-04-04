@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 02/07/2019
-ms.openlocfilehash: 8df68ccc78e7a0aa064cbfa83967d930f6b44878
-ms.sourcegitcommit: b2245df2f0a18c5a66a836ab24a573fd70c7d272
+ms.openlocfilehash: e0d62d4effaf02d52714153f51736e06949a2263
+ms.sourcegitcommit: 53a36af930b3ab754a3e7bc896e3f0a9a734c3e4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/07/2019
-ms.locfileid: "57568254"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58809015"
 ---
 # <a name="create-a-bot-with-azure-bot-service"></a>使用 Azure 机器人服务创建机器人
 
@@ -134,9 +134,6 @@ Azure 机器人服务提供了用于创建机器人的核心组件，包括用�
 1. 单击右窗格中的“下载机器人源代码”链接。 
 1. 按照提示下载代码，然后解压缩该文件夹。
     1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
-
-下载的代码使用加密的 [.bot 文件](./v4sdk/bot-file-basics.md)。 需要更新 appsettings.json 或 .env 文件中的 `botFilePath` 和 `botFileSecret` 项。 
-为此，请转到 Azure 门户。 在门户中选择机器人，然后在“应用服务设置”部分下，单击“应用程序设置”。 在“应用程序设置”窗格中，你将看到 `botFilePath` 和 `botFileSecret` 值。 复制这些值并更新 .env 或 appsettings.json 文件。 
 
 ## <a name="next-steps"></a>后续步骤
 下载代码后，可以继续在本地计算机上开发机器人。 测试了机器人并已准备好将机器人代码上传到 Azure 门户后，请按照部署主题的[设置存储库](./bot-builder-deploy-az-cli.md#setup-a-repository)部分下列出的说明执行操作。
