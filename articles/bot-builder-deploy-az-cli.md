@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 02/13/2019
-ms.openlocfilehash: 8db2f0629b0d95dda0cb5d10dea5c9225e5d8d83
-ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
+ms.date: 04/02/2019
+ms.openlocfilehash: 556c444086fedf6c5be052726d934d9226b4eebb
+ms.sourcegitcommit: f1412178e4766fb6b29f0f33f7eff7cc9d0885cc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58073783"
+ms.lasthandoff: 04/02/2019
+ms.locfileid: "58868027"
 ---
 # <a name="deploy-your-bot"></a>部署机器人
 
@@ -25,9 +25,8 @@ ms.locfileid: "58073783"
 本文介绍如何将 C# 和 JavaScript 机器人部署到 Azure。 在执行相关步骤之前最好是先阅读本文，以完全了解在部署机器人时所涉及到的工作。
 
 ## <a name="prerequisites"></a>先决条件
-
-- 安装最新版本的 [msbot](https://github.com/Microsoft/botbuilder-tools/tree/master/packages/MSBot) 工具。
-- 在本地计算机上开发的 [CSharp](./dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [JavaScript](./javascript/bot-builder-javascript-quickstart.md) 机器人。
+- 如果还没有 [Azure 订阅](http://portal.azure.com)，请在开始前创建一个免费帐户。
+- 在本地计算机上开发的 [**CSharp**](./dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [**JavaScript**](./javascript/bot-builder-javascript-quickstart.md) 机器人。
 
 ## <a name="1-prepare-for-deployment"></a>1.准备部署
 部署过程要求在 Azure 中有一个目标 Web 应用机器人，以便将本地机器人部署到其中。 Azure 中的目标 Web 应用机器人以及通过它预配的资源可供本地机器人用于部署。 这是必需的，因为本地机器人没有预配所有必需的 Azure 资源。 当你创建目标 Web 应用机器人时，系统会为你预配以下资源：
@@ -39,7 +38,7 @@ ms.locfileid: "58073783"
 在创建目标 Web 应用机器人的过程中，也会为机器人生成应用 ID 和密码。 在 Azure 中，应用 ID 和密码支持[服务身份验证和授权](https://docs.microsoft.com/azure/app-service/overview-authentication-authorization)。 需检索部分此类信息，用在本地机器人代码中。 
 
 > [!IMPORTANT]
-> 此服务的机器人模板的语言必须与编写机器人时使用的语言匹配。
+> 在 Azure 门户中使用的机器人模板的编程语言必须与编写机器人时使用的编程语言匹配。
 
 如果已在 Azure 中创建了想要使用的机器人，则可以选择性地阅读“创建新的 Web 应用机器人”。
 
@@ -50,92 +49,49 @@ ms.locfileid: "58073783"
 1. 单击“创建”创建服务并将机器人部署到云。 此过程可能需要数分钟。
 
 ### <a name="download-the-source-code"></a>下载源代码
-创建目标 Web 应用机器人以后，需将机器人代码从 Azure 门户下载到本地计算机。 下载代码是为了获取 [.bot 文件](./v4sdk/bot-file-basics.md)中的服务引用。 这些服务引用适用于 Web 应用机器人、应用服务计划、应用服务和存储帐户。 
+创建目标 Web 应用机器人以后，需将机器人代码从 Azure 门户下载到本地计算机。 下载代码是为了获取 appsettings.json 或 .env 文件中的服务引用（例如，MicrosoftAppID、MicrosoftAppPassword、LUIS 或 QnA）。 
 
 1. 在“机器人管理”部分中，单击“生成”。
 1. 单击右窗格中的“下载机器人源代码”链接。
 1. 按照提示下载代码，然后解压缩该文件夹。
     1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
 
-### <a name="decrypt-the-bot-file"></a>解密 .bot 文件
+### <a name="update-your-local-appsettingsjson-or-env-file"></a>更新本地的 appsettings.json 或 .env 文件
 
-从 Azure 门户下载的源代码包含加密的 .bot 文件。 需要解密该文件才能将值复制到本地 .bot 文件中。 若要复制实际的服务引用而不是加密的服务引用，必须执行此步骤。  
-
-1. 在 Azure 门户中打开机器人的 Web 应用机器人资源。
-1. 打开机器人的“应用程序设置”。
-1. 在“应用程序设置”窗口中，向下滚动到“应用程序设置”。
-1. 找到 **botFileSecret** 并复制其值。
-1. 使用 `msbot cli` 解密该文件。
-
-    ```cmd
-    msbot secret --bot <name-of-bot-file> --secret "<bot-file-secret>" --clear
-    ```
-
-### <a name="update-your-local-bot-file"></a>更新本地 .bot 文件
-
-打开已解密的 .bot 文件。 复制 `services` 节下列出的**所有**条目，将其添加到本地 .bot 文件。 解析任何重复的服务条目或重复的服务 ID。 保留机器人依赖的其他服务引用。 例如：
-
-```json
-"services": [
-    {
-        "type": "abs",
-        "tenantId": "<tenant-id>",
-        "subscriptionId": "<subscription-id>",
-        "resourceGroup": "<resource-group-name>",
-        "serviceName": "<bot-service-name>",
-        "name": "<friendly-service-name>",
-        "id": "1",
-        "appId": "<app-id>"
-    },
-    {
-        "type": "blob",
-        "connectionString": "<connection-string>",
-        "tenantId": "<tenant-id>",
-        "subscriptionId": "<subscription-id>",
-        "resourceGroup": "<resource-group-name>",
-        "serviceName": "<blob-service-name>",
-        "id": "2"
-    },
-    {
-        "type": "endpoint",
-        "appId": "",
-        "appPassword": "",
-        "endpoint": "<local-endpoint-url>",
-        "name": "development",
-        "id": "3"
-    },
-    {
-        "type": "endpoint",
-        "appId": "<app-id>",
-        "appPassword": "<app-password>",
-        "endpoint": "<hosted-endpoint-url>",
-        "name": "production",
-        "id": "4"
-    },
-    {
-        "type": "appInsights",
-        "instrumentationKey": "<instrumentation-key>",
-        "applicationId": "<appinsights-app-id>",
-        "apiKeys": {},
-        "tenantId": "<tenant-id>",
-        "subscriptionId": "<subscription-id>",
-        "resourceGroup": "<resource-group>",
-        "serviceName": "<appinsights-service-name>",
-        "id": "5"
-    }
-],
-```
+打开下载的 appsettings.json 或 .env 文件。 复制其中列出的**所有**条目，将其添加到本地的 appsettings.json 或 .env 文件。 解析任何重复的服务条目或重复的服务 ID。 保留机器人依赖的其他服务引用。
 
 保存文件。
 
-在发布之前，可以使用 msbot 工具生成新机密并加密 .bot 文件。 如果重新加密了 .bot 文件，请在 Azure 门户中更新机器人的 **botFileSecret** 来包含新机密。
+### <a name="update-local-bot-code"></a>更新本地机器人代码
+更新本地的 Startup.cs 或 index.js 文件，以便使用 appsettings.json 或 .env 文件而不是 .bot 文件。 .bot 文件已弃用，我们会更新 VSIX 模板、Yeoman 生成器、示例和剩余文档，使它们都使用 appsettings.json 或 .env 文件而不是 .bot 文件。 同时，你需要更改机器人代码。 
 
-```cmd
-msbot secret --bot <name-of-bot-file> --new
+更新从 appsettings.json 或 .env 文件读取设置的代码。 
+
+# [<a name="c"></a>C#](#tab/csharp)
+在 `ConfigureServices` 方法中，使用 ASP.NET Core 提供的配置对象，例如： 
+
+**Startup.cs**
+```csharp
+var appId = Configuration.GetSection("MicrosoftAppId").Value;
+var appPassword = Configuration.GetSection("MicrosoftAppPassword").Value;
+options.CredentialProvider = new SimpleCredentialProvider(appId, appPassword);
 ```
 
-> [!TIP]
-> 对于 .bot 文件的文件属性，请在 Visual Studio 中确保“复制到输出目录”设置为“始终复制”。
+# [<a name="js"></a>JS](#tab/js)
+
+在 JavaScript 中，引用 `process.env` 对象提供的 .env 变量，例如：
+   
+**index.js**
+
+```js
+const adapter = new BotFrameworkAdapter({
+    appId: process.env.MicrosoftAppId,
+    appPassword: process.env.MicrosoftAppPassword
+});
+```
+---
+
+- 保存文件并测试机器人。
 
 ### <a name="setup-a-repository"></a>设置存储库
 
@@ -148,8 +104,7 @@ msbot secret --bot <name-of-bot-file> --new
 1. 在 Azure 门户中，打开机器人的“Web 应用机器人”资源。
 1. 打开机器人的“应用程序设置”。
 1. 在“应用程序设置”窗口中，向下滚动到“应用程序设置”。
-1. 找到 **botFileSecret** 并将其删除。 （如果你重新加密了 .bot 文件，请确保 **botFileSecret** 包含新机密且不要删除此设置。）
-1. 更新机器人文件的名称，以便与签入到存储库中的文件相匹配。
+1. 查看机器人是否有 **botFileSecret** 和 **botFilePath** 条目。 如果有，请将其删除。
 1. 保存更改。
 
 ## <a name="2-deploy-using-azure-deployment-center"></a>2.使用 Azure 部署中心进行部署
@@ -166,7 +121,7 @@ msbot secret --bot <name-of-bot-file> --new
 
 ## <a name="additional-resources"></a>其他资源
 
-- [How to investigate common issues with continuous deployment](https://github.com/projectkudu/kudu/wiki/Investigating-continuous-deployment)（如何调查连续部署的常见问题）
+- [如何调查持续部署的常见问题](https://github.com/projectkudu/kudu/wiki/Investigating-continuous-deployment)
 
 <!--
 

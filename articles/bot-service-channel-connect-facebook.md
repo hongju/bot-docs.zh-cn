@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/12/2018
-ms.openlocfilehash: 0932372c5b2bcf574d244cd60d46ef579acbd106
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 57a3efd36ddae5c52a2d791b87ed4fa6a96d5e8a
+ms.sourcegitcommit: 152760771214865b9c7d0ed481acfba05bdc44dc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000154"
+ms.lasthandoff: 03/29/2019
+ms.locfileid: "58655517"
 ---
 # <a name="connect-a-bot-to-facebook"></a>将机器人连接到 Facebook
 
@@ -150,6 +150,12 @@ ms.locfileid: "50000154"
 
 ### <a name="make-the-app-public-and-publish-the-page"></a>公开应用并发布页
 有关详细信息，请参阅“将机器人连接到 Facebook Messenger”部分。
+
+## <a name="setting-the-api-version"></a>设置 API 版本
+
+如果从 Facebook 收到有关弃用特定图形 API 版本的通知，请转到 [Facebook 开发人员页](https://developers.facebook.com)。 导航到机器人的“应用设置”，转到“设置”>“高级”>“升级 API 版本”，然后将“升级所有调用”切换为 3.0。
+
+![API 版本升级](~/media/channels/facebook-version-upgrade.png)
 
 ## <a name="sample-code"></a>代码示例
 

@@ -7,22 +7,20 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 6/22/2017
+ms.date: 3/22/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6a1ae4d0966928a1b95e45ea7bcc62e9c1d14666
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: c6e91ebfe54857f11772bd4a926e3b5b2776c8cc
+ms.sourcegitcommit: 54a4382add4756346098b286695a9b4791db7139
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000064"
+ms.lasthandoff: 03/29/2019
+ms.locfileid: "58616933"
 ---
 # <a name="migrate-your-bot-to-azure"></a>将机器人迁移到 Azure
 
-
-
 在 [Bot Framework 门户](http://dev.botframework.com)中创建的所有 **Azure 机器人服务（预览版）** 都必须迁移到 Azure 的新机器人服务。 该服务在 2017 年 12 月正式推出 (GA)。 
 
-请注意，仅连接到以下通道的注册机器人不需要迁移：Teams、Skype 或 Cortana。 例如，连接到 Facebook 和 Skype 的注册机器人需要迁移，但连接到 Skype 和 Cortana 的注册机器人不需要迁移。
+请注意，仅连接到以下通道的注册机器人不需要迁移：**Teams**、**Skype** 或 **Cortana**。 例如，连接到 Facebook 和 Skype 的注册机器人需要迁移，但连接到 Skype 和 Cortana 的注册机器人不需要迁移。
 
 > [!IMPORTANT]
 > 在迁移使用 Node.js 创建的 Functions 机器人之前，需要使用 Azure Functions 包将 node_modules 模块打包在一起。 这样做将提高迁移期间的性能和迁移后 Functions 机器人的执行力。 若要打包模块，请参阅[使用 Funcpack 包打包 Functions 机器人](#package-a-functions-bot-with-funcpack)。
@@ -52,14 +50,14 @@ ms.locfileid: "50000064"
 6.  通过运行 Functions 机器人使用 Bot Framework 模拟器在本地测试机器人。 有关如何运行 funcpack 机器人的详细信息，请参见[此处](https://github.com/Azure/azure-functions-pack#how-to-run)。 
 7.  将代码上传回 Azure。 请确保上传 `.funcpack` 目录。 不需要上传“node_modules”目录。
 8. 测试远程机器人，确保按预期方式进行响应。
-9. 使用上述步骤[迁移机器人](#migrate-your-bot-to-azure)。
+9. 使用上述步骤迁移机器人。
 
 ## <a name="migration-under-the-hood"></a>迁移后台
 
 根据要迁移的机器人的类型，下面的列表可以帮助你更好地了解后台发生的事情。
 
-* Web App 机器人或 Functions 机器人：对于这些类型的机器人，源代码项目从旧机器人复制到新机器人。 其他资源（例如机器人存储、Application Insights、LUIS 等）保持原样。 在这些情况下，新机器人包含一份这些现有资源的 ID/密钥/密码副本。 
-* 机器人通道注册：对于此类型的机器人，迁移过程只需创建一个新机器人通道注册，并从旧机器人那里复制终结点。 
+* **Web 应用机器人**或 **Functions 机器人**：对于这些类型的机器人，源代码项目从旧机器人复制到新机器人。 其他资源（例如机器人存储、Application Insights、LUIS 等）保持原样。 在这些情况下，新机器人包含一份这些现有资源的 ID/密钥/密码副本。 
+* **机器人通道注册**：对于此类型的机器人，迁移过程只需创建一个新机器人通道注册，并从旧机器人那里复制终结点。 
 * 无论迁移的是哪种类型的机器人，迁移过程都不会改变现有机器人的状态。 如果需要的话，这可以让你安全回滚。
 * 如果有[连续部署](bot-service-build-continuous-deployment.md)设置，将需要再次设置，以便源代码管理改为连接到新机器人。
 
