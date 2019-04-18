@@ -10,16 +10,16 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 1/10/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 70f333cdce15f1d1e908b73d21e706f1af33454b
-ms.sourcegitcommit: c7d2e939ec71f46f48383c750fddaf6627b6489d
+ms.openlocfilehash: a7f6c22f35719eacf66598e79df5fe52ff19dd43
+ms.sourcegitcommit: 103aa3316f9ff658cf2b0d341c5e76c3efc581ee
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55783376"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59540361"
 ---
 # <a name="how-bots-work"></a>机器人的工作原理
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 机器人是用户使用文本、图形（例如卡片或图像）或语音通过聊天的方式与之进行交互的应用。 用户与机器人之间的每次交互会生成一个活动。 Bot Framework Service 是 Azure 机器人服务的组件，可在连接机器人的用户应用（例如 Facebook、Skype、Slack 等，称为“通道”）与机器人之间发送信息。 每个通道可以在发送的活动中包含其他信息。 在创建机器人之前，必须了解机器人如何使用活动对象来与其用户通信。 首先，让我们了解在运行简单的聊天机器人时交换的活动。 
 
