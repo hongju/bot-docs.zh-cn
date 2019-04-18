@@ -14,7 +14,7 @@
 ## [GitHub 上的 botbuilder-samples 存储库](https://github.com/Microsoft/BotBuilder-Samples/blob/master/README.md)
 ## [从 botbuilder-samples 存储库部署机器人](bot-builder-deploy-samples.md)
 # 概念
-## [机器人的工作原理](v4sdk/bot-builder-basics.md)
+## [机器人工作原理](v4sdk/bot-builder-basics.md)
 ## [管理状态](v4sdk/bot-builder-concept-state.md)
 ## [对话框库](v4sdk/bot-builder-concept-dialog.md)
 ## [中间件](v4sdk/bot-builder-concept-middleware.md)
@@ -37,7 +37,7 @@
 ### [添加按钮以指导用户操作](v4sdk/bot-builder-howto-add-suggested-actions.md)
 ### [保存用户和聊天数据](v4sdk/bot-builder-howto-v4-state.md) 
 ### [提示用户输入](v4sdk/bot-builder-primitive-prompts.md) 
-### [向用户发送欢迎消息](v4sdk/bot-builder-send-welcome-message.md)
+### [发送欢迎消息给用户](v4sdk/bot-builder-send-welcome-message.md)
 <!-- ## [Add input hints to messages](v4sdk/bot-builder-howto-add-input-hints.md) -->
 ### [向用户发送主动通知](v4sdk/bot-builder-howto-proactive-message.md)
 ### [向机器人添加自然语言理解](v4sdk/bot-builder-howto-v4-luis.md)
@@ -50,7 +50,7 @@
 #### [处理用户中断](v4sdk/bot-builder-howto-handle-user-interrupt.md)
 #### [保存用户数据](v4sdk/bot-builder-tutorial-persist-user-inputs.md)
 #### [重复使用对话](v4sdk/bot-builder-compositcontrol.md)
-### [直接写入存储](v4sdk/bot-builder-howto-v4-storage.md)
+### [直接写入到存储](v4sdk/bot-builder-howto-v4-storage.md)
 ### [向机器人添加身份验证](v4sdk/bot-builder-authentication.md)
 ### [为机器人实现自定义存储](v4sdk/bot-builder-custom-storage.md)
 ### [将遥测功能添加到机器人](v4sdk/bot-builder-telemetry.md)
