@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/27/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ed723e2caebd7fc085c6f9f2887e277195ee3516
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: aea34c068afa6fef3a701bc1179341ff4861e32a
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224875"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541093"
 ---
 # <a name="add-media-to-messages"></a>向消息添加媒体
 
@@ -225,9 +225,9 @@ await context.sendActivity(hero);
 
 其次，自适应卡片以卡片格式传送消息，通道确定卡片的布局。 MessageFactory 传送消息的格式取决于通道，除非在附件中包含自适应卡片，否则不一定采用卡片格式。 
 
-若要查找有关自适应卡通道支持的最新信息，请参阅<a href="http://adaptivecards.io/visualizer/">自适应卡可视化工具</a>。
+若要查找有关自适应卡片通道支持的最新信息，请参阅<a href="http://adaptivecards.io/designer/">自适应卡片设计器</a>。
 
-若要使用自适应卡，请务必添加 `Microsoft.AdaptiveCards` NuGet 包。 
+若要使用自适应卡，请务必添加 `AdaptiveCards` NuGet 包。 
 
 
 > [!NOTE]

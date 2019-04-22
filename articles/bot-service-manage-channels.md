@@ -9,26 +9,25 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/22/2018
-ms.openlocfilehash: 0430562fd615aef67b4ba95538d390cf2223fb45
-ms.sourcegitcommit: c6ce4c42fc56ce1e12b45358d2c747fb77eb74e2
+ms.openlocfilehash: 448bd1acd39445c39e49f27c3b9446523124bf87
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/22/2019
-ms.locfileid: "54453901"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59540993"
 ---
 # <a name="connect-a-bot-to-channels"></a>将机器人连接到通道
 
-通道连接机器人和通信应用。 配置机器人以连接到希望在其上可用的通道。 通过 Azure 门户配置的 Bot Framework Service 将机器人连接到这些通道，并促进机器人与用户之间的通信。 可以连接到许多常用服务，如 [Cortana](bot-service-channel-connect-cortana.md)、[Facebook Messenger](bot-service-channel-connect-facebook.md)、[Kik](bot-service-channel-connect-kik.md) 和 [Slack](bot-service-channel-connect-slack.md) 等。 [Skype](https://dev.skype.com/bots) 和网上聊天为预配置。 除了通过 Bot Connector 服务提供的标准通道，还可以使用 Direct Line 作为通道，将机器人连接到你自己的客户端应用程序。
+通道连接机器人和通信应用。 配置机器人以连接到希望在其上可用的通道。 通过 Azure 门户配置的 Bot Framework Service 将机器人连接到这些通道，并促进机器人与用户之间的通信。 可以连接到许多常用服务，如 [Cortana](bot-service-channel-connect-cortana.md)、[Facebook Messenger](bot-service-channel-connect-facebook.md)、[Kik](bot-service-channel-connect-kik.md) 和 [Slack](bot-service-channel-connect-slack.md) 等。 [网上聊天](bot-service-channel-connect-webchat.md)通道已预配置。 除了 Bot Connector 服务提供的标准通道，你还可以使用 [Direct Line](bot-service-channel-connect-directline.md) 作为通道，将机器人连接到你自己的客户端应用程序。
 
 可以借助 Bot Framework Service 规范化机器人发送到通道的消息，采用与通道无关的方式开发机器人。 这涉及将其从 Bot Framework 架构转换为通道架构。 但是，如果通道不支持 Bot Framework 架构的所有方面，该服务会尝试将消息转换为通道支持的格式。 例如，如果机器人向电子邮件通道发送的消息中包含一张带有操作按钮的卡，Connector 可能会将该卡作为一个图像发送，并包含这些操作作为消息文本中的链接。
-
 
 对于大多数通道，必须提供通道配置信息以在通道上运行机器人。 大多数通道要求机器人在通道上具有帐户，而其他通道（如 Facebook Messenger）则要求机器人还需在通道上注册一个应用程序。
 
 若要配置机器人以连接到通道，请完成以下步骤：
 
 1. 登录到 <a href="https://portal.azure.com" target="_blank">Azure 门户</a>。
-1. 选择要配置的机器人。
+2. 选择要配置的机器人。
 3. 在“机器人服务”边栏选项卡，单击“机器人管理”下的“通道”。
 4. 单击要添加到机器人的通道图标。
 
@@ -43,4 +42,5 @@ ms.locfileid: "54453901"
 [!INCLUDE [publishing](./includes/snippet-publish-to-channel.md)]
 
 ## <a name="additional-resources"></a>其他资源
-SDK 包含可以用于生成机器人的示例。 访问 [GitHub](https://github.com/Microsoft/BotBuilder-samples) 存储库就可以看到示例列表。
+
+SDK 包含可以用于生成机器人的示例。 访问 [GitHub 上的示例存储库](https://github.com/Microsoft/BotBuilder-samples)即可看到包含示例的列表。

@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: tools
 ms.date: 03/01/2019
-ms.openlocfilehash: 28c4ece705c001d5f80fdc877773c03ac400204c
-ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
+ms.openlocfilehash: 28f284e4d69cbef7a1741d298b3ae9e6e127e9dd
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58073843"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541083"
 ---
 # <a name="categorized-activities-by-channel"></a>按通道分类的活动
 
@@ -26,7 +26,7 @@ ms.locfileid: "58073843"
 :------------------:|:------------------------------------------------
 :white_check_mark:  |机器人应当会收到此活动
 :x:                 |机器人**决不**应当收到此活动
-:white_large_square:|当前不确定机器人是否会收到此活动
+:white_large_square:|当前不确定机器人能否收到此活动
 
 活动可以有意义地拆分为不同的类别。 对于每个类别，我们都提供了一个包含可能的活动的表。
 

@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/13/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a7d881e5e7748da11ea46721c23c5489597cdc94
-ms.sourcegitcommit: 4139ef7ebd8bb0648b8af2406f348b147817d4c7
+ms.openlocfilehash: 314a8a55906ec150d001b56c67ffbfe0ae2049f8
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/19/2019
-ms.locfileid: "58073823"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541123"
 ---
 # <a name="write-directly-to-storage"></a>直接写入存储
 
@@ -621,7 +621,7 @@ public ConversationHistoryBot(AzureBlobTranscriptStore transcriptStore)
 ```
 
 ### <a name="store-user-conversations-in-azure-blob-transcripts"></a>在 Azure Blob 脚本中存储用户聊天内容
-可以使用 Blob 容器来存储脚本以后，即可保留用户与机器人的聊天内容。 这些聊天内容可以在以后用作调试工具，以便了解用户与机器人的交互情况。 以下代码保留当 activity.text 收到输入消息 _!history_ 时的用户聊天输入。
+添加 TranscriptLoggerMiddleware 后，脚本存储会自动开始保留用户与机器人的聊天内容。 这些聊天内容可以在以后用作调试工具，以便了解用户与机器人的交互情况。 当 activity.text 收到输入消息 _!history_ 时，以下代码会检索脚本，然后将其发送至当前的聊天。 注意：Direct Line、网上聊天和模拟器通道支持 SendConversationHistoryAsync 方法。
 
 
 ```csharp

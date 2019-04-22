@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 11/28/18
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a30a3f5dfe4693d67a4cd42a50d35893f8888e07
-ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
+ms.openlocfilehash: 1f077cb5efd838f8a91a0f18a9bcc2f64455ceb6
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/21/2019
-ms.locfileid: "56591035"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541113"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>向机器人添加自然语言理解
 
@@ -42,7 +42,7 @@ ms.locfileid: "56591035"
 发布 LUIS 应用后，可以在机器人中访问它。 需要记录多个值才能在机器人中访问该 LUIS 应用。 可以使用 LUIS 门户检索该信息。
 
 #### <a name="retrieve-application-information-from-the-luisai-portal"></a>从 LUIS.ai 门户检索应用程序信息
-.bot 文件将所有服务引用合并到一个位置。 检索的信息将添加到下一部分所述的 .bot 文件。 
+.bot 文件将所有服务引用合并到一个位置。 检索的信息将添加到下一部分的 .bot 文件。 
 1. 在 [luis.ai](https://www.luis.ai) 中选择已发布的 LUIS 应用。
 1. 打开已发布的 LUIS 应用后，选择“管理”选项卡。
 1. 在左侧选择“应用程序信息”选项卡，记录“应用程序 ID”(<YOUR_APP_ID>) 的显示值。

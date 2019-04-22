@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: c2d4b9a8e2b8ffc1656df44e04ee1bde912e36ea
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: dd5e81ba3feaba09e60011c138dcbe1537144b5a
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998154"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541003"
 ---
 # <a name="receive-activities-from-the-bot"></a>从机器人接收活动
 
@@ -21,7 +21,7 @@ ms.locfileid: "49998154"
 
 ## <a name="websocket-vs-http-get"></a>WebSocket 和 HTTP GET
 
-流式处理 WebSocket 有效地将消息推送到客户端，而 GET 接口可使客户端显式请求消息。 尽管 WebSocket 机制由于其效率通常是首选机制，但 GET 机制对于无法使用 WebSocket 的客户端或想要检索会话历史记录的客户端非常有用。 
+流式处理 WebSocket 有效地将消息推送到客户端，而 GET 接口可使客户端显式请求消息。 尽管 WebSocket 机制由于其效率通常是首选机制，但 GET 机制对于无法使用 WebSocket 的客户端非常有用。 
 
 并非所有[活动类型](bot-framework-rest-connector-activities.md)都可通过 WebSocket 和 HTTP GET 获得。 下表介绍了使用 Direct Line 协议的客户端的各种活动类型的可用性。
 
@@ -99,9 +99,9 @@ WebSocket 流包含实时更新和最近收到的消息（因为已发出通过 
 
 ## <a id="http-get"></a> 使用 HTTP GET 检索活动
 
-无法使用 WebSocket 的客户端或希望获取会话历史记录的客户端可以通过使用 `HTTP GET` 检索活动。
+无法使用 WebSocket 的客户端可以通过 `HTTP GET` 检索活动。
 
-若要检索特定会话的消息，请向 `/v3/directline/conversations/{conversationId}/activities` 终结点发出 `GET` 请求，进而选择指定 `watermark` 参数来指示客户端看到的最新消息。 
+若要检索特定聊天的消息，请向 `/v3/directline/conversations/{conversationId}/activities` 终结点发出 `GET` 请求，根据需要指定 `watermark` 参数以指示客户端看到的最新消息。 
 
 以下代码片段提供了 Get Conversation Activities 请求和响应的示例。 Get Conversation Activities 响应包含作为 [ActivitySet](bot-framework-rest-direct-line-3-0-api-reference.md#activityset-object) 的属性的 `watermark`。 客户端应通过增加 `watermark` 值来浏览可用活动，直到不返回任何活动。
 
@@ -165,7 +165,7 @@ HTTP/1.1 200 OK
 
 - 服务到服务应用程序通常使用 5 秒或 10 秒的轮询间隔。
 
-- 面向客户端的应用程序通常使用 1 秒的轮询间隔，并在客户端发送的每条消息之后 ~300ms 发出额外的请求（以快速检索机器人的响应）。 应根据机器人的速度和传输时间调整此 300ms 延迟。
+- 面向客户端的应用程序通常使用 1 秒的轮询间隔，并在客户端发送每条消息之后很快发出单个额外的请求（以快速检索机器人的响应）。 此延迟可以低至 300 毫秒，但应该根据机器人的速度和传输时间进行调整。 在延长的时间段，轮询不应超过每秒一次的频率。
 
 ## <a name="additional-resources"></a>其他资源
 

@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 04/09/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 27c97d257261a6f3b9d867503aee40382b685e20
-ms.sourcegitcommit: 562dd44e38abacaa31427da5675da556a970cf11
+ms.openlocfilehash: 1a295f68be626c2d2ef17dcb49b7c7d31ae2cefa
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/10/2019
-ms.locfileid: "59477100"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541043"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
 
@@ -168,7 +168,7 @@ Sample payload
 
 下一步是在机器人中注册创建的 Azure AD 应用程序。
 
-# [<a name="azure-ad-v1"></a>Azure AD v1](#tab/aadv1)
+# <a name="azure-ad-v1tabaadv1"></a>[Azure AD v1](#tab/aadv1)
 
 1. 在 [Azure 门户](http://portal.azure.com/)中，导航到机器人的资源页。
 1. 单击“设置”。
@@ -193,7 +193,7 @@ Sample payload
 > [!NOTE]
 > 这些值让应用程序可以通过 Microsoft Graph API 访问 Office 365 数据。
 
-# [<a name="azure-ad-v2"></a>Azure AD v2](#tab/aadv2)
+# <a name="azure-ad-v2tabaadv2"></a>[Azure AD v2](#tab/aadv2)
 
 1. 在 [Azure 门户](http://portal.azure.com/)上导航到机器人的“机器人通道注册”页。
 1. 单击“设置”。
@@ -273,7 +273,11 @@ Sample payload
     }
     ```
 
-    如果不知道如何获取“Microsoft 应用 ID”值和“Microsoft 应用密码”值，请在 Azure 门户上查看为机器人预配的 Azure 应用服务的“ApplicationSettings”。
+    如果不知道如何获取 **Microsoft 应用 ID** 值和 **Microsoft 应用密码**值，可以根据
+
+    [机器人通道注册密码](../bot-service-quickstart-registration.md#bot-channels-registration-password)中的说明创建新密码，
+
+    也可以根据 [Find Your Azure Bot’s AppID and AppSecret](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)（查找 Azure 机器人的 AppID 和 AppSecret）中的说明从部署中检索通过“机器人通道注册”预配的 **Microsoft 应用 ID** 和 **Microsoft 应用密码**
 
     > [!NOTE]
     > 现在即可将此机器人代码发布到 Azure 订阅（右键单击该项目并选择“发布”），但本教程不需要这样做。 你需要设置一个发布配置，该配置使用在 Azure 门户中配置机器人时使用的应用程序和托管计划。
@@ -327,7 +331,7 @@ Sample payload
 
 在此代码中，机器人首先会进行快速检查，确定 Azure 机器人服务是否已有用户（由当前活动发件人标识）和给定 ConnectionName（配置中使用的连接名）的令牌。 Azure 机器人服务要么已缓存令牌，要么没有缓存。 调用 GetUserTokenAsync 即可执行此快速检查。 如果 Azure 机器人服务有令牌并将其返回，则可以立即使用该令牌。 如果 Azure 机器人服务没有令牌，则此方法将返回 NULL。 在这种情况下，机器人可以发送自定义的 OAuthCard 供用户登录。
 
-# [<a name="c"></a>C#](#tab/csharp)
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```csharp
 // First ask Bot Service if it already has a token for this user
@@ -342,7 +346,7 @@ else
 }
 ```
 
-# [<a name="javascript"></a>JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
 public async getUserToken(context: TurnContext, code?: string): Promise<TokenResponse|undefined> {
@@ -364,7 +368,7 @@ public async getUserToken(context: TurnContext, code?: string): Promise<TokenRes
 
 在此调用结束时，机器人需要“等待令牌”返回。 这种等待发生在主活动流上，因为用户登录时可能需要执行很多操作。
 
-# [<a name="c"></a>C#](#tab/csharp)
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```csharp
 private async Task SendOAuthCardAsync(ITurnContext turnContext, IMessageActivity message, CancellationToken cancellationToken = default(CancellationToken))
@@ -397,7 +401,7 @@ private async Task SendOAuthCardAsync(ITurnContext turnContext, IMessageActivity
 }
 ```
 
-# [<a name="javascript"></a>JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
 private async sendOAuthCardAsync(context: TurnContext, prompt?: string|Partial<Activity>): Promise<void> {
@@ -429,7 +433,7 @@ private async sendOAuthCardAsync(context: TurnContext, prompt?: string|Partial<A
 
 如果查看每个示例的机器人代码，则会看到 `Event` 和 `Invoke` 活动也被路由到对话框堆栈。
 
-# [<a name="c"></a>C#](#tab/csharp)
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 ```csharp
 // This can be called when the bot receives an Activity after sending an OAuthCard
@@ -477,7 +481,7 @@ private bool IsTeamsVerificationInvoke(ITurnContext turnContext)
 }
 ```
 
-# [<a name="javascript"></a>JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 ```javascript
 private async recognizeToken(context: TurnContext): Promise<PromptRecognizerResult<TokenResponse>> {

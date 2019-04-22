@@ -9,12 +9,12 @@ ms.service: bot-service
 ROBOTS: NOINDEX
 ms.date: 10/04/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 62b5608de20bb89a31106c7e652b20f32b099d15
-ms.sourcegitcommit: 152760771214865b9c7d0ed481acfba05bdc44dc
+ms.openlocfilehash: 54742bdeddee410ec9307157d0dbd34cc4fbe3c8
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/29/2019
-ms.locfileid: "58655497"
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59541073"
 ---
 [!INCLUDE [pre-release-label](includes/pre-release-label-v3.md)]  
 
@@ -68,7 +68,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 ## <a name="create-your-bot-and-an-authentication-application"></a>创建机器人和身份验证应用程序
 
-你需要创建一个注册机器人用于向其发布机器人代码，还需要创建 Azure AD（v1 或 v2）应用程序来让机器人访问 Office 365。
+你需要创建一个注册机器人，以便在其中将消息传送终结点设置为已部署机器人的代码，还需要创建 Azure AD（v1 或 v2）应用程序，以便机器人访问 Office 365。
 
 > [!NOTE]
 > 这些身份验证功能适用于其他类型的机器人。 但本教程仅使用注册机器人。
@@ -234,7 +234,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
     </appSettings>
     ```
 
-    如果不知道如何获取“Microsoft 应用 ID”值和“Microsoft 应用密码”值，请在 Azure 门户上查看为机器人预配的 Azure 应用服务的“ApplicationSettings”。
+    如果不知道如何获取 **Microsoft 应用 ID** 值和 **Microsoft 应用密码**值，可以根据[机器人通道注册密码](bot-service-quickstart-registration.md#bot-channels-registration-password)中的说明创建新密码，也可以根据 [Find Your Azure Bot’s AppID and AppSecret](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)（查找 Azure 机器人的 AppID 和 AppSecret）中的说明从部署中检索通过“机器人通道注册”预配的 **Microsoft 应用 ID** 和 **Microsoft 应用密码**
 
     > [!NOTE]
     > 现在即可将此机器人代码发布到 Azure 订阅（右键单击该项目并选择“发布”），但本教程不需要这样做。 你需要设置一个发布配置，该配置使用在 Azure 门户中配置机器人时使用的应用程序和托管计划。

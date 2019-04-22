@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: b3f9a0d2c24809c0814baa9bfb8f993a4ba55ef7
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 04/12/2019
+ms.locfileid: "59551540"
+---
 ## <a name="prerequisites"></a>先决条件
 
 - [Visual Studio Code](https://www.visualstudio.com/downloads)
@@ -8,9 +16,10 @@
 - 了解 [restify](http://restify.com/) 和 JavaScript 中的异步编程
 
 > [!NOTE]
-> 仅当使用 Windows 作为开发操作系统时，使用下面列出的命令安装 Windows 生成工具才是必需的。 对某些安装，restify 安装步骤是提供与 node-gyp 相关的错误。
+> 仅当使用 Windows 作为开发操作系统时，才需要安装下面列出的 Windows 生成工具。 对某些安装，restify 安装步骤是提供与 node-gyp 相关的错误。
 > 如果存在这种情况，可以尝试使用提升的权限运行此命令。
 > 如果系统上已安装 python，此调用也可能会挂起而不会退出：
+
 > ```bash
 > npm install -g windows-build-tools
 > ```

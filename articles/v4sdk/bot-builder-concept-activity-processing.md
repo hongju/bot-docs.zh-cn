@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/13/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6ba140324fb6b50c2d6696aae6e4bd3e8824fd96
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: fa243d8cc00fd6fadf7c51668c9e7ba74d0c06e2
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997564"
+ms.lasthandoff: 04/18/2019
+ms.locfileid: "59508224"
 ---
 # <a name="activity-processing"></a>活动处理
 
@@ -29,7 +29,7 @@ ms.locfileid: "49997564"
 
 机器人适配器封装了身份验证过程，并将活动发送到机器人连接器服务并从机器人连接器服务接收活动。 当机器人收到活动时，适配器包装有关该活动的所有内容，为轮次创建一个[上下文对象](#turn-context)，将其传递给机器人的应用程序逻辑，并将机器人生成的响应发送回用户通道。
 
-## <a name="authentication"></a>身份验证
+## <a name="authentication"></a>Authentication
 
 适配器使用活动中的信息和来自 REST 请求的 `Authentication` 标头验证应用程序接收的每个传入活动。 适配器使用连接器对象和应用程序的凭据来验证用户的出站活动。
 
@@ -46,7 +46,7 @@ ms.locfileid: "49997564"
 * 活动 - 会话中的请求和回复是所有类型的活动。 此上下文提供有关传入活动的信息，包括路由信息，有关通道、会话、发送方和接收方的信息。
 * 自定义信息 - 如果你通过实现中间件或在机器人逻辑中扩展机器人，则可以在每个轮次中提供其他信息。
 
-上下文对象还可用于向用户发送响应，并获取对适配器的引用<!-- to create a new conversation or continue an existing one-->。
+上下文对象还可用于向用户发送响应，以及获取对适配器的引用<!-- to create a new conversation or continue an existing one-->.
 
 > [!NOTE]
 > 应用程序和适配器将异步处理请求；但是，业务逻辑不需要受请求-响应驱动。
@@ -79,7 +79,7 @@ ms.locfileid: "49997564"
 
 每个新活动都会获得一个要执行的新线程。 创建处理活动的线程后，该活动的处理程序列表将复制到该新线程。 不会针对该特定活动事件执行在此之后添加的任何处理程序。
 
-在上下文对象上注册的处理程序的处理方式与适配器管理[中间件管道](~/v4sdk/bot-builder-concept-middleware.md#the-bot-middleware-pipeline)的方式非常相似。 也就是说，处理程序按照它们添加的顺序进行调用，并且调用下一个委托将控制权传递给下一个已注册的事件处理程序。 如果处理程序未调用下一个委托，则不会调用任何后续事件处理程序，事件会[短路](~/v4sdk/bot-builder-concept-middleware.md#short-circuiting)，并且适配器不会将响应发送到通道。
+在上下文对象中注册的处理程序的处理方式与适配器管理[中间件管道](~/v4sdk/bot-builder-concept-middleware.md#the-bot-middleware-pipeline)的方式非常相似。 也就是说，处理程序按照它们添加的顺序进行调用，并且调用下一个委托将控制权传递给下一个已注册的事件处理程序。 如果处理程序未调用下一个委托，则不会调用任何后续事件处理程序，事件会[短路](~/v4sdk/bot-builder-concept-middleware.md#short-circuiting)，并且适配器不会将响应发送到通道。
 
 ## <a name="next-steps"></a>后续步骤
 

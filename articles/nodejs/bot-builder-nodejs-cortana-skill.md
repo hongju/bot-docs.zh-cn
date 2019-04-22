@@ -6,14 +6,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
+ms.date: 02/10/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e00128ca82ec8b97502d8f2fbf42be10cc91ade6
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 690c456a1baa94eab1f0efbed6ce2c2e1f5cb280
+ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225294"
+ms.lasthandoff: 04/18/2019
+ms.locfileid: "59508154"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能构建支持语音的机器人
 
@@ -58,42 +58,46 @@ inputHint 属性有助于向 Cortana 指示机器人是否期待输入。 如果
 |------|------|
 | **acceptingInput** | 机器人被动地准备好接收输入，但并不等待响应。 如果用户按住麦克风按钮，Cortana 接受来自用户的输入。|
 | **expectingInput** | 指示机器人主动期待来自用户的响应。 Cortana 会收听用户对着麦克风的讲话。  |
-| **ignoringInput** | Cortana 将忽略输入。 如果机器人正在主动处理请求，并在请求完成之前忽略用户的输入，则机器人可能发送此提示。  |
-
+||注意：请勿在无外设设备（没有显示器的设备）上使用 **expectingInput**。 请参阅 [Cortana 技能套件常见问题解答](https://review.docs.microsoft.com/en-us/cortana/skills/faq)。|
+| **ignoringInput** | Cortana 将忽略输入。 如果机器人正在主动处理请求，并且会在请求完成之前忽略用户的输入，则机器人可能发送此提示。  |
 
 下面的示例显示 Cortana 如何读取纯文本或 SSML：
 
 ```javascript
+
 // Have Cortana read plain text
 session.say('This is the text that Cortana displays', 'This is the text that is spoken by Cortana.');
 
 // Have Cortana read SSML
 session.say('This is the text that Cortana displays', '<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xml:lang="en-US">This is the text that is spoken by Cortana.</speak>');
+
 ```
 
 此示例演示如何让 Cortana 知道机器人期待用户输入。 麦克风将保持打开状态。
+
 ```javascript
+
 // Add an InputHint to let Cortana know to expect user input
 session.say('Hi there', 'Hi, what’s your name?', {
     inputHint: builder.InputHint.expectingInput
 });
+
 ```
 <!-- TODO: tip about time limit and batching -->
-
 
 ### <a name="prompts"></a>提示
 
 除使用 session.say() 方法外，还可以使用 speak 和 retrySpeak 选项向内置提示传递文本或 SSML。  
 
 ```javascript
+
 builder.Prompts.text(session, 'text based prompt', {                                    
     speak: 'Cortana reads this out initially',                                               
     retrySpeak: 'This message is repeated by Cortana after waiting a while for user input',  
     inputHint: builder.InputHint.expectingInput                                              
 });
+
 ```
-
-
 
 <!-- TODO: Link to SSML library -->
 
@@ -102,6 +106,7 @@ builder.Prompts.text(session, 'text based prompt', {
 Prompts.choice 支持序号选择。 这意味着用户可以说“第一”、“第二”或“第三”来选择列表中的项目。 例如，给定以下提示，如果用户向 Cortana 提出“第二个选项”，则提示符将返回 8 值。
 
 ```javascript
+
         var choices = [
             { value: '4', action: { title: '4 Sides' }, synonyms: 'four|for|4 sided|4 sides' },
             { value: '8', action: { title: '8 Sides' }, synonyms: 'eight|ate|8 sided|8 sides' },
@@ -111,11 +116,13 @@ Prompts.choice 支持序号选择。 这意味着用户可以说“第一”、�
         builder.Prompts.choice(session, 'choose_sides', choices, { 
             speak: speak(session, 'choose_sides_ssml') // use helper function to format SSML
         });
+
 ```
 
 在前面的示例中，通过使用存储在本地化提示文件中具有以下格式的字符串，对提示的 speak 属性的 SSML 进行格式设置。 
 
 ```json
+
 {
     "choose_sides": "__Number of Sides__",
     "choose_sides_ssml": [
@@ -124,8 +131,8 @@ Prompts.choice 支持序号选择。 这意味着用户可以说“第一”、�
         "All the standard sizes are supported."
     ]
 }
-```
 
+```
 
 然后，帮助程序函数构建语音合成标记语言 (SSML) 文档的必需根元素。 
 
@@ -157,7 +164,7 @@ module.exports.speak = function (template, params, options) {
 
 下面的代码演示如何将 speak 和 inputHint 属性添加到包含 Hero 卡片的消息中。
 
-```javascript 
+```javascript
 
 bot.dialog('HelpDialog', function (session) {
     var card = new builder.HeroCard(session)
@@ -172,7 +179,6 @@ bot.dialog('HelpDialog', function (session) {
         .inputHint(builder.InputHint.acceptingInput); // Tell Cortana to accept input
     session.send(msg).endDialog();
 }).triggerAction({ matches: /help/i });
-
 
 /** This helper function builds the required root element of a Speech Synthesis Markup Language (SSML) document. */
 module.exports.speak = function (template, params, options) {
@@ -196,6 +202,7 @@ module.exports.speak = function (template, params, options) {
 RollerSkill 示例首先打开带有一些按钮的卡片，告知用户可以使用的选项。
 
 ```javascript
+
 /**
  *   Create your bot with a default message handler that receive messages from the user.
  * - This function is be called anytime the user's utterance isn't
@@ -231,8 +238,6 @@ bot.dialog('HelpDialog', function (session) {
 
 
 ```javascript
-
-
 bot.dialog('CreateGameDialog', [
     function (session) {
         // Initialize game structure.
@@ -293,6 +298,7 @@ bot.dialog('CreateGameDialog', [
     /(roll|role|throw|shoot).*(dice|die|dye|bones)/i,
     /new game/i
  ]});
+
 ```
 
 ### <a name="render-results"></a>呈现结果
@@ -402,6 +408,7 @@ bot.dialog('PlayGameDialog', function (session, args) {
         session.replaceDialog('CreateGameDialog');
     }
 }).triggerAction({ matches: /(roll|role|throw|shoot) again/i });
+
 ```
 
 ## <a name="next-steps"></a>后续步骤
