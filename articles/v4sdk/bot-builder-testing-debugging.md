@@ -9,16 +9,16 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 2/26/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e0fbf2fe505866ec28385b2be3b9fcd7988be890
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: 618d438a384fa6a91ba919265519397cac555fda
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224925"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904850"
 ---
 # <a name="testing-and-debugging-guidelines"></a>测试和调试指南
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 机器人是复杂的应用，有大量不同的协同工作的部件。 就像其他复杂应用一样，这可能会导致出现一些需要关注的 Bug，或者会导致机器人的行为异常。
 

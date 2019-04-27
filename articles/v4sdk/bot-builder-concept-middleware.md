@@ -10,16 +10,16 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/8/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 231ed330faf9ce777a5acc5f4e6272b747a6f7fc
-ms.sourcegitcommit: d385ec5fe61c469ab17e6f21b4a0d50e5110d0fd
+ms.openlocfilehash: fddaced5693242e1debed6135122ace5a3cd316b
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54298274"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904990"
 ---
 # <a name="middleware"></a>中间件
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE [applies-to-v4](../includes/applies-to.md)]
 
 中间件只是一个位于适配器和机器人逻辑之间的类，它是在初始化期间添加到适配器的中间件集合的。 SDK 可让用户自行编写中间件或添加其他人创建的中间件。 进出机器人的每个活动都流经中间件。
 

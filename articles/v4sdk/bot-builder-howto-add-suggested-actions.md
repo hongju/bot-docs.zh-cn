@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/08/2018
+ms.date: 4/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 927d206c44d5809611871cfec7369e03e07837aa
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: bf0c5c0bba335c41a268d43014e925f6a9289d75
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224785"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904970"
 ---
 # <a name="use-button-for-input"></a>使用按钮进行输入
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 你可以使机器人能够显示按钮供用户点击来提供输入。 按钮改进了用户体验，因为用户只需点击按钮便可回答问题或进行选择，而不必使用键盘输入响应。 与资讯卡中显示的按钮（即使在点击后仍然可见且可供用户访问）不同，建议的操作窗格中显示的按钮将在用户进行选择后消失。 这可以防止用户在会话中点击过时按钮并简化机器人开发（因为将不需要说明该场景）。 
 

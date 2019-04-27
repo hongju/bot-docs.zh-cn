@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/26/18
+ms.date: 4/16/19
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4cafa3516395fb8e44d2755d0fa09e7a5bd6203c
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+ms.openlocfilehash: a79fd768f7c132301ba28bace03b5b86599fb4dd
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55711941"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904754"
 ---
 # <a name="save-user-and-conversation-data"></a>保存用户和聊天数据
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 机器人在本质上是无状态的。 部署机器人后，根据轮次的不同，它不一定会在相同的进程或计算机中运行。 但是，机器人可能需要跟踪聊天上下文，以便可以管理聊天行为并记住先前问题的回答。 使用 SDK 的状态和存储功能可将状态添加到机器人。
 

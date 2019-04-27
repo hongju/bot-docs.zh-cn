@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 01/16/2019
+ms.date: 04/16/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b72ffa951e176a174dd8b00e69229b27bf28a360
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+ms.openlocfilehash: c0b225cd114f369d14978c16108827f493434390
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55711991"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59905140"
 ---
 # <a name="reuse-dialogs"></a>重复使用对话
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 想象一下，你正在创建一个可处理多项任务的酒店机器人，例如问候用户、预订餐位、点餐、设置闹钟、显示当前天气等等。 可以使用一个对话对象在机器人中处理其中每项任务；但是，这可能会让对话代码变得过长和混乱。
 
@@ -38,7 +38,7 @@ ms.locfileid: "55711991"
 
 我们将从 **EchoBot** 模板着手。 有关说明，请参阅[适用于 .NET 的快速入门](../dotnet/bot-builder-dotnet-sdk-quickstart.md)。
 
-要使用对话，请为项目或解决方案安装 `Microsoft.Bot.Builder.Dialogs` NuGet 包。
+要使用对话框，请为项目或解决方案安装 `Microsoft.Bot.Builder.Dialogs` NuGet 包。
 然后，根据需要在代码文件的 using 语句中引用对话库。
 
 将 **EchoBotWithCounter.cs** 文件重命名为 **HotelBot.cs**，并将类重命名为 **HotelBot**。
@@ -231,13 +231,13 @@ const myBot = new MyBot(conversationState, userState);
 
 ---
 
-## <a name="about-component-dialogs"></a>关于组件对话
+## <a name="about-component-dialogs"></a>关于组件对话框
 
-可以通过组件对话创建独立的对话来处理特定的方案，将大型对话集分解成更易于管理的片段。 其中的每个片段有自身的对话集，可避免与包含该片段的对话集发生名称冲突。
+可以通过组件对话框创建独立的对话框来处理特定的方案，将大型对话框集分解成更易于管理的片段。 其中的每个片段有自身的对话集，可避免与包含该片段的对话集发生名称冲突。
 
-使用 _add dialog_ 方法将对话和提示添加到组件对话。
+使用 _add dialog_ 方法将对话框和提示添加到组件对话框。
 使用此方法添加的第一个项将设置为初始对话，但你可以在组件对话的构造函数中显式设置 `InitialDialogId` 属性，对其进行更改。
-启动组件对话时，它会启动其“初始对话”。
+启动组件对话框时，它会启动其 _initial dialog_。
 
 ## <a name="define-the-check-in-component-dialog"></a>定义入住登记组件对话
 

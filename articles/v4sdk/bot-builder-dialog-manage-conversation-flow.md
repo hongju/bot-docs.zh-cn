@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/18/2018
+ms.date: 4/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 554d040dd4c9d126fa70c24f1af5a1ac97a39204
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: 5361b2e411e12b296b60a0f27b560dee5f1f769f
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317609"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904860"
 ---
 # <a name="implement-sequential-conversation-flow"></a>实现顺序聊天流
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 可以使用对话库来管理简单的和复杂的聊天流。 在简单的交互中，机器人将按固定的顺序运行一组步骤，直到聊天完成。 在本文中，我们将使用一个瀑布对话、几个提示和一个对话集来创建简单的交互，向用户提出一系列问题。
 

@@ -8,17 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservices: sdk
-ms.date: 2/26/2019
+ms.date: 4/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 997ad82e15a0fcd67d47b2fd6495c8e88a5ea127
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: 5f8ce42cdc110a81719313db6f02e63639fcad1f
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224815"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904906"
 ---
 # <a name="debug-your-bot-using-transcript-files"></a>使用脚本文件调试机器人
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 若要成功地测试和调试机器人，其中的一个关键是必须能够记录并检查运行机器人时出现的一组条件。 本文讨论如何创建并使用一个机器人脚本文件，目的是提供一组详细的适用于测试和调试的用户交互和机器人响应。
 

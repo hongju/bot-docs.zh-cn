@@ -8,16 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 10/31/2018
+ms.date: 4/31/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4503e2953543d2ec9c06e8cd60484a5c87d95987
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 41a33c20148e128efa1d10b72410eb06a6a94982
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224002"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59905000"
 ---
 # <a name="implement-custom-storage-for-your-bot"></a>为机器人实现自定义存储
+
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 机器人的交互划分为三个方面：首先，与 Azure 机器人服务交换活动；其次，使用存储加载和保存对话状态；最后，机器人需要使用其他任何后端服务来完成其作业。
 

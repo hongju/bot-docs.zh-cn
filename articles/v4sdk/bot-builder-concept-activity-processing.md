@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/13/2018
+ms.date: 04/13/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fa243d8cc00fd6fadf7c51668c9e7ba74d0c06e2
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: d72c374978f509bec0a17ba99c585578757ded61
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "59508224"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904470"
 ---
 # <a name="activity-processing"></a>活动处理
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 机器人和用户通过活动交互和交换信息。 机器人应用程序接收的每个活动都会传递给机器人适配器，该适配器会将活动信息传递给机器人逻辑，并最终将所有响应发送给用户。 接收活动，然后通过机器人对其进行处理，这一过程称为“轮次”；这表示一个完整的机器人运作周期。 所有执行结束，活动完全处理并且机器人的所有层都已完成后，轮次结束。
 

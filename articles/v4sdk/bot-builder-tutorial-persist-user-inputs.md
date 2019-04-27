@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/19/2018
+ms.date: 04/19/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 97a89744282ca1e31a99aa0e45345656e43f5cd0
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: bb1e909de69a7690e844701e182dddcebf91cc87
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225312"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904920"
 ---
 # <a name="persist-user-data"></a>保存用户数据
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 当机器人要求用户进行输入时，你可能希望将某些信息保存到某种形式的存储中。 Bot Framework SDK 允许使用内存中存储或数据库存储（如 CosmosDB）来存储用户输入。 本地存储类型主要用于机器人的测试或原型制作过程。 但是，持久性存储类型（例如数据库存储）则最适合生产性机器人。
 

@@ -10,14 +10,17 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/06/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4c268bc40b7dc3315232d8f695bdb79343b15e21
-ms.sourcegitcommit: c7d2e939ec71f46f48383c750fddaf6627b6489d
+ms.openlocfilehash: 75e12ab44915783c33c3b2ee10775cc6f00487bb
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55795578"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59905030"
 ---
 # <a name="add-telemetry-to-your-bot"></a>将遥测功能添加到机器人
+
+[!INCLUDE[applies-to](../includes/applies-to.md)]
+
 在 Bot Framework SDK 版本 4.2 中，遥测日志记录功能已添加到机器人产品。  这样，机器人应用程序便可将事件数据发送到 Application Insights 等服务。
 
 本文档介绍如何将机器人与新的遥测功能相集成。  

@@ -10,20 +10,20 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 01/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bec6f44db929eab43cfcbbd6b2920b79924b7576
-ms.sourcegitcommit: 32615b88e4758004c8c99e9d564658a700c7d61f
+ms.openlocfilehash: 373470b000b168e6e434ed5ed08b35c18ab09a99
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/04/2019
-ms.locfileid: "55712001"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904960"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多个 LUIS 和 QnA 模型
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 本教程演示当机器人支持对不同的方案使用多个 LUIS 模型和 QnA Maker 服务时，如何使用 Dispatch 服务来路由话语。 在本例中，我们将围绕家庭自动化和天气信息为 Dispatch 配置多个聊天 LUIS 模型，并配置 QnA Maker 服务以基于输入的 FAQ 文本文件来回答问题。 本示例结合了以下服务。
 
-| Name | 说明 |
+| 名称 | 说明 |
 |------|------|
 | 家庭自动化 | 一个可以识别包含关联实体数据的家庭自动化意向的 LUIS 应用。|
 | 天气 | 一个可以识别包含位置数据的 `Weather.GetForecast` 和 `Weather.GetCondition` 意向的 LUIS 应用。|

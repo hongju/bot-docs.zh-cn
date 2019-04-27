@@ -10,16 +10,16 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/19/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 68c01b0f12790393fe0ee7ae0bd28addf2d26ae7
-ms.sourcegitcommit: 05ddade244874b7d6e2fc91745131b99cc58b0d6
+ms.openlocfilehash: 811921cdeccc8c870b5b9dfc9daaab57e449c0cd
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/21/2019
-ms.locfileid: "56591118"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59905040"
 ---
 # <a name="gather-user-input-using-a-dialog-prompt"></a>使用对话提示收集用户输入
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 通过发布问题来收集信息是机器人与用户交互的主要方式之一。 使用对话库可以轻松提问和验证响应，以确保响应与特定的数据类型匹配或符合自定义的验证规则。 本主题详细介绍如何从瀑布对话创建和调用提示。
 

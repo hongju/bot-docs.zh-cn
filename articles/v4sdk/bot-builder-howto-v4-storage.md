@@ -8,18 +8,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 11/13/18
+ms.date: 4/13/19
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 314a8a55906ec150d001b56c67ffbfe0ae2049f8
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: 1f74e34c0eaf303e612f94605104482cd5f1f080
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59541123"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904491"
 ---
 # <a name="write-directly-to-storage"></a>直接写入存储
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 可以对存储对象进行直接读写，不需使用中间件或上下文对象。 这适用于机器人所用数据来源于机器人聊天流外部的情况。 例如，假设机器人允许用户询问天气预报，而它通过读取外部数据库中的数据来检索指定日期的天气预报。 天气数据库的内容不依赖于用户信息或聊天上下文，因此可以直接从存储中读取，无需使用状态管理器。 本文中的代码示例演示如何使用**内存存储**、**Cosmos DB**、**Blob 存储**和 **Azure Blob 脚本存储**对存储进行数据读写。 
 
