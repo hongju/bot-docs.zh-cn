@@ -9,16 +9,16 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 04/09/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1a295f68be626c2d2ef17dcb49b7c7d31ae2cefa
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: 2f15817abe087650bc3f2bb998a32f177848cf50
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59541043"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904530"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
 
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE [applies-to-v4](../includes/applies-to.md)]
 
 Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提供各种功能来帮助轻松开发用于向 Azure AD (Azure Active Directory)、GitHub、Uber 等各种标识提供者验证用户身份的机器人。 这些功能可通过免去某些客户端的幻码验证来改善用户体验。
 
@@ -273,14 +273,14 @@ Sample payload
     }
     ```
 
-    如果不知道如何获取 **Microsoft 应用 ID** 值和 **Microsoft 应用密码**值，可以根据
+如果不知道如何获取 **Microsoft 应用 ID** 值和 **Microsoft 应用密码**值，可以根据
 
-    [机器人通道注册密码](../bot-service-quickstart-registration.md#bot-channels-registration-password)中的说明创建新密码，
-
-    也可以根据 [Find Your Azure Bot’s AppID and AppSecret](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)（查找 Azure 机器人的 AppID 和 AppSecret）中的说明从部署中检索通过“机器人通道注册”预配的 **Microsoft 应用 ID** 和 **Microsoft 应用密码**
+[机器人通道注册密码](../bot-service-quickstart-registration.md#bot-channels-registration-password)中的说明创建新密码，
+  
+也可以根据 [Find Your Azure Bot’s AppID and AppSecret](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)（查找 Azure 机器人的 AppID 和 AppSecret）中的说明，从部署中检索通过“机器人通道注册”预配的 **Microsoft 应用 ID** 和 **Microsoft 应用密码**
 
     > [!NOTE]
-    > 现在即可将此机器人代码发布到 Azure 订阅（右键单击该项目并选择“发布”），但本教程不需要这样做。 你需要设置一个发布配置，该配置使用在 Azure 门户中配置机器人时使用的应用程序和托管计划。
+    > You could now publish this bot code to your Azure subscription (right-click on the project and choose **Publish**), but it is not necessary for this tutorial. You would need to set up a publishing configuration that uses the application and hosting plan that you used when configuration the bot in the Azure Portal.
 
 ## <a name="use-the-emulator-to-test-your-bot"></a>使用模拟器测试机器人
 

@@ -8,17 +8,17 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 09/01/2018
+ms.date: 04/01/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b94150e168942370a38d39742157e57d0118f0eb
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 7f35b8a135cdde6ffaf11798a5c0e4a3688d5b4f
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225075"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904820"
 ---
 # <a name="conversation-flow"></a>会话流
-[!INCLUDE [pre-release-label](../includes/pre-release-label.md)]
+[!INCLUDE[applies-to](../includes/applies-to.md)]
 
 设计机器人的会话流涉及决定机器人在用户向其说出某些内容时如何响应。 机器人首先根据来自用户的消息识别任务或会话主题。 要确定与用户消息相关联的任务或主题（称为“意向”），机器人可以在用户消息的文本中查找单词或模式，或者可以利用[语言理解](bot-builder-concept-luis.md)和 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 等服务。
 
@@ -102,7 +102,8 @@ Bot Framework SDK 提供识别器，用于处理消息以确定意向，因此�
 
 ## <a name="conversation-lifetime"></a>会话生存期
 
-<!-- Note: these activities are dependent on whether the channel actually sends them. Also, we should add links --> 无论何时将机器人添加到会话，其他成员已添加到会话或从会话中删除，或者会话元数据已更改，机器人都会收到会话更新活动。
+<!-- Note: these activities are dependent on whether the channel actually sends them. Also, we should add links -->
+只要将机器人添加到聊天中、或者将其他成员添加到聊天中或从聊天中删除，或者更改了聊天元数据，机器人就会收到聊天更新活动。
 你可能希望让机器人通过问候用户或自我介绍来对会话更新活动作出反应。
 
 机器人接收会话结束活动以指示用户已结束会话。 机器人可以发送_聊天结束_活动以指示正在结束聊天。

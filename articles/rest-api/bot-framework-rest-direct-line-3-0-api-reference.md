@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 36a95ec60af117a9a13843dc078bd9bd5cfde635
-ms.sourcegitcommit: 6ed90a4c90add925a0a865be1127041b7775fd3d
+ms.openlocfilehash: 28074e7ad59249cabbd38436bd02dc48bcab5b88
+ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/30/2018
-ms.locfileid: "50234470"
+ms.lasthandoff: 04/22/2019
+ms.locfileid: "59904880"
 ---
 # <a name="api-reference---direct-line-api-30"></a>API 参考 - Direct Line API 3.0
 
@@ -88,7 +88,7 @@ HTTP/1.1 502 Bad Gateway
 ## <a name="token-operations"></a>令牌操作 
 使用以下操作创建或刷新可供客户端用来访问单个聊天的令牌。
 
-| Operation | Description |
+| Operation | 说明 |
 |----|----|
 | [生成令牌](#generate-token) | 生成适用于新聊天的令牌。 | 
 | [刷新令牌](#refresh-token) | 刷新一个令牌。 | 
@@ -118,7 +118,7 @@ POST /v3/directline/tokens/refresh
 ## <a name="conversation-operations"></a>聊天操作 
 使用以下操作与机器人开启聊天，并在客户端和机器人之间交换活动。
 
-| Operation | Description |
+| Operation | 说明 |
 |----|----|
 | [启动聊天](#start-conversation) | 与机器人开启新的聊天。 | 
 | [获取聊天信息](#get-conversation-information) | 获取现有聊天的相关信息。 此操作生成客户端可用于[重新连接](bot-framework-rest-direct-line-3-0-reconnect-to-conversation.md)到聊天的新 WebSocket 流 URL。 |
@@ -192,7 +192,7 @@ Direct Line 3.0 架构包含所有由 [Bot Framework v3 架构](bot-framework-re
 ### <a name="activityset-object"></a>ActivitySet 对象 
 定义一组活动。<br/><br/>
 
-| 属性 | 类型 | Description |
+| 属性 | Type | 说明 |
 |----|----|----|
 | **activities** | [Activity](bot-framework-rest-connector-api-reference.md#activity-object)[] | Activity 对象的数组。 |
 | **watermark** | 字符串 | 集内活动的最大水印。 客户端可以使用 `watermark` 值来指示[从机器人检索活动](bot-framework-rest-direct-line-3-0-receive-activities.md#http-get)时或[生成 WebSocket 流 URL](bot-framework-rest-direct-line-3-0-reconnect-to-conversation.md) 时所看到的最新消息。 |
@@ -200,7 +200,7 @@ Direct Line 3.0 架构包含所有由 [Bot Framework v3 架构](bot-framework-re
 ### <a name="conversation-object"></a>Conversation 对象
 定义 Direct Line 聊天。<br/><br/>
 
-| 属性 | 类型 | Description |
+| 属性 | Type | 说明 |
 |----|----|----|
 | **conversationId** | 字符串 | 一个 ID，可以唯一标识指定的令牌所适用的聊天。 |
 | **expires_in** | 数字 | 令牌过期前需经历的秒数。 |
@@ -223,6 +223,6 @@ Direct Line 3.0 架构包含所有由 [Bot Framework v3 架构](bot-framework-re
 - 必须使用客户端选择的用户 ID 填充 `from` 属性。
 - 附件可能包含现有资源的 URL 或通过 Direct Line 附件终结点上传的 URL。
 - `channelData` 属性已保留且未经修改。
-- 活动的总大小在序列化为 JSON 后不得超出 300K 字符。
+- 活动的总大小在序列化为 JSON 并加密后不得超出 256K 字符。 因此，建议将活动的大小限制在 150K 以下。 如果需要更多数据，可以考虑将活动分成多个，以及/或者考虑使用附件。
 
 客户端可以为每个请求[发送](bot-framework-rest-direct-line-3-0-send-activity.md)一个活动。 
