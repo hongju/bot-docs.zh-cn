@@ -1,6 +1,6 @@
 ---
 title: 实现顺序聊天流 | Microsoft Docs
-description: 了解如何在 Bot Framework SDK for Node.js 中使用对话管理简单的聊天流。
+description: 了解如何在 Bot Framework SDK 中使用对话管理简单的聊天流。
 keywords: 简单聊天流, 顺序聊天流, 对话, 提示, 瀑布, 对话集
 author: JonathanFingold
 ms.author: v-jofing
@@ -8,537 +8,235 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 4/18/2019
+ms.date: 04/24/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5361b2e411e12b296b60a0f27b560dee5f1f769f
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: ad1209481691e1c1ed4e00b42086b8996aeea6a5
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904860"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032707"
 ---
 # <a name="implement-sequential-conversation-flow"></a>实现顺序聊天流
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-可以使用对话库来管理简单的和复杂的聊天流。 在简单的交互中，机器人将按固定的顺序运行一组步骤，直到聊天完成。 在本文中，我们将使用一个瀑布对话、几个提示和一个对话集来创建简单的交互，向用户提出一系列问题。
+通过发布问题来收集信息是机器人与用户交互的主要方式之一。 使用对话库可以轻松提问和验证响应，以确保响应与特定的数据类型匹配或符合自定义的验证规则。
+
+可以使用对话库来管理简单的和复杂的聊天流。 在简单的交互中，机器人将按固定的顺序运行一组步骤，直到聊天完成。 一般情况下，当机器人需要从用户收集信息时，对话就非常有用。 本主题详细介绍如何通过创建提示并从瀑布对话调用这些提示来实现简单的聊天流。 
 
 ## <a name="prerequisites"></a>先决条件
-- [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download)
-- 本文中的代码基于 **multi-turn-prompt** 示例。 需要获取 [C# ](https://aka.ms/cs-multi-prompts-sample) 或 [JS](https://aka.ms/js-multi-prompts-sample) 示例的副本。
-- 了解[机器人基础知识](bot-builder-basics.md)、[对话库](bot-builder-concept-dialog.md)、[对话状态](bot-builder-dialog-state.md)和 [.bot](bot-file-basics.md) 文件。
 
+- 了解[机器人基础知识][concept-basics]、[管理状态][concept-state]和[对话库][concept-dialogs]。
+- 以 [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample] 编写的**多轮次提示**示例副本。
 
-以下部分说明了为大多数机器人实现简单对话所要执行的步骤：
+## <a name="about-this-sample"></a>关于此示例
 
-## <a name="configure-your-bot"></a>配置机器人
+在多轮次提示示例中，我们将使用一个瀑布对话、几个提示和一个组件对话来创建简单的交互，向用户提出一系列问题。 代码使用对话来循环执行以下步骤：
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+| Steps        | 提示类型  |
+|:-------------|:-------------| 
+| 请求用户提供其交通方式 | 选项提示 |
+| 请求用户输入其姓名 | 文本提示 |
+| 询问用户是否愿意提供其年龄 | 确认提示 |
+| 如果他们回答“是”，则请求他们提供年龄  | 附带验证的数字提示仅接受大于 0 且小于 150 的年龄。 |
+| 询问收集的信息是否“正确” | 重用确认提示 |
 
-我们将在 **Startup.cs** 文件的配置代码中初始化机器人对话状态的状态属性访问器。
+最后，如果用户回答“是”，则显示收集的信息；否则，告知用户他们的信息不会保留。
 
-定义一个 `MultiTurnPromptsBotAccessors` 类用于保存机器人的状态管理对象和状态属性访问器。
-此处只显示了代码的某些部分。
-
-```csharp
-public class MultiTurnPromptsBotAccessors
-{
-    // Initializes a new instance of the class.
-    public MultiTurnPromptsBotAccessors(ConversationState conversationState, UserState userState)
-    {
-        ConversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
-        UserState = userState ?? throw new ArgumentNullException(nameof(userState));
-    }
-
-    public IStatePropertyAccessor<DialogState> ConversationDialogState { get; set; }
-    public IStatePropertyAccessor<UserProfile> UserProfile { get; set; }
-
-    public ConversationState ConversationState { get; }
-    public UserState UserState { get; }
-}
-```
-
-在 `Startup` 类的 `ConfigureServices` 方法中注册访问器类。
-同样，此处只显示了代码的某些部分。
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // ...
-
-    // Create and register state accessors.
-    // Accessors created here are passed into the IBot-derived class on every turn.
-    services.AddSingleton<MultiTurnPromptsBotAccessors>(sp =>
-    {
-        // We need to grab the conversationState we added on the options in the previous step
-        var options = sp.GetRequiredService<IOptions<BotFrameworkOptions>>().Value;
-        var conversationState = options.State.OfType<ConversationState>().FirstOrDefault();
-        var userState = options.State.OfType<UserState>().FirstOrDefault();
-
-        // Create the custom state accessor.
-        // State accessors enable other components to read and write individual properties of state.
-        var accessors = new MultiTurnPromptsBotAccessors(conversationState, userState)
-        {
-            ConversationDialogState = conversationState.CreateProperty<DialogState>("DialogState"),
-            UserProfile = userState.CreateProperty<UserProfile>("UserProfile"),
-        };
-
-        return accessors;
-    });
-}
-```
-
-通过依赖项注入，访问器可供机器人的构造函数代码使用。
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 **index.js** 文件中定义状态管理对象。
-此处只显示了代码的某些部分。
-
-```javascript
-// Import required bot services. See https://aka.ms/bot-services to learn more about the different part of a bot.
-const { BotFrameworkAdapter, ConversationState, MemoryStorage, UserState } = require('botbuilder');
-
-// Define the state store for your bot. See https://aka.ms/about-bot-state to learn more about using MemoryStorage.
-// A bot requires a state storage system to persist the dialog and user state between messages.
-const memoryStorage = new MemoryStorage();
-
-// Create conversation state with in-memory storage provider.
-const conversationState = new ConversationState(memoryStorage);
-const userState = new UserState(memoryStorage);
-
-// Create the main dialog, which serves as the bot's main handler.
-const bot = new MultiTurnBot(conversationState, userState);
-```
-
-机器人的构造函数将创建机器人的状态属性访问器：`this.dialogState` 和 `this.userProfile`。
-
----
-
-## <a name="update-the-bot-turn-handler-to-call-the-dialog"></a>更新机器人轮次处理程序以调用对话
-
-若要运行对话，机器人的轮次处理程序需要为包含机器人对话的对话集创建对话上下文。 机器人可以定义多个对话集，但根据一般经验法则，只应为机器人定义一个对话集。 
+## <a name="create-the-main-dialog"></a>创建主对话
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-对话从机器人的轮次处理程序运行。 处理程序首先创建 `DialogContext`，并继续运行活动的对话，或根据情况开始新对话。 然后，处理程序在轮次结束时保存聊天和用户状态。
+若要使用对话，请安装 **Microsoft.Bot.Builder.Dialogs** NuGet 包。
 
-在 `MultiTurnPromptsBot` 类中，我们已定义包含对话集的 `_dialogs` 属性，从中可生成对话上下文。 同样，此处只显示了轮次处理程序代码的一部分。
+机器人通过 `UserProfileDialog` 来与用户交互。 创建机器人的 `DialogBot` 类时，会将 `UserProfileDialog` 设置为其主对话。 然后，机器人使用 `Run` 帮助器方法来访问该对话。
 
-```csharp
-public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-{
-    // ...
-    if (turnContext.Activity.Type == ActivityTypes.Message)
-    {
-        // Run the DialogSet - let the framework identify the current state of the dialog from
-        // the dialog stack and figure out what (if any) is the active dialog.
-        var dialogContext = await _dialogs.CreateContextAsync(turnContext, cancellationToken);
-        var results = await dialogContext.ContinueDialogAsync(cancellationToken);
+![用户个人资料对话](media/user-profile-dialog.png)
 
-        // If the DialogTurnStatus is Empty we should start a new dialog.
-        if (results.Status == DialogTurnStatus.Empty)
-        {
-            await dialogContext.BeginDialogAsync("details", null, cancellationToken);
-        }
-    }
+**Dialogs\UserProfileDialog.cs**
 
-    // ...
-    // Save the dialog state into the conversation state.
-    await _accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
+我们首先创建派生自 `ComponentDialog` 类的 `UserProfileDialog`，这包括 6 个步骤。
 
-    // Save the user profile updates into the user state.
-    await _accessors.UserState.SaveChangesAsync(turnContext, false, cancellationToken);
-}
-```
+在 `UserProfileDialog` 构造函数中创建瀑布步骤、提示和瀑布对话，然后将其添加到对话集。 提示需要位于使用这些提示的同一对话集中。
+
+[!code-csharp[Constructor snippet](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=22-41)]
+
+接下来，实现该对话使用的步骤。 若要使用提示，请从对话中的某个步骤调用它，然后使用 `stepContext.Result` 检索下一步骤中的提示结果。 在幕后，提示是由两个步骤组成的对话。 首先，提示会请求输入；其次，它会返回有效值，或者使用重新提示从头开始，直到收到有效的输入为止。
+
+应始终从瀑布步骤返回非 null 的 `DialogTurnResult`。 否则，对话可能不按设计意图运行。 此处演示了瀑布对话中 `NameStepAsync` 的实现。
+
+[!code-csharp[Name step](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=56-61)]
+
+在 `AgeStepAsync` 中，我们指定了当用户输入采用的是提示无法分析的格式，或者不符合验证条件，因而无法验证时，要使用的重试提示。 在这种情况下，如果未提供重试提示，则提示将使用初始提示文本来重新提示用户输入。
+
+[!code-csharp[Age step](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=74-93&highlight=10)]
+
+**UserProfile.cs**
+
+用户的交通方式、姓名和年龄将保存在 `UserProfile` 类的实例中。
+
+[!code-csharp[UserProfile class](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/UserProfile.cs?range=9-16)]
+
+**Dialogs\UserProfileDialog.cs**
+
+最后一个步骤检查前一瀑布步骤中调用的对话返回的 `stepContext.Result`。 如果返回值为 true，则我们将使用用户个人资料访问器来获取和更新用户个人资料。 为了获取用户个人资料，我们将调用 `GetAsync` 方法，然后设置 `userProfile.Transport`、`userProfile.Name` 和 `userProfile.Age` 属性的值。 最后，在调用用于结束对话的 `EndDialogAsync` 之前汇总用户的信息。 结束对话会从对话堆栈中弹出该对话，并将可选结果返回到该对话的父级。 父级是启动了刚刚结束的对话的对话或方法。
+
+[!code-csharp[SummaryStepAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=108-134&highlight=5-10,25-26)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-机器人代码使用对话库中的几个类。
+若要使用对话，项目需要安装 **botbuilder-dialogs** npm 包。
 
-```javascript
-const { ChoicePrompt, DialogSet, NumberPrompt, TextPrompt, WaterfallDialog } = require('botbuilder-dialogs');
-```
+机器人通过 `UserProfileDialog` 来与用户交互。 创建机器人的 `DialogBot` 时，会将 `UserProfileDialog` 设置为其主对话。 然后，机器人使用 `run` 帮助器方法来访问该对话。
 
-对话从机器人的轮次处理程序运行。 处理程序首先创建 `DialogContext` (`dc`)，并继续运行活动的对话，或根据情况开始新对话。 然后，处理程序在轮次结束时保存聊天和用户状态。
+![用户个人资料对话](media/user-profile-dialog-js.png)
 
-`MultiTurnBot` 类在 **bot.js** 文件中定义。 此类的构造函数添加对话集的 `dialogs` 属性，从中可生成对话上下文。 此机器人使用 `WHO_ARE_YOU` 对话收集用户数据一次。 填充用户配置文件后，机器人使用 `HELLO_USER` 对话做出响应。 同样，此处只显示了轮次处理程序代码的一部分。
+**dialogs\userProfileDialog.js**
 
-```javascript
-async onTurn(turnContext) {
-    if (turnContext.activity.type === ActivityTypes.Message) {
-        // Create a dialog context object.
-        const dc = await this.dialogs.createContext(turnContext);
+我们首先创建派生自 `ComponentDialog` 类的 `UserProfileDialog`，这包括 6 个步骤。
 
-        const utterance = (turnContext.activity.text || '').trim().toLowerCase();
+在 `UserProfileDialog` 构造函数中创建瀑布步骤、提示和瀑布对话，然后将其添加到对话集。 提示需要位于使用这些提示的同一对话集中。
 
-        // ...
-        // If the bot has not yet responded, continue processing the current dialog.
-        await dc.continueDialog();
+[!code-javascript[Constructor snippet](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=25-47)]
 
-        // Start the sample dialog in response to any other input.
-        if (!turnContext.responded) {
-            const user = await this.userProfile.get(dc.context, {});
-            if (user.name) {
-                await dc.beginDialog(HELLO_USER);
-            } else {
-                await dc.beginDialog(WHO_ARE_YOU);
-            }
-        }
-    }
+接下来，实现该对话使用的步骤。 若要使用提示，请从对话中的某个步骤调用它，然后从步骤上下文检索下一步骤中的提示结果（本例使用 `step.result`）。 在幕后，提示是由两个步骤组成的对话。 首先，提示会请求输入；其次，它会返回有效值，或者使用重新提示从头开始，直到收到有效的输入为止。
 
-    // ...
-    // Save changes to the user state.
-    await this.userState.saveChanges(turnContext);
+应始终从瀑布步骤返回非 null 的 `DialogTurnResult`。 否则，对话可能不按设计意图运行。 此处演示了瀑布对话中 `nameStep` 的实现。
 
-    // End this turn by saving changes to the conversation state.
-    await this.conversationState.saveChanges(turnContext);
-}
-```
+[!code-javascript[name step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=75-78)]
+
+在 `ageStep` 中，我们指定了当用户输入采用的是提示无法分析的格式，或者不符合上述构造函数中指定的验证条件，因而无法验证时，要使用的重试提示。 在这种情况下，如果未提供重试提示，则提示将使用初始提示文本来重新提示用户输入。
+
+[!code-javascript[age step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=90-101&highlight=5)]
+
+**userProfile.js**
+
+用户的交通方式、姓名和年龄将保存在 `UserProfile` 类的实例中。
+
+[!code-javascript[user profile](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/userProfile.js?range=4-10)]
+
+**Dialogs\UserProfileDialog.cs**
+
+最后一个步骤检查前一瀑布步骤中调用的对话返回的 `step.result`。 如果返回值为 true，则我们将使用用户个人资料访问器来获取和更新用户个人资料。 为了获取用户个人资料，我们将调用 `get` 方法，然后设置 `userProfile.transport`、`userProfile.name` 和 `userProfile.age` 属性的值。 最后，在调用用于结束对话的 `endDialog` 之前汇总用户的信息。 结束对话会从对话堆栈中弹出该对话，并将可选结果返回到该对话的父级。 父级是启动了刚刚结束的对话的对话或方法。
+
+[!code-javascript[summary step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=115-136&highlight=4-8,20-21)]
 
 ---
 
-在机器人的轮次处理程序中，创建对话集的对话上下文。 对话上下文访问机器人的状态缓存，可有效记住上一轮次停止时聊天所处的位置。
+## <a name="create-the-extension-method-to-run-the-waterfall-dialog"></a>创建用于运行瀑布对话的扩展方法
 
-如果有活动的对话，对话上下文的 _continue dialog_ 方法将使用触发此轮次的用户输入来递进此对话；否则，机器人将调用对话上下文的 _begin dialog_ 方法来启动对话。
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-最后，针对状态管理对象调用 _save changes_ 方法来保存此轮次发生的任何更改。
+我们定义了一个 `Run` 扩展方法用于创建和访问对话上下文。 此处的 `accessor` 是对话状态属性的状态属性访问器，`dialog` 是用户个人资料组件对话。 由于组件对话定义内部对话集，因此我们必须创建可让消息处理程序代码看到的外部对话集，并使用它来创建对话上下文。
+
+对话上下文是通过调用 `CreateContext` 方法创建的，用于从机器人轮次处理程序内部来与对话集交互。 对话上下文包含当前轮次上下文、父对话和对话状态。对话状态提供一种方法用于在对话中保留信息。
+
+借助对话上下文可以使用对话的字符串 ID 来启动该对话，或继续当前的对话（例如，包含多个步骤的瀑布对话）。 对话上下文将传递到机器人的所有对话和瀑布步骤。
+
+**DialogExtensions.cs**
+
+[!code-csharp[Run method](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/DialogExtensions.cs?range=13-24)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+我们在 `userProfileDialog` 中定义了一个 `run` 帮助器方法用于创建和访问对话上下文。 此处的 `accessor` 是对话状态属性的状态属性访问器，`this` 是用户个人资料组件对话。 由于组件对话定义内部对话集，因此我们必须创建可让消息处理程序代码看到的外部对话集，并使用它来创建对话上下文。
+
+对话上下文是通过调用 `createContext` 方法创建的，用于从机器人轮次处理程序内部来与对话集交互。 对话上下文包含当前轮次上下文、父对话和对话状态。对话状态提供一种方法用于在对话中保留信息。
+
+借助对话上下文可以使用对话的字符串 ID 来启动该对话，或继续当前的对话（例如，包含多个步骤的瀑布对话）。 对话上下文将传递到机器人的所有对话和瀑布步骤。
+
+[!code-javascript[run method](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=55-64)]
+
+---
+
+## <a name="run-the-dialog"></a>运行对话
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+**Bots\DialogBot.cs**
+
+`OnMessageActivityAsync` 处理程序使用扩展方法来启动或继续对话。 在 `OnTurnAsync` 中，我们使用了机器人的状态管理对象将所有状态更改保存到存储中。 （`ActivityHandler.OnTurnAsync` 方法调用各种活动处理程序方法，例如 `OnMessageActivityAsync`。 这样，在消息处理程序完成之后、轮次本身完成之前，我们将会保存状态。）
+
+[!code-csharp[overrides](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Bots/DialogBot.cs?range=33-48&highlight=5-7)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+`onMessage` 处理程序使用帮助器方法来启动或继续对话。 在 `onDialog` 中，我们使用了机器人的状态管理对象将所有状态更改保存到存储中。 （在运行其他定义的处理程序（例如 `onMessage`）之后，最后会调用 `onDialog` 方法。 这样，在消息处理程序完成之后、轮次本身完成之前，我们将会保存状态。）
+
+[!code-javascript[overrides](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/bots/dialogBot.js?range=30-44)]
+
+---
+
+## <a name="register-services-for-the-bot"></a>注册机器人的服务
+
+此机器人使用以下服务。
+
+- 机器人的基本服务：凭据提供程序、适配器和机器人实现。
+- 用于管理状态的服务：存储、用户状态和聊天状态。
+- 机器人使用的对话。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+**Startup.cs**
+
+在 `Startup` 中注册机器人的服务。 可以通过依赖项注入将这些服务用于其他代码部分。
+
+[!code-csharp[ConfigureServices](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Startup.cs?range=17-41)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+**index.js**
+
+在 `index.js` 中注册机器人的服务。 
+
+[!code-javascript[overrides](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/index.js?range=18-49)]
+
+---
+
+> [!NOTE]
+> 内存存储仅用于测试，不用于生产。
+> 请务必对生产用机器人使用持久型存储。
+
+## <a name="to-test-the-bot"></a>测试机器人
+
+1. 安装 [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)（如果尚未安装）。
+1. 在计算机本地运行示例。
+1. 按如下所示启动仿真器，连接到机器人，然后发送消息。
+
+![多轮次提示对话的示例运行](../media/emulator-v4/multi-turn-prompt.png)
+
+## <a name="additional-information"></a>其他信息
 
 ### <a name="about-dialog-and-bot-state"></a>关于对话和机器人状态
 
 在此机器人中，我们定义了两个状态属性访问器：
 
-* 一个访问器是在对话状态属性的聊天状态中创建的。 对话状态跟踪用户在对话集的对话中所处的位置，由对话上下文更新，例如，当我们调用 begin dialog 或 continue dialog 方法时，就会更新对话状态。
-* 一个访问器是在用户配置文件属性的用户状态中创建的。 机器人使用此访问器来跟踪有关用户的信息，我们将在机器人代码中显式管理此状态。
+- 一个访问器是在对话状态属性的聊天状态中创建的。 对话状态跟踪用户在对话集的对话中所处的位置，由对话上下文更新，例如，当我们调用 begin dialog 或 continue dialog 方法时，就会更新对话状态。
+- 一个访问器是在用户配置文件属性的用户状态中创建的。 机器人使用此访问器来跟踪有关用户的信息，我们将在对话代码中显式管理此状态。
 
 状态属性访问器的 _get_ 和 _set_ 方法在状态管理对象的缓存中获取和设置属性值。 首次在某个轮次中请求状态属性的值时，将填充该缓存，但是，必须显式持久保存该值。 为了持久保存对这两个状态属性所做的更改，我们将调用相应状态管理对象的 _save changes_ 方法。
-
-## <a name="initialize-your-bot-and-define-your-dialog"></a>初始化机器人并定义对话
-
-我们的简单聊天建模为一系列向用户提出的问题。 适用于 C# 和 JavaScript 版本的步骤略有不同：
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-1. 请求用户输入其姓名。
-1. 询问他们是否愿意提供其年龄。
-1. 如果他们愿意，则请求提供年龄；否则跳过此步骤。
-1. 询问收集的信息是否正确。
-1. 发送状态消息并结束。
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-对于 `who_are_you` 对话：
-
-1. 请求用户输入其姓名。
-1. 询问他们是否愿意提供其年龄。
-1. 如果他们愿意，则请求提供年龄；否则跳过此步骤。
-1. 发送状态消息并结束。
-
-对于 `hello_user` 对话：
-
-1. 显示机器人收集的用户信息。
-
----
-
-下面是在定义自己的瀑布步骤时要记住的几个要点。
-
-* 每个机器人轮次会反映用户提供的输入，后接机器人提供的响应。 因此，将在瀑布步骤结束时请求用户输入，并在下一个瀑布步骤中接收用户的回答。
-* 每个提示实际上是由两个步骤组成的对话，该对话会循环显示提示，直到收到“有效”输入。 
-
-在此示例中，对话在机器人文件中定义，并在机器人的构造函数中初始化。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-为对话集定义一个实例属性。
-
-```csharp
-// The DialogSet that contains all the Dialogs that can be used at runtime.
-private DialogSet _dialogs;
-```
-
-在机器人的构造函数内创建对话集，向该对话集内添加提示和瀑布对话。
-
-```csharp
-public MultiTurnPromptsBot(MultiTurnPromptsBotAccessors accessors)
-{
-    _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
-
-    // The DialogSet needs a DialogState accessor, it will call it when it has a turn context.
-    _dialogs = new DialogSet(accessors.ConversationDialogState);
-
-    // This array defines how the Waterfall will execute.
-    var waterfallSteps = new WaterfallStep[]
-    {
-        NameStepAsync,
-        NameConfirmStepAsync,
-        AgeStepAsync,
-        ConfirmStepAsync,
-        SummaryStepAsync,
-    };
-
-    // Add named dialogs to the DialogSet. These names are saved in the dialog state.
-    _dialogs.Add(new WaterfallDialog("details", waterfallSteps));
-    _dialogs.Add(new TextPrompt("name"));
-    _dialogs.Add(new NumberPrompt<int>("age"));
-    _dialogs.Add(new ConfirmPrompt("confirm"));
-}
-```
-
-在此示例中，我们将每个步骤定义为单独的方法。 也可以使用 lambda 表达式在构造函数中定义内联步骤。
-
-```csharp
-private static async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-    // Running a prompt here means the next WaterfallStep will be run when the users response is received.
-    return await stepContext.PromptAsync("name", new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") }, cancellationToken);
-}
-
-private async Task<DialogTurnResult> NameConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // Get the current profile object from user state.
-    var userProfile = await _accessors.UserProfile.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
-
-    // Update the profile.
-    userProfile.Name = (string)stepContext.Result;
-
-    // We can send messages to the user at any point in the WaterfallStep.
-    await stepContext.Context.SendActivityAsync(MessageFactory.Text($"Thanks {stepContext.Result}."), cancellationToken);
-
-    // WaterfallStep always finishes with the end of the Waterfall or with another dialog; here it is a Prompt Dialog.
-    return await stepContext.PromptAsync("confirm", new PromptOptions { Prompt = MessageFactory.Text("Would you like to give your age?") }, cancellationToken);
-}
-
-private async Task<DialogTurnResult> AgeStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    if ((bool)stepContext.Result)
-    {
-        // User said "yes" so we will be prompting for the age.
-
-        // Get the current profile object from user state.
-        var userProfile = await _accessors.UserProfile.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
-
-        // WaterfallStep always finishes with the end of the Waterfall or with another dialog, here it is a Prompt Dialog.
-        return await stepContext.PromptAsync("age", new PromptOptions { Prompt = MessageFactory.Text("Please enter your age.") }, cancellationToken);
-    }
-    else
-    {
-        // User said "no" so we will skip the next step. Give -1 as the age.
-        return await stepContext.NextAsync(-1, cancellationToken);
-    }
-}
-
-
-private async Task<DialogTurnResult> ConfirmStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // Get the current profile object from user state.
-    var userProfile = await _accessors.UserProfile.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
-
-    // Update the profile.
-    userProfile.Age = (int)stepContext.Result;
-
-    // We can send messages to the user at any point in the WaterfallStep.
-    if (userProfile.Age == -1)
-    {
-        await stepContext.Context.SendActivityAsync(MessageFactory.Text($"No age given."), cancellationToken);
-    }
-    else
-    {
-        // We can send messages to the user at any point in the WaterfallStep.
-        await stepContext.Context.SendActivityAsync(MessageFactory.Text($"I have your age as {userProfile.Age}."), cancellationToken);
-    }
-
-    // WaterfallStep always finishes with the end of the Waterfall or with another dialog, here it is a Prompt Dialog.
-    return await stepContext.PromptAsync("confirm", new PromptOptions { Prompt = MessageFactory.Text("Is this ok?") }, cancellationToken);
-}
-
-private async Task<DialogTurnResult> SummaryStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    if ((bool)stepContext.Result)
-    {
-        // Get the current profile object from user state.
-        var userProfile = await _accessors.UserProfile.GetAsync(stepContext.Context, () => new UserProfile(), cancellationToken);
-
-        // We can send messages to the user at any point in the WaterfallStep.
-        if (userProfile.Age == -1)
-        {
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"I have your name as {userProfile.Name}."), cancellationToken);
-        }
-        else
-        {
-            await stepContext.Context.SendActivityAsync(MessageFactory.Text($"I have your name as {userProfile.Name} and age as {userProfile.Age}."), cancellationToken);
-        }
-    }
-    else
-    {
-        // We can send messages to the user at any point in the WaterfallStep.
-        await stepContext.Context.SendActivityAsync(MessageFactory.Text("Thanks. Your profile will not be kept."), cancellationToken);
-    }
-
-    // WaterfallStep always finishes with the end of the Waterfall or with another dialog, here it is the end.
-    return await stepContext.EndDialogAsync(cancellationToken: cancellationToken);
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在此示例中，瀑布对话是在 **bot.js** 文件中定义的。
-
-定义要用于状态属性访问器、提示和对话的标识符。
-
-```javascript
-const DIALOG_STATE_PROPERTY = 'dialogState';
-const USER_PROFILE_PROPERTY = 'user';
-
-const WHO_ARE_YOU = 'who_are_you';
-const HELLO_USER = 'hello_user';
-
-const NAME_PROMPT = 'name_prompt';
-const CONFIRM_PROMPT = 'confirm_prompt';
-const AGE_PROMPT = 'age_prompt';
-```
-
-在机器人的构造函数中定义并创建对话集，并将提示和瀑布对话添加到该集。
-`NumberPrompt` 包含自定义验证，以确保用户输入大于 0 的年龄。
-
-```javascript
-constructor(conversationState, userState) {
-    // Create a new state accessor property. See https://aka.ms/about-bot-state-accessors to learn more about bot state and state accessors.
-    this.conversationState = conversationState;
-    this.userState = userState;
-
-    this.dialogState = this.conversationState.createProperty(DIALOG_STATE_PROPERTY);
-
-    this.userProfile = this.userState.createProperty(USER_PROFILE_PROPERTY);
-
-    this.dialogs = new DialogSet(this.dialogState);
-
-    // Add prompts that will be used by the main dialogs.
-    this.dialogs.add(new TextPrompt(NAME_PROMPT));
-    this.dialogs.add(new ChoicePrompt(CONFIRM_PROMPT));
-    this.dialogs.add(new NumberPrompt(AGE_PROMPT, async (prompt) => {
-        if (prompt.recognized.succeeded) {
-            if (prompt.recognized.value <= 0) {
-                await prompt.context.sendActivity(`Your age can't be less than zero.`);
-                return false;
-            } else {
-                return true;
-            }
-        }
-        return false;
-    }));
-
-    // Create a dialog that asks the user for their name.
-    this.dialogs.add(new WaterfallDialog(WHO_ARE_YOU, [
-        this.promptForName.bind(this),
-        this.confirmAgePrompt.bind(this),
-        this.promptForAge.bind(this),
-        this.captureAge.bind(this)
-    ]));
-
-    // Create a dialog that displays a user name after it has been collected.
-    this.dialogs.add(new WaterfallDialog(HELLO_USER, [
-        this.displayProfile.bind(this)
-    ]));
-}
-```
-
-由于我们的对话步骤方法引用实例属性，因此我们需要使用 `bind` 方法，以便在每个步骤方法中正确解析 `this` 对象。
-
-在此示例中，我们将每个步骤定义为单独的方法。 也可以使用 lambda 表达式在构造函数中定义内联步骤。
-
-```javascript
-// This step in the dialog prompts the user for their name.
-async promptForName(step) {
-    return await step.prompt(NAME_PROMPT, `What is your name, human?`);
-}
-
-// This step captures the user's name, then prompts whether or not to collect an age.
-async confirmAgePrompt(step) {
-    const user = await this.userProfile.get(step.context, {});
-    user.name = step.result;
-    await this.userProfile.set(step.context, user);
-    await step.prompt(CONFIRM_PROMPT, 'Do you want to give your age?', ['yes', 'no']);
-}
-
-// This step checks the user's response - if yes, the bot will proceed to prompt for age.
-// Otherwise, the bot will skip the age step.
-async promptForAge(step) {
-    if (step.result && step.result.value === 'yes') {
-        return await step.prompt(AGE_PROMPT, `What is your age?`,
-            {
-                retryPrompt: 'Sorry, please specify your age as a positive number or say cancel.'
-            }
-        );
-    } else {
-        return await step.next(-1);
-    }
-}
-
-// This step captures the user's age.
-async captureAge(step) {
-    const user = await this.userProfile.get(step.context, {});
-    if (step.result !== -1) {
-        user.age = step.result;
-        await this.userProfile.set(step.context, user);
-        await step.context.sendActivity(`I will remember that you are ${ step.result } years old.`);
-    } else {
-        await step.context.sendActivity(`No age given.`);
-    }
-    return await step.endDialog();
-}
-
-// This step displays the captured information back to the user.
-async displayProfile(step) {
-    const user = await this.userProfile.get(step.context, {});
-    if (user.age) {
-        await step.context.sendActivity(`Your name is ${ user.name } and you are ${ user.age } years old.`);
-    } else {
-        await step.context.sendActivity(`Your name is ${ user.name } and you did not share your age.`);
-    }
-    return await step.endDialog();
-}
-```
-
----
 
 此示例从对话内部更新用户配置文件状态。 这种做法适用于简单的机器人；如果你想要在多个机器人中重复使用某个对话，则此做法不适用。
 
 有多种选项可将对话步骤与机器人状态相分离。 例如，在对话收集完整信息后，你可以：
 
-* 使用 _end dialog_ 方法将收集的数据作为返回值返回给父上下文。 此上下文可能是机器人的轮次处理程序，或对话堆栈中以前的某个活动对话。 这就是提示类的设计方式。
-* 向相应的服务生成请求。 如果机器人充当较大服务的前端，此选项可能很适合。
-
-## <a name="test-your-dialog"></a>测试对话
-
-在本地生成并运行机器人，然后使用仿真器来与机器人交互。
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-1. 机器人发送初始问候消息，以响应将用户添加到聊天的聊天更新活动。
-1. 输入 `hi` 或其他内容。 由于在此轮次尚未出现活动的对话，因此机器人会启动 `details` 对话。
-   * 机器人发送第一条对话提示，并等待更多输入。
-1. 用户回答机器人的提问；对话不断递进。
-1. 对话的最后一个步骤根据输入发送 `Thanks` 消息。
-   * 对话结束时，将从对话堆栈中删除该对话，机器人不再有活动的对话。
-1. 输入 `hi` 或其他内容再次启动对话。
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-1. 机器人发送初始问候消息，以响应将用户添加到聊天的聊天更新活动。
-1. 输入 `hi` 或其他内容。 由于在此轮次尚未出现活动的对话并且未提供用户配置文件，因此机器人会启动 `who_are_you` 对话。
-   * 机器人发送第一条对话提示，并等待更多输入。
-1. 用户回答机器人的提问；对话不断递进。
-1. 对话的最后一个步骤发送简短的确认消息。
-1. 输入 `hi` 或其他内容。
-   * 机器人启动单步 `hello_user` 对话，这会显示收集的数据中的信息，并立即结束。
-
----
-
-## <a name="additional-resources"></a>其他资源
-可以依赖适用于每种提示的内置验证（如下所示），也可以将自己的自定义验证添加到提示。 有关详细信息，请参阅[使用对话提示收集用户输入](bot-builder-prompts.md)。
+- 使用 end dialog 方法将收集的数据作为返回值返回给父上下文。 此上下文可能是机器人的轮次处理程序，或对话堆栈中以前的某个活动对话。 这就是提示类的设计方式。
+- 向相应的服务生成请求。 如果机器人充当较大服务的前端，此选项可能很适合。
 
 ## <a name="next-steps"></a>后续步骤
 
 > [!div class="nextstepaction"]
-> [使用分支和循环创建高级聊天流](bot-builder-dialog-manage-complex-conversation-flow.md)
+> [向机器人添加自然语言理解](bot-builder-howto-v4-luis.md)
+
+<!-- Footnote-style links -->
+
+[concept-basics]: bot-builder-basics.md
+[concept-state]: bot-builder-concept-state.md
+[concept-dialogs]: bot-builder-concept-dialog.md
+
+[prompting]: bot-builder-prompts.md
+[component-dialogs]: bot-builder-compositcontrol.md
+
+[cs-sample]: https://aka.ms/cs-multi-prompts-sample
+[js-sample]: https://aka.ms/js-multi-prompts-sample

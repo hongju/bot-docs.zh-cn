@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 1/10/2019
+ms.date: 04/25/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a7f6c22f35719eacf66598e79df5fe52ff19dd43
-ms.sourcegitcommit: 103aa3316f9ff658cf2b0d341c5e76c3efc581ee
+ms.openlocfilehash: 53dd51c871b3d386caaa01bd2e652092e7477e09
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59540361"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033508"
 ---
 # <a name="how-bots-work"></a>机器人的工作原理
 
@@ -55,171 +55,65 @@ ms.locfileid: "59540361"
 
 在上述示例中，机器人使用包含相同文本消息的另一个消息活动回复了原始消息活动。 处理工作从 HTTP POST 请求（包含以 JSON 有效负载形式传递的活动信息）抵达 Web 服务器时开始。 在 C# 中，这通常是一个 ASP.NET 项目；在 JavaScript Node.js 项目中，这可能是 Express 或 Restify 等常用框架之一。
 
-适配器（SDK 的集成组件）是 SDK 运行时的核心。 活动以 JSON 形式承载在 HTTP POST 正文中。 将反序列化此 JSON 以创建 Activity 对象，然后通过调用 *process activity* 方法将此对象传递给适配器。 收到活动时，适配器会创建轮次上下文并调用中间件。 之所以称作“轮次上下文”，是因为使用了“轮次”一词来描述与活动抵达相关的所有处理。 轮次上下文是 SDK 中最重要的抽象之一，它不仅将入站活动传递到所有中间件组件和应用程序逻辑，而且还提供所需的机制让中间件组件和应用程序逻辑发送出站活动。 轮次上下文提供 _send、update 和 delete activity_ 响应方法来响应活动。 每个响应方法都在异步进程中运行。 
+适配器（SDK 的集成组件）是 SDK 运行时的核心。 活动以 JSON 形式承载在 HTTP POST 正文中。 将反序列化此 JSON 以创建 Activity 对象，然后通过调用 *process activity* 方法将此对象传递给适配器。 收到活动时，适配器会创建轮次上下文并调用中间件。 
+
+如前所述，轮次上下文提供一个机制来让机器人发送出站活动（主要是为了响应入站活动）。 为此，轮次上下文提供 _send、update 和 delete activity_ 响应方法。 每个响应方法都在异步进程中运行。 
 
 [!INCLUDE [alert-await-send-activity](../includes/alert-await-send-activity.md)]
 
+## <a name="activity-handlers"></a>活动处理程序
+
+当机器人收到某个活动时，它会将该活动传递给其活动处理程序。 幕后还有一个称为“轮次处理程序”的基本处理程序。 所有活动都通过轮次处理程序路由。 然后，对于收到的任何类型的活动，该轮次处理程序会调用各个活动处理程序。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+例如，如果机器人收到了某个消息活动，轮次处理程序将会看到该传入的活动，并将其发送到 `OnMessageActivityAsync` 活动处理程序。 
+
+生成机器人时，用于处理和响应消息的机器人逻辑将进入此 `OnMessageActivityAsync` 处理程序。 同样，用于处理正在添加到聊天中的成员的逻辑将进入 `OnMembersAddedAsync` 处理程序，每次将成员添加到聊天时，都会调用该处理程序。
+
+若要实现这些处理程序的逻辑，需要根据下面的[机器人逻辑](#bot-logic)部分所述，在机器人中重写这些方法。 其中的每个处理程序没有基实现，因此，只需在重写中添加所需的逻辑。
+
+在某些情况下，需要在轮次结束时重写基轮次处理程序，例如[保存状态](bot-builder-concept-state.md)。 执行此操作时，请务必先调用 `await base.OnTurnAsync(turnContext, cancellationToken);`，以确保 `OnTurnAsync` 的基实现在其他代码之前运行。 除此之外，该基实现还负责调用剩余的活动处理程序，例如 `OnMessageActivityAsync`。
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+例如，如果机器人收到了某个消息活动，轮次处理程序将会看到该传入的活动，并将其发送到 `onMessage` 活动处理程序。
+
+生成机器人时，用于处理和响应消息的机器人逻辑将进入此 `onMessage` 处理程序。 同样，用于处理正在添加到聊天中的成员的逻辑将进入 `onMembersAdded` 处理程序，每次将成员添加到聊天时，都会调用该处理程序。
+
+若要实现这些处理程序的逻辑，需要根据下面的[机器人逻辑](#bot-logic)部分所述，在机器人中重写这些方法。 对于其中的每个处理程序，请定义机器人逻辑，**并务必在最后调用 `next()`**。 调用 `next()` 可确保运行下一个处理程序。
+
+只有在非常规的情况下才需要重写基轮次处理程序，因此，在尝试重写时请保持谨慎。 对于在轮次结束时要执行的[保存状态](bot-builder-concept-state.md)等操作，可以使用一个名为 `onDialog` 的特殊处理程序。 `onDialog` 处理程序在剩余的处理程序运行之后才最后运行，与特定的活动类型无关。 与使用上述所有处理程序时一样，请务必调用 `next()` 来确保完成剩余的过程。
+
+---
 
 ## <a name="middleware"></a>中间件
-中间件非常类似于其他任何消息传送中间件，由一组线性组件构成，其中每个组件按顺序执行，并有机会对活动运行。 中间件管道的最后一个阶段是一个回调，该回调针对已由应用程序注册到适配器的机器人类调用轮次处理程序（C# 中的 `OnTurnAsync`，以及 JS 中的 `onTurn`）函数。 轮次处理程序采用轮次上下文作为参数。通常，在轮次处理程序函数内部运行的应用程序逻辑将处理入站活动的内容，在响应中生成一个或多个活动，并使用轮次上下文中的 *send activity* 函数发出这些活动。 调用轮次上下文中的 *send activity* 会导致针对出站活动调用中间件组件。 中间件组件在机器人的轮次处理程序函数之前和之后执行。 执行在本质上是嵌套的，因此，有时称作“俄罗斯套娃”或类似叫法。 有关中间件的更深入信息，请参阅[中间件主题](~/v4sdk/bot-builder-concept-middleware.md)。
+
+中间件非常类似于其他任何消息传送中间件，由一组线性组件构成，其中每个组件按顺序执行，并有机会对活动运行。 中间件管道的最后一个阶段是回调已由应用程序注册到适配器 *process activity* 方法的机器人类中的轮次处理程序。 该轮次处理程序通常是 C# 中的 `OnTurnAsync` 和 JavaScript 中的 `onTurn`。
+
+轮次处理程序采用轮次上下文作为参数。通常，在轮次处理程序函数内部运行的应用程序逻辑将处理入站活动的内容，在响应中生成一个或多个活动，并使用轮次上下文中的 *send activity* 函数发出这些活动。 调用轮次上下文中的 *send activity* 会导致针对出站活动调用中间件组件。 中间件组件在机器人的轮次处理程序函数之前和之后执行。 执行在本质上是嵌套的，因此，有时称作“俄罗斯套娃”或类似叫法。 有关中间件的更深入信息，请参阅[中间件主题](~/v4sdk/bot-builder-concept-middleware.md)。
 
 ## <a name="bot-structure"></a>机器人结构
-以下部分介绍机器人的关键组成部分。
 
-### <a name="prerequisites"></a>先决条件
-- 以 **[C#](https://aka.ms/EchoBotWithStateCSharp) 或 [JS](https://aka.ms/EchoBotWithStateJS)** 编写的 **EchoBotWithCounter** 示例的副本。 此处仅显示相关代码，但你可以参考示例中的完整源代码。
+以下部分介绍 EchoBot 的关键片段，可以使用针对 [**CSharp**](../dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [**JavaScript**](../javascript/bot-builder-javascript-quickstart.md) 提供的模板轻松创建这些片段。
 
-# <a name="ctabcs"></a>[C#](#tab/cs)
+<!--Need to add section calling out the controller in code, and explaining it further-->
 
-机器人是一种 [ASP.NET Core](https://docs.microsoft.com/aspnet/core/?view=aspnetcore-2.1) Web 应用程序。 在 [ASP.NET](https://docs.microsoft.com/aspnet/core/fundamentals/index?view=aspnetcore-2.1&tabs=aspnetcore2x) 基础知识中，可以看到 **Program.cs** 和 **Startup.cs** 等文件包含类似的代码。 这些文件并非特定于机器人，所有 Web 应用都需要它们。 
+机器人是一个 Web 应用程序，我们提供了适用于每种语言的模板。
 
-### <a name="bot-logic"></a>机器人逻辑
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-主要机器人逻辑在派生自 `IBot` 接口的 `EchoWithCounterBot` 类中定义。 `IBot` 定义单个方法 `OnTurnAsync`。 应用程序必须实现此方法。 `OnTurnAsync` 包含 turnContext，后者提供有关传入活动的信息。 传入活动对应于入站 HTTP 请求。 活动可以属于不同的类型，因此，让我们先检查机器人是否收到了消息。 如果收到的是消息，则我们可以从轮次上下文获取聊天状态、递增轮次计数器，然后将新的轮次计数器值保存到聊天状态中。 然后使用 SendActivityAsync 调用将一条消息发回给用户。 传出活动对应于出站 HTTP 请求。
+VSIX 模板生成 [ASP.NET MVC Core](https://dotnet.microsoft.com/apps/aspnet/mvc) Web 应用。 在 [ASP.NET](https://docs.microsoft.com/aspnet/core/fundamentals/index?view=aspnetcore-2.1&tabs=aspnetcore2x) 基础知识中，可以看到 **Program.cs** 和 **Startup.cs** 等文件包含类似的代码。 这些文件并非特定于机器人，所有 Web 应用都需要它们。
 
-```cs
-public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-{
-    if (turnContext.Activity.Type == ActivityTypes.Message)
-    {
-        // Get the conversation state from the turn context.
-        var oldState = await _accessors.CounterState.GetAsync(turnContext, () => new CounterState());
+### <a name="appsettingsjson-file"></a>appsettings.json 文件
 
-        // Bump the turn count for this conversation.
-        var newState = new CounterState { TurnCount = oldState.TurnCount + 1 };
+**appsettings.json** 文件指定机器人的配置信息，例如应用 ID 、密码等。 如果使用特定的技术或者在生产环境中使用此机器人，则需要将特定的密钥或 URL 添加到此配置。 但是，对于此聊天机器人，目前不需要执行任何操作；暂时可将应用 ID 和密码保持未定义状态。
 
-        // Set the property using the accessor.
-        await _accessors.CounterState.SetAsync(turnContext, newState);
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-        // Save the new turn count into the conversation state.
-        await _accessors.ConversationState.SaveChangesAsync(turnContext);
+<!-- TODO: Update this aka link to point to samples/javascript_nodejs/02.echobot (instead of samples/javascript_nodejs/02.a.echobot) once work-in-progress is merged into master. -->
 
-        // Echo back to the user whatever they typed.
-        var responseMessage = $"Turn {newState.TurnCount}: You sent '{turnContext.Activity.Text}'\n";
-        await turnContext.SendActivityAsync(responseMessage);
-    }
-    else
-    {
-        await turnContext.SendActivityAsync($"{turnContext.Activity.Type} event detected");
-    }
-}
-```
-
-### <a name="set-up-services"></a>设置服务
-
-startup.cs 文件中的 `ConfigureServices` 方法从 [.bot](bot-builder-basics.md#the-bot-file) 文件加载连接服务，捕获并记录聊天轮次期间发生的任何错误，设置凭据提供程序，然后创建一个聊天状态对象用于在内存中存储聊天数据。
-
-```csharp
-services.AddBot<EchoWithCounterBot>(options =>
-{
-    // Creates a logger for the application to use.
-    ILogger logger = _loggerFactory.CreateLogger<EchoWithCounterBot>();
-
-    var secretKey = Configuration.GetSection("botFileSecret")?.Value;
-    var botFilePath = Configuration.GetSection("botFilePath")?.Value;
-
-    // Loads .bot configuration file and adds a singleton that your Bot can access through dependency injection.
-    BotConfiguration botConfig = null;
-    try
-    {
-        botConfig = BotConfiguration.Load(botFilePath ?? @".\BotConfiguration.bot", secretKey);
-    }
-    catch
-    {
-        //...
-    }
-
-    services.AddSingleton(sp => botConfig);
-
-    // Retrieve current endpoint.
-    var environment = _isProduction ? "production" : "development";
-    var service = botConfig.Services.Where(s => s.Type == "endpoint" && s.Name == environment).FirstOrDefault();
-    if (!(service is EndpointService endpointService))
-    {
-        throw new InvalidOperationException($"The .bot file does not contain an endpoint with name '{environment}'.");
-    }
-
-    options.CredentialProvider = new SimpleCredentialProvider(endpointService.AppId, endpointService.AppPassword);
-
-    // Catches any errors that occur during a conversation turn and logs them.
-    options.OnTurnError = async (context, exception) =>
-    {
-        logger.LogError($"Exception caught : {exception}");
-        await context.SendActivityAsync("Sorry, it looks like something went wrong.");
-    };
-
-    // The Memory Storage used here is for local bot debugging only. When the bot
-    // is restarted, everything stored in memory will be gone.
-    IStorage dataStore = new MemoryStorage();
-
-    // ...
-
-    // Create Conversation State object.
-    // The Conversation State object is where we persist anything at the conversation-scope.
-    var conversationState = new ConversationState(dataStore);
-
-    options.State.Add(conversationState);
-});
-```
-
-`ConfigureServices` 方法还会创建并注册 **EchoBotStateAccessors.cs** 文件中定义的、并使用 ASP.NET Core 中的依赖项注入框架传递到公共 `EchoWithCounterBot` 构造函数的 `EchoBotAccessors`。
-
-```csharp
-// Accessors created here are passed into the IBot-derived class on every turn.
-services.AddSingleton<EchoBotAccessors>(sp =>
-{
-    var options = sp.GetRequiredService<IOptions<BotFrameworkOptions>>().Value;
-    // ...
-    var conversationState = options.State.OfType<ConversationState>().FirstOrDefault();
-    // ...
-
-    // Create the custom state accessor.
-    // State accessors enable other components to read and write individual properties of state.
-    var accessors = new EchoBotAccessors(conversationState)
-    {
-        CounterState = conversationState.CreateProperty<CounterState>(EchoBotAccessors.CounterStateName),
-    };
-
-    return accessors;
-});
-```
-
-`Configure` 方法通过指定应用需使用 Bot Framework 和其他几个文件来完成应用的配置。 使用 Bot Framework 的所有机器人需要该配置调用。 应用启动时，运行时会调用 `ConfigureServices` 和 `Configure`。
-
-### <a name="manage-state"></a>管理状态
-
-此文件包含机器人用来保持当前状态的简单类。 其中仅包含一个用于递增计数器的 `int`。
-
-```cs
-public class CounterState
-{
-    public int TurnCount { get; set; } = 0;
-}
-```
-
-### <a name="accessor-class"></a>访问器类
-
-`EchoBotAccessors` 类创建为 `Startup` 类中的单一实例，并传递给 IBot 派生的类。 在本例中为 `public class EchoWithCounterBot : IBot`。 机器人使用访问器来保存聊天数据。 `EchoBotAccessors` 构造函数传入到 Startup.cs 文件中创建的聊天对象。
-
-```cs
-public class EchoBotAccessors
-{
-    public EchoBotAccessors(ConversationState conversationState)
-    {
-        ConversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
-    }
-
-    public static string CounterStateName { get; } = $"{nameof(EchoBotAccessors)}.CounterState";
-
-    public IStatePropertyAccessor<CounterState> CounterState { get; set; }
-
-    public ConversationState ConversationState { get; }
-}
-```
-
-# <a name="javascripttabjs"></a>[JavaScript](#tab/js)
-
-Yeoman 生成器创建 [restify](http://restify.com/) 类型的 Web 应用程序。 如果在相应文档中查看 restify 快速入门，会看到类似于生成的 **index.js** 文件的应用。 本部分主要介绍 **package.json**、**.env**、**index.js**、**bot.js** 和 **echobot-with-counter.bot** 文件。 此处未复制某些文件中的代码，但在运行机器人时会看到这些文件，或者可以参考 [Node.js echobot-with-counter](https://aka.ms/js-echobot-with-counter) 示例。
+Yeoman 生成器创建 [restify](http://restify.com/) 类型的 Web 应用程序。 如果在相应文档中查看 restify 快速入门，会看到类似于生成的 **index.js** 文件的应用。 我们将介绍模板生成的一些关键文件。 此处未复制某些文件中的代码，但在运行机器人时会看到这些文件，或者可以参考 [Node.js echobot](https://aka.ms/js-echobot-sample) 示例。
 
 ### <a name="packagejson"></a>package.json
 
@@ -233,7 +127,169 @@ Yeoman 生成器创建 [restify](http://restify.com/) 类型的 Web 应用程序
 
 `npm install dotenv`
 
-### <a name="indexjs"></a>index.js
+---
+
+### <a name="bot-logic"></a>机器人逻辑
+
+机器人逻辑处理来自一个或多个通道的传入活动，并在响应中生成传出活动。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+主要机器人逻辑在机器人代码（此处名为 `Bots/EchoBot.cs`）中定义。 `EchoBot` 派生自 `AcitivityHandler`，后者又派生自 `IBot` 接口。 `ActivityHandler` 为不同类型的活动定义各种处理程序，例如，此处定义了两个处理程序：`OnMessageActivityAsync` 和 `OnMembersAddedAsync`。 这些方法受保护，但可将其覆盖，因为它们派生自 `ActivityHandler`。
+
+`ActivityHandler` 中定义的处理程序为：
+
+| 事件 | Handler | 说明 |
+| :-- | :-- | :-- |
+| 已收到任一活动类型 | `OnTurnAsync` | 根据收到的活动类型调用其他处理程序之一。 |
+| 已收到消息活动 | `OnMessageActivityAsync` | 重写此方法可以处理 `Message` 活动。 |
+| 已收到聊天更新活动 | `OnConversationUpdateActivityAsync` | 收到 `ConversationUpdate` 活动时，如果除机器人以外的成员加入或退出聊天，则调用某个处理程序。 |
+| 非机器人成员加入了聊天 | `OnMembersAddedAsync` | 重写此方法可以处理加入聊天的成员。 |
+| 非机器人成员退出了聊天 | `OnMembersRemovedAsync` | 重写此方法可以处理退出聊天的成员。 |
+| 已收到事件活动 | `OnEventActivityAsync` | 收到 `Event` 活动时，调用特定于事件类型的处理程序。 |
+| 已收到令牌响应事件活动 | `OnTokenResponseEventAsync` | 重写此方法可以处理令牌响应事件。 |
+| 已收到非令牌响应事件活动 | `OnEventAsync` | 重写此方法可以处理其他类型的事件。 |
+| 已收到其他活动类型 | `OnUnrecognizedActivityTypeAsync` | 重写此方法可以处理未经处理的任何活动类型。 |
+
+这些不同的处理程序具有一个 `turnContext`，用于提供有关对应于入站 HTTP 请求的传入活动的信息。 活动可以是各种类型，因此，每个处理程序在其轮次上下文参数中提供一个强类型化的活动，在大多数情况下，始终会处理 `OnMessageActivityAsync`。
+
+与在此框架的 4.x 旧版中一样，还有一个选项可以实现公共方法 `OnTurnAsync`。 目前，此方法的基实现会处理错误检查，然后根据传入活动的类型调用每个特定的处理程序（例如本示例中定义的两个处理程序）。 在大多数情况下，可以不用理会该方法并使用单个处理程序，但如果你的情况要求使用 `OnTurnAsync` 的自定义实现，则仍可以考虑该方法。
+
+> [!IMPORTANT]
+> 如果重写 `OnTurnAsync` 方法，则需要调用 `base.OnTurnAsync` 以获取用于调用其他所有 `On<activity>Async` 处理程序的基实现，或自行调用这些处理程序。 否则不会调用这些处理程序，并且不会运行该代码。
+
+在本示例中，我们将欢迎新用户，或者回显用户使用 `SendActivityAsync` 调用发送的消息。 出站活动对应于出站 HTTP POST 请求。
+
+```cs
+public class MyBot : ActivityHandler
+{
+    protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
+    {
+        await turnContext.SendActivityAsync(MessageFactory.Text($"Echo: {turnContext.Activity.Text}"), cancellationToken);
+    }
+
+    protected override async Task OnMembersAddedAsync(IList<ChannelAccount> membersAdded, ITurnContext<IConversationUpdateActivity> turnContext, CancellationToken cancellationToken)
+    {
+        foreach (var member in membersAdded)
+        {
+            await turnContext.SendActivityAsync(MessageFactory.Text($"welcome {member.Name}"), cancellationToken);
+        }
+    }
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+主要机器人逻辑在机器人代码（此处名为 `bots\echoBot.js`）中定义。 `EchoBot` 派生自 `AcitivityHandler`。 `ActivityHandler` 为不同类型的活动定义各种处理程序，你可以通过提供其他逻辑（例如，此处使用了 `onMessage` 和 `onConversationUpdate`）来修改机器人的行为。
+
+`ActivityHandler` 中定义的处理程序为：
+
+| 事件 | Handler | 说明 |
+| :-- | :-- | :-- |
+| 已收到任一活动类型 | `onTurn` | 根据收到的活动类型调用其他处理程序之一。 |
+| 已收到消息活动 | `onMessage` | 提供一个相关的函数用于处理 `Message` 活动。 |
+| 已收到聊天更新活动 | `onConversationUpdate` | 收到 `ConversationUpdate` 活动时，如果除机器人以外的成员加入或退出聊天，则调用某个处理程序。 |
+| 非机器人成员加入了聊天 | `onMembersAdded` | 提供一个相关的函数用于处理加入聊天的成员。 |
+| 非机器人成员退出了聊天 | `onMembersRemoved` | 提供一个相关的函数用于处理退出聊天的成员。 |
+| 已收到事件活动 | `onEvent` | 收到 `Event` 活动时，调用特定于事件类型的处理程序。 |
+| 已收到令牌响应事件活动 | `onTokenResponseEvent` | 提供一个相关的函数用于处理令牌响应事件。 |
+| 已收到其他活动类型 | `onUnrecognizedActivityType` | 提供一个相关的函数用于处理未经处理的任何活动类型。 |
+| 活动处理程序已完成 | `onDialog` | 提供一个相关的函数，用于处理在剩余活动处理程序都已完成之后，应在轮次结束时完成的工作。 |
+
+在每个轮次，我们先检查机器人是否收到了消息。 当我们收到用户的消息时，会回显他们发送的消息。
+
+```javascript
+const { ActivityHandler } = require('botbuilder');
+
+class MyBot extends ActivityHandler {
+    constructor() {
+        super();
+        // See https://aka.ms/about-bot-activity-message to learn more about the message and other activity types.
+        this.onMessage(async (context, next) => {
+            await context.sendActivity(`You said '${ context.activity.text }'`);
+            // By calling next() you ensure that the next BotHandler is run.
+            await next();
+        });
+        this.onConversationUpdate(async (context, next) => {
+            await context.sendActivity('[conversationUpdate event detected]');
+            // By calling next() you ensure that the next BotHandler is run.
+            await next();
+        });
+    }
+}
+
+module.exports.MyBot = MyBot;
+```
+
+---
+
+### <a name="access-the-bot-from-your-app"></a>从应用访问机器人
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+#### <a name="set-up-services"></a>设置服务
+
+`Startup.cs` 文件中的 `ConfigureServices` 方法加载连接的服务、从 `appsettings.json` 或 Azure Key Vault 加载这些服务的密钥（如果有）、连接状态，等等。 此处，我们将在服务中添加 MVC 并设置兼容版本，然后设置可以通过依赖项注入在机器人控制器中使用的适配器和机器人。
+
+<!-- want to explain the singleton vs transient here?-->
+
+```csharp
+// This method gets called by the runtime. Use this method to add services to the container.
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+    // Create the credential provider to be used with the Bot Framework Adapter.
+    services.AddSingleton<ICredentialProvider, ConfigurationCredentialProvider>();
+
+    // Create the Bot Framework Adapter.
+    services.AddSingleton<IBotFrameworkHttpAdapter, BotFrameworkHttpAdapter>();
+
+    // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
+    services.AddTransient<IBot, EchoBot>();
+}
+```
+
+`Configure` 方法通过指定应用需使用 MVC 和其他几个文件来完成应用的配置。 使用 Bot Framework 的所有机器人需要该配置调用，但是，在生成机器人时，该调用已在示例或 VSIX 模板中定义。 应用启动时，运行时会调用 `ConfigureServices` 和 `Configure`。
+
+#### <a name="bot-controller"></a>机器人控制器
+
+采用标准 MVC 结构的控制器可让你确定消息和 HTTP POST 请求的路由方式。 对于我们的机器人，我们会将传入的请求传递到前面[活动处理堆栈](#the-activity-processing-stack)部分所述的适配器 *process async activity* 方法。 在该调用中，指定可能需要的机器人和其他任何授权信息。
+
+控制器实现 `ControllerBase`，保存 `Startup.cs` 中设置的适配器和机器人（此处通过依赖项注入来使用该适配器和机器人），并在收到传入的 HTTP POST 时，将所需的信息传递给机器人。
+
+在此处可以看到路由和控制器属性继续处理的类。 这些属性可以帮助框架适当路由消息，以及了解要使用哪个控制器。 如果更改路由属性中的值，会更改仿真器或其他通道用来访问机器人的终结点。
+
+```cs
+// This ASP Controller is created to handle a request. Dependency Injection will provide the Adapter and IBot
+// implementation at runtime. Multiple different IBot implementations running at different endpoints can be
+// achieved by specifying a more specific type for the bot constructor argument.
+[Route("api/messages")]
+[ApiController]
+public class BotController : ControllerBase
+{
+    private readonly IBotFrameworkHttpAdapter Adapter;
+    private readonly IBot Bot;
+
+    public BotController(IBotFrameworkHttpAdapter adapter, IBot bot)
+    {
+        Adapter = adapter;
+        Bot = bot;
+    }
+
+    [HttpPost]
+    public async Task PostAsync()
+    {
+        // Delegate the processing of the HTTP POST to the adapter.
+        // The adapter will invoke the bot.
+        await Adapter.ProcessAsync(Request, Response, Bot);
+    }
+}
+```
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+#### <a name="indexjs"></a>index.js
 
 `index.js` 用于设置可将活动转发到机器人逻辑的机器人和托管服务。
 
@@ -242,188 +298,75 @@ Yeoman 生成器创建 [restify](http://restify.com/) 类型的 Web 应用程序
 在 `index.js` 文件的最上面，可以看到所需的一系列模块或库。 通过这些模块可以访问可能要包含在应用程序中的函数集。
 
 ```javascript
-// Import required packages
+const dotenv = require('dotenv');
 const path = require('path');
 const restify = require('restify');
 
-// Import required bot services. See https://aka.ms/bot-services to learn more about the different parts of a bot.
-const { BotFrameworkAdapter, ConversationState, MemoryStorage } = require('botbuilder');
+// Import required bot services.
+// See https://aka.ms/bot-services to learn more about the different parts of a bot.
+const { BotFrameworkAdapter } = require('botbuilder');
+
+// This bot's main dialog.
+const { MyBot } = require('./bot');
+
 // Import required bot configuration.
-const { BotConfiguration } = require('botframework-config');
-
-const { EchoBot } = require('./bot');
-
-// Read botFilePath and botFileSecret from .env file
-// Note: Ensure you have a .env file and include botFilePath and botFileSecret.
 const ENV_FILE = path.join(__dirname, '.env');
-const env = require('dotenv').config({ path: ENV_FILE });
+dotenv.config({ path: ENV_FILE });
 ```
 
-#### <a name="bot-configuration"></a>机器人配置
+#### <a name="set-up-services"></a>设置服务
 
-下一个部件从机器人配置文件加载信息。
-
-```javascript
-// Get the .bot file path
-// See https://aka.ms/about-bot-file to learn more about .bot file its use and bot configuration.
-const BOT_FILE = path.join(__dirname, (process.env.botFilePath || ''));
-let botConfig;
-try {
-    // Read bot configuration from .bot file.
-    botConfig = BotConfiguration.loadSync(BOT_FILE, process.env.botFileSecret);
-} catch (err) {
-    console.error(`\nError reading bot file. Please ensure you have valid botFilePath and botFileSecret set for your environment.`);
-    console.error(`\n - The botFileSecret is available under appsettings for your Azure Bot Service bot.`);
-    console.error(`\n - If you are running this bot locally, consider adding a .env file with botFilePath and botFileSecret.`);
-    console.error(`\n - See https://aka.ms/about-bot-file to learn more about .bot file its use and bot configuration.\n\n`);
-    process.exit();
-}
-
-// For local development configuration as defined in .bot file
-const DEV_ENVIRONMENT = 'development';
-
-// Define name of the endpoint configuration section from the .bot file
-const BOT_CONFIGURATION = (process.env.NODE_ENV || DEV_ENVIRONMENT);
-
-// Get bot endpoint configuration by service name
-// Bot configuration as defined in .bot file
-const endpointConfig = botConfig.findServiceByNameOrId(BOT_CONFIGURATION);
-```
-
-#### <a name="bot-adapter-http-server-and-bot-state"></a>机器人适配器、HTTP 服务器和机器人状态
-
-后面的部件设置可让机器人与用户通信和发送响应的服务器与适配器。 服务器将侦听 **BotConfiguration.bot** 配置文件中指定的端口，或者故障回复到 _3978_ 以便与仿真器建立连接。 适配器充当机器人的指挥者，可以定向传入和传出的通信、身份验证，等等。
-
-我们还会创建一个使用 `MemoryStorage` 作为存储提供程序的状态对象。 此状态定义为 `ConversationState`，仅表示它正在保留聊天的状态。 `ConversationState` 将存储所需的信息，在本例中，该信息只是内存中的一个轮次计数器。
+后面的部件设置可让机器人与用户通信和发送响应的服务器与适配器。 服务器将侦听配置文件中指定的端口，或者故障回复到 _3978_ 以便与仿真器建立连接。 适配器充当机器人的指挥者，可以定向传入和传出的通信、身份验证，等等。
 
 ```javascript
-// Create bot adapter.
-// See https://aka.ms/about-bot-adapter to learn more about bot adapter.
-const adapter = new BotFrameworkAdapter({
-    appId: endpointConfig.appId || process.env.microsoftAppID,
-    appPassword: endpointConfig.appPassword || process.env.microsoftAppPassword
+// Create HTTP server
+const server = restify.createServer();
+server.listen(process.env.port || process.env.PORT || 3978, () => {
+    console.log(`\n${ server.name } listening to ${ server.url }`);
+    console.log(`\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator`);
+    console.log(`\nTo talk to your bot, open the emulator select "Open Bot"`);
 });
 
-// Catch-all for any unhandled errors in your bot.
+// Create adapter.
+// See https://aka.ms/about-bot-adapter to learn more about how bots work.
+const adapter = new BotFrameworkAdapter({
+    appId: process.env.MicrosoftAppId,
+    appPassword: process.env.MicrosoftAppPassword
+});
+
+// Catch-all for errors.
 adapter.onTurnError = async (context, error) => {
     // This check writes out errors to console log .vs. app insights.
     console.error(`\n [onTurnError]: ${ error }`);
     // Send a message to the user
-    context.sendActivity(`Oops. Something went wrong!`);
-    // Clear out state
-    await conversationState.clear(context);
-    // Save state changes.
-    await conversationState.saveChanges(context);
+    await context.sendActivity(`Oops. Something went wrong!`);
 };
 
-// Define a state store for your bot. See https://aka.ms/about-bot-state to learn more about using MemoryStorage.
-// A bot requires a state store to persist the dialog and user state between messages.
-let conversationState;
-
-// For local development, in-memory storage is used.
-// CAUTION: The Memory Storage used here is for local bot debugging only. When the bot
-// is restarted, anything stored in memory will be gone.
-const memoryStorage = new MemoryStorage();
-conversationState = new ConversationState(memoryStorage);
-
 // Create the main dialog.
-const bot = new EchoBot(conversationState);
-
-// Create HTTP server
-let server = restify.createServer();
-server.listen(process.env.port || process.env.PORT || 3978, function() {
-    console.log(`\n${ server.name } listening to ${ server.url }`);
-    console.log(`\nGet Bot Framework Emulator: https://aka.ms/botframework-emulator`);
-    console.log(`\nTo talk to your bot, open echoBot-with-counter.bot file in the Emulator`);
-});
+const myBot = new MyBot();
 ```
 
-#### <a name="bot-logic"></a>机器人逻辑
+#### <a name="forwarding-requests-to-the-bot-logic"></a>将请求转发到机器人逻辑
 
 适配器的 `processActivity` 将传入活动发送到机器人逻辑。
-`processActivity` 中的第三个参数是在收到的[活动](#the-activity-processing-stack)由适配器预先处理并通过任何中间件路由后，将要调用的以执行机器人逻辑的函数处理程序。 可以使用作为参数传递给函数处理程序的轮次上下文变量来提供有关传入的活动、发送方和接收方、通道、聊天等的信息。活动处理将路由到聊天机器人的 `onTurn`。
+`processActivity` 中的第三个参数是在收到的[活动](#the-activity-processing-stack)由适配器预先处理并通过任何中间件路由后，将要调用的以执行机器人逻辑的函数处理程序。 可以使用作为参数传递给函数处理程序的轮次上下文变量来提供有关传入的活动、发送方和接收方、通道、聊天等的信息。活动处理将路由到机器人的 `run` 方法。 `run` 在 `ActivityHandler` 中定义；它执行某种错误检查，然后根据收到的活动类型调用机器人的事件处理程序。
 
 ```javascript
 // Listen for incoming requests.
 server.post('/api/messages', (req, res) => {
-    // Route received request to adapter for processing
-    adapter.processActivity(req, res, (context) => {
+    adapter.processActivity(req, res, async (context) => {
         // Route to main dialog.
-        await bot.onTurn(context);
+        await myBot.run(context);
     });
 });
 ```
 
-### <a name="echobot"></a>聊天机器人
-
-所有活动处理将路由到此类的 `onTurn` 处理程序。 创建类时已传入状态对象。 构造函数使用此状态对象创建 `this.countProperty` 访问器，以保存此机器人的轮次计数器。
-
-在每个轮次，我们先检查机器人是否收到了消息。 如果机器人未收到消息，则我们回显收到的活动类型。 接下来，创建一个状态变量用于保存机器人聊天的信息。 如果计数变量为 `undefined`，则它设置为 1（启动机器人时存在这种情况），或者每收到新的消息，就递增计数变量。 将计数和发送的消息回显给用户。 最后，设置计数并保存对状态所做的更改。
-
-```javascript
-const { ActivityTypes } = require('botbuilder');
-
-// Turn counter property
-const TURN_COUNTER_PROPERTY = 'turnCounterProperty';
-
-class EchoBot {
-
-    constructor(conversationState) {
-        // Creates a new state accessor property.
-        // See https://aka.ms/about-bot-state-accessors to learn more about the bot state and state accessors
-        this.countProperty = conversationState.createProperty(TURN_COUNTER_PROPERTY);
-        this.conversationState = conversationState;
-    }
-
-    async onTurn(turnContext) {
-        // Handle message activity type. User's responses via text or speech or card interactions flow back to the bot as Message activity.
-        // Message activities may contain text, speech, interactive cards, and binary or unknown attachments.
-        // see https://aka.ms/about-bot-activity-message to learn more about the message and other activity types
-        if (turnContext.activity.type === ActivityTypes.Message) {
-            // read from state.
-            let count = await this.countProperty.get(turnContext);
-            count = count === undefined ? 1 : ++count;
-            await turnContext.sendActivity(`${ count }: You said "${ turnContext.activity.text }"`);
-            // increment and set turn counter.
-            await this.countProperty.set(turnContext, count);
-        } else {
-            // Generic handler for all other activity types.
-            await turnContext.sendActivity(`[${ turnContext.activity.type } event detected]`);
-        }
-        // Save state changes
-        await this.conversationState.saveChanges(turnContext);
-    }
-}
-
-exports.EchoBot = EchoBot;
-```
-
 ---
 
-## <a name="the-bot-file"></a>bot 文件
+## <a name="manage-bot-resources"></a>管理机器人资源
 
-**.bot** 文件包含信息，其中包括终结点、应用 ID、密码，以及对机器人所用服务的引用。 此文件是在通过模板构建机器人时创建的，但你可以通过仿真器或其他工具创建自己的文件。 可以指定在[仿真器](../bot-service-debug-emulator.md)中测试机器人时要使用的 .bot 文件。
-
-```json
-{
-    "name": "echobot-with-counter",
-    "services": [
-        {
-            "type": "endpoint",
-            "name": "development",
-            "endpoint": "http://localhost:3978/api/messages",
-            "appId": "",
-            "appPassword": "",
-            "id": "1"
-        }
-    ],
-    "padlock": "",
-    "version": "2.0"
-}
-```
+需要适当管理机器人资源，例如连接的服务的应用 ID、密码、密钥或机密。 有关如何执行此操作的详细信息，请参阅[管理机器人资源](bot-file-basics.md)。
 
 ## <a name="additional-resources"></a>其他资源
 
 - 若要了解机器人中的状态的作用，请参阅[管理状态](bot-builder-concept-state.md)。
-- 若要了解 .bot 文件在资源管理中发挥的作用，请参阅[使用 .bot 文件管理资源](bot-file-basics.md)。
-- 若要创建第一个机器人，请参阅以下快速入门之一：[使用 Azure 机器人服务](../bot-service-quickstart.md)、[使用 C#](../dotnet/bot-builder-dotnet-sdk-quickstart.md) 或[使用 JavaScript](../javascript/bot-builder-javascript-quickstart.md)
