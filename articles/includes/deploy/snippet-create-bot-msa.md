@@ -1,12 +1,12 @@
 ---
-ms.openlocfilehash: fed6222fb9cf2d7793776c5575dfbcda49b54224
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
+ms.openlocfilehash: 14d9632ad578014a36b5f13e6dee883e2a6e1722
+ms.sourcegitcommit: 4ff7a8772124a567f43e2c3e13aded368c4002e3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360847"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65035686"
 ---
-1. 转到[**应用程序注册门户**](https://apps.dev.microsoft.com/)。
+1. 转到[**应用程序注册门户**](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)。
 1. 单击“添加应用”以注册应用程序，创建**应用程序 ID**，然后单击“生成新密码”。 如果已经有应用程序和密码，但却忘记了该密码，则需在“应用程序机密”部分生成新密码。
 1. 保存刚刚生成的应用程序 ID 和新密码，以便可以在 `az bot create` 命令中使用这些信息。  
 
@@ -14,7 +14,7 @@ ms.locfileid: "54360847"
 az bot create --kind webapp --name <bot-resource-name> --location <geographic-location> --version v4 --lang <language> --verbose --resource-group <resource-group-name> --appid "<application-id>" --password "<application-password>" --verbose
 ```
 
-| 选项 | Description |
+| 选项 | 说明 |
 |:---|:---|
 | --name | 用于在 Azure 中部署机器人的唯一名称。 此名称可与本地机器人的名称相同。 切勿在此名称中包含空格或下划线。 |
 | --location | 用于创建机器人服务资源的地理位置。 例如 `eastus`、`westus`、`westus2` 等。 |

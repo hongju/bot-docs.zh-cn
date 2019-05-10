@@ -8,12 +8,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/10/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 690c456a1baa94eab1f0efbed6ce2c2e1f5cb280
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: ff2d55ccdd6312e95bdb1acb223d8e1d5f60b0b3
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "59508154"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032634"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能构建支持语音的机器人
 
@@ -444,6 +444,5 @@ bot.dialog('PlayGameDialog', function (session, args) {
 [Cortana-Publish]: https://aka.ms/cortana-publish
 
 
-[CortanaTry]: https://aka.ms/try-cortana-bot
 [CortanaChannel]: https://aka.ms/bot-cortana-channel
 [Cortana-TestBestPractice]: https://aka.ms/cortana-test-best-practice

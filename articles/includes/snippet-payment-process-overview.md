@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 86faca976bc95a5e91e17749096cd148483edc61
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563636"
+---
 ## <a name="payment-process-overview"></a>支付流程概述
 
 支付流程包括三个不同的部分：

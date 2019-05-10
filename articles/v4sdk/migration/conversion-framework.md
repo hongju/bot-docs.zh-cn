@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/11/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1904bb09d8bd387cc5cec0d85f82df24d1f6ec9d
-ms.sourcegitcommit: 7f418bed4d0d8d398f824e951ac464c7c82b8c3e
+ms.openlocfilehash: ea6b859761a3bc8c1424d50d8bad0b7f1f50e86d
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/14/2019
-ms.locfileid: "56240173"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033460"
 ---
 # <a name="migrate-a-net-sdk-v3-bot-to-v4"></a>将.NET SDK v3 机器人迁移到 v4
 
@@ -111,7 +111,7 @@ namespace ContosoHelpdeskChatBot
 
 ## <a name="update-your-globalasaxcs-file"></a>更新 Global.asax.cs 文件
 
-部分基架设计已发生更改，我们需要在 v4 中自行设置[状态管理](/articles/v4sdk/bot-builder-concept-state.md)基础结构的部件。 例如，v4 使用机器人适配器来处理身份验证以及将活动转发到机器人代码，我们必须提前声明状态属性。
+部分基架设计已发生更改，我们需要在 v4 中自行设置[状态管理](../bot-builder-concept-state.md)基础结构的部件。 例如，v4 使用机器人适配器来处理身份验证以及将活动转发到机器人代码，我们必须提前声明状态属性。
 
 为 `DialogState` 创建状态属性，目前，在 v4 中支持对话需要提供此属性。 在控制器和机器人代码中使用依赖项注入获取所需的信息。
 
@@ -246,7 +246,7 @@ v4 中轮次处理程序在此类中执行，因此需要对此类进行一些�
         }
     }
     ```
-1. 添加 **OnTurnAsync** 方法，其中包含机器人的[轮次处理程序](/articles/v4sdk/bot-builder-basics.md#the-activity-processing-stack)代码。
+1. 添加 **OnTurnAsync** 方法，其中包含机器人的[轮次处理程序](../bot-builder-basics.md#the-activity-processing-stack)代码。
     > [!NOTE]
     > v4 中不存在此类可评分对象。 在继续运行任何活动对话之前，先在机器人的轮次处理程序中检查用户提供的 `cancel` 消息。
     ```csharp
@@ -353,8 +353,8 @@ v4 中轮次处理程序在此类中执行，因此需要对此类进行一些�
 
 在此机器人中，根对话将提示用户从一组选项中做出选择，然后根据所做的选择启动子对话。 然后，在聊天的整个生存期内，此过程都会循环。
 
-- 可将主要流设置为瀑布对话，这是 v4 SDK 中的一个新概念。 此流将按照一组固定的步骤依序运行。 有关详细信息，请参阅[实现顺序聊天流](/articles/v4sdk/bot-builder-dialog-manage-conversation-flow)。
-- 现在会通过提示类处理提示。提示类是一些简短的子对话，它们提示提供输入、执行某种极简的处理和验证，然后返回值。 有关详细信息，请参阅[使用对话提示收集用户输入](/articles/v4sdk/bot-builder-prompts.md)。
+- 可将主要流设置为瀑布对话，这是 v4 SDK 中的一个新概念。 此流将按照一组固定的步骤依序运行。 有关详细信息，请参阅[实现顺序聊天流](~/v4sdk/bot-builder-dialog-manage-conversation-flow.md)。
+- 现在会通过提示类处理提示。提示类是一些简短的子对话，它们提示提供输入、执行某种极简的处理和验证，然后返回值。 有关详细信息，请参阅[使用对话提示收集用户输入](~/v4sdk/bot-builder-prompts.md)。
 
 在 **Dialogs/RootDialog.cs** 文件中：
 
@@ -425,7 +425,7 @@ v4 中轮次处理程序在此类中执行，因此需要对此类进行一些�
     }
     ```
 1. 可将 **OnOptionSelected** 替换为第二个瀑布步骤。 仍然根据用户的输入启动一个子对话。
-   - 选项提示返回 `FoundChoice` 值。 此值显示在步骤上下文的 `Result` 属性中。 对话堆栈将所有返回值视为对象。 如果返回值来自某个对话，则就能知道对象值的类型是什么。 有关返回的每种提示类型的列表，请参阅[提示类型](/articles/v4sdk/bot-builder-concept-dialog.md#prompt-types)。
+   - 选项提示返回 `FoundChoice` 值。 此值显示在步骤上下文的 `Result` 属性中。 对话堆栈将所有返回值视为对象。 如果返回值来自某个对话，则就能知道对象值的类型是什么。 有关返回的每种提示类型的列表，请参阅[提示类型](../bot-builder-concept-dialog.md#prompt-types)。
    - 由于选项提示不引发异常，因此可以删除 try-catch 块。
    - 我们需要添加一个失败代码，以便此方法始终返回适当的值。 此代码应该永远不会命中，但如果命中，它可以让对话“正常失败”。
     ```csharp

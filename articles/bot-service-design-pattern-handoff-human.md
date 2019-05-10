@@ -6,13 +6,13 @@ ms.author: mateusv
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 12/13/2017
-ms.openlocfilehash: f18b375a1e4ebcf06d00d045e383db8b05fb5111
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.date: 5/2/2019
+ms.openlocfilehash: a5bb8d8dce1fdb45ab9ab42b247e2697713e51ac
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225732"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033052"
 ---
 # <a name="transition-conversations-from-bot-to-human"></a>将会话从机器人转给人工
 
@@ -71,10 +71,6 @@ ms.locfileid: "54225732"
 
 > [!NOTE]
 > 在更高级的场景中，除了在用户和代理之间路由消息，机器人还可以承担更多责任。 例如，机器人可以决定哪种响应是合适的或者仅要求代理进行确认以便继续。
-
-## <a name="sample-code"></a>代码示例
-
-有关显示如何使用 Bot Framework SDK for Node.js 将会话从机器人转给人工的完整示例，请参阅 GitHub 中的<a href="https://github.com/palindromed/Bot-HandOff" target="_blank">机器人移交示例</a>。
 
 ## <a name="additional-resources"></a>其他资源
 

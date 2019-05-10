@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 04/30/2018
-ms.openlocfilehash: 9e3f2f19c480a9d2fe6df0baea74d449bb584b4f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 6bb4945801ee127cfa954289792987a57eae7fd5
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999076"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032987"
 ---
 # <a name="connect-a-bot-to-cortana"></a>将机器人连接到 Cortana
 
@@ -28,7 +28,7 @@ Cortana 是支持语音的通道，除文本聊天外，它还可以发送和接
 
 将机器人与 Cortana 通道连接时，机器人的某些基本信息将预先填入到注册表单中。 仔细查看此信息。 此表单由以下字段组成。
 
-| 字段 | Description |
+| 字段 | 说明 |
 |------|------|
 | **技能图标** | 调用技能时 Cortana 画布中显示的图标。 这也适用于可发现这些技能的地方（如 Microsoft Store）。 （最大 32KB，仅限 PNG）。|
 | **显示名称** | 在可视 UI 顶部向用户显示的 Cortana 技能名称。 （限 30 个字符） |
@@ -105,11 +105,10 @@ Cortana 提供对几种不同类型的用户配置文件信息的访问，可使
 
 ## <a name="next-steps"></a>后续步骤
 
-* [Cortana 技能套件](https://aka.ms/CortanaSkillsDocs)
+* [Cortana 技能套件](https://aka.ms/CortanaSkillsKitOverview)
 * [启用调试](bot-service-debug-cortana-skill.md)
 * [发布 Cortana 技能][publish]
 
 [invocation]: https://docs.microsoft.com/en-us/cortana/skills/cortana-invocation-guidelines
 [publish]: https://docs.microsoft.com/en-us/cortana/skills/publish-skill
-[connected]: https://aka.ms/CortanaSkillsBotConnectedAccount
 [CortanaEntity]: https://aka.ms/lgvcto

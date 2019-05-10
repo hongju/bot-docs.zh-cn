@@ -6,7 +6,7 @@
       tocHref: /Bot-Framework/
       topicHref: /Bot-Framework/index
       items:
-        - name: 用于 .NET 的 Bot Builder SDK
+        - name: Bot Builder SDK for .NET
           tocHref: /Bot-Framework/dotnet
           topicHref: /Bot-Framework/dotnet/
         - name: 用于 Node.js 的 Bot Builder SDK

@@ -1,4 +1,12 @@
-| 属性 | Description |
+---
+ms.openlocfilehash: 8e2dac514d2f7e7ec729f32b8048151e88a1116a
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563411"
+---
+| 属性 | 说明 |
 | :--- | :--- |
 | htmlBody   | 用于邮件正文的 HTML。 |
 | subject    | 用于邮件的主题。 |

@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: e38bb7ca93c5fc4174d67d1c5ebb0655eef68653
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: a662bb24f384d072a162242a4634fe4fe3a4b395
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997906"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033449"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>向消息添加资讯卡附件
 > [!div class="op_single_selector"]
@@ -31,7 +31,7 @@ ms.locfileid: "49997906"
 资讯卡包括标题、说明、链接和图像。 消息可包含多个资讯卡，以列表格式或轮播格式显示。
 Bot Framework 目前支持八种类型的资讯卡： 
 
-| 卡类型 | Description |
+| 卡类型 | 说明 |
 |----|----|
 | <a href="/adaptive-cards/get-started/bots">AdaptiveCard</a> | 一种可自定义卡，可包含文本、语音、图像、按钮和输入域的任意组合。 请参阅[每个通道的支持](/adaptive-cards/get-started/bots#channel-status)。  |
 | [AnimationCard][animationCard] | 一种可播放动态 GIF 或短视频的卡。 |
@@ -49,11 +49,11 @@ Bot Framework 目前支持八种类型的资讯卡：
 
 若要处理资讯卡中的事件，请使用 [CardAction][CardAction] 对象指定当用户单击按钮或点击卡的某个部分时应发生的情况。 每个 [CardAction][CardAction] 对象都包含以下属性：
 
-| 属性 | 类型 | Description | 
+| 属性 | Type | 说明 | 
 |----|----|----|
 | type | 字符串 | 操作类型（下表中指定的某个值） |
 | title | 字符串 | 按钮的标题 |
-| 图像 | 字符串 | 按钮的图像 URL |
+| image | 字符串 | 按钮的图像 URL |
 | 值 | 字符串 | 执行指定类型的操作所需的值 |
 
 > [!NOTE]
@@ -117,7 +117,7 @@ Content-Type: application/json
                 "text": "descriptive text goes here",
                 "images": [
                     {
-                        "url": "http://aka.ms/Fo983c",
+                        "url": "https://aka.ms/DuckOnARock",
                         "alt": "picture of a duck",
                         "tap": {
                             "type": "playAudio",
@@ -134,7 +134,7 @@ Content-Type: application/json
                     {
                         "type": "openUrl",
                         "title": "Watch Video",
-                        "image": "http://aka.ms/Fo983c",
+                        "image": "https://aka.ms/DuckOnARock",
                         "value": "url goes here of the duck in flight"
                     }
                 ]

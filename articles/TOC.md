@@ -1,6 +1,7 @@
 # [Azure 机器人服务文档](index.md)
 # 概述
 ## [关于 Azure 机器人服务](bot-service-overview-introduction.md)
+## [新增功能](what-is-new.md)
 # 快速入门
 ## [使用 Azure 机器人服务创建机器人](~/bot-service-quickstart.md)
 ## 在本地创建机器人
@@ -11,8 +12,7 @@
 ## [2.添加 QnA Maker 并重新部署机器人](v4sdk/bot-builder-tutorial-add-qna.md)
 ## [向机器人添加身份验证](bot-builder-tutorial-authentication.md)
 # 示例
-## [GitHub 上的 botbuilder-samples 存储库](https://github.com/Microsoft/BotBuilder-Samples/blob/master/README.md)
-## [从 botbuilder-samples 存储库部署机器人](bot-builder-deploy-samples.md)
+## [GitHub 上的 Bot Framework 示例存储库](https://github.com/Microsoft/BotBuilder-Samples/blob/master/README.md)
 # 概念
 ## [机器人工作原理](v4sdk/bot-builder-basics.md)
 ## [管理状态](v4sdk/bot-builder-concept-state.md)
@@ -40,36 +40,33 @@
 ### [发送欢迎消息给用户](v4sdk/bot-builder-send-welcome-message.md)
 <!-- ## [Add input hints to messages](v4sdk/bot-builder-howto-add-input-hints.md) -->
 ### [向用户发送主动通知](v4sdk/bot-builder-howto-proactive-message.md)
+### [实现顺序聊天流](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
 ### [向机器人添加自然语言理解](v4sdk/bot-builder-howto-v4-luis.md)
 ### [使用 QnA Maker 回答用户的问题](v4sdk/bot-builder-howto-qna.md)
 ### [使用多个 LUIS 和 QnA 模型](v4sdk/bot-builder-tutorial-dispatch.md)
-### 使用对话库管理聊天 
-#### [实现顺序聊天流](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
-#### [使用对话提示收集用户输入](v4sdk/bot-builder-prompts.md)
-#### [使用分支和循环创建高级聊天流](v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)
-#### [处理用户中断](v4sdk/bot-builder-howto-handle-user-interrupt.md)
-#### [保存用户数据](v4sdk/bot-builder-tutorial-persist-user-inputs.md)
-#### [重复使用对话](v4sdk/bot-builder-compositcontrol.md)
+### [使用分支和循环创建高级聊天流](v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)
+### [重复使用对话](v4sdk/bot-builder-compositcontrol.md)
+<!--#### [Implement a greeting dialog](v4sdk/bot-builder-dialogs-greeting.md)--TODO: Add once there's a sample.-->
+### [处理用户中断](v4sdk/bot-builder-howto-handle-user-interrupt.md)
+<!--#### [Persist user data](v4sdk/bot-builder-tutorial-persist-user-inputs.md)--TODO: redirect to write directly to storage.-->
 ### [直接写入到存储](v4sdk/bot-builder-howto-v4-storage.md)
 ### [向机器人添加身份验证](v4sdk/bot-builder-authentication.md)
 ### [为机器人实现自定义存储](v4sdk/bot-builder-custom-storage.md)
 ### [将遥测功能添加到机器人](v4sdk/bot-builder-telemetry.md)
-### [使用 CLI 工具管理机器人](bot-builder-tools.md)
+### [在机器人中使用 Direct Line Speech](directline-speech-bot.md)
 ### [.NET](dotnet/TOC.md)
 ### [Node.js](nodejs/TOC.md)
 ## [调试](debug/TOC.md)
 ## 部署
 ### [将机器人部署到 Azure](bot-builder-deploy-az-cli.md)
-<!-- ### [Deploy your C# bot using Visual Studio](bot-builder-howto-deploy-azure.md)
-### [Download and redeploy bot code](bot-service-build-download-source-code.md) 
-### [Set up continuous deployment](bot-service-build-continuous-deployment.md) -->
+### [设置持续部署](bot-service-build-continuous-deployment.md)
 ## [管理](manage/TOC.md)
 ## [迁移](v4sdk/migration/TOC.md)
 # 引用
 ## [.NET SDK v4](https://aka.ms/botframework-v4-cs-sdk)
-## [JavaScript SDK v4](https://aka.ms/jssdk4)
+## [JavaScript SDK v4](https://aka.ms/bot-jssdk-v4)
 ## [REST](rest-api/TOC.md)
 ## [.NET SDK v3](https://aka.ms/botframework-v3-cs-sdk)
-## [Node.js SDK v3](https://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_.html)
+## [Node.js SDK v3](https://aka.ms/bot-jssdk-v3)
 ## [实体和活动类型](bot-service-activities-entities.md)
 # [资源](resources/TOC.md)

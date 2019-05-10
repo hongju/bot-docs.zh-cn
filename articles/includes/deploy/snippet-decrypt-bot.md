@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: eac6abae509d92ea4714bc01221f180ea575950f
-ms.sourcegitcommit: bdb981c0b11ee99d128e30ae0462705b2dae8572
+ms.sourcegitcommit: 4ff7a8772124a567f43e2c3e13aded368c4002e3
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/17/2019
-ms.locfileid: "54360824"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65035737"
 ---
 获取加密密钥。
 
@@ -20,7 +20,7 @@ ms.locfileid: "54360824"
 msbot secret --bot <name-of-bot-file> --secret "<bot-file-secret>" --clear
 ```
 
-| 选项 | Description |
+| 选项 | 说明 |
 |:---|:---|
 | --bot | 已下载的 .bot 文件的相对路径。 |
 | --secret | 加密密钥。 |

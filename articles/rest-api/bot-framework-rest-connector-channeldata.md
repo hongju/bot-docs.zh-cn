@@ -9,11 +9,11 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 ms.openlocfilehash: d69013c721552483cfd38b204936cb1c7f508f82
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49996894"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64564007"
 ---
 # <a name="implement-channel-specific-functionality"></a>实现特定于通道的功能
 
@@ -138,7 +138,7 @@ ms.locfileid: "49996894"
 
 若要创建 Facebook 通知，请将 [Activity][Activity] 对象的 `channelData` 属性设置为指定以下属性的 JSON 对象： 
 
-| 属性 | Description |
+| 属性 | 说明 |
 |----|----|
 | notification_type | 通知的类型（例如 REGULAR、SILENT_PUSH 和 NO_PUSH）。
 | attachment | 附件（用于指定图像、视频或其他多媒体类型）或模板化附件（如收据）。 |
@@ -165,9 +165,9 @@ ms.locfileid: "49996894"
 
 若要创建实现特定于 Telegram 的操作的消息，例如共享语音备忘录或贴纸，请将 [Activity][Activity] 对象的 `channelData` 属性设置为指定以下属性的 JSON 对象： 
 
-| 属性 | Description |
+| 属性 | 说明 |
 |----|----|
-| 方法 | 要调用的 Telegram 机器人 API 方法。 |
+| method | 要调用的 Telegram 机器人 API 方法。 |
 | parameters | 已指定的方法的参数。 |
 
 支持以下 Telegram 方法： 
@@ -239,7 +239,7 @@ ms.locfileid: "49996894"
 
 若要创建本机 Kik 消息，请将 [Activity][Activity] 对象的 `channelData` 属性设置为指定以下属性的 JSON 对象： 
 
-| 属性 | Description |
+| 属性 | 说明 |
 |----|----|
 | messages | 一组 Kik 消息。 有关 Kik 消息格式的详细信息，请参阅 <a href="https://dev.kik.com/#/docs/messaging#message-formats" target="_blank">Kik 消息格式</a>。 |
 

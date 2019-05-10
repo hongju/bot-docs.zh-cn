@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 8e5677fe59dd9edad6ac1da9d029e5f7c08bf179
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563960"
+---
 ## <a name="next-steps"></a>后续步骤
 通过使用 Bot Framework Emulator 测试机器人，将机器人部署到云并验证部署是否成功后，机器人发布过程的下一步将取决于是否已经在 Bot Framework 中注册了机器人。
 

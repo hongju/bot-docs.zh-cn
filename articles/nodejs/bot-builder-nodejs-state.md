@@ -10,11 +10,11 @@ ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
 ms.openlocfilehash: 6d653e47d2e906c6306134804c7731b374d830ba
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225002"
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563971"
 ---
 # <a name="manage-state-data"></a>管理状态数据
 
@@ -58,7 +58,7 @@ var bot = new builder.UniversalBot(connector, [..waterfall steps..])
 
 在 Bot Framework SDK for Node.js 中，`session` 对象公开以下用于存储状态数据的属性。
 
-| 属性 | 范围 | Description |
+| 属性 | 范围 | 说明 |
 | ---- | ---- | ---- |
 | [`userData`][userDataURL] | 用户 | 包含在指定通道上为用户保存的数据。 此数据将在多个会话中保持原样。 |
 | [`privateConversationData`][privateConversationDataURL] | 对话 | 包含指定通道上在特定会话上下文中为用户保存的数据。 这些数据对当前用户来说是私有的，并且仅在当前会话中保留。 当会话结束或显式调用 `endConversation` 时，属性将被清除。 |

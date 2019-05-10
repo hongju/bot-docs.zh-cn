@@ -4,7 +4,10 @@
 ## [将机器人连接到通道](../bot-service-manage-channels.md)
 ## [实现通道特定的功能](../v4sdk/bot-builder-channeldata.md)
 ## [Cortana](../bot-service-channel-connect-cortana.md) 
-## [Direct Line](../bot-service-channel-connect-directline.md)
+## Direct Line
+### [关于 Direct Line](../bot-service-channel-directline.md)
+### [连接到 Direct Line](../bot-service-channel-connect-directline.md)
+### [连接到 Direct Line Speech](../bot-service-channel-connect-directlinespeech.md)
 ## [电子邮件](../bot-service-channel-connect-email.md)
 ## [在网上聊天中启用语音](../bot-service-channel-connect-webchat-speech.md)
 ## [Facebook](../bot-service-channel-connect-facebook.md) 

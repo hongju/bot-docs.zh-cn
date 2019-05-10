@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: 7eed8c8328456bad43f3bdfe0029df09efa062d6
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563491"
+---
 这个图显示了传统应用程序的屏幕流程与机器人的对话流程的对比。 
 
 ![机器人](~/media/designing-bots/core/dialogs-screens.png)

@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/25/2018
-ms.openlocfilehash: eb08ca3b560f5058526387c71eca4b790d033a1e
-ms.sourcegitcommit: 15f7fa40b7e0a05507cdc66adf75bcfc9533e781
+ms.openlocfilehash: 3fad5b66f5137cd4098087e1b01d1f2493800994
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 11/02/2018
-ms.locfileid: "50916804"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032600"
 ---
 # <a name="add-media-attachments-to-messages"></a>向消息添加媒体附件
 > [!div class="op_single_selector"]
@@ -57,7 +57,7 @@ Content-Type: application/json
     "attachments": [
         {
             "contentType": "image/png",
-            "contentUrl": "http://aka.ms/Fo983c",
+            "contentUrl": "https://aka.ms/DuckOnARock",
             "name": "duck-on-a-rock.jpg"
         }
     ],
@@ -162,7 +162,7 @@ Content-Type: application/json
 
 媒体事件名称“media/pause”将出现在 `activity.name` 字段中。 参考下表了解所有媒体事件名称的列表。
 
-| 事件 | Description |
+| 事件 | 说明 |
 | ---- | ---- |
 | **media/next** | 客户端跳到下一个媒体 |
 | **media/pause** | 客户端暂停播放媒体 |

@@ -8,12 +8,13 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 2/13/2018
-ms.openlocfilehash: c14814dc7e2c83f740202db90b7e41efcdfb66a5
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+monikerRange: azure-bot-service-3.0
+ms.openlocfilehash: 21324f68332be6a60f55e6ab55545fc6102bedb9
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224402"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033018"
 ---
 # <a name="create-task-automation-bots"></a>创建任务自动化机器人
 
@@ -28,8 +29,6 @@ ms.locfileid: "54224402"
 Contoso 公司每天都会有多个员工因需要重置密码而拨打支持人员电话。 Contoso 希望能自动完成重置员工密码这项简单的重复性任务，以便支持人员可将时间用于解决更复杂的问题。 
 
 Contoso 公司经验丰富的开发人员 John 决定创建一个机器人来自动执行密码重置任务。 他首先为机器人编写了设计规范，就像创建新应用或网站一样。 
-
-::: moniker range="azure-bot-service-3.0"
 
 ### <a name="navigation-model"></a>导航模型
 
@@ -63,10 +62,7 @@ Contoso 公司经验丰富的开发人员 John 决定创建一个机器人来自
 
 #### <a name="resetpassword-dialog"></a>“ResetPassword”对话
 
-用户从根对话中选择“重置密码”时，将调用 `ResetPassword` 对话。 
-然后，`ResetPassword` 对话将调用另外两个对话。 
-首先，它调用 `PromptStringRegex` 对话，收集用户的电话号码。 
-然后，它调用 `PromptDate` 对话，收集用户的出生日期。 
+用户从根对话中选择“重置密码”时，将调用 `ResetPassword` 对话。 然后，`ResetPassword` 对话将调用另外两个对话。 首先，它调用 `PromptStringRegex` 对话，收集用户的电话号码。 然后，它调用 `PromptDate` 对话，收集用户的出生日期。 
 
 > [!NOTE]
 > 在此示例中，John 选择使用两个单独的对话来实现收集用户电话号码和出生日期的逻辑。 此方法不仅简化了每个对话所需的代码，而且还增加了将来其他方案可使用这些对话的几率。 
@@ -77,9 +73,7 @@ Contoso 公司经验丰富的开发人员 John 决定创建一个机器人来自
 
 #### <a name="promptstringregex-dialog"></a>“PromptStringRegex”对话
 
-`PromptStringRegex` 对话提示用户输入其电话号码，并验证用户提供的电话号码是否符合预期格式。 
-它还考虑了用户重复提供无效输入的情况。 
-该规范描述了 `PromptStringRegex` 对话。
+`PromptStringRegex` 对话提示用户输入其电话号码，并验证用户提供的电话号码是否符合预期格式。 它还考虑了用户重复提供无效输入的情况。 该规范描述了 `PromptStringRegex` 对话。
 
 ![对话结构](~/media/bot-service-design-pattern-task-automation/simple-task4.png)
 
@@ -89,8 +83,6 @@ Contoso 公司经验丰富的开发人员 John 决定创建一个机器人来自
 
 ![对话结构](~/media/bot-service-design-pattern-task-automation/simple-task5.png)
 
-::: moniker-end 
-
 ## <a name="bot-app-or-website"></a>机器人、应用或网站？
 
 你可能想知道，如果任务自动化机器人与应用或网站非常类似，为什么不直接构建一个应用或网站呢？ 根据具体情况，构建应用或网站而非机器人可能是一个完全合理的选择。 甚至可选择使用 [Bot Framework Direct Line API][directLineAPI] 或<a href="https://aka.ms/BotFramework-WebChat" target="_blank">网上聊天控件</a>将机器人嵌入到应用中。 在应用的上下文中实现机器人堪称两全其美：集丰富的应用体验和聊天式体验于一身。 
@@ -99,7 +91,6 @@ Contoso 公司经验丰富的开发人员 John 决定创建一个机器人来自
 
 此外，机器人可轻松自由扩展。 例如，开发人员可选择向密码重置机器人添加自然语言和语音功能，以便可通过音频呼叫访问机器人，或者可以添加短信支持功能。 该公司可能会在整个建筑中设置网亭，并将密码重置机器人嵌入到该体验中。
 
-::: moniker range="azure-bot-service-3.0"
 <!-- TODO: SimpleTaskAutomation no longer exists
 ## Sample code
 
@@ -114,6 +105,5 @@ For a complete sample that shows how to implement simple task automation using t
 - [使用对话管理聊天流 (.NET)](~/dotnet/bot-builder-dotnet-manage-conversation-flow.md)
 - [使用对话管理聊天流 (Node.js)](~/nodejs/bot-builder-nodejs-manage-conversation-flow.md)
 
-::: moniker-end
 
 [directLineAPI]: https://docs.botframework.com/en-us/restapi/directline3/#navtitle

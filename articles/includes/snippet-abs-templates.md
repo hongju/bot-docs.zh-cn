@@ -1,4 +1,12 @@
-|        模板        |                                                                                                         Description                                                                                                         |
+---
+ms.openlocfilehash: 8eb45791cfcb578a8dc2fa6a14799c0637daed23
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563863"
+---
+|        模板        |                                                                                                         说明                                                                                                         |
 |------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |         基本          |                                                                                  创建一个使用对话框响应用户输入的机器人。                                                                                  |
 |          表单          | 创建一个这样的机器人：通过使用 C# 中的 [FormFlow](~/dotnet/bot-builder-dotnet-formflow.md) 或 Node.js 中的[瀑布图](~/nodejs/bot-builder-nodejs-prompts.md)创建的引导式会话来收集用户输入。 |

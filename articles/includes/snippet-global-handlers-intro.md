@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: b5809b6d46cdc09035efb36c3ea58c2ca9dc6c3e
+ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 04/26/2019
+ms.locfileid: "64563609"
+---
 用户通常使用“帮助”、“取消”或“重新开始”等关键字来尝试访问机器人内的某些功能。 这通常发生在对话的中间，当机器人期待不同的响应时。 通过实现**全局消息处理程序**，可以将机器人设计为优雅地处理此类请求。
 处理程序将检查你指定的关键字的用户输入，例如“帮助”、“取消”或“重新开始”，并进行适当的响应。 
 

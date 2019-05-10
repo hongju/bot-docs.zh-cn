@@ -9,12 +9,12 @@ ms.service: bot-service
 ROBOTS: NOINDEX
 ms.date: 10/04/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: b79aaaa2f85ea3d7d6c4388ebc7051890350e9a8
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 8e2cb944e56271be9ff925e05c48236e94998f1d
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904492"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033008"
 ---
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
 
@@ -122,7 +122,7 @@ These capabilities were bundled in the BotAuth and AuthBot samples that are on G
 
 #### <a name="to-create-an-azure-ad-v2-application"></a>创建 Azure AD v2 应用程序
 
-1. 转到 [Microsoft 应用程序注册门户](https://apps.dev.microsoft.com)。
+1. 转到 [Microsoft 应用程序注册门户](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)。
 1. 单击“添加应用”
 1. 为 Azure AD 应用命名，然后单击“创建”。
 

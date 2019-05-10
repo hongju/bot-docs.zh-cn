@@ -1,8 +1,16 @@
+---
+ms.openlocfilehash: cc7e656d7c8a61e7bf784db579d0065c3bff331a
+ms.sourcegitcommit: 4ff7a8772124a567f43e2c3e13aded368c4002e3
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65035773"
+---
 如果使用 LUIS 等服务，则还需要传递 `luisAuthoringKey`。 若要使用 Azure 中的现有资源组，请在上述命令中使用 `groupName` 参数。
 
 强烈建议使用 `verbose` 选项来帮助排查部署机器人期间可能发生的问题。 下面描述了可在 `msbot clone services` 命令中使用的其他选项：
 
-| 参数    | Description |
+| 参数    | 说明 |
 |--------------|-------------|
 | `folder`     | `bot.recipe` 文件的位置。 默认会在 `DeploymentsScript/MSBotClone` 中创建脚本文件。 切勿修改此文件。|
 | `location`   | 用于创建机器人服务资源的地理位置。 例如 eastus、westus、westus2 等。|

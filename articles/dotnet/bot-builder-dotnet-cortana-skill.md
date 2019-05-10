@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 98fc10a806a4c8d1a4d6563934d92b0e0cdbb771
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: fd7d20b71c8f6c3013e7af5c7c80623089f0dce0
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224772"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032904"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能构建支持语音的机器人
 
@@ -59,7 +59,7 @@ reply.Speak = "<speak version=\"1.0\" xmlns=\"http://www.w3.org/2001/10/synthesi
 **InputHint** 属性帮助向 Cortana 指示机器人是否需要输入。 对于提示，该属性的默认值为 **ExpectingInput**；对于其他类型的响应，默认值为 **AcceptingInput**。
 
 
-| 值 | Description |
+| 值 | 说明 |
 |------|------|
 | **AcceptingInput** | 机器人已被动准备好接受输入，但不是在等待响应。 如果用户按住麦克风按钮，Cortana 会接受来自用户的输入。|
 | **ExpectingInput** | 指示机器人主动要求用户的响应。 Cortana 会收听用户对着麦克风的讲话。  |
@@ -81,7 +81,7 @@ reply.InputHint = InputHints.ExpectingInput;
 
 除语音响应外，Cortana 还可显示卡片附件。 Cortana 支持以下丰富卡片：
 
-| 卡类型 | Description |
+| 卡类型 | 说明 |
 |----|----|
 | [HeroCard][heroCard] | 一种通常包含单个大图像、一个或多个按钮和文本的卡。 |
 | [ThumbnailCard][thumbnailCard] | 一种通常包含单个缩略图图像、一个或多个按钮和文本的卡。 |
@@ -353,7 +353,6 @@ The following code demonstrates how to add the `Speak` and `InputHint` propertie
 [Cortana-Publish]: https://aka.ms/cortana-publish
 
 
-[CortanaTry]: https://aka.ms/try-cortana-bot
 [CortanaChannel]: https://aka.ms/bot-cortana-channel
 [Cortana-TestBestPractice]: https://aka.ms/cortana-test-best-practice
 
