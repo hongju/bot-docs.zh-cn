@@ -1,21 +1,18 @@
 ---
-title: 为 Skype 构建实时媒体机器人 | Microsoft Docs
-description: 了解如何构建一个机器人，以使用 Bot Framework SDK for .NET 和 Bot Builder-RealTimeMediaCalling SDK for .NET 通过 Skype 进行实时音频/视频通话。
-author: MalarGit
-ms.author: malarch
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 12/13/17
-monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: a539ca3258e8c9a8020bfa7c939f6eddbdd30feb
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+redirect_url: https://aka.ms/realTimeMediaCalling-repo
+ms.openlocfilehash: 9251c3a8ea75376b0891fc173975470a66ccaec8
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225652"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032946"
 ---
+<a name="--"></a><!--
+---
+title:为 Skype 构建实时媒体机器人 | Microsoft Docs description:了解如何构建一个机器人，以使用 Bot Framework SDK for .NET 和 Bot Builder-RealTimeMediaCalling SDK for .NET 通过 Skype 进行实时音频/视频通话。
+author:MalarGit ms.author: malarch manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date:12/13/17 monikerRange: 'azure-bot-service-3.0'
+---
+
 # <a name="build-a-real-time-media-bot-for-skype"></a>为 Skype 构建实时媒体机器人
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
@@ -375,3 +372,4 @@ private async Task OnRosterUpdateNotification(RosterUpdateNotification rosterUpd
 ### <a name="handle-call-clean-up-by-the-bot-framework"></a>由 Bot Framework 处理通话清理
 在错误情况下（例如，如果未在合理时间内收到 `AnswerAppHostedMediaOutcomeEvent`），Bot Framework 可能会终止通话。 机器人应注册 `OnCallCleanup` 事件并处置媒体套接字。
 
+-->

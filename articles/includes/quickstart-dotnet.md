@@ -1,13 +1,21 @@
+---
+ms.openlocfilehash: 04f9101d0cf29618fb7d50e126c008190064a831
+ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65198810"
+---
 ## <a name="prerequisites"></a>先决条件
-- Visual Studio [2017](https://www.visualstudio.com/downloads)
+- Visual Studio [2017 或更高版本](https://www.visualstudio.com/downloads)
 - 面向 [C#](https://aka.ms/bot-vsix) 的 Bot Framework SDK v4 模板
-- Bot Framework [Emulator](https://aka.ms/Emulator-wiki-getting-started)
-- 了解 [ASP.Net Core](https://docs.microsoft.com/aspnet/core/) 和 [C#](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/index) 中的异步编程
+- [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)
+- 了解 [ASP.Net Core](https://docs.microsoft.com/aspnet/core/) 和 [C# 中的异步编程](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/index)
 
 ## <a name="create-a-bot"></a>创建机器人
 安装在先决条件部分中下载的 BotBuilderVSIX.vsix 模板。
 
-在 Visual Studio 中使用 **Bot Framework Echo Bot** V4 模板创建一个新的机器人项目。
+在 Visual Studio 中使用 **Echo 机器人 (Bot Framework v4)** 模板创建一个新的机器人项目。
 
 ![Visual Studio 项目](~/media/azure-bot-quickstarts/bot-builder-dotnet-project.png)
 
@@ -24,8 +32,8 @@
 
 接下来，启动模拟器，然后在模拟器中连接到机器人：
 
-1. 单击模拟器“欢迎”选项卡中的“打开机器人”链接。 
-2. 选择创建 Visual Studio 解决方案时所在目录中的 .bot 文件。
+1. 单击模拟器“欢迎使用”选项卡中的“新建机器人配置”链接。 
+2. 填充机器人的字段，然后单击“保存并连接”。
 
 ## <a name="interact-with-your-bot"></a>与机器人交互
 

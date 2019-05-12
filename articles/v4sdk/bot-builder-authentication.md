@@ -7,15 +7,35 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 04/09/2019
+ms.date: 04/17/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2f15817abe087650bc3f2bb998a32f177848cf50
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 4fd61d5d68b5b7b3a535afdd47d635eef3820622
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904530"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033607"
 ---
+<!-- Related TODO:
+- Check code in [Web Chat channel](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0)
+- Check guidance in [DirectLine authentication](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-4.0)
+-->
+
+<!-- General TODO: (Feedback from CSE (Nafis))
+- Add note that: token management is based on user ID
+- Explain why/how to share existing website authentication with a bot.
+- Risk: Even people who use a DirectLine token can be vulnerable to user ID impersonation.
+    Docs/samples that show exchange of secret for token don't specify a user ID, so an attacker can impersonate a different user by modifying the ID client side. There's a [blog post](https://nam06.safelinks.protection.outlook.com/?url=https%3A%2F%2Fblog.botframework.com%2F2018%2F09%2F01%2Fusing-webchat-with-azure-bot-services-authentication%2F&data=02%7C01%7Cv-jofing%40microsoft.com%7Cee005e1c9d2c4f4e7ea508d6b231b422%7C72f988bf86f141af91ab2d7cd011db47%7C1%7C0%7C636892323874079713&sdata=b0DWMxHzmwQvg5EJtlqKFDzR7fYKmg10fXma%2B8zGqEI%3D&reserved=0) that shows how to do this properly.
+"Major issues":
+- This doc is a sample walkthrough, but there's no deeper documentation explaining how the Azure Bot Service is handling tokens. How does the OAuth flow work? Where is it storing my users' access tokens? What's the security and best practices around using it?
+
+"Minor issues":
+- AAD v2 steps tell you to add delegated permission scopes during registration, but this shouldn't be necessary in AAD v2 due to dynamic scopes. (Ming, "This is currently necessary because scopes are not exposed through our runtime API. We don’t currently have a way for the developer to specify which scope he wants at runtime.")
+
+- "The scope of the connection setting needs to have both openid and a resource in the Azure AD graph, such as Mail.Read." Unclear if I need to take some action at this point to make happen. Kind of out of context. I'm registering an AAD application in the portal, there's no connection setting
+- Does the bot need all of these scopes for the samples? (e.g. "Read all users' basic profiles")
+-->
+
 # <a name="add-authentication-to-your-bot-via-azure-bot-service"></a>通过 Azure 机器人服务向机器人添加身份验证
 
 [!INCLUDE [applies-to-v4](../includes/applies-to.md)]
@@ -72,27 +92,9 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
     若要启用此项保护，请使用一个 Direct Line 令牌启动网络聊天，该令牌包含可以托管机器人网络聊天客户端的受信任域的列表。 然后，在 Direct Line 配置页中以静态方式指定受信任域（来源）列表。
 
-使用 Direct Line 的 `/v3/directline/tokens/generate` REST 终结点生成聊天令牌，并在请求有效负载中指定用户 ID。 有关代码示例，请参阅 [Enhanced Direct Line Authentication Features](https://blog.botframework.com/2018/09/25/enhanced-direct-line-authentication-features/)（增强的 Direct Line 身份验证功能）博客文章。
-
-<!-- The eventual article about this should talk about the tokens/generate endpoint and its parameters: user, trustedOrigins, and [maybe] eTag.
-Sample payload
-{
-  "user": {
-    "id": "string",
-    "name": "string",
-    "aadObjectId": "string",
-    "role": "string"
-  },
-  "trustedOrigins": [
-    "string"
-  ],
-  "eTag": "string"
-}
- -->
-
 ## <a name="prerequisites"></a>先决条件
 
-- 具备[机器人基础知识][concept-basics]和[管理状态][concept-state]方面的知识。
+- 了解[机器人基础知识][concept-basics]、[管理状态][concept-state]、[对话库][concept-dialogs]、如何[实现顺序聊天流][simple-dialog]、如何[使用对话提示收集用户输入][dialog-prompts]，以及如何[重复使用对话][component-dialogs]。
 - 具备 Azure 和 OAuth 2.0 开发方面的知识。
 - Visual Studio 2017 或更高版本、Node.js、NPM 和 Git。
 - 以下示例之一。
@@ -119,6 +121,8 @@ Sample payload
 
 > [!TIP]
 > 需要在你对其拥有管理权限的租户中创建并注册 Azure AD 应用程序。
+
+# <a name="azure-ad-v1tabaadv1"></a>[Azure AD v1](#tab/aadv1)
 
 1. 在 Azure 门户中打开 [Azure Active Directory][azure-aad-blade] 面板。
     如果进入了错误的租户，请单击“切换目录”切换到正确的租户。 （有关创建租户的说明，请参阅[访问门户并创建租户](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-access-create-new-tenant)。）
@@ -163,6 +167,37 @@ Sample payload
    1. 关闭“所需权限”面板。
 
 现在已完成 Azure AD v1 应用程序的配置。
+
+# <a name="azure-ad-v2tabaadv2"></a>[Azure AD v2](#tab/aadv2)
+
+1. 转到 [Microsoft 应用程序注册门户](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)。
+1. 单击“添加应用”
+1. 为 Azure AD 应用命名，然后单击“创建”。
+
+    记录“应用程序 ID”GUID。 稍后需要提供该值作为连接设置的客户端 ID。
+
+1. 在“应用程序密码”下，单击“生成新密码”。
+
+    记录弹出窗口中的密码。 稍后需要提供该值作为连接设置的客户端密码。
+
+1. 在“平台”下，单击“添加平台”。
+1. 在“添加平台”弹出窗口中，单击“Web”。
+
+    1. 让“允许隐式流”保持选中状态。
+    1. 对于“重定向 URL”，输入 `https://token.botframework.com/.auth/web/redirect`。
+    1. 让“注销 URL”留空。
+
+1. 在“Microsoft Graph 权限”下，可以添加其他委托权限。
+
+    - 对于本文，请添加 Mail.Read、Mail.Send、openid、profile、User.Read 和 User.ReadBasic.All 权限。
+      连接设置的作用域需要同时具有 openid 和 Azure AD Graph 中的资源（如 Mail.Read）。
+    - 记录所选的权限。 稍后需要提供这些权限作为连接设置的作用域。
+
+1. 单击页面底部的“保存”。
+
+现在已完成 Azure AD v2 应用程序的配置。
+
+---
 
 ### <a name="register-your-azure-ad-application-with-your-bot"></a>在机器人中注册 Azure AD 应用程序
 
@@ -230,93 +265,81 @@ Sample payload
 
 现在可以在机器人代码中使用此连接名称检索用户令牌。
 
-## <a name="prepare-the-bot-sample-code"></a>准备机器人示例代码
+## <a name="prepare-the-bot-code"></a>准备机器人代码
 
-你将使用 C# 或 Node，具体取决于所选示例。
+需要机器人的应用 ID 和密码才能完成此过程。 若要检索机器人的应用 ID 和密码，请执行以下操作：
 
-| 示例 | BotBuilder 版本 | 演示 |
-|:---|:---:|:---|
-| [**CSharp**][cs-auth-sample] 或 [**JavaScript**][js-auth-sample] 中的**机器人身份验证** | v4 | OAuthCard 支持 |
-| [**CSharp**][cs-msgraph-sample] 或 [**JavaScript**][js-msgraph-sample] 中的**机器人身份验证 MSGraph** | v4 |  使用 OAuth 2 的 Microsoft Graph API 支持 |
+1. 在 [Azure 门户][]中，导航到在其中创建了通道注册机器人的资源组。
+1. 打开“部署”窗格，然后打开机器人的部署。
+1. 打开“输入”窗格，然后复制机器人的 **appId** 和 **appSecret** 的值。
 
-1. 单击上面的某个示例链接，克隆 github 存储库。
-1. 按照 GitHub 自述文件页上的说明操作，此页介绍了如何运行该特定的机器人（C# 或 Node）。
-1. 如果使用 C# Bot-Authentication 示例，请执行以下操作：
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-    1. 将 `AuthenticationBot.cs` 文件中的 `ConnectionName` 变量设置为配置机器人的 OAuth 2.0 连接设置时使用过的值。
-    1. 将 `BotConfiguration.bot` 文件中的 `appId` 值设置为机器人的应用 ID。
-    1. 将 `BotConfiguration.bot` 文件中的 `appPassword` 值设置为机器人的机密。
+<!-- TODO: Add guidance (once we have it) on how not to hard-code IDs and ABS auth. -->
 
-1. 如果使用 Node/JS Bot-Authentication 示例，请执行以下操作：
+1. 从要使用的 github 存储库进行克隆：[**机器人身份验证**][cs-auth-sample]或[**机器人身份验证 MSGraph**][cs-msgraph-sample]。
+1. 按照 GitHub 自述文件页上的说明操作，此页介绍了如何运行该特定的机器人。 <!--TODO: Can we remove this step and still have the instructions make sense? What is the minimum we need to say in its place? -->
+1. 更新 **appsettings.json**：
 
-    1. 将 `bot.js` 文件中的 `CONNECTION_NAME` 变量设置为配置机器人的 OAuth 2.0 连接设置时使用过的值。
-    1. 将 `bot-authentication.bot` 文件中的 `appId` 值设置为机器人的应用 ID。
-    1. 将 `bot-authentication.bot` 文件中的 `appPassword` 值设置为机器人的机密。
+    - 将 `ConnectionName` 设置为要添加到机器人的 OAuth 连接设置的名称。
+    - 将 `MicrosoftAppId` 和 `MicrosoftAppPassword` 设置为机器人的应用 ID 和应用机密。
 
-    > [!IMPORTANT]
-    > 根据密码中的字符，可能需要 XML 转义密码。 例如，任何连字符 (&) 都需要编码为 `&amp;`。
+      根据机器人机密中的字符，可能需要 XML 转义密码。 例如，任何连字符 (&) 都需要编码为 `&amp;`。
 
-    ```json
-    {
-        "name": "BotAuthentication",
-        "secretKey": "",
-        "services": [
-            {
-            "appId": "",
-            "id": "http://localhost:3978/api/messages",
-            "type": "endpoint",
-            "appPassword": "",
-            "endpoint": "http://localhost:3978/api/messages",
-            "name": "BotAuthentication"
-            }
-        ]
-    }
-    ```
+[!code-json[appsettings](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/appsettings.json)]
 
-如果不知道如何获取 **Microsoft 应用 ID** 值和 **Microsoft 应用密码**值，可以根据
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-[机器人通道注册密码](../bot-service-quickstart-registration.md#bot-channels-registration-password)中的说明创建新密码，
-  
-也可以根据 [Find Your Azure Bot’s AppID and AppSecret](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)（查找 Azure 机器人的 AppID 和 AppSecret）中的说明，从部署中检索通过“机器人通道注册”预配的 **Microsoft 应用 ID** 和 **Microsoft 应用密码**
+1. 从要使用的 github 存储库进行克隆：[**机器人身份验证**][js-auth-sample]或[**机器人身份验证 MSGraph**][js-msgraph-sample]。
+1. 按照 GitHub 自述文件页上的说明操作，此页介绍了如何运行该特定的机器人。 <!--TODO: Can we remove this step and still have the instructions make sense? What is the minimum we need to say in its place? -->
+1. 更新 **.env**：
 
-    > [!NOTE]
-    > You could now publish this bot code to your Azure subscription (right-click on the project and choose **Publish**), but it is not necessary for this tutorial. You would need to set up a publishing configuration that uses the application and hosting plan that you used when configuration the bot in the Azure Portal.
+    - 将 `connectionName` 设置为要添加到机器人的 OAuth 连接设置的名称。
+    - 将 `MicrosoftAppId` 和 `MicrosoftAppPassword` 值设置为机器人的应用 ID 和应用机密。
 
-## <a name="use-the-emulator-to-test-your-bot"></a>使用模拟器测试机器人
+      根据机器人机密中的字符，可能需要 XML 转义密码。 例如，任何连字符 (&) 都需要编码为 `&amp;`。
 
-在本地测试机器人需要安装[机器人模拟器](https://github.com/Microsoft/BotFramework-Emulator)。 可以使用 v3 或 v4 模拟器。
+    [!code-txt[.env](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/.env)]
 
-1. 启动机器人（无论有无调试）。
-1. 请注意页面的 localhost 端口号。 与机器人交互时将需要此信息。
-1. 启动模拟器。
-1. 连接到机器人。 确保机器人配置在使用身份验证时使用“Microsoft 应用 ID”和“Microsoft 应用密码”
-1. 确保在模拟器设置中勾选“使用登录验证代码作为 OAuthCard”并启用“ngrok”，以便 Azure 机器人服务能够在令牌可用时将其返回给模拟器。
+---
 
-   如果尚未配置连接，请提供地址和机器人的 Microsoft 应用 ID 和密码。 将 `/api/messages` 添加到机器人的 URL。 URL 应类似于 `http://localhost:portNumber/api/messages`。
+如果不知道如何获取 **Microsoft 应用 ID** 值和 **Microsoft 应用密码**值，可以执行下述操作之一：
 
-1. 键入 `help` 查看机器人的可用命令列表，然后测试身份验证功能。
-1. 登录后，在注销前都无需再次提供凭据。
-1. 要注销并取消身份验证，请键入 `signout`。
-
-<!--To restart completely from scratch you also need to:
-1. Navigate to the **AppData** folder for your account.
-1. Go to the **Roaming/botframework-emulator** subfolder.
-1. Delete the **Cookies** and **Coolies-journal** files.
--->
+- [根据此处的说明](../bot-service-quickstart-registration.md#bot-channels-registration-password)创建新密码
+- [根据此处的说明](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)，从部署中检索通过“机器人通道注册”预配的 **Microsoft 应用 ID** 和 **Microsoft 应用密码**
 
 > [!NOTE]
-> 机器人身份验证需要使用 Bot Connector 服务。 该服务会访问机器人的机器人通道注册信息，因此你需要在门户上设置机器人的消息传递终结点。 身份验证还需要使用 HTTPS，因此你需要为本地运行的机器人创建 HTTPS 转发地址。
+> 现在即可将此机器人代码发布到 Azure 订阅（右键单击该项目并选择“发布”），但本文不需要这样做。 你需要设置一个发布配置，该配置使用在 Azure 门户中配置机器人时使用的应用程序和托管计划。
 
-<!--The following is necessary for WebChat:
-1. Use the **ngrok** command-line tool to get a forwarding HTTPS address for your bot.
-   - For information on how to do this, see [Debug any Channel locally using ngrok](https://blog.botframework.com/2017/10/19/debug-channel-locally-using-ngrok/).
-   - Any time you exit **ngrok**, you will need to redo this and the following step before starting the Emulator.
-1. On the Azure Portal, go to the **Settings** blade for your bot.
-   1. In the **Configuration** section, change the **Messaging endpoint** to the HTTPS forwarding address generated by **ngrok**.
-   1. Click **Save** to save your change.
--->
+## <a name="test-the-bot"></a>测试机器人
 
-## <a name="notes-on-the-token-retrieval-flow"></a>有关令牌检索流的说明
+1. 安装 [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)（如果尚未安装）。
+1. 在计算机本地运行示例。
+1. 启动模拟器，连接到机器人，然后发送消息。
+
+    - 在连接到机器人时，需提供机器人的应用 ID 和密码。
+    - 键入 `help` 查看机器人的可用命令列表，然后测试身份验证功能。
+    - 登录后，在注销前都无需再次提供凭据。
+    - 要注销并取消身份验证，请键入 `logout`。
+
+> [!NOTE]
+> 机器人身份验证需要使用 Bot Connector 服务。 该服务会访问机器人的机器人通道注册信息。
+
+# <a name="bot-authenticationtabbot-oauth"></a>[机器人身份验证](#tab/bot-oauth)
+
+在**机器人身份验证**示例中，此对话被设计为在用户登录后检索用户令牌。
+
+![示例输出](media/how-to-auth/auth-bot-test.png)
+
+# <a name="bot-authentication-msgraphtabbot-msgraph-auth"></a>[机器人身份验证 MSGraph](#tab/bot-msgraph-auth)
+
+在**机器人身份验证 MSGraph** 示例中，此对话被设计为在用户登录后接受有限的一组命令。
+
+![示例输出](media/how-to-auth/msgraph-bot-test.png)
+
+---
+
+## <a name="additional-information"></a>其他信息
 
 如果用户要求机器人执行某项操作，而该操作要求机器人让用户登录，则机器人可以使用 `OAuthPrompt` 来开始检索给定连接的令牌。 `OAuthPrompt` 创建一个令牌检索流，其中包含：
 
@@ -325,199 +348,95 @@ Sample payload
 1. 用户单击 `OAuthCard` 登录按钮以后，Azure 机器人服务会向机器人直接发送用户的令牌，或者会向用户提供一个可在聊天窗口中输入的 6 位数身份验证代码。
 1. 如果 Azure 机器人服务向用户提供身份验证代码，则机器人会用此身份验证代码来交换获取用户的令牌。
 
-接下来的几个代码片段取自 `OAuthPrompt`，后者演示这些步骤如何在提示中运行。
+以下部分描述示例如何执行某些常见的身份验证任务。
 
-### <a name="check-for-a-cached-token"></a>检查缓存的令牌
-
-在此代码中，机器人首先会进行快速检查，确定 Azure 机器人服务是否已有用户（由当前活动发件人标识）和给定 ConnectionName（配置中使用的连接名）的令牌。 Azure 机器人服务要么已缓存令牌，要么没有缓存。 调用 GetUserTokenAsync 即可执行此快速检查。 如果 Azure 机器人服务有令牌并将其返回，则可以立即使用该令牌。 如果 Azure 机器人服务没有令牌，则此方法将返回 NULL。 在这种情况下，机器人可以发送自定义的 OAuthCard 供用户登录。
+### <a name="use-an-oauth-prompt-to-sign-the-user-in-and-get-a-token"></a>使用 OAuth 提示来登录用户并获取令牌
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-```csharp
-// First ask Bot Service if it already has a token for this user
-var token = await adapter.GetUserTokenAsync(turnContext, connectionName, null, cancellationToken).ConfigureAwait(false);
-if (token != null)
-{
-    // use the token to do exciting things!
-}
-else
-{
-    // If Bot Service does not have a token, send an OAuth card to sign in
-}
-```
+![机器人体系架构](media/how-to-auth/architecture.png)
+
+<!-- The two authentication samples have nearly identical architecture. Using 18.bot-authentication for the sample code. -->
+
+**Dialogs\MainDialog.cs**
+
+将 OAuth 提示添加到其构造函数中的 **MainDialog**。 在这里，连接名称的值已从 **appsettings.json** 文件中检索。
+
+[!code-csharp[Add OAuthPrompt](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/MainDialog.cs?range=23-31)]
+
+在对话步骤中，请使用 `BeginDialogAsync` 来启动 OAuth 提示，该提示要求用户登录。
+
+- 如果用户已登录，则会在不提示用户的情况下生成一个令牌响应事件，
+- 否则会提示用户登录。 Azure 机器人服务会在用户尝试登录后发送令牌响应事件。
+
+[!code-csharp[Use the OAuthPrompt](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/MainDialog.cs?range=49)]
+
+在以下对话步骤中，检查上一步的结果中是否存在令牌。 如果该令牌不为 null，则表明用户已成功登录。
+
+[!code-csharp[Get the OAuthPrompt result](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/MainDialog.cs?range=54-58)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-```javascript
-public async getUserToken(context: TurnContext, code?: string): Promise<TokenResponse|undefined> {
-    // Get the token and call validator
-    const adapter: any = context.adapter as any; // cast to BotFrameworkAdapter
-    return await adapter.getUserToken(context, this.settings.connectionName, code);
-}
-```
+![机器人体系架构](media/how-to-auth/architecture-js.png)
 
----
+**dialogs/mainDialog.js**
 
-### <a name="send-an-oauthcard-to-the-user"></a>向用户发送 OAuthCard
+将 OAuth 提示添加到其构造函数中的 **MainDialog**。 在这里，连接名称的值已从 **.env** 文件中检索。
 
-你可以使用想要的任何文本或按钮文本自定义 OAuthCard。 重要部分：
+[!code-javascript[Add OAuthPrompt](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/mainDialog.js?range=23-28)]
 
-- 将 `ContentType` 设置为 `OAuthCard.ContentType`。
-- 将 `ConnectionName` 属性置为要使用的连接的名称。
-- 在一个按钮中加入 `CardAction` `Type` 的 `ActionTypes.Signin`；注意，无需为登录链接指定任何值。
+在对话步骤中，请使用 `beginDialog` 来启动 OAuth 提示，该提示要求用户登录。
 
-在此调用结束时，机器人需要“等待令牌”返回。 这种等待发生在主活动流上，因为用户登录时可能需要执行很多操作。
+- 如果用户已登录，则会在不提示用户的情况下生成一个令牌响应事件，
+- 否则会提示用户登录。 Azure 机器人服务会在用户尝试登录后发送令牌响应事件。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+[!code-javascript[Use OAuthPrompt](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/mainDialog.js?range=57)]
 
-```csharp
-private async Task SendOAuthCardAsync(ITurnContext turnContext, IMessageActivity message, CancellationToken cancellationToken = default(CancellationToken))
-{
-    if (message.Attachments == null)
-    {
-        message.Attachments = new List<Attachment>();
-    }
+在以下对话步骤中，检查上一步的结果中是否存在令牌。 如果该令牌不为 null，则表明用户已成功登录。
 
-    message.Attachments.Add(new Attachment
-    {
-        ContentType = OAuthCard.ContentType,
-        Content = new OAuthCard
-        {
-            Text = "Please sign in",
-            ConnectionName = connectionName,
-            Buttons = new[]
-            {
-                new CardAction
-                {
-                    Title = "Sign In",
-                    Text = "Sign In",
-                    Type = ActionTypes.Signin,
-                },
-            },
-        },
-    });
-
-    await turnContext.SendActivityAsync(message, cancellationToken).ConfigureAwait(false);
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-```javascript
-private async sendOAuthCardAsync(context: TurnContext, prompt?: string|Partial<Activity>): Promise<void> {
-    // Initialize outgoing message
-    const msg: Partial<Activity> =
-        typeof prompt === 'object' ? {...prompt} : MessageFactory.text(prompt, undefined, InputHints.ExpectingInput);
-    if (!Array.isArray(msg.attachments)) { msg.attachments = []; }
-
-    const cards: Attachment[] = msg.attachments.filter((a: Attachment) => a.contentType === CardFactory.contentTypes.oauthCard);
-    if (cards.length === 0) {
-        // Append oauth card
-        msg.attachments.push(CardFactory.oauthCard(
-            this.settings.connectionName,
-            this.settings.title,
-            this.settings.text
-        ));
-    }
-
-    // Send prompt
-    await context.sendActivity(msg);
-}
-```
+[!code-javascript[Get OAuthPrompt result](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/mainDialog.js?range=61-64)]
 
 ---
 
 ### <a name="wait-for-a-tokenresponseevent"></a>等待 TokenResponseEvent
 
-此代码中的机器人在等待 `TokenResponseEvent`（请参阅下文，详细了解如何路由到对话框堆栈）。 `WaitForToken` 方法首先确定是否已发送此事件。 如果已发送，那么它就可以供机器人使用。 如果没有发送，则 `RecognizeTokenAsync` 方法会接受发送到机器人的任何文本并将其传递给 `GetUserTokenAsync`。 原因是某些客户端（如 WebChat）不需要幻码验证码，可以直接在 `TokenResponseEvent` 中发送令牌。 其他客户端（如 Facebook 或 Slack）仍然需要幻码。 Azure 机器人服务将为这些客户端提供一个六位数的幻码，并要求用户在聊天窗口中键入此代码。 虽然不理想，但这是“回退”行为，因此如果 `RecognizeTokenAsync` 收到代码，机器人可以将此代码发送到 Azure 机器人服务并取回一个令牌。 如果此调用也失败了，则可以决定报告错误或执行其他操作。 但大多数情况下，机器人此时将有一个用户令牌。
-
-如果查看每个示例的机器人代码，则会看到 `Event` 和 `Invoke` 活动也被路由到对话框堆栈。
+启动 OAuth 提示时，它会等待令牌响应事件，目的是从中检索用户的令牌。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-```csharp
-// This can be called when the bot receives an Activity after sending an OAuthCard
-private async Task<TokenResponse> RecognizeTokenAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-{
-    if (IsTokenResponseEvent(turnContext))
-    {
-        // The bot received the token directly
-        var tokenResponseObject = turnContext.Activity.Value as JObject;
-        var token = tokenResponseObject?.ToObject<TokenResponse>();
-        return token;
-    }
-    else if (IsTeamsVerificationInvoke(turnContext))
-    {
-        var magicCodeObject = turnContext.Activity.Value as JObject;
-        var magicCode = magicCodeObject.GetValue("state")?.ToString();
+**Bots\AuthBot.cs**
 
-        var token = await adapter.GetUserTokenAsync(turnContext, _settings.ConnectionName, magicCode, cancellationToken).ConfigureAwait(false);
-        return token;
-    }
-    else if (turnContext.Activity.Type == ActivityTypes.Message)
-    {
-        // make sure it's a 6-digit code
-        var matched = _magicCodeRegex.Match(turnContext.Activity.Text);
-        if (matched.Success)
-        {
-            var token = await adapter.GetUserTokenAsync(turnContext, _settings.ConnectionName, matched.Value, cancellationToken).ConfigureAwait(false);
-            return token;
-        }
-    }
+**AuthBot** 派生自 `ActivityHandler`，会显式处理令牌响应事件活动。 在这里，我们会继续活动对话，这样 OAuth 提示就能处理事件并检索令牌。
 
-    return null;
-}
-
-private bool IsTokenResponseEvent(ITurnContext turnContext)
-{
-    var activity = turnContext.Activity;
-    return activity.Type == ActivityTypes.Event && activity.Name == "tokens/response";
-}
-
-private bool IsTeamsVerificationInvoke(ITurnContext turnContext)
-{
-    var activity = turnContext.Activity;
-    return activity.Type == ActivityTypes.Invoke && activity.Name == "signin/verifyState";
-}
-```
+[!code-csharp[OnTokenResponseEventAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Bots/AuthBot.cs?range=32-38)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-```javascript
-private async recognizeToken(context: TurnContext): Promise<PromptRecognizerResult<TokenResponse>> {
-    let token: TokenResponse|undefined;
-    if (this.isTokenResponseEvent(context)) {
-        token = context.activity.value as TokenResponse;
-    } else if (this.isTeamsVerificationInvoke(context)) {
-        const code: any = context.activity.value.state;
-        await context.sendActivity({ type: 'invokeResponse', value: { status: 200 }});
-        token = await this.getUserToken(context, code);
-    } else if (context.activity.type === ActivityTypes.Message) {
-        const matched: RegExpExecArray = /(\d{6})/.exec(context.activity.text);
-        if (matched && matched.length > 1) {
-            token = await this.getUserToken(context, matched[1]);
-        }
-    }
+**bots/authBot.js**
 
-    return token !== undefined ? { succeeded: true, value: token } : { succeeded: false };
-}
+**AuthBot** 派生自 `ActivityHandler`，会显式处理令牌响应事件活动。 在这里，我们会继续活动对话，这样 OAuth 提示就能处理事件并检索令牌。
 
-private isTokenResponseEvent(context: TurnContext): boolean {
-    const activity: Activity = context.activity;
-    return activity.type === ActivityTypes.Event && activity.name === 'tokens/response';
-}
-
-private isTeamsVerificationInvoke(context: TurnContext): boolean {
-    const activity: Activity = context.activity;
-    return activity.type === ActivityTypes.Invoke && activity.name === 'signin/verifyState';
-}
-```
+[!code-javascript[onTokenResponseEvent](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/bots/authBot.js?range=28-33)]
 
 ---
 
-### <a name="message-controller"></a>消息控制器
+### <a name="log-the-user-out"></a>注销用户
 
-在之后调用机器人时，注意该示例机器人绝不会缓存令牌。 这是因为机器人始终可以向 Azure 机器人服务询问令牌。 这样机器人就无需管理令牌生存期、刷新令牌等，因为 Azure 机器人服务会为你完成所有这些操作。
+最佳做法是让用户显式注销，而不是等待连接超时。
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+**Dialogs\LogoutDialog.cs**
+
+[!code-csharp[Allow logout](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/Dialogs/LogoutDialog.cs?range=20-61&highlight=35)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+**dialogs/logoutDialog.js**
+
+[!code-javascript[Allow logout](~/../botbuilder-samples/samples/javascript_nodejs/18.bot-authentication/dialogs/logoutDialog.js?range=13-42&highlight=25)]
+
+---
 
 ### <a name="further-reading"></a>延伸阅读
 
@@ -526,7 +445,7 @@ private isTeamsVerificationInvoke(context: TurnContext): boolean {
 
 <!-- Footnote-style links -->
 
-[Azure portal]: https://ms.portal.azure.com
+[Azure 门户]: https://ms.portal.azure.com
 [azure-aad-blade]: https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview
 [aad-registration-blade]: https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps
 

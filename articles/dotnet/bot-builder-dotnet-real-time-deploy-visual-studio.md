@@ -1,21 +1,18 @@
 ---
-title: 将 Skype 实时媒体机器人部署到 Azure | Microsoft Docs
-description: 了解如何使用 Visual Studio 的内置发布功能将 Skype 实时音频视频机器人部署到 Azure。
-author: MalarGit
-ms.author: malarch
-manager: ssulzer
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 12/13/17
-monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 22cce8ad5bef3c1c6f08a8efc28118e0209dd3af
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+redirect_url: https://aka.ms/realTimeMediaCalling-repo
+ms.openlocfilehash: 1df0192632cdb9b35259b8ce1ec5c8b3be46c750
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999434"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032941"
 ---
+<a name="--"></a><!--
+---
+title:将 Skype 实时媒体机器人部署到 Azure | Microsoft Docs description:了解如何使用 Visual Studio 的内置发布功能将 Skype 实时音频视频机器人部署到 Azure。
+author:MalarGit ms.author: malarch manager: ssulzer ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date:12/13/17 monikerRange: 'azure-bot-service-3.0'
+---
+
 # <a name="deploy-a-real-time-media-bot-from-visual-studio-to-azure"></a>将实时媒体机器人从 Visual Studio 部署到 Azure
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
@@ -84,3 +81,4 @@ ms.locfileid: "49999434"
 ![单击“高级设置”选项卡](../media/real-time-media-bot-publish-advanced-settings.png)
 
 验证“摘要”选项卡中的配置，然后单击“发布”将机器人部署到 Microsoft Azure。
+-->

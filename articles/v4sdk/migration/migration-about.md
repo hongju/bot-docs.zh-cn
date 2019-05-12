@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 02/11/2019
+ms.date: 03/28/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7e5440e7d47d88b7ff6827359e7eb621bce53e3c
-ms.sourcegitcommit: 7f418bed4d0d8d398f824e951ac464c7c82b8c3e
+ms.openlocfilehash: 55b5a4073340bb29074af5b2ee74dd952ea40f0c
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/14/2019
-ms.locfileid: "56240483"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032238"
 ---
 # <a name="differences-between-the-v3-and-v4-net-sdk"></a>v3 与 v4 .NET SDK 之间的差异
 
@@ -25,15 +25,15 @@ Bot Framework SDK 版本 4 支持的底层 Bot Framework 服务与版本 3 相�
   - 该适配器处理 Bot Framework 身份验证。
   - 该适配器管理通道与机器人轮次处理程序之间的传入和传出流量，封装对 Bot Framework 连接器的调用。
   - 该适配器初始化每个轮次的上下文。
-  - 有关更多详细信息，请参阅[机器人的工作原理](../bot-builder-basics.md)。
+  - 有关更多详细信息，请参阅[机器人工作原理][about-bots]。
 - 重构了状态管理。
   - 机器人中不再自动提供状态数据。
   - 现在需要通过状态管理对象和属性访问器管理状态。
-  - 有关更多详细信息，请参阅[管理状态](../bot-builder-concept-state.md)。
+  - 有关更多详细信息，请参阅[管理状态][about-state]。
 - 新的对话库。
   - 需要根据新的对话库重新编写 v3 对话。
-  - 可评分对象不再存在。 在将控制权传递给对话之前，可以检查轮次处理程序中的“全局”命令。
-  - 有关更多详细信息，请参阅[对话库](../bot-builder-concept-dialog.md)。
+  - 可评分对象不再存在。 在将控制权传递给对话之前，可以检查“全局”命令。 这可能位于消息处理程序中，也可能位于父对话中，具体取决于 v4 机器人的设计方式。 如需示例，请参阅如何[处理用户中断][interruptions]。
+  - 有关更多详细信息，请参阅[对话库][about-dialogs]。
 - 支持 ASP.NET Core。
   - 用于创建新 C# 机器人的模板面向 ASP.NET Core 框架。
   - 你仍可以对机器人使用 ASP.NET，但 v4 的重心是支持 ASP.NET Core 框架。
@@ -41,39 +41,33 @@ Bot Framework SDK 版本 4 支持的底层 Bot Framework 服务与版本 3 相�
 
 ## <a name="activity-processing"></a>活动处理
 
-为机器人创建适配器时，还需要提供一个轮次处理程序委托，用于从通道和用户接收传入的活动。 该适配器将为收到的每个活动创建轮次上下文对象。 它将轮次上下文对象传递给轮次处理程序，并在轮次完成后处置该对象。
+为机器人创建适配器时，还需要提供一个消息处理程序委托，用于从通道和用户接收传入的活动。 该适配器将为收到的每个活动创建轮次上下文对象。 它将轮次上下文对象传递给机器人的轮次处理程序，并在轮次完成后处置该对象。
 
-轮次处理程序可以接收多种类型的活动。 一般情况下，你只希望将消息活动转发到机器人包含的任何对话。 有关活动类型的详细信息，请参阅[活动架构](https://aka.ms/botSpecs-activitySchema)。
+轮次处理程序可以接收多种类型的活动。 一般情况下，你只希望将消息活动转发到机器人包含的任何对话。 如果机器人派生自 `ActivityHandler`，则机器人的轮次处理程序会将所有消息活动转发到 `OnMessageActivityAsync`。 重写该方法即可添加消息处理逻辑。 有关活动类型的详细信息，请参阅[活动架构][]。
 
 ### <a name="handling-turns"></a>处理轮次
 
-轮次处理程序需要与 `BotCallbackHandler` 的签名匹配：
-
-```csharp
-public delegate Task BotCallbackHandler(
-    ITurnContext turnContext,
-    CancellationToken cancellationToken);
-```
-
-处理某个轮次时，可使用轮次上下文获取有关传入活动的信息，并将活动发送给用户：
+处理某条消息时，可使用轮次上下文获取有关传入活动的信息，并将活动发送给用户：
 
 | | |
 |-|-|
 | 获取传入活动 | 获取轮次上下文的 `Activity` 属性。 |
-| 创建活动并将其发送给用户 | 调用轮次上下文的 `SendActivityAsync` 方法。<br/>有关详细信息，请参阅[发送和接收文本消息](../bot-builder-howto-send-messages.md)以及[将媒体添加到消息](../bot-builder-howto-add-media-attachments.md) |
+| 创建活动并将其发送给用户 | 调用轮次上下文的 `SendActivityAsync` 方法。<br/>有关详细信息，请参阅[发送和接收文本消息][send-messages]以及[将媒体添加到消息][send-media]。 |
 
 `MessageFactory` 类提供一些帮助器方法用于创建活动及设置其格式。
 
 ### <a name="scorables-is-gone"></a>可评分对象已弃用
 
-请在机器人的消息循环中处理这些对象。 有关如何使用 v4 对话执行此操作的说明，请参阅如何[处理用户中断](../bot-builder-howto-handle-user-interrupt.md)。
+请在机器人的消息循环中处理这些对象。 有关如何使用 v4 对话执行此操作的说明，请参阅如何[处理用户中断][interruptions]。
 
 可组合的可评分对象调度树以及可组合的链对话（例如默认异常）也已弃用。 重现此功能的方法之一是在机器人的轮次处理程序中实现它。
 
 ## <a name="state-management"></a>状态管理
 
+在 v3 中，可以在 Bot State 服务中存储聊天数据，该服务是 Bot Framework 提供的更大型服务套件的一部分。 不过，该服务在 2018 年 3 月 31 日以后已停用。 从 v4 开始，有关状态管理的设计注意事项就像任何 Web 应用一样，有许多可用选项。 将其缓存在内存中和同一进程中通常是最容易的；但是，对于生产型应用，应该对状态进行更持久的存储。例如，存储在 SQL 或 NoSQL 数据库中，或者以 Blob 形式存储。
+
 v4 不使用 `UserData`、`ConversationData` 和 `PrivateConversationData` 属性以及数据袋来管理状态。
-现在需要根据[管理状态](../bot-builder-concept-state.md)中所述，通过状态管理对象和属性访问器来管理状态。
+现在需要根据[管理状态][about-state]中所述，通过状态管理对象和属性访问器来管理状态。
 
 v4 定义 `UserState`、`ConversationState` 和 `PrivateConversationState` 类用于管理机器人的状态数据。 需为你想要持久保留的每个属性创建一个状态属性访问器，而不仅仅是读取和写入预定义的数据袋。
 
@@ -101,8 +95,6 @@ v4 定义 `UserState`、`ConversationState` 和 `PrivateConversationState` 类�
 | 更新当前缓存的属性值 | 调用 `IStatePropertyAccessor<T>.SetAsync`。<br/>这只会更新缓存，而不会更新后备存储层。 |
 | 将状态更改持久保存到存储 | 针对退出轮次处理程序之前其状态已发生更改的状态管理对象调用 `BotState.SaveChangesAsync`。 |
 
-有关详细信息，请参阅[保存状态](../bot-builder-concept-state.md#saving-state)。
-
 ### <a name="managing-concurrency"></a>管理并发
 
 机器人可能需要管理状态并发性。 有关详细信息，请参阅“管理状态”的[保存状态](../bot-builder-concept-state.md#saving-state)部分，以及“直接写入到存储”的[使用 eTag 管理并发性](../bot-builder-howto-v4-storage.md#manage-concurrency-using-etags)部分。
@@ -120,25 +112,21 @@ v4 定义 `UserState`、`ConversationState` 和 `PrivateConversationState` 类�
 
 ### <a name="defining-dialogs"></a>定义对话
 
+虽然 v3 可以灵活地通过 `IDialog` 界面来实现对话，但这也意味着你必须为验证之类的功能实现你自己的代码。 在 v4 中，现在有可以自动为你验证用户输入的提示类，这些类可以将用户输入约束成特定的类型（例如整数）并会反复提示用户，直至用户提供有效的输入。 通常情况下，这意味着你作为开发人员可以少编写一些代码。
+
 现在，可以使用几个选项来定义对话：
 
-- 瀑布对话，即 `WaterfallDialog` 类的实例。
+| | |
+|:--|:--|
+| 派生自 `ComponentDialog` 类的组件对话 | 允许你封装对话代码，而不会与外部上下文发生命名冲突。 请参阅[重复使用对话][reuse-dialogs]。 |
+| 瀑布对话，即 `WaterfallDialog` 类的实例 | 非常适合提示对话，可以提示用户提供各种类型的用户输入，然后对其进行验证。 瀑布可将流程的大部分环节自动化，但强制要求对话代码采用特定的格式；请参阅[有序聊天流][sequential-flow]。 |
+| 派生自 `Dialog` 抽象类的自定义对话 | 使用此选项可在控制对话行为方面获得最大灵活性，但同时要求你更详细地了解对话堆栈的实现方式。 |
 
-  此选项非常适合提示对话，可以提示提供和验证各种类型的用户输入。 请参阅[提示输入](../bot-builder-prompts.md)。
+在 v3 中，我们使用 `FormFlow` 针对任务执行一系列步骤。 在 v4 中，瀑布对话替代 FormFlow。 创建瀑布对话时，在构造函数中定义对话的步骤。 步骤的执行顺序严格按所声明的那样进行，并且会自动地一个接一个地向前推进。
 
-  此选项可将流程的大部分环节自动化，但强制要求对话代码采用特定的格式；请参阅[有序聊天流](../bot-builder-dialog-manage-conversation-flow.md)。 不过，可以通过将多个对话添加到一个对话集来创建其他控制流；请参阅[高级聊天流](../bot-builder-dialog-manage-complex-conversation-flow.md)。
+也可使用多个对话创建复杂的控制流；请参阅[高级聊天流][complex-flow]。
 
-- 派生自 `ComponentDialog` 类的组件对话。
-
-  使用此选项可以封装对话代码，而不会与外部上下文发生命名冲突。 请参阅[重复使用对话](../bot-builder-compositcontrol.md)。
-
-- 派生自 `Dialog` 抽象类的自定义对话。
-
-  使用此选项可在控制对话行为方面获得最大灵活性，但同时要求你更详细地了解对话堆栈的实现方式。
-
-若要访问某个对话，需要将它的某个实例放入对话集，然后生成该集的对话上下文。
-
-创建对话集时需要提供对话状态属性访问器。 这样，框架便可以在完成每个轮次后持久保存对话状态。 [管理状态](../bot-builder-concept-state.md)中介绍了如何在 v4 中管理状态。
+若要访问某个对话，需要将它的某个实例放入对话集，然后生成该集的对话上下文。 创建对话集时需要提供对话状态属性访问器。 这样，框架便可以在完成每个轮次后持久保存对话状态。 [管理状态][about-state]中介绍了如何在 v4 中管理状态。
 
 ### <a name="using-dialogs"></a>使用对话
 
@@ -158,7 +146,7 @@ v4 定义 `UserState`、`ConversationState` 和 `PrivateConversationState` 类�
 
 有关 v4 代码的其他说明：
 
-- v4 中的各种 `Prompt` 派生类将用户提示实现为单独的两步骤对话。 请参阅如何[使用对话提示收集用户输入](../bot-builder-prompts.md)。
+- v4 中的各种 `Prompt` 派生类将用户提示实现为单独的两步骤对话。 请参阅如何[实现顺序聊天流][sequential-flow]。
 - 使用 `DialogSet.CreateContextAsync` 创建当前轮次的对话上下文。
 - 在对话内部，使用 `DialogContext.Context` 属性获取当前轮次上下文。
 - 瀑布步骤包含派生自 `DialogContext` 的 `WaterfallStepContext` 参数。
@@ -190,3 +178,19 @@ v4 定义 `UserState`、`ConversationState` 和 `PrivateConversationState` 类�
 ## <a name="additional-resources"></a>其他资源
 
 - [将 .NET SDK v3 机器人迁移到 v4](conversion-framework.md)
+
+<!-- -->
+
+[about-bots]: ../bot-builder-basics.md
+[about-state]: ../bot-builder-concept-state.md
+[about-dialogs]: ../bot-builder-concept-dialog.md
+
+[send-messages]: ../bot-builder-howto-send-messages.md
+[send-media]: ../bot-builder-howto-add-media-attachments.md
+
+[sequential-flow]: ../bot-builder-dialog-manage-conversation-flow.md
+[complex-flow]: ../bot-builder-dialog-manage-complex-conversation-flow.md
+[reuse-dialogs]: ../bot-builder-compositcontrol.md
+[interruptions]: ../bot-builder-howto-handle-user-interrupt.md
+
+[活动架构]: https://aka.ms/botSpecs-activitySchema

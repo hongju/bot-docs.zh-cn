@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 02/07/2019
-ms.openlocfilehash: 6e0e4bb9e0cecccd10ee1baf14d68a90f02bfa49
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 882dc15bd900667d76eac41049ee88b51ec5c120
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904540"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033133"
 ---
 # <a name="create-a-bot-with-azure-bot-service"></a>使用 Azure 机器人服务创建机器人
 
@@ -49,7 +49,6 @@ ms.locfileid: "59904540"
    | **应用名称** | 唯一的名称 | 机器人的唯一 URL 名称。 例如，如果将机器人命名为 *myawesomebot*，则机器人的 URL 为 `http://myawesomebot.azurewebsites.net`。 名称只能使用字母数字和下划线字符。 此字段的限制为 35 个字符。 创建机器人后无法更改应用名称。 |
    | **机器人模板** | 基本 | 选择 **C#** 或 **Node.js**，再选择适用于本快速入门的“基本”模板，然后单击“选择”。 “基本”模板创建回显机器人。 [详细了解](bot-service-concept-templates.md)模板。 |
    | **应用服务计划/位置** | 你的应用服务计划  | 选择[应用服务计划](https://azure.microsoft.com/en-us/pricing/details/app-service/plans/)位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 （不适用于 Functions 机器人。） |
-   | **Azure 存储** | 你的 Azure 存储帐户 | 可以创建新的数据存储帐户或使用现有的数据存储帐户。 默认情况下，机器人会使用[表存储](/azure/storage/common/storage-introduction#table-storage)。 |
    | **Application Insights** | 启用 | 决定要启用还是关闭 [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果选择“启用”，还必须指定区域位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择机器人服务所在的位置。 |
    | **Microsoft 应用 ID 和密码** | 自动创建应用 ID 和密码 | 如果需要手动输入 Microsoft 应用 ID 和密码，请使用此选项。 否则，将在机器人创建过程中创建新的 Microsoft 应用 ID 和密码。 |
 
@@ -81,6 +80,7 @@ ms.locfileid: "59904540"
 
 [!INCLUDE [applies-to-v4](includes/applies-to.md)]
 
+
 Azure 机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Framework SDK 以及用于将机器人连接到通道的机器人服务。 在本主题中，还可以选择 .NET 或 Node.js 模板，以便使用 Bot Framework SDK v4 创建机器人。
 
 [!INCLUDE [Azure vs local development](~/includes/snippet-quickstart-paths.md)]
@@ -111,7 +111,6 @@ Azure 机器人服务提供了用于创建机器人的核心组件，包括用�
  | **应用名称** | 唯一的名称 | 机器人的唯一 URL 名称。 例如，如果将机器人命名为 *myawesomebot*，则机器人的 URL 为 `http://myawesomebot.azurewebsites.net`。 名称只能使用字母数字和下划线字符。 此字段的限制为 35 个字符。 创建机器人后无法更改应用名称。 |
  | **机器人模板** | 回显机器人 | 选择“SDK v4”。 为本快速入门选择 C# 或 Node.js，然后单击“选择”。  
  | **应用服务计划/位置** | 你的应用服务计划  | 选择[应用服务计划](https://azure.microsoft.com/en-us/pricing/details/app-service/plans/)位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择机器人服务所在的位置。 |
- | **Azure 存储** | 你的 Azure 存储帐户 | 可以创建新的数据存储帐户或使用现有的数据存储帐户。 默认情况下，机器人会使用[表存储](/azure/storage/common/storage-introduction#table-storage)。 |
  | **Application Insights** | 启用 | 决定要启用还是关闭 [Application Insights](/bot-framework/bot-service-manage-analytics)。 如果选择“启用”，还必须指定区域位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择机器人服务所在的位置。 |
  | **Microsoft 应用 ID 和密码** | 自动创建应用 ID 和密码 | 如果需要手动输入 Microsoft 应用 ID 和密码，请使用此选项。 否则，将在机器人创建过程中创建新的 Microsoft 应用 ID 和密码。 |
 
@@ -136,6 +135,6 @@ Azure 机器人服务提供了用于创建机器人的核心组件，包括用�
     1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
 
 ## <a name="next-steps"></a>后续步骤
-下载代码后，可以继续在本地计算机上开发机器人。 测试了机器人并已准备好将机器人代码上传到 Azure 门户后，请按照部署主题的[设置存储库](./bot-builder-deploy-az-cli.md#setup-a-repository)部分下列出的说明执行操作。
+下载代码后，可以继续在本地计算机上开发机器人。 测试了机器人并已准备好将机器人代码上传到 Azure 门户后，请按照[设置持续部署](./bot-service-build-continuous-deployment.md)主题下列出的说明执行操作，在进行更改后自动更新代码。
 
 ::: moniker-end

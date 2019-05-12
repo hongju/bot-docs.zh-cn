@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 2/26/2019
-ms.openlocfilehash: 53cb392dea5ee0e355451e7455a16512f22ebbaa
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.date: 4/30/2019
+ms.openlocfilehash: c208cef52d1850a00b62828ae0ea622a2606ec5b
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224845"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033420"
 ---
 # <a name="troubleshoot-bot-configuration-issues"></a>排查机器人配置问题
 
@@ -72,7 +72,7 @@ ms.locfileid: "57224845"
 
 ### <a name="channel-specific-behavior"></a>特定于通道的行为
 
-某些功能的实现可能因通道而异。 例如，并非所有通道都支持自适应卡。 大多数通道支持按钮，但其呈现方式特定于通道。 如果发现某些消息类型在不同通道中的工作方式存在差异，请参阅 [Channel Inspector](https://docs.botframework.com/channel-inspector/channels/Skype)。
+某些功能的实现可能因通道而异。 例如，并非所有通道都支持自适应卡。 大多数通道支持按钮，但其呈现方式特定于通道。 如果发现某些消息类型在不同通道中的工作方式存在差异，请查看[通道参考](bot-service-channels-reference.md)。
 
 下面是一些其他的链接，提供单个通道的帮助信息：
 

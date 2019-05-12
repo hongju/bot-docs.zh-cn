@@ -9,16 +9,16 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 2/26/2019
-ms.openlocfilehash: 1e806358ffdba90848f0c8124c8315fd4e2dec76
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.openlocfilehash: aa16bc839a96a49615ed127aaf56f686f50a5397
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224835"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033005"
 ---
 # <a name="debug-a-bot"></a>调试机器人
 
-本文介绍如何使用 Visual Studio 或 Visual Studio Code 和 Bot Framework Emulator 等集成开发环境 (IDE) 调试机器人。 虽然可以使用这些方法在本地调试任何机器人，但本文使用了在快速入门中创建的 [C#](~/dotnet/bot-builder-dotnet-sdk-quickstart.md) 和 [JS](~/javascript/bot-builder-javascript-quickstart.md) 机器人。
+本文介绍如何使用 Visual Studio 或 Visual Studio Code 和 Bot Framework Emulator 等集成开发环境 (IDE) 调试机器人。 虽然可以使用这些方法在本地调试任何机器人，但本文使用了在快速入门中创建的 [C# 机器人](~/dotnet/bot-builder-dotnet-sdk-quickstart.md)或 [Javascript 机器人](~/javascript/bot-builder-javascript-quickstart.md)。
 
 ## <a name="prerequisites"></a>先决条件 
 - 下载并安装 [Bot Framework Emulator](https://aka.ms/Emulator-wiki-getting-started)。
@@ -29,7 +29,7 @@ ms.locfileid: "57224835"
 若要使用命令行运行 JavaScript 机器人，并使用模拟器测试机器人，请执行以下步骤：
 1. 在命令行中，将目录更改为机器人项目目录。
 1. 运行命令 node app.js，启动机器人。
-1. 启动模拟器并连接到机器人的终结点（例如： **http://localhost:3978/api/messages** ）。 如果这是首次运行机器人，请单击“文件”>“新建机器人”，然后按照屏幕上的说明操作。 否则，单击“文件”>“打开机器人”打开现有机器人。 由于此机器人正在你的计算机上本地运行，可以将“MSA 应用 ID”和“MSA 应用密码”字段留空。 有关详细信息，请参阅[使用模拟器调试](bot-service-debug-emulator.md)。
+1. 启动模拟器并连接到机器人的终结点（例如： **http://localhost:3978/api/messages** ）。 如果这是首次运行机器人，请单击“文件”>“新建机器人”，然后按照屏幕上的说明操作。 否则，单击“文件”>“打开机器人”打开现有机器人。 由于此机器人正在你的计算机上本地运行，因此你可以将“MicrosoftAppId”和“MicrosoftAppPassword”字段留空。 有关详细信息，请参阅[使用模拟器调试](bot-service-debug-emulator.md)。
 1. 在模拟器中向机器人发送一条消息（例如：发送消息“Hi”）。 
 1. 使用仿真器窗口右侧的“检查器”和“日志”面板调试机器人。 例如，单击任何消息气泡（例如，下面屏幕截图中的“Hi”消息气泡），将在“检查器”面板中显示该消息的详细信息。 由于消息是在模拟器和机器人之间交换，因此，可以使用它来查看请求和响应。 另外，还可以在“日志”窗格中单击任何链接的文本，在“检查器”窗格中查看详细信息。
 
@@ -132,7 +132,7 @@ ms.locfileid: "57224835"
 ## <a name="additional-resources"></a>其他资源
 
 - 请参阅[排查常见问题](bot-service-troubleshoot-bot-configuration.md)和该部分中的其他疑难解答文章。
-- 请参阅如何[使用 ngrok 在本地调试任何通道](https://blog.botframework.com/2017/10/19/debug-channel-locally-using-ngrok/)博客文章。
+- 请参阅如何[使用模拟器进行调试](bot-service-debug-emulator.md)。
 
 ## <a name="next-steps"></a>后续步骤
 

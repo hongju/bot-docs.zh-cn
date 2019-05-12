@@ -8,29 +8,34 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 13/12/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1d231672284e20e3f215cbba16d881ae0ecab7ec
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: 99c37812a5c13fe2409a68cbb8614cf8144d0711
+ms.sourcegitcommit: b94c4286f6f64955fd51ccf4a68109c43db0e47d
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59540983"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65083690"
 ---
-# <a name="virtual-assistant-solution-overview"></a>虚拟助手解决方案概述
+# <a name="virtual-assistant-overview"></a>虚拟助理概述
 
 ## <a name="overview"></a>概述
-我们了解到，客户和合作伙伴强烈要求我们提供一个聊天助手，该聊天助手针对他们的品牌量身打造，针对其客户提供个性化内容，并且可以在各种各样的聊天画布和设备中使用。 开源自定义个人助手解决方案继续了 Microsoft 实现 Bot Framework SDK 时使用的开源方法，可以对构建在一组基本功能上的最终用户体验进行完全的控制。 另外，还可以在该体验中注入有关最终用户以及任何设备/生态系统信息的智能，实现完全集成的智能体验。
+
+客户和合作伙伴强烈要求我们提供一款根据其品牌定制的、针对其用户个性化的，并且可在各种画布和设备中使用的聊天助手。 <br/><br/> 开源虚拟助理解决方案继续了 Microsoft 实现 Bot Framework SDK 时使用的开源方法，为你提供一套核心的基本功能，让你能够完全控制最终用户体验。 <br/><br/> 此模板纳入了以前的企业模板并汇集了在积累聊天体验过程中确定的所有最佳做法和支持组件，大大简化了新机器人项目的创建，包括：基本聊天意向、Dispatch 集成、QnA Maker、Application Insights 和自动化部署。
 
 我们坚信客户应该拥有并丰富其客户关系和见解。 因此，任何虚拟助手都允许客户和合作伙伴通过 GitHub 上的开源代码对用户体验进行完全的控制。 名称、语音和个性可以根据组织需求进行更改。 我们的虚拟助手解决方案简化了助手创建过程，数分钟即可入门，然后进一步使用端到端开发工具。
 
 虚拟助手的功能范围很广，通常会为最终用户提供各种功能。 为了提高开发人员的工作效率，并且为了实现一个包含可重用聊天体验在内的充满活力的生态系统，我们为开发人员提供可重用聊天技能的初始示例。 这些技能可以添加到聊天应用程序中，开启特定的聊天体验，例如查找兴趣点，与日历、任务、电子邮件和许多其他的方案交互。 技能可完全自定义，包含的语言模型适合多种语言、对话框和代码。
 
-目前，我们正在与开源存储库的初始客户与合作伙伴密切合作，以推出第一款体验。
-
 ![虚拟助手图](./media/enterprise-template/customassistantdiagram.jpg)
+
+## <a name="get-started"></a>入门
+
+如需更多详细信息，请浏览[虚拟助理和技能](https://github.com/Microsoft/AI)文档。
 
 ## <a name="whats-in-the-box"></a>现成内容 
 
-虚拟助手构建在[企业模板](./bot-builder-enterprise-template-overview.md)功能之上，后者为聊天体验提供基本的功能，包括多语言形式的基本聊天意向、调度、QnA 和聊天见解。 下述与助手相关的功能是目前提供的，其他功能仍在计划中。我们会与客户及合作伙伴密切合作，及时将路线图告知他们。
+虚拟助理模板汇集了我们通过构建聊天体验确定的一些最佳做法，并自动集成了我们发现的对 Bot Framework 开发人员非常有益的组件。 本部分介绍关键决策的一些背景知识，帮助用户了解模板的工作方式。
+
+虚拟助理模板现在纳入了以前的企业模板功能，包括多语言形式的基本聊天意向、调度、QnA 和聊天见解。 下述与助手相关的功能是目前提供的，其他功能仍在计划中。我们会与客户及合作伙伴密切合作，及时将路线图告知他们。
 
 Feature | 说明 |
 ------------ | -------------
@@ -97,5 +102,4 @@ Feature | 说明 |
 
 ## <a name="getting-started"></a>入门
 
-虚拟助手解决方案在[此 GitHub 存储库](https://github.com/Microsoft/AI/tree/master/solutions/Virtual-Assistant)中提供。虚拟助手团队会定期更新此存储库。 同一存储库中提供了更详细的文档。可以通过 GitHub 反馈机制直接提供问题/反馈。 如果你想要与我们讨论某个重要方案，请填写[此表单](https://aka.ms/customassistantpreviewform)，我们将与你取得联系。
-
+虚拟助手解决方案在[此 GitHub 存储库](https://github.com/Microsoft/AI/)中提供。虚拟助手团队会定期更新此存储库。 同一存储库中提供了更详细的文档。可以通过 GitHub 反馈机制直接提供问题/反馈。

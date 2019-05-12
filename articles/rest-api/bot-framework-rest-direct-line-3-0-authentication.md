@@ -7,15 +7,15 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: 96f2963604d12c9c9e235288ad4df25924f45af4
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 04/10/2019
+ms.openlocfilehash: 717a95d580bad218ade9a884522724f1c6b96ad7
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998004"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032636"
 ---
-# <a name="authentication"></a>身份验证
+# <a name="authentication"></a>Authentication
 
 客户端可以使用从 Bot Framework 门户中的 [Direct Line 通道配置页获取](../bot-service-channel-connect-directline.md)的机密或使用在运行时获得的令牌来对 Direct Line API 3.0 的请求进行身份验证。 应使用以下格式在每个请求的 `Authorization` 标头中指定机密或令牌： 
 
@@ -59,6 +59,26 @@ Authorization: Bearer SECRET
 POST https://directline.botframework.com/v3/directline/tokens/generate
 Authorization: Bearer RCurR_XV9ZA.cwA.BKA.iaJrC8xpy8qbOF5xnR2vtCX7CZj0LdjAPGfiCpg4Fv0
 ```
+
+请求的有效负载（其中包含令牌参数）是可选的，但建议使用。 生成可以发送回 Direct Line 服务的令牌时，请提供以下有效负载，使连接更安全。 包括这些值以后，Direct Line 就可以对用户 ID 和名称执行其他安全验证，阻止恶意客户端篡改这些值。 包括这些值还可以改进 Direct Line 发送聊天更新活动的功能，让它在用户加入聊天以后立即生成聊天更新。 如果未提供此信息，则用户必须先发送内容，然后 Direct Line 才会发送聊天更新。
+
+```json
+{
+  "user": {
+    "id": "string",
+    "name": "string"
+  },
+  "trustedOrigins": [
+    "string"
+  ]
+}
+```
+
+| 参数 | Type | 说明 |
+| :--- | :--- | :--- |
+| `user.id` | 字符串 | 可选。 用户的特定于通道的 ID，可以在令牌中编码。 对于 Direct Line 用户，此项必须以 `dl_` 开头。 可以为每个聊天创建唯一的用户 ID。为了增加安全性，应该确保此 ID 不可猜测。 |
+| `user.name` | 字符串 | 可选。 用户的便于显示的名称，可以在令牌中编码。 |
+| `trustedOrigins` | 字符串数组 | 可选。 可以在令牌中嵌入的受信任域的列表。 这些是可以托管机器人网络聊天客户端的域。 这应该与机器人的 Direct Line 配置页中的列表匹配。 |
 
 ### <a name="response"></a>响应
 

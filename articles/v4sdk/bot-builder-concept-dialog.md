@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 04/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 36ccbb796c2cd014118d4ae1f426acd44aabed76
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: d896584b2048c8d2b330a1e6e63bc47122102532
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904890"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033404"
 ---
 # <a name="dialogs-library"></a>对话框库
 
@@ -121,7 +121,8 @@ ms.locfileid: "59904890"
 
 可将对话视为编程堆栈（称为“对话堆栈”），可将轮次处理程序视为对话引导者，以及堆栈为空时的回退机制。 该堆栈最顶端的项被视为“活动对话”，对话上下文会将所有输入定向到活动对话。
 
-开始某个对话时，会将它推送到堆栈，现在，该对话即为活动对话。 该对话在结束之前将一直保留为活动对话；结束后，该对话将被 [replace dialog](#repeating-a-dialog) 方法删除，或者，轮次处理程序或活动对话本身会将另一个对话被推送到堆栈，然后，这另一个对话将成为活动对话。 该新对话框结束后，将从堆栈中弹出，而下一个对话框将成为活动对话框。 这样就可以实现下面所述的分支和循环。
+开始某个对话时，会将它推送到堆栈，现在，该对话即为活动对话。 该对话在结束之前将一直保留为活动对话；结束后，该对话将被 [replace dialog](#repeating-a-dialog) 方法删除，或者，轮次处理程序或活动对话本身会将另一个对话被推送到堆栈，然后，这另一个对话将成为活动对话。 该新对话框结束后，将从堆栈中弹出，而下一个对话框将成为活动对话框。 这样就可以[重复某个对话](#repeating-a-dialog)或[将聊天分支](#branch-a-conversation)，详见下面的讨论。
+
 
 ### <a name="create-the-dialog-context"></a>创建对话上下文
 

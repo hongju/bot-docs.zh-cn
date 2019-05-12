@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: b3f9a0d2c24809c0814baa9bfb8f993a4ba55ef7
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.openlocfilehash: ee2c261f6b028542b20771801b114d0b23ab21ca
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59551540"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033185"
 ---
 ## <a name="prerequisites"></a>先决条件
 
@@ -12,7 +12,7 @@ ms.locfileid: "59551540"
 - [Node.js](https://nodejs.org/)
 - [Yeoman](http://yeoman.io/)：使用生成器自己创建机器人
 - [git](https://git-scm.com/)
-- [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator)
+- [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)
 - 了解 [restify](http://restify.com/) 和 JavaScript 中的异步编程
 
 > [!NOTE]
@@ -64,7 +64,7 @@ Yeoman 会提示你输入用来创建机器人的一些信息。 对于本教程
 得益于模板，项目包含本快速入门中创建机器人所需的所有代码。 实际上不需要编写任何其他代码。
 
 > [!NOTE]
-> 如果选择创建 `Basic` 机器人，则需要 LUIS 语言模型。 可以在 [luis.ai](https://www.luis.ai) 上创建一个。 创建模型以后，请更新 .bot 文件。 你的 bot 文件看起来应该与此[文件](../v4sdk/bot-builder-service-file.md)类似。
+> 如果选择创建 `Basic` 机器人，则需要 LUIS 语言模型。 可以在 [luis.ai](https://www.luis.ai) 上创建一个。 创建模型以后，请更新配置文件。
 
 ## <a name="start-your-bot"></a>启动机器人
 
@@ -73,8 +73,8 @@ Yeoman 会提示你输入用来创建机器人的一些信息。 对于本教程
 ## <a name="start-the-emulator-and-connect-your-bot"></a>启动模拟器并连接机器人
 
 1. 启动 Bot Framework Emulator。
-2. 单击模拟器“欢迎”选项卡中的“打开机器人”链接。
-3. 选择位于创建项目的目录中的 .bot 文件。
+2. 单击模拟器“欢迎使用”选项卡中的“新建机器人配置”链接。 
+3. 填充机器人的字段，然后单击“保存并连接”。
 
 向机器人发送消息，机器人将回复消息。
 ![模拟器运行](../media/emulator-v4/js-quickstart.png)

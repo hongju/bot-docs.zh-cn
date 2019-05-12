@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 11/8/2018
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fddaced5693242e1debed6135122ace5a3cd316b
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 65e53be38e42d3117bebcc157f7ab23e6990b209
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904990"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033413"
 ---
 # <a name="middleware"></a>中间件
 

@@ -8,117 +8,180 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 04/12/2019
-ms.openlocfilehash: 4532fe55705524573de55017e633289255a20ab9
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.date: 05/01/2019
+monikerRange: azure-bot-service-4.0
+ms.openlocfilehash: a44e45cd5e9b83b2e4512c5a1fd882593024e1b3
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/18/2019
-ms.locfileid: "59508214"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032887"
 ---
 # <a name="deploy-your-bot"></a>部署机器人
 
-[!INCLUDE [pre-release-label](./includes/pre-release-label.md)]
+[!INCLUDE [applies-to](./includes/applies-to.md)]
 
-创建机器人并在本地对其进行测试后，可将其部署到 Azure，以便可以从任何位置访问它。 将机器人部署到 Azure 需要支付服务使用费。 [计费和成本管理](https://docs.microsoft.com/en-us/azure/billing/)一文可帮助你了解 Azure 计费方式、如何监视使用量与费用，以及如何管理帐户和订阅。
-
-本文介绍如何将 C# 和 JavaScript 机器人部署到 Azure。 在执行相关步骤之前最好是先阅读本文，以完全了解在部署机器人时所涉及到的工作。
+本文介绍如何将机器人部署到 Azure。 在执行相关步骤之前最好是先阅读本文，以完全了解在部署机器人时所涉及到的工作。
 
 ## <a name="prerequisites"></a>先决条件
-- 如果还没有 [Azure 订阅](http://portal.azure.com)，请在开始前创建一个免费帐户。
-- 在本地计算机上开发的 [**CSharp**](./dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [**JavaScript**](./javascript/bot-builder-javascript-quickstart.md) 机器人。
+- 如果还没有 Azure 订阅，可以在开始前创建一个[帐户](https://azure.microsoft.com/free/)。
+- 在本地计算机上开发的 CSharp、JavaScript 或 TypeScript 机器人。
+- 最新版本的 [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest)。
 
 ## <a name="1-prepare-for-deployment"></a>1.准备部署
-部署过程要求在 Azure 中有一个目标 Web 应用机器人，以便将本地机器人部署到其中。 Azure 中的目标 Web 应用机器人以及通过它预配的资源可供本地机器人用于部署。 这是必需的，因为本地机器人没有预配所有必需的 Azure 资源。 当你创建目标 Web 应用机器人时，系统会为你预配以下资源：
--   Web 应用机器人 - 使用此机器人是因为需要将本地机器人部署到其中。
--   应用服务计划 - 提供应用服务应用需要运行的资源。
--   应用服务 - 一项用于托管 Web 应用程序的服务
--   存储帐户 - 包含所有 Azure 存储数据对象：Blob、文件、队列、表和磁盘。
-
-在创建目标 Web 应用机器人的过程中，也会为机器人生成应用 ID 和密码。 在 Azure 中，应用 ID 和密码支持[服务身份验证和授权](https://docs.microsoft.com/azure/app-service/overview-authentication-authorization)。 需检索部分此类信息，用在本地机器人代码中。 
+使用 Visual Studio 或 Yeoman 模板创建机器人时，生成的源代码将包含 `deploymentTemplates` 文件夹和 ARM 模板。 本文所述的部署过程使用 ARM 模板通过 Azure CLI 在 Azure 中预配机器人所需的资源。 
 
 > [!IMPORTANT]
-> 在 Azure 门户中使用的机器人模板的编程语言必须与编写机器人时使用的编程语言匹配。
+> 在发布 Bot Framework SDK 4.3 以后，我们已弃用 .bot 文件，改用 appsettings.json 或 .env 文件来管理资源。 若要了解如何将设置从 .bot 文件迁移到 appsettings.json 或 .env 文件，请参阅[管理机器人资源](v4sdk/bot-file-basics.md)。
 
-如果已在 Azure 中创建了想要使用的机器人，则可以选择性地阅读“创建新的 Web 应用机器人”。
+### <a name="login-to-azure"></a>登录到 Azure
 
-1. 登录到 [Azure 门户](https://portal.azure.com)。
-1. 在 Azure 门户左上角单击“创建新资源”链接，然后选择“AI + 计算机学习”>“Web 应用机器人”。
-1. 此时会打开一个新的边栏选项卡，其中包含有关 Web 应用机器人的信息。 
-1. 在“机器人服务”边栏选项卡中，提供所请求的有关机器人的信息。
-1. 单击“创建”创建服务并将机器人部署到云。 此过程可能需要数分钟。
+你已在本地创建并测试一个机器人，现在想要将它部署到 Azure。 打开命令提示符以登录到 Azure 门户。
 
-### <a name="download-the-source-code"></a>下载源代码
-创建目标 Web 应用机器人以后，需将机器人代码从 Azure 门户下载到本地计算机。 下载代码是为了获取 appsettings.json 或 .env 文件中的服务引用（例如，MicrosoftAppID、MicrosoftAppPassword、LUIS 或 QnA）。 
+```cmd
+az login
+```
+此时会打开一个用于登录的浏览器窗口。
 
-1. 在“机器人管理”部分中，单击“生成”。
-1. 单击右窗格中的“下载机器人源代码”链接。
-1. 按照提示下载代码，然后解压缩该文件夹。
-    1. [!INCLUDE [download keys snippet](~/includes/snippet-abs-key-download.md)]
+### <a name="set-the-subscription"></a>设置订阅
+设置要使用的默认订阅。
 
-### <a name="update-your-local-appsettingsjson-or-env-file"></a>更新本地的 appsettings.json 或 .env 文件
-
-打开下载的 appsettings.json 或 .env 文件。 复制其中列出的**所有**条目，将其添加到本地的 appsettings.json 或 .env 文件。 解析任何重复的服务条目或重复的服务 ID。 保留机器人依赖的其他服务引用。
-
-保存文件。
-
-### <a name="update-local-bot-code"></a>更新本地机器人代码
-更新本地的 Startup.cs 或 index.js 文件，以便使用 appsettings.json 或 .env 文件而不是 .bot 文件。 .bot 文件已弃用，我们会更新 VSIX 模板、Yeoman 生成器、示例和剩余文档，使它们都使用 appsettings.json 或 .env 文件而不是 .bot 文件。 同时，你需要更改机器人代码。 
-
-更新从 appsettings.json 或 .env 文件读取设置的代码。 
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-在 `ConfigureServices` 方法中，使用 ASP.NET Core 提供的配置对象，例如： 
-
-**Startup.cs**
-```csharp
-var appId = Configuration.GetSection("MicrosoftAppId").Value;
-var appPassword = Configuration.GetSection("MicrosoftAppPassword").Value;
-options.CredentialProvider = new SimpleCredentialProvider(appId, appPassword);
+```cmd
+az account set --subscription "<azure-subscription>"
 ```
 
-# <a name="jstabjs"></a>[JS](#tab/js)
+如果你不确定要使用哪个订阅来部署机器人，可以使用 `az account list` 命令查看帐户的订阅列表。 导航到 bot 文件夹。
 
-在 JavaScript 中，引用 `process.env` 对象提供的 .env 变量，例如：
-   
-**index.js**
+### <a name="create-an-app-registration"></a>创建应用注册
+注册应用程序意味着可以使用 Azure AD 对用户进行身份验证并请求访问用户资源。 机器人需要在 Azure 中注册一个应用，该应用可让机器人访问 Bot Framework 服务，以发送和接收经过身份验证的消息。 若要通过 Azure CLI 创建并注册应用，请执行以下命令：
 
-```js
-const adapter = new BotFrameworkAdapter({
-    appId: process.env.MicrosoftAppId,
-    appPassword: process.env.MicrosoftAppPassword
-});
+```cmd
+az ad app create --display-name "displayName" --password "AtLeastSixteenCharacters_0" --available-to-other-tenants
 ```
+
+| 选项   | 说明 |
+|:---------|:------------|
+| display-name | 应用程序的显示名称。 |
+| password | 应用密码，也称为“客户端机密”。 该密码的长度必须至少为 16 个字符，至少包含 1 个大写或小写字母字符，并至少包含 1 个特殊字符|
+| available-to-other-tenants| 可以从任何 Azure AD 租户使用该应用程序。 若要使机器人能够使用 Azure 机器人服务通道，此项必须为 `true`。|
+
+上述命令将输出包含密钥 `appId` 的 JSON，请保存 ARM 部署的此密钥值，稍后要将此值用于 `appId` 参数。 提供的密码将用于 `appSecret` 参数。
+
+可将机器人部署到新资源组或现有资源组中。 请选择最合适的选项。
+
+# <a name="deploy-via-arm-template-with-new-resource-grouptabnewrg"></a>[通过 ARM 模板部署（使用**新**资源组）](#tab/newrg)
+
+### <a name="create-azure-resources"></a>创建 Azure 资源
+
+将在 Azure 中创建新资源组，然后使用 ARM 模板来创建其中指定的资源。 在本例中，我们将提供应用服务计划、Web 应用和机器人通道注册。
+
+```cmd
+az deployment create --name "<name-of-deployment>" --template-file "template-with-new-rg.json" --location "location-name" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" botSku=F0 newAppServicePlanName="<name-of-app-service-plan>" newWebAppName="<name-of-web-app>" groupName="<new-group-name>" groupLocation="<location>" newAppServicePlanLocation="<location>"
+```
+
+| 选项   | 说明 |
+|:---------|:------------|
+| 名称 | 部署的易记名称。 |
+| template-file | ARM 模板的路径。 可以使用项目的 `deploymentTemplates` 文件夹中提供的 `template-with-new-rg.json` 文件。 |
+| location |位置。 `az account list-locations` 中的值。 可以使用 `az configure --defaults location=<location>` 配置默认位置。 |
+| parameters | 提供部署参数值。 运行 `az ad app create` 命令后获取的 `appId` 值。 `appSecret` 是在上一步骤中提供的密码。 `botId` 参数应全局唯一，用作不可变的机器人 ID。 此参数还用于配置机器人的可变显示名称。 `botSku` 是定价层，可以是 F0（免费）或 S1（标准）。 `newAppServicePlanName` 是应用服务计划的名称。 `newWebAppName` 要创建的 Web 应用的名称。 `groupName` 要创建的 Azure 资源组的名称。 `groupLocation` 是 Azure 资源组的位置。 `newAppServicePlanLocation` 是应用服务计划的位置。 |
+
+# <a name="deploy-via-arm-template-with-existing--resource-grouptaberg"></a>[通过 ARM 模板部署（使用**现有**资源组）](#tab/erg)
+
+### <a name="create-azure-resources"></a>创建 Azure 资源
+
+使用现有的资源组时，可以使用现有的应用服务计划或新建一个计划。 下面列出了这两种选项的步骤。 
+
+**选项 1：现有的应用服务计划** 
+
+在本例中，我们将使用现有的应用服务计划，但会创建新的 Web 应用和机器人通道注册。 
+
+_注意：botId 参数应全局唯一，用作不可变的机器人 ID。此参数还用于配置机器人的可变显示名称。_
+
+```cmd
+az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" existingAppServicePlan="<name-of-app-service-plan>" appServicePlanLocation=<location>"
+```
+
+**选项 2：新的应用服务计划** 
+
+在本例中，我们将创建应用服务计划、Web 应用和机器人通道注册。 
+
+```cmd
+az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" newAppServicePlanName="<name-of-app-service-plan>" appServicePlanLocation="<location>"
+```
+
+| 选项   | 说明 |
+|:---------|:------------|
+| 名称 | 部署的易记名称。 |
+| resource-group | Azure 资源组的名称 |
+| template-file | ARM 模板的路径。 可以使用项目的 `deploymentTemplates` 文件夹中提供的 `template-with-preexisting-rg.json` 文件。 |
+| location |位置。 `az account list-locations` 中的值。 可以使用 `az configure --defaults location=<location>` 配置默认位置。 |
+| parameters | 提供部署参数值。 运行 `az ad app create` 命令后获取的 `appId` 值。 `appSecret` 是在上一步骤中提供的密码。 `botId` 参数应全局唯一，用作不可变的机器人 ID。 此参数还用于配置机器人的可变显示名称。 `newWebAppName` 要创建的 Web 应用的名称。 `newAppServicePlanName` 是应用服务计划的名称。 `newAppServicePlanLocation` 是应用服务计划的位置。 |
+
 ---
 
-- 保存文件并测试机器人。
+### <a name="retrieve-or-create-necessary-iiskudu-files"></a>检索或创建所需的 IIS/Kudu 文件
 
-### <a name="setup-a-repository"></a>设置存储库
+**对于 C# 机器人**
 
-若要支持持续部署，请使用你偏好的 git 源代码管理提供程序创建 git 存储库。 将代码提交到该存储库。
+```cmd
+az bot prepare-deploy --lang Csharp --code-dir "." --proj-file-path "MyBot.csproj"
+```
 
-确保存储库根目录具有正确的文件，详见[准备存储库](https://docs.microsoft.com/azure/app-service/deploy-continuous-deployment#prepare-your-repository)。
+必须提供 .csproj 文件的相对于 --code-dir 的路径 可以通过 --proj-file-path 参数执行此操作。 该命令会将 --code-dir 和 --proj-file-path 解析为“./MyBot.csproj”
 
-### <a name="update-app-settings-in-azure"></a>在 Azure 中更新应用设置
-本地机器人不使用加密的 .bot 文件，但 Azure 门户配置为使用加密的 .bot 文件。 可以通过删除 Azure 机器人设置中存储的 **botFileSecret** 来解决此问题。
-1. 在 Azure 门户中，打开机器人的“Web 应用机器人”资源。
-1. 打开机器人的“应用程序设置”。
-1. 在“应用程序设置”窗口中，向下滚动到“应用程序设置”。
-1. 查看机器人是否有 **botFileSecret** 和 **botFilePath** 条目。 如果有，请将其删除。
-1. 保存更改。
+**对于 JavaScript 机器人**
 
-## <a name="2-deploy-using-azure-deployment-center"></a>2.使用 Azure 部署中心进行部署
+```cmd
+az bot prepare-deploy --code-dir "." --lang Javascript
+```
 
-现在需将机器人代码上传到 Azure。 请遵照[持续部署到 Azure 应用服务](https://docs.microsoft.com/azure/app-service/deploy-continuous-deployment)主题中的说明操作。
+此命令将提取 Node.js 应用在 Azure 应用服务中使用 IIS 所需的 web.config 文件。 请务必将 web.config 保存到机器人的根目录。
 
-请注意，我们建议使用 `App Service Kudu build server` 生成。
+**对于 TypeScript 机器人**
 
-配置持续部署以后，会发布提交到存储库的更改。 但是，如果向机器人添加服务，则需将这些服务的条目添加到 .bot 文件。
+```cmd
+az bot prepare-deploy --code-dir "." --lang Typescript
+```
 
-## <a name="3-test-your-deployment"></a>3.测试部署
+此命令用起来与上面的 JavaScript 类似，但适用于 Typescript 机器人。
 
-成功部署后，请等待几秒，然后视需要重启 Web 应用以清除所有缓存。 返回到“Web 应用机器人”边栏选项卡，并使用 Azure 门户中提供的“网络聊天”进行测试。
+### <a name="zip-up-the-code-directory-manually"></a>手动压缩代码目录
 
-## <a name="additional-resources"></a>其他资源
-- [How to investigate common issues with continuous deployment](https://github.com/projectkudu/kudu/wiki/Investigating-continuous-deployment)（如何调查连续部署的常见问题）
+使用未配置的 [zip deploy API](https://github.com/projectkudu/kudu/wiki/Deploying-from-a-zip-file-or-url) 部署机器人的代码时，Web 应用/Kudu 的行为如下所述：
 
+默认情况下，Kudu 假设 zip 文件中的部署已准备好运行，并且在部署期间不需要额外的生成步骤，例如，不需要执行 npm 安装或 dotnet 还原/dotnet 发布。
+
+因此，必须将生成代码以及所有必要的依赖项包含在要部署到 Web 应用的 zip 文件中，否则机器人不会按预期方式工作。
+
+> [!IMPORTANT]
+> 在压缩项目文件之前，请确保在正确的文件夹中进行压缩。 
+> - 对于 C# 机器人，正确的文件夹是包含 .csproj 文件的文件夹。 
+> - 对于 JS 机器人，正确的文件夹是包含 app.js 或 index.js 文件的文件夹。 
+>
+> 如果根文件夹位置不正确，**机器人将无法在 Azure 门户中运行**。
+
+## <a name="2-deploy-code-to-azure"></a>2.将代码部署到 Azure
+现在，我们已准备好将代码部署到 Azure Web 应用。 在命令行中运行以下命令，以使用 Web 应用的 Kudu zip 推送部署来执行部署。
+
+```cmd
+az webapp deployment source config-zip --resource-group "<new-group-name>" --name "<name-of-web-app>" --src "code.zip" 
+```
+
+| 选项   | 说明 |
+|:---------|:------------|
+| resource-group | 先前在 Azure 中创建的资源组名称。 |
+| 名称 | 先前使用的 Web 应用的名称。 |
+| src  | 创建的压缩文件的路径。 |
+
+## <a name="3-test-in-web-chat"></a>3.通过网页聊天执行测试
+- 在 Azure 门户中，转到 Web 应用机器人边栏选项卡。
+- 在“机器人管理”部分中，单击“通过网上聊天执行测试”。 Azure 机器人服务将加载网上聊天控件，并连接到机器人。
+- 成功部署后，请等待几秒，然后视需要重启 Web 应用以清除所有缓存。 返回到“Web 应用机器人”边栏选项卡，并使用 Azure 门户中提供的“网络聊天”进行测试。
+
+## <a name="additional-information"></a>其他信息
+将机器人部署到 Azure 需要支付服务使用费。 [计费和成本管理](https://docs.microsoft.com/en-us/azure/billing/)一文可帮助你了解 Azure 计费方式、如何监视使用量与费用，以及如何管理帐户和订阅。
+
+## <a name="next-steps"></a>后续步骤
+> [!div class="nextstepaction"]
+> [设置持续部署](bot-service-build-continuous-deployment.md)

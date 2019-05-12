@@ -7,19 +7,19 @@ ms.author: kamrani
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 04/18/2019
-ms.openlocfilehash: 86a75fb315ec303cb8a519bfa02063c4e6780307
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.date: 05/05/2019
+ms.openlocfilehash: 569438e43a64a96239f7d9e490563498e7f6f279
+ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904810"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65039773"
 ---
 # <a name="about-azure-bot-service"></a>关于 Azure 机器人服务
 
 [!INCLUDE [applies-to-both](includes/applies-to-both.md)]
 
-Azure 机器人服务提供的工具可用于在一个位置构建、测试、部署和管理智能机器人。 通过使用 SDK、工具、模板和 AI 服务提供的模块化可扩展框架，开发人员可以创建可使用语音、自然语言理解、问题和答案处理等功能的机器人。
+Azure 机器人服务和 Bot Framework 提供的工具可用于在一个位置构建、测试、部署和管理智能机器人。 通过使用 SDK、工具、模板和 AI 服务提供的模块化可扩展框架，开发人员可以创建可使用语音、自然语言理解、问题和答案处理等功能的机器人。
 
 ## <a name="what-is-a-bot"></a>什么是机器人？
 机器人提供的体验让你感觉不太像在使用计算机，而更像是在与人打交道，或者至少是在与智能机器人打交道。 可以使用机器人将简单的重复性任务（例如订餐或收集个人资料信息）转移给不再需要直接人为干预的自动化系统来完成。 用户使用文本、交互卡和语音与机器人聊天。 机器人交互可以是快速的问答式交互，也可以是复杂的聊天，通过聊天以智能方式提供对服务的访问权限。
@@ -28,7 +28,7 @@ Azure 机器人服务提供的工具可用于在一个位置构建、测试、�
 
 机器人可以完成其他类型的软件可以完成的任务 - 读写文件、使用数据库和 API，以及执行常规的计算任务。 使机器人不同于其他软件的是，它们使用的通信机制通常是人与人之间通信才会使用的。 
 
-Azure 机器人服务套餐：
+Azure 机器人服务和 Bot Framework 提供：
 - 用于开发机器人的 Bot Framework SDK
 - 涵盖端到端机器人开发工作流的 Bot Framework 工具
 - Bot Framework Service (BFS)，用于在机器人和通道之间发送和接收消息和事件
@@ -40,7 +40,7 @@ Azure 机器人服务套餐：
 
 ## <a name="building-a-bot"></a>构建机器人 
 
-Azure 机器人服务提供一组集成的工具和服务来加快此过程。 请选择最喜欢的开发环境或命令行工具以创建机器人。 提供用于 C#、JavaScript 和 Typescript 的 SDK。 （用于 Java 和 Python 的 SDK 正在开发。）我们提供适合各个机器人开发阶段的工具，方便你设计和生成机器人。
+Azure 机器人服务和 Bot Framewrk 提供一组集成的工具和服务来加快此过程。 请选择最喜欢的开发环境或命令行工具以创建机器人。 提供用于 C#、JavaScript 和 Typescript 的 SDK。 （用于 Java 和 Python 的 SDK 正在开发。）我们提供适合各个机器人开发阶段的工具，方便你设计和生成机器人。
 
 ![机器人概述](media/bot-service-overview.png) 
 
@@ -48,9 +48,9 @@ Azure 机器人服务提供一组集成的工具和服务来加快此过程。 �
 与任何类型的软件一样，若要创建成功的机器人，必须全面了解目标、流程和用户需求。 在编写代码之前，请参阅[设计指南](bot-service-design-principles.md) ，了解最佳做法并确定机器人的需求。 可以创建简单的机器人，也可以让机器人包含较复杂的功能，例如语音、自然语言理解和问题解答。
 
 ### <a name="build"></a>构建
-机器人是一项 Web 服务，可实现聊天式界面并与 Bot Framework Service 通信，以便发送和接收消息和事件。 Bot Framework Service 是 Azure 机器人服务的一个组件。 可在任意数目的环境和语言中创建机器人。 可在 [Azure 门户](bot-service-quickstart.md)中开始机器人开发，也可使用 [[C#](dotnet/bot-builder-dotnet-sdk-quickstart.md) | [JavaScript](javascript/bot-builder-javascript-quickstart.md)] 模板进行本地开发。
+机器人是一项 Web 服务，可实现聊天式界面并与 Bot Framework Service 通信，以便发送和接收消息和事件。 Bot Framework Service 是 Azure 机器人服务和 Bot Framewrk 的一个组件。 可在任意数目的环境和语言中创建机器人。 可在 [Azure 门户](bot-service-quickstart.md)中开始机器人开发，也可使用 [[C#](dotnet/bot-builder-dotnet-sdk-quickstart.md) | [JavaScript](javascript/bot-builder-javascript-quickstart.md)] 模板进行本地开发。
 
-我们提供其他组件作为 Azure 机器人服务的一部分来扩展机器人的功能
+我们提供其他组件作为 Azure 机器人服务和 Bot Framewrk 的一部分来扩展机器人的功能
 
 | Feature | 说明 | 链接 |
 | --- | --- | --- |
@@ -62,7 +62,7 @@ Azure 机器人服务提供一组集成的工具和服务来加快此过程。 �
 > [!NOTE]
 > 上面的表格不是完整的列表。 浏览左侧的文章，从[发送消息](~/v4sdk/bot-builder-howto-send-messages.md)开始，了解更多机器人功能。
 
-此外，我们提供命令行工具来帮助你创建、管理和测试机器人资产。 这些工具可以管理机器人配置文件、配置 LUIS 应用、生成 QnA 知识库、模拟聊天，等等。 可在命令行工具[自述文件](https://aka.ms/botbuilder-tools-readme)中找到更多详细信息。
+此外，我们提供命令行工具来帮助你创建、管理和测试机器人资产。 这些工具可以配置 LUIS 应用、生成 QnA 知识库、生成在组件之间进行调度的模型、模拟聊天，等等。 可在命令行工具[自述文件](https://aka.ms/botbuilder-tools-readme)中找到更多详细信息。
 
 还可以访问各种[示例](https://github.com/microsoft/botbuilder-samples)，了解通过 SDK 提供的多项功能。 这些特别适用于希望从功能较丰富的示例着手的开发人员。
 

@@ -6,13 +6,13 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 02/26/2019
-ms.openlocfilehash: 48a0a42d193b0e561a484330222217c18a611e8d
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.date: 04/30/2019
+ms.openlocfilehash: 1e0678d869b02d536eb5c3ce39461da94dbd9a57
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224945"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033087"
 ---
 # <a name="troubleshooting-general-problems"></a>排查常见问题
 这些常见问题有助于排查常见的机器人开发或操作问题。
@@ -21,7 +21,7 @@ ms.locfileid: "57224945"
 
 1. 通过 [Visual Studio Code](debug-bots-locally-vscode.md) 或 [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/debugger/navigating-through-code-with-the-debugger?view=vs-2017) 调试机器人的源代码。
 1. 先使用[模拟器](bot-service-debug-emulator.md)测试机器人，然后再将其部署到云。
-1. 将机器人部署到类似于 Azure 的云托管平台，然后使用 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a>中机器人仪表板上的内置 Web 聊天控件测试与机器人的连接性。 如果在将机器人部署到 Azure 后遇到问题，可以考虑参阅此博客文章：[Understanding Azure troubleshooting and support](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)（了解 Azure 故障排除和支持）。
+1. 将机器人部署到类似于 Azure 的云托管平台，然后使用 <a href="https://portal.azure.com" target="_blank">Azure 门户</a>中机器人仪表板上的内置 Web 聊天控件测试与机器人的连接性。 如果在将机器人部署到 Azure 后遇到问题，可以考虑参阅此博客文章：[Understanding Azure troubleshooting and support](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)（了解 Azure 故障排除和支持）。
 1. 排除[身份验证][TroubleshootingAuth]可能存在问题的可能性。
 1. 在 Skype 上测试机器人。 这将有助于验证端到端的用户体验。
 1. 考虑在具有其他身份验证要求的渠道（例如 Direct Line 或网上聊天）上测试机器人。
@@ -104,7 +104,7 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 
 ## <a name="why-are-my-facebook-user-names-not-showing-anymore"></a>为什么不再显示我的 Facebook 用户名？
 
-是否更改了 Facebook 密码？ 这样做会使访问令牌无效，将需要在 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a>中更新机器人对 Facebook Messenger 通道的配置设置。
+是否更改了 Facebook 密码？ 这样做会使访问令牌无效，将需要在 <a href="https://portal.azure.com" target="_blank">Azure 门户</a>中更新机器人对 Facebook Messenger 通道的配置设置。
 
 ## <a name="why-is-my-kik-bot-replying-im-sorry-i-cant-talk-right-now"></a>为什么我的 Kik 机器人回复“我很抱歉，我现在不能说话”？
 
@@ -130,7 +130,7 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 若要解决此问题，请将 Direct Line 客户端发送的每条消息中的 `from` 属性设置为唯一表示发送消息的用户的稳定值。 例如，如果用户已登录到网页或应用，则可以将该现有的用户 ID 用作用户发送的消息中 `from` 属性的值。 或者，可以选择在页面加载或应用程序加载时生成随机用户 ID，将该 ID 存储在 Cookie 或设备状态中，并将该 ID 用作用户发送的消息中 `from` 属性的值。
 
 ## <a name="what-causes-the-direct-line-30-service-to-respond-with-http-status-code-502-bad-gateway"></a>导致 Direct Line 3.0 服务使用 HTTP 状态代码 502“错误的网关”进行响应的原因是什么？
-当 Direct Line 3.0 尝试联系你的机器人但请求未成功完成时会返回 HTTP 状态代码 502。 此错误表示机器人返回错误或请求超时。有关机器人生成的错误的详细信息，请转到 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a>中的机器人仪表板，然后单击受影响通道的“问题”链接。 如果为机器人配置了 Application Insights，则还可以在那里找到详细的错误信息。 
+当 Direct Line 3.0 尝试联系你的机器人但请求未成功完成时会返回 HTTP 状态代码 502。 此错误表示机器人返回错误或请求超时。有关机器人生成的错误的详细信息，请转到 <a href="https://portal.azure.com" target="_blank">Azure 门户</a>中的机器人仪表板，然后单击受影响通道的“问题”链接。 如果为机器人配置了 Application Insights，则还可以在那里找到详细的错误信息。 
 
 ::: moniker range="azure-bot-service-3.0"
 
@@ -216,13 +216,6 @@ builder
     .InstancePerLifetimeScope();
 builder.Update(Conversation.Container);
 ```
-::: moniker-end
-
-## <a name="is-there-a-limit-on-the-amount-of-data-i-can-store-using-the-state-api"></a>可以使用状态 API 存储的数据量是否有限制？
-
-有限制，每个状态存储（即，用户、会话和机器人专用数据包）最多可包含 64 kb 的数据。 有关详细信息，请参阅[管理状态数据][StateAPI]。
-
-::: moniker range="azure-bot-service-3.0"
 
 ## <a name="how-do-i-version-the-bot-data-stored-through-the-state-api"></a>如何对通过状态 API 存储的机器人数据进行版本控制？
 

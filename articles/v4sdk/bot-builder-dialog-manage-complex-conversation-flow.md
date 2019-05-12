@@ -8,232 +8,114 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 4/18/2019
+ms.date: 04/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a5f3fe4fbec5a44a68bd6dcb7a2d6e2770052923
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: ad374ea8c404693836d7e90bb899669726366fcc
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59905020"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033478"
 ---
 # <a name="create-advanced-conversation-flow-using-branches-and-loops"></a>使用分支和循环创建高级聊天流
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-本文介绍如何管理可分支和循环的复杂聊天。 此外，介绍如何在对话的不同部分之间传递参数。
+可以使用对话库来管理简单的和复杂的聊天流。
+本文介绍如何管理可分支和循环的复杂聊天。
+此外，介绍如何在对话的不同部分之间传递参数。
 
 ## <a name="prerequisites"></a>先决条件
 
-- [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator/blob/master/README.md#download)
-- 本文中的代码基于**复杂对话**示例。 需要获取 [C# ](https://aka.ms/cs-complex-dialog-sample) 或 [JS](https://aka.ms/js-complex-dialog-sample) 示例的副本。
-- 了解[机器人基础知识](bot-builder-basics.md)、[对话库](bot-builder-concept-dialog.md)、[对话状态](bot-builder-dialog-state.md)和 [.bot](bot-file-basics.md) 文件。
+- 了解[机器人基础知识][concept-basics]、[管理状态][concept-state]、[对话库][concept-dialogs]，以及如何[实现顺序聊天流][simple-dialog]。
+- 以 [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample] 编写的复杂对话示例副本。
 
-## <a name="about-the-sample"></a>关于本示例
+## <a name="about-this-sample"></a>关于此示例
 
 本示例演示一个可以注册用户，让其针对列表中的最多两家公司发表评论的机器人。
 
-- 该机器人请求用户提供姓名和年龄，然后根据用户的年龄分支。
-  - 如果用户年龄太小，则机器人不会请求该用户对任何公司发表评论。
-  - 如果用户年龄足够大，则机器人开始收集用户的评论偏好。
-    - 该机器人允许用户选择要评论的公司。
-    - 如果用户选择了一家公司，则机器人将会循环，让用户选择第二家公司。
-- 最后，机器人感谢用户的参与。
+`DialogAndWelcomeBot` 扩展了 `DialogBot`，后者定义不同活动的处理程序以及机器人的轮次处理程序。 `DialogBot` 运行对话：
 
-该机器人使用两个瀑布对话和一些提示来管理复杂的聊天。
+- _run_ 方法供 `DialogBot` 用来启动对话。
+- `MainDialog` 是另两个对话的父项，这两个对话在对话的特定时间调用。 本文自始至终都会提供这些对话的详细信息。
 
-## <a name="configure-state-for-your-bot"></a>配置机器人的状态
+这些对话可拆分成 `MainDialog`、`TopLevelDialog` 和 `ReviewSelectionDialog` 组件对话，这些组件对话共同完成以下操作：
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+- 它们会要求提供用户的姓名和年龄，然后根据用户的年龄来_分支_。
+  - 如果用户太年轻，它们不会要求用户对任何公司进行评论。
+  - 如果用户够年龄，它们就会开始收集用户的评论首选项。
+    - 它们允许用户选择要评论的公司。
+    - 如果用户选择了一家公司，它们会通过循环方式让用户选择第二家公司。
+- 最后，它们会感谢用户的参与。
 
-定义要收集的用户信息。
-
-```csharp
-public class UserProfile
-{
-    public string Name { get; set; }
-    public int Age { get; set; }
-
-    //The list of companies the user wants to review.
-    public List<string> CompaniesToReview { get; set; } = new List<string>();
-}
-```
-
-定义用于保存机器人的状态管理对象和状态属性访问器的类。
-
-```csharp
-public class ComplexDialogBotAccessors
-{
-    public ComplexDialogBotAccessors(ConversationState conversationState, UserState userState)
-    {
-        ConversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
-        UserState = userState ?? throw new ArgumentNullException(nameof(userState));
-    }
-
-    public IStatePropertyAccessor<DialogState> DialogStateAccessor { get; set; }
-    public IStatePropertyAccessor<UserProfile> UserProfileAccessor { get; set; }
-
-    public ConversationState ConversationState { get; }
-    public UserState UserState { get; }
-}
-```
-
-创建状态管理对象，并在 `Statup` 类的 `ConfigureServices` 方法中注册访问器类。
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // Register the bot.
-
-    // Create conversation and user state management objects, using memory storage.
-    IStorage dataStore = new MemoryStorage();
-    var conversationState = new ConversationState(dataStore);
-    var userState = new UserState(dataStore);
-
-    // Create and register state accessors.
-    // Accessors created here are passed into the IBot-derived class on every turn.
-    services.AddSingleton<ComplexDialogBotAccessors>(sp =>
-    {
-        // Create the custom state accessor.
-        // State accessors enable other components to read and write individual properties of state.
-        var accessors = new ComplexDialogBotAccessors(conversationState, userState)
-        {
-            DialogStateAccessor = conversationState.CreateProperty<DialogState>("DialogState"),
-            UserProfileAccessor = userState.CreateProperty<UserProfile>("UserProfile"),
-        };
-
-        return accessors;
-    });
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 **index.js** 文件中定义状态管理对象。
-
-```javascript
-const { BotFrameworkAdapter, MemoryStorage, UserState, ConversationState } = require('botbuilder');
-
-// ...
-
-// Define state store for your bot.
-const memoryStorage = new MemoryStorage();
-
-// Create user and conversation state with in-memory storage provider.
-const userState = new UserState(memoryStorage);
-const conversationState = new ConversationState(memoryStorage);
-
-// Create the bot.
-const myBot = new MyBot(conversationState, userState);
-```
-
-机器人的构造函数将创建机器人的状态属性访问器。
-
----
-
-## <a name="initialize-your-bot"></a>初始化机器人
-
-为机器人创建一个对话集，以便在其中添加本示例所述的所有对话。
+它们使用瀑布对话和一些提示来管理复杂的聊天。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-在机器人的构造函数中创建对话集，并将提示和两个瀑布对话添加到该集。
+![复杂的机器流](./media/complex-conversation-flow.png)
 
-此处，我们将每个步骤定义为单独的方法。 我们将在下一部分实现这些步骤。
+若要使用对话，项目需安装 **Microsoft.Bot.Builder.Dialogs** NuGet 包。
 
-```csharp
-public class ComplexDialogBot : IBot
-{
-    // Define constants for the bot...
+**Startup.cs**
 
-    // Define properties for the bot's accessors and dialog set.
-    private readonly ComplexDialogBotAccessors _accessors;
-    private readonly DialogSet _dialogs;
+在 `Startup` 中注册机器人的服务。 可以通过依赖项注入将这些服务用于其他代码部分。
 
-    // Initialize the bot and add dialogs and prompts to the dialog set.
-    public ComplexDialogBot(ComplexDialogBotAccessors accessors)
-    {
-        _accessors = accessors ?? throw new ArgumentNullException(nameof(accessors));
+- 机器人的基本服务：凭据提供程序、适配器和机器人实现。
+- 用于管理状态的服务：存储、用户状态和聊天状态。
+- 机器人使用的对话。
 
-        // Create a dialog set for the bot. It requires a DialogState accessor, with which
-        // to retrieve the dialog state from the turn context.
-        _dialogs = new DialogSet(accessors.DialogStateAccessor);
-
-        // Add the prompts we need to the dialog set.
-        _dialogs
-            .Add(new TextPrompt(NamePrompt))
-            .Add(new NumberPrompt<int>(AgePrompt))
-            .Add(new ChoicePrompt(SelectionPrompt));
-
-        // Add the dialogs we need to the dialog set.
-        _dialogs.Add(new WaterfallDialog(TopLevelDialog)
-            .AddStep(NameStepAsync)
-            .AddStep(AgeStepAsync)
-            .AddStep(StartSelectionStepAsync)
-            .AddStep(AcknowledgementStepAsync));
-
-        _dialogs.Add(new WaterfallDialog(ReviewSelectionDialog)
-            .AddStep(SelectionStepAsync)
-            .AddStep(LoopStepAsync));
-    }
-
-    // Turn handler and other supporting methods...
-}
-```
+[!code-csharp[ConfigureServices](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Startup.cs?range=22-39)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-在 **bot.js** 文件中，在机器人的构造函数中定义并创建对话集，并将提示和瀑布对话添加到该集。
+![复杂的机器流](./media/complex-conversation-flow-js.png)
 
-此处，我们将每个步骤定义为单独的方法。 我们将在下一部分实现这些步骤。
+若要使用对话，项目需要安装 **botbuilder-dialogs** npm 包。
 
-```javascript
-const { ActivityTypes } = require('botbuilder');
-const { DialogSet, WaterfallDialog, TextPrompt, NumberPrompt, ChoicePrompt, DialogTurnStatus } = require('botbuilder-dialogs');
+**index.js**
 
-// Define constants for the bot...
+我们为机器人创建代码其他部分需要的服务。
 
-class MyBot {
-    constructor(conversationState, userState) {
-        // Create the state property accessors and save the state management objects.
-        this.dialogStateAccessor = conversationState.createProperty(DIALOG_STATE_PROPERTY);
-        this.userProfileAccessor = userState.createProperty(USER_PROFILE_PROPERTY);
-        this.conversationState = conversationState;
-        this.userState = userState;
+- 机器人的基本服务：适配器和机器人实现。
+- 用于管理状态的服务：存储、用户状态和聊天状态。
+- 机器人使用的对话。
 
-        // Create a dialog set for the bot. It requires a DialogState accessor, with which
-        // to retrieve the dialog state from the turn context.
-        this.dialogs = new DialogSet(this.dialogStateAccessor);
-
-        // Add the prompts we need to the dialog set.
-        this.dialogs
-            .add(new TextPrompt(NAME_PROMPT))
-            .add(new NumberPrompt(AGE_PROMPT))
-            .add(new ChoicePrompt(SELECTION_PROMPT));
-
-        // Add the dialogs we need to the dialog set.
-        this.dialogs.add(new WaterfallDialog(TOP_LEVEL_DIALOG)
-            .addStep(this.nameStep.bind(this))
-            .addStep(this.ageStep.bind(this))
-            .addStep(this.startSelectionStep.bind(this))
-            .addStep(this.acknowledgementStep.bind(this)));
-
-        this.dialogs.add(new WaterfallDialog(REVIEW_SELECTION_DIALOG)
-            .addStep(this.selectionStep.bind(this))
-            .addStep(this.loopStep.bind(this)));
-    }
-
-    // Turn handler and other supporting methods...
-}
-```
+[!code-javascript[ConfigureServices](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/index.js?range=25-38)]
+[!code-javascript[ConfigureServices](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/index.js?range=43-45)]
 
 ---
 
-## <a name="implement-the-steps-for-the-waterfall-dialogs"></a>实现瀑布对话的步骤
+> [!NOTE]
+> 内存存储仅用于测试，不用于生产。
+> 请务必对生产用机器人使用持久型存储。
 
-现在，让我们实现两个对话的步骤。
+## <a name="define-a-class-in-which-to-store-the-collected-information"></a>定义一个类，用于在其中存储收集的信息
 
-### <a name="the-top-level-dialog"></a>top-level 对话
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+**UserProfile.cs**
+
+[!code-csharp[UserProfile class](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/UserProfile.cs?range=8-16)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+**userProfile.js**
+
+[!code-javascript[UserProfile class](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/userProfile.js?range=4-12)]
+
+---
+
+## <a name="create-the-dialogs-to-use"></a>创建要使用的对话
+
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+**Dialogs\MainDialog.cs**
+
+我们定义了组件对话 `MainDialog`，该对话包含一些主要步骤，可以引导对话和提示。 初始步骤调用 `TopLevelDialog`，解释如下。
+
+[!code-csharp[step implementations](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Dialogs/MainDialog.cs?range=31-50&highlight=3)]
+
+**Dialogs\TopLevelDialog.cs**
 
 初始的 top-level 对话包含四个步骤：
 
@@ -242,261 +124,56 @@ class MyBot {
 1. 根据用户的年龄分支。
 1. 最后，感谢用户参与并返回收集的信息。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+在第一步中，我们将清除用户的配置文件，这样对话每次启动时都可以使用空配置文件。 由于上一步在结束时会返回信息，因此 `AcknowledgementStepAsync` 在结束时会将其保存到用户状态，然后将该信息返回到主对话，以便在最后一步使用。
 
-```csharp
-// The first step of the top-level dialog.
-private static async Task<DialogTurnResult> NameStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // Create an object in which to collect the user's information within the dialog.
-    stepContext.Values[UserInfo] = new UserProfile();
+[!code-csharp[step implementations](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Dialogs/TopLevelDialog.cs?range=39-96&highlight=3-4,47-49,56-57)]
 
-    // Ask the user to enter their name.
-    return await stepContext.PromptAsync(
-        NamePrompt,
-        new PromptOptions { Prompt = MessageFactory.Text("Please enter your name.") },
-        cancellationToken);
-}
+**Dialogs\ReviewSelectionDialog.cs**
 
-// The second step of the top-level dialog.
-private async Task<DialogTurnResult> AgeStepAsync(
-    WaterfallStepContext stepContext,
-    CancellationToken cancellationToken)
-{
-    // Set the user's name to what they entered in response to the name prompt.
-    ((UserProfile)stepContext.Values[UserInfo]).Name = (string)stepContext.Result;
-
-    // Ask the user to enter their age.
-    return await stepContext.PromptAsync(
-        AgePrompt,
-        new PromptOptions { Prompt = MessageFactory.Text("Please enter your age.") },
-        cancellationToken);
-}
-
-// The third step of the top-level dialog.
-private async Task<DialogTurnResult> StartSelectionStepAsync(
-    WaterfallStepContext stepContext,
-    CancellationToken cancellationToken)
-{
-    // Set the user's age to what they entered in response to the age prompt.
-    int age = (int)stepContext.Result;
-    ((UserProfile)stepContext.Values[UserInfo]).Age = age;
-
-    if (age < 25)
-    {
-        // If they are too young, skip the review-selection dialog, and pass an empty list to the next step.
-        await stepContext.Context.SendActivityAsync(
-            MessageFactory.Text("You must be 25 or older to participate."),
-            cancellationToken);
-        return await stepContext.NextAsync(new List<string>(), cancellationToken);
-    }
-    else
-    {
-        // Otherwise, start the review-selection dialog.
-        return await stepContext.BeginDialogAsync(ReviewSelectionDialog, null, cancellationToken);
-    }
-}
-
-// The final step of the top-level dialog.
-private async Task<DialogTurnResult> AcknowledgementStepAsync(
-    WaterfallStepContext stepContext,
-    CancellationToken cancellationToken)
-{
-    // Set the user's company selection to what they entered in the review-selection dialog.
-    List<string> list = stepContext.Result as List<string>;
-    ((UserProfile)stepContext.Values[UserInfo]).CompaniesToReview = list ?? new List<string>();
-
-    // Thank them for participating.
-    await stepContext.Context.SendActivityAsync(
-        MessageFactory.Text($"Thanks for participating, {((UserProfile)stepContext.Values[UserInfo]).Name}."),
-        cancellationToken);
-
-    // Exit the dialog, returning the collected user information.
-    return await stepContext.EndDialogAsync(stepContext.Values[UserInfo], cancellationToken);
-}
-```
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-```javascript
-async nameStep(stepContext) {
-    // Create an object in which to collect the user's information within the dialog.
-    stepContext.values[USER_INFO] = {};
-
-    // Ask the user to enter their name.
-    return await stepContext.prompt(NAME_PROMPT, 'Please enter your name.');
-}
-
-async ageStep(stepContext) {
-    // Set the user's name to what they entered in response to the name prompt.
-    stepContext.values[USER_INFO].name = stepContext.result;
-
-    // Ask the user to enter their age.
-    return await stepContext.prompt(AGE_PROMPT, 'Please enter your age.');
-}
-
-async startSelectionStep(stepContext) {
-    // Set the user's age to what they entered in response to the age prompt.
-    stepContext.values[USER_INFO].age = stepContext.result;
-
-    if (stepContext.result < 25) {
-        // If they are too young, skip the review-selection dialog, and pass an empty list to the next step.
-        await stepContext.context.sendActivity('You must be 25 or older to participate.');
-        return await stepContext.next([]);
-    } else {
-        // Otherwise, start the review-selection dialog.
-        return await stepContext.beginDialog(REVIEW_SELECTION_DIALOG);
-    }
-}
-
-async acknowledgementStep(stepContext) {
-    // Set the user's company selection to what they entered in the review-selection dialog.
-    const list = stepContext.result || [];
-    stepContext.values[USER_INFO].companiesToReview = list;
-
-    // Thank them for participating.
-    await stepContext.context.sendActivity(`Thanks for participating, ${stepContext.values[USER_INFO].name}.`);
-
-    // Exit the dialog, returning the collected user information.
-    return await stepContext.endDialog(stepContext.values[USER_INFO]);
-}
-```
-
----
-
-### <a name="the-review-selection-dialog"></a>review-selection 对话
-
-review-selection 对话包含两个步骤：
+review-selection 对话从 top-level 对话的 `StartSelectionStepAsync` 启动，包含两个步骤：
 
 1. 请求用户选择要评论的公司，或选择 `done` 以完成操作。
 1. 根据情况重复此对话或退出。
 
 在此设计中，top-level 对话始终优先于堆栈中的 review-selection 对话，可将 review-selection 对话视为 top-level 对话的子级。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-```csharp
-// The first step of the review-selection dialog.
-private async Task<DialogTurnResult> SelectionStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // Continue using the same selection list, if any, from the previous iteration of this dialog.
-    List<string> list = stepContext.Options as List<string> ?? new List<string>();
-    stepContext.Values[CompaniesSelected] = list;
-
-    // Create a prompt message.
-    string message;
-    if (list.Count is 0)
-    {
-        message = $"Please choose a company to review, or `{DoneOption}` to finish.";
-    }
-    else
-    {
-        message = $"You have selected **{list[0]}**. You can review an additional company, " +
-            $"or choose `{DoneOption}` to finish.";
-    }
-
-    // Create the list of options to choose from.
-    List<string> options = _companyOptions.ToList();
-    options.Add(DoneOption);
-    if (list.Count > 0)
-    {
-        options.Remove(list[0]);
-    }
-
-    // Prompt the user for a choice.
-    return await stepContext.PromptAsync(
-        SelectionPrompt,
-        new PromptOptions
-        {
-            Prompt = MessageFactory.Text(message),
-            RetryPrompt = MessageFactory.Text("Please choose an option from the list."),
-            Choices = ChoiceFactory.ToChoices(options),
-        },
-        cancellationToken);
-}
-
-// The final step of the review-selection dialog.
-private async Task<DialogTurnResult> LoopStepAsync(WaterfallStepContext stepContext, CancellationToken cancellationToken)
-{
-    // Retrieve their selection list, the choice they made, and whether they chose to finish.
-    List<string> list = stepContext.Values[CompaniesSelected] as List<string>;
-    FoundChoice choice = (FoundChoice)stepContext.Result;
-    bool done = choice.Value == DoneOption;
-
-    if (!done)
-    {
-        // If they chose a company, add it to the list.
-        list.Add(choice.Value);
-    }
-
-    if (done || list.Count is 2)
-    {
-        // If they're done, exit and return their list.
-        return await stepContext.EndDialogAsync(list, cancellationToken);
-    }
-    else
-    {
-        // Otherwise, repeat this dialog, passing in the list from this iteration.
-        return await stepContext.ReplaceDialogAsync(ReviewSelectionDialog, list, cancellationToken);
-    }
-}
-```
+[!code-csharp[step implementations](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Dialogs/ReviewSelectionDialog.cs?range=42-106)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-```javascript
-async selectionStep(stepContext) {
-    // Continue using the same selection list, if any, from the previous iteration of this dialog.
-    const list = Array.isArray(stepContext.options) ? stepContext.options : [];
-    stepContext.values[COMPANIES_SELECTED] = list;
+**dialogs/mainDialog.js**
 
-    // Create a prompt message.
-    let message;
-    if (list.length === 0) {
-        message = 'Please choose a company to review, or `' + DONE_OPTION + '` to finish.';
-    } else {
-        message = `You have selected **${list[0]}**. You can review an addition company, ` +
-            'or choose `' + DONE_OPTION + '` to finish.';
-    }
+我们定义了组件对话 `MainDialog`，该对话包含一些主要步骤，可以引导对话和提示。 初始步骤调用 `TopLevelDialog`，解释如下。
 
-    // Create the list of options to choose from.
-    const options = list.length > 0
-        ? COMPANY_OPTIONS.filter(function (item) { return item !== list[0] })
-        : COMPANY_OPTIONS.slice();
-    options.push(DONE_OPTION);
+[!code-javascript[step implementations](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/dialogs/mainDialog.js?range=43-55&highlight=2)]
 
-    // Prompt the user for a choice.
-    return await stepContext.prompt(SELECTION_PROMPT, {
-        prompt: message,
-        retryPrompt: 'Please choose an option from the list.',
-        choices: options
-    });
-}
+**dialogs/topLevelDialog.js**
 
-async loopStep(stepContext) {
-    // Retrieve their selection list, the choice they made, and whether they chose to finish.
-    const list = stepContext.values[COMPANIES_SELECTED];
-    const choice = stepContext.result;
-    const done = choice.value === DONE_OPTION;
+初始的 top-level 对话包含四个步骤：
 
-    if (!done) {
-        // If they chose a company, add it to the list.
-        list.push(choice.value);
-    }
+1. 请求用户的姓名。
+1. 请求用户的年龄。
+1. 根据用户的年龄分支。
+1. 最后，感谢用户参与并返回收集的信息。
 
-    if (done || list.length > 1) {
-        // If they're done, exit and return their list.
-        return await stepContext.endDialog(list);
-    } else {
-        // Otherwise, repeat this dialog, passing in the list from this iteration.
-        return await stepContext.replaceDialog(REVIEW_SELECTION_DIALOG, list);
-    }
-}
-```
+在第一步中，我们将清除用户的配置文件，这样对话每次启动时都可以使用空配置文件。 由于上一步在结束时会返回信息，因此 `acknowledgementStep` 在结束时会将其保存到用户状态，然后将该信息返回到主对话，以便在最后一步使用。
+
+[!code-javascript[step implementations](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/dialogs/topLevelDialog.js?range=32-76&highlight=2-3,37-39,43-44)]
+
+**dialogs/reviewSelectionDialog.js**
+
+review-selection 对话从 top-level 对话的 `startSelectionStep` 启动，包含两个步骤：
+
+1. 请求用户选择要评论的公司，或选择 `done` 以完成操作。
+1. 根据情况重复此对话或退出。
+
+在此设计中，top-level 对话始终优先于堆栈中的 review-selection 对话，可将 review-selection 对话视为 top-level 对话的子级。
+
+[!code-javascript[step implementations](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/dialogs/reviewSelectionDialog.js?range=33-78)]
 
 ---
 
-## <a name="update-the-bots-turn-handler"></a>更新机器人的轮次处理程序
+## <a name="implement-the-code-to-manage-the-dialog"></a>实现用于管理对话的代码
 
 机器人的轮次处理程序重复这些对话定义的一个聊天流。
 收到来自用户的消息时：
@@ -509,124 +186,117 @@ async loopStep(stepContext) {
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-```csharp
-public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-{
-    if (turnContext == null)
-    {
-        throw new ArgumentNullException(nameof(turnContext));
-    }
+**DialogExtensions.cs**
 
-    if (turnContext.Activity.Type == ActivityTypes.Message)
-    {
-        // Run the DialogSet - let the framework identify the current state of the dialog from
-        // the dialog stack and figure out what (if any) is the active dialog.
-        DialogContext dialogContext = await _dialogs.CreateContextAsync(turnContext, cancellationToken);
-        DialogTurnResult results = await dialogContext.ContinueDialogAsync(cancellationToken);
-        switch (results.Status)
-        {
-            case DialogTurnStatus.Cancelled:
-            case DialogTurnStatus.Empty:
-                // If there is no active dialog, we should clear the user info and start a new dialog.
-                await _accessors.UserProfileAccessor.SetAsync(turnContext, new UserProfile(), cancellationToken);
-                await _accessors.UserState.SaveChangesAsync(turnContext, false, cancellationToken);
-                await dialogContext.BeginDialogAsync(TopLevelDialog, null, cancellationToken);
-                break;
+在此示例中，我们定义了一个 `Run` 帮助程序方法，用于创建和访问对话上下文。
+由于组件对话定义内部对话集，因此我们必须创建可让消息处理程序代码看到的外部对话集，并使用它来创建对话上下文。
 
-            case DialogTurnStatus.Complete:
-                // If we just finished the dialog, capture and display the results.
-                UserProfile userInfo = results.Result as UserProfile;
-                string status = "You are signed up to review "
-                    + (userInfo.CompaniesToReview.Count is 0
-                        ? "no companies"
-                        : string.Join(" and ", userInfo.CompaniesToReview))
-                    + ".";
-                await turnContext.SendActivityAsync(status);
-                await _accessors.UserProfileAccessor.SetAsync(turnContext, userInfo, cancellationToken);
-                await _accessors.UserState.SaveChangesAsync(turnContext, false, cancellationToken);
-                break;
+- `dialog` 是机器人的主组件对话。
+- `turnContext` 是机器人的当前轮次上下文。
 
-            case DialogTurnStatus.Waiting:
-                // If there is an active dialog, we don't need to do anything here.
-                break;
-        }
+[!code-csharp[Run method](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/DialogExtensions.cs?range=13-24)]
 
-        await _accessors.ConversationState.SaveChangesAsync(turnContext, false, cancellationToken);
-    }
+**Bots\DialogBot.cs**
 
-    // Processes ConversationUpdate Activities to welcome the user.
-    else if (turnContext.Activity.Type == ActivityTypes.ConversationUpdate)
-    {
-        // Welcome new users...
-    }
-    else
-    {
-        // Give a default reply for all other activity types...
-    }
-}
-```
+消息处理程序调用 `Run` 帮助程序方法来管理对话，而我们已重写轮次处理程序，可以保存在轮次中对聊天和用户状态所做的任何更改。 基 `OnTurnAsync` 会调用 `OnMessageActivityAsync` 方法，确保在该轮次结束时进行保存调用。
+
+[!code-csharp[Overrides](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Bots/DialogBot.cs?range=33-48&highlight=5-7)]
+
+**Bots\DialogAndWelcome.cs**
+
+`DialogAndWelcomeBot` 会扩展上面的 `DialogBot`，以便在用户加入聊天时提供欢迎消息，是 `Startup.cs` 调用的内容。
+
+[!code-csharp[On members added](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Bots/DialogAndWelcome.cs?range=21-38)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-```javascript
-async onTurn(turnContext) {
-    if (turnContext.activity.type === ActivityTypes.Message) {
-        // Run the DialogSet - let the framework identify the current state of the dialog from
-        // the dialog stack and figure out what (if any) is the active dialog.
-        const dialogContext = await this.dialogs.createContext(turnContext);
-        const results = await dialogContext.continueDialog();
-        switch (results.status) {
-            case DialogTurnStatus.cancelled:
-            case DialogTurnStatus.empty:
-                // If there is no active dialog, we should clear the user info and start a new dialog.
-                await this.userProfileAccessor.set(turnContext, {});
-                await this.userState.saveChanges(turnContext);
-                await dialogContext.beginDialog(TOP_LEVEL_DIALOG);
-                break;
-            case DialogTurnStatus.complete:
-                // If we just finished the dialog, capture and display the results.
-                const userInfo = results.result;
-                const status = 'You are signed up to review '
-                    + (userInfo.companiesToReview.length === 0 ? 'no companies' : userInfo.companiesToReview.join(' and '))
-                    + '.';
-                await turnContext.sendActivity(status);
-                await this.userProfileAccessor.set(turnContext, userInfo);
-                await this.userState.saveChanges(turnContext);
-                break;
-            case DialogTurnStatus.waiting:
-                // If there is an active dialog, we don't need to do anything here.
-                break;
-        }
-        await this.conversationState.saveChanges(turnContext);
-    } else if (turnContext.activity.type === ActivityTypes.ConversationUpdate) {
-        // Welcome new users...
-    } else {
-        // Give a default reply for all other activity types...
-    }
-}
-```
+**dialogs/mainDialog.js**
+
+在此示例中，我们定义了一个 `run` 方法，用于创建和访问对话上下文。
+由于组件对话定义内部对话集，因此我们必须创建可让消息处理程序代码看到的外部对话集，并使用它来创建对话上下文。
+
+- `turnContext` 是机器人的当前轮次上下文。
+- `accessor` 是我们创建的一个访问器，用于管理对话状态。
+
+[!code-javascript[run method](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/dialogs/mainDialog.js?range=32-41)]
+
+**bots/dialogBot.js**
+
+消息处理程序调用 `run` 帮助程序方法来管理对话，而我们会实现一个轮次处理程序，可以保存在轮次中对聊天和用户状态所做的任何更改。 调用 `next` 时，会让基实现调用 `onDialog` 方法，确保在该轮次结束时进行保存调用。
+
+[!code-javascript[Overrides](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/bots/dialogBot.js?range=30-47)]
+
+**bots/dialogWandWelcomeBot.js**
+
+`DialogAndWelcomeBot` 会扩展上面的 `DialogBot`，以便在用户加入聊天时提供欢迎消息，是 `Startup.cs` 调用的内容。
+
+[!code-javascript[On members added](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/bots/dialogAndWelcomeBot.js?range=10-21)]
 
 ---
 
-## <a name="test-your-dialog"></a>测试对话
+## <a name="branch-and-loop"></a>分支和循环
 
-1. 在计算机本地运行示例。 如需说明，请参阅 [C#](https://aka.ms/cs-complex-dialog-sample) 或 [JS](https://aka.ms/js-complex-dialog-sample) 示例的自述文件。
-1. 按如下所示使用仿真器测试机器人。
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+
+**Dialogs\TopLevelDialog.cs**
+
+这是一个示例分支逻辑，来自 _top level_ 对话中的一个步骤：
+
+[!code-csharp[branching logic](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Dialogs/TopLevelDialog.cs?range=68-80)]
+
+**Dialogs\ReviewSelectionDialog.cs**
+
+这是一个示例循环逻辑，来自 _review selection_ 对话中的一个步骤：
+
+[!code-csharp[looping logic](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Dialogs/ReviewSelectionDialog.cs?range=96-105)]
+
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+
+**dialogs/topLevelDialog.js**
+
+这是一个示例分支逻辑，来自 _top level_ 对话中的一个步骤：
+
+[!code-javascript[branching logic](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/dialogs/topLevelDialog.js?range=56-64)]
+
+**dialogs/reviewSelectionDialog.js**
+
+这是一个示例循环逻辑，来自 _review selection_ 对话中的一个步骤：
+
+[!code-javascript[looping logic](~/../botbuilder-samples/samples/javascript_nodejs/43.complex-dialog/dialogs/reviewSelectionDialog.js?range=71-77)]
+
+---
+
+## <a name="to-test-the-bot"></a>测试机器人
+
+1. 安装 [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)（如果尚未安装）。
+1. 在计算机本地运行示例。
+1. 按如下所示启动模拟器，连接到机器人，然后发送消息。
 
 ![测试复杂对话示例](~/media/emulator-v4/test-complex-dialog.png)
 
 ## <a name="additional-resources"></a>其他资源
 
-有关如何实现对话的介绍，请参阅[实现有序的聊天流](bot-builder-dialog-manage-conversation-flow.md)，其中使用了单个瀑布对话和一些提示来创建简单的交互，以便向用户提出一系列问题。
+有关如何实现对话的介绍，请参阅[实现有序的聊天流][simple-dialog]，其中使用了单个瀑布对话和一些提示来创建简单的交互，以便向用户提出一系列问题。
 
-“对话”库包含提示的基本验证。 你也可以添加自定义验证。 有关详细信息，请参阅[使用对话提示收集用户输入](bot-builder-prompts.md)。
+“对话”库包含提示的基本验证。 你也可以添加自定义验证。 有关详细信息，请参阅[使用对话提示收集用户输入][dialog-prompts]。
 
 若要简化对话代码并将其重复用于多个机器人，可将对话集的某些部分定义为单独的类。
-有关详细信息，请参阅[重复使用对话](bot-builder-compositcontrol.md)。
+有关详细信息，请参阅[重复使用对话][component-dialogs]。
 
 ## <a name="next-steps"></a>后续步骤
 
-可以增强机器人，以针对附加的输入（例如，可能会中断正常聊天流的“help”或“cancel”）做出反应。
-
 > [!div class="nextstepaction"]
-> [处理用户中断](bot-builder-howto-handle-user-interrupt.md)
+> [重复使用对话](bot-builder-compositcontrol.md)
+
+<!-- Footnote-style links -->
+
+[concept-basics]: bot-builder-basics.md
+[concept-state]: bot-builder-concept-state.md
+[concept-dialogs]: bot-builder-concept-dialog.md
+
+[simple-dialog]: bot-builder-dialog-manage-conversation-flow.md
+[dialog-prompts]: bot-builder-prompts.md
+[component-dialogs]: bot-builder-compositcontrol.md
+
+[cs-sample]: https://aka.ms/cs-complex-dialog-sample
+[js-sample]: https://aka.ms/js-complex-dialog-sample

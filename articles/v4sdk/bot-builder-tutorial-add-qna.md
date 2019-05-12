@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: tutorial
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/18/2019
+ms.date: 04/30/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bd29aa1ee56ebf64dc5db2edc47adc3ab250e7d5
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: deafe148310dd214ab857d60595edb1abef9e46d
+ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904940"
+ms.lasthandoff: 05/06/2019
+ms.locfileid: "65039720"
 ---
 # <a name="tutorial-use-qna-maker-in-your-bot-to-answer-questions"></a>教程：在机器人中使用 QnA Maker 来回答问题
 
@@ -27,7 +27,7 @@ ms.locfileid: "59904940"
 
 > [!div class="checklist"]
 > * 创建 QnA Maker 服务和知识库
-> * 将知识库信息添加到 .bot 文件
+> * 将知识库信息添加到配置文件
 > * 更新机器人，以便查询知识库
 > * 重新发布机器人
 
@@ -36,11 +36,10 @@ ms.locfileid: "59904940"
 ## <a name="prerequisites"></a>先决条件
 
 * 在[上一教程](bot-builder-tutorial-basic-deploy.md)中创建的机器人。 我们将向机器人添加一项问答功能。
-* 最好对 QnA Maker 有一些了解。 我们将通过 QnA Maker 门户创建、训练和发布可以与机器人配合使用的知识库。
+* 最好对 [QnA Maker](https://qnamaker.ai/) 有一些了解。 我们将通过 QnA Maker 门户创建、训练和发布可以与机器人配合使用的知识库。
+* 熟悉使用 Azure 机器人服务来[创建 QnA 机器人](https://aka.ms/azure-create-qna)。
 
-你还应该已经满足上一教程的这些先决条件：
-
-[!INCLUDE [deployment prerequisites snippet](~/includes/deploy/snippet-prerequisite.md)]
+你还应该已经满足上一教程的先决条件。
 
 ## <a name="sign-in-to-qna-maker-portal"></a>登录到 QnA Maker 门户
 
@@ -62,10 +61,10 @@ ms.locfileid: "59904940"
 1. **保存和训练**知识库。
 1. **发布**知识库。
 
-   知识库现在可以供机器人使用了。 记录知识库 ID、终结点密钥和主机名。 下一步需要用到这些值。
+知识库现在可以供机器人使用了。 记录知识库 ID、终结点密钥和主机名。 下一步需要用到这些值。
 
 ## <a name="add-knowledge-base-information-to-your-bot"></a>将知识库信息添加到机器人
-从 Bot Framwork v4.3 开始，Azure 不再在下载的机器人源代码中提供 .bot 文件。 请按以下说明将 CSharp 或 JavaScript 机器人连接到知识库。
+从 Bot Framework v4.3 开始，Azure 不再在下载的机器人源代码中提供 .bot 文件。 请按以下说明将 CSharp 或 JavaScript 机器人连接到知识库。
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -76,10 +75,10 @@ ms.locfileid: "59904940"
    "MicrosoftAppId": "",
   "MicrosoftAppPassword": "",
   "ScmType": "None",
-
-  "kbId": "<your-knowledge-base-id>",
-  "endpointKey": "<your-knowledge-base-endpoint-key>",
-  "hostname": "<your-qna-service-hostname>" // This is a URL
+  
+  "QnAKnowledgebaseId": "<your-knowledge-base-id>",
+  "QnAAuthKey": "<your-knowledge-base-endpoint-key>",
+  "QnAEndpointHostName": "<your-qna-service-hostname>" // This is a URL
 }
 ```
 
@@ -87,24 +86,23 @@ ms.locfileid: "59904940"
 
 向 .env 文件添加以下值：
 
-```javascript
+```
 MicrosoftAppId=""
 MicrosoftAppPassword=""
 ScmType=None
 
-kbId="<your-knowledge-base-id>"
-endpointKey="<your-knowledge-base-endpoint-key>"
-hostname="<your-qna-service-hostname>" // This is a URL
-
+QnAKnowledgebaseId="<your-knowledge-base-id>"
+QnAAuthKey="<your-knowledge-base-endpoint-key>"
+QnAEndpointHostName="<your-qna-service-hostname>" // This is a URL
 ```
 
 ---
 
-    | 字段 | 值 |
-    |:----|:----|
-    | kbId | QnA Maker 门户为你生成的知识库 ID。 |
-    | endpointKey | QnA Maker 门户为你生成的终结点密钥。 |
-    | hostname | QnA Maker 门户生成的主机 URL。 请使用完整的 URL，以 `https://` 开头，以 `/qnamaker` 结尾。 |
+| 字段 | 值 |
+|:----|:----|
+| kbId | QnA Maker 门户为你生成的知识库 ID。 |
+| endpointKey | QnA Maker 门户为你生成的终结点密钥。 |
+| hostname | QnA Maker 门户生成的主机 URL。 请使用完整的 URL，以 `https://` 开头，以 `/qnamaker` 结尾。 完整 URL 字符串看起来将类似于“https://< >.azure.net/qnamaker”。 |
 
 现在保存所做的编辑。
 
@@ -116,23 +114,23 @@ hostname="<your-qna-service-hostname>" // This is a URL
 
 1. 将 **Microsoft.Bot.Builder.AI.QnA** NuGet 包添加到项目中。
 1. 将 **Microsoft.Extensions.Configuration** NuGet 包添加到项目中。
-1. 在 **startup.cs** 文件中，添加这些命名空间引用。
+1. 在 **Startup.cs** 文件中，添加这些命名空间引用。
 
-   **startup.cs**
+   **Startup.cs**
    ```csharp
-       using Microsoft.Bot.Builder.AI.QnA;
-       using Microsoft.Extensions.Configuration;
+   using Microsoft.Bot.Builder.AI.QnA;
+   using Microsoft.Extensions.Configuration;
    ```
-1. 修改 _ConfigureServices_ 方法，创建一个 QnAMkaerEndpoint，以便连接到在 **appsettings.json** 文件中定义的知识库。
+1. 修改 _ConfigureServices_ 方法，创建一个 QnAMakerEndpoint，以便连接到在 **appsettings.json** 文件中定义的知识库。
 
-   **startup.cs**
+   **Startup.cs**
    ```csharp
    // Create QnAMaker endpoint as a singleton
    services.AddSingleton(new QnAMakerEndpoint
    {
-      KnowledgeBaseId = Configuration.GetValue<string>($"kbId"),
-      EndpointKey = Configuration.GetValue<string>($"endpointKey"),
-      Host = Configuration.GetValue<string>($"hostname")
+      KnowledgeBaseId = Configuration.GetValue<string>($"QnAKnowledgebaseId"),
+      EndpointKey = Configuration.GetValue<string>($"QnAAuthKey"),
+      Host = Configuration.GetValue<string>($"QnAEndpointHostName")
     });
 
    ```
@@ -198,9 +196,9 @@ hostname="<your-qna-service-hostname>" // This is a URL
    ```javascript
    // Map knowledgebase endpoint values from .env file into the required format for `QnAMaker`.
    const configuration = {
-      knowledgeBaseId: process.env.kbId,
-      endpointKey: process.env.endpointKey,
-      host: process.env.hostname
+      knowledgeBaseId: process.env.QnAKnowledgebaseId,
+      endpointKey: process.env.QnAAuthKey,
+      host: process.env.QnAEndpointHostName
    };
 
    ```
@@ -210,7 +208,7 @@ hostname="<your-qna-service-hostname>" // This is a URL
    **index.js**
    ```javascript
    // Create the main dialog.
-   const myBot = new MyBot(configuration, {}, logger);
+   const myBot = new MyBot(configuration, {});
    ```
 
 1. 在 **bot.js** 文件中，为 QnAMaker 添加此 require 语句
@@ -232,7 +230,7 @@ hostname="<your-qna-service-hostname>" // This is a URL
             this.qnaMaker = new QnAMaker(configuration, qnaOptions);
    ```
 
-1. 最后，将以下代码添加到 onMessage( ) 调用，以便将每项用户输入传递到 QnA Maker 知识库，并将 QnA Maker 响应返回给用户。  在知识库中查询答案。
+1. 最后，将以下代码添加到 onMessage( ) 调用，以便将每项用户输入传递到 QnA Maker 知识库，并将 QnA Maker 响应返回给用户，以便查询知识库中的答案。
  
     **bot.js**
     ```javascript
@@ -258,13 +256,14 @@ hostname="<your-qna-service-hostname>" // This is a URL
 
 ![测试 qna 示例](./media/qna-test-bot.png)
 
-## <a name="re-publish-your-bot"></a>重新发布机器人
+## <a name="republish-your-bot"></a>重新发布机器人
 
 现在可以将机器人重新发布回 Azure。
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-[!INCLUDE [publish snippet](~/includes/deploy/snippet-publish.md)]
+```cmd
+az webapp deployment source config-zip --resource-group <resource-group-name> --name <bot-name-in-azure> --src "c:\bot\mybot.zip"
+```
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -276,9 +275,8 @@ hostname="<your-qna-service-hostname>" // This is a URL
 
 发布机器人之后，请给 Azure 一到两分钟的时间来更新并启动机器人。
 
-1. 使用模拟器测试机器人的生产终结点，或者使用 Azure 门户通过网上聊天测试机器人。
-
-   不管采用哪一种方式，都会看到与本地测试相同的行为。
+使用模拟器测试机器人的生产终结点，或者使用 Azure 门户通过网上聊天测试机器人。
+不管采用哪一种方式，都会看到与本地测试相同的行为。
 
 ## <a name="clean-up-resources"></a>清理资源
 
@@ -292,6 +290,6 @@ hostname="<your-qna-service-hostname>" // This is a URL
 
 ## <a name="next-steps"></a>后续步骤
 
-若要了解如何为机器人添加功能，请参阅开发方法部分的文章。
+若要了解如何为机器人添加功能，请参阅开发方法部分中的“发送和接收文本消息”一文以及其他文章。
 > [!div class="nextstepaction"]
-> [“后续步骤”按钮](bot-builder-howto-send-messages.md)
+> [发送和接收文本消息](bot-builder-howto-send-messages.md)

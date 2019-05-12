@@ -10,372 +10,119 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 4/16/19
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: a79fd768f7c132301ba28bace03b5b86599fb4dd
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 38a8034687ef1a0b8b3bcf3e01d3b33b91bdfd18
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904754"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033234"
 ---
 # <a name="save-user-and-conversation-data"></a>保存用户和聊天数据
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-机器人在本质上是无状态的。 部署机器人后，根据轮次的不同，它不一定会在相同的进程或计算机中运行。 但是，机器人可能需要跟踪聊天上下文，以便可以管理聊天行为并记住先前问题的回答。 使用 SDK 的状态和存储功能可将状态添加到机器人。
+机器人在本质上是无状态的。 部署机器人后，根据轮次的不同，它不一定会在相同的进程或计算机中运行。 但是，机器人可能需要跟踪聊天上下文，以便可以管理聊天行为并记住先前问题的回答。 使用 Bot Framework SDK 的状态和存储功能可将状态添加到机器人。 机器人使用状态管理和存储对象来管理并持久保存状态。 状态管理器提供一个抽象层，让你可以使用属性访问器来访问状态属性（不考虑基础存储的类型）。
 
 ## <a name="prerequisites"></a>先决条件
-
 - 需要了解[机器人基础知识](bot-builder-basics.md)以及机器人如何[管理状态](bot-builder-concept-state.md)。
-- 本文中的代码基于 **StateBot** 示例。 需要获取 [C# ](https://github.com/Microsoft/BotFramework-Samples/tree/master/SDKV4-Samples/dotnet_core/StateBot) 或 [JS]() 示例的副本。
-- 用于在本地测试机器人的 [Bot Framework Emulator](https://aka.ms/Emulator-wiki-getting-started)。
+- 本文中的代码基于**状态管理机器人示例**。 需要 [CSharp](https://aka.ms/statebot-sample-cs) 或 [JavaScript](https://aka.ms/statebot-sample-js) 示例的副本。
 
-## <a name="about-the-sample-code"></a>关于示例代码
+## <a name="about-this-sample"></a>关于此示例
+收到用户输入以后，此示例会检查存储的聊天状态，看系统以前是否已提示该用户提供其名称。 如果否，则系统会请求用户的名称，并将该输入存储在用户状态中。 如果是这样，系统会使用用户状态中存储的名称与用户聊天，并将用户的输入数据以及接收时间、输入通道 ID 返回给用户。 将会从用户聊天数据中检索时间和通道 ID，然后将其保存到聊天状态中。 以下图示显示了机器人、用户配置文件和聊天数据类之间的关系。
 
-本文介绍管理机器人状态的配置方面。 为了添加状态，我们将配置状态属性、状态管理和存储，然后在机器人中使用它们。
+## <a name="ctabcsharp"></a>[C#](#tab/csharp)
+![状态机器人示例](media/StateBotSample-Overview.png)
 
-- 每个状态属性包含机器人的状态信息。
-- 每个状态属性访问器允许获取或设置关联状态属性的值。
-- 每个状态管理对象可用于在存储中自动读取和写入关联的状态信息。
-- 存储层连接到状态的后备存储（例如，用于测试的内存中存储）或 Azure Cosmos DB 存储（用于生产）。
-
-需要使用状态属性访问器配置机器人。当机器人在运行时处理活动时，可以使用访问器获取和设置状态。 状态属性访问器是使用状态管理对象创建的，而状态管理对象是使用存储层创建的。 因此，我们先从存储级别着手，然后不断提高操作级别。
-
-## <a name="configure-storage"></a>配置存储
-
-由于我们不打算部署此机器人，因此将使用内存存储。在下一步骤中，我们将使用内存存储来配置用户状态和聊天状态。
-
-### <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-在 **Startup.cs** 中配置存储层。
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // ...
-    IStorage storage = new MemoryStorage();
-    // ...
-}
-```
-
-### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在 **index.js** 文件中配置存储层。
-
-```javascript
-// Define state store for your bot.
-const memoryStorage = new MemoryStorage();
-```
+## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+![状态机器人示例](media/StateBotSample-JS-Overview.png)
 
 ---
 
-## <a name="create-state-management-objects"></a>创建状态管理对象
+## <a name="define-classes"></a>定义类
 
-我们将跟踪用户状态和聊天状态，并在下一步骤中使用它们来创建状态属性访问器。
+## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+设置状态管理时，第一步是定义类，这些类将包含我们需要在用户和聊天状态中管理的所有信息。 就此示例来说，我们已定义以下内容：
 
-创建状态管理对象时，请在 **Startup.cs** 中引用存储层。
+- 在 **UserProfile.cs** 中，我们为机器人将要收集的用户信息定义 `UserProfile` 类。 
+- 在 **ConversationData.cs** 中，我们定义一个 `ConversationData` 类，用于在收集用户信息时控制聊天状态。
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // ...
-    ConversationState conversationState = new ConversationState(storage);
-    UserState userState = new UserState(storage);
-    // ...
-}
-```
+以下代码示例演示如何为 UserProfile 类创建定义。
 
-### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+**UserProfile.cs** [!code-csharp[UserProfile](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/UserProfile.cs?range=7-11)]
 
-在 **index.js** 文件中，将 `UserState` 添加到 require 语句。
+## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-```javascript
-const { BotFrameworkAdapter, MemoryStorage, ConversationState, UserState } = require('botbuilder');
-```
+第一步将要求使用 botbuilder 服务，该服务包含 `UserState` 和 `ConversationState` 的定义。
 
-然后，在创建聊天和用户状态管理对象时引用存储层。
-
-```javascript
-// Create conversation and user state with in-memory storage provider.
-const conversationState = new ConversationState(memoryStorage);
-const userState = new UserState(memoryStorage);
-```
+**index.js** [!code-javascript[BotService](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/index.js?range=7-9)]
 
 ---
 
-## <a name="create-state-property-accessors"></a>创建状态属性访问器
+## <a name="create-conversation-and-user-state-objects"></a>创建聊天和用户状态对象
 
-若要声明状态属性，请先使用某个状态管理对象创建状态属性访问器。 将机器人配置为跟踪以下信息：
+## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-- 用户的姓名：将在用户状态中定义。
-- 我们是否刚刚向用户询问过其姓名，以及有关用户刚刚发送的消息的其他信息。
+接下来，我们注册用于创建 `UserState` 和 `ConversationState` 对象的 `MemoryStorage`。 用户和聊天状态对象在`Startup`时创建，依赖项会注入机器人构造函数中。 机器人的其他已注册服务：凭据提供程序、适配器和机器人实现。
 
-机器人使用访问器从轮次上下文获取状态属性。
+**Startup.cs** [!code-csharp[ConfigureServices](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/Startup.cs?range=16-38)]
 
-### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+**StateManagementBot.cs** [!code-csharp[StateManagement](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=15-22)]
 
-首先定义类，用于包含我们要在每个状态类型中管理的所有信息。
+## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-- 一个 `UserProfile` 类，用于跟踪机器人要收集的用户信息。
-- 一个 `ConversationData` 类，用于跟踪有关消息抵达时间以及消息发送者的信息。
+接下来，我们注册随后用于创建 `UserState` 和 `ConversationState` 对象的 `MemoryStorage`。
 
-```csharp
-// Defines a state property used to track information about the user.
-public class UserProfile
-{
-    public string Name { get; set; }
-}
-```
-
-```csharp
-// Defines a state property used to track conversation data.
-public class ConversationData
-{
-    // The time-stamp of the most recent incoming message.
-    public string Timestamp { get; set; }
-
-    // The ID of the user's channel.
-    public string ChannelId { get; set; }
-
-    // Track whether we have already asked the user's name
-    public bool PromptedUserForName { get; set; } = false;
-}
-```
-
-接下来，定义一个类用于包含配置机器人实例所需的状态管理信息。
-
-```csharp
-public class StateBotAccessors
-{
-    public StateBotAccessors(ConversationState conversationState, UserState userState)
-    {
-        ConversationState = conversationState ?? throw new ArgumentNullException(nameof(conversationState));
-        UserState = userState ?? throw new ArgumentNullException(nameof(userState));
-    }
-  
-    public static string UserProfileName { get; } = "UserProfile";
-
-    public static string ConversationDataName { get; } = "ConversationData";
-
-    public IStatePropertyAccessor<UserProfile> UserProfileAccessor { get; set; }
-
-    public IStatePropertyAccessor<ConversationData> ConversationDataAccessor { get; set; }
-  
-    public ConversationState ConversationState { get; }
-  
-    public UserState UserState { get; }
-}
-```
-
-### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-将状态管理对象直接传递给机器人的构造函数，并让机器人自行创建状态属性访问器。
-
-创建机器人时，请在 **index.js** 中提供状态管理对象。
-
-```javascript
-// Create the bot.
-const myBot = new MyBot(conversationState, userState);
-```
-
-在 **bot.js** 中，定义管理和跟踪状态时所需的标识符。
-
-```javascript
-// The accessor names for the conversation data and user profile state property accessors.
-const CONVERSATION_DATA_PROPERTY = 'conversationData';
-const USER_PROFILE_PROPERTY = 'userProfile';
-```
+**index.js** [!code-javascript[DefineMemoryStore](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/index.js?range=32-38)]
 
 ---
 
-## <a name="configure-your-bot"></a>配置机器人
+## <a name="add-state-property-accessors"></a>添加状态属性访问器
 
-现在，我们可以定义状态属性访问器并配置机器人。
-将为聊天流状态属性访问器使用聊天状态管理对象。
-将为用户个人资料状态属性访问器使用用户状态管理对象。
+## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+现在，我们使用 `CreateProperty` 方法来创建属性访问器，该方法提供 `BotState` 对象的句柄。 每个状态属性访问器允许获取或设置关联状态属性的值。 在使用状态属性之前，我们将使用每个访问器从存储加载属性，并从状态缓存获取该属性。 为了将范围设置适当的密钥与状态属性相关联，我们调用 `GetAsync` 方法。
 
-在 **Startup.cs** 中，将 ASP.NET 配置为提供捆绑的状态属性和管理对象。 将通过 ASP.NET Core 中的依赖项注入框架从机器人的构造函数检索此信息。
+**StateManagementBot.cs** [!code-csharp[StateAccessors](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=38-46)]
 
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    // ...
-    services.AddSingleton<StateBotAccessors>(sp =>
-    {
-        // Create the custom state accessor.
-        return new StateBotAccessors(conversationState, userState)
-        {
-            ConversationDataAccessor = conversationState.CreateProperty<ConversationData>(StateBotAccessors.ConversationDataName),
-            UserProfileAccessor = userState.CreateProperty<UserProfile>(StateBotAccessors.UserProfileName),
-        };
-    });
-}
-```
+## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-当 ASP.NET 创建机器人时，会在机器人的构造函数中提供 `StateBotAccessors` 对象。
+现在，我们为 `UserState` 和 `ConversationState` 创建属性访问器。 每个状态属性访问器允许获取或设置关联状态属性的值。 我们使用每个访问器从存储加载关联的属性，并从缓存中检索其当前状态。
 
-```csharp
-// Defines a bot for filling a user profile.
-public class StateBot : IBot
-{
-    private readonly StateBotAccessors _accessors;
-
-    public StateBot(StateBotAccessors accessors, ILoggerFactory loggerFactory)
-    {
-        // ...
-        _accessors = accessors ?? throw new System.ArgumentNullException(nameof(accessors));
-    }
-
-    // The bot's turn handler and other supporting code...
-}
-```
-
-### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-在机器人的构造函数中（在 **bot.js** 文件中），创建状态属性访问器并将其添加到机器人。 此外，添加对状态管理对象的引用，因为需要使用这些引用来保存所做的任何状态更改。
-
-```javascript
-constructor(conversationState, userState) {
-    // Create the state property accessors for the conversation data and user profile.
-    this.conversationData = conversationState.createProperty(CONVERSATION_DATA_PROPERTY);
-    this.userProfile = userState.createProperty(USER_PROFILE_PROPERTY);
-
-    // The state management objects for the conversation and user state.
-    this.conversationState = conversationState;
-    this.userState = userState;
-}
-```
+**StateManagementBot.js**。
+[!code-javascript[BotService](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=6-19)]
 
 ---
 
 ## <a name="access-state-from-your-bot"></a>从机器人访问状态
+前面几个部分介绍了将状态属性访问器添加到机器人的初始化时步骤。 现在，我们可以在运行时使用这些访问器来读取和写入状态信息。 下面的代码示例使用以下逻辑流：
+- 如果 userProfile.Name 为空且 conversationData.PromptedUserForName 为 _true_，我们会检索提供的用户名并将其存储在用户状态中。
+- 如果 userProfile.Name 为空且 conversationData.PromptedUserForName 为 _false_，我们会请求用户提供其名称。
+- 如果 userProfile.Name 以前已存储，我们会从用户输入中检索消息时间和通道 ID，将所有数据回显给用户，然后将检索的数据存储在聊天状态中。
 
-前面几个部分介绍了将状态属性访问器添加到机器人的初始化时步骤。
-现在，我们可以在运行时使用这些访问器来读取和写入状态信息。
+## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-1. 在使用状态属性之前，我们将使用每个访问器从存储加载属性，并从状态缓存获取该属性。
-   - 每当通过状态属性的访问器获取该属性时，都应该提供默认值。 否则，可能会收到 null 值错误。
-1. 在退出轮次处理程序之前：
-   1. 使用访问器的 _set_ 方法将更改推送到机器人状态。
-   1. 使用状态管理对象的 _save changes_ 方法将这些更改写入存储。
+**StateManagementBot.cs** [!code-csharp[OnMessageActivityAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=38-85)]
 
-### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+在退出轮次处理程序之前，我们会使用状态管理对象的 _SaveChangesAsync()_ 方法将所有状态更改写回到存储中。
 
-```csharp
-// The bot's turn handler.
-public async Task OnTurnAsync(ITurnContext turnContext, CancellationToken cancellationToken = default(CancellationToken))
-{
-    if (turnContext.Activity.Type == ActivityTypes.Message)
-    {
-        // Get the state properties from the turn context.
-        UserProfile userProfile =
-            await _accessors.UserProfileAccessor.GetAsync(turnContext, () => new UserProfile());
-        ConversationData conversationData =
-            await _accessors.ConversationDataAccessor.GetAsync(turnContext, () => new ConversationData());
+**StateManagementBot.cs** [!code-csharp[OnTurnAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=24-31)]
 
-        if (string.IsNullOrEmpty(userProfile.Name))
-        {
-            // First time around this is set to false, so we will prompt user for name.
-            if (conversationData.PromptedUserForName)
-            {
-                // Set the name to what the user provided
-                userProfile.Name = turnContext.Activity.Text?.Trim();
+## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-                // Acknowledge that we got their name.
-                await turnContext.SendActivityAsync($"Thanks {userProfile.Name}.");
+**StateManagementBot.js** [!code-javascript[OnMessage](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=21-54)]
 
-                // Reset the flag to allow the bot to go though the cycle again.
-                conversationData.PromptedUserForName = false;
-            }
-            else
-            {
-                // Prompt the user for their name.
-                await turnContext.SendActivityAsync($"What is your name?");
+在退出每个对话轮次之前，我们会使用状态管理对象的 _saveChanges()_ 方法来持久保存所有更改，方法是将状态写回到存储中。
 
-                // Set the flag to true, so we don't prompt in the next turn.
-                conversationData.PromptedUserForName = true;
-            }
-
-            // Save user state and save changes.
-            await _accessors.UserProfileAccessor.SetAsync(turnContext, userProfile);
-            await _accessors.UserState.SaveChangesAsync(turnContext);
-        }
-        else
-        {
-            // Add message details to the conversation data.
-            conversationData.Timestamp = turnContext.Activity.Timestamp.ToString();
-            conversationData.ChannelId = turnContext.Activity.ChannelId.ToString();
-
-            // Display state data
-            await turnContext.SendActivityAsync($"{userProfile.Name} sent: {turnContext.Activity.Text}");
-            await turnContext.SendActivityAsync($"Message received at: {conversationData.Timestamp}");
-            await turnContext.SendActivityAsync($"Message received from: {conversationData.ChannelId}");
-        }
-
-        // Update conversation state and save changes.
-        await _accessors.ConversationDataAccessor.SetAsync(turnContext, conversationData);
-        await _accessors.ConversationState.SaveChangesAsync(turnContext);
-    }
-}
-```
-
-### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
-
-```javascript
-// The bot's turn handler.
-async onTurn(turnContext) {
-    if (turnContext.activity.type === ActivityTypes.Message) {
-        // Get the state properties from the turn context.
-        const userProfile = await this.userProfile.get(turnContext, {});
-        const conversationData = await this.conversationData.get(
-            turnContext, { promptedForUserName: false });
-
-        if (!userProfile.name) {
-            // First time around this is undefined, so we will prompt user for name.
-            if (conversationData.promptedForUserName) {
-                // Set the name to what the user provided.
-                userProfile.name = turnContext.activity.text;
-
-                // Acknowledge that we got their name.
-                await turnContext.sendActivity(`Thanks ${userProfile.name}.`);
-
-                // Reset the flag to allow the bot to go though the cycle again.
-                conversationData.promptedForUserName = false;
-            } else {
-                // Prompt the user for their name.
-                await turnContext.sendActivity('What is your name?');
-
-                // Set the flag to true, so we don't prompt in the next turn.
-                conversationData.promptedForUserName = true;
-            }
-            // Save user state and save changes.
-            await this.userProfile.set(turnContext, userProfile);
-            await this.userState.saveChanges(turnContext);
-        } else {
-            // Add message details to the conversation data.
-            conversationData.timestamp = turnContext.activity.timestamp.toLocaleString();
-            conversationData.channelId = turnContext.activity.channelId;
-
-            // Display state data.
-            await turnContext.sendActivity(`${userProfile.name} sent: ${turnContext.activity.text}`);
-            await turnContext.sendActivity(`Message received at: ${conversationData.timestamp}`);
-            await turnContext.sendActivity(`Message received from: ${conversationData.channelId}`);
-        }
-        // Update conversation state and save changes.
-        await this.conversationData.set(turnContext, conversationData);
-        await this.conversationState.saveChanges(turnContext);
-    }
-}
-```
+**StateManagementBot.js** [!code-javascript[OnDialog](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=60-67)]
 
 ---
 
 ## <a name="test-the-bot"></a>测试机器人
 
-1. 在计算机本地运行示例。 如需说明，请参阅 [C#](https://github.com/Microsoft/BotFramework-Samples/tree/master/SDKV4-Samples/dotnet_core/StateBot) 或 [JS](https://github.com/Microsoft/BotFramework-Samples/tree/master/SDKV4-Samples/js/stateBot) 示例的自述文件。
+下载并安装最新的 [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)
+
+1. 在计算机本地运行示例。 如需说明，请参阅 [C# 示例](https://aka.ms/statebot-sample-cs)或 [JS 示例](https://aka.ms/statebot-sample-js)的自述文件。
 1. 按如下所示使用仿真器测试机器人。
 
 ![测试状态机器人示例](media/state-bot-testing-emulator.png)
@@ -390,7 +137,7 @@ async onTurn(turnContext) {
 
 **Recognizer-Text：** 该示例使用 Microsoft/Recognizers-Text 库来分析和验证用户输入。 有关详细信息，请参阅[概述](https://github.com/Microsoft/Recognizers-Text#microsoft-recognizers-text-overview)页。
 
-## <a name="next-step"></a>后续步骤
+## <a name="next-steps"></a>后续步骤
 
 了解如何配置状态以帮助自己在存储中读取和写入机器人数据后，接下来让我们了解如何向用户提出一系列问题、验证其回答，然后保存其输入。
 

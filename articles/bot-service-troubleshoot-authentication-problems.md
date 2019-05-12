@@ -6,20 +6,20 @@ ms.author: v-demak
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 02/26/2019
-ms.openlocfilehash: 780dcf4d9db48f9ef7f5a92180dc13c41cc63305
-ms.sourcegitcommit: cf3786c6e092adec5409d852849927dc1428e8a2
+ms.date: 04/30/2019
+ms.openlocfilehash: 756e24409532de1473e546e3f771be416cb44c78
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/01/2019
-ms.locfileid: "57224935"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033652"
 ---
 # <a name="troubleshooting-bot-framework-authentication"></a>对 Bot Framework 身份验证进行故障排除
 
 本指南通过评估一系列方案来确定问题所在，从而帮助对机器人的身份验证问题进行故障排除。 
 
 > [!NOTE]
-> 若要完成本指南中的所有步骤，需下载和使用 [Bot Framework Emulator][Emulator]，并且必须有权在 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a> 中访问机器人的注册设置。
+> 若要完成本指南中的所有步骤，需下载和使用 [Bot Framework Emulator][Emulator]，并且必须有权在 <a href="https://portal.azure.com" target="_blank">Azure 门户</a>中访问机器人的注册设置。
 
 ## <a id="PW"></a>应用 ID 和密码
 
@@ -65,15 +65,11 @@ var connector = new builder.ChatConnector({
 
 ::: moniker range="azure-bot-service-4.0"
 
-如果使用 Bot Framework SDK for .NET，请在 `.bot` 文件中编辑设置：
+如果使用 Bot Framework SDK for .NET，请在 `appsettings.json` 文件中编辑设置：
 
 ```json
-"services": [
-  {
-    "appId": "<your app ID>",
-    "appPassword": "<your app password>",
-  }
-]
+  "MicrosoftAppId": "<your app ID>",
+  "MicrosoftAppPassword": "<your app password>"
 ```
 
 如果使用 Bot Framework SDK for Node.js，请编辑这些值（或更新相应的环境变量）：
@@ -84,8 +80,6 @@ const adapter = new BotFrameworkAdapter({
     appPassword: null
 });
 ```
-
-如果使用 `.bot` 文件进行配置，则可将 `appId` 和 `appPassword` 更新为 `""`。
 
 ::: moniker-end
 
@@ -148,7 +142,7 @@ curl -k -X POST https://login.microsoftonline.com/botframework.com/oauth2/v2.0/t
 
 机器人的安全性依赖于 Microsoft 服务，即使机器人仅在 localhost 上运行也是如此。 若要启用机器人的安全性，请编辑其配置设置，使用[步骤 2](#step-2) 中验证的值填充应用 ID 和密码。  另外，请确保包是最新的，尤其是 `System.IdentityModel.Tokens.Jwt` 和 `Microsoft.IdentityModel.Tokens` 包。
 
-如果使用 Bot Framework SDK for .NET，请在 `appsettings.config` 文件中填充这些设置，或在 `.bot` 文件中填充相应的值：
+如果使用 Bot Framework SDK for .NET，请在 `appsettings.config` 文件中填充这些设置，或在 `appsettings.json` 文件中填充相应的值：
 
 ```xml
 <appSettings>
@@ -200,7 +194,7 @@ var connector = new builder.ChatConnector({
 Bot Framework 要求必须可从 Internet 访问机器人，因此必须将机器人部署到 Azure 等云托管平台。 请务必在部署之前启用机器人的安全性，如[步骤 3](#step-3) 中所述。
 
 > [!NOTE]
-> 如果尚无云托管提供程序，可注册<a href="https://azure.microsoft.com/en-us/free/" target="_blank">免费帐户</a>。 
+> 如果尚无云托管提供程序，可注册<a href="https://azure.microsoft.com/free/" target="_blank">免费帐户</a>。 
 
 如果将机器人部署到 Azure，将为应用程序自动配置 SSL，从而启用 Bot Framework 需要的 HTTPS 终结点。 如果部署到其他云托管提供程序，请务必验证应用程序是否配置 SSL，以便机器人具有 HTTPS 终结点。
 
@@ -209,7 +203,7 @@ Bot Framework 要求必须可从 Internet 访问机器人，因此必须将机�
 若要在启用安全性的情况下在云端测试机器人，请完成以下步骤。
 
 1. 请确保机器人已成功部署并正在运行。 
-2. 登录 <a href="https://dev.botframework.com" target="_blank">Bot Framework 门户</a>。
+2. 登录到 <a href="https://portal.azure.com" target="_blank">Azure 门户</a>。
 3. 单击“我的机器人”。
 4. 选择要测试的机器人。
 5. 单击“测试”，在嵌入式 Web 聊天控件中打开机器人。
@@ -228,7 +222,7 @@ Bot Framework 要求必须可从 Internet 访问机器人，因此必须将机�
 如果完成上述步骤后仍然遇到问题，可执行以下操作：
 
 * 查看如何[调试机器人](bot-service-debug-bot.md)和该部分中的其他调试文章。
-* 使用 Bot Framework Emulator 和 <a href="https://ngrok.com/" target="_blank">ngrok</a> [在云中调试机器人](~/bot-service-debug-emulator.md)。
+* 使用 Bot Framework Emulator 和 <a href="https://ngrok.com/" target="_blank">ngrok</a> 隧道软件[在云中调试机器人](~/bot-service-debug-emulator.md)。 ngrok 不是 Microsoft 产品。
 * 使用 [Fiddler](https://www.telerik.com/fiddler) 等代理工具检查传入和传出机器人的 HTTPS 流量。 Fiddler 不是 Microsoft 产品。
 * 查阅 [Bot Connector 身份验证指南][BotConnectorAuthGuide]，了解 Bot Framework 使用的身份验证技术。
 * 使用 Bot Framework [支持][Support]资源，寻求他人帮助。 

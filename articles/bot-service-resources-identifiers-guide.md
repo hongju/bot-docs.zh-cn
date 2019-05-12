@@ -8,13 +8,13 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: 3c4f8549f40740961feea24f73aa2e4b9b7bc82f
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.date: 04/30/2019
+ms.openlocfilehash: 28932ca45c6faaad2f17ecc03f026ba04352a5a1
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998884"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033070"
 ---
 # <a name="id-fields-in-the-bot-framework"></a>Bot Framework 中的 ID 字段
 
@@ -36,13 +36,13 @@ ms.locfileid: "49998884"
 
 ## <a name="bot-handle"></a>机器人句柄
 
-已注册到 Bot Framework 的每个机器人都有一个机器人句柄。
+已注册到 Azure 机器人服务的每个机器人都有一个机器人句柄。
 
 示例： `FooBot`
 
-机器人句柄表示机器人已注册到在线 Bot Framework。 此注册与 HTTP Webhook 终结点和通道注册相关联。
+机器人句柄表示机器人已注册到在线 Azure 机器人服务。 此注册与 HTTP Webhook 终结点和通道注册相关联。
 
-Bot Framework 开发人员门户确保机器人句柄的唯一性。 该门户执行不区分大小写的唯一性检查（意味着将机器人句柄的大小写变体视为单个句柄），尽管这是开发人员门户的特点，但不一定是机器人句柄本身的特点。
+Azure 机器人服务确保机器人句柄的唯一性。 Azure 门户执行不区分大小写的唯一性检查（意味着将机器人句柄的大小写变体视为单个句柄），尽管这是 Azure 门户的特点，但不一定是机器人句柄本身的特点。
 
 ### <a name="rules-for-bot-handles"></a>机器人句柄的规则
 
@@ -50,7 +50,7 @@ Bot Framework 开发人员门户确保机器人句柄的唯一性。 该门户�
 
 ## <a name="app-id"></a>应用 ID
 
-已注册到 Bot Framework 的每个机器人都有一个应用 ID。
+已注册到 Azure 机器人服务的每个机器人都有一个应用 ID。
 
 > [!NOTE]
 > 以前，应用通常被称为“MSA 应用”或“MSA/AAD 应用”。 现在，应用通常简称为“应用”，但某些协议元素可能会永久性地将应用称为“MSA 应用”。

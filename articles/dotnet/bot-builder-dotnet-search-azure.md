@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 1/28/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6169ed28fb765e84aaf31cf9e7d2ca404294bcad
-ms.sourcegitcommit: c7d2e939ec71f46f48383c750fddaf6627b6489d
+ms.openlocfilehash: e0ffb9c24b5e85b0eb1afdd885654e4864e65939
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/07/2019
-ms.locfileid: "55783356"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032917"
 ---
 # <a name="create-data-driven-experiences-with-azure-search"></a>使用 Azure 搜索创建数据驱动体验 
 
@@ -28,18 +28,17 @@ ms.locfileid: "55783356"
 
 Azure 搜索是一项 Azure 服务，提供关键字搜索、内置语言学、自定义评分、多面导航等。 Azure 搜索还可以为各种来源（包括 Azure SQL DB、DocumentDB、Blob 存储和表存储）的内容编制索引。 它支持其他数据源的“推送”索引，并且可以打开包含非结构化数据的 PDF、Office 文档和其他格式的文件。 内容一经收集即会进入 Azure 搜索索引，机器人随后可进行查询。
 
-
 ## <a name="prerequisites"></a>先决条件
 
-在机器人项目中安装 [Microsoft.Azure.Search](https://www.nuget.org/packages/Microsoft.Azure.Search/4.0.0-preview) Nuget 程序包。 
+在机器人项目中安装 [Microsoft.Azure.Search](https://www.nuget.org/packages/Microsoft.Azure.Search/4.0.0-preview) Nuget 程序包。
 
-机器人解决方案需要以下三个 C# 项目。 这些项目为机器人和 Azure 搜索提供附加功能。 从 [GitHub](https://github.com/Microsoft/botBuilder-Samples/tree/master/CSharp/demo-Search) 创建项目分支或直接下载源代码。
+机器人解决方案需要以下三个 C# 项目。 这些项目为机器人和 Azure 搜索提供附加功能。 从 [GitHub](https://aka.ms/v3-cs-search-demo) 创建项目分支或直接下载源代码。
 
-* [Search.Azure](https://github.com/Microsoft/botBuilder-Samples/tree/master/CSharp/demo-Search/Search.Azure) 定义 Azure 服务调用。 
-* [Search.Contracts](https://github.com/Microsoft/botBuilder-Samples/tree/master/CSharp/demo-Search/Search.Contracts) 定义用于处理数据的通用接口和数据模型。
-* [Search.Dialogs](https://github.com/Microsoft/botBuilder-Samples/tree/master/CSharp/demo-Search/Search.Dialogs) 包括用于查询 Azure 搜索的各种通用 Bot Builder 对话。
+- **Search.Azure** 项目定义 Azure 服务调用。
+- **Search.Contracts** 项目定义用于处理数据的通用接口和数据模型。
+- **Search.Dialogs** 项目包括用于查询 Azure 搜索的各种通用 Bot Builder 对话。
 
-## <a name="configure-azure-search-settings"></a>配置 Azure 搜索设置 
+## <a name="configure-azure-search-settings"></a>配置 Azure 搜索设置
 
 使用值字段中自己的 Azure 搜索凭据在项目的 **Web.config** 文件中配置 Azure 搜索设置。 `AzureSearchClient` 类中的构造函数将使用这些设置来注册并将机器人绑定到 Azure 服务。
 
@@ -176,7 +175,8 @@ public class SearchHitStyler : PromptStyler
 有关展示如何通过 Bot Framework SDK for .NET 使用机器人支持 Azure 搜索的两个完整示例，请参阅 GitHub 中的[房地产机器人示例](https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/demo-Search/RealEstateBot)或[作业清单机器人示例](https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/demo-Search/JobListingBot)。 
 
 ## <a name="additional-resources"></a>其他资源
-* [Azure 搜索][search]
-* [对话框概述](bot-builder-dotnet-dialogs.md)
+
+- [Azure 搜索][search]
+- [对话框概述](bot-builder-dotnet-dialogs.md)
 
 [search]: /azure/search/search-what-is-azure-search

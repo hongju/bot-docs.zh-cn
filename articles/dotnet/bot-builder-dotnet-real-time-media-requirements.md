@@ -1,21 +1,18 @@
 ---
-title: 实时媒体机器人的要求和注意事项 | Microsoft Docs
-description: 了解使用 Bot Framework SDK for .NET 创建用于 Skype 的实时媒体机器人的相关重要要求和注意事项。
-author: ssulzer
-ms.author: ssulzer
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 12/13/17
-monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d8cd326a3027fe5fcb440d9b205ba7d32a8b1640
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+redirect_url: https://aka.ms/realTimeMediaCalling-repo
+ms.openlocfilehash: 8868ee0d72aa0de6480a392368469b6adf18b561
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224932"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032908"
 ---
+<a name="--"></a><!--
+---
+title:实时媒体机器人的要求和注意事项 | Microsoft Docs description:了解使用 Bot Framework SDK for .NET 创建用于 Skype 的实时媒体机器人的相关重要要求和注意事项。
+author: ssulzer ms.author: ssulzer manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date:12/13/17 monikerRange: 'azure-bot-service-3.0'
+---
+
 # <a name="requirements-and-considerations-for-real-time-media-bots"></a>实时媒体机器人的要求和注意事项
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
@@ -54,3 +51,4 @@ ms.locfileid: "54224932"
   2. 实时媒体平台目前没有利用 VM 上可用的任何图形处理单元 (GPU) 来减免 H.264 视频编码/解码工作。 相反，进行视频编码和解码在软件中 CPU 上完成。 如果 GPU 可用，机器人可以利用它进行自己的图形绘制（例如，如果机器人使用 3D 图形引擎）。
 
 - 托管实时媒体机器人的 VM 实例必须至少具有 2 个 CPU 内核。 对于 Azure，建议使用 Dv2 系列虚拟机。 有关 Azure VM 类型的详细的信息，请参阅 <a href="/azure/virtual-machines/windows/sizes-general" target="_blank">Azure 文档</a>。 
+-->

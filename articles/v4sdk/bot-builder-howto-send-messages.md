@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 04/16/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0c6d1e779215b54f635adc019d93af39735e16e0
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 0d4279df31aba6cecb12b7d8d7262069aed8836b
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904870"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65033389"
 ---
 # <a name="send-and-receive-text-message"></a>发送和接收文本消息
 
@@ -31,7 +31,7 @@ ms.locfileid: "59904870"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-在机器人的 `OnTurnAsync` 方法中，使用轮次上下文对象的 `SendActivityAsync` 方法发送单个消息响应。 还可以使用该对象的 `SendActivitiesAsync` 方法一次性发送多个响应。
+在机器人的活动处理程序中，使用轮次上下文对象的 `SendActivityAsync` 方法发送单个消息响应。 还可以使用该对象的 `SendActivitiesAsync` 方法一次性发送多个响应。
 
 ```cs
 await turnContext.SendActivityAsync($"Welcome!");
@@ -39,7 +39,7 @@ await turnContext.SendActivityAsync($"Welcome!");
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-在机器人的 `onTurn` 处理程序中，使用轮次上下文对象的 `sendActivity` 方法发送单个消息响应。 还可以使用该对象的 `sendActivities` 方法一次性发送多个响应。
+在机器人的活动处理程序中，使用轮次上下文对象的 `sendActivity` 方法发送单个消息响应。 还可以使用该对象的 `sendActivities` 方法一次性发送多个响应。
 
 ```javascript
 await context.sendActivity("Welcome!");
@@ -51,7 +51,7 @@ await context.sendActivity("Welcome!");
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-在机器人的 `OnTurnAsync` 方法中，使用以下代码来接收消息。 
+在机器人的活动处理程序中，使用以下代码来接收消息。 
 
 ```cs
 var responseMessage = turnContext.Activity.Text;
@@ -59,7 +59,7 @@ var responseMessage = turnContext.Activity.Text;
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-在机器人的 `OnTurnAsync` 方法中，使用以下代码来接收消息。
+在机器人的活动处理程序中，使用以下代码来接收消息。
 
 ```javascript
 let text = turnContext.activity.text;
@@ -70,5 +70,9 @@ let text = turnContext.activity.text;
 ## <a name="additional-resources"></a>其他资源
 
 - 有关一般情况下的活动处理的详细信息，请参阅[活动处理](~/v4sdk/bot-builder-basics.md#the-activity-processing-stack)。
-- 若要发送更丰富的内容，请参阅如何添加[富媒体](bot-builder-howto-add-media-attachments.md)附件。
 - 有关格式设置的详细信息，请参阅“Bot Framework 活动架构”的[“消息活动”部分](https://aka.ms/botSpecs-activitySchema#message-activity)。
+
+## <a name="next-steps"></a>后续步骤
+
+> [!div class="nextstepaction"]
+> [向消息添加媒体](./bot-builder-howto-add-media-attachments.md)

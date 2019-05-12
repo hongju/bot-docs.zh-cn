@@ -1,21 +1,18 @@
 ---
-title: 使用 Skype 进行实时媒体通话 | Microsoft Docs
-description: 了解通过 Bot Framework SDK for .NET 构建可以使用 Skype 进行实时音频和视频通话的机器人的关键概念。
-author: ssulzer
-ms.author: ssulzer
-manager: kamrani
-ms.topic: article
-ms.service: bot-service
-ms.subservice: sdk
-ms.date: 12/13/2017
-monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 893458a484c0e26545c23016ccbf3049adc61960
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+redirect_url: https://aka.ms/realTimeMediaCalling-repo
+ms.openlocfilehash: f6568ed5d4f98addb19f452142a0a5d6d37e00c8
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225252"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032974"
 ---
+<a name="--"></a><!--
+---
+title:使用 Skype 进行实时媒体通话 | Microsoft Docs description:了解通过 Bot Framework SDK for .NET 构建可以使用 Skype 进行实时音频和视频通话的机器人的关键概念。
+author: ssulzer ms.author: ssulzer manager: kamrani ms.topic: article ms.service: bot-service ms.subservice: sdk ms.date:12/13/2017 monikerRange: 'azure-bot-service-3.0'
+---
+
 # <a name="real-time-media-calling-with-skype"></a>使用 Skype 进行实时媒体通话
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
@@ -65,3 +62,4 @@ ms.locfileid: "54225252"
 ### <a name="code-samples"></a>代码示例
 
 [BotBuilder-RealTimeMediaCalling](https://github.com/Microsoft/BotBuilder-RealTimeMediaCalling) GitHub 存储库包含说明如何构建适用于 Skype 的实时媒体机器人的示例。
+-->

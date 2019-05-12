@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3eef1ec583764449554a223ec9dc339ff505ace6
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: f93ab91281cf0f19be10898436dc41a6a1583c9a
+ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225592"
+ms.lasthandoff: 05/03/2019
+ms.locfileid: "65032985"
 ---
 # <a name="add-speech-to-messages"></a>向消息添加语音
 
@@ -51,7 +51,9 @@ ms.locfileid: "54225592"
 
 ## <a id="ssml"></a> 语音合成标记语言 (SSML)
 
-若要指定机器人要说出的文本，可以使用纯文本字符串或格式设置为语音合成标记语言 (SSML) 的字符串，后者是一种基于 XML 的标记语言，可用于控制机器人语音的各种特征（如语音、语速、音量、发音、音高等）。 有关 SSML 的详细信息，请参阅<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言参考</a>。
+若要指定供机器人说的文本，可以为其提供一个字符串，该字符串已格式化为语音合成标记语言 (SSML)。 SSML 是基于 XML 的标记语言（因此必须是有效的 XML），用于控制机器人语音的各种特性，如声音、语速、音量、发音、音调，等等。 有关 SSML 的详细信息，请参阅<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言参考</a>。
+
+提供 SSML 格式的字符串时，可以省略外部的 SSML 包装器元素。
 
 ## <a name="input-hints"></a>输入提示
 
@@ -66,7 +68,7 @@ ms.locfileid: "54225592"
 - [创建消息](bot-builder-dotnet-create-messages.md)
 - [向消息添加输入提示](bot-builder-dotnet-add-input-hints.md)
 - <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言 (SSML)</a>
-- <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-RollerSkill" target="_blank">掷骰子技能示例 (GitHub)</a>
+- <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/demo-RollerSkill" target="_blank">掷骰子技能示例 (GitHub)</a>
 - <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活动类</a>
 - <a href="/dotnet/api/microsoft.bot.connector.imessageactivity" target="_blank">IMessageActivity 接口</a>
 - <a href="/dotnet/api/microsoft.bot.builder.dialogs.internals.dialogcontext" target="_blank">DialogContext 类</a>

@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f7e68b9ab6ef1fca189108ed4117c0ab17f4d9f2
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 5ae3acded991411156d3e69f4ed9360df9bdccb1
+ms.sourcegitcommit: 4c5c08e7c7eaa5f74c6ac35d8478954b998625f9
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224292"
+ms.lasthandoff: 04/29/2019
+ms.locfileid: "64906297"
 ---
 # <a name="add-speech-to-messages"></a>向消息添加语音
 
@@ -31,7 +31,7 @@ ms.locfileid: "54224292"
 
 使用 Bot Framework SDK for Node.js，有多种方法可以指定机器人要在支持语音的通道上说出的文本。 可以设置 `IMessage.speak` 属性并使用 `session.send()` 方法发送消息、使用 `session.say()` 方法（传递可指定显示文本、语音文本和选项的参数）发送消息，或者使用内置提示（指定 `speak` 和 `retrySpeak` 选项）发送消息。
 
-### <a id="message-speak"></a> IMessage.speak 
+### <a id="message-speak"></a> IMessage.speak
 
 如果你创建的消息将通过 `session.send()` 方法发送，请将 `speak` 属性设置为指定机器人要说出的文本。 以下代码示例创建一条消息，指定要说出的文本，并指示机器人[正在接受用户输入](bot-builder-nodejs-send-input-hints.md)。
 
@@ -43,11 +43,11 @@ ms.locfileid: "54224292"
 
 `session.say(displayText: string, speechText: string, options?: object)`
 
-| 参数 | Description |
+| 参数 | 说明 |
 |----|----|
 | `displayText` | 要显示的文本。 |
 | `speechText` | 要说出的文本（纯文本或 <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">SSML</a> 格式）。 |
-| `options` | [IMessage][IMessage] 对象，可以包含附件或[输入提示](bot-builder-nodejs-send-input-hints.md)。 |
+| `options` | `IMessage` 对象，可以包含附件或[输入提示](bot-builder-nodejs-send-input-hints.md)。 |
 
 以下代码示例发送一条消息，指定要显示的文本和要说出的文本，并指示机器人[正在忽略用户输入](bot-builder-nodejs-send-input-hints.md)。
 
@@ -78,10 +78,3 @@ ms.locfileid: "54224292"
 
 - <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言 (SSML)</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">掷骰子示例 (GitHub)</a>
-- [Bot Framework SDK for Node.js 参考][SDKReference]
-
-[SDKReference]: https://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_.html
-
-[Message]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.message
-
-[IMessage]: http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
