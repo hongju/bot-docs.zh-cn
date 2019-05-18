@@ -1,8 +1,10 @@
 # 虚拟助手
 ## [概述](../v4sdk/bot-builder-virtual-assistant-introduction.md)
 ## [模板简介](../v4sdk/bot-builder-virtual-assistant-template.md)
+## [入门](../v4sdk/bot-builder-virtual-assistant-gettingstarted.md)
 # 技能 
 ## [概述](../v4sdk/bot-builder-skills-overview.md)
+## [入门](../v4sdk/bot-builder-skills-gettingstarted.md)
 # [常见问题](../bot-service-resources-bot-framework-faq.md)
 # [获取支持](../bot-service-resources-links-help.md)
 # [通道参考](../bot-service-channels-reference.md)
