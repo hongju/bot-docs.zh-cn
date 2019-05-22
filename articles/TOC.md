@@ -38,7 +38,6 @@
 ### [保存用户和聊天数据](v4sdk/bot-builder-howto-v4-state.md) 
 ### [提示用户输入](v4sdk/bot-builder-primitive-prompts.md) 
 ### [发送欢迎消息给用户](v4sdk/bot-builder-send-welcome-message.md)
-<!-- ## [Add input hints to messages](v4sdk/bot-builder-howto-add-input-hints.md) -->
 ### [向用户发送主动通知](v4sdk/bot-builder-howto-proactive-message.md)
 ### [实现顺序聊天流](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
 ### [向机器人添加自然语言理解](v4sdk/bot-builder-howto-v4-luis.md)
@@ -48,7 +47,6 @@
 ### [重复使用对话](v4sdk/bot-builder-compositcontrol.md)
 <!--#### [Implement a greeting dialog](v4sdk/bot-builder-dialogs-greeting.md)--TODO: Add once there's a sample.-->
 ### [处理用户中断](v4sdk/bot-builder-howto-handle-user-interrupt.md)
-<!--#### [Persist user data](v4sdk/bot-builder-tutorial-persist-user-inputs.md)--TODO: redirect to write directly to storage.-->
 ### [直接写入到存储](v4sdk/bot-builder-howto-v4-storage.md)
 ### [向机器人添加身份验证](v4sdk/bot-builder-authentication.md)
 ### [为机器人实现自定义存储](v4sdk/bot-builder-custom-storage.md)
