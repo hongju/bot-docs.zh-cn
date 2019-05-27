@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 04/17/2019
+ms.date: 05/20/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f24fc4e0aa4ccb9d99275360df693c8465e5a4ad
-ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
+ms.openlocfilehash: 10ae35f51a072a1af6cf7d4bdf2fd2f4cb3d66ee
+ms.sourcegitcommit: 72cc9134bf50f335cbb33265b048bf6b76252ce4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65039767"
+ms.lasthandoff: 05/21/2019
+ms.locfileid: "65973858"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答问题
 
@@ -58,10 +58,10 @@ QnA Maker 提供基于数据的聊天式问答层。 这样机器人就可以向
 ## <a name="obtain-values-to-connect-your-bot-to-the-knowledge-base"></a>获取用于将机器人连接到知识库的值
 1. 在 [QnA Maker](https://www.qnamaker.ai/) 站点中选择知识库。
 1. 打开知识库以后，选择“设置”。 记录针对“服务名称”显示的值。 使用 QnA Maker 门户界面时，此值可用于查找所需的知识库。 此值不可用于将机器人应用连接到此知识库。 
-1. 向下滚动，找到“部署详细信息”并记录以下值：
-   - POST /knowledgebases/<知识库 ID>/getAnswers
-   - Host: <主机名>/qnamaker
-   - Authorization:EndpointKey <终结点密钥>
+1. 向下滚动，找到“部署详细信息”并记录 Postman 示例 HTTP 请求中的以下值：
+   - POST /knowledgebases/\<knowledge-base-id>/generateAnswer
+   - Host: \<your-hostname> // 以 /qnamaker 结尾的完整 URL
+   - Authorization:EndpointKey \<your-endpoint-key>
    
 主机名的完整 URL 字符串类似于“https://< >.azure.net/qnamaker”。 这三个值将为应用提供所需的信息，使其能够通过 Azure QnA 服务连接到 QnA Maker 知识库。  
 

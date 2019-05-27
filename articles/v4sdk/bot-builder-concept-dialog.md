@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 04/18/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d896584b2048c8d2b330a1e6e63bc47122102532
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: caa1938abd6ca2b79f9b42f28f3965413d24d81b
+ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033404"
+ms.lasthandoff: 05/16/2019
+ms.locfileid: "65733381"
 ---
 # <a name="dialogs-library"></a>对话框库
 
@@ -164,7 +164,7 @@ ms.locfileid: "65033404"
 
 ### <a name="repeating-a-dialog"></a>重复某个对话框
 
-可以使用对话框自身来替换对话框，创建一个循环。
+使用 *replace dialog* 方法时，可以使用对话来替换其自身，创建一个循环。
 这是处理[复杂交互](~/v4sdk/bot-builder-dialog-manage-complex-conversation-flow.md)和管理菜单的极佳方法。
 
 > [!NOTE]

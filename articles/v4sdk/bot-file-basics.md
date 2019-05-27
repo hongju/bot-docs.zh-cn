@@ -24,7 +24,7 @@ ms.locfileid: "65032321"
 机器人往往使用不同的服务，例如 [LUIS.ai](https://luis.ai) 或 [QnaMaker.ai](https://qnamaker.ai)。 开发机器人时，需要能够跟踪所有这些服务。 可以使用各种方法，例如 appsettings.json、web.config 或 .env。 
 
 > [!IMPORTANT]
-> 在 Bot Framework SDK 4.3 版本之前，我们提供了 .bot 文件作为一种资源管理机制。 但是，在今后，建议你使用 appsettings.json 或 .env 文件来管理这些资源。 虽然 .bot 文件已**_弃用_**，但使用 .bot 文件的机器人目前仍可继续正常运行。 如果你一直在使用 .bot 文件管理资源，请按照适用的步骤来迁移设置。 
+> 在 Bot Framework SDK 4.3 版本之前，我们提供了 .bot 文件作为一种资源管理机制。 但是，在今后，建议你使用 appsettings.json 或 .env 文件来管理这些资源。 虽然 .bot 文件已 **_弃用_** ，但使用 .bot 文件的机器人目前仍可继续正常运行。 如果你一直在使用 .bot 文件管理资源，请按照适用的步骤来迁移设置。 
 
 ## <a name="migrating-settings-from-bot-file"></a>从 .bot 文件迁移设置
 以下部分介绍如何从 .bot 文件迁移设置。 请根据相应的场景进行操作。

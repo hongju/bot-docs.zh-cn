@@ -1,0 +1,63 @@
+### YamlMime:YamlDocument
+documentType: LandingData
+title: Azure 机器人服务文档
+metadata:
+  document_id: 1d934240-28c7-635f-d41b-3e43ae02970c
+  title: Azure 机器人服务文档 - 教程和 API 参考
+  meta.description: 'Learn how to create bots. Documentation helps you create, deploy, and manage bots in the cloud.'
+  author: ivorb
+  manager: kamrani
+  ms.service: bot-service
+  ms.tgt_pltfrm: na
+  ms.devlang: na
+  ms.topic: landing-page
+  ms.date: 05/23/2019
+  ms.author: ivorb
+abstract:
+  description: 'Azure 机器人服务提供一个专用于机器人开发的集成式环境，使你可以从同一位置生成、连接、测试、部署和管理智能机器人。 Azure 机器人服务利用支持 C# 和 JavaScript 的 Bot Framework SDK。 通过快速入门、教程和示例了解如何使用机器人服务。'
+  aside:
+    image:
+      alt: null
+      height: 110
+      src: media/video/satya-video.png
+      width: 250
+    title: 'Satya Nadella 讲述的 Build 2019 主题。 (1:25:09)'
+    href: 'https://mybuild.techcommunity.microsoft.com/sessions/77571?source=%7B%7B%20ctrl.source#top-anchor'
+    width: 250
+sections:
+  - title: 5 分钟快速入门
+    items:
+      - type: paragraph
+        text: 了解如何创建你的第一个机器人：
+      - type: list
+        style: icon48
+        items:
+          - image:
+              src: media/index/azure_portal.png
+            text: Azure 门户
+            href: 'https://docs.microsoft.com/en-us/bot-framework/bot-service-quickstart'
+          - image:
+              src: v4sdk/media/logo_csharp.svg
+            text: 'C#'
+            href: 'https://docs.microsoft.com/en-us/azure/bot-service/dotnet/bot-builder-dotnet-sdk-quickstart'
+          - image:
+              src: v4sdk/media/logo_js.svg
+            text: JavaScript
+            href: 'https://docs.microsoft.com/en-us/azure/bot-service/javascript/bot-builder-javascript-quickstart'
+  - title: 分步教程
+    items:
+      - type: paragraph
+        text: 了解如何在 Azure 上创建和部署机器人。
+      - type: list
+        style: ordered
+        items:
+          - html: <a href="/bot-framework/bot-builder-tutorial-basic-deploy">创建和部署简单的机器人</a>
+          - html: <a href="/bot-framework/bot-builder-tutorial-add-qna">添加 QnA Maker 并重新部署机器人</a>
+  - title: 引用
+    items:
+      - type: list
+        style: cards
+        className: cardsD
+        items:
+          - title: Languages
+            html: '<p><a href="/dotnet/api/?view=botbuilder-dotnet-stable">.NET</a></p><p><a href="https://docs.microsoft.com/en-us/javascript/api/botbuilder/index?view=botbuilder-ts-latest">JavaScript</a></p>'

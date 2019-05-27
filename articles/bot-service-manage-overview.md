@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 4/13/2019
-ms.openlocfilehash: 17d80fe4d4730ed294b770fd05bc5d7ea3d114af
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: f3e0ac52a3bfe5759202af6c704626acafef617b
+ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033039"
+ms.lasthandoff: 05/16/2019
+ms.locfileid: "65733315"
 ---
 # <a name="manage-a-bot"></a>管理机器人
 
@@ -52,7 +52,7 @@ ms.locfileid: "65033039"
 
 ### <a name="microsoftappid-and-microsoftapppassword"></a>MicrosoftAppID 和 MicrosoftAppPassword
 
-**MicrosoftAppID** 和 **MicrosoftAppPassword** 保留在机器人的配置文件或 Azure Key Vault 中。 若要检索它们，请下载机器人的设置或配置文件，或者访问 Azure Key Vault。 可能需要在本地使用 ID 和密码进行测试。
+**MicrosoftAppID** 和 **MicrosoftAppPassword** 保留在机器人的设置文件（`appsettings.json` 或 `.env`）或 Azure Key Vault 中。 若要检索它们，请下载机器人的设置或配置文件（前提是它存在，适用于旧版机器人），或者访问 Azure Key Vault。 可能需要在本地使用 ID 和密码进行测试。
 
 > [!NOTE]
 > “机器人通道注册”机器人服务附带 MicrosoftAppID，但因为没有与此类型服务相关联的应用服务，因此没有可在其中查找 MicrosoftAppPassword 的“应用程序设置”边栏选项卡。 若要获取密码，必须生成一个。 若要生成“机器人通道注册”密码，请参阅[机器人通道注册密码](bot-service-quickstart-registration.md#bot-channels-registration-password)

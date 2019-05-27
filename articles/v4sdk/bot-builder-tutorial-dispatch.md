@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/15/2019
+ms.date: 05/20/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b3e488615f318529935d35dbebbed2dd3b734f62
-ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
+ms.openlocfilehash: c81e463c221c64250684827a4e0ed059e7f98a02
+ms.sourcegitcommit: 72cc9134bf50f335cbb33265b048bf6b76252ce4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65039742"
+ms.lasthandoff: 05/21/2019
+ms.locfileid: "65973884"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多个 LUIS 和 QnA 模型
 
@@ -90,9 +90,25 @@ ms.locfileid: "65039742"
 
 ### <a name="create-qna-maker-kb"></a>创建 QnA Maker KB
 
-若要设置 QnA Maker KB，首先请在 Azure 中设置一个 QnA Maker 服务。 为此，请按[此处](https://aka.ms/create-qna-maker)提供的分步说明操作。 现在登录到 [QnAMaker Web 门户](https://qnamaker.ai)。 向下移动到步骤 2
+若要设置 QnA Maker KB，首先请在 Azure 中设置一个 QnA Maker 服务。 为此，请按[此处](https://aka.ms/create-qna-maker)提供的分步说明操作。
 
-![创建 QnA 的步骤 2](./media/tutorial-dispatch/create-qna-step-2.png)
+在 Azure 中创建 QnA Maker 服务以后，需记录为 QnA Maker 服务提供的认知服务 _Key 1_。 将 QnA 添加到 Dispatch 应用程序时，会将此项用作 \<azure-qna-service-key1>。 以下步骤为你提供此密钥：
+    
+![选择认知服务](./media/tutorial-dispatch/select-qna-cognitive-service.png)
+
+1. 在 Azure 门户中选择 QnA Maker 认知服务。
+
+![选择认知服务密钥](./media/tutorial-dispatch/select-cognitive-service-keys.png)
+
+2. 在左侧菜单的“资源管理”部分下选择“密钥”图标。
+
+![选择认知服务 Key1](./media/tutorial-dispatch/select-cognitive-service-key1.png)
+
+3. 将 _Key 1_ 的值复制到剪贴板并将其保存到本地。 随后，将 QnA 添加到 Dispatch 应用程序时，会将此项用于 (-k) 密钥值 \<azure-qna-service-key1>。
+
+现在登录到 [QnAMaker Web 门户](https://qnamaker.ai)。 向下移动到步骤 2
+
+![创建 QnA 的步骤 2](./media/tutorial-dispatch/create-qna-step-2.png) 
 
 并选择
 1. Azure AD 帐户。
@@ -124,7 +140,7 @@ ms.locfileid: "65039742"
 ```text
 POST /knowledgebases/<knowledge-base-id>/generateAnswer
 Host: <your-hostname>  // NOTE - this is a URL.
-Authorization: EndpointKey <your-endpoint-key>
+Authorization: EndpointKey <qna-maker-resource-key>
 ```
 
 主机名的完整 URL 字符串类似于“https://< >.azure.net/qnamaker”。
@@ -156,7 +172,7 @@ Dispatch 工具的 CLI 接口可以创建用于调度到正确服务的模型。
     ```cmd
     dispatch add -t luis -i "<app-id-for-weather-app>" -n "<name-of-weather-app>" -v <app-version-number> -k "<your-luis-authoring-key>" --intentName l_Weather
     dispatch add -t luis -i "<app-id-for-home-automation-app>" -n "<name-of-home-automation-app>" -v <app-version-number> -k "<your-luis-authoring-key>" --intentName l_HomeAutomation
-    dispatch add -t qna -i "<knowledge-base-id>" -n "<knowledge-base-name>" -k "<your-cognitive-services-subscription-id>" --intentName q_sample-qna
+    dispatch add -t qna -i "<knowledge-base-id>" -n "<knowledge-base-name>" -k "<azure-qna-service-key1>" --intentName q_sample-qna
     ```
 
 1. 使用 `dispatch create` 基于该 .dispatch 文件生成调度模型。
@@ -206,7 +222,7 @@ Dispatch 工具的 CLI 接口可以创建用于调度到正确服务的模型。
 "MicrosoftAppPassword": "",
   
 "QnAKnowledgebaseId": "<knowledge-base-id>",
-"QnAAuthKey": "<your-endpoint-key>",
+"QnAAuthKey": "<qna-maker-resource-key>",
 "QnAEndpointHostName": "<your-hostname>",
 
 "LuisAppId": "<app-id-for-dispatch-app>",
@@ -245,7 +261,7 @@ MicrosoftAppId=""
 MicrosoftAppPassword=""
 
 QnAKnowledgebaseId="<knowledge-base-id>"
-QnAAuthKey="<your-endpoint-key>"
+QnAAuthKey="<qna-maker-resource-key>"
 QnAEndpointHostName="<your-hostname>"
 
 LuisAppId=<app-id-for-dispatch-app>

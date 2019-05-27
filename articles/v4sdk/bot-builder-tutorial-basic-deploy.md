@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 04/30/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7f2c31ab0a7f97917be83334c39bdc4750547614
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: bb6346d8364e0323c1e5f12329e8cdea97bad0ac
+ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033196"
+ms.lasthandoff: 05/16/2019
+ms.locfileid: "65733367"
 ---
 # <a name="tutorial-create-and-deploy-a-basic-bot"></a>教程：创建和部署基本机器人
 
@@ -117,7 +117,7 @@ az deployment create --name "<name-of-deployment>" --template-file "template-wit
 _注意：botId 参数应全局唯一，用作不可变的机器人 ID。此参数还用于配置机器人的可变显示名称。_
 
 ```cmd
-az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" existingAppServicePlan="<name-of-app-service-plan>" appServicePlanLocation=<location>"
+az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" existingAppServicePlan="<name-of-app-service-plan>" appServicePlanLocation="<location>"
 ```
 
 **选项 2：新的应用服务计划** 
@@ -168,6 +168,8 @@ az bot prepare-deploy --code-dir "." --lang Javascript
 > 在压缩项目文件之前，请确保在正确的文件夹中进行压缩。 
 > - 对于 C# 机器人，正确的文件夹是包含 .csproj 文件的文件夹。 
 > - 对于 JS 机器人，正确的文件夹是包含 app.js 或 index.js 文件的文件夹。 
+>
+> 在该文件夹中选择所有文件并将其压缩，然后运行此命令，此时仍在该文件夹中。
 >
 > 如果根文件夹位置不正确，**机器人将无法在 Azure 门户中运行**。
 

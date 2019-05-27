@@ -1,4 +1,4 @@
-# [Azure 机器人服务文档](index.md)
+# [Azure 机器人服务文档](index.yml)
 # 概述
 ## [关于 Azure 机器人服务](bot-service-overview-introduction.md)
 ## [新增功能](what-is-new.md)

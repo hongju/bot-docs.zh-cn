@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: tutorial
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/30/2019
+ms.date: 05/20/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: deafe148310dd214ab857d60595edb1abef9e46d
-ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
+ms.openlocfilehash: e51683a5dbae29879d73ee322586272d49708b22
+ms.sourcegitcommit: 72cc9134bf50f335cbb33265b048bf6b76252ce4
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65039720"
+ms.lasthandoff: 05/21/2019
+ms.locfileid: "65973870"
 ---
 # <a name="tutorial-use-qna-maker-in-your-bot-to-answer-questions"></a>教程：在机器人中使用 QnA Maker 来回答问题
 
@@ -61,7 +61,19 @@ ms.locfileid: "65039720"
 1. **保存和训练**知识库。
 1. **发布**知识库。
 
-知识库现在可以供机器人使用了。 记录知识库 ID、终结点密钥和主机名。 下一步需要用到这些值。
+发布 QnA Maker 应用以后，请选择“设置”选项卡，然后向下滚动到“部署详细信息”。 记录 _Postman_ 示例 HTTP 请求中的以下值。
+
+```text
+POST /knowledgebases/<knowledge-base-id>/generateAnswer
+Host: <your-hostname>  // NOTE - this is a URL ending in /qnamaker.
+Authorization: EndpointKey <qna-maker-resource-key>
+```
+
+主机名的完整 URL 字符串类似于“https://< >.azure.net/qnamaker”。
+
+下一步将在 `appsettings.json` 或 `.env` 文件中使用这些值。
+
+知识库现在可以供机器人使用了。
 
 ## <a name="add-knowledge-base-information-to-your-bot"></a>将知识库信息添加到机器人
 从 Bot Framework v4.3 开始，Azure 不再在下载的机器人源代码中提供 .bot 文件。 请按以下说明将 CSharp 或 JavaScript 机器人连接到知识库。
@@ -76,9 +88,9 @@ ms.locfileid: "65039720"
   "MicrosoftAppPassword": "",
   "ScmType": "None",
   
-  "QnAKnowledgebaseId": "<your-knowledge-base-id>",
-  "QnAAuthKey": "<your-knowledge-base-endpoint-key>",
-  "QnAEndpointHostName": "<your-qna-service-hostname>" // This is a URL
+  "QnAKnowledgebaseId": "<knowledge-base-id>",
+  "QnAAuthKey": "<qna-maker-resource-key>",
+  "QnAEndpointHostName": "<your-hostname>" // This is a URL ending in /qnamaker
 }
 ```
 
@@ -91,18 +103,18 @@ MicrosoftAppId=""
 MicrosoftAppPassword=""
 ScmType=None
 
-QnAKnowledgebaseId="<your-knowledge-base-id>"
-QnAAuthKey="<your-knowledge-base-endpoint-key>"
-QnAEndpointHostName="<your-qna-service-hostname>" // This is a URL
+QnAKnowledgebaseId="<knowledge-base-id>"
+QnAAuthKey="<qna-maker-resource-key>"
+QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
 ```
 
 ---
 
 | 字段 | 值 |
 |:----|:----|
-| kbId | QnA Maker 门户为你生成的知识库 ID。 |
-| endpointKey | QnA Maker 门户为你生成的终结点密钥。 |
-| hostname | QnA Maker 门户生成的主机 URL。 请使用完整的 URL，以 `https://` 开头，以 `/qnamaker` 结尾。 完整 URL 字符串看起来将类似于“https://< >.azure.net/qnamaker”。 |
+| QnAKnowledgebaseId | QnA Maker 门户为你生成的知识库 ID。 |
+| QnAAuthKey | QnA Maker 门户为你生成的终结点密钥。 |
+| QnAEndpointHostName | QnA Maker 门户生成的主机 URL。 请使用完整的 URL，以 `https://` 开头，以 `/qnamaker` 结尾。 完整 URL 字符串看起来将类似于“https://< >.azure.net/qnamaker”。 |
 
 现在保存所做的编辑。
 
@@ -170,7 +182,7 @@ QnAEndpointHostName="<your-qna-service-hostname>" // This is a URL
       }
    }
    ```
-1. 现在，在 _OnMessageActivityAsync( )_ 中调用新方法 _AccessQnAMaker( )_，如下所示：
+1. 现在，在 _OnMessageActivityAsync( )_ 中调用新方法 _AccessQnAMaker( )_ ，如下所示：
 
    **EchoBot.cs**
    ```csharp
@@ -259,6 +271,15 @@ QnAEndpointHostName="<your-qna-service-hostname>" // This is a URL
 ## <a name="republish-your-bot"></a>重新发布机器人
 
 现在可以将机器人重新发布回 Azure。
+
+> [!IMPORTANT]
+> 在创建项目文件的 zip 文件之前，请确保在正确的文件夹中进行压缩。 
+> - 对于 C# 机器人，正确的文件夹是包含 .csproj 文件的文件夹。 
+> - 对于 JS 机器人，正确的文件夹是包含 app.js 或 index.js 文件的文件夹。 
+>
+> 在该文件夹中选择所有文件并将其压缩，然后运行此命令，此时仍在该文件夹中。
+>
+> 如果根文件夹位置不正确，**机器人将无法在 Azure 门户中运行**。
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 ```cmd
