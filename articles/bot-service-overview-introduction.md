@@ -48,9 +48,9 @@ Azure 机器人服务和 Bot Framewrk 提供一组集成的工具和服务来加
 与任何类型的软件一样，若要创建成功的机器人，必须全面了解目标、流程和用户需求。 在编写代码之前，请参阅[设计指南](bot-service-design-principles.md) ，了解最佳做法并确定机器人的需求。 可以创建简单的机器人，也可以让机器人包含较复杂的功能，例如语音、自然语言理解和问题解答。
 
 ### <a name="build"></a>构建
-机器人是一项 Web 服务，可实现聊天式界面并与 Bot Framework Service 通信，以便发送和接收消息和事件。 Bot Framework Service 是 Azure 机器人服务和 Bot Framewrk 的一个组件。 可在任意数目的环境和语言中创建机器人。 可在 [Azure 门户](bot-service-quickstart.md)中开始机器人开发，也可使用 [[C#](dotnet/bot-builder-dotnet-sdk-quickstart.md) | [JavaScript](javascript/bot-builder-javascript-quickstart.md)] 模板进行本地开发。
+机器人是一项 Web 服务，可实现聊天式界面并与 Bot Framework Service 通信，以便发送和接收消息和事件。 Bot Framework Service 是 Azure 机器人服务和 Bot Framework 的一个组件。 可在任意数目的环境和语言中创建机器人。 可在 [Azure 门户](bot-service-quickstart.md)中开始机器人开发，也可使用 [[C#](dotnet/bot-builder-dotnet-sdk-quickstart.md) | [JavaScript](javascript/bot-builder-javascript-quickstart.md)] 模板进行本地开发。
 
-我们提供其他组件作为 Azure 机器人服务和 Bot Framewrk 的一部分来扩展机器人的功能
+我们提供其他组件作为 Azure 机器人服务和 Bot Framework 的一部分来扩展机器人的功能
 
 | Feature | 说明 | 链接 |
 | --- | --- | --- |
