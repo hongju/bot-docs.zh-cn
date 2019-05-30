@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 05/01/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6e7bd108bc67595c1d523c3c038e8b403ce387b1
-ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
+ms.openlocfilehash: c17e830c61036a6551fa7f3dbab79f83bda38123
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/16/2019
-ms.locfileid: "65733300"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66214309"
 ---
 # <a name="deploy-your-bot"></a>部署机器人
 
@@ -32,7 +32,7 @@ ms.locfileid: "65733300"
 使用 Visual Studio 或 Yeoman 模板创建机器人时，生成的源代码将包含 `deploymentTemplates` 文件夹和 ARM 模板。 本文所述的部署过程使用 ARM 模板通过 Azure CLI 在 Azure 中预配机器人所需的资源。 
 
 > [!IMPORTANT]
-> 在发布 Bot Framework SDK 4.3 以后，我们已弃用 .bot 文件，改用 appsettings.json 或 .env 文件来管理资源。 若要了解如何将设置从 .bot 文件迁移到 appsettings.json 或 .env 文件，请参阅[管理机器人资源](v4sdk/bot-file-basics.md)。
+> 在发布 Bot Framework SDK 4.3 以后，我们已弃用  .bot 文件，改用 appsettings.json 或 .env 文件来管理资源。 若要了解如何将设置从 .bot 文件迁移到 appsettings.json 或 .env 文件，请参阅[管理机器人资源](v4sdk/bot-file-basics.md)。
 
 ### <a name="login-to-azure"></a>登录到 Azure
 
@@ -150,12 +150,12 @@ az bot prepare-deploy --code-dir "." --lang Typescript
 
 使用未配置的 [zip deploy API](https://github.com/projectkudu/kudu/wiki/Deploying-from-a-zip-file-or-url) 部署机器人的代码时，Web 应用/Kudu 的行为如下所述：
 
-默认情况下，Kudu 假设 zip 文件中的部署已准备好运行，并且在部署期间不需要额外的生成步骤，例如，不需要执行 npm 安装或 dotnet 还原/dotnet 发布。
+默认情况下，Kudu 假设 zip 文件中的部署已准备好运行，并且在部署期间不需要额外的生成步骤，例如，不需要执行 npm 安装或 dotnet 还原/dotnet 发布。 
 
 因此，必须将生成代码以及所有必要的依赖项包含在要部署到 Web 应用的 zip 文件中，否则机器人不会按预期方式工作。
 
 > [!IMPORTANT]
-> 在压缩项目文件之前，请确保在正确的文件夹中进行压缩。 
+> 在压缩项目文件之前，请确保在正确的文件夹中进行压缩。  
 > - 对于 C# 机器人，正确的文件夹是包含 .csproj 文件的文件夹。 
 > - 对于 JS 机器人，正确的文件夹是包含 app.js 或 index.js 文件的文件夹。 
 >
@@ -176,7 +176,7 @@ az webapp deployment source config-zip --resource-group "<new-group-name>" --nam
 
 ## <a name="3-test-in-web-chat"></a>3.通过网页聊天执行测试
 - 在 Azure 门户中，转到 Web 应用机器人边栏选项卡。
-- 在“机器人管理”部分中，单击“通过网上聊天执行测试”。 Azure 机器人服务将加载网上聊天控件，并连接到机器人。
+- 在“机器人管理”部分中，单击“通过网上聊天执行测试”   。 Azure 机器人服务将加载网上聊天控件，并连接到机器人。
 - 成功部署后，请等待几秒，然后视需要重启 Web 应用以清除所有缓存。 返回到“Web 应用机器人”边栏选项卡，并使用 Azure 门户中提供的“网络聊天”进行测试。
 
 ## <a name="additional-information"></a>其他信息

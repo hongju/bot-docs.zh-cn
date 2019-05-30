@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/20/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c81e463c221c64250684827a4e0ed059e7f98a02
-ms.sourcegitcommit: 72cc9134bf50f335cbb33265b048bf6b76252ce4
+ms.openlocfilehash: 942ab2d5b3a43ca071c877b5cc18e8141838d604
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2019
-ms.locfileid: "65973884"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66214254"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多个 LUIS 和 QnA 模型
 
@@ -68,25 +68,25 @@ ms.locfileid: "65973884"
 | QnAMaker  | 一个可以提供有关机器人的一些简单问题的答案的 QnA Maker 知识库。 |
 
 ### <a name="create-luis-apps"></a>创建 LUIS 应用
-1. 登录到 [LUIS Web 门户](https://www.luis.ai/)。 在“我的应用”部分，选择“导入新应用”选项卡。 此时会出现以下对话框：
+1. 登录到 [LUIS Web 门户](https://www.luis.ai/)。 在“我的应用”  部分，选择“导入新应用”选项卡。  此时会出现以下对话框：
 
 ![导入 LUIS json 文件](./media/tutorial-dispatch/import-new-luis-app.png)
 
-2. 选择“选择应用文件”按钮，导航到示例代码的 CognitiveModel 文件夹，然后选择“HomeAutomation.json”文件。 将可选名称字段留空。 
+2. 选择“选择应用文件”按钮，导航到示例代码的 CognitiveModel 文件夹，然后选择“HomeAutomation.json”文件。  将可选名称字段留空。 
 
-3. 选择“完成”。
+3. 选择“完成”  。
 
-4. 当 LUIS 打开“家庭自动化”应用以后，请选择“训练”按钮。 这样就会使用刚刚通过“home-automation.json”文件导入的话语集来训练应用。
+4. 当 LUIS 打开“家庭自动化”应用以后，请选择“训练”按钮。  这样就会使用刚刚通过“home-automation.json”文件导入的话语集来训练应用。
 
-5. 训练完成后，请选择“发布”按钮。 此时会出现以下对话框：
+5. 训练完成后，请选择“发布”按钮。  此时会出现以下对话框：
 
 ![发布 LUIS 应用](./media/tutorial-dispatch/publish-luis-app.png)
 
-6. 选择“生产”环境，然后选择“发布”按钮。
+6. 选择“生产”环境，然后选择“发布”按钮  。
 
-7. 发布新的 LUIS 应用以后，请选择“管理”选项卡。在“应用程序信息”页中，记下“_app-id-for-app_”的 `Application ID` 值，以及“_name-of-app_”的 `Display name` 值。 在“密钥和终结点”页中，记下“_your-luis-authoring-key_”的 `Authoring Key` 值，以及“_your-region_”的 `Region` 值。 稍后要在“appsetting.json”文件中使用这些值。
+7. 发布新的 LUIS 应用以后，请选择“管理”选项卡。  在“应用程序信息”页中，记下“_app-id-for-app_”的 `Application ID` 值，以及“_name-of-app_”的 `Display name` 值。 在“密钥和终结点”页中，记下“_your-luis-authoring-key_”的 `Authoring Key` 值，以及“_your-region_”的 `Region` 值。 稍后要在“appsetting.json”文件中使用这些值。
 
-8. 完成后，针对“Weather.json”文件重复上述步骤，以训练并发布 LUIS 天气应用和 LUIS 调度应用。
+8. 完成后，针对“Weather.json”文件重复上述步骤，以训练并发布 LUIS 天气应用和 LUIS 调度应用。  
 
 ### <a name="create-qna-maker-kb"></a>创建 QnA Maker KB
 
@@ -100,7 +100,7 @@ ms.locfileid: "65973884"
 
 ![选择认知服务密钥](./media/tutorial-dispatch/select-cognitive-service-keys.png)
 
-2. 在左侧菜单的“资源管理”部分下选择“密钥”图标。
+2. 在左侧菜单的“资源管理”  部分下选择“密钥”图标。
 
 ![选择认知服务 Key1](./media/tutorial-dispatch/select-cognitive-service-key1.png)
 
@@ -125,17 +125,17 @@ ms.locfileid: "65973884"
 
 ![创建 QnA 的步骤 4](./media/tutorial-dispatch/create-qna-step-4.png)
 
-选择“+ 添加文件”选项，导航到示例代码的 CognitiveModel 文件夹，然后选择“QnAMaker.tsv”文件
+选择“+ 添加文件”选项，导航到示例代码的 CognitiveModel 文件夹，然后选择“QnAMaker.tsv”文件 
 
-可以通过其他选项向知识库添加聊天个性化内容，但我们的示例不包括该选项。
+可以通过其他选项向知识库添加聊天个性化内容，但我们的示例不包括该选项。 
 
 转到步骤 5
 
-选择“创建知识库”。
+选择“创建知识库”  。
 
-基于上传的文件创建知识库后，选择“保存并训练”；完成后，选择“发布”选项卡并发布该应用。
+基于上传的文件创建知识库后，选择“保存并训练”；完成后，选择“发布”选项卡并发布该应用。  
 
-发布 QnA Maker 应用以后，请选择“设置”选项卡，然后向下滚动到“部署详细信息”。 记录 _Postman_ 示例 HTTP 请求中的以下值。
+发布 QnA Maker 应用以后，请选择“设置”选项卡，然后向下滚动到“部署详细信息”。  记录 _Postman_ 示例 HTTP 请求中的以下值。
 
 ```text
 POST /knowledgebases/<knowledge-base-id>/generateAnswer
@@ -315,7 +315,7 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 ## <a name="ctabcs"></a>[C#](#tab/cs)
 
-当模型生成结果时，它会指示哪个服务最适合用于处理话语。 此机器人中的代码将请求路由到相应的服务，然后汇总被调用服务返回的响应。 根据 Dispatch 返回的意向，此代码使用返回的意向路由到正确的 LUIS 模型或 QnA 服务。
+当模型生成结果时，它会指示哪个服务最适合用于处理话语。 此机器人中的代码将请求路由到相应的服务，然后汇总被调用服务返回的响应。 根据 Dispatch 返回的意向，此代码使用返回的意向路由到正确的 LUIS 模型或 QnA 服务。 
 
 **DispatchBot.cs** [!code-csharp[DispatchToTop](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=51-69)]
 
@@ -377,23 +377,23 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 ### <a name="to-delete-resources"></a>删除资源
 
-此示例将创建许多应用程序和资源，可以使用下面列出的步骤将其删除，但不应删除其他任何应用或服务依赖的资源。
+此示例将创建许多应用程序和资源，可以使用下面列出的步骤将其删除，但不应删除其他任何应用或服务依赖的资源。 
 
 若要删除 LUIS 资源：
 
 1. 登录到 [luis.ai](https://www.luis.ai) 门户。
-1. 转到“我的应用”页。
+1. 转到“我的应用”页。 
 1. 选择本示例创建的应用。
    - `Home Automation`
    - `Weather`
    - `NLP-With-Dispatch-BotDispatch`
-1. 单击“删除”，然后单击“确定”以确认。
+1. 单击“删除”，然后单击“确定”以确认。  
 
 若要删除 QnA Maker 资源：
 
 1. 登录到 [qnamaker.ai](https://www.qnamaker.ai/) 门户。
-1. 转到“我的知识库”页。
-1. 单击 `Sample QnA` 知识库对应的删除按钮，然后单击“删除”以确认。
+1. 转到“我的知识库”页。 
+1. 单击 `Sample QnA` 知识库对应的删除按钮，然后单击“删除”以确认。 
 
 ### <a name="best-practice"></a>最佳做法
 

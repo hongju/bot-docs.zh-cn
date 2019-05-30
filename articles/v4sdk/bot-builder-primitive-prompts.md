@@ -8,20 +8,20 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/08/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3470b1c8f3fbcfb7fecbb060a54b1a356ad41b61
-ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
+ms.openlocfilehash: bfd37b703a43e056142ad161eb3308fd2b754e25
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/16/2019
-ms.locfileid: "65733323"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215318"
 ---
 # <a name="create-your-own-prompts-to-gather-user-input"></a>创建自己的提示来收集用户输入
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-机器人与用户之间的聊天通常涉及到请求（提示）用户输入信息、分析用户的响应，然后对该信息采取措施。 机器人应该跟踪聊天上下文，以便可以管理聊天行为并记住先前问题的回答。 机器人的状态是它为了正确响应传入消息而跟踪的信息。 
+机器人与用户之间的聊天通常涉及到请求（提示）用户输入信息、分析用户的响应，然后对该信息采取措施。 机器人应该跟踪聊天上下文，以便可以管理聊天行为并记住先前问题的回答。 机器人的状态是它为了正确响应传入消息而跟踪的信息  。 
 
 > [!TIP]
 > 对话库提供内置提示，这些提示提供的功能超出用户能够使用的功能。 有关这些提示的示例，可参阅[实现顺序聊天流](bot-builder-dialog-manage-conversation-flow.md)一文。
@@ -52,7 +52,7 @@ ms.locfileid: "65733323"
 ---
 
 用户状态会跟踪用户的姓名、年龄和所选日期，而聊天状态则会跟踪我们提问用户的内容。
-由于我们不打算部署此机器人，因此会将用户和聊天状态配置为使用内存存储。 
+由于我们不打算部署此机器人，因此会将用户和聊天状态配置为使用内存存储。  
 
 我们将使用机器人的消息轮次处理程序以及用户和聊天状态属性来管理聊天流与输入的收集。 在机器人中，我们将记录消息轮次处理程序的每次迭代期间收到的状态属性信息。
 

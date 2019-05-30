@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/16/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6840305684eff7dc325a541a0b545396e6c30fa8
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 1f9070b0fd3b4e88eb7d752f5a73c4374bfe8415
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033467"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215526"
 ---
 # <a name="reuse-dialogs"></a>重复使用对话
 
@@ -44,7 +44,7 @@ ms.locfileid: "65033467"
 
 ## <a name="implement-the-component-dialog"></a>实现组件对话
 
-在多轮次提示示例中，我们将使用一个瀑布对话、几个提示和一个组件对话来创建简单的交互，向用户提出一系列问题。
+在多轮次提示示例中，我们将使用一个瀑布对话、几个提示和一个组件对话来创建简单的交互，向用户提出一系列问题。   
 
 组件对话可封装一个或多个对话。 组件对话有一个内部对话集，而添加到此内部对话集的对话和提示有其自己的 ID，这些 ID 只能在组件对话内部查看。
 
@@ -146,9 +146,9 @@ ms.locfileid: "65033467"
 
 ### <a name="how-cancellation-works-for-component-dialogs"></a>如何针对组件对话执行取消操作
 
-如果从组件对话的上下文调用“取消所有对话”，组件对话会取消其内部堆栈上的所有对话，然后结束，将控制返回给外部堆栈上的下一对话。
+如果从组件对话的上下文调用“取消所有对话”，  组件对话会取消其内部堆栈上的所有对话，然后结束，将控制返回给外部堆栈上的下一对话。
 
-如果从外部上下文调用“取消所有对话”，则会取消该组件以及外部上下文中的其余对话。
+如果从外部上下文调用“取消所有对话”，则会取消该组件以及外部上下文中的其余对话  。
 
 在机器人中管理嵌套式组件对话时，请注意这一点。
 

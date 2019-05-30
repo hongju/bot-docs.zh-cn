@@ -8,26 +8,26 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/25/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 53dd51c871b3d386caaa01bd2e652092e7477e09
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 94a3459760c8f0f14886a068d082dafeb9530b19
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033508"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215541"
 ---
 # <a name="how-bots-work"></a>机器人的工作原理
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-机器人是用户使用文本、图形（例如卡片或图像）或语音通过聊天的方式与之进行交互的应用。 用户与机器人之间的每次交互会生成一个活动。 Bot Framework Service 是 Azure 机器人服务的组件，可在连接机器人的用户应用（例如 Facebook、Skype、Slack 等，称为“通道”）与机器人之间发送信息。 每个通道可以在发送的活动中包含其他信息。 在创建机器人之前，必须了解机器人如何使用活动对象来与其用户通信。 首先，让我们了解在运行简单的聊天机器人时交换的活动。 
+机器人是用户使用文本、图形（例如卡片或图像）或语音通过聊天的方式与之进行交互的应用。 用户与机器人之间的每次交互会生成一个活动。  Bot Framework Service 是 Azure 机器人服务的组件，可在连接机器人的用户应用（例如 Facebook、Skype、Slack 等，称为“通道”）与机器人之间发送信息。  每个通道可以在发送的活动中包含其他信息。 在创建机器人之前，必须了解机器人如何使用活动对象来与其用户通信。 首先，让我们了解在运行简单的聊天机器人时交换的活动。 
 
 ![活动示意图](media/bot-builder-activity.png)
 
-此处演示了两种活动类型：聊天更新和消息。
+此处演示了两种活动类型：聊天更新和消息。  
 
-当某一方参与聊天时，Bot Framework Service 可以发送聊天更新。 例如，使用 Bot Framework Emulator 开始聊天时，会看到两个聊天更新活动（一个活动指出用户正在参与聊天，另一个活动指出机器人正在参与聊天）。 若要区分这些聊天更新活动，请检查“已添加成员”属性是否包含除机器人以外的成员。 
+当某一方参与聊天时，Bot Framework Service 可以发送聊天更新。 例如，使用 Bot Framework Emulator 开始聊天时，会看到两个聊天更新活动（一个活动指出用户正在参与聊天，另一个活动指出机器人正在参与聊天）。 若要区分这些聊天更新活动，请检查“已添加成员”属性是否包含除机器人以外的成员。  
 
 消息活动承载参与方之间的聊天信息。 在聊天机器人示例中，消息活动承载简单的文本，通道呈现这些文本。 消息活动也可以承载要讲述的文本、建议的操作或要显示的卡片。
 
@@ -41,9 +41,9 @@ ms.locfileid: "65033508"
 
 ### <a name="defining-a-turn"></a>定义轮次
 
-在聊天时，人们通常一次说一句话，并且会轮流说话。 使用机器人时，通常是由机器人对用户输入进行响应。 在 Bot Framework SDK 中，一轮通话既包含用户传给机器人的活动，又包含机器人发回用户的作为即时响应的活动。 可以将一个轮次视为给定活动抵达时的相关处理。
+在聊天时，人们通常一次说一句话，并且会轮流说话。 使用机器人时，通常是由机器人对用户输入进行响应。 在 Bot Framework SDK 中，一轮通话既包含用户传给机器人的活动，又包含机器人发回用户的作为即时响应的活动。  可以将一个轮次视为给定活动抵达时的相关处理。
 
-轮次上下文对象提供有关活动的信息，例如发送方和接收方、通道，以及处理该活动所需的其他数据。 使用该对象还能在机器人的不同层中处理轮次期间添加信息。
+轮次上下文对象提供有关活动的信息，例如发送方和接收方、通道，以及处理该活动所需的其他数据。  使用该对象还能在机器人的不同层中处理轮次期间添加信息。
 
 轮次上下文是 SDK 中最重要的抽象之一。 轮次上下文不仅将入站活动传递到所有中间件组件将和应用程序逻辑，而且还提供所需的机制让中间件组件和应用程序逻辑发送出站活动。
 
@@ -55,7 +55,7 @@ ms.locfileid: "65033508"
 
 在上述示例中，机器人使用包含相同文本消息的另一个消息活动回复了原始消息活动。 处理工作从 HTTP POST 请求（包含以 JSON 有效负载形式传递的活动信息）抵达 Web 服务器时开始。 在 C# 中，这通常是一个 ASP.NET 项目；在 JavaScript Node.js 项目中，这可能是 Express 或 Restify 等常用框架之一。
 
-适配器（SDK 的集成组件）是 SDK 运行时的核心。 活动以 JSON 形式承载在 HTTP POST 正文中。 将反序列化此 JSON 以创建 Activity 对象，然后通过调用 *process activity* 方法将此对象传递给适配器。 收到活动时，适配器会创建轮次上下文并调用中间件。 
+适配器（SDK 的集成组件）是 SDK 运行时的核心。  活动以 JSON 形式承载在 HTTP POST 正文中。 将反序列化此 JSON 以创建 Activity 对象，然后通过调用 *process activity* 方法将此对象传递给适配器。 收到活动时，适配器会创建轮次上下文并调用中间件。  
 
 如前所述，轮次上下文提供一个机制来让机器人发送出站活动（主要是为了响应入站活动）。 为此，轮次上下文提供 _send、update 和 delete activity_ 响应方法。 每个响应方法都在异步进程中运行。 
 
@@ -63,7 +63,7 @@ ms.locfileid: "65033508"
 
 ## <a name="activity-handlers"></a>活动处理程序
 
-当机器人收到某个活动时，它会将该活动传递给其活动处理程序。 幕后还有一个称为“轮次处理程序”的基本处理程序。 所有活动都通过轮次处理程序路由。 然后，对于收到的任何类型的活动，该轮次处理程序会调用各个活动处理程序。
+当机器人收到某个活动时，它会将该活动传递给其活动处理程序。  幕后还有一个称为“轮次处理程序”的基本处理程序。  所有活动都通过轮次处理程序路由。 然后，对于收到的任何类型的活动，该轮次处理程序会调用各个活动处理程序。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -81,7 +81,7 @@ ms.locfileid: "65033508"
 
 生成机器人时，用于处理和响应消息的机器人逻辑将进入此 `onMessage` 处理程序。 同样，用于处理正在添加到聊天中的成员的逻辑将进入 `onMembersAdded` 处理程序，每次将成员添加到聊天时，都会调用该处理程序。
 
-若要实现这些处理程序的逻辑，需要根据下面的[机器人逻辑](#bot-logic)部分所述，在机器人中重写这些方法。 对于其中的每个处理程序，请定义机器人逻辑，**并务必在最后调用 `next()`**。 调用 `next()` 可确保运行下一个处理程序。
+若要实现这些处理程序的逻辑，需要根据下面的[机器人逻辑](#bot-logic)部分所述，在机器人中重写这些方法。 对于其中的每个处理程序，请定义机器人逻辑，**并务必在最后调用 `next()`** 。 调用 `next()` 可确保运行下一个处理程序。
 
 只有在非常规的情况下才需要重写基轮次处理程序，因此，在尝试重写时请保持谨慎。 对于在轮次结束时要执行的[保存状态](bot-builder-concept-state.md)等操作，可以使用一个名为 `onDialog` 的特殊处理程序。 `onDialog` 处理程序在剩余的处理程序运行之后才最后运行，与特定的活动类型无关。 与使用上述所有处理程序时一样，请务必调用 `next()` 来确保完成剩余的过程。
 
@@ -95,7 +95,7 @@ ms.locfileid: "65033508"
 
 ## <a name="bot-structure"></a>机器人结构
 
-以下部分介绍 EchoBot 的关键片段，可以使用针对 [**CSharp**](../dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [**JavaScript**](../javascript/bot-builder-javascript-quickstart.md) 提供的模板轻松创建这些片段。
+以下部分介绍 EchoBot 的关键片段，可以使用针对 [**CSharp**](../dotnet/bot-builder-dotnet-sdk-quickstart.md) 或 [**JavaScript**](../javascript/bot-builder-javascript-quickstart.md) 提供的模板轻松创建这些片段。 
 
 <!--Need to add section calling out the controller in code, and explaining it further-->
 

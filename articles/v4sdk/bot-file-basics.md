@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/01/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 20b434c4fe5106ffe953c1a9ba9a282254511c9c
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: b4a5e3f0271d6b80a4245294e520ebc5abaede4e
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032321"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66214135"
 ---
 # <a name="manage-bot-resources"></a>管理机器人资源
 
@@ -31,7 +31,7 @@ ms.locfileid: "65032321"
 
 **场景 1：本地机器人有一个 .bot 文件**
 
-在此场景中，你有一个使用 .bot 文件的本地机器人，但该机器人尚未迁移到 Azure 门户。 请按以下步骤将设置从 .bot 文件迁移到 appsettings.json 或 .env 文件。
+在此场景中，你有一个使用 .bot 文件的本地机器人，但该机器人尚未迁移  到 Azure 门户。 请按以下步骤将设置从 .bot 文件迁移到 appsettings.json 或 .env 文件。
 
 - 如果 .bot 文件已加密，则需使用以下命令将其解密：
 
@@ -66,14 +66,14 @@ const adapter = new BotFrameworkAdapter({
 ```
 ---
 
-根据需要使用 appsettings.json 或 .env 文件预配资源并将其连接到机器人。
+根据需要使用 appsettings.json 或 .env 文件预配资源并将其连接到机器人。 
 
 **场景 2：已使用 .bot 文件将机器人部署到 Azure**
 
 在此场景中，你已使用 .bot 文件将机器人部署到 Azure 门户，现在需将设置从 .bot 文件迁移到 appsettings.json 或 .env 文件。
 
 - 从 Azure 门户下载机器人代码。 下载代码时，系统会提示你包括 appsettings.json 或 .env 文件，其中会有你的 MicrosoftAppId 和 MicrosoftAppPassword 以及任何其他的设置。 
-- 打开下载的 appsettings.json 或 .env 文件，将设置从其中复制到本地 appsettings.json 或 .env 文件中。 请勿忘记从本地 appsettings.json 或 .env 文件中删除 botSecret 和 botFilePath 条目。
+- 打开下载的  appsettings.json 或 .env 文件，将设置从其中复制到本地  appsettings.json 或 .env 文件中。 请勿忘记从本地 appsettings.json 或 .env 文件中删除 botSecret 和 botFilePath 条目。
 - 更新从 appsettings.json 或 .env 文件读取设置的代码。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
@@ -98,9 +98,9 @@ const adapter = new BotFrameworkAdapter({
 ```
 ---
 
-此外还需从 **Azure 门户**的“应用程序设置”部分删除 `botFilePath` 和 `botFileSecret`。
+此外还需从 **Azure 门户**的“应用程序设置”部分删除 `botFilePath` 和 `botFileSecret`。 
 
-根据需要使用 appsettings.json 或 .env 文件预配资源并将其连接到机器人。
+根据需要使用 appsettings.json 或 .env 文件预配资源并将其连接到机器人。 
 
 **场景 3：机器人使用 appsettings.json 或 .env 文件**
 

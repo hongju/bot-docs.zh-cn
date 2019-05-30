@@ -8,19 +8,19 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/01/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7f35b8a135cdde6ffaf11798a5c0e4a3688d5b4f
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 167e496fa510cdf755be13f71cf3a596b0183ec1
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904820"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215468"
 ---
 # <a name="conversation-flow"></a>会话流
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-设计机器人的会话流涉及决定机器人在用户向其说出某些内容时如何响应。 机器人首先根据来自用户的消息识别任务或会话主题。 要确定与用户消息相关联的任务或主题（称为“意向”），机器人可以在用户消息的文本中查找单词或模式，或者可以利用[语言理解](bot-builder-concept-luis.md)和 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 等服务。
+设计机器人的会话流涉及决定机器人在用户向其说出某些内容时如何响应。 机器人首先根据来自用户的消息识别任务或会话主题。 要确定与用户消息相关联的任务或主题（称为“意向”  ），机器人可以在用户消息的文本中查找单词或模式，或者可以利用[语言理解](bot-builder-concept-luis.md)和 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 等服务。
 
 一旦机器人识别出用户意向，根据场景，机器人可以通过单个回复完成用户的请求，一个轮次完成会话，或者可能需要一系列轮次才能完成。 对于多个轮次的聊天流，Bot Framework SDK 提供用于跟踪聊天的[状态管理](./bot-builder-howto-v4-state.md)、用于请求信息的[提示](bot-builder-prompts.md)，以及用于封装聊天流的[对话框](bot-builder-dialog-manage-conversation-flow.md)。
 
@@ -73,7 +73,7 @@ A bot communicates with a user on a channel by receiving activities from, and se
 
 ### <a name="recognize-intent"></a>识别意向
 
-Bot Framework SDK 提供识别器，用于处理消息以确定意向，因此机器人可以启动适当的聊天流。 调用识别器的 _recognize_ 异步方法，以根据其消息内容确定用户的意向。 然后，可以对结果调用_获取最高得分意向_方法，以获取识别器的最高预测。
+Bot Framework SDK 提供识别器  ，用于处理消息以确定意向，因此机器人可以启动适当的聊天流。 调用识别器的 _recognize_ 异步方法，以根据其消息内容确定用户的意向。 然后，可以对结果调用_获取最高得分意向_方法，以获取识别器的最高预测。
 
 识别器可以使用正则表达式、语言理解或你开发的其他逻辑。 下面是可能的识别器的示例：
 
@@ -103,10 +103,10 @@ Bot Framework SDK 提供识别器，用于处理消息以确定意向，因此�
 ## <a name="conversation-lifetime"></a>会话生存期
 
 <!-- Note: these activities are dependent on whether the channel actually sends them. Also, we should add links -->
-只要将机器人添加到聊天中、或者将其他成员添加到聊天中或从聊天中删除，或者更改了聊天元数据，机器人就会收到聊天更新活动。
+只要将机器人添加到聊天中、或者将其他成员添加到聊天中或从聊天中删除，或者更改了聊天元数据，机器人就会收到聊天更新活动。 
 你可能希望让机器人通过问候用户或自我介绍来对会话更新活动作出反应。
 
-机器人接收会话结束活动以指示用户已结束会话。 机器人可以发送_聊天结束_活动以指示正在结束聊天。
+机器人接收  会话结束活动以指示用户已结束会话。 机器人可以发送_聊天结束_活动以指示正在结束聊天。
 如果要存储有关会话的信息，则你希望在会话结束时清除该信息。
 
 <!--  Types of conversations -->
@@ -116,7 +116,7 @@ Bot Framework SDK 具有对语言理解 (LUIS) 和 QnA Maker 的某种内置支�
 
 ## <a name="conversations-channels-and-users"></a>会话、通道和用户
 
-会话可以是与特定用户的直接会话，也可以是与多个用户的组合会话。
+会话可以是与特定用户的  直接会话，也可以是与多个用户的  组合会话。
 机器人通过从用户接收活动并向用户发送活动来与通道上的用户通信。
 
 * 每个用户都有特定于每个通道的唯一 ID。

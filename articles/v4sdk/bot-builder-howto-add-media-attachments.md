@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/17/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7093f13d1958c741b497a50535eb70a255dfcbe8
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 844e3d65794e814dc8a1d16e2b7cf0e7a0e75fab
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032577"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215399"
 ---
 # <a name="add-media-to-messages"></a>向消息添加媒体
 
@@ -84,7 +84,7 @@ ms.locfileid: "65032577"
 
 ## <a name="send-a-hero-card"></a>发送英雄卡
 
-除了简单的图像或视频附件，还可以附加英雄卡，这样可以将图像和按钮组合在一个对象中，并将其发送给用户。 大多数文本字段支持 Markdown，但支持可能因通道而异。
+除了简单的图像或视频附件，还可以附加英雄卡  ，这样可以将图像和按钮组合在一个对象中，并将其发送给用户。 大多数文本字段支持 Markdown，但支持可能因通道而异。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
@@ -106,7 +106,7 @@ ms.locfileid: "65032577"
 
 ## <a name="process-events-within-rich-cards"></a>处理资讯卡中的事件
 
-若要处理富卡中的事件，请使用 card action 对象指定当用户单击按钮或点击卡的某个部分时应发生的情况。 每个卡片操作都有类型和值。
+若要处理富卡中的事件，请使用 card action  对象指定当用户单击按钮或点击卡的某个部分时应发生的情况。 每个卡片操作都有类型和值。  
 
 若要正常运行，请为卡上的每个可点击项目指定一种操作类型。 下表列出并描述了可用的操作类型以及应该存在于相关联的值属性中的内容。
 

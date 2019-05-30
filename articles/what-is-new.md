@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 05/05/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ded465802ff3e16563dd56998e4114d6bd98ad5f
-ms.sourcegitcommit: 3e3c9986b95532197e187b9cc562e6a1452cbd95
+ms.openlocfilehash: de497fa5ad694081258486dd5c6e9fd37b107879
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65047884"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215559"
 ---
 # <a name="whats-new-in-bot-framework"></a>Bot Framework 中的新增功能
 Bot Framework SDK v4 是一个[开源 SDK][1a]，可让开发人员使用其偏好的编程语言来建模和生成复杂的聊天。

@@ -7,14 +7,14 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 2/26/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 618d438a384fa6a91ba919265519397cac555fda
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 3e1ebc07c73dcd7033a6b9a22c94379593c5890e
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904850"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215264"
 ---
 # <a name="testing-and-debugging-guidelines"></a>测试和调试指南
 
@@ -75,7 +75,7 @@ ms.locfileid: "59904850"
 
 ### <a name="understanding-bot-activities-with-the-emulator"></a>通过模拟器了解机器人活动
 
-除了正常的消息活动以外，机器人还处理不同类型的[活动](bot-builder-basics.md#the-activity-processing-stack)。 可以通过[模拟器](../bot-service-debug-emulator.md)来了解这些活动是什么、其发生时间以及其包含的具体信息。 了解这些活动有助于你提高机器人代码编写效率，并可验证机器人发送和接收的活动是否符合预期。
+除了正常的消息活动以外，机器人还处理不同类型的[活动](bot-builder-basics.md#the-activity-processing-stack)。  可以通过[模拟器](../bot-service-debug-emulator.md)来了解这些活动是什么、其发生时间以及其包含的具体信息。 了解这些活动有助于你提高机器人代码编写效率，并可验证机器人发送和接收的活动是否符合预期。
 
 ### <a name="saving-and-retrieving-user-interactions-with-transcripts"></a>使用脚本保存和检索用户交互
 
@@ -85,7 +85,7 @@ Azure blob 脚本存储提供了一个专门的资源，可以在其中[存储�
 
 ![Examine_stored_transcript_text](./media/examine_transcript_text_in_azure.png)
 
-这将以 JSON 格式打开存储的用户聊天输入。 用户输入与键“_text:_”一起保存。
+这将以 JSON 格式打开存储的用户聊天输入。 用户输入与键“_text:_ ”一起保存。
 
 ### <a name="how-middleware-works"></a>中间件工作原理
 
@@ -113,7 +113,7 @@ For example [QnA maker](bot-builder-howto-qna.md) is designed to handle certain 
 
 内置状态在一个轮次结束时写入，但是，由该轮次生成的任何活动在执行时均独立于轮次管道。 通常这不会影响我们，但如果活动处理程序更改状态，则写入的状态必须包含所做的更改。 在这种情况下，轮次管道在完成操作之前，会先等待活动处理完毕，目的是确保记录该轮次的正确状态。
 
-“发送活动”方法及其处理程序带来了一个独特的问题。 单纯地从“在发送活动时”处理程序内调用“发送活动”会导致线程无限地创建分支。 可以通过多种方式解决该问题，例如，可以在传出信息中追加更多消息，或者将内容写出到另一位置（例如控制台或文件），以免机器人崩溃。
+“发送活动”  方法及其处理程序带来了一个独特的问题。 单纯地从“在发送活动时”  处理程序内调用“发送活动”  会导致线程无限地创建分支。 可以通过多种方式解决该问题，例如，可以在传出信息中追加更多消息，或者将内容写出到另一位置（例如控制台或文件），以免机器人崩溃。
 
 ## <a name="additional-resources"></a>其他资源
 

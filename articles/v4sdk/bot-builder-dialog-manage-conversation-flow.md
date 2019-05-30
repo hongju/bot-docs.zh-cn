@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/24/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ad1209481691e1c1ed4e00b42086b8996aeea6a5
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 680d9148b463bbb5d10f4a6a06cc7b32b824b66e
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032707"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215423"
 ---
 # <a name="implement-sequential-conversation-flow"></a>实现顺序聊天流
 
@@ -170,7 +170,7 @@ ms.locfileid: "65032707"
 
 ## <a name="register-services-for-the-bot"></a>注册机器人的服务
 
-此机器人使用以下服务。
+此机器人使用以下服务。 
 
 - 机器人的基本服务：凭据提供程序、适配器和机器人实现。
 - 用于管理状态的服务：存储、用户状态和聊天状态。
@@ -202,7 +202,7 @@ ms.locfileid: "65032707"
 
 1. 安装 [Bot Framework Emulator](https://aka.ms/bot-framework-emulator-readme)（如果尚未安装）。
 1. 在计算机本地运行示例。
-1. 按如下所示启动仿真器，连接到机器人，然后发送消息。
+1. 按如下所示启动模拟器，连接到机器人，然后发送消息。
 
 ![多轮次提示对话的示例运行](../media/emulator-v4/multi-turn-prompt.png)
 

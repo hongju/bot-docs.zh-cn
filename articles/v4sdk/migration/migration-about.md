@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 03/28/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 55b5a4073340bb29074af5b2ee74dd952ea40f0c
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 862fbf59cf33406e35e9051c0814489fdfdaa8f3
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032238"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215581"
 ---
 # <a name="differences-between-the-v3-and-v4-net-sdk"></a>v3 与 v4 .NET SDK 之间的差异
 
@@ -43,7 +43,7 @@ Bot Framework SDK 版本 4 支持的底层 Bot Framework 服务与版本 3 相�
 
 为机器人创建适配器时，还需要提供一个消息处理程序委托，用于从通道和用户接收传入的活动。 该适配器将为收到的每个活动创建轮次上下文对象。 它将轮次上下文对象传递给机器人的轮次处理程序，并在轮次完成后处置该对象。
 
-轮次处理程序可以接收多种类型的活动。 一般情况下，你只希望将消息活动转发到机器人包含的任何对话。 如果机器人派生自 `ActivityHandler`，则机器人的轮次处理程序会将所有消息活动转发到 `OnMessageActivityAsync`。 重写该方法即可添加消息处理逻辑。 有关活动类型的详细信息，请参阅[活动架构][]。
+轮次处理程序可以接收多种类型的活动。 一般情况下，你只希望将消息活动转发到机器人包含的任何对话。  如果机器人派生自 `ActivityHandler`，则机器人的轮次处理程序会将所有消息活动转发到 `OnMessageActivityAsync`。 重写该方法即可添加消息处理逻辑。 有关活动类型的详细信息，请参阅[活动架构][]。
 
 ### <a name="handling-turns"></a>处理轮次
 
@@ -60,7 +60,7 @@ Bot Framework SDK 版本 4 支持的底层 Bot Framework 服务与版本 3 相�
 
 请在机器人的消息循环中处理这些对象。 有关如何使用 v4 对话执行此操作的说明，请参阅如何[处理用户中断][interruptions]。
 
-可组合的可评分对象调度树以及可组合的链对话（例如默认异常）也已弃用。 重现此功能的方法之一是在机器人的轮次处理程序中实现它。
+可组合的可评分对象调度树以及可组合的链对话（例如默认异常）也已弃用。  重现此功能的方法之一是在机器人的轮次处理程序中实现它。
 
 ## <a name="state-management"></a>状态管理
 
@@ -97,7 +97,7 @@ v4 定义 `UserState`、`ConversationState` 和 `PrivateConversationState` 类�
 
 ### <a name="managing-concurrency"></a>管理并发
 
-机器人可能需要管理状态并发性。 有关详细信息，请参阅“管理状态”的[保存状态](../bot-builder-concept-state.md#saving-state)部分，以及“直接写入到存储”的[使用 eTag 管理并发性](../bot-builder-howto-v4-storage.md#manage-concurrency-using-etags)部分。
+机器人可能需要管理状态并发性。 有关详细信息，请参阅“管理状态”的[保存状态](../bot-builder-concept-state.md#saving-state)部分，以及“直接写入到存储”的[使用 eTag 管理并发性](../bot-builder-howto-v4-storage.md#manage-concurrency-using-etags)部分。  
 
 ## <a name="dialogs-library"></a>对话框库
 
@@ -106,7 +106,7 @@ v4 定义 `UserState`、`ConversationState` 和 `PrivateConversationState` 类�
 - 对话库现在是单独的 NuGet 包：**Microsoft.Bot.Builder.Dialogs**。
 - 对话类不再需要可序列化。 通过 `DialogState` 状态属性访问器管理对话状态。
   - 与对话对象本身不同，现在对话状态属性在完成每个轮次后会持久保存。
-- `IDialogContext` 接口已由 `DialogContext` 类取代。 在轮次中，可为对话集创建对话上下文。
+- `IDialogContext` 接口已由 `DialogContext` 类取代。 在轮次中，可为对话集创建对话上下文。 
   - 此对话上下文封装对话堆栈（旧堆栈帧）。 此信息将在对话状态属性中持久保存。
 - `IDialog` 接口已由 `Dialog` 抽象类取代。
 
@@ -126,7 +126,7 @@ v4 定义 `UserState`、`ConversationState` 和 `PrivateConversationState` 类�
 
 也可使用多个对话创建复杂的控制流；请参阅[高级聊天流][complex-flow]。
 
-若要访问某个对话，需要将它的某个实例放入对话集，然后生成该集的对话上下文。 创建对话集时需要提供对话状态属性访问器。 这样，框架便可以在完成每个轮次后持久保存对话状态。 [管理状态][about-state]中介绍了如何在 v4 中管理状态。
+若要访问某个对话，需要将它的某个实例放入对话集，然后生成该集的对话上下文。   创建对话集时需要提供对话状态属性访问器。 这样，框架便可以在完成每个轮次后持久保存对话状态。 [管理状态][about-state]中介绍了如何在 v4 中管理状态。
 
 ### <a name="using-dialogs"></a>使用对话
 
@@ -155,7 +155,7 @@ v4 定义 `UserState`、`ConversationState` 和 `PrivateConversationState` 类�
 
 ### <a name="passing-state-between-and-within-dialogs"></a>在对话之间和内部传递状态
 
-“对话库”一文的[对话状态](../bot-builder-concept-dialog.md#dialog-state)、[瀑布步骤上下文属性](../bot-builder-concept-dialog.md#waterfall-step-context-properties)和[使用对话](../bot-builder-concept-dialog.md#using-dialogs)部分介绍了如何在 v4 中管理对话状态。
+“对话库”一文的[对话状态](../bot-builder-concept-dialog.md#dialog-state)、[瀑布步骤上下文属性](../bot-builder-concept-dialog.md#waterfall-step-context-properties)和[使用对话](../bot-builder-concept-dialog.md#using-dialogs)部分介绍了如何在 v4 中管理对话状态。 
 
 ### <a name="iawaitable-is-gone"></a>IAwaitable 已弃用
 

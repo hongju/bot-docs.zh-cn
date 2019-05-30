@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 05/20/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 10ae35f51a072a1af6cf7d4bdf2fd2f4cb3d66ee
-ms.sourcegitcommit: 72cc9134bf50f335cbb33265b048bf6b76252ce4
+ms.openlocfilehash: 09b8261ea69e04345cb9fb2d80542ae754efdc25
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2019
-ms.locfileid: "65973858"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215377"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答问题
 
@@ -57,8 +57,8 @@ QnA Maker 提供基于数据的聊天式问答层。 这样机器人就可以向
 
 ## <a name="obtain-values-to-connect-your-bot-to-the-knowledge-base"></a>获取用于将机器人连接到知识库的值
 1. 在 [QnA Maker](https://www.qnamaker.ai/) 站点中选择知识库。
-1. 打开知识库以后，选择“设置”。 记录针对“服务名称”显示的值。 使用 QnA Maker 门户界面时，此值可用于查找所需的知识库。 此值不可用于将机器人应用连接到此知识库。 
-1. 向下滚动，找到“部署详细信息”并记录 Postman 示例 HTTP 请求中的以下值：
+1. 打开知识库以后，选择“设置”。  记录针对“服务名称”显示的值。  使用 QnA Maker 门户界面时，此值可用于查找所需的知识库。 此值不可用于将机器人应用连接到此知识库。 
+1. 向下滚动，找到“部署详细信息”并记录 Postman 示例 HTTP 请求中的以下值： 
    - POST /knowledgebases/\<knowledge-base-id>/generateAnswer
    - Host: \<your-hostname> // 以 /qnamaker 结尾的完整 URL
    - Authorization:EndpointKey \<your-endpoint-key>
@@ -67,7 +67,7 @@ QnA Maker 提供基于数据的聊天式问答层。 这样机器人就可以向
 
 ## <a name="update-the-settings-file"></a>更新设置文件
 
-首先，请将访问知识库所需的信息（包括主机名、终结点密钥和知识库 ID (kbId)）添加到设置文件中。 这些是在 QnA Maker 中通过知识库的“设置”选项卡保存的值。 
+首先，请将访问知识库所需的信息（包括主机名、终结点密钥和知识库 ID (kbId)）添加到设置文件中。 这些是在  QnA Maker 中通过知识库的“设置”选项卡保存的值。 
 
 如果不是针对生产环境进行此部署，则应用 ID 和密码字段可以留空。
 
@@ -133,7 +133,7 @@ QnAEndpointHostName="<your-hostname>"
 
 ## <a name="ctabcs"></a>[C#](#tab/cs)
 
-当机器人需要来自 QnAMaker 的答案时，请通过机器人代码调用 `GetAnswersAsync()`，以便根据当前的上下文获取适当的答案。 若要访问自己的知识库，请更改下面的“找不到答案”消息，为用户提供有用的说明。
+当机器人需要来自 QnAMaker 的答案时，请通过机器人代码调用 `GetAnswersAsync()`，以便根据当前的上下文获取适当的答案。 若要访问自己的知识库，请更改下面的“找不到答案”消息，为用户提供有用的说明。 
 
 **QnABot.cs** [!code-csharp[qna connection](~/../botbuilder-samples/samples/csharp_dotnetcore/11.qnamaker/Bots/QnABot.cs?range=43-52)]
 

@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 02/06/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 95b56ec8e278c3d94430dc3c870803e8672fb053
-ms.sourcegitcommit: 4086189a9c856fbdc832eb1a1d205e5f1b4e3acd
+ms.openlocfilehash: b6b4d30aea493180fddaee4a7f74bef72c1992ae
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/16/2019
-ms.locfileid: "65733326"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215276"
 ---
 # <a name="add-telemetry-to-your-bot"></a>将遥测功能添加到机器人
 
@@ -73,7 +73,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 }
 ```
 
-然后，需将 Application Insights 检测密钥存储在 `appsettings.json` 文件中，或者作为环境变量存储。 `appsettings.json` 文件包含有关机器人在运行时要使用的外部服务的元数据。  例如，CosmosDB、Application Insights 和语言理解 (LUIS) 服务连接与元数据存储在此文件中。 可以在 Azure 门户的“概览”部分（在该页上你的服务的 `Essentials` 下拉列表下，如果该页处于折叠状态）找到检测密钥。 可在[此处](~/bot-service-resources-app-insights-keys.md)找到如何获取密钥的详细信息。
+然后，需将 Application Insights 检测密钥存储在 `appsettings.json` 文件中，或者作为环境变量存储。 `appsettings.json` 文件包含有关机器人在运行时要使用的外部服务的元数据。  例如，CosmosDB、Application Insights 和语言理解 (LUIS) 服务连接与元数据存储在此文件中。 可以在 Azure 门户的“概览”部分（在该页上你的服务的 `Essentials` 下拉列表下，如果该页处于折叠状态）找到检测密钥。  可在[此处](~/bot-service-resources-app-insights-keys.md)找到如何获取密钥的详细信息。
 
 此框架会为你找到密钥（如果格式设置正确）。 `appsettings.json` 条目的格式设置应如下所示：
 
@@ -754,7 +754,7 @@ union_all
 {"code":"DeploymentFailed","message":"At least one resource deployment operation failed. Please list deployment operations for details. Please see https://aka.ms/arm-debug for usage details.","details":[{"code":"BadRequest","message":"{\r\n \"error\": {\r\n \"code\": \"InvalidTemplate\",\r\n \"message\": \"Unable to process template language expressions for resource '/subscriptions/45d8a30e-3363-4e0e-849a-4bb0bbf71a7b/resourceGroups/core67/providers/Microsoft.Portal/dashboards/Bot Analytics Dashboard' at line '34' and column '9'. 'The template parameter 'virtualMachineName' is not found. Please see https://aka.ms/arm-template/#parameters for usage details.'\"\r\n }\r\n}"}]}
 ```
 
-若要查看数据，请转到 Azure 门户。 单击左侧的“仪表板”，然后从下拉列表中选择创建的仪表板。
+若要查看数据，请转到 Azure 门户。 单击左侧的“仪表板”，然后从下拉列表中选择创建的仪表板。 
 
 ## <a name="additional-resources"></a>其他资源
 可以参考下面这些实现遥测功能的示例：

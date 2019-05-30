@@ -8,21 +8,21 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 4/15/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e40a5c0e5cfa020f62c122e3aea134e0dd131372
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 9389f97cbba2e8766bf29b2502d36e9ec03077cf
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033426"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215382"
 ---
 # <a name="send-proactive-notifications-to-users"></a>向用户发送主动通知
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
 通常，机器人向用户发送的每条消息与用户先前的输入直接相关。
-在某些情况下，机器人可能需要向用户发送与当前聊天主题或用户发送的最后一条消息不直接相关的消息。 这些类型的消息称为主动消息。
+在某些情况下，机器人可能需要向用户发送与当前聊天主题或用户发送的最后一条消息不直接相关的消息。 这些类型的消息称为主动消息  。
 
 主动消息在各种场景中都可以发挥作用。 例如，如果用户之前已经请求机器人监控产品的价格，则机器人可以在产品价格下降了 20% 时提醒用户。 或者，如果机器人需要一些时间来编译对用户问题的响应，则可以通知用户延迟并允许会话在此期间继续。 当机器人编译完对问题的响应时，将与用户共享该信息。
 

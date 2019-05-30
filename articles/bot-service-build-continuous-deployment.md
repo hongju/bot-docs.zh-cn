@@ -7,14 +7,14 @@ ms.author: v-ivorb
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 05/01/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d755572c6559ca1de7f0cf93a120273aa0fff947
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: dc4b524659df3fb0b91b54fca65b4b7dd36378cd
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033105"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66214271"
 ---
 # <a name="set-up-continuous-deployment"></a>设置连续部署
 
@@ -36,27 +36,27 @@ ms.locfileid: "65033105"
 
 
 ## <a name="continuous-deployment-using-github"></a>使用 GitHub 进行持续部署
-若要使用 GitHub 实现持续部署，请在 Azure 门户中导航至机器人的“应用服务”页。
+若要使用 GitHub 实现持续部署，请在 Azure 门户中导航至机器人的“应用服务”页。 
 
-单击“部署中心” > “GitHub” > “授权”。
+单击“部署中心” > “GitHub” > “授权”。   
 
 ![持续部署](~/media/azure-bot-build/azure-deployment.png)
 
-在打开的浏览器窗口中，单击“授权 AzureAppService”。 
+在打开的浏览器窗口中，单击“授权 AzureAppService”  。 
 
 ![Azure Github 权限](~/media/azure-bot-build/azure-deployment-github.png)
 
-授权 **AzureAppService** 以后，返回到 Azure 门户中的“部署中心”。
+授权 **AzureAppService** 以后，返回到 Azure 门户中的“部署中心”。 
+
+1. 单击“继续”。  
+
+1. 选择“应用服务生成服务”。 
 
 1. 单击“继续”。 
 
-1. 选择“应用服务生成服务”。
+1. 选择“组织”、“存储库”和“分库”。   
 
-1. 单击“继续”。
-
-1. 选择“组织”、“存储库”和“分库”。
-
-1. 单击“继续”，然后单击“完成”以完成设置。
+1. 单击“继续”，然后单击“完成”  以完成设置。 
 
 此时就设置好了通过 GitHub 进行的持续部署。 每当提交到源代码存储库时，你的更改将自动部署到 Azure 机器人服务。
 
@@ -65,8 +65,8 @@ ms.locfileid: "65033105"
 机器人配置为持续部署时，不可以使用联机代码编辑器对机器人进行更改。 如果要使用连接代码编辑器，可以暂时禁用持续部署。
 
 要禁用持续部署，请执行以下操作：
-1. 在 [Azure 门户](https://portal.azure.com)中，转到机器人的“所有应用服务设置”边栏选项卡，并单击“部署中心”。 
-1. 单击“断开连接”以禁用持续部署。 若要重新启用持续部署，请重复上述相应部分中的步骤。
+1. 在 [Azure 门户](https://portal.azure.com)中，转到机器人的“所有应用服务设置”边栏选项卡，并单击“部署中心”。   
+1. 单击“断开连接”以禁用持续部署  。 若要重新启用持续部署，请重复上述相应部分中的步骤。
 
 ## <a name="additional-resources"></a>其他资源
 - 若要从 BitBucket 和 Azure DevOps Services 启用持续部署，请参阅[使用 Azure 应用服务进行持续部署](https://docs.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment)。

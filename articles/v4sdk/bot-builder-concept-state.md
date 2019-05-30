@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/18/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b2650a52c25ad8ac3dd6e0e4ff2d2b5ec2dd5b6a
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.openlocfilehash: 037331b10719a47fba42485b19d5ecc9dab08cbe
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59904480"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215485"
 ---
 # <a name="managing-state"></a>管理状态
 
@@ -37,7 +37,7 @@ ms.locfileid: "59904480"
 
 ## <a name="storage-layer"></a>存储层
 
-从后端开始，实际存储状态信息的位置是存储层。 可将存储层视为物理存储，例如内存中服务器、Azure 服务器或第三方服务器。
+从后端开始，实际存储状态信息的位置是存储层。  可将存储层视为物理存储，例如内存中服务器、Azure 服务器或第三方服务器。
 
 Bot Framework SDK 包含存储层的某些实现：
 
@@ -49,7 +49,7 @@ Bot Framework SDK 包含存储层的某些实现：
 
 ## <a name="state-management"></a>状态管理
 
-状态管理可以自动在基础存储层中读取和写入机器人的状态。 状态以状态属性的形式存储。状态属性实际上是机器人可以通过状态管理对象读取和写入的键值对（不管具体的基础实现是什么）。 这些状态属性定义信息的存储方式。 例如，当你检索某个定义为特定类或对象的属性时，便知道数据的建构方式。
+状态管理可以自动在基础存储层中读取和写入机器人的状态。  状态以状态属性的形式存储。状态属性实际上是机器人可以通过状态管理对象读取和写入的键值对（不管具体的基础实现是什么）。  这些状态属性定义信息的存储方式。 例如，当你检索某个定义为特定类或对象的属性时，便知道数据的建构方式。
 
 这些状态属性集结到有范围的“桶”中，这些桶不过是一些帮助组织这些属性的集合。 SDK 包含其中的三个“桶”：
 
@@ -71,9 +71,9 @@ Bot Framework SDK 包含存储层的某些实现：
 
 用于其中每个预定义桶的键特定于用户和/或聊天。 设置状态属性的值时，将在内部使用轮次上下文中包含的信息定义键，以确保将每个用户或聊天置于适当的桶和属性中。 具体而言，将按如下所述定义键：
 
-- 用户状态使用通道 ID 和源 ID 创建键。 例如 _{Activity.ChannelId}/users/{Activity.From.Id}#YourPropertyName_
-- 聊天状态使用通道 ID 和聊天 ID 创建键。 例如 _{Activity.ChannelId}/conversations/{Activity.Conversation.Id}#YourPropertyName_
-- 私人聊天状态使用通道 ID、源 ID 和聊天 ID 创建键。 例如 _{Activity.ChannelId}/conversations/{Activity.Conversation.Id}/users/{Activity.From.Id}#YourPropertyName_
+- 用户状态使用通道 ID 和源 ID 创建键。   例如 _{Activity.ChannelId}/users/{Activity.From.Id}#YourPropertyName_
+- 聊天状态使用通道 ID 和聊天 ID 创建键。   例如 _{Activity.ChannelId}/conversations/{Activity.Conversation.Id}#YourPropertyName_
+- 私人聊天状态使用通道 ID、源 ID 和聊天 ID 创建键。    例如 _{Activity.ChannelId}/conversations/{Activity.Conversation.Id}/users/{Activity.From.Id}#YourPropertyName_
 
 ### <a name="when-to-use-each-type-of-state"></a>何时使用每种类型的状态
 
@@ -102,9 +102,9 @@ Bot Framework SDK 包含存储层的某些实现：
 
 ## <a name="state-property-accessors"></a>状态属性访问器
 
-状态属性访问器用于实际读取或写入某个状态属性，并提供 *get*、*set* 和 *delete* 方法用于从轮次内部访问状态属性。 若要创建访问器，必须提供属性名称（通常是在初始化机器人时提供）。 然后，可以使用该访问器来获取和处理机器人状态的该属性。
+状态属性访问器用于实际读取或写入某个状态属性，并提供 *get*、*set* 和 *delete* 方法用于从轮次内部访问状态属性。  若要创建访问器，必须提供属性名称（通常是在初始化机器人时提供）。 然后，可以使用该访问器来获取和处理机器人状态的该属性。
 
-访问器允许 SDK 从基础存储获取状态并更新机器人的状态缓存。 状态缓存是机器人维护的本地缓存，用于存储状态对象，并允许在不访问基础存储的情况下执行读取和写入操作。 如果状态尚未进入缓存，则调用访问器的 *get* 方法可以检索状态并将其放入缓存。 检索后，可以像处理本地变量一样处理状态属性。
+访问器允许 SDK 从基础存储获取状态并更新机器人的状态缓存。  状态缓存是机器人维护的本地缓存，用于存储状态对象，并允许在不访问基础存储的情况下执行读取和写入操作。 如果状态尚未进入缓存，则调用访问器的 *get* 方法可以检索状态并将其放入缓存。 检索后，可以像处理本地变量一样处理状态属性。
 
 访问器的 *delete* 方法会从缓存和基础存储中删除属性。
 

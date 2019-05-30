@@ -6,14 +6,14 @@ ms.author: darrenj
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 05/06/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 36a4b01dfc19cfab747de281c65d7166cb05f406
-ms.sourcegitcommit: 39d548b2d2fb050d72cf7b6c8fe389b47d0c9099
+ms.openlocfilehash: ce3ab86d5716250e24a44268f5e5fc39fbdd3398
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/06/2019
-ms.locfileid: "65168970"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66214175"
 ---
 # <a name="virtual-assistant---template-outline"></a>虚拟助手 - 模板大纲
 
@@ -26,7 +26,7 @@ Feature      | 说明 |
 ------------ | -------------
 介绍 | 在聊天开始时使用[自适应卡]()的介绍消息
 键入指示器  | 在聊天期间自动显示的视觉键入指示器，长时间运行的操作会重复显示它
-基 LUIS 模型  | 支持常用意向，例如“取消”、“帮助”、“升级”等。
+基 LUIS 模型  | 支持常用意向，例如“取消”、“帮助”、“升级”等。   
 基对话 | 对话流，用于捕获基本用户信息以及“取消”和“帮助”意向的中断逻辑
 基响应  | 基意向和对话的文本和语音响应
 常见问题解答 | 与 [QnA Maker](https://www.qnamaker.ai) 集成可回答知识库中的一般问题 
@@ -54,17 +54,17 @@ LU 文件通过英语、中文、法语、意大利语、德语、西班牙语�
 
 意向       | 示例话语 |
 -------------|-------------|
-取消       |取消、没关系|
-升级     |我可以与某人通话吗？|
-完成任务   |完成、全部完成|
-返回       |返回|
-帮助         |你可以帮我吗？|
-重复       |你能再说一次吗？|
-SelectAny    |这其中的任何项|
-选择项   |第一项|
-SelectNone   |这些项都不是|
-显示下一个     |显示更多项|
-显示上一个 |显示上一项|
+取消       |取消、没关系  |
+升级     |我可以与某人通话吗？ |
+完成任务   |完成、全部完成  |
+返回       |返回 |
+帮助         |你可以帮我吗？ |
+重复       |你能再说一次吗？ |
+SelectAny    |这其中的任何项 |
+选择项   |第一项 |
+SelectNone   |这些项都不是 |
+显示下一个     |显示更多项 |
+显示上一个 |显示上一项 |
 重新开始    |*restart*|
 停止         |*stop*|
 

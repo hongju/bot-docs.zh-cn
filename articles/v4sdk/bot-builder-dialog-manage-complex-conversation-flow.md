@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 04/18/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ad374ea8c404693836d7e90bb899669726366fcc
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: f08fa3295ff7fdd08039b2c57f4deec6819324c0
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033478"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215436"
 ---
 # <a name="create-advanced-conversation-flow-using-branches-and-loops"></a>使用分支和循环创建高级聊天流
 
@@ -45,7 +45,7 @@ ms.locfileid: "65033478"
   - 如果用户太年轻，它们不会要求用户对任何公司进行评论。
   - 如果用户够年龄，它们就会开始收集用户的评论首选项。
     - 它们允许用户选择要评论的公司。
-    - 如果用户选择了一家公司，它们会通过循环方式让用户选择第二家公司。
+    - 如果用户选择了一家公司，它们会通过循环方式让用户选择第二家公司。 
 - 最后，它们会感谢用户的参与。
 
 它们使用瀑布对话和一些提示来管理复杂的聊天。

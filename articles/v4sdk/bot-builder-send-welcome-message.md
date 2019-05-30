@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 03/13/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0858cf73c1a744100c2f7106013fd963cff84454
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: f7709d6273739be6d2b3e9e3174f24ea2734f22d
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032520"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215313"
 ---
 # <a name="send-welcome-message-to-users"></a>向用户发送欢迎消息
 
@@ -130,7 +130,7 @@ ms.locfileid: "65032520"
 
 ## <a name="using-hero-card-greeting"></a>使用英雄卡问候语
 
-如上所述，某些用户输入会导致系统生成一张英雄卡来响应用户请求。 可以在此处详细了解英雄卡问候语：[发送简介卡](./bot-builder-howto-add-media-attachments.md)。 下面是创建此机器人的英雄卡响应所需的代码。
+如上所述，某些用户输入会导致系统生成一张英雄卡来响应用户请求。  可以在此处详细了解英雄卡问候语：[发送简介卡](./bot-builder-howto-add-media-attachments.md)。 下面是创建此机器人的英雄卡响应所需的代码。
 
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 

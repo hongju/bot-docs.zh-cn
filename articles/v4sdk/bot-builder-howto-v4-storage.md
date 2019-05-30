@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 4/13/19
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 417833b380e80788e26682ce3abd9cc98199eee5
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 07a66eb468bc456fb463c9c215a2c941e4fafe0a
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032825"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215332"
 ---
 # <a name="write-directly-to-storage"></a>直接写入存储
 
@@ -242,7 +242,7 @@ module.exports.MyBot = MyBot;
 ### <a name="start-the-emulator-and-connect-your-bot"></a>启动模拟器并连接机器人
 - 安装 Bot Framework [Emulator](https://aka.ms/bot-framework-emulator-readme)。接下来，启动模拟器，然后在仿真器中连接到机器人：
 
-1. 单击仿真器“欢迎使用”选项卡中的“新建机器人配置”链接。 
+1. 单击仿真器“欢迎使用”选项卡中的“新建机器人配置”链接  。 
 2. 填写用于连接到机器人的字段，并指定启动机器人时要在网页上显示的信息。
 
 ### <a name="interact-with-your-bot"></a>与机器人交互
@@ -262,13 +262,13 @@ module.exports.MyBot = MyBot;
 
 ![创建 Cosmos DB 数据库](./media/create-cosmosdb-database.png)
 
-2. 单击“创建资源”>“数据库”>“Azure Cosmos DB”
+2. 单击“创建资源”>“数据库”>“Azure Cosmos DB” 
 
 ![Cosmos DB -“新建帐户”页](./media/cosmosdb-new-account-page.png)
 
-3. 在“新建帐户”页上，提供“订阅”和“资源组”信息。 在“帐户名”字段中创建唯一的名称 - 此名称最终会成为数据访问 URL 名称的一部分。 对于“API”，请选择“Core(SQL)”，并提供一个附近的**位置**以加快数据访问速度。
-4. 然后单击“查看 + 创建”。
-5. 验证成功后，单击“创建”。
+3. 在“新建帐户”页上，提供“订阅”和“资源组”信息。    在“帐户名”字段中创建唯一的名称 - 此名称最终会成为数据访问 URL 名称的一部分。  对于“API”，请选择“Core(SQL)”，并提供一个附近的**位置**以加快数据访问速度。  
+4. 然后单击“查看 + 创建”  。
+5. 验证成功后，单击“创建”  。
 
 创建帐户需要几分钟时间。 等待门户中显示“祝贺你! 已创建 Azure Cosmos DB 帐户”页。
 
@@ -276,7 +276,7 @@ module.exports.MyBot = MyBot;
 
 ![添加 Cosmos DB 集合](./media/add_database_collection.png)
 
-1. 单击“设置”>“新建集合”。 “添加集合”区域显示在最右侧，可能需要向右滚动才能看到它。 由于最近对 Cosmos DB 进行的更新，请务必添加单个分区键：_/id_。此键将避免跨分区查询错误。
+1. 单击“设置”>“新建集合”。  “添加集合”  区域显示在最右侧，可能需要向右滚动才能看到它。 由于最近对 Cosmos DB 进行的更新，请务必添加单个分区键： _/id_。此键将避免跨分区查询错误。
 
 ![Cosmos DB](./media/cosmos-db-sql-database.png)
 
@@ -284,7 +284,7 @@ module.exports.MyBot = MyBot;
 
 ![Cosmos DB 密钥](./media/comos-db-keys.png)
 
-3. 可以在数据库设置的“密钥”选项卡中找到终结点 URI 和密钥。 需要在本文后面使用这些值来配置代码。 
+3. 可以在数据库设置的“密钥”  选项卡中找到终结点 URI 和密钥。 需要在本文后面使用这些值来配置代码。 
 
 ### <a name="add-configuration-information"></a>添加配置信息
 用于添加 Cosmos DB 存储的配置数据很简短。若要构建更复杂的机器人，可以使用相同方法添加其他配置设置。 以下示例使用上一示例中 Cosmos DB 数据库和集合的名称。
@@ -414,7 +414,7 @@ var storage = new CosmosDbStorage({
 ## <a name="test-your-bot-with-bot-framework-emulator"></a>使用 Bot Framework Emulator 测试机器人
 现在请启动 Bot Framework Emulator 并连接到机器人：
 
-1. 单击仿真器“欢迎使用”选项卡中的“新建机器人配置”链接。 
+1. 单击仿真器“欢迎使用”选项卡中的“新建机器人配置”链接  。 
 2. 填写用于连接到机器人的字段，并指定启动机器人时要在网页上显示的信息。
 
 ## <a name="interact-with-your-bot"></a>与机器人交互
@@ -423,7 +423,7 @@ var storage = new CosmosDbStorage({
 
 
 ### <a name="view-your-data"></a>查看数据
-运行机器人并保存信息以后，即可在 Azure 门户的“数据资源管理器”选项卡下查看存储的数据。 
+运行机器人并保存信息以后，即可在 Azure 门户的“数据资源管理器”选项卡下查看存储的数据。  
 
 ![数据资源管理器示例](./media/data_explorer.PNG)
 
@@ -437,13 +437,13 @@ Azure Blob 存储是 Microsoft 提供的适用于云的对象存储解决方案�
 
 ![创建 Blob 存储](./media/create-blob-storage.png)
 
-2. 单击“创建资源”>“存储”>“存储帐户 - Blob、文件、表、队列”
+2. 单击“创建资源”>“存储”>“存储帐户 - Blob、文件、表、队列” 
 
 ![Blob 存储 -“新建帐户”页](./media/blob-storage-new-account.png)
 
-3. 在“新建帐户”页中输入存储帐户的“名称”，选择“Blob 存储”作为“帐户类型”，提供“位置”、“资源组”和“订阅”信息。  
-4. 然后单击“查看 + 创建”。
-5. 验证成功后，单击“创建”。
+3. 在“新建帐户”页中输入存储帐户的“名称”，选择“Blob 存储”作为“帐户类型”，提供“位置”、“资源组”和“订阅”信息。         
+4. 然后单击“查看 + 创建”  。
+5. 验证成功后，单击“创建”  。
 
 ### <a name="create-blob-storage-container"></a>创建 Blob 存储容器
 创建 Blob 存储帐户后，通过以下方式打开此帐户 
@@ -452,16 +452,16 @@ Azure Blob 存储是 Microsoft 提供的适用于云的对象存储解决方案�
 
 ![创建 Blob 存储容器](./media/create-blob-container.png)
 
-3. 右键单击“BLOB 容器”，并选择“创建 Blob 容器”。
+3. 右键单击“BLOB 容器”，并选择“创建 Blob 容器”。 
 4. 添加一个名称。 稍后将使用此名称作为“your-blob-storage-container-name”值来提供对 Blob 存储帐户的访问。
 
 #### <a name="add-configuration-information"></a>添加配置信息
 找到所需的 Blob 存储密钥，以便为机器人配置 Blob 存储，如上所示：
-1. 在 Azure 门户中打开 Blob 存储帐户，然后选择“设置”>“访问密钥”。
+1. 在 Azure 门户中打开 Blob 存储帐户，然后选择“设置”>“访问密钥”。 
 
 ![找到 Blob 存储密钥](./media/find-blob-storage-keys.png)
 
-我们将使用密钥 1“连接字符串”作为“your-blob-storage-container-name”值来提供对 Blob 存储帐户的访问。
+我们将使用密钥 1“连接字符串”作为“your-blob-storage-container-name”值来提供对 Blob 存储帐户的访问。 
 
 #### <a name="installing-packages"></a>安装包
 如果事先尚未安装以下包，请安装这些包以使用 Cosmos DB。
@@ -527,7 +527,7 @@ const { BlobStorage } = require("botbuilder-azure");
 var dotenv = require('dotenv');
 dotenv.load();
 ```
-现在，请通过注释掉以前的存储定义并添加以下代码来更新代码，以将“存储”指向现有的 Blob 存储帐户。
+现在，请通过注释掉以前的存储定义并添加以下代码来更新代码，以将“存储”指向现有的 Blob 存储帐户。 
 
 **bot.js**
 ```javascript
@@ -546,7 +546,7 @@ var storage = new BlobStorage({
 ## <a name="start-the-emulator-and-connect-your-bot"></a>启动模拟器并连接机器人
 接下来，启动模拟器，然后在模拟器中连接到机器人：
 
-1. 单击仿真器“欢迎使用”选项卡中的“新建机器人配置”链接。 
+1. 单击仿真器“欢迎使用”选项卡中的“新建机器人配置”链接  。 
 2. 填写用于连接到机器人的字段，并指定启动机器人时要在网页上显示的信息。
 
 ## <a name="interact-with-your-bot"></a>与机器人交互
@@ -555,20 +555,20 @@ var storage = new BlobStorage({
 ![在仿真器中测试存储机器人](./media/emulator-direct-storage-test.png)
 
 ### <a name="view-your-data"></a>查看数据
-运行机器人并保存信息以后，即可在 Azure 门户的“存储资源管理器”选项卡下查看。
+运行机器人并保存信息以后，即可在 Azure 门户的“存储资源管理器”选项卡下查看。 
 
 ## <a name="blob-transcript-storage"></a>Blob 脚本存储
 Azure Blob 脚本存储提供专门的存储选项，可以轻松地以记录脚本形式保存和检索用户聊天内容。 Azure Blob 脚本存储尤其适合在调试机器人性能时自动捕获要检查的用户输入。
 
 ### <a name="set-up"></a>设置
-Azure Blob 脚本存储可以使用通过上面的“创建 Blob 存储帐户”和“添加配置信息”部分详述的步骤创建的 Blob 存储帐户。 现在添加一个容器用于保存脚本
+Azure Blob 脚本存储可以使用通过上面的“创建 Blob 存储帐户”和“添加配置信息”部分详述的步骤创建的 Blob 存储帐户。   现在添加一个容器用于保存脚本
 
 ![创建脚本容器](./media/create-blob-transcript-container.png)
 
 1. 打开 Azure Blob 存储帐户。
-1. 单击“存储资源管理器”。
-1. 右键单击“BLOB 容器”，并选择“创建 Blob 容器”。
-1. 输入脚本容器的名称，然后选择“确定”。 （此处输入了 mybottranscripts）
+1. 单击“存储资源管理器”。 
+1. 右键单击“BLOB 容器”，并选择“创建 Blob 容器”。  
+1. 输入脚本容器的名称，然后选择“确定”。  （此处输入了 mybottranscripts）
 
 ### <a name="implementation"></a>实现 
 以下代码将脚本存储指针 `_myTranscripts` 连接到新的 Azure Blob 脚本存储帐户。 若要使用新的容器名称 <your-blob-transcript-container-name> 创建此链接，请在 Blob 存储中创建一个新容器用于保存脚本文件。
@@ -589,7 +589,7 @@ public class EchoBot : ActivityHandler
 ```
 
 ### <a name="store-user-conversations-in-azure-blob-transcripts"></a>在 Azure Blob 脚本中存储用户聊天内容
-可以使用 Blob 容器来存储脚本以后，即可保留用户与机器人的聊天内容。 这些聊天内容可以在以后用作调试工具，以便了解用户与机器人的交互情况。 每次在仿真器中选择“重启聊天”都会启动新脚本聊天列表的创建。 以下代码将在存储的脚本文件中保留用户聊天输入。
+可以使用 Blob 容器来存储脚本以后，即可保留用户与机器人的聊天内容。 这些聊天内容可以在以后用作调试工具，以便了解用户与机器人的交互情况。 每次在仿真器中选择“重启聊天”都会启动新脚本聊天列表的创建。  以下代码将在存储的脚本文件中保留用户聊天输入。
 - 当前脚本是使用 `LogActivityAsync` 保存的。
 - 可以使用 `ListTranscriptsAsync` 检索已保存的脚本。
 在此示例代码中，存储的每个脚本的 ID 将保存到名为“storedTranscripts”的列表。 稍后将使用此列表来管理保留的已存储 Blob 脚本数。
@@ -758,7 +758,7 @@ async function createSampleNote(storage, context) {
 }
 ```
 
-在 `createSampleNote` 帮助程序函数中初始化 `changes` 对象并向其添加注释，然后将结果写入存储。
+在 `createSampleNote` 帮助程序函数中初始化 `changes` 对象并向其添加注释，然后将结果写入存储。 
 
 **bot.js**
 ```javascript

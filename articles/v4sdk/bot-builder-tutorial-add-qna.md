@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: tutorial
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/20/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: e51683a5dbae29879d73ee322586272d49708b22
-ms.sourcegitcommit: 72cc9134bf50f335cbb33265b048bf6b76252ce4
+ms.openlocfilehash: f72bc15d4c239946afcf6790193cffa5c6d0f0bc
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/21/2019
-ms.locfileid: "65973870"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66214235"
 ---
 # <a name="tutorial-use-qna-maker-in-your-bot-to-answer-questions"></a>教程：在机器人中使用 QnA Maker 来回答问题
 
@@ -57,11 +57,11 @@ ms.locfileid: "65973870"
    1. 将 QnA 服务连接到知识库。
    1. 为知识库命名。
    1. 若要填充知识库，请使用 Samples 存储库中的 **BotBuilder-Samples\samples\csharp_dotnetcore\11.qnamaker\CognitiveModels\smartLightFAQ.tsv** 文件。
-   1. 单击“创建知识库”，创建知识库。
+   1. 单击“创建知识库”，创建知识库。 
 1. **保存和训练**知识库。
 1. **发布**知识库。
 
-发布 QnA Maker 应用以后，请选择“设置”选项卡，然后向下滚动到“部署详细信息”。 记录 _Postman_ 示例 HTTP 请求中的以下值。
+发布 QnA Maker 应用以后，请选择“设置”选项卡，然后向下滚动到“部署详细信息”。  记录 _Postman_ 示例 HTTP 请求中的以下值。
 
 ```text
 POST /knowledgebases/<knowledge-base-id>/generateAnswer
@@ -273,7 +273,7 @@ QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
 现在可以将机器人重新发布回 Azure。
 
 > [!IMPORTANT]
-> 在创建项目文件的 zip 文件之前，请确保在正确的文件夹中进行压缩。 
+> 在创建项目文件的 zip 文件之前，请确保在正确的文件夹中进行压缩。  
 > - 对于 C# 机器人，正确的文件夹是包含 .csproj 文件的文件夹。 
 > - 对于 JS 机器人，正确的文件夹是包含 app.js 或 index.js 文件的文件夹。 
 >
@@ -306,11 +306,11 @@ az webapp deployment source config-zip --resource-group <resource-group-name> --
 如果不打算继续使用此应用程序，请按以下步骤删除关联的资源：
 
 1. 在 Azure 门户中打开机器人的资源组。
-1. 单击“删除资源组”，删除该组及其包含的所有资源。
-1. 在确认窗格中输入资源组名称，然后单击“删除”。
+1. 单击“删除资源组”，删除该组及其包含的所有资源。 
+1. 在确认窗格中输入资源组名称，然后单击“删除”。 
 
 ## <a name="next-steps"></a>后续步骤
 
-若要了解如何为机器人添加功能，请参阅开发方法部分中的“发送和接收文本消息”一文以及其他文章。
+若要了解如何为机器人添加功能，请参阅开发方法部分中的“发送和接收文本消息”  一文以及其他文章。
 > [!div class="nextstepaction"]
 > [发送和接收文本消息](bot-builder-howto-send-messages.md)

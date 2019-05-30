@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservices: sdk
-ms.date: 4/18/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 6660026cddd0543266a33603685a7d30cabfe706
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: c10e6cda084f22cd4d97fd4ddce942941015733b
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032728"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215445"
 ---
 # <a name="debug-your-bot-using-transcript-files"></a>使用脚本文件调试机器人
 
@@ -29,13 +29,13 @@ ms.locfileid: "65032728"
 ## <a name="creatingstoring-a-bot-transcript-file"></a>创建/存储机器人脚本文件
 本文介绍如何使用 Microsoft 的 [Bot Framework Emulator](https://github.com/Microsoft/BotFramework-Emulator) 创建机器人脚本文件。 脚本文件也可以编程方式创建；有关该方法的详细信息，可参阅[此文](./bot-builder-howto-v4-storage.md#blob-transcript-storage)。 在本文中，我们将使用适用于[多轮次提示机器人](https://aka.ms/cs-multi-prompts-sample)的 Bot Framework 示例代码。该代码可以请求用户的运输模式、姓名和年龄。不过，任何能够使用 Microsoft 的 Bot Framework Emulator 访问的代码都可以用来创建脚本文件。
 
-若要开始此过程，请确保要测试的机器人代码在开发环境中运行。 启动 Bot Framework Emulator，选择“打开机器人”按钮，然后输入浏览器中显示的 _localhost:port_ 的地址，后跟“/api/messages”，如下图所示。 现在单击“连接”按钮，将模拟器连接到机器人。
+若要开始此过程，请确保要测试的机器人代码在开发环境中运行。 启动 Bot Framework Emulator，选择“打开机器人”按钮，然后输入浏览器中显示的 _localhost:port_ 的地址  ，后跟“/api/messages”，如下图所示。 现在单击“连接”按钮，将模拟器连接到机器人  。
 
 ![将模拟器连接到代码](./media/emulator_open_bot_configuration.png)
 
 将模拟器连接到运行的代码以后，请向机器人发送模拟的用户交互，对代码进行测试。 在此示例中，我们传入了用户的运输模式、姓名和年龄。 在输入需要保留的所有用户交互以后，请使用 Bot Framework Emulator 创建并保存包含该聊天的脚本文件。 
 
-在“实时聊天”选项卡（见下）中，选择“保存脚本”按钮。 
+在“实时聊天”选项卡（见下）中，选择“保存脚本”按钮。   
 
 ![选择“保存脚本”](./media/emulator_transcript_save.png)
 
@@ -46,15 +46,15 @@ ms.locfileid: "65032728"
 现在，你输入的用于通过模拟器来测试代码的所有用户交互和机器人响应都已保存到一个脚本文件中。该文件可以稍后重新加载，用于调试用户和机器人之间的交互。
 
 ## <a name="retrieving-a-bot-transcript-file"></a>检索机器人脚本文件
-若要使用 Bot Framework Emulator 检索机器人脚本文件，请在模拟器左上角选择“文件”，然后选择“打开脚本...”，如下所示。 接下来，选择要检索的脚本文件。 （也可从模拟器“资源”部分的“脚本”列表控件中访问脚本） 
+若要使用 Bot Framework Emulator 检索机器人脚本文件，请在模拟器左上角选择“文件”，然后选择“打开脚本...”，如下所示。   接下来，选择要检索的脚本文件。 （也可从模拟器“资源”部分的“脚本”列表控件中访问脚本）   
 
-在此示例中，我们将检索名为“ursula_user.transcript”的脚本文件。 选择脚本文件时，会自动将整个保留的聊天加载到名为“脚本”的新选项卡中。
+在此示例中，我们将检索名为“ursula_user.transcript”的脚本文件。 选择脚本文件时，会自动将整个保留的聊天加载到名为“脚本”的新选项卡中。 
 
 ![检索保存的脚本](./media/emulator_transcript_retrieve.png)
 
 ## <a name="debug-using-transcript-file"></a>使用脚本文件进行调试
-加载脚本文件后，就可以调试捕获的用户和机器人之间的交互了。 为此，请直接单击在“日志”部分记录的任何事件或活动，如模拟器右下区域所示。 在下面显示的示例中，我们选择了用户在发送消息“Hello”时的首次交互。 这样做时，脚本文件中有关此特定交互的所有信息都会以 JSON 格式显示在模拟器的“检查器”窗口中。 从下往上查看这其中的一些值时，可以看到：
-* 交互类型为消息。
+加载脚本文件后，就可以调试捕获的用户和机器人之间的交互了。 为此，请直接单击在“日志”部分记录的任何事件或活动，如模拟器右下区域所示。  在下面显示的示例中，我们选择了用户在发送消息“Hello”时的首次交互。 这样做时，脚本文件中有关此特定交互的所有信息都会以 JSON 格式显示在模拟器的“检查器”窗口中。  从下往上查看这其中的一些值时，可以看到：
+* 交互类型为消息。 
 * 发送消息的时间。
 * 已发送的包含“Yes”的纯文本。
 * 消息发送到机器人。

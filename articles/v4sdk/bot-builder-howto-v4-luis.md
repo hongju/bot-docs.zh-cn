@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
-ms.date: 4/18/19
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 58d1e83b67d0601a9783e175318a50f8c0646bb2
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 7b06d99ae1265d2519b5c1aa8fe838a4e3e4d43a
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033572"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215352"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>向机器人添加自然语言理解
 
@@ -65,13 +65,13 @@ ms.locfileid: "65033572"
 若要详细了解示例的其他方面，例如对话或状态，请参阅[使用对话提示收集用户输入](bot-builder-prompts.md)或[保存用户和聊天数据](bot-builder-howto-v4-state.md)。 
 
 ## <a name="create-a-luis-app-in-the-luis-portal"></a>在 LUIS 门户中创建 LUIS 应用
-登录到 LUIS 门户，以创建自己的示例 LUIS 应用版本。 可在“我的应用”中创建和管理应用程序。 
+登录到 LUIS 门户，以创建自己的示例 LUIS 应用版本。 可在“我的应用”中创建和管理应用程序  。 
 
-1. 选择“导入新应用”。 
-1. 单击“选择应用文件(JSON 格式)...” 
-1. 选择示例的 `CognitiveModels` 文件夹中的 `FlightBooking.json` 文件。 在“可选名称”中，输入 **FlightBooking**。 此文件包含三个意向：“预订航班”、“取消”和“None”。 当用户向机器人发送消息时，我们将使用这些意向来了解其意图。
+1. 选择“导入新应用”。  
+1. 单击“选择应用文件(JSON 格式)...”  
+1. 选择示例的 `CognitiveModels` 文件夹中的 `FlightBooking.json` 文件。 在“可选名称”中，输入 **FlightBooking**。  此文件包含三个意向：“预订航班”、“取消”和“None”。 当用户向机器人发送消息时，我们将使用这些意向来了解其意图。
 1. [训练](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-how-to-train)应用。
-1. 将应用[发布](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)到生产环境。
+1. 将应用[发布](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)到生产环境。 
 
 ### <a name="why-use-entities"></a>为何使用实体
 LUIS 实体可让机器人智能理解不同于标准意向的某些事物或事件。 这样，你便可以从用户收集额外的信息，让机器人以更高的智能做出响应，或者在某些情况下跳过它向用户提出的有关该信息的问题。 除了“预订航班”、“取消”和“None”这三个 LUIS 意向的定义，FlightBooking.json 文件还包含一组实体，例如“From.Airport”和“To.Airport”。 LUIS 可以通过这些实体检测用户在发出新的旅行预订请求时其原始输入中包含的其他信息并将其返回。
@@ -82,10 +82,10 @@ LUIS 实体可让机器人智能理解不同于标准意向的某些事物或事
 ### <a name="retrieve-application-information-from-the-luisai-portal"></a>从 LUIS.ai 门户检索应用程序信息
 设置文件（`appsettings.json` 或 `.env`）将所有服务引用合并到一个位置。 检索的信息将添加到下一部分的该文件。 
 1. 在 [luis.ai](https://www.luis.ai) 中选择已发布的 LUIS 应用。
-1. 打开已发布的 LUIS 应用后，选择“管理”选项卡。![管理 LUIS 应用](./media/how-to-luis/manage-luis-app.png)
-1. 在左侧选择“应用程序信息”选项卡，记录“应用程序 ID”(<YOUR_APP_ID>) 的显示值。
-1. 在左侧选择“密钥和终结点”选项卡，记录“创作密钥”(<YOUR_AUTHORING_KEY>) 的显示值。
-1. 向下滚动到页尾，记录“区域”(<YOUR_REGION>) 的显示值。
+1. 打开已发布的 LUIS 应用后，选择“管理”选项卡。  ![管理 LUIS 应用](./media/how-to-luis/manage-luis-app.png)
+1. 在左侧选择“应用程序信息”选项卡，记录“应用程序 ID”(<YOUR_APP_ID>) 的显示值。  
+1. 在左侧选择“密钥和终结点”选项卡，记录“创作密钥”(<YOUR_AUTHORING_KEY>) 的显示值。  
+1. 向下滚动到页尾，记录“区域”(<YOUR_REGION>) 的显示值。 
 
 ### <a name="update-the-settings-file"></a>更新设置文件
 

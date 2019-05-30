@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 05/02/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: d2536d244d12b8d9785fa42eddede83bd2a456ad
-ms.sourcegitcommit: a4181f35dbe6a8b107eea28122372f524e19880a
+ms.openlocfilehash: 966e1b6e884486ddc3d57bea0a52ee07ac982346
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/02/2019
-ms.locfileid: "65030200"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66214315"
 ---
 ## <a name="use-direct-line-speech-in-your-bot"></a>在机器人中使用 Direct Line 语音 
 
@@ -35,7 +35,7 @@ Direct Line 语音使用 Bot Framework 的一项新的基于 WebSocket 的流式
 
 5.  接受任何提示，完成将包添加到项目的操作。
 
-## <a name="option-1-update-your-net-core-bot-code-if-your-bot-has-a-botcontrollercs"></a>选项 1：如果机器人有 BotController.cs，请更新 .NET Core 机器人代码
+## <a name="option-1-update-your-net-core-bot-code-if-your-bot-has-a-botcontrollercs"></a>选项 1：如果机器人有 BotController.cs，请更新 .NET Core 机器人代码 
 在 Azure 门户中使用某个模板（例如 EchoBot）创建新的机器人时，会得到一个包含 ASP.NET MVC 控制器的机器人，该控制器会公开单个 POST 终结点。 以下说明介绍了如何对其进行扩展，使之还公开一个终结点，以便接受属于 GET 终结点的 WebSocket 流式处理终结点。
 1.  打开解决方案中 Controllers 文件夹下的 BotController.cs。
 
@@ -92,7 +92,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env)
 
 8.  机器人代码的余下部分保持不变！
 
-## <a name="option-2-update-your-net-core-bot-code-if-your-bot-uses-addbot-and-usebotframework-instead-of-a-botcontroller"></a>选项 2：如果机器人使用 AddBot 和 UseBotFramework 而不是 BotController，请更新 .NET Core 机器人代码
+## <a name="option-2-update-your-net-core-bot-code-if-your-bot-uses-addbot-and-usebotframework-instead-of-a-botcontroller"></a>选项 2：如果机器人使用 AddBot 和 UseBotFramework 而不是 BotController，请更新 .NET Core 机器人代码 
 
 如果在使用 Bot Builder SDK 版本 4.3.2 之前使用了 v4 版，则机器人可能不包含 BotController，但会使用 Startup.cs 文件中的 AddBot() 和 UseBotFramework() 方法来公开 POST 终结点（机器人在其中接收消息）。 若要公开新的流式处理终结点，需添加 BotController 并删除 AddBot() 和 UseBotFramework() 方法。 以下说明详细介绍了需要进行的更改。
 
