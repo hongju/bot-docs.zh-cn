@@ -1,21 +1,21 @@
 ---
 title: 将现有的 v3 JavaScript 机器人迁移到新的 v4 项目 | Microsoft Docs
 description: 使用新项目将现有的 v3 JavaScript 机器人迁移到 v4 SDK。
-keywords: JavaScript, 机器人迁移, formflow, 对话, v3 机器人
+keywords: JavaScript, 机器人迁移, 对话, v3 机器人
 author: JonathanFingold
 ms.author: v-jofing
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/13/2019
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3692c723bf2ac4d2275176bb0f7c5f8103225808
-ms.sourcegitcommit: 178140eb060d71803f1c6357dd5afebd7f44fe1d
+ms.openlocfilehash: 591f58e1cefca576e2e3e4a486ecc6fbe0a6b0e4
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/17/2019
-ms.locfileid: "65856656"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215603"
 ---
 # <a name="migrate-a-sdk-v3-javascript-bot-to-v4"></a>将 SDK v3 Javascript 机器人迁移到 v4
 
@@ -34,7 +34,7 @@ Bot Framework SDK v4 与 SDK v3 基于相同的基础 REST API。 但是，SDK v
 
 - 通过状态管理对象和属性访问器管理状态。
 - 我们处理轮次的方式已变化，换句话说，机器人接收和响应来自用户通道的传入活动的方式已变化。
-- v4 不使用 `session` 对象，而是使用“轮次上下文”对象，后者包含有关传入活动的信息，可以用来将响应活动发送回去。
+- v4 不使用 `session` 对象，而是使用“轮次上下文”  对象，后者包含有关传入活动的信息，可以用来将响应活动发送回去。
 - 采用新的对话库，该库与 v3 中的库有很大的不同。 需要使用组件和瀑布对话，将旧对话转换为新的对话系统。
 
 <!-- TODO
@@ -107,7 +107,7 @@ v4 模板为应用入口点创建 **index.js** 文件，为特定于机器人的
     };
     ```
 
-    在 v4 中，我们使用机器人适配器将传入活动路由到机器人。 可以在某个轮次完成之前，通过适配器捕获并响应错误。 在这里，我们会在发生应用程序错误的情况下清除聊天状态，以便重置所有对话，防止机器人处于损坏的聊天状态下。
+    在 v4 中，我们使用机器人适配器  将传入活动路由到机器人。 可以在某个轮次完成之前，通过适配器捕获并响应错误。 在这里，我们会在发生应用程序错误的情况下清除聊天状态，以便重置所有对话，防止机器人处于损坏的聊天状态下。
 
 1. 将用于创建机器人的模板代码替换为以下代码。
 
@@ -167,13 +167,13 @@ module.exports = {
 |:---|:---|
 | **./dialogs/flights.js** | 此文件将包含 `hotels` 对话的已迁移逻辑。 |
 | **./dialogs/hotels.js** | 此文件将包含 `flights` 对话的已迁移逻辑。 |
-| **./dialogs/main.js** | 此文件将包含机器人的已迁移逻辑，并将替代根对话。 |
+| **./dialogs/main.js** | 此文件将包含机器人的已迁移逻辑，并将替代根  对话。 |
 
 我们尚未迁移支持对话。 有关如何在 v4 中实现帮助对话的示例，请参阅[处理用户中断](../bot-builder-howto-handle-user-interrupt.md?tabs=javascript)。
 
 ### <a name="implement-the-main-dialog"></a>实现主对话
 
-在 v3 中，所有机器人都是在对话系统的基础上构建的。 在 v4 中，机器人逻辑和对话逻辑现在是分开的。 我们利用了 v3 机器人中根对话的内容，创建了一个 `MainDialog` 类来代替它。
+在 v3 中，所有机器人都是在对话系统的基础上构建的。 在 v4 中，机器人逻辑和对话逻辑现在是分开的。 我们利用了 v3 机器人中  根对话的内容，创建了一个 `MainDialog` 类来代替它。
 
 编辑 **./dialogs/main.js**。
 
@@ -223,7 +223,7 @@ module.exports = {
 
     这样就声明了可供主对话直接引用的其他对话和提示。
 
-    - 主瀑布对话，包含此对话的步骤。 组件对话在启动时会启动其初始对话。
+    - 主瀑布对话，包含此对话的步骤。 组件对话在启动时会启动其初始对话。 
     - 选项提示，用于询问用户要执行哪项任务。 我们创建了带验证程序的选项提示。
     - 两个子对话：航班和酒店。
 
@@ -250,7 +250,7 @@ module.exports = {
 
     在 v4 中，机器人与对话系统交互的方式是先创建对话上下文，然后调用 `continueDialog`。 如果有活动对话，则会将控制传递给该对话，否则此调用会直接返回。 结果为 `empty` 表明没有活动的对话，因此我们在这里再次启动主对话。
 
-    `accessor` 参数传入对话状态属性的访问器。 对话堆栈的状态存储在此属性中。 若要详细了解如何在 v4 中使用状态和对话，请分别参阅[管理状态](../bot-builder-concept-state.md)和[对话库](../bot-builder-concept-dialog.md)。
+    `accessor` 参数传入对话状态属性的访问器。 对话堆栈的状态  存储在此属性中。 若要详细了解如何在 v4 中使用状态和对话，请分别参阅[管理状态](../bot-builder-concept-state.md)和[对话库](../bot-builder-concept-dialog.md)。
 
 1. 向类添加主对话的瀑布步骤以及选项提示的验证程序。
 

@@ -6,14 +6,14 @@ ms.author: darrenj
 manager: kamrani
 ms.topic: article
 ms.service: bot-service
-ms.date: 13/12/2018
+ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dcef01d8ba07d44aebaeeeecb5637af691caccb9
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f4b8243580ee678390177881b136a9016be4a786
+ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997074"
+ms.lasthandoff: 05/24/2019
+ms.locfileid: "66215465"
 ---
 ## <a name="custom-assistant-overview"></a>自定义助手概述
 
@@ -80,7 +80,7 @@ ms.locfileid: "49997074"
 
 - 汽车行业：支持语音的个人助手在集成到汽车中以后，可以为最终用户提供执行传统汽车操作（例如，导航、收音机）的功能；另外还有专注工作效率的方案，例如在迟到的情况下，移动会议就很有用；可以将项目添加到任务列表中；可以提供前摄性体验，让汽车根据事件来建议要完成的任务，例如启动引擎、回家或启用巡航控制。 自适应卡片在通过一键通或唤醒词交互执行的机头单元和语音集成中渲染。
 
-- 酒店：支持语音的个人助手在集成到酒店房间设备以后，可以提供一大系列的酒店关注的方案（例如，续房、请求延迟退房、房间服务），包括接待功能，以及查找附近酒店和名胜的功能。 允许选择性地链接到生产帐户为你带来更多个性化体验，例如建议的闹钟服务、天气警报、了解住宿时间模式。 由目前聊天室中的最新电视个性化体验演变而来。
+- 酒店：支持语音的个人助手在集成到酒店房间设备以后，可以提供一大系列专注酒店的方案（例如，续房、请求延迟退房、房间服务），包括接待功能，以及查找附近酒店和名胜的功能。 允许选择性地链接到生产帐户为你带来更多个性化体验，例如建议的闹钟服务、天气警报、了解住宿时间模式。 由目前聊天室中的最新电视个性化体验演变而来。
 
 - 企业：支持语音和文本的带品牌员工助手体验集成到企业设备和现有聊天画布（例如，Teams、WebChat、Slack）中，使员工可以管理其日历、查找可用的会议室、查找具有特定技能的人员，或者执行与 HR 相关的操作。 
 
