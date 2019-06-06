@@ -18,6 +18,7 @@
 ## [管理状态](v4sdk/bot-builder-concept-state.md)
 ## [对话框库](v4sdk/bot-builder-concept-dialog.md)
 ## [中间件](v4sdk/bot-builder-concept-middleware.md)
+## [用户身份验证](v4sdk/bot-builder-concept-authentication.md)
 ## [管理机器人资源](v4sdk/bot-file-basics.md)
 <!-- [Language understanding](v4sdk/bot-builder-concept-luis.md) -->
 ## [机器人服务模板](bot-service-concept-templates.md)
