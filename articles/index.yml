@@ -31,12 +31,17 @@ sections:
         className: cardsM
         columns: 3
         items:
-          - href: 'https://docs.microsoft.com/en-us/azure/bot-service/bot-service-overview-introduction'
+          - href: 'https://docs.microsoft.com/azure/bot-service/what-is-new'
+            html: <p>Azure 机器人服务中的新增功能。</p>
+            image:
+              src: media/index/i_guidelines.png
+            title: 新增功能
+          - href: 'https://docs.microsoft.com/azure/bot-service/bot-service-overview-introduction'
             html: <p>了解 Azure 机器人服务。</p>
             image:
               src: media/index/i_overview.png
             title: 什么是 Azure 机器人服务？
-          - href: 'https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-basics'
+          - href: 'https://docs.microsoft.com/azure/bot-service/bot-builder-basics'
             html: <p>了解机器人的工作原理。</p>
             image:
               src: media/index/i_guidelines.png
