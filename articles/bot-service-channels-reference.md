@@ -10,10 +10,10 @@ ms.service: bot-service
 ms.subservice: tools
 ms.date: 03/01/2019
 ms.openlocfilehash: 28f284e4d69cbef7a1741d298b3ae9e6e127e9dd
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.sourcegitcommit: 710d279898db587abb1e81d13628177a4e182293
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/12/2019
+ms.lasthandoff: 06/11/2019
 ms.locfileid: "59541083"
 ---
 # <a name="categorized-activities-by-channel"></a>按通道分类的活动
@@ -71,7 +71,7 @@ Event.*                    | :white_large_square: | :white_check_mark: | :white_
 Event.CreateConversation   | :white_large_square: | :white_large_square: | :white_large_square:   | :white_large_square: | :white_large_square:  | :white_large_square: | :white_large_square: | :white_large_square:  | :white_large_square:  | :white_large_square:  | :white_large_square:           | :white_large_square:     | :white_large_square:  
 Event.ContinueConversation | :white_large_square: | :white_large_square: | :white_large_square:   | :white_large_square: | :white_large_square:  | :white_large_square: | :white_large_square: | :white_large_square:  | :white_large_square:  | :white_large_square:  | :white_large_square:           | :white_large_square:     | :white_large_square:  
 
-- “事件活动”是 Direct Line（又称为“网上聊天”）中的一种扩展性机制。
+- “事件活动”是 Direct Line（又称为“网上聊天”  ）中的一种扩展性机制。
 - 同时拥有客户端和服务器的应用程序可以选择借助使用此事件活动的服务来以隧道方式传输自己的事件。
 
 
