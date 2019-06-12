@@ -10,14 +10,17 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: de497fa5ad694081258486dd5c6e9fd37b107879
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 2c8284bf1a78c4f8dd9fb5cc3dcb346ac99ad936
+ms.sourcegitcommit: 710d279898db587abb1e81d13628177a4e182293
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215559"
+ms.lasthandoff: 06/06/2019
+ms.locfileid: "66751301"
 ---
 # <a name="whats-new-in-bot-framework"></a>Bot Framework 中的新增功能
+
+[!INCLUDE[applies-to](includes/applies-to.md)]
+
 Bot Framework SDK v4 是一个[开源 SDK][1a]，可让开发人员使用其偏好的编程语言来建模和生成复杂的聊天。
 
 本文汇总了 Bot Framework 与 Azure 机器人服务中的重要新功能和改进。
