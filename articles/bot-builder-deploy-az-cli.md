@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c17e830c61036a6551fa7f3dbab79f83bda38123
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: afb27ad20ec8585c2ca30810a9be6858adc17187
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66214309"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693516"
 ---
 # <a name="deploy-your-bot"></a>部署机器人
 
@@ -158,6 +158,8 @@ az bot prepare-deploy --code-dir "." --lang Typescript
 > 在压缩项目文件之前，请确保在正确的文件夹中进行压缩。  
 > - 对于 C# 机器人，正确的文件夹是包含 .csproj 文件的文件夹。 
 > - 对于 JS 机器人，正确的文件夹是包含 app.js 或 index.js 文件的文件夹。 
+>
+> **在该文件夹中**选择所有文件并将其压缩，然后运行此命令，此时仍在该文件夹中。
 >
 > 如果根文件夹位置不正确，**机器人将无法在 Azure 门户中运行**。
 

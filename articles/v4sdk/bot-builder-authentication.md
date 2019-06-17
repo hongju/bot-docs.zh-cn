@@ -7,14 +7,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 05/23/2019
+ms.date: 05/31/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f41409b534b997d486a94dc206ecc85bf6f0ca9e
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 89df62255c9ea6fbf55b2c7aed2d6f334d69c571
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215554"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693695"
 ---
 <!-- Related TODO:
 - Check code in [Web Chat channel](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0)
@@ -54,6 +54,8 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 - 更新了 C# 和 Node.js Bot Framework SDK，使之可检索令牌、创建 OAuthCard 并处理 TokenResponse 事件。
 - 提供用于向 Azure AD 进行身份验证的机器人的开发方法示例。
 
+若要详细了解 Azure 机器人服务如何处理身份验证，请参阅 [User authentication within a conversation](bot-builder-concept-authentication.md)（聊天中的用户身份验证）。
+
 你可以根据本文中的步骤进行推断，将此类功能添加到现有机器人。 这些示例机器人演示了新的身份验证功能。
 
 > [!NOTE]
@@ -61,11 +63,13 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
 ### <a name="about-this-sample"></a>关于此示例
 
-需要创建一个 Azure 机器人资源，并需要创建新的 Azure AD（v1 或 v2）应用程序来让机器人访问 Office 365。 该机器人资源将注册机器人的凭据；即使在本地运行机器人代码，也需要使用这些凭据来测试身份验证功能。
+需要创建 Azure 机器人资源，并且需要：
+
+1. 一项 Azure AD 应用注册，以便机器人能够访问外部资源，例如 Office 365。
+1. 一项单独的机器人资源。 该机器人资源将注册机器人的凭据；即使在本地运行机器人代码，也需要使用这些凭据来测试身份验证功能。
 
 > [!IMPORTANT]
-> 每当在 Azure 中注册机器人时，系统都会为它分配一个 Azure AD 应用。 但是，此应用为通道到机器人的访问提供保护。
-对于你希望机器人能够代表用户验证的每个应用程序，还需要额外分配一个 AAD 应用。
+> 每当在 Azure 中注册机器人时，系统都会为它分配一个 Azure AD 应用。 但是，此应用为通道到机器人的访问提供保护。 对于你希望机器人能够代表用户验证的每个应用程序，还需要额外分配一个 AAD 应用。
 
 本文将会介绍一个使用 Azure AD v1 或 v2 令牌连接到 Microsoft Graph 的示例机器人。 此外，介绍如何创建和注册关联的 Azure AD 应用。 在此过程中，你将使用 [Microsoft/BotBuilder-Samples](https://github.com/Microsoft/BotBuilder-Samples) GitHub 存储库中的代码。 本文将介绍这些过程。
 
@@ -94,7 +98,7 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
 ## <a name="prerequisites"></a>先决条件
 
-- 了解[机器人基础知识][concept-basics]、[管理状态][concept-state]、[对话库][concept-dialogs]、如何[实现顺序聊天流][simple-dialog]、如何[使用对话提示收集用户输入][dialog-prompts]，以及如何[重复使用对话][component-dialogs]。
+- 了解[机器人基础知识][concept-basics]、[管理状态][concept-state]、[对话库][concept-dialogs]、如何[实现顺序聊天流][simple-dialog]，以及如何[重复使用对话][component-dialogs]。
 - 具备 Azure 和 OAuth 2.0 开发方面的知识。
 - Visual Studio 2017 或更高版本、Node.js、NPM 和 Git。
 - 以下示例之一。
@@ -107,6 +111,8 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 ## <a name="create-your-bot-resource-on-azure"></a>在 Azure 中创建机器人资源
 
 使用 [Azure 门户](https://portal.azure.com/)创建“机器人通道注册”  。
+
+记录机器人的应用 ID 和密码。 若要收集该信息，请参阅[管理机器人](../bot-service-manage-overview.md)。
 
 ## <a name="create-and-register-an-azure-ad-application"></a>创建并注册 Azure AD 应用程序
 
@@ -122,86 +128,54 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 > [!TIP]
 > 需要在你对其拥有管理权限的租户中创建并注册 Azure AD 应用程序。
 
-# <a name="azure-ad-v1tabaadv1"></a>[Azure AD v1](#tab/aadv1)
-
 1. 在 Azure 门户中打开 [Azure Active Directory][azure-aad-blade] 面板。
     如果进入了错误的租户，请单击“切换目录”切换到正确的租户。  （有关创建租户的说明，请参阅[访问门户并创建租户](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-access-create-new-tenant)。）
 1. 打开“应用注册”面板。 
-1. 在“应用注册”面板中，单击“新建应用程序注册”   。
+1. 在“应用注册”面板中，单击“新建注册”   。
 1. 填写必填字段并创建应用注册。
 
    1. 命名应用程序。
-   1. 将“应用程序类型”设置为“Web 应用/API”   。
-   1. 将“登录 URL”设置为 `https://token.botframework.com/.auth/web/redirect`  。
-   1. 单击“创建”。 
+   1. 为应用程序选择“支持的帐户类型”。  （这些选项中的任何一个都可以用于此示例。）
+   1. 对于“重定向 URI” 
+       1. 选择“Web”。 
+       1. 将 URL 设置为 `https://token.botframework.com/.auth/web/redirect`。
+   1. 单击“注册”  。
 
-      - 创建完成后，它会显示在“已注册的应用”窗格中  。
-      - 记录“应用程序 ID”值  。 稍后在将 Azure AD 应用程序注册到机器人时，需将此值用作“客户端 ID”。 
+      - 创建应用以后，Azure 会显示应用的“概览”页。 
+      - 记录“应用程序(客户端) ID”值  。 稍后在将 Azure AD 应用程序注册到机器人时，需将此值用作“客户端 ID”。 
+      - 另请记录“目录(租户) ID”值  。 也可以用它将此应用程序注册到机器人。
 
-1. 单击“设置”，配置应用程序  。
-1. 单击“密钥”打开“密钥”面板   。
+1. 在导航窗格中单击“证书和机密”，为应用程序创建机密  。
 
-   1. 在“密码”下，创建 `BotLogin` 密钥  。
-   1. 将“持续时间”设置为“永不过期”   。
-   1. 单击“保存”并记录密钥值  。 稍后在将 Azure AD 应用程序注册到机器人时，需将此值用作“客户端机密”。 
-   1. 关闭“密钥”面板  。
-
-1. 单击“所需权限”打开“所需权限”面板   。
-
+   1. 在“客户端机密”下，单击“新建客户端机密”。  
+   1. 添加一项说明，用于将此机密与可能需要为此应用创建的其他机密（例如 `bot login`）区别开来。
+   1. 将“过期”设置为“永不”。  
    1. 单击“添加”  。
-   1. 单击“选择 API”，然后选择“Microsoft Graph”并单击“选择”    。
-   1. 单击“选择权限”  。 选择应用程序要使用的委托权限。
+   1. 在离开此页面之前，记录该机密。 稍后在将 Azure AD 应用程序注册到机器人时，需将此值用作“客户端机密”。 
+
+1. 在导航窗格中，单击“API 权限”打开“API 权限”面板   。 最佳做法是为应用显式设置 API 权限。
+
+   1. 单击“添加权限”，显示“请求 API 权限”窗格。  
+   1. 对于此示例，请选择“Microsoft API”和“Microsoft Graph”。  
+   1. 选择“委托的权限”，确保选中所需权限。  本示例需要这些权限。
 
       > [!NOTE]
-      > 标记为“需要管理员”的任何权限都需要用户和租户管理员登录，因此对于机器人来说，请尽量避免这些操作  。
+      > 标记为“需要管理员同意”的任何权限都需要用户和租户管理员登录，因此对于机器人来说，请尽量避免这些操作  。
 
-      选择以下 Microsoft Graph 委托权限：
-      - 读取所有用户的基本配置文件
-      - 读取用户邮件
-      - 以用户身份发送邮件
-      - 登录并读取用户配置文件
-      - 查看用户的基本配置文件
-      - 查看用户的电子邮件地址
+      - **openid**
+      - **profile**
+      - **Mail.Read**
+      - **Mail.Send**
+      - **User.Read**
+      - **User.ReadBasic.All**
 
-   1. 依次单击“选择”、“完成”   。
-   1. 关闭“所需权限”面板  。
+   1. 单击“添加权限”。  （用户首次通过机器人访问此应用时，需授予许可。）
 
-现在已完成 Azure AD v1 应用程序的配置。
-
-# <a name="azure-ad-v2tabaadv2"></a>[Azure AD v2](#tab/aadv2)
-
-1. 转到 [Microsoft 应用程序注册门户](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)。
-1. 单击“添加应用” 
-1. 为 Azure AD 应用命名，然后单击“创建”  。
-
-    记录“应用程序 ID”GUID  。 稍后需要提供该值作为连接设置的客户端 ID。
-
-1. 在“应用程序密码”下，单击“生成新密码”   。
-
-    记录弹出窗口中的密码。 稍后需要提供该值作为连接设置的客户端密码。
-
-1. 在“平台”下，单击“添加平台”   。
-1. 在“添加平台”弹出窗口中，单击“Web”   。
-
-    1. 让“允许隐式流”保持选中状态  。
-    1. 对于“重定向 URL”，输入 `https://token.botframework.com/.auth/web/redirect`  。
-    1. 让“注销 URL”留空  。
-
-1. 在“Microsoft Graph 权限”下，可以添加其他委托权限  。
-
-    - 对于本文，请添加 Mail.Read、Mail.Send、openid、profile、User.Read 和 User.ReadBasic.All 权限       。
-      连接设置的作用域需要同时具有 openid 和 Azure AD Graph 中的资源（如 Mail.Read）   。
-    - 记录所选的权限。 稍后需要提供这些权限作为连接设置的作用域。
-
-1. 单击页面底部的“保存”  。
-
-现在已完成 Azure AD v2 应用程序的配置。
-
----
+现在已完成 Azure AD 应用程序的配置。
 
 ### <a name="register-your-azure-ad-application-with-your-bot"></a>在机器人中注册 Azure AD 应用程序
 
-下一步是在机器人中注册创建的 Azure AD 应用程序。
+下一步是在机器人中注册刚创建的 Azure AD 应用程序。
 
 # <a name="azure-ad-v1tabaadv1"></a>[Azure AD v1](#tab/aadv1)
 
@@ -212,13 +186,13 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
     1. 对于“名称”，输入连接的名称  。 稍后将在机器人代码中使用此名称。
     1. 对于“服务提供程序”，选择“Azure Active Directory”   。 选择该选项后，将显示特定于 Azure AD 的字段。
-    1. 对于“客户端 ID”，输入为 Azure AD v1 应用程序记录的应用程序 ID  。
-    1. 对于“客户端密码”，输入为应用程序的  `BotLogin` 密钥记录的密钥。
+    1. 对于“客户端 ID”，请输入为 Azure AD v1 应用程序记录的应用程序（客户端）ID  。
+    1. 对于“客户端机密”，请输入所创建的机密，以便为机器人授予访问 Azure AD 应用的权限。 
     1. 对于“授权类型”，输入 `authorization_code`  。
     1. 对于“登录 URL”，输入 `https://login.microsoftonline.com`  。
-    1. 对于“租户 ID”，输入 Azure Active Directory 的租户 ID，例如 `microsoft.com` 或 `common`  。
+    1. 对于“租户 ID”，请输入此前为 Azure AD 应用记录的目录（租户）ID。 
 
-       此租户将与可进行身份验证的用户相关联。 要允许任何人通过机器人对自己进行身份验证，请使用 `common` 租户。
+       此租户将与可进行身份验证的用户相关联。
 
     1. 对于“资源 URL”  ，输入 `https://graph.microsoft.com/`。
     1. 将“作用域”留空  。
@@ -237,11 +211,11 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
     1. 对于“名称”，输入连接的名称  。 在机器人代码中会用到。
     1. 对于“服务提供程序”，选择“Azure Active Directory v2”   。 选择该选项后，将显示特定于 Azure AD 的字段。
-    1. 对于“客户端 ID”，输入来自应用程序注册的 Azure AD v2 应用程序 ID  。
-    1. 对于“客户端密码”，输入来自应用程序注册的 Azure AD v2 应用程序密码  。
-    1. 对于“租户 ID”，输入 Azure Active Directory 的租户 ID，例如 `microsoft.com` 或 `common`  。
+    1. 对于“客户端 ID”，请输入为 Azure AD v1 应用程序记录的应用程序（客户端）ID  。
+    1. 对于“客户端机密”，请输入所创建的机密，以便为机器人授予访问 Azure AD 应用的权限。 
+    1. 对于“租户 ID”，请输入此前为 Azure AD 应用记录的目录（租户）ID。 
 
-        此租户将与可进行身份验证的用户相关联。 要允许任何人通过机器人对自己进行身份验证，请使用 `common` 租户。
+       此租户将与可进行身份验证的用户相关联。
 
     1. 对于“作用域”，输入从应用程序注册中选择的权限的名称：`Mail.Read Mail.Send openid profile User.Read User.ReadBasic.All`  。
 
@@ -267,18 +241,13 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
 ## <a name="prepare-the-bot-code"></a>准备机器人代码
 
-需要机器人的应用 ID 和密码才能完成此过程。 若要检索机器人的应用 ID 和密码，请执行以下操作：
-
-1. 在 [Azure 门户][]中，导航到在其中创建了通道注册机器人的资源组。
-1. 打开“部署”窗格，然后打开机器人的部署。 
-1. 打开“输入”窗格，然后复制机器人的  **appId** 和 **appSecret** 的值。
+需要机器人的应用 ID 和密码才能完成此过程。
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 <!-- TODO: Add guidance (once we have it) on how not to hard-code IDs and ABS auth. -->
 
-1. 从要使用的 github 存储库进行克隆：[**机器人身份验证**][cs-auth-sample]或[**机器人身份验证 MSGraph**][cs-msgraph-sample]。
-1. 按照 GitHub 自述文件页上的说明操作，此页介绍了如何运行该特定的机器人。 <!--TODO: Can we remove this step and still have the instructions make sense? What is the minimum we need to say in its place? -->
+1. 从 github 存储库克隆要使用的示例：[**机器人身份验证**][cs-auth-sample]或[**机器人身份验证 MSGraph**][cs-msgraph-sample]。
 1. 更新 **appsettings.json**：
 
     - 将 `ConnectionName` 设置为要添加到机器人的 OAuth 连接设置的名称。
@@ -286,12 +255,11 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
       根据机器人机密中的字符，可能需要 XML 转义密码。 例如，任何连字符 (&) 都需要编码为 `&amp;`。
 
-[!code-json[appsettings](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/appsettings.json)]
+    [!code-json[appsettings](~/../botbuilder-samples/samples/csharp_dotnetcore/18.bot-authentication/appsettings.json)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 1. 从要使用的 github 存储库进行克隆：[**机器人身份验证**][js-auth-sample]或[**机器人身份验证 MSGraph**][js-msgraph-sample]。
-1. 按照 GitHub 自述文件页上的说明操作，此页介绍了如何运行该特定的机器人。 <!--TODO: Can we remove this step and still have the instructions make sense? What is the minimum we need to say in its place? -->
 1. 更新 **.env**：
 
     - 将 `connectionName` 设置为要添加到机器人的 OAuth 连接设置的名称。
@@ -303,10 +271,7 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
 ---
 
-如果不知道如何获取 **Microsoft 应用 ID** 值和 **Microsoft 应用密码**值，可以执行下述操作之一：
-
-- [根据此处的说明](../bot-service-quickstart-registration.md#bot-channels-registration-password)创建新密码
-- [根据此处的说明](https://blog.botframework.com/2018/07/03/find-your-azure-bots-appid-and-appsecret)，从部署中检索通过“机器人通道注册”  预配的 **Microsoft 应用 ID** 和 **Microsoft 应用密码**
+如果不知道如何获取 **Microsoft 应用 ID** 值和 **Microsoft 应用密码**值，可以[按照此处的说明](../bot-service-quickstart-registration.md#bot-channels-registration-password)创建新密码
 
 > [!NOTE]
 > 现在即可将此机器人代码发布到 Azure 订阅（右键单击该项目并选择“发布”），但本文不需要这样做  。 你需要设置一个发布配置，该配置使用在 Azure 门户中配置机器人时使用的应用程序和托管计划。
@@ -318,6 +283,9 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 1. 启动模拟器，连接到机器人，然后发送消息。
 
     - 在连接到机器人时，需提供机器人的应用 ID 和密码。
+
+        - 如果以前需要对机器人代码中的密码进行 XML 转义，则还需在此处进行该操作。
+
     - 键入 `help` 查看机器人的可用命令列表，然后测试身份验证功能。
     - 登录后，在注销前都无需再次提供凭据。
     - 要注销并取消身份验证，请键入 `logout`。
@@ -445,9 +413,9 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
 <!-- Footnote-style links -->
 
-[Azure 门户]: https://ms.portal.azure.com
+[Azure portal]: https://ms.portal.azure.com
 [azure-aad-blade]: https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/Overview
-[aad-registration-blade]: https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredApps
+[aad-registration-blade]: https://ms.portal.azure.com/#blade/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/RegisteredAppsPreview
 
 [concept-basics]: bot-builder-basics.md
 [concept-state]: bot-builder-concept-state.md

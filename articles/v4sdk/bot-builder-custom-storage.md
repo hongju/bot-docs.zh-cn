@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 9109808c786e3992d8bae6cd68b4272201a9b4f8
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 2b77b19a3b2d0fbd8e545e563f154124af894ffa
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215452"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693735"
 ---
 # <a name="implement-custom-storage-for-your-bot"></a>为机器人实现自定义存储
 
@@ -93,11 +93,13 @@ Bot Framework 包含默认的实现，此实现基本上能够满足许多应用
 
 最终的接口如下：
 
-**IStore.cs** [!code-csharp[IStore](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/IStore.cs?range=14-19)]
+**IStore.cs**  
+[!code-csharp[IStore](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/IStore.cs?range=14-19)]
 
 针对 Azure Blob 存储实现此接口的过程非常直接。
 
-**BlobStore.cs** [!code-csharp[BlobStore](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/BlobStore.cs?range=18-101)]
+**BlobStore.cs**  
+[!code-csharp[BlobStore](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/BlobStore.cs?range=18-101)]
 
 此处可以看到，Azure Blob 存储正在执行实际工作。 请注意特定异常的捕获，以及如何根据调用代码的预期来转换结果。 即，在执行 Load 时，我们希望“找不到”异常返回 null；在执行 Save 时，“不满足前提条件”异常返回布尔值。
 

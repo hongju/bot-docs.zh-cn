@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 844e3d65794e814dc8a1d16e2b7cf0e7a0e75fab
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: fd74dedcb048a7872a518618f8a9382e0585dbb5
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215399"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693676"
 ---
 # <a name="add-media-to-messages"></a>向消息添加媒体
 
@@ -39,19 +39,23 @@ ms.locfileid: "66215399"
 
 若要创建回复消息，请定义文本，然后设置附件。 将附件分配到回复的操作对于每个附加类型来说是相同的，但不同附件的设置和定义方法是不同的，如以下代码片段所示。 以下代码为内联附件设置回复：
 
-**Bots/AttachmentsBot.cs** [!code-csharp[inline attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=108-109)]
+**Bots/AttachmentsBot.cs**  
+[!code-csharp[inline attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=108-109)]
 
 接下来，我们查看附件的类型。 首先是内联附件：
 
-**Bots/AttachmentsBot.cs** [!code-csharp[inline attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=165-176)]
+**Bots/AttachmentsBot.cs**  
+[!code-csharp[inline attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=165-176)]
 
 然后是上传的附件：
 
-**Bots/AttachmentsBot.cs** [!code-csharp[uploaded attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=179-215)]
+**Bots/AttachmentsBot.cs**  
+[!code-csharp[uploaded attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=179-215)]
 
 最后是 Internet 附件：
 
-**Bots/AttachmentsBot.cs** [!code-csharp[online attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=218-227)]
+**Bots/AttachmentsBot.cs**  
+[!code-csharp[online attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=218-227)]
 
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
@@ -60,23 +64,28 @@ ms.locfileid: "66215399"
 
 若要使用附件，请在机器人中包括以下库：
 
-**bots/attachmentsBot.js** [!code-javascript[attachments libraries](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=4)]
+**bots/attachmentsBot.js**  
+[!code-javascript[attachments libraries](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=4)]
 
 若要创建回复消息，请定义文本，然后设置附件。 将附件分配到回复的操作对于每个附加类型来说是相同的，但不同附件的设置和定义方法是不同的，如以下代码片段所示。 以下代码为内联附件设置回复：
 
-**bots/attachmentsBot.js** [!code-javascript[attachments](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=119,128-129)]
+**bots/attachmentsBot.js**  
+[!code-javascript[attachments](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=119,128-129)]
 
 若要向用户发送单个内容，如图片或视频，可以采用多种不同的方式发送媒体。 首先，用作内联附件：
 
-**bots/attachmentsBot.js** [!code-javascript[inline attachments](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=170-179)]
+**bots/attachmentsBot.js**  
+[!code-javascript[inline attachments](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=170-179)]
 
 然后是上传的附件：
 
-**bots/attachmentsBot.js** [!code-javascript[uploaded attachments](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=197-215)]
+**bots/attachmentsBot.js**  
+[!code-javascript[uploaded attachments](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=197-215)]
 
 最后是包含在 URL 中的 Internet 附件：
 
-**bots/attachmentsBot.js** [!code-javascript[internet attachments](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=184-191)]
+**bots/attachmentsBot.js**  
+[!code-javascript[internet attachments](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=184-191)]
 
 ---
 
@@ -92,7 +101,8 @@ ms.locfileid: "66215399"
 
 此处显示的源代码基于[处理附件](https://aka.ms/bot-attachments-sample-code)示例。
 
-**Bots/AttachmentsBot.cs** [!code-csharp[Hero card](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=39-62)]
+**Bots/AttachmentsBot.cs**  
+[!code-csharp[Hero card](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=39-62)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -100,7 +110,8 @@ ms.locfileid: "66215399"
 
 此处显示的源代码基于 [JS 处理附件](https://aka.ms/bot-attachments-sample-code-js)示例。
 
-**bots/attachmentsBot.js** [!code-javascript[hero card](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=148-164)]
+**bots/attachmentsBot.js**  
+[!code-javascript[hero card](~/../botbuilder-samples/samples/javascript_nodejs/15.handling-attachments/bots/attachmentsBot.js?range=148-164)]
 
 ---
 
@@ -130,17 +141,21 @@ ms.locfileid: "66215399"
 
 如需所有可用卡片的示例，请参阅 [C# 卡片示例](https://aka.ms/bot-cards-sample-code)。
 
-**Cards.cs** [!code-csharp[hero cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Cards.cs?range=27-40)]
+**Cards.cs**  
+[!code-csharp[hero cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Cards.cs?range=27-40)]
 
-**Cards.cs** [!code-csharp[cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Cards.cs?range=91-100)]
+**Cards.cs**  
+[!code-csharp[cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Cards.cs?range=91-100)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 如需所有可用卡片的示例，请参阅 [JS 卡片示例](https://aka.ms/bot-cards-js-sample-code)。
 
-**dialogs/mainDialog.js** [!code-javascript[hero cards](~/../botbuilder-samples/samples/javascript_nodejs/06.using-cards/dialogs/mainDialog.js?range=213-225)]
+**dialogs/mainDialog.js**  
+[!code-javascript[hero cards](~/../botbuilder-samples/samples/javascript_nodejs/06.using-cards/dialogs/mainDialog.js?range=213-225)]
 
-**dialogs/mainDialog.js** [!code-javascript[sign in cards](~/../botbuilder-samples/samples/javascript_nodejs/06.using-cards/dialogs/mainDialog.js?range=266-272)]
+**dialogs/mainDialog.js**  
+[!code-javascript[sign in cards](~/../botbuilder-samples/samples/javascript_nodejs/06.using-cards/dialogs/mainDialog.js?range=266-272)]
 
 ---
 
@@ -162,7 +177,8 @@ ms.locfileid: "66215399"
 
 此处显示的源代码基于[使用卡片](https://aka.ms/bot-cards-sample-code)示例：
 
-**Cards.cs** [!code-csharp[adaptive cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Cards.cs?range=13-25)]
+**Cards.cs**  
+[!code-csharp[adaptive cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Cards.cs?range=13-25)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -172,11 +188,13 @@ ms.locfileid: "66215399"
 
 在这里，自适应卡片存储在其自己的文件中，并包含在我们的机器人中：
 
-**resources/adaptiveCard.json** [!code-json[adaptive cards](~/../botbuilder-samples/samples/javascript_nodejs/06.using-cards/resources/adaptiveCard.json)]
+**resources/adaptiveCard.json**  
+[!code-json[adaptive cards](~/../botbuilder-samples/samples/javascript_nodejs/06.using-cards/resources/adaptiveCard.json)]
 
 然后，使用 CardFactory 来创建它：
 
-**dialogs/mainDialog.js** [!code-javascript[adaptive cards](~/../botbuilder-samples/samples/javascript_nodejs/06.using-cards/dialogs/mainDialog.js?range=177-179)]
+**dialogs/mainDialog.js**  
+[!code-javascript[adaptive cards](~/../botbuilder-samples/samples/javascript_nodejs/06.using-cards/dialogs/mainDialog.js?range=177-179)]
 
 ---
 
@@ -190,15 +208,18 @@ ms.locfileid: "66215399"
 
 首先，创建回复并将附件定义为列表。
 
-**Dialogs/MainDialog.cs** [!code-csharp[carousel of cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Dialogs/MainDialog.cs?range=61-66)]
+**Dialogs/MainDialog.cs**  
+[!code-csharp[carousel of cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Dialogs/MainDialog.cs?range=61-66)]
 
 然后，添加附件。 在这里，我们一次添加一个附件，但你可以根据自己的偏好来添加卡片，对列表随意进行操作。
 
-**Dialogs/MainDialog.cs** [!code-csharp[carousel of cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Dialogs/MainDialog.cs?range=105-113)]
+**Dialogs/MainDialog.cs**  
+[!code-csharp[carousel of cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Dialogs/MainDialog.cs?range=105-113)]
 
 添加附件以后，即可发送回复，就像发送任何其他内容一样。
 
-**Dialogs/MainDialog.cs** [!code-csharp[carousel of cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Dialogs/MainDialog.cs?range=117-118)]
+**Dialogs/MainDialog.cs**  
+[!code-csharp[carousel of cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Dialogs/MainDialog.cs?range=117-118)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -206,7 +227,8 @@ ms.locfileid: "66215399"
 
 若要发送采用轮播布局的卡片，请在发送回复时将附件设置为数组，并将布局类型定义为 `Carousel`：
 
-**dialogs/mainDialog.js** [!code-javascript[carousel of cards](~/../botbuilder-samples/samples/javascript_nodejs/06.using-cards/dialogs/mainDialog.js?range=104-116)]
+**dialogs/mainDialog.js**  
+[!code-javascript[carousel of cards](~/../botbuilder-samples/samples/javascript_nodejs/06.using-cards/dialogs/mainDialog.js?range=104-116)]
 
 ---
 

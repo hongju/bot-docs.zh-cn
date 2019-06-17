@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f7709d6273739be6d2b3e9e3174f24ea2734f22d
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 1a502e949ce1f4f9851facae39c4aa030b4ae4a8
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215313"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693657"
 ---
 # <a name="send-welcome-message-to-users"></a>向用户发送欢迎消息
 
@@ -59,14 +59,17 @@ ms.locfileid: "66215313"
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 用户状态对象在启动时创建，依赖项会注入机器人构造函数中。
 
-**Startup.cs** [!code-csharp[ConfigureServices](~/../botBuilder-samples/samples/csharp_dotnetcore/03.welcome-user/Startup.cs?range=29-33)]
+**Startup.cs**  
+[!code-csharp[ConfigureServices](~/../botBuilder-samples/samples/csharp_dotnetcore/03.welcome-user/Startup.cs?range=29-33)]
 
-**WelcomeUserBot.cs** [!code-csharp[Class](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=41-47)]
+**WelcomeUserBot.cs**  
+[!code-csharp[Class](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=41-47)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 启动时，内存存储和用户状态都在 index.js 中定义。
 
-**Index.js** [!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/Index.js?range=8-10,33-41)]
+**Index.js**  
+[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/Index.js?range=8-10,33-41)]
 
 ---
 
@@ -75,12 +78,14 @@ ms.locfileid: "66215313"
 我们现在创建一个属性访问器，该访问器在 OnMessageActivityAsync 方法中为我们提供 WelcomeUserState 的句柄。
 接下来，调用 GetAsync 方法以获取已正确设置了范围的密钥。 然后，使用 `SaveChangesAsync` 方法在每次用户输入迭代以后保存用户状态数据。
 
-**WelcomeUserBot.cs** [!code-csharp[OnMessageActivityAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=68-71, 102-105)]
+**WelcomeUserBot.cs**  
+[!code-csharp[OnMessageActivityAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=68-71, 102-105)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 我们现在创建一个属性访问器，该访问器为我们提供在 UserState 中持久保存的 WelcomedUserProperty 的句柄。
 
-**WelcomeBot.js** [!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=7-10,16-22)]
+**WelcomeBot.js**  
+[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=7-10,16-22)]
 
 ---
 
@@ -89,12 +94,14 @@ ms.locfileid: "66215313"
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 在 **WelcomeUserBot** 中使用 `OnMembersAddedAsync()` 检查活动更新即可了解是否已将新用户添加到聊天中，然后向该用户发送一组（共三条）初始的欢迎消息：`WelcomeMessage`、`InfoMessage`、`PatternMessage`。 此交互的完整代码显示在下面。
 
-**WelcomeUserBot.cs** [!code-csharp[WelcomeMessages](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=20-40, 55-66)]
+**WelcomeUserBot.cs**  
+[!code-csharp[WelcomeMessages](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=20-40, 55-66)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 添加用户时，此 JavaScript 代码会发送初始的欢迎消息。 这是通过检查聊天活动并验证是否已将新成员添加到聊天中来完成的。
 
-**WelcomeBot.js** [!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=65-87)]
+**WelcomeBot.js**  
+[!code-javascript[DefineUserState](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=65-87)]
 
 ---
 
@@ -103,12 +110,14 @@ ms.locfileid: "66215313"
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 此外还必须考虑在实际情况下用户的输入何时可能包含有用信息，这可能因通道而异。 为确保用户在所有可能的通道上获得良好的体验，我们将检查状态标志 _didBotWelcomeUser_。如果其值为“false”，我们将不处理初始用户输入， 而是向用户提供初始欢迎消息。 然后，布尔型 _welcomedUserProperty_ 会被设置为“true”并存储在 UserState 中。现在，代码将处理此用户在所有其他消息活动中的输入。
 
-**WelcomeUserBot.cs** [!code-csharp[DidBotWelcomeUser](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=68-82)]
+**WelcomeUserBot.cs**  
+[!code-csharp[DidBotWelcomeUser](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=68-82)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 此外还必须考虑在实际情况下用户的输入何时可能包含有用信息，这可能因通道而异。 为确保用户在所有可能的通道上获得良好的体验，我们将检查 didBotWelcomedUser 属性。如果该属性不存在，我们会将其设置为“false”，并且不处理初始用户输入， 而是向用户提供初始欢迎消息。 然后，布尔值 _didBotWelcomeUser_ 将设置为“true”，代码将处理所有其他消息活动中的用户输入。
 
-**WelcomeBot.js** [!code-javascript[DidBotWelcomeUser](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=24-38,57-59,63)]
+**WelcomeBot.js**  
+[!code-javascript[DidBotWelcomeUser](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=24-38,57-59,63)]
 
 ---
 
@@ -119,12 +128,14 @@ ms.locfileid: "66215313"
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 输入为“简介”或“帮助”时，会调用函数 `SendIntroCardAsync`，为用户呈现一张说明性的英雄卡。 我们会在本文下一部分详细分析该代码。
 
-**WelcomeUserBot.cs** [!code-csharp[SwitchOnUtterance](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=85-100)]
+**WelcomeUserBot.cs**  
+[!code-csharp[SwitchOnUtterance](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=85-100)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 输入为“简介”或“帮助”时，会通过 CardFactory 为用户呈现一张简介性的自适应卡片。 我们会在本文下一部分详细分析该代码。
 
-**WelcomeBot.js** [!code-javascript[SwitchOnUtterance](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=40-56)]
+**WelcomeBot.js**  
+[!code-javascript[SwitchOnUtterance](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=40-56)]
 
 ---
 
@@ -134,11 +145,13 @@ ms.locfileid: "66215313"
 
 ### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-**WelcomeUserBot.cs** [!code-csharp[SendHeroCardGreeting](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=107-127)]
+**WelcomeUserBot.cs**  
+[!code-csharp[SendHeroCardGreeting](~/../BotBuilder-Samples/samples/csharp_dotnetcore/03.welcome-user/bots/WelcomeUserBot.cs?range=107-127)]
 
 ### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-**WelcomeBot.js** [!code-javascript[SendIntroCard](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=91-116)]
+**WelcomeBot.js**  
+[!code-javascript[SendIntroCard](~/../BotBuilder-Samples/samples/javascript_nodejs/03.welcome-users/bots/welcomebot.js?range=91-116)]
 
 ---
 

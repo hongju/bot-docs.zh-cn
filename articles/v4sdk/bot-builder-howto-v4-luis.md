@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7b06d99ae1265d2519b5c1aa8fe838a4e3e4d43a
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 4fc8ebd1eff03c2b6ac994ff80cb85b341bb7231
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215352"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693669"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>向机器人添加自然语言理解
 
@@ -76,6 +76,8 @@ ms.locfileid: "66215352"
 ### <a name="why-use-entities"></a>为何使用实体
 LUIS 实体可让机器人智能理解不同于标准意向的某些事物或事件。 这样，你便可以从用户收集额外的信息，让机器人以更高的智能做出响应，或者在某些情况下跳过它向用户提出的有关该信息的问题。 除了“预订航班”、“取消”和“None”这三个 LUIS 意向的定义，FlightBooking.json 文件还包含一组实体，例如“From.Airport”和“To.Airport”。 LUIS 可以通过这些实体检测用户在发出新的旅行预订请求时其原始输入中包含的其他信息并将其返回。
 
+若要了解实体信息如何在 LUIS 结果中显示，请参阅[从包含意图和实体的话语文本中提取数据](https://docs.microsoft.com/azure/cognitive-services/luis/luis-concept-data-extraction)。
+
 ## <a name="obtain-values-to-connect-to-your-luis-app"></a>获取用于连接 LUIS 应用的值
 发布 LUIS 应用后，可以在机器人中访问它。 需要记录多个值才能在机器人中访问该 LUIS 应用。 可以使用 LUIS 门户检索该信息。
 
@@ -93,7 +95,8 @@ LUIS 实体可让机器人智能理解不同于标准意向的某些事物或事
 
 在 `appsettings.json` 文件中添加访问 LUIS 应用所需的信息，包括应用程序 ID、创作密钥和区域。 前面已在发布的 LUIS 应用中保存了这些值。 请注意，API 主机名称应采用 `<your region>.api.cognitive.microsoft.com` 格式。
 
-**appsetting.json** [!code-json[appsettings](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/appsettings.json?range=1-7)]
+**appsetting.json**  
+[!code-json[appsettings](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/appsettings.json?range=1-7)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -112,7 +115,8 @@ LUIS 实体可让机器人智能理解不同于标准意向的某些事物或事
 
 为了连接到 LUIS 服务，机器人会从 appsetting.json 文件拉取你此前添加的信息。 `LuisHelper` 类包含的代码可以导入 appsetting.json 文件中的设置，并调用 `RecognizeAsync` 方法来查询 LUIS 服务。 如果返回的排名靠前的意向为“Book_Flight”，则会检查是否存在包含“目标城市”、“始发城市”和“TravelDate”预订信息的实体。
 
-**LuisHelper.cs** [!code-csharp[luis helper](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/LuisHelper.cs?range=15-54)]
+**LuisHelper.cs**  
+[!code-csharp[luis helper](~/../botbuilder-samples/samples/csharp_dotnetcore/13.core-bot/LuisHelper.cs?range=15-54)]
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 

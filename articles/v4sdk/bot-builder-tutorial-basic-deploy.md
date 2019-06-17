@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 7c9bdbbf0ad41bc678476237ef6b6d1d0f872426
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 305e89f5bef4b50e99b24780b0e31580e3b38fb9
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66214241"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693701"
 ---
 # <a name="tutorial-create-and-deploy-a-basic-bot"></a>教程：创建和部署基本机器人
 
@@ -169,7 +169,7 @@ az bot prepare-deploy --code-dir "." --lang Javascript
 > - 对于 C# 机器人，正确的文件夹是包含 .csproj 文件的文件夹。 
 > - 对于 JS 机器人，正确的文件夹是包含 app.js 或 index.js 文件的文件夹。 
 >
-> 在该文件夹中选择所有文件并将其压缩，然后运行此命令，此时仍在该文件夹中。
+> **在该文件夹中**选择所有文件并将其压缩，然后运行此命令，此时仍在该文件夹中。
 >
 > 如果根文件夹位置不正确，**机器人将无法在 Azure 门户中运行**。
 

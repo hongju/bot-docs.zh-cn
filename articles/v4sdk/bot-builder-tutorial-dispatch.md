@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 942ab2d5b3a43ca071c877b5cc18e8141838d604
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 290b06b28e590b01335694a621cc71c189ff6296
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66214254"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693645"
 ---
 # <a name="use-multiple-luis-and-qna-models"></a>使用多个 LUIS 和 QnA 模型
 
@@ -212,7 +212,8 @@ Dispatch 工具的 CLI 接口可以创建用于调度到正确服务的模型。
 
 创建所有服务应用以后，需将每个应用的信息添加到“appsettings.json”文件中。 初始的 [C# 示例][cs-sample]代码包含一个空的 appsettings.json 文件：
 
-**appsettings.json** [!code-json[AppSettings](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/AppSettings.json?range=8-17)]
+**appsettings.json**  
+[!code-json[AppSettings](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/AppSettings.json?range=8-17)]
 
 对于下面所示的每个实体，请在这些指令中添加前面记下的值：
 
@@ -251,7 +252,8 @@ npm install --save dotenv
 
 创建所有服务应用以后，需将每个应用的信息添加到“.env”文件中。 初始的 [JavaScript 示例][js-sample]代码包含一个空的 .env 文件。 
 
-**.env** [!code-file[EmptyEnv](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/.env?range=1-10)]
+**.env**  
+[!code-file[EmptyEnv](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/.env?range=1-10)]
 
 如下所示添加服务连接值：
 
@@ -281,13 +283,15 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 在 **BotServices.cs** 中，包含在配置文件 _appsettings.json_ 中的信息用于将调度机器人连接到 `Dispatch` 和 `SampleQnA` 服务。 构造函数使用提供的值连接到这些服务。
 
-**BotServices.cs** [!code-csharp[ReadConfigurationInfo](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/BotServices.cs?range=14-30)]
+**BotServices.cs**  
+[!code-csharp[ReadConfigurationInfo](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/BotServices.cs?range=14-30)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
 在 **dispatchBot.js** 中，包含在配置文件 _.env_ 中的信息用于将调度机器人连接到 _LuisRecognizer(dispatch)_ 和 _QnAMaker_ 服务。 构造函数使用提供的值连接到这些服务。
 
-**dispatchBot.js** [!code-javascript[ReadConfigurationInfo](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=18-31)]
+**dispatchBot.js**  
+[!code-javascript[ReadConfigurationInfo](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=18-31)]
 
 ---
 
@@ -299,13 +303,14 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 在 **DispatchBot.cs** 文件中，每当调用 `OnMessageActivityAsync` 方法时，我们都会根据调度模型检查传入的用户消息。 然后，我们将调度模型的 `topIntent` 和 `recognizerResult` 传递到正确的方法，以调用服务并返回结果。
 
-**DispatchBot.cs** [!code-csharp[OnMessageActivity](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=26-36)]
+**DispatchBot.cs**  
+[!code-csharp[OnMessageActivity](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=26-36)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
 在 **dispatchBot.js** `onMessage` 方法中，我们将根据调度模型检查用户输入消息，查找 _topIntent_，然后通过调用 _dispatchToTopIntentAsync_ 传递此信息。
 
-**dispatchBot.js**
+**dispatchBot.js**  
 
 [!code-javascript[OnMessageActivity](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=37-50)]
 
@@ -317,7 +322,8 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 当模型生成结果时，它会指示哪个服务最适合用于处理话语。 此机器人中的代码将请求路由到相应的服务，然后汇总被调用服务返回的响应。 根据 Dispatch 返回的意向，此代码使用返回的意向路由到正确的 LUIS 模型或 QnA 服务。 
 
-**DispatchBot.cs** [!code-csharp[DispatchToTop](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=51-69)]
+**DispatchBot.cs**  
+[!code-csharp[DispatchToTop](~/../botbuilder-samples/samples/csharp_dotnetcore/14.nlp-with-dispatch/bots/DispatchBot.cs?range=51-69)]
 
 如果调用了 `ProcessHomeAutomationAsync` 或 `ProcessWeatherAsync` 方法，将在这些方法的 _luisResult.ConnectedServiceResult_ 中传递调度模型返回的结果。 然后，指定的方法将提供用户反馈，其中显示了调度模型的最相关意向，加上检测到的所有意向和实体的排名列表。
 
@@ -327,7 +333,8 @@ LuisAPIHostName=<your-dispatch-app-region>
 
 当模型生成结果时，它会指示哪个服务最适合用于处理话语。 此示例中的代码使用识别到的 _topIntent_ 来演示如何将请求路由到相应的服务。
 
-**DispatchBot.cs** [!code-javascript[DispatchToTop](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=67-83)]
+**DispatchBot.cs**  
+[!code-javascript[DispatchToTop](~/../botbuilder-samples/samples/javascript_nodejs/14.nlp-with-dispatch/bots/dispatchBot.js?range=67-83)]
 
 如果调用了 `processHomeAutomation` 或 `processWeather` 方法，将在这些方法的 _recognizerResult.luisResult_ 中传递调度模型返回的结果。 然后，指定的方法将提供用户反馈，其中显示了调度模型的最相关意向，加上检测到的所有意向和实体的排名列表。
 

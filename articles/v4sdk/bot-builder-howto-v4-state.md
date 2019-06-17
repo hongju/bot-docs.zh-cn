@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b198408a800feaedff3c13dbab965ae63307eeb0
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 3e844a254f1aee709d7dd0b0866ee4ae14737f65
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215340"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693723"
 ---
 # <a name="save-user-and-conversation-data"></a>保存用户和聊天数据
 
@@ -49,13 +49,15 @@ ms.locfileid: "66215340"
 
 以下代码示例演示如何为 UserProfile 类创建定义。
 
-**UserProfile.cs** [!code-csharp[UserProfile](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/UserProfile.cs?range=7-11)]
+**UserProfile.cs**  
+[!code-csharp[UserProfile](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/UserProfile.cs?range=7-11)]
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 第一步将要求使用 botbuilder 服务，该服务包含 `UserState` 和 `ConversationState` 的定义。
 
-**index.js** [!code-javascript[BotService](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/index.js?range=7-9)]
+**index.js**  
+[!code-javascript[BotService](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/index.js?range=7-9)]
 
 ---
 
@@ -65,15 +67,18 @@ ms.locfileid: "66215340"
 
 接下来，我们注册用于创建 `UserState` 和 `ConversationState` 对象的 `MemoryStorage`。 用户和聊天状态对象在`Startup`时创建，依赖项会注入机器人构造函数中。 机器人的其他已注册服务：凭据提供程序、适配器和机器人实现。
 
-**Startup.cs** [!code-csharp[ConfigureServices](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/Startup.cs?range=16-38)]
+**Startup.cs**  
+[!code-csharp[ConfigureServices](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/Startup.cs?range=16-38)]
 
-**StateManagementBot.cs** [!code-csharp[StateManagement](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=15-22)]
+**StateManagementBot.cs**  
+[!code-csharp[StateManagement](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=15-22)]
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 接下来，我们注册随后用于创建 `UserState` 和 `ConversationState` 对象的 `MemoryStorage`。
 
-**index.js** [!code-javascript[DefineMemoryStore](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/index.js?range=32-38)]
+**index.js**  
+[!code-javascript[DefineMemoryStore](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/index.js?range=32-38)]
 
 ---
 
@@ -83,13 +88,14 @@ ms.locfileid: "66215340"
 
 现在，我们使用 `CreateProperty` 方法来创建属性访问器，该方法提供 `BotState` 对象的句柄。 每个状态属性访问器允许获取或设置关联状态属性的值。 在使用状态属性之前，我们将使用每个访问器从存储加载属性，并从状态缓存获取该属性。 为了将范围设置适当的密钥与状态属性相关联，我们调用 `GetAsync` 方法。
 
-**StateManagementBot.cs** [!code-csharp[StateAccessors](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=38-46)]
+**StateManagementBot.cs**  
+[!code-csharp[StateAccessors](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=38-46)]
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 现在，我们为 `UserState` 和 `ConversationState` 创建属性访问器。 每个状态属性访问器允许获取或设置关联状态属性的值。 我们使用每个访问器从存储加载关联的属性，并从缓存中检索其当前状态。
 
-**StateManagementBot.js**。
+**StateManagementBot.js**。  
 [!code-javascript[BotService](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=6-19)]
 
 ---
@@ -102,19 +108,23 @@ ms.locfileid: "66215340"
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-**StateManagementBot.cs** [!code-csharp[OnMessageActivityAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=38-85)]
+**StateManagementBot.cs**  
+[!code-csharp[OnMessageActivityAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=38-85)]
 
 在退出轮次处理程序之前，我们会使用状态管理对象的 _SaveChangesAsync()_ 方法将所有状态更改写回到存储中。
 
-**StateManagementBot.cs** [!code-csharp[OnTurnAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=24-31)]
+**StateManagementBot.cs**  
+[!code-csharp[OnTurnAsync](~/../BotBuilder-Samples/samples/csharp_dotnetcore/45.state-management/bots/StateManagementBot.cs?range=24-31)]
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-**StateManagementBot.js** [!code-javascript[OnMessage](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=21-54)]
+**StateManagementBot.js**  
+[!code-javascript[OnMessage](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=21-54)]
 
 在退出每个对话轮次之前，我们会使用状态管理对象的 _saveChanges()_ 方法来持久保存所有更改，方法是将状态写回到存储中。
 
-**StateManagementBot.js** [!code-javascript[OnDialog](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=60-67)]
+**StateManagementBot.js**  
+[!code-javascript[OnDialog](~/../BotBuilder-Samples/samples/javascript_nodejs/45.state-management/bots/stateManagementBot.js?range=60-67)]
 
 ---
 

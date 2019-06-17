@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/9/2018
-ms.openlocfilehash: 7d7416940ccad4e62c98f4a386dac43189301b56
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 817623dd04612cd07d8877c8e9a199c05a2fd9e8
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998296"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693618"
 ---
 # <a name="connect-a-bot-to-twilio"></a>将机器人连接到 Twilio
 
@@ -30,21 +30,21 @@ ms.locfileid: "49998296"
 
 ![创建应用](~/media/channels/twi-StepTwiml.png)
 
-在“属性”下输入一个**友好名称**。 在本教程中，我们使用“我的 TwiML 应用”作为示例。 “语音”下的“请求 URL”可以留空。 “消息”下的请求 URL 应为 `https://sms.botframework.com/api/sms`。
+在“属性”下  输入一个**友好名称**。 在本教程中，我们使用“我的 TwiML 应用”作为示例。 “语音”下的“请求 URL”可以留空。  “消息”下的请求 URL 应为 `https://sms.botframework.com/api/sms`。  
 
 ## <a name="select-or-add-a-phone-number"></a>选择或添加电话号码
 
-按照<a href = "https://support.twilio.com/hc/en-us/articles/223180048-Adding-a-Verified-Phone-Number-or-Caller-ID-with-Twilio" target="_blank">此处</a>的说明通过控制台站点添加经验证的呼叫方 ID。 完成后，会在“管理号码”下的“活动号码”中看到经验证的号码。
+按照<a href = "https://support.twilio.com/hc/en-us/articles/223180048-Adding-a-Verified-Phone-Number-or-Caller-ID-with-Twilio" target="_blank">此处</a>的说明通过控制台站点添加经验证的呼叫方 ID。 完成后，会在“管理号码”下的“活动号码”中看到经验证的号码。  
 
 ![设置电话号码](~/media/channels/twi-StepPhone.png)
 
 ## <a name="specify-application-to-use-for-voice-and-messaging"></a>指定用于语音和消息的应用程序
 
-单击号码，转到“配置”。 在“语音”和“消息”下，将“配置方式”设置为“TwiML 应用”，将“TWIML 应用”设置为“我的 TwiML 应用”。 完成后，单击“保存”。
+单击号码，转到“配置”。  在“语音”和“消息”下，将“配置方式”设置为“TwiML 应用”，将“TWIML 应用”设置为“我的 TwiML 应用”。   完成后，单击“保存”  。
 
 ![指定应用程序](~/media/channels/twi-StepPhone2.png)
 
-返回到“管理号码”，会看到“语音”和“消息”的配置都已更改为“TwiML 应用”。
+返回到“管理号码”，  会看到“语音”和“消息”的配置都已更改为“TwiML 应用”。
 
 ![指定的号码](~/media/channels/twi-StepPhone3.png)
 
@@ -57,12 +57,16 @@ ms.locfileid: "49998296"
 
 ## <a name="submit-credentials"></a>提交凭据
 
-在单独的窗口中，返回到 Bot Framework 站点 https://dev.botframework.com/。 
+在单独的窗口中，返回到 Bot Framework 站点 https://dev.botframework.com/ 。 
 
-- 选择“我的机器人”，然后选择要连接到 Twilio 的机器人。 此时会转到 Azure 门户。
-- 在“机器人管理”下选择“通道”。 单击“Twilio (短信)”图标。
-- 输入电话号码、帐户 SID 和之前记录的身份验证令牌。 完成后，单击“保存”。
+- 选择“我的机器人”  ，然后选择要连接到 Twilio 的机器人。 此时会转到 Azure 门户。
+- 在“机器人管理”下选择“通道”   。 单击“Twilio (短信)”图标。
+- 输入电话号码、帐户 SID 和之前记录的身份验证令牌。 完成后，单击“保存”  。
 
 ![提交凭据](~/media/channels/twi-StepSubmit.png)
 
 完成这些步骤后，就能够将机器人成功配置为与使用 Twilio 的用户通信。
+
+## <a name="also-available-as-an-adapter"></a>也可用作适配器
+
+此通道也可[用作适配器](https://botkit.ai/docs/v4/platforms/twilio-sms.html)。 若要了解如何在适配器和通道之间进行选择，请参阅[目前可用的适配器](bot-service-channel-additional-channels.md#currently-available-adapters)。

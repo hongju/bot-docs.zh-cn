@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bfd37b703a43e056142ad161eb3308fd2b754e25
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 9b1ffd73b4b68e6ff6349110e1485eb7cbda9e25
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215318"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693706"
 ---
 # <a name="create-your-own-prompts-to-gather-user-input"></a>创建自己的提示来收集用户输入
 
@@ -62,9 +62,11 @@ ms.locfileid: "66215318"
 
 用户和聊天状态对象在启动时创建，依赖项会注入机器人构造函数中。 
 
-**Startup.cs** [!code-csharp[Startup](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Startup.cs?range=27-34)]
+**Startup.cs**  
+[!code-csharp[Startup](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Startup.cs?range=27-34)]
 
-**Bots/CustomPromptBot.cs** [!code-csharp[custom prompt bot](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Bots/CustomPromptBot.cs?range=21-28)]
+**Bots/CustomPromptBot.cs**  
+[!code-csharp[custom prompt bot](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Bots/CustomPromptBot.cs?range=21-28)]
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
@@ -82,7 +84,8 @@ ms.locfileid: "66215318"
 
 我们首先创建属性服务器，这些访问器为我们提供 `OnMessageActivityAsync` 方法中的 `BotState` 的句柄。 接下来，我们调用 `GetAsync` 方法以获取已正确设置了范围的密钥：
 
-**Bots/CustomPromptBot.cs** [!code-csharp[custom prompt bot](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Bots/CustomPromptBot.cs?range=30-37)]
+**Bots/CustomPromptBot.cs**  
+[!code-csharp[custom prompt bot](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Bots/CustomPromptBot.cs?range=30-37)]
 
 最后，我们使用 `SaveChangesAsync` 方法保存数据。
 
@@ -92,7 +95,8 @@ ms.locfileid: "66215318"
 
 在构造函数中，我们创建状态属性服务器，并设置用于聊天的状态管理对象（已在上面创建）。
 
-**bots/customPromptBot.js** [!code-javascript[custom prompt bot](~/../botbuilder-samples/samples/javascript_nodejs/44.prompt-for-user-input/bots/customPromptBot.js?range=23-29)]
+**bots/customPromptBot.js**  
+[!code-javascript[custom prompt bot](~/../botbuilder-samples/samples/javascript_nodejs/44.prompt-for-user-input/bots/customPromptBot.js?range=23-29)]
 
 然后，我们定义第二个处理程序 (`onDialog`)，该程序在主消息处理程序（在下一部分介绍）之后运行。 这第二个处理程序可以确保我们每个轮次都保存状态。
 
@@ -106,13 +110,15 @@ ms.locfileid: "66215318"
 
 我们使用帮助程序方法 _FillOutUserProfileAsync()_ 来处理消息活动，然后使用 _SaveChangesAsync()_ 来保存状态。 下面是完整的代码。
 
-**Bots/CustomPromptBot.cs** [!code-csharp[custom prompt bot](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Bots/CustomPromptBot.cs?range=30-44)]
+**Bots/CustomPromptBot.cs**  
+[!code-csharp[custom prompt bot](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Bots/CustomPromptBot.cs?range=30-44)]
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 为了处理消息活动，我们先设置聊天和用户数据，然后使用帮助程序方法 `fillOutUserProfile()`。 下面是轮次处理程序的完整代码。
 
-**bots/customPromptBot.js** [!code-javascript[custom prompt bot](~/../botbuilder-samples/samples/javascript_nodejs/44.prompt-for-user-input/bots/customPromptBot.js?range=31-39)]
+**bots/customPromptBot.js**  
+[!code-javascript[custom prompt bot](~/../botbuilder-samples/samples/javascript_nodejs/44.prompt-for-user-input/bots/customPromptBot.js?range=31-39)]
 ---
 
 ## <a name="filling-out-the-user-profile"></a>填写用户个人资料
@@ -127,11 +133,13 @@ ms.locfileid: "66215318"
 
 ## <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-**Bots/CustomPromptBot.cs** [!code-csharp[custom prompt bot](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Bots/CustomPromptBot.cs?range=46-103)]
+**Bots/CustomPromptBot.cs**  
+[!code-csharp[custom prompt bot](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Bots/CustomPromptBot.cs?range=46-103)]
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-**bots/customPromptBot.js** [!code-javascript[custom prompt bot](~/../botbuilder-samples/samples/javascript_nodejs/44.prompt-for-user-input/bots/customPromptBot.js?range=52-116)]
+**bots/customPromptBot.js**  
+[!code-javascript[custom prompt bot](~/../botbuilder-samples/samples/javascript_nodejs/44.prompt-for-user-input/bots/customPromptBot.js?range=52-116)]
 
 ---
 
@@ -153,11 +161,13 @@ ms.locfileid: "66215318"
 
 将以下验证方法添加到机器人。
 
-**Bots/CustomPromptBot.cs** [!code-csharp[custom prompt bot](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Bots/CustomPromptBot.cs?range=105-203)]
+**Bots/CustomPromptBot.cs**  
+[!code-csharp[custom prompt bot](~/../botbuilder-samples/samples/csharp_dotnetcore/44.prompt-users-for-input/Bots/CustomPromptBot.cs?range=105-203)]
 
 ## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-**bots/customPromptBot.cs** [!code-javascript[custom prompt bot](~/../botbuilder-samples/samples/javascript_nodejs/44.prompt-for-user-input/bots/customPromptBot.js?range=118-189)]
+**bots/customPromptBot.cs**  
+[!code-javascript[custom prompt bot](~/../botbuilder-samples/samples/javascript_nodejs/44.prompt-for-user-input/bots/customPromptBot.js?range=118-189)]
 
 ---
 

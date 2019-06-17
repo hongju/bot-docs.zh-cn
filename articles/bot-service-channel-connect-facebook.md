@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/12/2018
-ms.openlocfilehash: 57a3efd36ddae5c52a2d791b87ed4fa6a96d5e8a
-ms.sourcegitcommit: 152760771214865b9c7d0ed481acfba05bdc44dc
+ms.openlocfilehash: 36d98c6eeb368399ee11ef9a048bb42922103f16
+ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 03/29/2019
-ms.locfileid: "58655517"
+ms.lasthandoff: 06/05/2019
+ms.locfileid: "66693610"
 ---
 # <a name="connect-a-bot-to-facebook"></a>将机器人连接到 Facebook
 
@@ -33,7 +33,7 @@ ms.locfileid: "58655517"
 
 可通过 Facebook 页访问机器人。 [创建新的 Facebook 页](https://www.facebook.com/bookmarks/pages)或转到现有页。
 
-* 打开 Facebook 页的“关于”页，然后复制并保存页 ID。
+* 打开 Facebook 页的“关于”页，然后复制并保存页 ID   。
 
 ### <a name="create-a-facebook-app"></a>创建 Facebook 应用
 
@@ -41,7 +41,7 @@ ms.locfileid: "58655517"
 
 ![创建应用 ID](~/media/channels/FB-CreateAppId.png)
 
-* 复制并保存应用 ID 和应用密码。
+* 复制并保存应用 ID 和应用密码   。
 
 ![保存应用 ID 和密码](~/media/channels/FB-get-appid.png)
 
@@ -57,31 +57,31 @@ ms.locfileid: "58655517"
 
 ### <a name="generate-a-page-access-token"></a>生成页访问令牌
 
-在 Messenger 部分的“令牌生成”面板中，选择目标页。 此时将生成页访问令牌。
+在 Messenger 部分的“令牌生成”面板中，选择目标页  。 此时将生成页访问令牌。
 
-* 复制并保存“页访问令牌”。
+* 复制并保存“页访问令牌”  。
 
 ![生成令牌](~/media/channels/FB-generateToken.png)
 
 ### <a name="enable-webhooks"></a>启用 Webhook
 
-单击“设置 Webhook”，将消息事件从 Facebook Messenger 转发给机器人。
+单击“设置 Webhook”，将消息事件从 Facebook Messenger 转发给机器人  。
 
 ![启用 Webhook](~/media/channels/FB-webhook.png)
 
 ### <a name="provide-webhook-callback-url-and-verify-token"></a>提供 Webhook 回调 URL 及验证令牌
 
-在 [Azure 门户](https://portal.azure.com/)中打开机器人，单击“通道”选项卡，然后单击“Facebook Messenger”。
+在 [Azure 门户](https://portal.azure.com/)中打开机器人，单击“通道”选项卡，然后单击“Facebook Messenger”   。
 
-* 从门户复制“回调 URL”和“验证令牌”值。
+* 从门户复制“回调 URL”和“验证令牌”值   。
 
 ![复制值](~/media/channels/fb-callbackVerify.png)
 
-1. 返回到 Facebook Messenger 并粘贴“回调 URL”和“验证令牌”值。
+1. 返回到 Facebook Messenger 并粘贴“回调 URL”和“验证令牌”值   。
 
-2. 在“订阅字段”下，选择“message\_deliveries”、“messages”、“messaging\_optins”和“messaging\_postbacks”。
+2. 在“订阅字段”下，选择“message\_deliveries”、“messages”、“messaging\_optins”和“messaging\_postbacks”      。
 
-3. 单击“验证并保存”。
+3. 单击“验证并保存”  。
 
 ![配置 Webhook](~/media/channels/FB-webhookConfig.png)
 
@@ -92,7 +92,7 @@ ms.locfileid: "58655517"
 
 ### <a name="provide-facebook-credentials"></a>提供 Facebook 凭据
 
-在 Azure 门户中，粘贴之前从 Facebook Messenger 复制的“Facebook 应用 ID”、“Facebook 应用机密”、“页 ID”和“页访问令牌”值。 可以通过添加更多的页 ID 和访问令牌，在多个 Facebook 页上使用同一个机器人。
+在 Azure 门户中，粘贴之前从 Facebook Messenger 复制的“Facebook 应用 ID”、“Facebook 应用机密”、“页 ID”和“页访问令牌”值     。 可以通过添加更多的页 ID 和访问令牌，在多个 Facebook 页上使用同一个机器人。
 
 ![输入凭据](~/media/channels/fb-credentials2.png)
 
@@ -126,13 +126,13 @@ ms.locfileid: "58655517"
 
 请按以下步骤为 Workplace 创建一个[自定义集成](https://developers.facebook.com/docs/workplace/custom-integrations-new)：
 
-- 在“管理面板”中打开“集成”选项卡。
-- 单击“创建自己的自定义应用”按钮。
+- 在“管理面板”中打开“集成”选项卡。  
+- 单击“创建自己的自定义应用”按钮。 
 
 ![Workplace 集成](~/media/channels/fb-integration.png)
 
 - 为应用选择显示名称和个人资料图片。 此类信息将与类型为“机器人”的页面共享。
-- 将“允许 API 访问应用设置”设置为“是”。
+- 将“允许 API 访问应用设置”设置为“是”。 
 - 复制显示的应用 ID、应用机密和应用令牌并将其安全地存储。
 
 ![Workplace 密钥](~/media/channels/fb-keys.png)
@@ -143,20 +143,24 @@ ms.locfileid: "58655517"
 
 ### <a name="provide-facebook-credentials"></a>提供 Facebook 凭据
 
-在 Azure 门户中，粘贴之前从 Facebook Workplace 复制的“Facebook 应用 ID”、“Facebook 应用机密”和“页访问令牌”值。 在应用的“关于”页上，不要使用传统的 pageID，而要使用集成名称后接编号的形式。 与将机器人连接到 Facebook Messenger 类似，可以使用 Azure 中显示的凭据连接 Webhook。
+在 Azure 门户中，粘贴之前从 Facebook Workplace 复制的“Facebook 应用 ID”、“Facebook 应用机密”和“页访问令牌”值    。 在应用的“关于”页上，不要使用传统的 pageID，而要使用集成名称后接编号的形式。  与将机器人连接到 Facebook Messenger 类似，可以使用 Azure 中显示的凭据连接 Webhook。
 
 ### <a name="submit-for-review"></a>提交以供审阅
-有关详细信息，请参阅“将机器人连接到 Facebook Messenger”部分和 [Workplace 开发者文档](https://developers.facebook.com/docs/workplace)。
+有关详细信息，请参阅“将机器人连接到 Facebook Messenger”  部分和 [Workplace 开发者文档](https://developers.facebook.com/docs/workplace)。
 
 ### <a name="make-the-app-public-and-publish-the-page"></a>公开应用并发布页
-有关详细信息，请参阅“将机器人连接到 Facebook Messenger”部分。
+有关详细信息，请参阅“将机器人连接到 Facebook Messenger”  部分。
 
 ## <a name="setting-the-api-version"></a>设置 API 版本
 
-如果从 Facebook 收到有关弃用特定图形 API 版本的通知，请转到 [Facebook 开发人员页](https://developers.facebook.com)。 导航到机器人的“应用设置”，转到“设置”>“高级”>“升级 API 版本”，然后将“升级所有调用”切换为 3.0。
+如果从 Facebook 收到有关弃用特定图形 API 版本的通知，请转到 [Facebook 开发人员页](https://developers.facebook.com)。 导航到机器人的“应用设置”，  转到“设置”  >“高级”>“升级 API 版本”，然后将“升级所有调用”切换为 3.0。 
 
 ![API 版本升级](~/media/channels/facebook-version-upgrade.png)
 
 ## <a name="sample-code"></a>代码示例
 
 如需进一步的参考，可以使用 <a href="https://aka.ms/facebook-events" target="_blank">Facebook-events</a> 示例机器人来探索机器人与 Facebook Messenger 的通信。
+
+## <a name="also-available-as-an-adapter"></a>也可用作适配器
+
+此通道也可[用作适配器](https://botkit.ai/docs/v4/platforms/facebook.html)。 若要了解如何在适配器和通道之间进行选择，请参阅[目前可用的适配器](bot-service-channel-additional-channels.md#currently-available-adapters)。
