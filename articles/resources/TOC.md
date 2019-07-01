@@ -5,6 +5,9 @@
 # 技能 
 ## [概述](../v4sdk/bot-builder-skills-overview.md)
 ## [入门](../v4sdk/bot-builder-skills-gettingstarted.md)
+# WebChat
+## [概述](../v4sdk/bot-builder-webchat-overview.md)
+## [自定义](../v4sdk/bot-builder-webchat-customization.md)
 # [常见问题](../bot-service-resources-bot-framework-faq.md)
 # [获取支持](../bot-service-resources-links-help.md)
 # [通道参考](../bot-service-channels-reference.md)
