@@ -1,9 +1,17 @@
+---
+ms.openlocfilehash: bbdad5f0cb51d99cf886070dd8400acae0ed24bb
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464576"
+---
 # <a name="bot-review-guidelines"></a>机器人审查指南
 
 我们欢迎并感谢你发挥才华和投入时间为 Microsoft 通道构建机器人、botlet、Web 应用、加载项或技能（“应用集成”）。 以下是应用集成在发布到 Microsoft 通道（如 Skype 或 Microsoft Teams）之前必须满足的最低要求。 除了下面详述的要求外，每个通道可能还有特定要求。 如果适用，你将在每个通道的配置页面上找到特定于通道的条款，并且在向该通道发布机器人之前，可能需要注册一个通道的服务。
 
 ## <a name="app-integration-policies"></a>应用集成政策
-###  <a name="1-value-representation-security-and-usability"></a>1.价值、表述、安全性和可用性。
+### <a name="1-value-representation-security-and-usability"></a>1.价值、表述、安全性和可用性。
 
 你的应用集成及其相关元数据必须：
 
@@ -29,7 +37,7 @@ Future of Privacy Forum - [应用程序隐私政策生成器](http://www.applica
 
 Iubenda – [隐私政策生成器](http://www.iubenda.com/en)
 
-*你同意承担因使用这些第三方资源而产生的所有风险和责任，并且 Microsoft 对你因使用这些资源而引起的任何问题概不负责。
+*  你同意承担因使用这些第三方资源而产生的所有风险和责任，并且 Microsoft 对你因使用这些资源而引起的任何问题概不负责。
 - 未经用户明确同意，你的应用集成不得收集、存储或传输与其主要用途无关的个人信息。 如果法律要求，你必须获得用户的所有同意才能处理个人信息。 
 - 未经 Microsoft 明确许可，你不得发布针对 13 岁以下儿童的应用集成（如“儿童在线隐私保护法”中所定义）。
 

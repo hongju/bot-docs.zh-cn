@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 72b2c42acb4743c67c63f158fa37c2bdd0e09ab9
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 621be0d3fe785cfdd51e9bd5c864b9bc4f60d8ad
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563941"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464438"
 ---
 # <a name="conduct-audio-calls-with-skype"></a>使用 Skype 进行音频通话
 
@@ -55,7 +55,7 @@ public class CallingController : ApiController
 > [!NOTE]
 > 除了支持音频通话的 `CallingController`，机器人可能还包含 `MessagesController` 来支持消息。 提供这两个选项使用户能够以他们喜欢的方式与机器人进行交互。 <!-- docs on MessagesController are where? -->
 
-##  <a name="answer-the-call"></a>接听电话
+## <a name="answer-the-call"></a>接听电话
 
 每当用户从 Skype 启动与此机器人的通话，就会执行任务 `ProcessIncomingCallAsync`。
 构造函数注册 `IVRBot` 类，该类包含一个预定义的 `incomingCallEvent` 处理程序。
@@ -79,7 +79,7 @@ private Task OnIncomingCallReceived(IncomingCallEvent incomingCallEvent)
 
 ## <a name="after-the-bot-answers"></a>机器人答复后
 
-如果机器人响应呼叫，工作流中指定的后续操作将指示 Skype 呼叫机器人平台播放提示、录制音频、识别语音，或从拨号盘收集数字。 工作流的最后一个操作可能是结束呼叫。 
+如果机器人响应呼叫，工作流中指定的后续操作将指示 Skype 呼叫机器人平台  播放提示、录制音频、识别语音，或从拨号盘收集数字。 工作流的最后一个操作可能是结束呼叫。 
 
 此代码示例定义处理程序，该程序将在欢迎消息完成后设置一个菜单。
 
@@ -140,7 +140,7 @@ private Task OnRecognizeCompleted(RecognizeOutcomeEvent recognizeOutcomeEvent)
 ```
 
 ## <a name="support-natural-language"></a>支持自然语言
-机器人还可以设计为支持自然语言响应。 必应语音 API 使机器人能够识别用户语音回复中的单词。
+机器人还可以设计为支持自然语言响应。 必应语音 API  使机器人能够识别用户语音回复中的单词。
 
 ```cs
 private async Task OnRecordCompleted(RecordOutcomeEvent recordOutcomeEvent)

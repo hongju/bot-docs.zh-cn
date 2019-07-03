@@ -7,14 +7,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/17
+ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f9e693d8bd5aad03930259422939f5572a22ff0a
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 1b27cbc9a901318a4e1b050720fb9f8b230f9e75
+ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563639"
+ms.lasthandoff: 07/01/2019
+ms.locfileid: "67496651"
 ---
 # <a name="request-payment"></a>请求付款
 
@@ -32,22 +32,22 @@ ms.locfileid: "64563639"
 
 ### <a name="update-webconfig"></a>更新 Web.config
 
-更新机器人的 Web.config 文件，以将 `MicrosoftAppId` 和 `MicrosoftAppPassword` 设置为[注册](~/bot-service-quickstart-registration.md)过程中为机器人生成的应用 ID 和密码值。 
+更新机器人的 Web.config 文件，以将 `MicrosoftAppId` 和 `MicrosoftAppPassword` 设置为[注册](~/bot-service-quickstart-registration.md)过程中为机器人生成的应用 ID 和密码值  。 
 
 > [!NOTE]
-> 要查找机器人的 AppID 和 AppPassword，请参阅 [MicrosoftAppID 和 MicrosoftAppPassword](~/bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
+> 要查找机器人的 AppID 和 AppPassword，请参阅 [MicrosoftAppID 和 MicrosoftAppPassword](~/bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)   。
 
 ### <a name="create-and-configure-merchant-account"></a>创建并配置商家帐户
 
 1. <a href="https://dashboard.stripe.com/register" target="_blank">如果还没有 Stripe 帐户，请创建并激活一个 Stripe 帐户。</a>
 
-2. <a href="https://seller.microsoft.com/en-us/dashboard/registration/seller/?accountprogram=botframework" target="_blank">使用 Microsoft 帐户登录到卖家中心。</a>
+2. <a href="https://seller.microsoft.com/dashboard/registration/seller/?accountprogram=botframework" target="_blank">使用 Microsoft 帐户登录到卖家中心。</a>
 
 3. 在卖家中心，将帐户与 Stripe 相关联。
 
-4. 在卖方中心内，导航到“仪表板”和并复制值 MerchantID。
+4. 在卖方中心内，导航到“仪表板”和并复制值 MerchantID  。
 
-5. 更新机器人的 Web.config 文件，以将 `MerchantId` 设置为从卖家中心仪表板中复制的值。 
+5. 更新机器人的 Web.config 文件，以将 `MerchantId` 设置为从卖家中心仪表板中复制的值  。 
 
 [!INCLUDE [Payment process overview](../includes/snippet-payment-process-overview.md)]
 
@@ -56,28 +56,28 @@ ms.locfileid: "64563639"
 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/sample-payments" target="_blank">支付机器人</a>示例提供了使用 .NET 发送支付请求的机器人示例。 若要查看实际操作中的此机器人，可以<a href="https://webchat.botframework.com/embed/paymentsample?s=d39Bk7JOMzQ.cwA.Rig.dumLki9bs3uqfWFMjXPn5PFnQVmT2VAVR1Zl1iPi07k" target="_blank">在网上聊天中试用一下</a>，<a href="https://join.skype.com/bot/9fbc0f17-43eb-40fe-bf3b-af151e6ce45e" target="_blank">将其添加为 Skype 联系人</a>或下载支付机器人示例并使用 Bot Framework Emulator 在本地运行。 
 
 > [!NOTE]
-> 要使用网上聊天或 Skype 中的支付机器人示例完成端到端支付过程，必须在 Microsoft 帐户内指定有效的信用卡或借记卡（即来自美国发卡机构的有效卡片）。 系统不会收取卡费用，并且不会验证卡的 CVV，因为支付机器人在测试模式下运行（即 `LiveMode` 在 Web.config 中设置为 `false`）。
+> 要使用网上聊天或 Skype 中的支付机器人示例完成端到端支付过程，必须在 Microsoft 帐户内指定有效的信用卡或借记卡（即来自美国发卡机构的有效卡片）  。 系统不会收取卡费用，并且不会验证卡的 CVV，因为支付机器人在测试模式下运行（即 `LiveMode` 在 Web.config 中设置为 `false`）   。
 
-本文下面几节结合支付机器人示例，介绍支付过程的三个部分。
+本文下面几节结合支付机器人示例，介绍支付过程的三个部分  。
 
 ## <a id="request-payment"></a>请求支付
 
-机器人通过使用指定“支付” `CardAction.Type` 的按钮发送包含[资讯卡附件](bot-builder-dotnet-add-rich-card-attachments.md)的消息来请求用户支付。 支付机器人示例中的代码片段创建一条包含英雄卡的消息，用户可通过单击（或点击）卡片中的“购买”按钮启动支付过程。 
+机器人通过使用指定“支付” `CardAction.Type` 的按钮发送包含[资讯卡附件](bot-builder-dotnet-add-rich-card-attachments.md)的消息来请求用户支付。 支付机器人示例中的代码片段创建一条包含英雄卡的消息，用户可通过单击（或点击）卡片中的“购买”按钮启动支付过程   。 
 
 [!code-csharp[Request payment](../includes/code/dotnet-request-payment.cs#requestPayment)]
 
-在此示例中，该按钮的类型被指定为 `PaymentRequest.PaymentActionType`，Bot Builder 库将其定义为“支付”。 按钮的值由 `BuildPaymentRequest` 方法填充，该方法将返回包含支持的支付方式、详细信息和选项的信息的 `PaymentRequest` 对象。 有关实现详细信息的更多信息，请参阅支付机器人示例内的 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/sample-payments" target="_blank">Dialogs/RootDialog.cs</a>。
+在此示例中，该按钮的类型被指定为 `PaymentRequest.PaymentActionType`，Bot Builder 库将其定义为“支付”。 按钮的值由 `BuildPaymentRequest` 方法填充，该方法将返回包含支持的支付方式、详细信息和选项的信息的 `PaymentRequest` 对象。 有关实现详细信息的更多信息，请参阅支付机器人示例内的 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/sample-payments" target="_blank">Dialogs/RootDialog.cs</a>  。
 
-此屏幕截图显示上述代码片段生成的英雄卡（含“购买”按钮）。 
+此屏幕截图显示上述代码片段生成的英雄卡（含“购买”按钮）  。 
  
 ![付款示例机器人](../media/payments-bot-buy.png) 
 
 > [!IMPORTANT]
-> 有权访问“购买”按钮的任何用户都能用它来启动付款流程。 在群组聊天的上下文中，无法指定某个按钮仅供某个特定用户使用。 
+> 有权访问“购买”按钮的任何用户都能用它来启动付款流程  。 在群组聊天的上下文中，无法指定某个按钮仅供某个特定用户使用。 
 
 ## <a id="user-experience"></a>用户体验
 
-用户单击“购买”按钮时，他/她将被定向到网页版支付，以通过其 Microsoft 帐户提供所有必需的支付、送货和联系信息。 
+用户单击“购买”按钮时，他/她将被定向到网页版支付，以通过其 Microsoft 帐户提供所有必需的支付、送货和联系信息  。 
 
 ![Microsoft 支付](../media/microsoft-payment.png)
 
@@ -109,17 +109,17 @@ HTTP 回调将发送给机器人，以指示它应执行某些操作。 每个�
 
 除了验证支付详细信息，机器人还应先验证能够完成订单，然后再启动支付过程。 例如，它可能想要验证所购买的物品在库存中仍然可用。 如果值正确无误并且支付处理器已成功对支付令牌收费，机器人将通过 HTTP 状态代码 `200 OK` 响应，并将结果字段设为 `success`，以使网页版支付显示支付确认。 机器人收到的支付令牌仅供请求的商家使用一次，并且必须提交到 Stripe（Bot Framework 目前支持的唯一支付处理器）。 发送 `400` 或 `500` 范围内的任何 HTTP 状态代码会导致客户出现一般错误。
 
-支付机器人示例中的 `OnInvoke` 方法将处理机器人收到的回调。 
+支付机器人示例中的 `OnInvoke` 方法将处理机器人收到的回调  。 
 
 [!code-csharp[Request payment](../includes/code/dotnet-request-payment.cs#processCallback)]
 
-在此示例中，机器人检查传入活动的 `Name` 属性，以确定需要执行的操作类型，然后调用相应的方法处理回调。 有关实现详细信息的更多信息，请参阅支付机器人示例内的 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/sample-payments" target="_blank">Controllers/MessagesControllers.cs</a>。
+在此示例中，机器人检查传入活动的 `Name` 属性，以确定需要执行的操作类型，然后调用相应的方法处理回调。 有关实现详细信息的更多信息，请参阅支付机器人示例内的 <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/sample-payments" target="_blank">Controllers/MessagesControllers.cs</a>  。
 
 ## <a name="testing-a-payment-bot"></a>测支付机器人
 
 [!INCLUDE [Test a payment bot](../includes/snippet-payment-test-bot.md)]
 
-在<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/sample-payments" target="_blank">支付机器人</a>示例中，Web.config 中的 `LiveMode`配置设置确定支付完成回调中是否会包含模拟的支付令牌或真实的支付令牌。 如果 `LiveMode` 设置为 `false`，将向机器人的出站支付请求添加标头，以指示该机器人处理测试模式，并且支付完成回调将包含无法进行收费的模拟支付令牌。 如果 `LiveMode` 设置为 `true`，将从机器人的出站支付请求中省略指示机器人处于测试模式的标头，并且支付完成回调将包含机器人将提交到 Stripe 进行支付处理的真实支付令牌。 这将是真正的交易，可导致对指定付款方式收取费用。 
+在<a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/sample-payments" target="_blank">支付机器人</a>示例中，Web.config 中的 `LiveMode`配置设置确定支付完成回调中是否会包含模拟的支付令牌或真实的支付令牌  。 如果 `LiveMode` 设置为 `false`，将向机器人的出站支付请求添加标头，以指示该机器人处理测试模式，并且支付完成回调将包含无法进行收费的模拟支付令牌。 如果 `LiveMode` 设置为 `true`，将从机器人的出站支付请求中省略指示机器人处于测试模式的标头，并且支付完成回调将包含机器人将提交到 Stripe 进行支付处理的真实支付令牌。 这将是真正的交易，可导致对指定付款方式收取费用。 
 
 ## <a name="additional-resources"></a>其他资源
 

@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: ce3ab86d5716250e24a44268f5e5fc39fbdd3398
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 503ec19444c51120bf46838e14edb891ec5c3bb5
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66214175"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464666"
 ---
 # <a name="virtual-assistant---template-outline"></a>虚拟助手 - 模板大纲
 
@@ -30,11 +30,11 @@ Feature      | 说明 |
 基对话 | 对话流，用于捕获基本用户信息以及“取消”和“帮助”意向的中断逻辑
 基响应  | 基意向和对话的文本和语音响应
 常见问题解答 | 与 [QnA Maker](https://www.qnamaker.ai) 集成可回答知识库中的一般问题 
-聊天内容 | 一个专业聊天模型，为常见查询提供标准答案（[了解详情](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/chit-chat-knowledge-base)）
-调度程序 | 一个集成的 [Dispatch](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig) 模型，用于确定给定话语应该由 LUIS 还是由 QnA Maker 处理。
+聊天内容 | 一个专业聊天模型，为常见查询提供标准答案（[了解详情](https://docs.microsoft.com/azure/cognitive-services/qnamaker/how-to/chit-chat-knowledge-base)）
+调度程序 | 一个集成的 [Dispatch](https://docs.microsoft.com/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig) 模型，用于确定给定话语应该由 LUIS 还是由 QnA Maker 处理。
 语言支持 | 提供英语、法语、意大利语、德语、西班牙语和中文支持
 脚本 | Azure 存储中存储的所有聊天的脚本
-遥测  | [Application Insights](https://azure.microsoft.com/en-gb/services/application-insights/) 集成，用于收集所有聊天的遥测数据
+遥测  | [Application Insights](https://azure.microsoft.com/services/application-insights/) 集成，用于收集所有聊天的遥测数据
 分析 | 一个示例 PowerBI 仪表板，可以从这里开始了解聊天体验。
 自动化部署 | 轻松地使用 Azure ARM 模板部署上述所有服务。
 
@@ -95,7 +95,7 @@ SelectNone   |这些项都不是 |
 - 有时候，如果 LUIS 模型中的话语和 QnA Maker 中的略有重叠，则可能导致奇怪行为的发生：LUIS 可能会在本应将某个问题转给 QnA Maker 处理的时候尝试处理该问题。
 - 当存在两个或多个 LUIS 模型时，机器人就必须调用每个模型并执行某种形式的意向评估比较，以便确定将给定话语发送至何处。 由于没有通用的基线，因此跨模型进行分数比较不是那么有效，导致用户体验很糟。
 
-[Dispatcher](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig) 是用于解决此问题的很好的解决方案，它可以从每个配置的 LUIS 模型提取话语，从 QnA Maker 提取问题，然后创建一个集中调度的 LUIS 模型。
+[Dispatcher](https://docs.microsoft.com/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0&tabs=csaddref%2Ccsbotconfig) 是用于解决此问题的很好的解决方案，它可以从每个配置的 LUIS 模型提取话语，从 QnA Maker 提取问题，然后创建一个集中调度的 LUIS 模型。
 
 这样机器人就能快速确定哪个 LUIS 模型或组件应该处理某个给定的话语，确保将 QnA Maker 数据视为顶级意向处理，而不是像此前那样仅仅作为 None 意向处理。
 

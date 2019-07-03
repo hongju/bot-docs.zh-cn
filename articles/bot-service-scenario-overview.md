@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: e195f83eefd5f162b74f8891f3b174efc8934700
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: f8b64e5705085af5b00de6a3c00059dbdea24cb9
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997959"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405758"
 ---
 # <a name="bot-scenarios"></a>机器人方案
 
@@ -44,7 +44,7 @@ ms.locfileid: "49997959"
 ## <a name="iot-bot-scenario"></a>IoT 机器人方案
 此[物联网 (IoT) 机器人](bot-service-scenario-internet-things.md)可让你轻松控制家里的设备，例如使用交互式聊天命令控制 Philips Hue 灯。
 
-这个简单的机器人可以与免费的 If This Then That (IFTTT) 服务结合使用，从而控制 Philips Hue 灯。 Philips Hue 是一个 IoT 设备，可通过其公开的 API 在本地进行控制。 但是，此 API 不支持从本地网络外部进行一般性访问。 不过，IFTTT 是“[Hue 的搭档](http://www2.meethue.com/en-us/friends-of-hue/ifttt/)”，因此公开了许多可以发出的控制命令，例如开灯和关灯、改变灯光颜色或光线强度。
+这个简单的机器人可以与免费的 If This Then That (IFTTT) 服务结合使用，从而控制 Philips Hue 灯。 Philips Hue 是一个 IoT 设备，可通过其公开的 API 在本地进行控制。 但是，此 API 不支持从本地网络外部进行一般性访问。 不过，IFTTT 是“[Hue 的搭档](http://www2.meethue.com/friends-of-hue/ifttt/)”，因此公开了许多可以发出的控制命令，例如开灯和关灯、改变灯光颜色或光线强度。
 
 ## <a name="next-steps"></a>后续步骤
 现已大概了解这些方案，可深入研究各个方案。

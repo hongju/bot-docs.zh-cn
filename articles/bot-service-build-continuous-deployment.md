@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: dc4b524659df3fb0b91b54fca65b4b7dd36378cd
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 8d324138db60c2b34f9bebd3ff53c30a12c3cefa
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66214271"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405950"
 ---
 # <a name="set-up-continuous-deployment"></a>设置连续部署
 
@@ -69,6 +69,6 @@ ms.locfileid: "66214271"
 1. 单击“断开连接”以禁用持续部署  。 若要重新启用持续部署，请重复上述相应部分中的步骤。
 
 ## <a name="additional-resources"></a>其他资源
-- 若要从 BitBucket 和 Azure DevOps Services 启用持续部署，请参阅[使用 Azure 应用服务进行持续部署](https://docs.microsoft.com/en-us/azure/app-service/deploy-continuous-deployment)。
+- 若要从 BitBucket 和 Azure DevOps Services 启用持续部署，请参阅[使用 Azure 应用服务进行持续部署](https://docs.microsoft.com/azure/app-service/deploy-continuous-deployment)。
 
 

@@ -7,14 +7,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/17
+ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 455ee87f31e70470d8d118f010c77327347c032d
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 8741dee2724d5e3c1e650b86957aabec5716da59
+ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224882"
+ms.lasthandoff: 07/01/2019
+ms.locfileid: "67496644"
 ---
 # <a name="secure-your-bot"></a>保护机器人
 
@@ -31,7 +31,7 @@ ms.locfileid: "54224882"
 在机器人的 web.config 文件中指定机器人的 appID 和密码。 
 
 > [!NOTE]
-> 若要查找机器人的“AppID”和“AppPassword”，请参阅 [MicrosoftAppID 和 MicrosoftAppPassword](~/bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
+> 若要查找机器人的“AppID”  和“AppPassword”  ，请参阅 [MicrosoftAppID 和 MicrosoftAppPassword](~/bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
 
 ```xml
 <appSettings>

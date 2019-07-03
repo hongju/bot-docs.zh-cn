@@ -8,19 +8,19 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 85ef0fde39980bab1b891518e338fddbd56b275a
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 74c48c779a41a6a2cbdf4f1c559c7136e7a94ca1
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563874"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405813"
 ---
 # <a name="how-bot-service-works"></a>机器人服务的工作方式
 
 机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Framework SDK 以及用于将机器人连接到通道的 Bot Framework。 机器人服务提供了五个模板，你可以在创建支持 .NET 和 Node.js 的机器人时选择这些模板。
 
 > [!IMPORTANT]
-> 你必须拥有 Microsoft Azure 订阅才能使用机器人服务。 如果尚无订阅，可注册<a href="https://azure.microsoft.com/en-us/free/" target="_blank">免费帐户</a>。
+> 你必须拥有 Microsoft Azure 订阅才能使用机器人服务。 如果尚无订阅，可注册<a href="https://azure.microsoft.com/free/" target="_blank">免费帐户</a>。
 
 ## <a name="hosting-plans"></a>托管计划
 机器人服务为机器人提供两个托管计划。 你可以选择满足需求的托管计划。

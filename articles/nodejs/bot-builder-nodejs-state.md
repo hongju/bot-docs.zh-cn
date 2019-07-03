@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 6d653e47d2e906c6306134804c7731b374d830ba
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: 779411235bfef24719044b0fbad26574a373a34f
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563971"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404299"
 ---
 # <a name="manage-state-data"></a>管理状态数据
 
@@ -34,7 +34,7 @@ ms.locfileid: "64563971"
 var inMemoryStorage = new builder.MemoryBotStorage();
 ```
 
-然后，在创建 UniversalBot 时将其设置到机器人：
+然后，在创建 UniversalBot  时将其设置到机器人：
 
 ```javascript
 var inMemoryStorage = new builder.MemoryBotStorage();
@@ -42,7 +42,7 @@ var bot = new builder.UniversalBot(connector, [..waterfall steps..])
                     .set('storage', inMemoryStorage); // Register in-memory storage 
 ```
 
-可以使用此方法设置你自己的自定义数据存储或使用任一 Azure 扩展。
+可以使用此方法设置你自己的自定义数据存储或使用任一 Azure 扩展  。
 
 ## <a name="manage-custom-data-storage"></a>管理自定义数据存储
 
@@ -69,7 +69,7 @@ var bot = new builder.UniversalBot(connector, [..waterfall steps..])
 
 ## <a name="data-persistence"></a>数据暂留
 
-默认情况下，使用 `userData`、`privateConversationData` 和 `conversationData` 属性存储的数据设置为保留到会话结束。 如果不希望数据保留在 `userData` 容器中，请将 `persistUserData` 标记设置为 false。 如果不希望数据保留在 `conversationData` 容器中，请将 `persistConversationData` 标记设置为 false。 
+默认情况下，使用 `userData`、`privateConversationData` 和 `conversationData` 属性存储的数据设置为保留到会话结束。 如果不希望数据保留在 `userData` 容器中，请将 `persistUserData` 标记设置为 false  。 如果不希望数据保留在 `conversationData` 容器中，请将 `persistConversationData` 标记设置为 false  。 
 
 ```javascript
 // Do not persist userData
@@ -129,7 +129,7 @@ session.userdata.start = startDate.toISOString();
 
 ### <a name="saving-data"></a>保存数据
 
-保存容器之前，在每个存储容器中创建的数据都将保留在内存中。 Bot Framework SDK for Node.js 向 `ChatConnector` 服务分批发送数据，以便在发送消息时保存数据。 若要保存存储容器中的现有数据而不发送任何消息，可以手动调用 [`save`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#save) 方法。 如果不调用 `save` 方法，存储容器中的现有数据将保留为批处理的一部分。
+保存容器之前，在每个存储容器中创建的数据都将保留在内存中。 Bot Framework SDK for Node.js 向 `ChatConnector` 服务分批发送数据，以便在发送消息时保存数据。 若要保存存储容器中的现有数据而不发送任何消息，可以手动调用 [`save`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#save) 方法。 如果不调用 `save` 方法，存储容器中的现有数据将保留为批处理的一部分。
 
 ```javascript
 session.userData.favoriteColor = "Red";
@@ -203,9 +203,9 @@ session.dialogData = {};
 ## <a name="additional-resources"></a>其他资源
 - [提示用户输入](bot-builder-nodejs-dialog-prompt.md)
 
-[userDataURL]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#userdata
-[conversationDataURL]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#conversationdata
-[privateConversationDataURL]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#privateconversationdata
-[dialogDataURL]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#dialogdata
+[userDataURL]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#userdata
+[conversationDataURL]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#conversationdata
+[privateConversationDataURL]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#privateconversationdata
+[dialogDataURL]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#dialogdata
 
-[ChatConnector]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.chatconnector.html
+[ChatConnector]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.chatconnector.html

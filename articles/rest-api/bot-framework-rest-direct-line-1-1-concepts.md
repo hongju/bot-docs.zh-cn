@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: a049d77d506fa3fa678a079de52aa424264847c9
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 288fde1d8c4333256b956b270fe37a56217632ca
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49997044"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404655"
 ---
 # <a name="key-concepts-in-direct-line-api-11"></a>Direct Line API 1.1 中的重要概念
 
@@ -22,7 +22,7 @@ ms.locfileid: "49997044"
 > [!IMPORTANT]
 > 本文介绍 Direct Line API 1.1 中的重要概念，并提供有关相关开发人员资源的信息。 如果要在客户端应用程序和机器人之间创建新连接，请改用 [Direct Line API 3.0](bot-framework-rest-direct-line-3-0-concepts.md)。
 
-## <a name="authentication"></a>身份验证
+## <a name="authentication"></a>Authentication
 
 可以使用从 <a href="https://dev.botframework.com/" target="_blank">Bot Framework 门户</a>中的 Direct Line 通道配置页获取的**机密**或使用在运行时获得的**令牌**来对 Direct Line API 1.1 请求进行身份验证。  有关详细信息，请参阅[身份验证](bot-framework-rest-direct-line-1-1-authentication.md)。
 
@@ -44,7 +44,7 @@ Direct Line 聊天由客户端显式发起，只要机器人和客户端参与�
 
 Bot Framework 提供了一个客户端库，以便于通过 C# 访问 Direct Line API 1.1。 若要在 Visual Studio 项目中使用客户端库，请安装 `Microsoft.Bot.Connector.DirectLine` <a href="https://www.nuget.org/packages/Microsoft.Bot.Connector.DirectLine/1.1.1" target="_blank">v1.x NuGet 包</a>。 
 
-作为使用 C# 客户端库的替代方法，可以使用 <a href="https://docs.botframework.com/en-us/restapi/directline/swagger.json" target="_blank">Direct Line API 1.1 Swagger 文件</a>以所选的语言生成自己的客户端库。
+作为使用 C# 客户端库的替代方法，可以使用 <a href="https://docs.botframework.com/restapi/directline/swagger.json" target="_blank">Direct Line API 1.1 Swagger 文件</a>以所选的语言生成自己的客户端库。
 
 ### <a name="web-chat-control"></a>网上聊天控件 
 

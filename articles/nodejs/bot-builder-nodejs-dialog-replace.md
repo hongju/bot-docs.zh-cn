@@ -9,18 +9,18 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 58d2c3fc4a1fb266b74402541fc937f0b52fa189
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 7417e105ab20c3aca2c2a4e525248728ac49bf18
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224982"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404921"
 ---
 # <a name="replace-dialogs"></a>替换对话
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-在聊天过程中需要验证用户输入或重复某个操作时，可以使用替换对话的功能。 使用 Bot Framework SDK for Node.js 时，可以通过 [`session.replaceDialog`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#replacedialog) 方法来替换对话框。 此方法可以结束当前对话，在不返回到调用方的情况下将其替换为新的对话。 
+在聊天过程中需要验证用户输入或重复某个操作时，可以使用替换对话的功能。 使用 Bot Framework SDK for Node.js 时，可以通过 [`session.replaceDialog`](http://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#replacedialog) 方法来替换对话框。 此方法可以结束当前对话，在不返回到调用方的情况下将其替换为新的对话。 
 
 ## <a name="create-custom-prompts-to-validate-input"></a>创建自定义提示来验证输入
 
@@ -61,7 +61,7 @@ bot.dialog('phonePrompt', [
 
 ## <a name="repeat-an-action"></a>重复操作
 
-在聊天过程中，有时可能需要重复某个对话，让用户多次完成某个特定的操作。 例如，如果机器人提供多种服务，一开始可以显示服务菜单，引导用户完成请求某个服务的过程，然后再次显示服务菜单，让用户请求另一服务。 为此，可以使用 [`session.replaceDialog`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#replacedialog) 方法来再次显示服务菜单，而不必使用 ['session.endConversation`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#endconversation) 方法来结束聊天。 
+在聊天过程中，有时可能需要重复某个对话，让用户多次完成某个特定的操作。 例如，如果机器人提供多种服务，一开始可以显示服务菜单，引导用户完成请求某个服务的过程，然后再次显示服务菜单，让用户请求另一服务。 为此，可以使用 [`session.replaceDialog`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#replacedialog) 方法来再次显示服务菜单，而不必使用 ['session.endConversation`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#endconversation) 方法来结束聊天。 
 
 以下示例演示如何使用 `session.replaceDialog` 方法来实现此类方案。 首先，服务菜单定义如下：
 
@@ -83,7 +83,7 @@ var menuItems = {
 }
 ```
 
-`mainMenu` 对话是通过默认对话调用的，因此此菜单会在聊天开始时显示给用户。 另外，[`triggerAction`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#triggeraction) 是附加到 `mainMenu` 对话的，因此每当用户输入为“主菜单”时，此菜单也会显示。 用户在看到菜单并选择某个选项以后，系统会通过 `session.beginDialog` 方法调用与用户的选择相对应的对话。
+`mainMenu` 对话是通过默认对话调用的，因此此菜单会在聊天开始时显示给用户。 另外，[`triggerAction`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#triggeraction) 是附加到 `mainMenu` 对话的，因此每当用户输入为“主菜单”时，此菜单也会显示。 用户在看到菜单并选择某个选项以后，系统会通过 `session.beginDialog` 方法调用与用户的选择相对应的对话。
 
 ```javascript
 var inMemoryStorage = new builder.MemoryBotStorage();
@@ -160,9 +160,9 @@ bot.dialog('orderDinner', [
 
 `orderDinner` 对话附加了两个触发器，因此用户可以在订餐过程中随时“重填”或“取消”订单。 
 
-第一个触发器是 [`reloadAction`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#reloadaction)，用户只需发送输入“重填”即可再次从头开始订餐过程。 当触发器匹配到话语“重填”时，`reloadAction` 会从头开始重启对话。 
+第一个触发器是 [`reloadAction`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#reloadaction)，用户只需发送输入“重填”即可再次从头开始订餐过程。 当触发器匹配到话语“重填”时，`reloadAction` 会从头开始重启对话。 
 
-第二个触发器是 [`cancelAction`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#cancelaction)，用户只需发送输入“取消”即可彻底取消订餐过程。 此触发器不会自动地再次显示主菜单，而是发送一条内容为“键入‘主菜单’继续”的消息，告知用户下一步如何操作。
+第二个触发器是 [`cancelAction`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#cancelaction)，用户只需发送输入“取消”即可彻底取消订餐过程。 此触发器不会自动地再次显示主菜单，而是发送一条内容为“键入‘主菜单’继续”的消息，告知用户下一步如何操作。
 
 ### <a name="dialog-loops"></a>对话循环
 
@@ -269,7 +269,7 @@ bot.dialog('orderDinner', [
 
 ## <a name="cancel-a-dialog"></a>取消对话
 
-虽然可以使用 `session.replaceDialog` 方法将当前对话替换为新对话，但不能将它用于替换其位置在对话堆栈更下方的对话。 若要替换对话堆栈中不属当前对话的对话，请改用 [`session.cancelDialog`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#canceldialog) 方法。 
+虽然可以使用 `session.replaceDialog` 方法将当前对话替换为  新对话，但不能将它用于替换其位置在对话堆栈更下方的对话。 若要替换对话堆栈中不属当前  对话的对话，请改用 [`session.cancelDialog`](http://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#canceldialog) 方法。 
 
 `session.cancelDialog` 方法可以用来结束某个对话（不管该对话存在于对话堆栈的何处），并可选择性地就地调用新对话。 若要调用 `session.cancelDialog` 方法，请指定要取消的对话的 ID，并可选择性地指定要就地调用的对话的 ID。 例如，以下代码片段取消 `orderDinner` 对话，将其替换为 `mainMenu` 对话：
 
@@ -277,7 +277,7 @@ bot.dialog('orderDinner', [
 session.cancelDialog('orderDinner', 'mainMenu'); 
 ```
 
-调用 `session.cancelDialog` 方法时，会对对话堆栈进行后向搜索，并会取消该对话的第一个匹配项，将该对话及其子对话（如果有）从对话堆栈中删除。 然后，系统会将控制返回到调用对话，该对话可以搜索 [`results.resumed`](http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ipromptresult.html#resumed) 代码，而此代码等效于用于检测取消操作的 [`ResumeReason.notCompleted`](http://docs.botframework.com/en-us/node/builder/chat-reference/enums/_botbuilder_d_.resumereason.html#notcompleted)。
+调用 `session.cancelDialog` 方法时，会对对话堆栈进行后向搜索，并会取消该对话的第一个匹配项，将该对话及其子对话（如果有）从对话堆栈中删除。 然后，系统会将控制返回到调用对话，该对话可以搜索 [`results.resumed`](http://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.ipromptresult.html#resumed) 代码，而此代码等效于用于检测取消操作的 [`ResumeReason.notCompleted`](http://docs.botframework.com/node/builder/chat-reference/enums/_botbuilder_d_.resumereason.html#notcompleted)。
 
 也可在调用 `session.cancelDialog` 方法时不指定要取消的对话的 ID，改为指定要取消的对话的索引（从零开始，表示对话在对话堆栈中的位置）。 例如，以下代码片段终止当前正在进行的对话（索引 = 0），并就地启动 `mainMenu` 对话。 `mainMenu` 对话是在对话堆栈的 0 位置调用的，因此成为新的默认对话。
 

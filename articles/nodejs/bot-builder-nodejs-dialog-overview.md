@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: dfa52914b3f0a2e81f4ff3a2f90c7404bfe53d4a
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: f0b933a5bdcea5090ede1b2f589cd69f9e681757
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225992"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405013"
 ---
 # <a name="dialogs-in-the-bot-framework-sdk-for-nodejs"></a>Bot Framework SDK for Node.js 中的对话框
 
@@ -40,20 +40,20 @@ Bot Framework SDK for Node.js 将聊天定义为通过一个或多个对话框�
 - 它可以遵循[瀑布](bot-builder-nodejs-dialog-waterfall.md)模式，引导用户完成一系列的步骤，或者通过一系列的问题来[提示](bot-builder-nodejs-dialog-prompt.md)用户。
 - 它可以使用[操作](bot-builder-nodejs-dialog-actions.md)来收听触发不同对话的单词或短语。 
 
-可将聊天视为对话的父级。 因此，聊天包含对话堆栈并维护自身的状态数据集，即 `conversationData` 和 `privateConversationData`。 另一方面，对话维护 `dialogData`。 有关状态数据的详细信息，请参阅[管理状态数据](bot-builder-nodejs-state.md)。
+可将聊天视为对话的父级。 因此，聊天包含对话堆栈并维护自身的状态数据集，即 `conversationData` 和 `privateConversationData`。  另一方面，对话维护 `dialogData`。 有关状态数据的详细信息，请参阅[管理状态数据](bot-builder-nodejs-state.md)。
 
 ## <a name="dialog-stack"></a>对话堆栈
 
 机器人通过对话堆栈中维护的一系列对话来与用户交互。 在聊天过程中，对话将会推入和弹出堆栈。 堆栈的工作方式类似于普通的 LIFO 堆栈，即，最后一个添加的对话是第一个要完成的对话。 某个对话完成后，控制权将返回到堆栈中的上一个对话。
 
-当机器人首次启动或者某个聊天结束时，对话堆栈为空。 此时，如果某个用户向机器人发送消息，机器人将以默认对话做出响应。
+当机器人首次启动或者某个聊天结束时，对话堆栈为空。 此时，如果某个用户向机器人发送消息，机器人将以默认对话做出响应。 
 
 ## <a name="default-dialog"></a>默认对话
 
-在 Bot Framework 版本 3.5 之前，需要通过添加名为 `/` 的对话来定义根对话，因此其命名约定类似于 URL。 此命名约定并不适合用于对话的命名。 
+在 Bot Framework 版本 3.5 之前，需要通过添加名为 `/` 的对话来定义根对话，因此其命名约定类似于 URL。  此命名约定并不适合用于对话的命名。 
 
 > [!NOTE]
-> 从 Bot Framework 版本 3.5 开始，默认对话注册为 [`UniversalBot`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#constructor) 构造函数中的第二个参数。  
+> 从 Bot Framework 版本 3.5 开始，默认对话注册为 [`UniversalBot`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.universalbot.html#constructor) 构造函数中的第二个参数。   
 
 以下代码片段演示如何在创建 `UniversalBot` 对象时定义默认对话。
 
@@ -71,7 +71,7 @@ var bot = new builder.UniversalBot(connector, [
 
 ## <a name="starting-and-ending-dialogs"></a>启动和结束对话
 
-若要启动新对话（将其推送到堆栈），请使用 [`session.beginDialog()`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#begindialog)。 若要结束对话（将其从堆栈中删除，并将控制权返回给调用方对话），请使用 [`session.endDialog()`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#enddialog) 或 [`session.endDialogWithResult()`](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#enddialogwithresult)。 
+若要启动新对话（将其推送到堆栈），请使用 [`session.beginDialog()`](http://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#begindialog)。 若要结束对话（将其从堆栈中删除，并将控制权返回给调用方对话），请使用 [`session.endDialog()`](http://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#enddialog) 或 [`session.endDialogWithResult()`](http://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#enddialogwithresult)。 
 
 ## <a name="using-waterfalls-and-prompts"></a>使用瀑布和提示
 

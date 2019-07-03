@@ -8,12 +8,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 19b44fbb09af69bde803b9b884d58108c248ebe5
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 7c00c17eaa8d4e84ffbeff1e318cbc403de2038a
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224823"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405636"
 ---
 # <a name="manage-custom-state-data-with-azure-cosmos-db-for-net"></a>使用 Azure Cosmos DB for .NET 管理自定义状态数据
 
@@ -28,21 +28,21 @@ ms.locfileid: "54224823"
  
 ## <a name="prerequisites"></a>先决条件
 需要：
- - [Microsoft Azure 帐户](https://azure.microsoft.com/en-us/free/)
+ - [Microsoft Azure 帐户](https://azure.microsoft.com/free/)
  - [Visual Studio 2015 或更高版本](https://www.visualstudio.com/)
  - [Bot Builder Azure NuGet 包](https://www.nuget.org/packages/Microsoft.Bot.Builder.Azure/)
  - [Autofac Web Api2 NuGet 包](https://www.nuget.org/packages/Autofac.WebApi2/)
  - [Bot Framework Emulator](~/bot-service-debug-emulator.md)
  
 ## <a name="create-azure-account"></a>创建 Azure 帐户
-如果没有 Azure 帐户，请单击[此处](https://azure.microsoft.com/en-us/free/)注册免费帐户。
+如果没有 Azure 帐户，请单击[此处](https://azure.microsoft.com/free/)注册免费帐户。
 
 ## <a name="set-up-the-azure-cosmos-db-database"></a>设置 Azure Cosmos DB 数据库
-1. 登录 Azure 门户后，单击“新建”来新建一个 Azure Cosmos DB 数据库。 
-2. 单击“数据库”。 
-3. 找到“Azure Cosmos DB”，然后单击“创建”。
-4. 填充字段。 对于 API 字段，选择“SQL (DocumentDB)”。 填写完所有字段后，单击屏幕底部的“创建”按钮来部署新的数据库。 
-5. 部署新的数据库后，导航到新数据库。 单击“访问密钥”以查找密钥和连接字符串。 机器人将使用此信息来调用存储服务以保存状态数据。
+1. 登录 Azure 门户后，单击“新建”来新建一个 Azure Cosmos DB 数据库   。 
+2. 单击“数据库”  。 
+3. 找到“Azure Cosmos DB”，然后单击“创建”   。
+4. 填充字段。 对于 API 字段，选择“SQL (DocumentDB)”   。 填写完所有字段后，单击屏幕底部的“创建”按钮来部署新的数据库  。 
+5. 部署新的数据库后，导航到新数据库。 单击“访问密钥”以查找密钥和连接字符串  。 机器人将使用此信息来调用存储服务以保存状态数据。
 
 ## <a name="install-nuget-packages"></a>安装 NuGet 包
 1. 打开现有的 C# 机器人项目，或使用 Visual Studio 中的机器人模板创建一个新项目。 
@@ -109,12 +109,12 @@ namespace SampleApp
 
 ## <a name="connect-your-bot-to-the-emulator"></a>将机器人连接到模拟器
 此时，机器人在本地运行。 接下来，启动模拟器，然后在模拟器中连接到机器人：
-1. 在地址栏中键入 http://localhost:port-number/api/messages，其中 port-number 与运行应用程序的浏览器中显示的端口号相匹配。 可暂时将“Microsoft 应用 ID”和“Microsoft 应用密码”字段留空。 稍后[注册机器人](~/bot-service-quickstart-registration.md)时将获取此信息。
-2. 单击“连接”。 
+1. 在地址栏中键入 http://localhost:port-number/api/messages ，其中 port-number 与运行应用程序的浏览器中显示的端口号相匹配。 可暂时将“Microsoft 应用 ID”和“Microsoft 应用密码”字段留空。 稍后[注册机器人](~/bot-service-quickstart-registration.md)时将获取此信息。
+2. 单击“连接”  。 
 3. 通过在模拟器中键入一些消息来测试机器人。 
 
 ## <a name="view-state-data-on-azure-portal"></a>在 Azure 门户中查看状态数据
-若要查看状态数据，请登录 Azure 门户并导航到你的数据库。 单击“数据资源管理器(预览版)”以验证是否正在保存来自机器人的状态信息。 
+若要查看状态数据，请登录 Azure 门户并导航到你的数据库。 单击“数据资源管理器(预览版)”  以验证是否正在保存来自机器人的状态信息。 
 
 ## <a name="next-steps"></a>后续步骤
 在本文中，你使用 Cosmos DB 来保存和管理机器人的数据。 接下来，学习如何使用对话为聊天流建模。

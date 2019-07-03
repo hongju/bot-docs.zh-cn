@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4fc8ebd1eff03c2b6ac994ff80cb85b341bb7231
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: e019d2d04d843cc0efd5a39135d65fe4cfc022f3
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693669"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404502"
 ---
 # <a name="add-natural-language-understanding-to-your-bot"></a>向机器人添加自然语言理解
 
@@ -26,7 +26,7 @@ ms.locfileid: "66693669"
 ## <a name="prerequisites"></a>先决条件
 - [LUIS](https://www.luis.ai) 帐户
 - 本文中的代码基于**核心机器人**示例。 需要 **[CSharp](https://aka.ms/cs-core-sample) 或 [JavaScript](https://aka.ms/js-core-sample)** 示例的副本。 
-- 了解[机器人基础知识](bot-builder-basics.md)、[自然语言处理](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/what-is-luis)和[管理机器人资源](bot-file-basics.md)。
+- 了解[机器人基础知识](bot-builder-basics.md)、[自然语言处理](https://docs.microsoft.com/azure/cognitive-services/luis/what-is-luis)和[管理机器人资源](bot-file-basics.md)。
 
 ## <a name="about-this-sample"></a>关于此示例
 
@@ -70,8 +70,8 @@ ms.locfileid: "66693669"
 1. 选择“导入新应用”。  
 1. 单击“选择应用文件(JSON 格式)...”  
 1. 选择示例的 `CognitiveModels` 文件夹中的 `FlightBooking.json` 文件。 在“可选名称”中，输入 **FlightBooking**。  此文件包含三个意向：“预订航班”、“取消”和“None”。 当用户向机器人发送消息时，我们将使用这些意向来了解其意图。
-1. [训练](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-how-to-train)应用。
-1. 将应用[发布](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/publishapp)到生产环境。 
+1. [训练](https://docs.microsoft.com/azure/cognitive-services/LUIS/luis-how-to-train)应用。
+1. 将应用[发布](https://docs.microsoft.com/azure/cognitive-services/LUIS/publishapp)到生产环境。 
 
 ### <a name="why-use-entities"></a>为何使用实体
 LUIS 实体可让机器人智能理解不同于标准意向的某些事物或事件。 这样，你便可以从用户收集额外的信息，让机器人以更高的智能做出响应，或者在某些情况下跳过它向用户提出的有关该信息的问题。 除了“预订航班”、“取消”和“None”这三个 LUIS 意向的定义，FlightBooking.json 文件还包含一组实体，例如“From.Airport”和“To.Airport”。 LUIS 可以通过这些实体检测用户在发出新的旅行预订请求时其原始输入中包含的其他信息并将其返回。
@@ -102,7 +102,7 @@ LUIS 实体可让机器人智能理解不同于标准意向的某些事物或事
 
 在 `.env` 文件中添加访问 LUIS 应用所需的信息，包括应用程序 ID、创作密钥和区域。 前面已在发布的 LUIS 应用中保存了这些值。 请注意，API 主机名称应采用 `<your region>.api.cognitive.microsoft.com` 格式。
 
-**.env**
+**.env**  
 [!code[env](~/../botbuilder-samples/samples/javascript_nodejs/13.core-bot/.env?range=1-5)]
 
 ---

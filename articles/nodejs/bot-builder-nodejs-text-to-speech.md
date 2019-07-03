@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5ae3acded991411156d3e69f4ed9360df9bdccb1
-ms.sourcegitcommit: 4c5c08e7c7eaa5f74c6ac35d8478954b998625f9
+ms.openlocfilehash: 14b8bf7aa4e99e3ca97442c2ba57dc8c57138d99
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/29/2019
-ms.locfileid: "64906297"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404688"
 ---
 # <a name="add-speech-to-messages"></a>向消息添加语音
 
@@ -46,7 +46,7 @@ ms.locfileid: "64906297"
 | 参数 | 说明 |
 |----|----|
 | `displayText` | 要显示的文本。 |
-| `speechText` | 要说出的文本（纯文本或 <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">SSML</a> 格式）。 |
+| `speechText` | 要说出的文本（纯文本或 <a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">SSML</a> 格式）。 |
 | `options` | `IMessage` 对象，可以包含附件或[输入提示](bot-builder-nodejs-send-input-hints.md)。 |
 
 以下代码示例发送一条消息，指定要显示的文本和要说出的文本，并指示机器人[正在忽略用户输入](bot-builder-nodejs-send-input-hints.md)。
@@ -61,7 +61,7 @@ ms.locfileid: "64906297"
 
 ## <a id="ssml"></a> 语音合成标记语言 (SSML)
 
-若要指定机器人要说出的文本，可以使用纯文本字符串或格式设置为语音合成标记语言 (SSML) 的字符串，后者是一种基于 XML 的标记语言，可用于控制机器人语音的各种特征（如语音、语速、音量、发音、音高等）。 有关 SSML 的详细信息，请参阅<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言参考</a>。
+若要指定机器人要说出的文本，可以使用纯文本字符串或格式设置为语音合成标记语言 (SSML) 的字符串，后者是一种基于 XML 的标记语言，可用于控制机器人语音的各种特征（如语音、语速、音量、发音、音高等）。 有关 SSML 的详细信息，请参阅<a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言参考</a>。
 
 > [!TIP]
 > 使用 <a href="https://www.npmjs.com/search?q=ssml" target="_blank">SSML 库</a>创建格式正确的 SSML。
@@ -76,5 +76,5 @@ ms.locfileid: "64906297"
 
 ## <a name="additional-resources"></a>其他资源
 
-- <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言 (SSML)</a>
+- <a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言 (SSML)</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill" target="_blank">掷骰子示例 (GitHub)</a>

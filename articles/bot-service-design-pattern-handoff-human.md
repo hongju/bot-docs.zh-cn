@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 5/2/2019
-ms.openlocfilehash: a5bb8d8dce1fdb45ab9ab42b247e2697713e51ac
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: d1fed33682349948d1b33d9b4fecdf718a20a248
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033052"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405843"
 ---
 # <a name="transition-conversations-from-bot-to-human"></a>将会话从机器人转给人工
 
@@ -20,7 +20,7 @@ ms.locfileid: "65033052"
 
 ## <a name="scenarios-that-require-human-involvement"></a>需要人工介入的场景
 
-很多场景可能需要将会话控制权从机器人转给人工。 其中几个场景为“会审”“升级”和“监督”。 
+很多场景可能需要将会话控制权从机器人转给人工。 其中几个场景为“会审”  “升级”  和“监督”  。 
 
 ### <a name="triage"></a>会审
 
@@ -42,7 +42,7 @@ ms.locfileid: "65033052"
 
 自然语言理解和情感分析有助于机器人决定何时将会话控制权转给人工代理。 当尝试确定用户何时感到沮丧或想要与人工代理交谈时，这尤其有用。 
  
-机器人通过使用推断情绪的<a href="https://www.microsoft.com/cognitive-services/en-us/text-analytics-api" target="blank">文本分析 API</a> 或使用 <a href="https://www.luis.ai" target="_blank">LUIS API</a> 来分析用户消息的内容。 
+机器人通过使用推断情绪的<a href="https://www.microsoft.com/cognitive-services/text-analytics-api" target="blank">文本分析 API</a> 或使用 <a href="https://www.luis.ai" target="_blank">LUIS API</a> 来分析用户消息的内容。 
 
 
 > [!TIP]
@@ -77,7 +77,7 @@ ms.locfileid: "65033052"
 ::: moniker range="azure-bot-service-4.0"
 
 - [对话框](v4sdk/bot-builder-dialog-manage-conversation-flow.md)
-- <a href="https://www.microsoft.com/cognitive-services/en-us/text-analytics-api" target="blank">文本分析 API</a>
+- <a href="https://www.microsoft.com/cognitive-services/text-analytics-api" target="blank">文本分析 API</a>
 
 ::: moniker-end
 
@@ -85,7 +85,7 @@ ms.locfileid: "65033052"
 
 - [使用对话管理聊天流 (.NET)](~/dotnet/bot-builder-dotnet-manage-conversation-flow.md)
 - [使用对话管理聊天流 (Node.js)](~/nodejs/bot-builder-nodejs-manage-conversation-flow.md)
-- <a href="https://www.microsoft.com/cognitive-services/en-us/text-analytics-api" target="blank">文本分析 API</a>
+- <a href="https://www.microsoft.com/cognitive-services/text-analytics-api" target="blank">文本分析 API</a>
 
 
 ::: moniker-end

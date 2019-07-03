@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: f4b8243580ee678390177881b136a9016be4a786
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: eba4ad9ba2fae85fbc2488e5fef8d5a7dac593ee
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215465"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464764"
 ---
 ## <a name="custom-assistant-overview"></a>自定义助手概述
 
@@ -35,17 +35,17 @@ ms.locfileid: "66215465"
 
 ## <a name="complete-ownership-and-control-of-data"></a>数据的完整所有权和控制权
 
-自定义助手会部署在 Azure 订阅中。 因此，由助手生成的所有数据（提问的问题、用户行为等）全都包含在 Azure 订阅中。 有关详细信息，请更具体地参阅[认知服务 Azure 信任云](https://www.microsoft.com/en-us/trustcenter/cloudservices/cognitiveservices)和[信任中心的 Azure 部分](https://www.microsoft.com/en-us/TrustCenter/CloudServices/Azure)。
+自定义助手会部署在 Azure 订阅中。 因此，由助手生成的所有数据（提问的问题、用户行为等）全都包含在 Azure 订阅中。 有关详细信息，请更具体地参阅[认知服务 Azure 信任云](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices)和[信任中心的 Azure 部分](https://www.microsoft.com/TrustCenter/CloudServices/Azure)。
 
 ## <a name="your-assistant-anywhere"></a>你的助手，不管你身在何处...
 
-自定义助手利用了 Microsoft 聊天 AI 平台，因此可以通过任何 Framework [通道](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-manage-channels?view=azure-bot-service-4.0)（例如 WebChat、FaceBook Messenger、Skype 等）来显示。另外，我们可以通过 [Direct Line](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts?view=azure-bot-service-4.0) 通道将体验嵌入到桌面和移动应用，包括汽车、扬声器、闹钟等设备。
+自定义助手利用了 Microsoft 聊天 AI 平台，因此可以通过任何 Framework [通道](https://docs.microsoft.com/azure/bot-service/bot-service-manage-channels?view=azure-bot-service-4.0)（例如 WebChat、FaceBook Messenger、Skype 等）来显示。另外，我们可以通过 [Direct Line](https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts?view=azure-bot-service-4.0) 通道将体验嵌入到桌面和移动应用，包括汽车、扬声器、闹钟等设备。
 
 ## <a name="built-on-enterprise-grade-technology"></a>以企业级技术为基础构建
 
-自定义助手解决方案在 Azure 机器人服务、语言理解认知服务、统一语音以及一大系列的 Azure 支持组件基础上构建，这意味着你可以受益于 [Azure 全球基础结构](https://azure.microsoft.com/en-gb/global-infrastructure/)。
+自定义助手解决方案在 Azure 机器人服务、语言理解认知服务、统一语音以及一大系列的 Azure 支持组件基础上构建，这意味着你可以受益于 [Azure 全球基础结构](https://azure.microsoft.com/global-infrastructure/)。
 
-另外，语言理解支持由 LUIS 认知服务提供，后者支持[此处列出](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/luis-supported-languages)的一大系列的语言。 [Translator 认知服务](https://azure.microsoft.com/en-us/services/cognitive-services/translator-text-api/)提供其他机器翻译功能，进一步扩大自定义助手的应用范围。
+另外，语言理解支持由 LUIS 认知服务提供，后者支持[此处列出](https://docs.microsoft.com/azure/cognitive-services/luis/luis-supported-languages)的一大系列的语言。 [Translator 认知服务](https://azure.microsoft.com/services/cognitive-services/translator-text-api/)提供其他机器翻译功能，进一步扩大自定义助手的应用范围。
 
 ## <a name="integrated-and-context-aware"></a>集成和上下文感知
 
@@ -61,7 +61,7 @@ ms.locfileid: "66215465"
 
 ## <a name="adaptive-cards"></a>自适应卡片
 
-[自适应卡片](https://adaptivecards.io/)允许自定义助手返回用户体验元素（例如，卡片、图像、按钮）以及文本库响应。 如果设备或聊天画布有一个屏幕，则可以跨很大范围的设备和平台来渲染这些自适应卡片，根据需要提供支持的用户体验。 [此处](https://adaptivecards.io/samples/)提供自适应卡片的示例，[此处](https://docs.microsoft.com/en-us/adaptive-cards/rendering-cards/getting-started)的文档介绍渲染选项。
+[自适应卡片](https://adaptivecards.io/)允许自定义助手返回用户体验元素（例如，卡片、图像、按钮）以及文本库响应。 如果设备或聊天画布有一个屏幕，则可以跨很大范围的设备和平台来渲染这些自适应卡片，根据需要提供支持的用户体验。 [此处](https://adaptivecards.io/samples/)提供自适应卡片的示例，[此处](https://docs.microsoft.com/adaptive-cards/rendering-cards/getting-started)的文档介绍渲染选项。
 
 
 ## <a name="skills"></a>技能

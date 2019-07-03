@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 12/13/2017
-ms.openlocfilehash: 6820815f251c38c59391f1e0e7719e52a375ed48
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 4e73a56eb94207de49d8684c4db26155554820f3
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224902"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405855"
 ---
 # <a name="design-knowledge-bots"></a>设计知识型机器人
 
@@ -57,17 +57,17 @@ ms.locfileid: "54224902"
 
 ### <a name="azure-search"></a>Azure 搜索
 
-通过 <a href="https://azure.microsoft.com/en-us/services/search/" target="_blank">Azure 搜索</a>，可创建机器人可轻松搜索、分面和筛选的高效搜索索引。 请考虑使用通过 Azure 门户创建的搜索索引。
+通过 <a href="https://azure.microsoft.com/services/search/" target="_blank">Azure 搜索</a>，可创建机器人可轻松搜索、分面和筛选的高效搜索索引。 请考虑使用通过 Azure 门户创建的搜索索引。
 
 ![对话结构](~/media/bot-service-design-pattern-knowledge-base/search3.PNG)
 
-假设你希望能够访问数据存储的所有属性，因此要将每个属性都设置为“可检索”。 同时你希望能够按姓名查找歌手，因此要将 Name 属性设置为“可搜索”。 最后，你希望能够对歌手的年代进行筛选，因此要将 Eras 属性同时标记为“可分面”和“可筛选”。 
+假设你希望能够访问数据存储的所有属性，因此要将每个属性都设置为“可检索”。 同时你希望能够按姓名查找歌手，因此要将 Name 属性设置为“可搜索”  。 最后，你希望能够对歌手的年代进行筛选，因此要将 Eras 属性同时标记为“可分面”和“可筛选”  。 
 
 分面确定给定属性的数据存储中存在的值，同时确定每个值的大小。 例如，以下屏幕截图显示数据存储中有 5 个不同的年代：
 
 ![对话结构](~/media/bot-service-design-pattern-knowledge-base/facet.png)
 
-反过来，筛选仅选择特定属性的指定实例。 例如，可筛选上面的结果集，使其仅包含 Era 等于 Romantic（浪漫主义时期）的项。 
+反过来，筛选仅选择特定属性的指定实例。 例如，可筛选上面的结果集，使其仅包含 Era 等于 Romantic（浪漫主义时期）的项  。 
 
 > [!NOTE]
 > 要通过完整示例了解使用 Azure Document DB、Azure 搜索和 Microsoft Bot Framework 创建的知识型机器人，请参阅<a href="https://github.com/ryanvolum/AzureSearchBot" target="_blank">示例机器人</a>。
@@ -78,7 +78,7 @@ ms.locfileid: "54224902"
 ## <a name="qna-maker"></a>QnA Maker
 
 一些知识型机器人可能只回答常见问题 (FAQ)。 
-<a href="https://www.microsoft.com/cognitive-services/en-us/qnamaker" target="_blank">QnA Maker</a> 是一款专为此用例设计的强大工具。 QnA Maker 内置有从现有常见问题解答站点中提取问题和答案的功能，它还能让你手动配置自己的问题和答案自定义列表。 QnA Maker 能够处理自然语言，由此甚至可提供用词与预期略有不同的问题的答案。 但是，它无法理解语义性的语言。 例如，它无法确定小狗是一种类型的狗。 
+<a href="https://www.microsoft.com/cognitive-services/qnamaker" target="_blank">QnA Maker</a> 是一款专为此用例设计的强大工具。 QnA Maker 内置有从现有常见问题解答站点中提取问题和答案的功能，它还能让你手动配置自己的问题和答案自定义列表。 QnA Maker 能够处理自然语言，由此甚至可提供用词与预期略有不同的问题的答案。 但是，它无法理解语义性的语言。 例如，它无法确定小狗是一种类型的狗。 
 
 使用 QnA Maker Web 界面，可配置具有 3 对问答的知识库： 
 
@@ -130,7 +130,7 @@ ms.locfileid: "54224902"
 2. 首先调用 LUIS，如果没有意向满足特定阈值分数（即触发“None”意向），则调用 QnA Maker。 或者，为 QnA Maker 创建 LUIS 意向，从而向 LUIS 模型提供映射到“QnAIntent”的 QnA 问题示例。 
 3. 首先调用 QnA Maker，如果答案均不符合特定的阈值分数，则调用 LUIS。 
 
-Bot Framework SDK 为 LUIS 和 QnA Maker 提供了内置支持。 这让用户能够使用 LUIS 和/或 QnA Maker 触发对话或自动回答问题，而无需对任一工具实现自定义调用。 有关详细信息，请参阅 [Dispatch 工具教程](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0)。
+Bot Framework SDK 为 LUIS 和 QnA Maker 提供了内置支持。 这让用户能够使用 LUIS 和/或 QnA Maker 触发对话或自动回答问题，而无需对任一工具实现自定义调用。 有关详细信息，请参阅 [Dispatch 工具教程](https://docs.microsoft.com/azure/bot-service/bot-builder-tutorial-dispatch?view=azure-bot-service-4.0)。
 
 > [!TIP]
 > 在实现 LUIS、QnA Maker 和/或 Azure 搜索的组合时，通过每个工具测试输入以确定每个模型的阈值分数。 LUIS、QnA Maker 和 Azure 搜索各自使用不同的评分标准生成分数，因此通过这些工具生成的分数无法直接对比。 此外，LUIS 和 QnA Maker 将分数标准化。 某个 LUIS 模型可能认为某一分数是“良好”，而另一模型则不这么认为。 
@@ -142,4 +142,4 @@ Bot Framework SDK 为 LUIS 和 QnA Maker 提供了内置支持。 这让用户�
 - For a sample that shows how to create more complex knowledge bots using the Bot Framework SDK for .NET, see the <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/master/CSharp/demo-Search" target="_blank">Search-powered Bots sample</a> in GitHub.
 -->
 
-[qnamakerTemplate]: https://docs.botframework.com/en-us/azure-bot-service/templates/qnamaker/#navtitle
+[qnamakerTemplate]: https://docs.botframework.com/azure-bot-service/templates/qnamaker/#navtitle

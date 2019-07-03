@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 96c28101c3ea72c70c6ad53b06306f4ea00b2929
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 497a00dd9327d3b4c26c1468bba04f18e2244ca1
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225602"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405028"
 ---
 # <a name="manage-conversation-flow-with-dialogs"></a>使用对话框管理会话流
 
@@ -241,7 +241,7 @@ bot.dialog('partySizeHelp', function(session, args, next) {
 
 在此示例中，每当用户输入“help”，机器人将向堆栈推送 `partySizeHelp` 对话。 该对话向用户发送帮助消息后结束，并且控制将返回到提示用户聚会规模的 `askForPartySize` 对话。
 
-请务必注意，此上下文相关的帮助仅在用户位于 `askForPartySize` 对话中时执行。 否则，将改为执行 `triggerAction` 中的一般帮助消息。 换言之，本地 `matches` 子句始终优先于全局 `matches` 子句。 例如，如果 `beginDialogAction` 与 help 匹配，则不会执行 `triggerAction` 中的 help 匹配。 有关详细信息，请参阅[操作优先级](bot-builder-nodejs-dialog-actions.md#action-precedence)。
+请务必注意，此上下文相关的帮助仅在用户位于 `askForPartySize` 对话中时执行。 否则，将改为执行 `triggerAction` 中的一般帮助消息。 换言之，本地 `matches` 子句始终优先于全局 `matches` 子句。 例如，如果 `beginDialogAction` 与 help 匹配，则不会执行 `triggerAction` 中的 help 匹配   。 有关详细信息，请参阅[操作优先级](bot-builder-nodejs-dialog-actions.md#action-precedence)。
 
 ### <a name="change-the-topic-of-conversation"></a>更改聊天主题
 
@@ -343,7 +343,7 @@ bot.dialog('orderDinner', [
 
 在上面的示例中，通过使用 `session.endDialog` 或 `session.endDialogWithResult` 结束对话，这两种都能结束对话，将其从堆栈中删除并将控制返回到调用的对话。 在用户已到达聊天末尾的情况下，应使用 `session.endConversation` 指示聊天已完成。
 
-[`session.endConversation` ](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#endconversation) 方法可结束聊天并根据需要向用户发送消息。 例如，上例中的 `orderDinner` 对话可使用 `session.endConversation` 结束聊天，如下面的示例代码中所示。
+[`session.endConversation` ](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#endconversation) 方法可结束聊天并根据需要向用户发送消息。 例如，上例中的 `orderDinner` 对话可使用 `session.endConversation` 结束聊天，如下面的示例代码中所示。
 
 ```javascript
 bot.dialog('orderDinner', [
@@ -359,7 +359,7 @@ bot.dialog('orderDinner', [
 ]);
 ```
 
-调用 `session.endConversation` 将通过清除对话堆栈并重置 [`session.conversationData`](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#conversationdata) 存储来结束聊天。 有关数据存储的详细信息，请参阅[管理状态数据](bot-builder-nodejs-state.md)。
+调用 `session.endConversation` 将通过清除对话堆栈并重置 [`session.conversationData`](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#conversationdata) 存储来结束聊天。 有关数据存储的详细信息，请参阅[管理状态数据](bot-builder-nodejs-state.md)。
 
 用户完成为机器人设计的聊天流后，应调用 `session.endConversation`。 此外，还可使用 `session.endConversation` 在用户处于聊天中时输入“cancel”或“goodbye”的情况下结束聊天。 为此，只需将 `endConversationAction` 附加到此对话并使此触发器侦听匹配“取消”或“再见”的输入即可。
 

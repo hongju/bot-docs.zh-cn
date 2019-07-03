@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
-ms.openlocfilehash: 8d9b2ea2e2133c86428b537427433f9dd15216ee
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: dbd7d437b7a1cdffd446337192e77a8c3d93e4a0
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225942"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405772"
 ---
 # <a name="upgrade-your-bot-to-bot-framework-api-v3"></a>将机器人升级到 Bot Framework API v3
 
@@ -23,9 +23,9 @@ ms.locfileid: "54225942"
 
 ## <a name="step-1-get-your-app-id-and-password-from-the-bot-framework-portal"></a>步骤 1：从 Bot Framework 门户获取应用 ID 和密码
 
-登录到 [Bot Framework 门户](https://dev.botframework.com/)，单击“我的机器人”，然后选择机器人以打开其仪表板。 接下来，单击页面左侧“机器人管理”下的“设置”链接。 
+登录到 [Bot Framework 门户](https://dev.botframework.com/)，单击“我的机器人”  ，然后选择机器人以打开其仪表板。 接下来，单击页面左侧“机器人管理”下的“设置”链接。   
 
-在设置页的“配置”部分，检查“Microsoft 应用 ID”字段的内容，然后继续执行后续步骤。
+在设置页的“配置”  部分，检查“Microsoft 应用 ID”  字段的内容，然后继续执行后续步骤。
 
 <!-- TODO: Remove this 
 ### Case 1: App ID field is already populated
@@ -33,10 +33,10 @@ ms.locfileid: "54225942"
 If the **App ID** field is already populated, complete these steps:
 -->
 
-1. 单击“管理 Microsoft 应用 ID 和密码”。  
+1. 单击“管理 Microsoft 应用 ID 和密码”  。  
 ![配置](./media/upgrade/manage-app-id.png)
 
-2. 单击“生成新密码”。  
+2. 单击“生成新密码”  。  
 ![生成新密码](./media/upgrade/generate-new-password.png)
 
 3. 复制并保存新密码以及 MSA 应用 ID；将在以后用到这些值。  
@@ -71,15 +71,15 @@ If the **App ID** field is empty, complete these steps:
 
 不再兼容 V1 机器人。 若要更新机器人，需改为在 V3 中创建新的机器人。 若要保留任何旧的代码，需手动迁移代码。
 
-最简单的解决方案是使用新的 [SDK](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0) 重新创建机器人，然后进行部署。 
+最简单的解决方案是使用新的 [SDK](https://docs.microsoft.com/azure/bot-service/?view=azure-bot-service-4.0) 重新创建机器人，然后进行部署。 
 
 如果希望保留旧的代码，请按以下步骤操作：
 
 1. 创建新的机器人应用程序。
 2. 将旧代码复制到新机器人应用程序中。
 3. 通过 Nuget 包管理器将 SDK 升级到最新版本。
-4. 修复出现的任何错误，参考新的 [SDK](https://docs.microsoft.com/en-us/azure/bot-service/?view=azure-bot-service-4.0)。
-5. 按照这些[说明](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)将机器人部署到 Azure
+4. 修复出现的任何错误，参考新的 [SDK](https://docs.microsoft.com/azure/bot-service/?view=azure-bot-service-4.0)。
+5. 按照这些[说明](https://docs.microsoft.com/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)将机器人部署到 Azure
 
 <!-- TODO: Remove outdated code 
 To update your bot code to version 3.0, complete these steps:
@@ -102,7 +102,7 @@ The following sections describe the key differences between API v1 and API v3. A
 
 ### <a name="message-is-now-activity"></a>Message 现为 Activity
 
-`Message` 对象已替换为 API v3 中的 `Activity` 对象。 最常见的活动类型是“message”，但是还有其他活动类型可用于将各种类型的信息传达给机器人或通道。 有关消息的详细信息，请参阅[创建消息](~/dotnet/bot-builder-dotnet-create-messages.md)和[发送和接收活动](~/dotnet/bot-builder-dotnet-connector.md)。
+`Message` 对象已替换为 API v3 中的 `Activity` 对象。 最常见的活动类型是“message”  ，但是还有其他活动类型可用于将各种类型的信息传达给机器人或通道。 有关消息的详细信息，请参阅[创建消息](~/dotnet/bot-builder-dotnet-create-messages.md)和[发送和接收活动](~/dotnet/bot-builder-dotnet-connector.md)。
 
 ### <a name="activity-types--events"></a>活动类型和事件
 
@@ -149,23 +149,23 @@ Bot Framework API v3 引入了更可靠的附件和卡实现。 `Options` 类型
 在 Bot Framework API v1 中，用于管理机器人状态数据的 API 已折叠到消息 API。 在 Bot Framework API v3 中，这些 API 都是独立的。 现在必须使用 Bot State 服务来获取状态数据（而不是假设它将包含在 `Message` 对象中），并存储状态数据（而不是作为 `Message` 对象的一部分传递）。 有关使用 Bot State 服务管理机器人状态数据的信息，请参阅[管理状态数据](~/dotnet/bot-builder-dotnet-state.md)。
 
 > [!IMPORTANT]
-> 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展之一用于生产机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”主题。
+> 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展  之一用于生产机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”  主题。
 
 ### <a name="webconfig-changes"></a>Web.config 更改
 
-Bot Framework API v1 在 Web.Config 中使用这些密钥存储身份验证属性：
+Bot Framework API v1 在 Web.Config  中使用这些密钥存储身份验证属性：
 
 - `AppID`
 - `AppSecret`
 
-Bot Framework API v3 在 Web.Config 中使用这些密钥存储身份验证属性：
+Bot Framework API v3 在 Web.Config  中使用这些密钥存储身份验证属性：
 
 - `MicrosoftAppID`
 - `MicrosoftAppPassword`
 
 ## <a id="step-3"></a> 步骤 3：将更新的机器人部署到 Azure。
 
-将机器人代码升级到 API v3 以后，请直接按照这些[说明](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)将机器人部署到 Azure。 由于 V1 不再受支持，因此所有机器人在部署到 Azure 服务时都会自动使用 V3 API。
+将机器人代码升级到 API v3 以后，请直接按照这些[说明](https://docs.microsoft.com/azure/bot-service/bot-builder-howto-deploy-azure?view=azure-bot-service-4.0)将机器人部署到 Azure。 由于 V1 不再受支持，因此所有机器人在部署到 Azure 服务时都会自动使用 V3 API。
 
 <!-- TODO: Documentation set for removal 
 1. Sign in to the [Bot Framework Portal](https://dev.botframework.com/).

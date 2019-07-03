@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5c2b8832401ccc9260c9aa872c0848b3a3e8445b
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 34f2cb79d4dcef9ddb68c6de0333a94b4128b301
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225712"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404705"
 ---
 # <a name="manage-custom-state-data-with-azure-table-storage-for-nodejs"></a>通过适用于 Node.js 的 Azure 表存储来管理自定义状态数据
 
@@ -37,14 +37,14 @@ ms.locfileid: "54225712"
 - [存储资源管理器](http://storageexplorer.com/)。
 
 ## <a name="create-azure-account"></a>创建 Azure 帐户
-如果没有 Azure 帐户，请单击[此处](https://azure.microsoft.com/en-us/free/)注册免费帐户。
+如果没有 Azure 帐户，请单击[此处](https://azure.microsoft.com/free/)注册免费帐户。
 
 ## <a name="set-up-the-azure-table-storage-service"></a>设置 Azure 表存储服务
-1. 登录 Azure 门户后，单击“新建”创建新的 Azure 表存储。 
-2. 搜索实现 Azure 表的“存储帐户”。 单击“创建”开始创建存储资源。 
-3. 填写字段，单击屏幕底部的“创建”按钮以部署新存储服务。 
-4. 部署新存储服务后，导航到刚刚创建的存储帐户。 可以在“存储帐户”边栏选项卡列表中找到。
-4. 选择“访问密钥”，并复制密钥供将来使用。 机器人将使用存储帐户名称和密钥来调用存储服务以保存状态数据。
+1. 登录 Azure 门户后，单击“新建”  创建新的 Azure 表存储。 
+2. 搜索实现 Azure 表的“存储帐户”  。 单击“创建”  开始创建存储资源。 
+3. 填写字段，单击屏幕底部的“创建”  按钮以部署新存储服务。 
+4. 部署新存储服务后，导航到刚刚创建的存储帐户。 可以在“存储帐户”  边栏选项卡列表中找到。
+4. 选择“访问密钥”  ，并复制密钥供将来使用。 机器人将使用存储帐户名称  和密钥  来调用存储服务以保存状态数据。
 
 ## <a name="install-botbuilder-azure-module"></a>安装 botbuilder-azure 模块
 
@@ -56,7 +56,7 @@ npm install --save botbuilder-azure
 
 ## <a name="modify-your-bot-code"></a>修改机器人代码
 
-若要使用 Azure 表存储，将以下代码行添加到机器人的 app.js 文件。
+若要使用 Azure 表  存储，将以下代码行添加到机器人的 app.js  文件。
 
 1. 需要新安装的模块。
 
@@ -71,7 +71,7 @@ npm install --save botbuilder-azure
    var storageName = "Table-Storage-Name"; // Obtain from Azure Portal
    var storageKey = "Azure-Table-Key"; // Obtain from Azure Portal
    ```
-   `storageName` 和 `storageKay` 值可在 Azure 表的“访问密钥”菜单中找到。 如果 Azure 表中不存在 `tableName`，将为你创建一个。
+   `storageName` 和 `storageKay` 值可在 Azure 表的“访问密钥”  菜单中找到。 如果 Azure 表中不存在 `tableName`，将为你创建一个。
 
 3. 使用 `botbuilder-azure` 模块，创建两个新对象来连接到 Azure 表。 首先，创建传入连接配置设置的 `AzureTableClient` 实例。 接下来，创建传入 `AzureTableClient` 对象的 `AzureBotStorage` 实例。 例如：
 
@@ -112,17 +112,17 @@ node app.js
 
 此时，机器人在本地运行。 启动模拟器，然后从模拟器中连接到机器人：
 
-1. 在模拟器的地址栏中键入 http://localhost:port-number/api/messages，其中 port-number 与运行应用程序的浏览器中显示的端口号相匹配。 现在可以将“Microsoft 应用 ID”和“Microsoft 应用密码”字段留空。 稍后[注册机器人](~/bot-service-quickstart-registration.md)时将获取此信息。
-2. 单击“连接”。
-3. 通过向机器人发送消息测试机器人。 像往常一样与机器人进行交互。 完成后，请转到“存储资源管理器”并查看保存的状态数据。
+1. 在模拟器的地址栏中键入 http://localhost:port-number/api/messages ，其中 port-number 与运行应用程序的浏览器中显示的端口号相匹配。 现在可以将“Microsoft 应用 ID”和“Microsoft 应用密码”字段留空。 稍后[注册机器人](~/bot-service-quickstart-registration.md)时将获取此信息。
+2. 单击“连接”  。
+3. 通过向机器人发送消息测试机器人。 像往常一样与机器人进行交互。 完成后，请转到“存储资源管理器”  并查看保存的状态数据。
 
 ## <a name="view-data-in-storage-explorer"></a>在存储资源管理器中查看数据
 
-若要查看状态数据，请打开“存储资源管理器”并使用 Azure 门户凭据连接到 Azure，或使用 `storageName` 和 `storageKey` 直接连接到表，然后导航到 `tableName`。 
+若要查看状态数据，请打开“存储资源管理器”  并使用 Azure 门户凭据连接到 Azure，或使用 `storageName` 和 `storageKey` 直接连接到表，然后导航到 `tableName`。 
 
 ![带 botdata 表行的存储资源管理器屏幕截图](~/media/bot-builder-nodejs-state-azure-table-storage/bot-builder-nodejs-state-azure-table-storage-query.png)
 
-“数据”列中的一条会话记录如下所示：
+“数据”  列中的一条会话记录如下所示：
 
 ```JSON
 {

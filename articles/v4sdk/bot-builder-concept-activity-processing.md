@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 69ce362f35054c5ee42035d8bffefb17c6fa7f71
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 0e0fe51e33e99bbb35ef1d731b611ff9ca12a138
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215498"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404317"
 ---
 # <a name="activity-processing"></a>活动处理
 
@@ -23,7 +23,7 @@ ms.locfileid: "66215498"
 
 机器人和用户通过活动交互和交换信息。 机器人应用程序接收的每个活动都会传递给机器人适配器，该适配器会将活动信息传递给机器人逻辑，并最终将所有响应发送给用户。 接收活动，然后通过机器人对其进行处理，这一过程称为“轮次”；这表示一个完整的机器人运作周期。 所有执行结束，活动完全处理并且机器人的所有层都已完成后，轮次结束。
 
-活动（特别是在机器人轮次期间[从机器人发送](#generating-responses)的那些活动）是异步处理的。 这是生成机器人的必要部分；如果需要了解这一切是如何工作的，请查看 [.NET 异步](https://docs.microsoft.com/en-us/dotnet/csharp/async)或 [JavaScript 异步](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)，具体取决于语言选择。
+活动（特别是在机器人轮次期间[从机器人发送](#generating-responses)的那些活动）是异步处理的。 这是生成机器人的必要部分；如果需要了解这一切是如何工作的，请查看 [.NET 异步](https://docs.microsoft.com/dotnet/csharp/async)或 [JavaScript 异步](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/async_function)，具体取决于语言选择。
 
 ## <a name="the-bot-adapter"></a>机器人适配器
 

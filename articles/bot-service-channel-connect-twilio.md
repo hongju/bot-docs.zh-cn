@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/9/2018
-ms.openlocfilehash: 817623dd04612cd07d8877c8e9a199c05a2fd9e8
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: 4de93d821c6b652021a9f695536350610776f5b4
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693618"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405905"
 ---
 # <a name="connect-a-bot-to-twilio"></a>将机器人连接到 Twilio
 
@@ -26,7 +26,7 @@ ms.locfileid: "66693618"
 
 ## <a name="create-a-twiml-application"></a>创建 TwiML 应用程序
 
-按说明<a href="https://support.twilio.com/hc/en-us/articles/223180928-How-Do-I-Create-a-TwiML-App-" target="_blank">创建 TwiML 应用程序</a>。
+按说明<a href="https://support.twilio.com/hc/articles/223180928-How-Do-I-Create-a-TwiML-App-" target="_blank">创建 TwiML 应用程序</a>。
 
 ![创建应用](~/media/channels/twi-StepTwiml.png)
 
@@ -34,7 +34,7 @@ ms.locfileid: "66693618"
 
 ## <a name="select-or-add-a-phone-number"></a>选择或添加电话号码
 
-按照<a href = "https://support.twilio.com/hc/en-us/articles/223180048-Adding-a-Verified-Phone-Number-or-Caller-ID-with-Twilio" target="_blank">此处</a>的说明通过控制台站点添加经验证的呼叫方 ID。 完成后，会在“管理号码”下的“活动号码”中看到经验证的号码。  
+按照<a href = "https://support.twilio.com/hc/articles/223180048-Adding-a-Verified-Phone-Number-or-Caller-ID-with-Twilio" target="_blank">此处</a>的说明通过控制台站点添加经验证的呼叫方 ID。 完成后，会在“管理号码”下的“活动号码”中看到经验证的号码。  
 
 ![设置电话号码](~/media/channels/twi-StepPhone.png)
 

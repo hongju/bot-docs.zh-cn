@@ -1,17 +1,17 @@
 ---
 ms.openlocfilehash: eac6abae509d92ea4714bc01221f180ea575950f
-ms.sourcegitcommit: 4ff7a8772124a567f43e2c3e13aded368c4002e3
+ms.sourcegitcommit: a47183f5d1c2b2454c4a06c0f292d7c075612cdd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65035737"
+ms.lasthandoff: 06/19/2019
+ms.locfileid: "67252624"
 ---
 获取加密密钥。
 
 1. 登录到 [Azure 门户](http://portal.azure.com/)。
 1. 打开机器人的 Web 应用机器人资源。
-1. 打开机器人的“应用程序设置”。
-1. 在“应用程序设置”窗口中，向下滚动到“应用程序设置”。
+1. 打开机器人的“应用程序设置”。 
+1. 在“应用程序设置”  窗口中，向下滚动到“应用程序设置”  。
 1. 找到 **botFileSecret** 并复制其值。
 
 解密 .bot 文件。

@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 3e1ebc07c73dcd7033a6b9a22c94379593c5890e
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 7b3380a409641bd7d406c877ebcbf83ddf15431c
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215264"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404440"
 ---
 # <a name="testing-and-debugging-guidelines"></a>测试和调试指南
 
@@ -65,7 +65,7 @@ ms.locfileid: "66215264"
 
 ### <a name="other-testing"></a>其他测试
 
-不同类型的测试可以与上述级别的测试配合使用，也可以从不同的角度来进行，例如：压力测试、性能测试或机器人活动分析。 Visual studio 提供用于在本地执行此类操作的方法，并提供进行应用测试的[工具套件](https://azure.microsoft.com/en-us/solutions/dev-test/)，而 [Azure 门户](https://portal.azure.com)则可用于了解机器人的表现情况。
+不同类型的测试可以与上述级别的测试配合使用，也可以从不同的角度来进行，例如：压力测试、性能测试或机器人活动分析。 Visual studio 提供用于在本地执行此类操作的方法，并提供进行应用测试的[工具套件](https://azure.microsoft.com/solutions/dev-test/)，而 [Azure 门户](https://portal.azure.com)则可用于了解机器人的表现情况。
 
 ## <a name="debugging"></a>调试
 
@@ -105,7 +105,7 @@ For example [QnA maker](bot-builder-howto-qna.md) is designed to handle certain 
 
 记录状态是机器人必须做的，尤其对于复杂任务来说。 通常情况下，最佳做法是尽快处理活动并让处理操作完成，这样状态就能持久保存。 活动可能会在几乎同一时间发送至机器人，这可能会引入令人极为困惑的 Bug，因为体系结构是异步的。
 
-最重要的，请确保在持久保存状态时，所用方式与预期一致。 可以根据持久保存的状态的存储位置，使用 [Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator) 和 [Azure 表存储](https://docs.microsoft.com/en-us/azure/storage/common/storage-use-emulator)的存储模拟器来验证该状态，然后再使用生产性存储。
+最重要的，请确保在持久保存状态时，所用方式与预期一致。 可以根据持久保存的状态的存储位置，使用 [Cosmos DB](https://docs.microsoft.com/azure/cosmos-db/local-emulator) 和 [Azure 表存储](https://docs.microsoft.com/azure/storage/common/storage-use-emulator)的存储模拟器来验证该状态，然后再使用生产性存储。
 
 ### <a name="how-to-use-activity-handlers"></a>如何使用活动处理程序
 
@@ -117,9 +117,9 @@ For example [QnA maker](bot-builder-howto-qna.md) is designed to handle certain 
 
 ## <a name="additional-resources"></a>其他资源
 
-* [在 Visual Studio 中进行调试](https://docs.microsoft.com/en-us/visualstudio/debugger/index)
-* 适用于 Bot Framework 的[调试、跟踪和分析](https://docs.microsoft.com/en-us/dotnet/framework/debug-trace-profile/)
-* 将 [ConditionalAttribute](https://docs.microsoft.com/en-us/dotnet/api/system.diagnostics.conditionalattribute?view=netcore-2.0) 用于不希望包括在生产代码中的方法
+* [在 Visual Studio 中进行调试](https://docs.microsoft.com/visualstudio/debugger/index)
+* 适用于 Bot Framework 的[调试、跟踪和分析](https://docs.microsoft.com/dotnet/framework/debug-trace-profile/)
+* 将 [ConditionalAttribute](https://docs.microsoft.com/dotnet/api/system.diagnostics.conditionalattribute?view=netcore-2.0) 用于不希望包括在生产代码中的方法
 * 使用 [Fiddler](https://www.telerik.com/fiddler) 之类的工具来查看网络流量
 * [机器人工具存储库](https://github.com/Microsoft/botbuilder-tools)
 * 可以借助 [Moq](https://github.com/moq/moq4) 之类的框架进行测试

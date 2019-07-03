@@ -10,17 +10,17 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 167e496fa510cdf755be13f71cf3a596b0183ec1
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 3138b591519ff76865f007ae091c6c33cd0da79c
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215468"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404138"
 ---
 # <a name="conversation-flow"></a>会话流
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-设计机器人的会话流涉及决定机器人在用户向其说出某些内容时如何响应。 机器人首先根据来自用户的消息识别任务或会话主题。 要确定与用户消息相关联的任务或主题（称为“意向”  ），机器人可以在用户消息的文本中查找单词或模式，或者可以利用[语言理解](bot-builder-concept-luis.md)和 [QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 等服务。
+设计机器人的会话流涉及决定机器人在用户向其说出某些内容时如何响应。 机器人首先根据来自用户的消息识别任务或会话主题。 要确定与用户消息相关联的任务或主题（称为“意向”  ），机器人可以在用户消息的文本中查找单词或模式，或者可以利用[语言理解](bot-builder-concept-luis.md)和 [QnA Maker](https://docs.microsoft.com/azure/cognitive-services/qnamaker/overview/overview) 等服务。
 
 一旦机器人识别出用户意向，根据场景，机器人可以通过单个回复完成用户的请求，一个轮次完成会话，或者可能需要一系列轮次才能完成。 对于多个轮次的聊天流，Bot Framework SDK 提供用于跟踪聊天的[状态管理](./bot-builder-howto-v4-state.md)、用于请求信息的[提示](bot-builder-prompts.md)，以及用于封装聊天流的[对话框](bot-builder-dialog-manage-conversation-flow.md)。
 

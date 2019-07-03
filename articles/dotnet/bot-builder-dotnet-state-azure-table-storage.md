@@ -8,12 +8,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d5d6dc4e635b41424dfee0e260a769f9ed5f595d
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 05ab8f9148cd520be266d9340cd65a9903bf6e23
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225782"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405623"
 ---
 # <a name="manage-custom-state-data-with-azure-table-storage-for-net"></a>通过适用于 .NET 的 Azure 表存储来管理自定义状态数据
 
@@ -28,7 +28,7 @@ ms.locfileid: "54225782"
 
 ## <a name="prerequisites"></a>先决条件
 需要：
- - [Microsoft Azure 帐户](https://azure.microsoft.com/en-us/free/)
+ - [Microsoft Azure 帐户](https://azure.microsoft.com/free/)
  - [Visual Studio 2015 或更高版本](https://www.visualstudio.com/)
  - [Bot Builder Azure NuGet 包](https://www.nuget.org/packages/Microsoft.Bot.Builder.Azure/)
  - [Autofac Web Api2 NuGet 包](https://www.nuget.org/packages/Autofac.WebApi2/)
@@ -36,13 +36,13 @@ ms.locfileid: "54225782"
  - [Azure 存储资源管理器](http://storageexplorer.com/)
  
 ## <a name="create-azure-account"></a>创建 Azure 帐户
-如果没有 Azure 帐户，请单击[此处](https://azure.microsoft.com/en-us/free/)注册免费帐户。
+如果没有 Azure 帐户，请单击[此处](https://azure.microsoft.com/free/)注册免费帐户。
 
 ## <a name="set-up-the-azure-table-storage-service"></a>设置 Azure 表存储服务
-1. 登录 Azure 门户后，单击“新建”创建新的 Azure 表存储。 
-2. 搜索实施 Azure 表的“存储账户”。 
-3. 填写字段，单击屏幕底部的“创建”按钮以部署新存储服务。 部署新存储服务后，它将显示可用的功能和选项。
-4. 选择左侧的“访问密钥”选项卡，然后复制连接字符串供稍后使用。 机器人将使用此连接字符串来调用存储服务以保存状态数据。
+1. 登录 Azure 门户后，单击“新建”  创建新的 Azure 表存储。 
+2. 搜索实施 Azure 表的“存储账户”  。 
+3. 填写字段，单击屏幕底部的“创建”按钮以部署新存储服务  。 部署新存储服务后，它将显示可用的功能和选项。
+4. 选择左侧的“访问密钥”选项卡，然后复制连接字符串供稍后使用  。 机器人将使用此连接字符串来调用存储服务以保存状态数据。
 
 ## <a name="install-nuget-packages"></a>安装 NuGet 包
 1. 打开现有的 C# 机器人项目，或在 Visual Studio 中使用 C# 机器人模板创建一个新项目。 
@@ -101,12 +101,12 @@ using Microsoft.Bot.Builder.Dialogs.Internals;
 
 ## <a name="connect-your-bot-to-the-emulator"></a>将机器人连接到模拟器
 此时，机器人在本地运行。 接下来，启动模拟器，然后在模拟器中连接到机器人：
-1. 在地址栏中键入 http://localhost:port-number/api/messages，其中 port-number 与运行应用程序的浏览器中显示的端口号相匹配。 可暂时将“Microsoft 应用 ID”和“Microsoft 应用密码”字段留空。 稍后[注册机器人](~/bot-service-quickstart-registration.md)时将获取此信息。
-2. 单击“连接”。 
+1. 在地址栏中键入 http://localhost:port-number/api/messages ，其中 port-number 与运行应用程序的浏览器中显示的端口号相匹配。 可暂时将“Microsoft 应用 ID”和“Microsoft 应用密码”字段留空。 稍后[注册机器人](~/bot-service-quickstart-registration.md)时将获取此信息。
+2. 单击“连接”  。 
 3. 通过在模拟器中键入一些消息来测试机器人。 
 
 ## <a name="view-data-in-azure-table-storage"></a>在 Azure 表存储中查看数据
-若要有查看状态数据，请打开“存储资源管理器”并使用 Azure 门户凭据连接到 Azure，或使用存储名称和存储密钥直接连接到表，然后导航到表名。  
+若要有查看状态数据，请打开“存储资源管理器”并使用 Azure 门户凭据连接到 Azure，或使用存储名称和存储密钥直接连接到表，然后导航到表名  。  
 
 ## <a name="next-steps"></a>后续步骤
 在本文中，实施了 Azure 表存储来保存和管理机器人的数据。 接下来，学习如何使用对话为聊天流建模。

@@ -11,12 +11,12 @@ ms.topic: conceptual
 ms.date: 05/02/2019
 ms.author: travisw
 ms.custom: ''
-ms.openlocfilehash: 8e0d2939078e1e27162c7056373e95790a03eb88
-ms.sourcegitcommit: 5042e31bc6b2762d7a6636e98c8f496b90ea33c1
+ms.openlocfilehash: 114274a66492d421a7b3d6294d77ee83d336d3ca
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/07/2019
-ms.locfileid: "65240431"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405924"
 ---
 # <a name="connect-a-bot-to-direct-line-speech-preview"></a>将机器人连接到 Direct Line 语音（预览版）
 
@@ -32,7 +32,7 @@ Direct Line 语音目前为预览版，要求用户在 [Azure 门户](https://po
 
 ## <a name="add-the-direct-line-speech-channel"></a>添加 Direct Line 语音通道
 
-1. 若要添加 Direct Line 语音通道，请先在 [Azure 门户](https://portal.azure.com)中打开机器人，然后在配置边栏选项卡中单击“通道”。
+1. 若要添加 Direct Line 语音通道，请先在 [Azure 门户](https://portal.azure.com)中打开机器人，然后在配置边栏选项卡中单击“通道”  。
 
     ![突出显示选择要连接的通道时的位置](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-selectchannel.png "选择通道")
 
@@ -52,13 +52,13 @@ Direct Line 语音目前为预览版，要求用户在 [Azure 门户](https://po
 
 1. 在 [Azure 门户](https://portal.azure.com)中打开机器人的边栏选项卡（如果尚未打开）。 
 
-1. 单击“机器人管理”类别下的“设置”（位于“通道”正下方）。 单击“启用流式处理终结点”所对应的复选框。
+1. 单击“机器人管理”类别下的“设置”（位于“通道”正下方）。    单击“启用流式处理终结点”所对应的复选框。 
 
     ![启用流式处理协议](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-enablestreamingsupport.png "启用流式处理扩展支持")
 
-1. 在页面顶部，单击“保存”。
+1. 在页面顶部，单击“保存”  。
 
-1. 在同一边栏选项卡的“应用服务设置”类别下，单击“配置”。
+1. 在同一边栏选项卡的“应用服务设置”类别下，单击“配置”。  
 
     ![导航到应用服务设置](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-configureappservice.png "配置应用服务")
 
@@ -72,7 +72,7 @@ Direct Line 语音目前为预览版，要求用户在 [Azure 门户](https://po
 
 ## <a name="manage-secret-keys"></a>管理密钥
 
-客户端应用程序将需要一个通道机密，以便通过 Direct Line 语音通道连接到机器人。 保存通道选择设置以后，即可在 Azure 门户的“配置 Direct Line 语音”页中检索这些密钥。
+客户端应用程序将需要一个通道机密，以便通过 Direct Line 语音通道连接到机器人。 保存通道选择设置以后，即可在 Azure 门户的“配置 Direct Line 语音”页中检索这些密钥。 
 
 ![获取 Direct Line 语音的密钥](media/voice-first-virtual-assistants/bot-service-channel-directlinespeech-getspeechsecretkeys.png "获取 Direct Line 语音的密钥")
 
@@ -84,10 +84,10 @@ Direct Line 语音目前为预览版，要求用户在 [Azure 门户](https://po
 
 请注意，此服务为预览版并且可能会更改，因此可能会影响你的机器人开发和总体性能。 下面是已知问题的列表： 
 
-1. 此服务目前部署到“美国西部 2”[Azure 区域](https://azure.microsoft.com/en-us/global-infrastructure/regions/)。 我们很快会将服务推广到其他区域，这样所有客户就能够使用其机器人进行低延迟的语音交互。
+1. 此服务目前部署到“美国西部 2”[Azure 区域](https://azure.microsoft.com/global-infrastructure/regions/)。 我们很快会将服务推广到其他区域，这样所有客户就能够使用其机器人进行低延迟的语音交互。
 
 1. 以后会对控制字段（例如 [serviceUrl](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#service-url)）进行小的更改
 
 1. 将会更新用于指示聊天的开始和结束的 [conversationUpdate](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#conversation-update-activity) 和 [endOfCoversation](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#end-of-conversation-activity) 活动（通常用于生成欢迎消息），使之与其他通道保持一致
 
-1. 此通道目前不支持 [SigninCard](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-connector-add-rich-cards?view=azure-bot-service-4.0) 
+1. 此通道目前不支持 [SigninCard](https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-connector-add-rich-cards?view=azure-bot-service-4.0) 

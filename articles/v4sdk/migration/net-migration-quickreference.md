@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/31/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: b4226e842384caf1315170354c763a44c15b0c70
-ms.sourcegitcommit: 18ff5705d15b8edc85fb43001969b173625eb387
+ms.openlocfilehash: 1bbc598ac8cd43b17d2ddaaf0803318ed6121abc
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/31/2019
-ms.locfileid: "66453211"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405995"
 ---
 # <a name="net-migration-quick-reference"></a>.NET 迁移快速参考
 
@@ -459,7 +459,7 @@ protected override Task OnEventActivityAsync(ITurnContext<IEventActivity> turnCo
 
 ### <a name="v3"></a>v3
 
-使用了 [IActivityLogger](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.history.iactivitylogger)。
+使用了 [IActivityLogger](https://docs.microsoft.com/dotnet/api/microsoft.bot.builder.history.iactivitylogger)。
 
 ```csharp
 builder.RegisterType<ActivityLoggerImplementation>().AsImplementedInterfaces().InstancePerDependency(); 
@@ -475,7 +475,7 @@ public class ActivityLoggerImplementation : IActivityLogger
 
 ### <a name="v4"></a>v4
 
-使用 [ITranscriptLogger](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.itranscriptlogger)。
+使用 [ITranscriptLogger](https://docs.microsoft.com/dotnet/api/microsoft.bot.builder.itranscriptlogger)。
 
 ```csharp
 var transcriptMiddleware = new TranscriptLoggerMiddleware(new TranscriptLoggerImplementation(Configuration.GetSection("StorageConnectionString").Value));
@@ -498,7 +498,7 @@ public class TranscriptLoggerImplementation : ITranscriptLogger
 
 状态是使用 `IBotDataStore` 实现并通过使用 Autofac 将其注入到 SDK 的对话状态系统保存的。  Microsoft 在 [Microsoft.Bot.Builder.Azure](https://github.com/Microsoft/BotBuilder-Azure/) 中提供了 `MemoryStorage`、`DocumentDbBotDataStore`、`TableBotDataStore` 和 `SqlBotDataStore` 类。
 
-[IBotDataStore<BotData>](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.dialogs.internals.ibotdatastore-1?view=botbuilder-dotnet-3.0) 用于保存数据。
+[IBotDataStore<BotData>](https://docs.microsoft.com/dotnet/api/microsoft.bot.builder.dialogs.internals.ibotdatastore-1?view=botbuilder-dotnet-3.0) 用于保存数据。
 
 ```csharp
 Task<bool> FlushAsync(IAddress key, CancellationToken cancellationToken);
@@ -521,7 +521,7 @@ builder.Register(c => storage)
 
 在为机器人创建每个状态管理对象（如 `UserState`、`ConversationState` 或 `PrivateConversationState`）时，存储层使用 `IStorage` 接口，指定存储层对象。 状态管理对象向基础存储层提供密钥，并且还充当属性管理器。 例如，使用 `IPropertyManager.CreateProperty<T>(string name)` 可创建状态属性访问器。  这些属性访问器用于从机器人的基础存储中检索值以及将值存储到其中。
 
-使用 [IStorage](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.istorage?view=botbuilder-dotnet-stable) 可保存数据。
+使用 [IStorage](https://docs.microsoft.com/dotnet/api/microsoft.bot.builder.istorage?view=botbuilder-dotnet-stable) 可保存数据。
 
 ```csharp
 Task DeleteAsync(string[] keys, CancellationToken cancellationToken = default(CancellationToken));
@@ -548,7 +548,7 @@ services.AddSingleton(conversationState);
 
 ### <a name="v3"></a>v3
 
-[Microsoft.Bot.Builder.FormFlow](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.formflow?view=botbuilder-dotnet-3.0) 已包括在核心 Bot Builder SDK 内。
+[Microsoft.Bot.Builder.FormFlow](https://docs.microsoft.com/dotnet/api/microsoft.bot.builder.formflow?view=botbuilder-dotnet-3.0) 已包括在核心 Bot Builder SDK 内。
 
 ### <a name="v4"></a>v4
 
@@ -558,7 +558,7 @@ services.AddSingleton(conversationState);
 
 ### <a name="v3"></a>v3
 
-[Microsoft.Bot.Builder.Dialogs.LuisDialog](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.dialogs.luisdialog-1?view=botbuilder-dotnet-3.0) 已包括在核心 Bot Builder SDK 内。
+[Microsoft.Bot.Builder.Dialogs.LuisDialog](https://docs.microsoft.com/dotnet/api/microsoft.bot.builder.dialogs.luisdialog-1?view=botbuilder-dotnet-3.0) 已包括在核心 Bot Builder SDK 内。
 
 ### <a name="v4"></a>v4
 

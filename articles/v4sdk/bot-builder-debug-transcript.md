@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservices: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: c10e6cda084f22cd4d97fd4ddce942941015733b
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 8aff8c550541304d63db951e8ab6b4c014fc72ac
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215445"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404596"
 ---
 # <a name="debug-your-bot-using-transcript-files"></a>使用脚本文件调试机器人
 
@@ -74,4 +74,4 @@ ms.locfileid: "66215445"
 * [机器人测试和调试指南](./bot-builder-testing-debugging.md)
 * [使用 Bot Framework Emulator 进行调试](../bot-service-debug-emulator.md)
 * [排查常见问题](../bot-service-troubleshoot-bot-configuration.md)和该部分中的其他疑难解答文章。
-* [在 Visual Studio 中进行调试](https://docs.microsoft.com/en-us/visualstudio/debugger/index)
+* [在 Visual Studio 中进行调试](https://docs.microsoft.com/visualstudio/debugger/index)

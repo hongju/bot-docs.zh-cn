@@ -1,12 +1,12 @@
 ---
-ms.openlocfilehash: 4b5181babf728861107a0c7bc28f844491761a7a
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 117f95799df0abbe957000d4979b10f05baf262c
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033881"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405537"
 ---
-在开始部署之前，请确保你有最新版本的 [Azure cli](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest) 和 [dotnet cli](https://dotnet.microsoft.com/download)。 如果没有 dotnet cli，请使用上面提供的链接中的“.Net Core 运行时”选项来安装它。 
+在开始部署之前，请确保你有最新版本的 [Azure cli](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest) 和 [dotnet cli](https://dotnet.microsoft.com/download)。 如果没有 dotnet cli，请使用上面提供的链接中的“.Net Core 运行时”选项来安装它。 
 
 ### <a name="login-to-azure-cli-and-set-your-subscription"></a>登录到 Azure CLI 并设置订阅
 你已在本地创建并测试一个机器人，现在想要将它部署到 Azure。 打开命令提示符以登录到 Azure 门户。
@@ -47,7 +47,7 @@ az group create --name <resource-group-name> --location <geographic-location> --
 #### <a name="msa-email-account"></a>MSA 电子邮件帐户
 如果使用 MSA 电子邮件帐户，则需在应用程序注册门户中创建可以与 `az bot create` 命令配合使用的应用 ID 和应用密码。
 1. 转到[**应用程序注册门户**](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)。
-1. 单击“添加应用”以注册应用程序，创建**应用程序 ID**，然后单击“生成新密码”。 如果已经有应用程序和密码，但却忘记了该密码，则需在“应用程序机密”部分生成新密码。
+1. 单击“添加应用”以注册应用程序，创建**应用程序 ID**，然后单击“生成新密码”。   如果已经有应用程序和密码，但却忘记了该密码，则需在“应用程序机密”部分生成新密码。
 1. 保存刚刚生成的应用程序 ID 和新密码，以便可以在 `az bot create` 命令中使用这些信息。  
 
 ```cmd
