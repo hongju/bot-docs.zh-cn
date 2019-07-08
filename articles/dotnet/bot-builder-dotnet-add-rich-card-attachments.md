@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 5a6fc63005797a1c645de7506a8f15df2dcd0557
-ms.sourcegitcommit: b94361234816e6b95459f142add936732fc40344
+ms.openlocfilehash: 51bdc5e52bd147747e9d068fc4721ca4b782ef27
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/15/2019
-ms.locfileid: "54317672"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464512"
 ---
 # <a name="add-rich-card-attachments-to-messages"></a>向消息添加资讯卡附件
 
@@ -25,7 +25,9 @@ ms.locfileid: "54317672"
 > - [Node.js](../nodejs/bot-builder-nodejs-send-rich-cards.md)
 > - [REST](../rest-api/bot-framework-rest-connector-add-rich-cards.md)
 
-用户与机器人之间的消息交换可以包含一个或多个以列表或轮播方式呈现的富卡。 <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity</a> 对象的 `Attachments` 属性包含一组 <a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">Attachment</a> 对象，表示消息中的富卡和媒体附件。 
+用户与机器人之间的消息交换可以包含一个或多个以列表或轮播方式呈现的富卡。 
+
+<a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity</a> 对象的 `Attachments` 属性包含一组 <a href="https://docs.microsoft.com/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">Attachment</a> 对象，表示消息中的富卡和媒体附件。 
 
 > [!NOTE]
 > 有关如何向消息添加媒体附件的信息，请参阅[向消息添加媒体附件](bot-builder-dotnet-add-media-attachments.md)。
@@ -37,13 +39,13 @@ Bot Framework 目前支持八个类型的富卡：
 | 卡类型 | 说明 |
 |----|----|
 | <a href="/adaptive-cards/get-started/bots">自适应卡片</a> | 一种可以包含文本、语音、图像、按钮和输入字段的任意组合的可自定义卡片。 请参阅[每个通道的支持](/adaptive-cards/get-started/bots#channel-status)。  |
-| [动画卡片][animationCard] | 一种可以播放动态 GIF 或短视频的卡片。 |
-| [音频卡片][audioCard] | 一种可以播放音频文件的卡片。 |
-| [英雄卡][heroCard] | 通常包含单个大图像、一个或多个按钮和文本的卡片。 |
-| [缩略图卡片][thumbnailCard] | 通常包含单个缩略图图像、一个或多个按钮和文本的卡片。 |
-| [收据卡片][receiptCard] | 一种让机器人能够向用户提供收据的卡。 它通常包含要包括在收据、税款和总信息以及其他文本中的项列表。 |
+| [动画卡][animationCard] | 一种可播放动态 GIF 或短视频的卡。 |
+| [音频卡][audioCard] | 一种可播放音频文件的卡。 |
+| [英雄卡][heroCard] | 一种通常包含单个大图像、一个或多个按钮和文本的卡。 |
+| [缩略图卡][thumbnailCard] | 一种通常包含单个缩略图图像、一个或多个按钮和文本的卡。 |
+| [收据卡][receiptCard] | 一种让机器人能够向用户提供收据的卡。 它通常包含要包括在收据中的项目列表、税款和总计信息以及其他文本。 |
 | [登录卡][signinCard] | 一种让机器人能够请求用户登录的卡。 它通常包含文本和一个或多个按钮，用户可以单击这些按钮来启动登录进程。 |
-| [视频卡片][videoCard] | 一种可播放视频的卡。 |
+| [视频卡][videoCard] | 一种可播放视频的卡。 |
 
 > [!TIP]
 > 若要以列表格式显示多个富卡，请将活动的 `AttachmentLayout` 属性设置为“list”。 若要以轮播格式显示多个富卡，请将活动的 `AttachmentLayout` 属性设置为“carousel”。 如果通道不支持轮播格式，它将以列表格式显示富卡，即使 `AttachmentLayout` 属性指定“carousel”也是如此。
@@ -52,9 +54,9 @@ Bot Framework 目前支持八个类型的富卡：
 
 若要处理富卡中的事件，请定义 `CardAction` 对象以指定当用户单击按钮或点击卡的某个部分时应发生的情况。 每个 `CardAction` 对象包含以下属性：
 
-| 属性 | 类型 | 说明 | 
+| 属性 | Type | 说明 | 
 |----|----|----|
-| 类型 | 字符串 | 操作类型（下表中指定的某个值） |
+| Type | 字符串 | 操作类型（下表中指定的某个值） |
 | 标题 | 字符串 | 按钮的标题 |
 | 映像 | 字符串 | 按钮的图像 URL |
 | 值 | 字符串 | 执行指定类型的操作所需的值 |
@@ -69,7 +71,7 @@ Bot Framework 目前支持八个类型的富卡：
 | openUrl | 要在内置浏览器中打开的 URL |
 | imBack | 要发送到机器人的消息文本（来自单击按钮或点击卡的用户）。 通过托管会话的客户端应用程序，所有会话参与者都可看到此消息（从用户到机器人）。 |
 | postBack | 要发送到机器人的消息文本（来自单击按钮或点击卡的用户）。 某些客户端应用程序可能会在消息源中显示此文本，所有会话参与者都可看到该文本。 |
-| call | 格式如下的电话呼叫的目标：电话:123123123123 |
+| call | 格式如下的电话呼叫的目标：电话:123123123123  |
 | playAudio | 要播放的音频的 URL |
 | playVideo | 要播放的视频的 URL |
 | showImage | 要显示的图像的 URL |
@@ -124,13 +126,13 @@ Bot Framework 目前支持八个类型的富卡：
 
 ## <a name="additional-resources"></a>其他资源
 
-- [使用通道检查器预览功能][inspector]
-- <a href="http://adaptivecards.io" target="_blank">自适应卡</a>
+- [使用 Channel Inspector 预览功能][inspector]
+- <a href="http://adaptivecards.io" target="_blank">自适应卡片</a>
 - [活动概述](bot-builder-dotnet-activities.md)
 - [创建消息](bot-builder-dotnet-create-messages.md)
 - [向消息添加媒体附件](bot-builder-dotnet-add-media-attachments.md)
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 类</a>
-- <a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">Attachment 类</a>
+- <a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">Activity 类</a>
+- <a href="https://docs.microsoft.com/dotnet/api/microsoft.bot.connector.attachments?view=botconnector-3.12.2.4" target="_blank">Attachment 类</a>
 
 [animationCard]: /dotnet/api/microsoft.bot.connector.animationcard
 

@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: fd74dedcb048a7872a518618f8a9382e0585dbb5
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: 9478a3861b24746b4081ab2176486e59ccc7d4bc
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693676"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464713"
 ---
 # <a name="add-media-to-messages"></a>向消息添加媒体
 
@@ -31,7 +31,7 @@ ms.locfileid: "66693676"
 
 有关可用卡的示例，请参阅[设计用户体验](../bot-service-design-user-experience.md)。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 `Activity` 对象的 `Attachments` 属性包含一组 `Attachment` 对象，表示媒体附件和附加到消息的富卡。 若要向消息添加媒体附件，请为 `reply` 活动创建 `Attachment` 对象（以前是在活动外使用 `CreateReply()` 创建的），并设置 `ContentType`、`ContentUrl` 和 `Name` 属性。
 
@@ -40,25 +40,24 @@ ms.locfileid: "66693676"
 若要创建回复消息，请定义文本，然后设置附件。 将附件分配到回复的操作对于每个附加类型来说是相同的，但不同附件的设置和定义方法是不同的，如以下代码片段所示。 以下代码为内联附件设置回复：
 
 **Bots/AttachmentsBot.cs**  
-[!code-csharp[inline attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=108-109)]
+[!code-csharp[inline attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=105-106)]
 
 接下来，我们查看附件的类型。 首先是内联附件：
 
 **Bots/AttachmentsBot.cs**  
-[!code-csharp[inline attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=165-176)]
+[!code-csharp[inline attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=167-178)]
 
 然后是上传的附件：
 
 **Bots/AttachmentsBot.cs**  
-[!code-csharp[uploaded attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=179-215)]
+[!code-csharp[uploaded attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=181-214)]
 
 最后是 Internet 附件：
 
 **Bots/AttachmentsBot.cs**  
-[!code-csharp[online attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=218-227)]
+[!code-csharp[online attachment](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=217-226)]
 
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 此处显示的源代码基于 [JS 处理附件](https://aka.ms/bot-attachments-sample-code-js)示例。
 
@@ -95,16 +94,16 @@ ms.locfileid: "66693676"
 
 除了简单的图像或视频附件，还可以附加英雄卡  ，这样可以将图像和按钮组合在一个对象中，并将其发送给用户。 大多数文本字段支持 Markdown，但支持可能因通道而异。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 若要撰写含英雄卡和按钮的消息，可以将 `HeroCard` 附加到消息中。 
 
 此处显示的源代码基于[处理附件](https://aka.ms/bot-attachments-sample-code)示例。
 
 **Bots/AttachmentsBot.cs**  
-[!code-csharp[Hero card](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=39-62)]
+[!code-csharp[Hero card](~/../botbuilder-samples/samples/csharp_dotnetcore/15.handling-attachments/Bots/AttachmentsBot.cs?range=39-58)]
 
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 若要撰写含英雄卡和按钮的消息，可以将 `HeroCard` 附加到消息中。 
 
@@ -137,7 +136,7 @@ ms.locfileid: "66693676"
 
 以下代码显示了使用各种富卡事件的示例。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 如需所有可用卡片的示例，请参阅 [C# 卡片示例](https://aka.ms/bot-cards-sample-code)。
 
@@ -147,7 +146,7 @@ ms.locfileid: "66693676"
 **Cards.cs**  
 [!code-csharp[cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Cards.cs?range=91-100)]
 
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 如需所有可用卡片的示例，请参阅 [JS 卡片示例](https://aka.ms/bot-cards-js-sample-code)。
 
@@ -168,10 +167,13 @@ ms.locfileid: "66693676"
 
 若要查找有关自适应卡片通道支持的最新信息，请参阅<a href="http://adaptivecards.io/designer/">自适应卡片设计器</a>。
 
+若要使用自适应卡，请务必添加 `AdaptiveCards` NuGet 包。 
+
+
 > [!NOTE]
 > 应该使用机器人将使用的通道测试此功能，以确定这些通道是否支持自适应卡。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 若要使用自适应卡片，请务必添加 `AdaptiveCards` NuGet 包。
 
@@ -180,7 +182,7 @@ ms.locfileid: "66693676"
 **Cards.cs**  
 [!code-csharp[adaptive cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Cards.cs?range=13-25)]
 
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 若要使用自适应卡片，请务必添加 `adaptivecards` npm 包。
 
@@ -202,7 +204,7 @@ ms.locfileid: "66693676"
 
 消息还可以包括采用轮播布局的多个附件，此布局并排放置附件并允许用户滚动。
 
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
+### <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 此处显示的源代码基于[卡片示例](https://aka.ms/bot-cards-sample-code)。
 
@@ -214,14 +216,14 @@ ms.locfileid: "66693676"
 然后，添加附件。 在这里，我们一次添加一个附件，但你可以根据自己的偏好来添加卡片，对列表随意进行操作。
 
 **Dialogs/MainDialog.cs**  
-[!code-csharp[carousel of cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Dialogs/MainDialog.cs?range=105-113)]
+[!code-csharp[carousel of cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Dialogs/MainDialog.cs?range=104-113)]
 
 添加附件以后，即可发送回复，就像发送任何其他内容一样。
 
 **Dialogs/MainDialog.cs**  
 [!code-csharp[carousel of cards](~/../botbuilder-samples/samples/csharp_dotnetcore/06.using-cards/Dialogs/MainDialog.cs?range=117-118)]
 
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 此处显示的源代码基于 [JS 卡片示例](https://aka.ms/bot-cards-js-sample-code)。
 
@@ -247,6 +249,120 @@ ms.locfileid: "66693676"
 | 建议的操作 | [C# 示例](https://aka.ms/SuggestedActionsCSharp) | [JS 示例](https://aka.ms/SuggestedActionsJS) |
 
 如需其他示例，请参阅 [GitHub](https://aka.ms/bot-samples-readme) 上的 Bot Builder 示例存储库。
+
+### <a name="code-sample-for-processing-adaptive-card-input"></a>用于处理 Adaptive Card 输入的代码示例
+
+此代码示例显示了在机器人对话类中使用 Adaptive Card 输入的一种方法。
+它通过验证来自响应客户端的文本字段中收到的输入来扩展当前的 06.using-cards 示例。
+首先，在 resources 文件夹中的 adaptive card.json 的最后一个括号之前添加以下代码，将文本输入和按钮功能添加到现有的自适应卡：
+
+```json
+  ,
+  "actions": [
+    {
+      "type": "Action.ShowCard",
+      "title": "Text",
+      "card": {
+      "type": "AdaptiveCard",
+      "body": [
+        {
+          "type": "Input.Text",
+          "id": "text",
+          "isMultiline": true,
+          "placeholder": "Enter your comment"
+        }
+      ],
+      "actions": [
+        {
+          "type": "Action.Submit",
+          "title": "OK"
+        }
+      ]
+    }
+  }
+]
+
+```
+
+请注意，输入字段标记为“text”，因此自适应卡会将注释文本数据附加为 Value.[text.]
+
+### <a name="ctabcsharp"></a>[C#](#tab/csharp)
+验证器使用 Newtonsoft.json 首先将其转换为 JObject，然后创建一个经过剪裁的文本字符串进行比较。 因此，请添加：
+  ```csharp
+  using Newtonsoft.Json.Linq;
+  ```
+到 MainDialog.cs，并安装 Newtonsoft.Json 的最新稳定 NuGet 包。
+在验证程序代码中，我们将逻辑流添加到代码注释中。 此 choicevalidator() 代码放置于右大括号后的 06.using-cards 示例中，用于公开声明 MainDialog：
+
+```csharp
+private async Task ChoiceValidator(
+  PromptValidatorContext promptContext,
+  CancellationToken cancellationToken)
+  {
+    // Retrieves Adaptive Card comment text as JObject.
+    // looks for JObject field "text" and converts that input into a trimmed text string.
+    var jobject = promptContext.Context.Activity.Value as JObject;
+    var jtoken = jobject?["text"];
+    var text = jtoken?.Value().Trim();
+    // Logic: 1. if succeeded = true, just return promptContext
+    //        2. if false, see if JObject contained Adaptive Card input.
+    //               No = (bad input) return promptContext
+    //               Yes = update Value field with JObject text string, return "true".
+    if (!promptContext.Recognized.Succeeded && text != null)
+    {
+       var choice = promptContext.Options.Choices.FirstOrDefault(
+       c => c.Value.Equals(text, StringComparison.InvariantCultureIgnoreCase));
+       if (choice != null)
+       {
+           promptContext.Recognized.Value = new FoundChoice
+            {
+               Value = choice.Value,
+             };
+            return true;
+       }
+    }
+    return promptContext.Recognized.Succeeded;
+  }
+```
+
+在上面的 MainDialog 声明更改中：
+  ```csharp
+  // Define the main dialog and its related components.
+  AddDialog(new ChoicePrompt(nameof(ChoicePrompt)));
+  ```
+修改为：
+  ```csharp
+  // Define the main dialog and its related components.
+  AddDialog(new ChoicePrompt(nameof(ChoicePrompt), ChoiceValidator));
+  ```
+每当创建新的 ChoicePrompt 时，这会调用验证器来查找自适应卡输入。
+
+### <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+打开 mainDialog.js，并查找运行方法 async run(turnContext, accessor)  ，此方法可处理传入的活动。
+调用 dialogSet.add(this)  后，添加以下内容：
+```JavaScript
+  // The following check looks for a non-existant text input
+  // plus Adaptive Card input in _activity.value.text
+  // If both conditions exist, the Activity Card text 
+  // is copied into the text input field.
+  if(turnContext._activity.text == null
+      && turnContext._activity.value.text != null)
+   {
+      this.logger.log('replacing null text with Activity Card text input');
+      turnContext._activity.text = turnContext._activity.value.text;
+   }
+```
+如果此检查发现客户端中有不存在的文本输入，它将查看是否有来自自适应卡的输入。
+如果在 \_activity.value.text 处存在自适应卡输入，它会将其复制到常规文本输入字段中。
+
+---
+
+若要测试代码，显示自适应卡后，单击“文本”按钮，输入有效的选择内容（如“英雄卡”），然后单击“确定”按钮。
+
+![测试自适应卡](media/adaptive-card-input.png)
+
+1. 第一个输入将用于启动新的对话。
+2. 再次单击“确定”按钮，此输入将用于选择新的卡。
 
 ## <a name="next-steps"></a>后续步骤
 

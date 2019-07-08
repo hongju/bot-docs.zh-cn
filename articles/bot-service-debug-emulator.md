@@ -8,12 +8,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 2/26/2019
-ms.openlocfilehash: 307a6bf697e274391336a0d216c64da85232616d
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 0e548700e81fff5029031fd1e349cc75d9d0bc7a
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033362"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464644"
 ---
 # <a name="debug-with-the-emulator"></a>使用模拟器进行调试
 
@@ -26,36 +26,40 @@ Bot Framework Emulator 是一个桌面应用程序，允许机器人开发人员
 
 ![模拟器 UI](media/emulator-v4/emulator-welcome.png)
 
-若要连接到本地运行的机器人，请单击“打开机器人”，或者选择预先配置的配置文件（.bot 文件）。 不需配置文件也可连接到机器人，但如果机器人有配置文件，则模拟器也会接受。 如果机器人是使用 Microsoft 帐户 (MSA) 凭据运行的，也请输入这些凭据。
+若要连接到本地运行的机器人，请单击“打开机器人”  ，或者选择预先配置的配置文件（.bot 文件）。 不需配置文件也可连接到机器人，但如果机器人有配置文件，则模拟器也会接受。 如果机器人是使用 [Microsoft 帐户 (MSA) 凭据](#use-bot-credentials)运行的，也请输入这些凭据。
 
 ![模拟器 UI](media/emulator-v4/emulator-open-bot.png)
 
+### <a name="use-bot-credentials"></a>使用机器人凭据
+
+打开机器人时，如果机器人使用凭据运行，请设置“Microsoft 应用 ID”和“Microsoft 应用密码”   。 如果使用 Azure 机器人服务创建了机器人，则可以在机器人的应用服务上的“设置”->“配置”部分下使用凭据  。 如果不知道这些值，可以从本地运行机器人的配置文件中删除这些值，然后在模拟器中运行机器人。 如果机器人没有使用这些设置运行，则也不需要使用这些设置运行模拟器。 
+
 ## <a name="view-detailed-message-activity-with-the-inspector"></a>使用检查器查看消息活动的详细信息
 
-向机器人发送消息，机器人应该回复。 可以单击聊天窗口中的消息气泡，并使用窗口右侧的“检查器”功能检查原始 JSON 活动。 选中时，消息气泡将变为黄色，并在聊天窗口左侧显示活动 JSON 对象。 JSON 信息包含密钥元数据，包括 channelID、活动类型、聊天 ID、文本消息、终结点 URL 等等。可以检查用户发送的活动，以及机器人响应的活动。 
+向机器人发送消息，机器人应该回复。 可以单击聊天窗口中的消息气泡，并使用窗口右侧的“检查器”  功能检查原始 JSON 活动。 选中时，消息气泡将变为黄色，并在聊天窗口左侧显示活动 JSON 对象。 JSON 信息包含密钥元数据，包括 channelID、活动类型、聊天 ID、文本消息、终结点 URL 等等。可以检查用户发送的活动，以及机器人响应的活动。 
 
 ![模拟器消息活动](media/emulator-v4/emulator-view-message-activity-03.png)
 
 ## <a name="save-and-load-conversations-with-bot-transcripts"></a>使用机器人脚本保存和加载会话
 
-模拟器中的活动可以另存为脚本。 在打开的实时聊天窗口中，选择“将脚本另存为”来命名脚本文件。 可以随时使用“重新开始”按钮清除会话，并重新启动到机器人的连接。  
+模拟器中的活动可以另存为脚本。 在打开的实时聊天窗口中，选择“将脚本另存为”来命名脚本文件  。 可以随时使用“重新开始”  按钮清除会话，并重新启动到机器人的连接。  
 
 ![模拟器保存脚本](media/emulator-v4/emulator-save-transcript.png)
 
-若要加载脚本，只需选择“文件”>“打开脚本文件”，然后选择该脚本。 新“脚本”窗口将打开并在输出窗口中呈现消息活动。 
+若要加载脚本，只需选择“文件”>“打开脚本文件”，并选择脚本  。 新“脚本”窗口将打开并在输出窗口中呈现消息活动。 
 
 ![模拟器加载脚本](media/emulator-v4/emulator-load-transcript.png)
 
 ## <a name="add-services"></a>添加服务 
 
-可以直接从模拟器轻松地将 LUIS 应用、QnA 知识库或调度模型添加到机器人中。 加载机器人后，选择模拟器窗口最左侧的服务按钮。 你将在“服务”菜单下看到用于添加 LUIS、QnA Maker 和 Dispatch 的选项。 
+可以直接从模拟器轻松地将 LUIS 应用、QnA 知识库或调度模型添加到机器人中。 加载机器人后，选择模拟器窗口最左侧的服务按钮。 你将在“服务”  菜单下看到用于添加 LUIS、QnA Maker 和 Dispatch 的选项。 
 
 若要添加服务应用，只需单击 **+** 按钮，然后选择要添加的服务即可。 系统将提示你登录 Azure 门户，以便将服务添加到机器人文件，并将服务连接到机器人应用程序。 
 
 > [!IMPORTANT]
 > 只有在使用 `.bot` 配置文件的情况下，才能添加服务。 需单独添加服务。 有关此方面的详细信息，请参阅[管理机器人资源](v4sdk/bot-file-basics.md)；对于你要尝试添加的服务，也可参阅单独的操作方法文章。
 >
-> 如果不使用 `.bot` 文件，则左侧窗格不会列出服务（即使机器人使用服务），而是显示“服务不可用”。
+> 如果不使用 `.bot` 文件，则左侧窗格不会列出服务（即使机器人使用服务），而是显示“服务不可用”。 
 
 ![LUIS 连接](media/emulator-v4/emulator-connect-luis-btn.png)
 
@@ -65,15 +69,15 @@ Bot Framework Emulator 是一个桌面应用程序，允许机器人开发人员
 
 ## <a name="inspect-services"></a>检查服务
 
-使用新 v4 模拟器，还可以检查来自 LUIS 和 QnA 的 JSON 响应。 将机器人与已连接的语言服务结合使用，可以选择右下角“LOG”窗口中的“跟踪”。 此新工具还提供直接从模拟器更新语言服务的功能。 
+使用新 v4 模拟器，还可以检查来自 LUIS 和 QnA 的 JSON 响应。 将机器人与已连接的语言服务结合使用，可以选择右下角“LOG”窗口中的“跟踪”  。 此新工具还提供直接从模拟器更新语言服务的功能。 
 
 ![LUIS 检查器](media/emulator-v4/emulator-luis-inspector.png)
 
-使用已连接的 LUIS 服务，你会注意到跟踪链接指定了 Luis 跟踪。 选中时，将看到 LUIS 服务中的原始响应，其中包括意向、实体以及指定分数。 此外可以选择为用户表达重新分配意向。 
+使用已连接的 LUIS 服务，你会注意到跟踪链接指定了 Luis 跟踪  。 选中时，将看到 LUIS 服务中的原始响应，其中包括意向、实体以及指定分数。 此外可以选择为用户表达重新分配意向。 
 
 ![QnA 检查器](media/emulator-v4/emulator-qna-inspector.png)
 
-使用已连接的 QnA 服务，日志将显示“QnA 跟踪”，选择后，可以预览与该活动相关联的问题和答案对，以及置信度分数。 可以在此处为答案添加备用问题表述。
+使用已连接的 QnA 服务，日志将显示“QnA 跟踪”  ，选择后，可以预览与该活动相关联的问题和答案对，以及置信度分数。 可以在此处为答案添加备用问题表述。
 
 <!--## Configure ngrok
 
@@ -106,7 +110,7 @@ Open the **Emulator Settings**, enter the path to ngrok, select whether or not t
 
     ![禁用数据收集](media/emulator-v4/emulator-disable-data-1.png)
 
-2. 取消选中“数据收集”部分下标记为“允许我们收集使用情况数据，帮助改进 Emulator”的复选框。
+2. 取消选中“数据收集”部分下标记为“允许我们收集使用情况数据，帮助改进 Emulator”的复选框。  
 
     ![禁用数据收集](media/emulator-v4/emulator-disable-data-2.png)
 
@@ -118,7 +122,7 @@ Open the **Emulator Settings**, enter the path to ngrok, select whether or not t
 
 ## <a name="additional-resources"></a>其他资源
 
-Bot Framework Emulator 为开放源代码。 可以[参与][EmulatorGithubContribute]开发并[提交 bug 报告和建议][EmulatorGithubBugs]。
+Bot Framework Emulator 为开放源代码。 你可以[参与][EmulatorGithubContribute]to the development and [submit bugs and suggestions][EmulatorGithubBugs]。
 
 有关疑难解答，请参阅[排查常见问题](bot-service-troubleshoot-bot-configuration.md)和该部分中的其他疑难解答文章。
 

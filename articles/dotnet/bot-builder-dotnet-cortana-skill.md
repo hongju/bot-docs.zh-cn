@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: fd7d20b71c8f6c3013e7af5c7c80623089f0dce0
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 9dd84e9e5e39e1e1b801e08fbee101dbfa8b0c49
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032904"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405683"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能构建支持语音的机器人
 
@@ -34,7 +34,7 @@ ms.locfileid: "65032904"
 使用 Bot Framework 创建 Cortana 技能只需少量的 Cortana 特定知识，主要包括构建机器人。 与以前创建的其他机器人相比，Cortana 的一个主要差别可能在于，它具有视觉和音频组件。 对于视觉组件，Cortana 提供画布区域用于呈现卡片等内容。 对于音频组件，可在机器人的消息中提供文本或 SSML，Cortana 会向用户读出这些内容，使机器人拥有语音功能。 
 
 > [!NOTE]
-> Cortana 可用于多种不同的设备。 有些设备带有屏幕，而有些设备可能没有屏幕，例如独立的扬声器。 应确保机器人能够处理这两种情况。 请参阅 [Cortana 特定的实体][CortanaSpecificEntities]，了解如何检查设备信息。
+> Cortana 可用于多种不同的设备。 有些设备带有屏幕，而有些设备可能没有屏幕，例如独立的扬声器。 应确保机器人能够处理这两种情况。 请参阅[特定于 Cortana 的实体][CortanaSpecificEntities]，了解如何检查设备信息。
 
 ## <a name="adding-speech-to-your-bot"></a>将语音添加到机器人
 
@@ -85,8 +85,8 @@ reply.InputHint = InputHints.ExpectingInput;
 |----|----|
 | [HeroCard][heroCard] | 一种通常包含单个大图像、一个或多个按钮和文本的卡。 |
 | [ThumbnailCard][thumbnailCard] | 一种通常包含单个缩略图图像、一个或多个按钮和文本的卡。 |
-| [ReceiptCard][receiptCard] | 一种可让机器人向用户提供收据的卡。 它通常包含要包括在收据中的项目列表、税款和总计信息以及其他文本。 |
-| [SignInCard][signinCard] | 一种可让机器人请求用户登录的卡。 它通常包含文本和一个或多个按钮，用户可以单击这些按钮来启动登录进程。 |
+| [ReceiptCard][receiptCard] | 一种让机器人能够向用户提供收据的卡。 它通常包含要包括在收据中的项目列表、税款和总计信息以及其他文本。 |
+| [SignInCard][signinCard] | 一种让机器人能够请求用户登录的卡。 它通常包含文本和一个或多个按钮，用户可以单击这些按钮来启动登录进程。 |
 
 
 请参阅[卡片设计最佳做法][CardDesign]，查看这些卡片在 Cortana 中的外观。 有关如何在机器人中使用丰富卡片的示例，请参阅[将丰富卡片附件添加到消息](bot-builder-dotnet-add-rich-card-attachments.md)。 
@@ -99,7 +99,7 @@ The following code demonstrates how to add the `Speak` and `InputHint` propertie
 ## <a name="sample-rollerskill"></a>示例：RollerSkill
 以下部分中的代码摘自掷骰子的示例 Cortana 技能。 从 [BotBuilder-Samples 存储库](https://github.com/Microsoft/BotBuilder-Samples/)下载机器人的完整代码。
 
-可通过向 Cortana 说出技能的[调用名称][InvocationNameGuidelines]来调用该技能。 对于掷骰子技能，[将机器人添加到 Cortana 通道][CortanaChannel]并将其注册为 Cortana 技能后，可以通过向 Cortana 说出“掷骰子”或“掷骰子”来调用该技能。
+通过说出[调用名][InvocationNameGuidelines]to Cortana. For the roller skill, after you [add the bot to the Cortana channel][CortanaChannel]来调用该技能，并将其注册为 Cortana 技能，就可以通过对 Cortana 说“Ask Roller”或“Ask Roller to roll dice”来调用该技能。
 
 ### <a name="explore-the-code"></a>浏览代码
 
@@ -330,7 +330,7 @@ The following code demonstrates how to add the `Speak` and `InputHint` propertie
 ## <a name="additional-resources"></a>其他资源
 * [Cortana 技能套件][CortanaGetStarted]
 * [向消息添加语音](bot-builder-dotnet-text-to-speech.md)
-* [SSML 参考][SSMLRef]
+* [SSML 引用][SSMLRef]
 * [Cortana 的语音设计最佳做法][VoiceDesign]
 * [Cortana 的卡片设计最佳做法][CardDesign]
 * [Cortana 开发人员中心][CortanaDevCenter]
@@ -341,7 +341,7 @@ The following code demonstrates how to add the `Speak` and `InputHint` propertie
 [BFPortal]: https://dev.botframework.com/
 
 [SSMLRef]: https://aka.ms/cortana-ssml
-[CortanaDevCenter]: https://developer.microsoft.com/en-us/cortana
+[CortanaDevCenter]: https://developer.microsoft.com/cortana
 
 [CortanaSpecificEntities]: https://aka.ms/lgvcto
 [CortanaAuth]: https://aka.ms/vsdqcj

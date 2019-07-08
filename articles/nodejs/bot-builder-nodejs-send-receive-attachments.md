@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 1911a5b0f8e8f8b53de6f661c0a939767df1efbb
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: ac74fff5fa7635bf0ef585423b0f8663a1df41c4
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224692"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404828"
 ---
 # <a name="send-and-receive-attachments"></a>发送和接收附件
 
@@ -27,11 +27,11 @@ ms.locfileid: "54224692"
 
 用户与机器人之间的消息交换可以包含媒体附件，例如图像、视频、音频和文件。 可以发送的附件类型因通道而异，但以下是基本类型：
 
-* **媒体和文件**：可通过将 contentType 设置为 [IAttachment 对象][IAttachment]的 MIME 类型来发送图像、音频和视频等文件，然后将链接传递给 contentUrl 中的文件。
-* **卡片**：可通过将 contentType 设置为所需的卡类型来发送一组丰富的可视卡片 <!-- and custom keyboards -->，然后传递卡片 JSON。 如果使用其中一个资讯卡生成器类（如 HeroCard），则会自动为你填写附件。 有关此示例，请参阅[发送资讯卡](bot-builder-nodejs-send-rich-cards.md)。
+* **媒体和文件**：可以发送图像、音频和视频等文件，方法是将 contentType 设置为 [IAttachment object][IAttachment] 的 MIME 类型，然后将链接传递给 contentUrl 中的文件   。
+* **卡片**：可以发送一组丰富的可视卡 <!-- and custom keyboards --> 方法是将 contentType 设置为所需的卡类型，然后传递卡的 JSON  。 如果使用其中一个资讯卡生成器类（如 HeroCard），则会自动为你填写附件  。 有关此示例，请参阅[发送资讯卡](bot-builder-nodejs-send-rich-cards.md)。
 
 ## <a name="add-a-media-attachment"></a>添加媒体附件
-消息对象应该是 [IMessage][IMessage] 的实例，当你想要包含像图像这样的附件时，将消息作为对象发送给用户是最有用的。 使用 [session.send()][SessionSend] 方法以 JSON 对象的形式发送消息。 
+消息对象应为 [IMessage][IMessage] and it's most useful to send the user a message as an object when you’d like to include an attachment like an image. Use the [session.send()][SessionSend] 方法的实例，将消息以 JSON 对象的形式发送。 
 
 ## <a name="example"></a>示例
 
@@ -62,13 +62,13 @@ var bot = new builder.UniversalBot(connector, function (session) {
 ```
 ## <a name="additional-resources"></a>其他资源
 
-* [使用通道检查器预览功能][inspector]
+* [使用 Channel Inspector 预览功能][inspector]
 * [IMessage][IMessage]
 * [发送资讯卡][SendRichCard]
 * [session.send][SessionSend]
 
-[IMessage]: http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
+[IMessage]: http://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
 [SendRichCard]: bot-builder-nodejs-send-rich-cards.md
-[SessionSend]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#send
-[IAttachment]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iattachment.html
+[SessionSend]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#send
+[IAttachment]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.iattachment.html
 [inspector]: ../bot-service-channel-inspector.md

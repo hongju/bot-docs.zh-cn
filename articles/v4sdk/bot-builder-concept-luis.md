@@ -11,12 +11,12 @@ ms.subservice: cognitive-services
 ms.date: 09/19/2018
 ms.reviewer: ''
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bb280f3c43348a1293345bc698e83608694946b1
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 0c0918b0ac0a10927bd8d7c52283e74b4fd480bf
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000314"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404645"
 ---
 # <a name="language-understanding"></a>语言理解
 
@@ -33,13 +33,13 @@ ms.locfileid: "50000314"
 
 ## <a name="recognize-intent"></a>识别意向
 
-[LUIS](https://docs.microsoft.com/en-us/azure/cognitive-services/luis/home) 通过确定用户的意向提供帮助，即通过用户的话语了解他们的需求，从而让机器人可以做出适当的响应。 当他们对机器人所说的内容不遵循可预测的结构或特定模式时，LUIS 特别有帮助。 如果机器人具有会话式用户界面（用户可在其中说出或键入响应），则由用户口头陈述或通过文本输入的表达可以有无限变体。
+[LUIS](https://docs.microsoft.com/azure/cognitive-services/luis/home) 通过确定用户的意向  提供帮助，即通过用户的话语了解他们的需求，从而让机器人可以做出适当的响应。 当他们对机器人所说的内容不遵循可预测的结构或特定模式时，LUIS 特别有帮助。 如果机器人具有会话式用户界面（用户可在其中说出或键入响应），则由用户口头陈述或通过文本输入的表达  可以有无限变体。
 
 例如，考虑差旅智能机器人用户请求预订航班的多种方式。
 
 ![预定航班的各种不同格式的表达](media/cognitive-services-add-bot-language/cognitive-services-luis-utterances.png)
 
-这些表达可以有不同结构，并包含你未想到的有关“航班”的各种同义词。 在机器人中，编写匹配所有话语并且仍将它们与包含相同字词的其他意向区分开来的逻辑可能会有难度。 此外，机器人需要提取实体，这是其他重要字词，如位置和时间。 LUIS 通过根据上下文识别意向和实体简化了此过程。
+这些表达可以有不同结构，并包含你未想到的有关“航班”的各种同义词。 在机器人中，编写匹配所有话语并且仍将它们与包含相同字词的其他意向区分开来的逻辑可能会有难度。 此外，机器人需要提取实体  ，这是其他重要字词，如位置和时间。 LUIS 通过根据上下文识别意向和实体简化了此过程。
 
 在针对自然语言输入设计机器人时，确定机器人需要识别哪些意向和实体，并考虑它们将如何与机器人所执行的操作联系起来。 在 [luis.ai](https://www.luis.ai) 中，定义自定义意向和实体，并通过为每个意向提供示例和在其中标记实体来指定它们的行为。
 
@@ -51,9 +51,9 @@ ms.locfileid: "50000314"
 
 为了节省开发时间，LUIS 为常见类别机器人提供识别常见表达的预先定型的语言模型。 
 
-**预生成域**是预先训练、随时可用的意向和实体集合，适用于约会、提醒、管理、健身、娱乐、通信、预订等常见场景。 实用程序预生成域可帮助机器人处理常见任务，如取消、确认、帮助、重复和停止。 查看 LUIS 提供的[预生成域](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/luis-how-to-use-prebuilt-domains)。
+**预生成域**是预先训练、随时可用的意向和实体集合，适用于约会、提醒、管理、健身、娱乐、通信、预订等常见场景。 实用程序  预生成域可帮助机器人处理常见任务，如取消、确认、帮助、重复和停止。 查看 LUIS 提供的[预生成域](https://docs.microsoft.com/azure/cognitive-services/LUIS/luis-how-to-use-prebuilt-domains)。
 
-预生成实体帮助机器人识别常见类型的信息，如日期、时间、数字、温度、货币、地理和年龄。 有关 LUIS 可以识别的类型的背景，请参阅[使用预生成实体](https://docs.microsoft.com/en-us/azure/cognitive-services/LUIS/pre-builtentities)。
+预生成实体  帮助机器人识别常见类型的信息，如日期、时间、数字、温度、货币、地理和年龄。 有关 LUIS 可以识别的类型的背景，请参阅[使用预生成实体](https://docs.microsoft.com/azure/cognitive-services/LUIS/pre-builtentities)。
 
 ## <a name="how-your-bot-gets-messages-from-luis"></a>机器人如何通过 LUIS 获取消息
 
@@ -61,7 +61,7 @@ ms.locfileid: "50000314"
 
 ![如何将意向和实体传递给机器人](./media/cognitive-services-add-bot-language/cognitive-services-luis-message-flow-bot-code.png)
 
-若要开始在机器人中使用 LUIS 应用，请查看[将 LUIS 用于语言理解](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0)。
+若要开始在机器人中使用 LUIS 应用，请查看[将 LUIS 用于语言理解](https://docs.microsoft.com/azure/bot-service/bot-builder-howto-v4-luis?view=azure-bot-service-4.0)。
 
 ## <a name="best-practices-for-language-understanding"></a>语言理解的最佳做法
 
@@ -96,11 +96,11 @@ LUIS 应用提供了一项功能来改进应用性能，方法是查看用户向
 
 ### <a name="the-dispatch-tool"></a>调度工具
 
-调度工具可帮助你将多个 LUIS 应用和 QnA Maker 服务与机器人集成，方法是创建调度应用，这是一个新的 LUIS 应用，该应用将消息路由到相应的 LUIS 和 QnAMaker 服务。 有关将多个 LUIS 应用和 QnA Maker 合并到一个机器人的分步教程，请参阅[调度教程](./bot-builder-tutorial-dispatch.md)。
+调度工具可帮助你将多个 LUIS 应用和 QnA Maker 服务与机器人集成，方法是创建调度应用  ，这是一个新的 LUIS 应用，该应用将消息路由到相应的 LUIS 和 QnAMaker 服务。 有关将多个 LUIS 应用和 QnA Maker 合并到一个机器人的分步教程，请参阅[调度教程](./bot-builder-tutorial-dispatch.md)。
 
 ## <a name="use-luis-to-improve-speech-recognition"></a>使用 LUIS 改进语音识别
 
-对于用户会话的机器人，将其与 LUIS 集成可帮助识别将语音转换为文本时可能被人误解的字词。  例如，在国际象棋场景中，用户可能会说：“Move knight to A 7”。 如果没有用户意向的上下文，该表达可能会被识别为：“Move night 287”。 通过创建代表棋子的实体并以表达进行标记，可以提供语音识别上下文进行标识。 可以使用与必应语音集成的 Bot Framework 通道（比如网络聊天、Bot Framework 模拟器和 Cortana）来[启用语音识别启动](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-manage-speech-priming?view=azure-bot-service-4.0)。  
+对于用户会话的机器人，将其与 LUIS 集成可帮助识别将语音转换为文本时可能被人误解的字词。  例如，在国际象棋场景中，用户可能会说：“Move knight to A 7”。 如果没有用户意向的上下文，该表达可能会被识别为：“Move night 287”。 通过创建代表棋子的实体并以表达进行标记，可以提供语音识别上下文进行标识。 可以使用与必应语音集成的 Bot Framework 通道（比如网络聊天、Bot Framework 模拟器和 Cortana）来[启用语音识别启动](https://docs.microsoft.com/azure/bot-service/bot-service-manage-speech-priming?view=azure-bot-service-4.0)。  
 
 ## <a name="additional-resources"></a>其他资源
-有关详细信息，请参阅[认知服务](https://docs.microsoft.com/en-us/azure/cognitive-services/)文档。
+有关详细信息，请参阅[认知服务](https://docs.microsoft.com/azure/cognitive-services/)文档。

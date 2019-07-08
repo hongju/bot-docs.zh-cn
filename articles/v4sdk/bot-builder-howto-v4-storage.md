@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 07a66eb468bc456fb463c9c215a2c941e4fafe0a
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 56a95023810bd7d66687c892f449fa31c9394dc8
+ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215332"
+ms.lasthandoff: 07/01/2019
+ms.locfileid: "67496684"
 ---
 # <a name="write-directly-to-storage"></a>直接写入存储
 
@@ -441,7 +441,7 @@ Azure Blob 存储是 Microsoft 提供的适用于云的对象存储解决方案�
 
 ![Blob 存储 -“新建帐户”页](./media/blob-storage-new-account.png)
 
-3. 在“新建帐户”页中输入存储帐户的“名称”，选择“Blob 存储”作为“帐户类型”，提供“位置”、“资源组”和“订阅”信息。         
+3. 在“新建帐户”页中输入存储帐户的“名称”，选择“Blob 存储”作为“帐户类型”，提供“位置”、“资源组”和“订阅”信息        。  
 4. 然后单击“查看 + 创建”  。
 5. 验证成功后，单击“创建”  。
 
@@ -671,7 +671,7 @@ protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivi
 
 ```
 
-以下链接提供了有关 [Azure Blob 脚本存储](https://docs.microsoft.com/en-us/dotnet/api/microsoft.bot.builder.azure.azureblobtranscriptstore)的详细信息 
+以下链接提供了有关 [Azure Blob 脚本存储](https://docs.microsoft.com/dotnet/api/microsoft.bot.builder.azure.azureblobtranscriptstore)的详细信息 
 
 ## <a name="additional-information"></a>其他信息
 

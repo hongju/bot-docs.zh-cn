@@ -7,14 +7,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/17
+ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3ee3af72d1c03faf485a64adb8d9fa2548f5d99d
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.openlocfilehash: fc4fe669c57c53b8b53a98bf495ed858094ef4b6
+ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563593"
+ms.lasthandoff: 07/01/2019
+ms.locfileid: "67496633"
 ---
 # <a name="manage-state-data"></a>管理状态数据
 
@@ -62,7 +62,7 @@ GlobalConfiguration.Configure(WebApiConfig.Register);
 
 ```
 
-可以使用此方法设置自己的自定义数据存储，或使用任一 Azure 扩展。
+可以使用此方法设置自己的自定义数据存储，或使用任一 Azure 扩展  。
 
 ## <a name="manage-custom-data-storage"></a>管理自定义数据存储
 
@@ -92,7 +92,7 @@ GlobalConfiguration.Configure(WebApiConfig.Register);
 
 ## <a name="useful-properties-for-managing-state-data"></a>可管理状态数据的有用属性
 
-每个 [Activity][Activity] 对象包含用于管理状态数据的属性。
+每个 [Activity][Activity] 对象都包含用于管理状态数据的属性。
 
 | 属性 | 说明 | 使用案例 |
 |----|----|----|
@@ -105,7 +105,7 @@ GlobalConfiguration.Configure(WebApiConfig.Register);
 
 ## <a name="handle-concurrency-issues"></a>处理并发性问题
 
-当机器人尝试保存状态数据时，如果机器人的另一个实例已更改该数据，机器人可能会收到 HTTP 状态代码为“412 不满足前提条件”的错误响应。 可按以下代码示例中所示设计机器人，以应对这种情况。
+当机器人尝试保存状态数据时，如果机器人的另一个实例已更改该数据，机器人可能会收到 HTTP 状态代码为“412 不满足前提条件”的错误响应。  可按以下代码示例中所示设计机器人，以应对这种情况。
 
 [!code-csharp[Handle exception saving state](../includes/code/dotnet-state.cs#handleException)]
 
@@ -114,4 +114,4 @@ GlobalConfiguration.Configure(WebApiConfig.Register);
 - [Bot Framework 故障排除指南](../bot-service-troubleshoot-general-problems.md)
 - <a href="/dotnet/api/?view=botbuilder-3.11.0" target="_blank">Bot Framework SDK for .NET 参考</a>
 
-[Activity]: https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html
+[Activity]: https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html

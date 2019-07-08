@@ -7,12 +7,12 @@ ms.topic: article
 ms.service: bot-service
 ms.date: 12/13/2017
 ROBOTS: NoIndex, NoFollow
-ms.openlocfilehash: d41c2c24ed38fffe76cd73a6bb8a685d3861ac55
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: fee70da7288b3214ff7f384998a69b40f91b3226
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "50000424"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464520"
 ---
 # <a name="configure-adaptive-cards"></a>配置自适应卡
 > [!IMPORTANT]
@@ -41,19 +41,19 @@ ms.locfileid: "50000424"
 
 下面的代码片段显示了如何在代码中定义 **myName** 实体：
 
-``javascript
+```javascript
 {
    "type": "Input.Text",
    "id": "myName",
    "placeholder": "Last, First"
 }
-``
+```
 
 此外，如果字段的 id 为 `@task`，则该字段的值将用作任务名称。 触发此字段时（例如：单击按钮），将执行指定的任务。 
 
 以此代码片段为例：
 
-``javascript
+```javascript
 {
   'type': 'Action.Submit',
   'title': 'Search',
@@ -62,9 +62,9 @@ ms.locfileid: "50000424"
     '@task': 'Hotel Search'
   }
 }
-``
+```
 
-单击此按钮时，将触发提交操作，`context.sticky` 将设置为 `Hotel Search`。 这将导致执行“酒店搜索”任务。 若要使用此功能，请确保 `@task` 与在聊天设计器中定义的任务名称相匹配。
+单击此按钮时，将触发提交操作，`context.sticky` 将设置为 `Hotel Search`。 这将导致执行“酒店搜索”  任务。 若要使用此功能，请确保 `@task` 与在聊天设计器中定义的任务名称相匹配。
 
 ## <a name="use-entities-and-language-generation-templates"></a>使用实体和语言生成模板
 自适应卡支持全语言生成解决方案。
@@ -72,7 +72,7 @@ ms.locfileid: "50000424"
 * `entityName` 使用卡内的实体。
 * `responseTemplateName` 使用卡内的简单或条件响应模板。
 
-可在此处详细了解自适应卡片 TODO：Insert link to adaptive cards schema documentation -->
+可在此处了解有关自适应卡片的详细信息  TODO：在自适应卡片架构文档中插入链接 -->
 
 ## <a name="sample-adaptive-card-payload"></a>示例自适应卡有效负载
 

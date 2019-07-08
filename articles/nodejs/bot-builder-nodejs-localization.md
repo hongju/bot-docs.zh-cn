@@ -9,21 +9,21 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: d592aa8b37e1d73e3cf9003209b985b8ca0f03f8
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: ce1b3f073c932cd4042b91ae9afc1e332a7443f2
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224392"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404906"
 ---
 # <a name="support-localization"></a>支持本地化
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-Bot Builder 包含一个丰富的本地化系统，用于构建可以用多种语言与用户交流的机器人。 可以使用存储在机器人目录结构中的 JSON 文件将机器人的所有提示本地化。 如果使用 LUIS 等系统执行自然语言处理，则可以为机器人支持的每种语言的 [LuisRecognizer][LUISRecognizer] 配置单独的模型，SDK 会自动选择与用户的首选区域设置匹配的模型。
+Bot Builder 包含一个丰富的本地化系统，用于构建可以用多种语言与用户交流的机器人。 可以使用存储在机器人目录结构中的 JSON 文件将机器人的所有提示本地化。 如果使用 LUIS 等系统执行自然语言处理，则可为机器人支持的每种语言的 [LuisRecognizer][LUISRecognizer] 配置单独的模型，且 SDK 会自动选择与用户的首选区域设置匹配的模型。
 
 ## <a name="determine-the-locale-by-prompting-the-user"></a>通过提示用户确定区域设置
-本地化机器人的第一步是添加识别用户首选语言的功能。 SDK 提供了 [session.preferredLocale()][preferredLocal] 方法，以便基于每个用户保存和检索此首选项。 以下示例是一个对话，用于提示用户输入其首选语言，然后保存其选择。
+本地化机器人的第一步是添加识别用户首选语言的功能。 SDK 提供了 [session.preferredLocale()][preferredLocal] 方法，以基于每个用户保存和检索此首选项。 以下示例是一个对话，用于提示用户输入其首选语言，然后保存其选择。
 
 ``` javascript
 bot.dialog('/localePicker', [
@@ -111,15 +111,15 @@ var bot = new builder.UniversalBot(connector, {
 ```
 
 ## <a name="localize-prompts"></a>本地化提示
-Bot Framework SDK 的默认本地化系统是基于文件的，并允许机器人使用存储在磁盘上的 JSON 文件来支持多种语言。 默认情况下，本地化系统将在 **./locale/<IETF TAG>/index.json** 文件中搜索机器人的提示，其中 <IETF TAG> 是有效的 [IETF 语言标记][IEFT]，表示要查找其提示的首选区域设置。 
+Bot Framework SDK 的默认本地化系统是基于文件的，并允许机器人使用存储在磁盘上的 JSON 文件来支持多种语言。  默认情况下，本地化系统将在 "./locale/<IETF TAG>/index.json" 文件中搜索机器人的提示，其中 <IETF TAG> 是有效的 [IETF 语言标记][IEFT]，表示用于查找其提示的首选区域设置。 
 
 以下屏幕截图显示了支持下述三种语言的机器人的目录结构：英语、意大利语和西班牙语。
 
 ![三个区域设置的目录结构](../media/locale-dir.png)
 
-该文件的结构是消息 ID 到本地化文本字符串的简单 JSON 映射。 如果值是数组而不是字符串，则使用 [session.localizer.gettext()][GetText] 检索该值时，会随机选择数组中的一个提示。 
+该文件的结构是消息 ID 到本地化文本字符串的简单 JSON 映射。 如果其值是数组而不是字符串，则使用 [session.localizer.gettext()][GetText] 检索该值时，会随机选择数组中的一个提示。 
 
-如果在调用 [session.send()](http://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#send) 时传递消息 ID 而不是特定于语言的文本，则机器人会自动检索消息的本地化版本：
+如果在调用 [session.send()](http://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#send) 时传递消息 ID 而不是特定于语言的文本，则机器人会自动检索消息的本地化版本：
 
 ```javascript
 var bot = new builder.UniversalBot(connector, [
@@ -134,7 +134,7 @@ var bot = new builder.UniversalBot(connector, [
 ]);
 ```
 
-在内部，SDK 会调用 [`session.preferredLocale()`][preferredLocale] 以获取用户的首选区域设置，然后在调用 [`session.localizer.gettext()`][GetText] 时使用该区域设置将消息 ID 映射到其本地化文本字符串。  有时你可能需要手动调用本地化程序。 例如，传递给 [`Prompts.choice()`][promptsChoice] 的枚举值永远不会自动本地化，因此你可能需要在调用提示之前手动检索本地化列表：
+在内部，SDK 调用[`session.preferredLocale()`][preferredLocale]to get the user's preferred locale and then uses that in a call to [`session.localizer.gettext()`][GetText] 以将消息 ID 映射到其已本地化的文本字符串。  有时你可能需要手动调用本地化程序。 例如，传递给 [`Prompts.choice()`][promptsChoice] 的枚举值不会自动本地化，因此需要在该调用提示前手动检索本地化列表：
 
 ```javascript
 var options = session.localizer.gettext(session.preferredLocale(), "choice_options");
@@ -143,7 +143,7 @@ builder.Prompts.choice(session, "choice_prompt", options);
 
 默认本地化程序在多个文件中搜索消息 ID，如果找不到 ID（或者没有提供本地化文件），它将只返回 ID 文本，使本地化文件的使用变得透明和可选。  按以下顺序搜索文件：
 
-1. 搜索 [`session.preferredLocale()`][preferredLocale] 返回的区域设置下的 **index.json** 文件。
+1. 搜索 [`session.preferredLocale()`][preferredLocale] 返回的区域设置下的 "index.json" 文件  。
 2. 如果区域设置包含可选的子标记（例如 **en-US**），则会搜索 **en** 的根标记。
 3. 搜索机器人的已配置默认区域设置。
 
@@ -159,14 +159,14 @@ builder.Prompts.choice(session, "choice_prompt", options);
 
 
 [LUIS]: https://www.luis.ai/
-[IMessage]: http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
-[IntentRecognizerSetOptions]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizersetoptions.html
-[LUISRecognizer]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.luisrecognizer
+[IMessage]: http://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
+[IntentRecognizerSetOptions]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizersetoptions.html
+[LUISRecognizer]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.luisrecognizer
 [LUISSample]: https://aka.ms/v3-js-luisSample
 [DisambiguationSample]: https://aka.ms/v3-js-onDisambiguateRoute
-[preferredLocal]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#preferredlocale
-[preferredLocale]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#preferredlocale
-[promptsChoice]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.__global.iprompts.html#choice
-[GetText]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.ilocalizer.html#gettext
+[preferredLocal]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#preferredlocale
+[preferredLocale]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#preferredlocale
+[promptsChoice]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.__global.iprompts.html#choice
+[GetText]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.ilocalizer.html#gettext
 [IEFT]: https://en.wikipedia.org/wiki/IETF_language_tag
 

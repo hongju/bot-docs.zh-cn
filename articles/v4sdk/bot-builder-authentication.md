@@ -7,18 +7,18 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 05/31/2019
+ms.date: 06/07/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 89df62255c9ea6fbf55b2c7aed2d6f334d69c571
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: e708f6b556c832ed7f8858a893cc5fb0a8406ab2
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693695"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404323"
 ---
 <!-- Related TODO:
-- Check code in [Web Chat channel](https://docs.microsoft.com/en-us/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0)
-- Check guidance in [DirectLine authentication](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-4.0)
+- Check code in [Web Chat channel](https://docs.microsoft.com/azure/bot-service/bot-service-channel-connect-webchat?view=azure-bot-service-4.0)
+- Check guidance in [DirectLine authentication](https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-4.0)
 -->
 
 <!-- General TODO: (Feedback from CSE (Nafis))
@@ -98,15 +98,15 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
 ## <a name="prerequisites"></a>先决条件
 
-- 了解[机器人基础知识][concept-basics]、[管理状态][concept-state]、[对话库][concept-dialogs]、如何[实现顺序聊天流][simple-dialog]，以及如何[重复使用对话][component-dialogs]。
+- 了解[机器人基础知识][concept-basics]、, [managing state][concept-state]、[对话库][概念对话]、如何[实现有序对话流][simple-dialog]、, and how to [reuse dialogs][component-dialogs]。
 - 具备 Azure 和 OAuth 2.0 开发方面的知识。
 - Visual Studio 2017 或更高版本、Node.js、NPM 和 Git。
 - 以下示例之一。
 
 | 示例 | BotBuilder 版本 | 演示 |
 |:---|:---:|:---|
-| [**CSharp**][cs-auth-sample] 或 [**JavaScript**][js-auth-sample] 中的**机器人身份验证** | v4 | OAuthCard 支持 |
-| [**CSharp**][cs-msgraph-sample] 或 [**JavaScript**][js-msgraph-sample] 中的**机器人身份验证 MSGraph** | v4 |  使用 OAuth 2 的 Microsoft Graph API 支持 |
+|  [**CSharp**][cs-auth-sample] or [**JavaScript**][js-auth-sample] 中的机器人身份验证 | v4 | OAuthCard 支持 |
+|  [**CSharp**][cs-msgraph-sample] or [**JavaScript**][js-msgraph-sample] 中的机器人身份验证 MSGraph | v4 |  使用 OAuth 2 的 Microsoft Graph API 支持 |
 
 ## <a name="create-your-bot-resource-on-azure"></a>在 Azure 中创建机器人资源
 
@@ -126,10 +126,10 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 使用这些步骤创建新的 Azure AD 应用程序。 可在创建的应用中使用 v1 或 v2 终结点。
 
 > [!TIP]
-> 需要在你对其拥有管理权限的租户中创建并注册 Azure AD 应用程序。
+> 你需要在租户中创建和注册 Azure AD 应用程序，在租户中你可以同意应用程序请求的委托权限。
 
-1. 在 Azure 门户中打开 [Azure Active Directory][azure-aad-blade] 面板。
-    如果进入了错误的租户，请单击“切换目录”切换到正确的租户。  （有关创建租户的说明，请参阅[访问门户并创建租户](https://docs.microsoft.com/en-us/azure/active-directory/fundamentals/active-directory-access-create-new-tenant)。）
+1. 在 Microsoft Azure 门户中打开 [Azure Active Directory][azure-aad-blade] 面板。
+    如果进入了错误的租户，请单击“切换目录”切换到正确的租户。  （有关创建租户的说明，请参阅[访问门户并创建租户](https://docs.microsoft.com/azure/active-directory/fundamentals/active-directory-access-create-new-tenant)。）
 1. 打开“应用注册”面板。 
 1. 在“应用注册”面板中，单击“新建注册”   。
 1. 填写必填字段并创建应用注册。
@@ -247,7 +247,7 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
 <!-- TODO: Add guidance (once we have it) on how not to hard-code IDs and ABS auth. -->
 
-1. 从 github 存储库克隆要使用的示例：[**机器人身份验证**][cs-auth-sample]或[**机器人身份验证 MSGraph**][cs-msgraph-sample]。
+1. 从 github 存储库克隆要使用的示例：[机器人身份验证][cs-auth-sample]or [**Bot authentication MSGraph**][cs-msgraph-sample]  。
 1. 更新 **appsettings.json**：
 
     - 将 `ConnectionName` 设置为要添加到机器人的 OAuth 连接设置的名称。
@@ -259,7 +259,7 @@ Azure 机器人服务和 v4 SDK 包含新的机器人身份验证功能，并提
 
 # <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
-1. 从要使用的 github 存储库进行克隆：[**机器人身份验证**][js-auth-sample]或[**机器人身份验证 MSGraph**][js-msgraph-sample]。
+1. 从要使用的 github 存储库进行克隆：[机器人身份验证][js-auth-sample]or [**Bot authentication MSGraph**][js-msgraph-sample]  。
 1. 更新 **.env**：
 
     - 将 `connectionName` 设置为要添加到机器人的 OAuth 连接设置的名称。

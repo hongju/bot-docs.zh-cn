@@ -7,12 +7,12 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 02/21/2019
-ms.openlocfilehash: 54be82eb263c2189fd6bb7a0dc4018b9ecf5c2f2
-ms.sourcegitcommit: e41dabe407fdd7e6b1d6b6bf19bef5f7aae36e61
+ms.openlocfilehash: 57efc2f1d137988792d9484d7f1f857bd193ecfa
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/27/2019
-ms.locfileid: "56893497"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405787"
 ---
 # <a name="bot-framework-frequently-asked-questions"></a>Bot Framework 常见问题
 
@@ -61,6 +61,10 @@ SDK V3 机器人会继续运行 Azure 机器人服务并由其提供支持。  �
 - 如果你已经在生产 Bot Framework SDK V3 机器人，请勿担心，这些机器人在可预见的将来仍会按原样继续工作。
 - 可以通过 Azure 门户和 Azure 命令行创建 Bot Framework SDK V4 机器人和更早的 V3 机器人。 
 
+### <a name="how-can-i-migrate-azure-bot-service-from-one-region-to-another"></a>如何将 Azure 机器人服务从一个区域迁移到另一个区域？
+
+Azure 机器人服务不支持区域移动。 它是一个全球性的服务，不与任何特定区域绑定。
+
 ## <a name="channels"></a>声道
 ### <a name="when-will-you-add-more-conversation-experiences-to-the-bot-framework"></a>何时可以向 Bot Framework 添加更多会话体验？
 
@@ -69,13 +73,39 @@ SDK V3 机器人会继续运行 Azure 机器人服务并由其提供支持。  �
 
 ### <a name="i-have-a-communication-channel-id-like-to-be-configurable-with-bot-framework-can-i-work-with-microsoft-to-do-that"></a>我希望可以使用 Bot Framework 配置我的某个信道。 我可以与 Microsoft 协作实现吗？
 
-我们没有为开发人员提供向 Bot Framework 添加新通道的一般机制，但你可以通过 [Direct Line API][DirectLineAPI] 将机器人连接到应用。 如果你是信道开发人员，并希望与我们协作在 Bot Framework 中启用通道，[请与我们联系][Support]。
+我们没有为开发人员提供向 Bot Framework 添加新通道的一般机制，但你可以通过 [Direct Line API][DirectLineAPI]. If you are a developer of a communication channel and would like to work with us to enable your channel in the Bot Framework [we’d love to hear from you][Support] 将机器人连接到应用。
 
-### <a name="if-i-want-to-create-a-bot-for-skype-what-tools-and-services-should-i-use"></a>如果我想创建用于 Skype 的机器人，我应该使用哪些工具和服务？
+### <a name="if-i-want-to-create-a-bot-for-microsoft-teams-what-tools-and-services-should-i-use"></a>如果我想创建用于 Microsoft Teams 的机器人，我应该使用哪些工具和服务？
 
-Bot Framework 旨在为 Skype 和许多其他通道构建、连接和部署高质量、响应迅速、高性能的可扩展机器人。 可以使用 SDK 创建文本/短信、图像、按钮和支持卡的机器人（构成先进跨会话体验的大多数机器人交互）以及特定于 Skype 的机器人交互，例如丰富的音频和视频体验。
+Bot Framework 旨在为 Teams 和许多其他通道构建、连接和部署高质量、响应迅速、高性能的可扩展机器人。 可以使用 SDK 创建文本/短信、图像、按钮和支持卡的机器人（构成先进跨会话体验的大多数机器人交互）以及特定于 Teams 的机器人交互，例如丰富的音频和视频体验。
 
-如果你已经有一个很棒的机器人，并且想要与 Skype 受众沟通，你的机器人可以通过 Bot Framework for REST API 轻松连接到 Skype（或任何支持的通道），前提是它具有可通过 Internet 访问的 REST 终结点。
+如果你已经有一个很棒的机器人，并且想要与 Teams 受众沟通，你的机器人可以通过 Bot Framework for REST API 轻松连接到 Teams（或任何支持的通道），前提是它具有可通过 Internet 访问的 REST 终结点。
+
+### <a name="how-do-i-create-a-bot-that-uses-the-us-government-data-center"></a>如何创建使用美国政府数据中心的机器人？
+
+创建使用美国政府数据中心的机器人需要 2 个主要步骤。
+1. 在 app settings.json 中添加“通道提供程序”设置（或 Azure 应用服务设置）。 这需要专门设置为此名称/值常量：ChannelService = "https://botframework.azure.us ". 使用 appsetting.json 的示例如下所示。
+
+```json
+{
+  "MicrosoftAppId": "", 
+  "MicrosoftAppPassword": "",
+  "ChannelService": "https://botframework.azure.us"
+}
+```
+2. 如果使用 .NET Core，则需要在 startup.cs 文件中添加 ConfigurationChannelProvider。 如何执行此操作取决于你使用的 SDK 的版本。
+
+- 对于 4.3 及以上版本，在 ConfigureServices 方法中，需要创建 ConfigurationChannelProvider 实例。 使用 Botframeworkhttpadapter 类时，可以将其作为单一实例注入服务集合，如下所示：
+
+```csharp  
+services.AddSingleton<IChannelProvider, ConfigurationChannelProvider>();
+```
+- 对于 4.3 之前的版本，在 ConfigureServices 方法中，找到 AddBot 方法。 设置选项时，请确保添加：
+
+```csharp
+options.ChannelProvider = new ConfigurationChannelProvider();
+```
+可以在[此处](https://docs.microsoft.com/en-us/azure/azure-government/documentation-government-services-aiandcognitiveservices#azure-bot-service)找到更多有关政府服务的信息
 
 ## <a name="security-and-privacy"></a>安全性和隐私
 ### <a name="do-the-bots-registered-with-the-bot-framework-collect-personal-information-if-yes-how-can-i-be-sure-the-data-is-safe-and-secure-what-about-privacy"></a>注册到 Bot Framework 的机器人是否会收集个人信息？ 如果是，我如何确保数据的安全性？ 如何保护隐私？
@@ -105,7 +135,7 @@ Bot Framework 旨在为 Skype 和许多其他通道构建、连接和部署高�
 不是。 这种 IP 地址或 DNS 允许列表不切实际。 Bot Framework 连接器服务托管在全球的 Azure 数据中心，Azure IP 列表会不断变化。 将特定的 IP 地址列入允许列表可能只管用一天，当 Azure IP 地址发生变化时，这种做法就不起作用。
  
 ### <a name="what-keeps-my-bot-secure-from-clients-impersonating-the-bot-framework-connector-service"></a>当客户端模拟 Bot Framework 连接器服务时，机器人受到哪种保护？
-1. 向机器人发出的每个请求所随附的安全令牌中包含一个编码的 ServiceUrl，这意味着，即使攻击者获取了该令牌的访问权限，也无法将聊天重定向到新的 ServiceUrl。 SDK 的所有实现都会强制实施此机制，身份验证[参考](https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-connector-authentication?view=azure-bot-service-3.0#bot-to-connector)材料中对此做了阐述。
+1. 向机器人发出的每个请求所随附的安全令牌中包含一个编码的 ServiceUrl，这意味着，即使攻击者获取了该令牌的访问权限，也无法将聊天重定向到新的 ServiceUrl。 SDK 的所有实现都会强制实施此机制，身份验证[参考](https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-connector-authentication?view=azure-bot-service-3.0#bot-to-connector)材料中对此做了阐述。
 
 2. 如果传入的令牌缺失或格式不当，Bot Framework SDK 不会在响应中生成令牌。 当机器人配置不当时，此机制可以限制损害程度。
 3. 在机器人内部，可以手动检查令牌中提供的 ServiceUrl。 当服务拓扑发生更改时，此机制会使机器人变得更脆弱，因此，这种机制是可行的，但不建议。
@@ -158,7 +188,55 @@ Direct Line 适用于：
 * 你需要在[可嵌入网上聊天通道][WebChat]产品/服务的基础上自定义更多内容的网页
 * 服务到服务应用程序
 
-[DirectLineAPI]: https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts
+
+## <a name="app-registration"></a>应用注册
+
+### <a name="i-need-to-manually-create-my-app-registration-how-do-i-create-my-own-app-registration"></a>我需要手动创建自己的应用注册。 如何创建自己的应用注册？
+
+对于以下情况，需要创建自己的应用注册：
+
+- 你在 Bot Framework 门户（如 https://dev.botframework.com/bots/new) ）中创建了机器人 
+- 你无法在组织中注册应用，需要另一方为你正在构建的机器人创建应用 ID
+- 你因其他原因需要手动创建自己的应用 ID（和密码）
+
+若要创建自己的应用 ID，请按照以下步骤进行操作。
+
+1. 请登录到 [Azure 帐户](https://portal.azure.com)。 如果没有 Azure 帐户，可以[注册免费帐户](https://azure.microsoft.com/free/)。
+2. 转到[应用注册边栏选项卡](https://portal.azure.com/#blade/Microsoft_AAD_RegisteredApps/ApplicationsListBlade)，单击顶部操作栏中的“新建注册”  。
+
+    ![新建注册](media/app-registration/new-registration.png)
+
+3. 在 Name 字段中输入应用程序注册的显示名称，然后选择支持的帐户类型  。 此名称不必与机器人 ID 匹配。
+
+    > [!IMPORTANT]
+    > 在“支持的帐户类型”中，选择“任何组织目录中的帐户和个人 Microsoft 帐户(例如 Skype、Xbox、Outlook.com)”单选按钮   。 如果选择任何其他选项，机器人创建会失败  。
+
+    ![注册详细信息](media/app-registration/registration-details.png)
+
+4. 单击“注册” 
+
+    几分钟后，新创建的应用注册会打开一个边栏选项卡。 复制”概述”边栏选项卡中的“应用程序（客户端）ID”，并将其粘贴到应用 ID 字段中  。
+
+    ![应用程序 ID](media/app-registration/app-id.png)
+
+如果是通过 Bot Framework 门户创建机器人，则已完成应用注册的设置；将自动生成密钥。 
+
+如果要在 Microsoft Azure 门户中创建机器人，则需要为应用注册生成密钥。 
+
+1. 单击应用注册的边栏选项卡的左侧导航栏中的“证书和密钥”  。
+2. 在该边栏选项卡中，单击“新建客户端密钥”按钮  。 在弹出对话框中，输入密钥的可选描述，然后从“过期”单选按钮组中选择“从不”  。 
+
+    ![新的密钥](media/app-registration/new-secret.png)
+
+3. 从“客户端密钥”下的表中复制密钥的值，将其粘贴到应用程序的“密码”字段，然后单击该边栏选项卡底部的“确定”    。 然后，继续创建机器人。 
+
+    > [!NOTE]
+    > 密钥仅在此边栏选项卡中可见，离开该页面后将无法对其进行检索。 请务必将其复制到安全的位置。
+
+    ![新的应用 ID](media/app-registration/create-app-id.png)
+
+
+[DirectLineAPI]: https://docs.microsoft.com/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-concepts
 [Support]: bot-service-resources-links-help.md
 [WebChat]: bot-service-channel-connect-webchat.md
 

@@ -7,21 +7,23 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/2017
-ms.openlocfilehash: dd5e81ba3feaba09e60011c138dcbe1537144b5a
-ms.sourcegitcommit: 721bb09f10524b0cb3961d7131966f57501734b8
+ms.date: 06/13/2019
+ms.openlocfilehash: c99e7ce86415ee1291a92e2684b975fd03c822f7
+ms.sourcegitcommit: a47183f5d1c2b2454c4a06c0f292d7c075612cdd
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/12/2019
-ms.locfileid: "59541003"
+ms.lasthandoff: 06/19/2019
+ms.locfileid: "67252702"
 ---
 # <a name="receive-activities-from-the-bot"></a>从机器人接收活动
 
-使用 Direct Line 3.0 协议，客户端可以通过 `WebSocket` 流接收活动或通过发出 `HTTP GET` 请求来检索活动。 
+使用 Direct Line 3.0 协议，客户端可以通过 `WebSocket` 流接收活动或通过发出 `HTTP GET` 请求来检索活动。
 
 ## <a name="websocket-vs-http-get"></a>WebSocket 和 HTTP GET
 
-流式处理 WebSocket 有效地将消息推送到客户端，而 GET 接口可使客户端显式请求消息。 尽管 WebSocket 机制由于其效率通常是首选机制，但 GET 机制对于无法使用 WebSocket 的客户端非常有用。 
+流式处理 WebSocket 有效地将消息推送到客户端，而 GET 接口可使客户端显式请求消息。 尽管 WebSocket 机制由于其效率通常是首选机制，但 GET 机制对于无法使用 WebSocket 的客户端非常有用。
+
+该服务只允许每个对话存在 1 个 WebSocket 连接。 Direct Line 可能会关闭其他 WebSocket 连接，原因值为 `collision`。
 
 并非所有[活动类型](bot-framework-rest-connector-activities.md)都可通过 WebSocket 和 HTTP GET 获得。 下表介绍了使用 Direct Line 协议的客户端的各种活动类型的可用性。
 

@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: abs
 ms.date: 05/31/2019
-ms.openlocfilehash: 721a64fab578f6c49b1dbebe5fee28045a198153
-ms.sourcegitcommit: 0eb7ac64c4eb28944a9957a0cd2f65b046232244
+ms.openlocfilehash: 9ef15b09c8517db9e8b1f13f72172f09f9fb23eb
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/01/2019
-ms.locfileid: "66455452"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464623"
 ---
 # <a name="create-a-bot-with-azure-bot-service"></a>使用 Azure 机器人服务创建机器人
 
@@ -43,12 +43,12 @@ ms.locfileid: "66455452"
    | **订阅** | 订阅 | 选择要使用的 Azure 订阅。 |
    | **资源组** | myResourceGroup | 可创建新的[资源组](/azure/azure-resource-manager/resource-group-overview#resource-groups)或从现有资源组中选择。 |
    | **位置** | 默认位置 | 选择资源组的地理位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 创建机器人后无法更改位置。 |
-   | **定价层** | F0 | 选择定价层。 可随时更新定价层。 有关详细信息，请参阅[机器人服务定价](https://azure.microsoft.com/en-us/pricing/details/bot-service/)。 |
+   | **定价层** | F0 | 选择定价层。 可随时更新定价层。 有关详细信息，请参阅[机器人服务定价](https://azure.microsoft.com/pricing/details/bot-service/)。 |
    | **应用名称** | 唯一的名称 | 机器人的唯一 URL 名称。 例如，如果将机器人命名为 *myawesomebot*，则机器人的 URL 为 `http://myawesomebot.azurewebsites.net`。 名称只能使用字母数字和下划线字符。 此字段的限制为 35 个字符。 创建机器人后无法更改应用名称。 |
    | **机器人模板** | 基本 | 选择 **C#** 或 **Node.js**，再选择适用于本快速入门的“基本”模板，然后单击“选择”。   “基本”模板创建回显机器人。 [详细了解](bot-service-concept-templates.md)模板。 |
-   | **应用服务计划/位置** | 你的应用服务计划  | 选择[应用服务计划](https://azure.microsoft.com/en-us/pricing/details/app-service/plans/)位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 （不适用于 Functions 机器人。） |
+   | **应用服务计划/位置** | 你的应用服务计划  | 选择[应用服务计划](https://azure.microsoft.com/pricing/details/app-service/plans/)位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 （不适用于 Functions 机器人。） |
    | **Application Insights** | 启用 | 决定要启用还是关闭 [Application Insights](/bot-framework/bot-service-manage-analytics)   。 如果选择“启用”，还必须指定区域位置  。 选择的位置可以是列出的任何位置，但通常情况下，最好选择机器人服务所在的位置。 |
-   | **Microsoft 应用 ID 和密码** | 自动创建应用 ID 和密码 | 如果需要手动输入 Microsoft 应用 ID 和密码，请使用此选项。 否则，将在机器人创建过程中创建新的 Microsoft 应用 ID 和密码。 |
+   | **Microsoft 应用 ID 和密码** | 自动创建应用 ID 和密码 | 如果需要手动输入 Microsoft 应用 ID 和密码，请使用此选项。 否则，在机器人创建过程中系统会为你创建新的 Microsoft 应用 ID 和密码。 为机器人服务手动创建应用注册时，请确保支持的帐户类型设置为“任何组织目录中的帐户”或“任何组织目录中的帐户和个人 Microsoft 帐户（例如，Skype、Outlook.com、Xbox 等）”  |
 
    > [!NOTE]
    > 
@@ -78,7 +78,6 @@ ms.locfileid: "66455452"
 
 [!INCLUDE [applies-to-v4](includes/applies-to.md)]
 
-
 Azure 机器人服务提供了用于创建机器人的核心组件，包括用于开发机器人的 Bot Framework SDK 以及用于将机器人连接到通道的机器人服务。 在本主题中，还可以选择 .NET 或 Node.js 模板，以便使用 Bot Framework SDK v4 创建机器人。
 
 [!INCLUDE [Azure vs local development](~/includes/snippet-quickstart-paths.md)]
@@ -105,12 +104,12 @@ Azure 机器人服务提供了用于创建机器人的核心组件，包括用�
  | **订阅** | 订阅 | 选择要使用的 Azure 订阅。 |
  | **资源组** | myResourceGroup | 可创建新的[资源组](/azure/azure-resource-manager/resource-group-overview#resource-groups)或从现有资源组中选择。 |
  | **位置** | 默认位置 | 选择资源组的地理位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择最靠近客户的位置。 创建机器人后无法更改位置。 |
- | **定价层** | F0 | 选择定价层。 可随时更新定价层。 有关详细信息，请参阅[机器人服务定价](https://azure.microsoft.com/en-us/pricing/details/bot-service/)。 |
+ | **定价层** | F0 | 选择定价层。 可随时更新定价层。 有关详细信息，请参阅[机器人服务定价](https://azure.microsoft.com/pricing/details/bot-service/)。 |
  | **应用名称** | 唯一的名称 | 机器人的唯一 URL 名称。 例如，如果将机器人命名为 *myawesomebot*，则机器人的 URL 为 `http://myawesomebot.azurewebsites.net`。 名称只能使用字母数字和下划线字符。 此字段的限制为 35 个字符。 创建机器人后无法更改应用名称。 |
  | **机器人模板** | 回显机器人 | 选择“SDK v4”。  为本快速入门选择 C# 或 Node.js，然后单击“选择”。   
- | **应用服务计划/位置** | 你的应用服务计划  | 选择[应用服务计划](https://azure.microsoft.com/en-us/pricing/details/app-service/plans/)位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择机器人服务所在的位置。 |
+ | **应用服务计划/位置** | 你的应用服务计划  | 选择[应用服务计划](https://azure.microsoft.com/pricing/details/app-service/plans/)位置。 选择的位置可以是列出的任何位置，但通常情况下，最好选择机器人服务所在的位置。 |
  | **Application Insights** | 启用 | 决定要启用还是关闭 [Application Insights](/bot-framework/bot-service-manage-analytics)   。 如果选择“启用”，还必须指定区域位置  。 选择的位置可以是列出的任何位置，但通常情况下，最好选择机器人服务所在的位置。 |
- | **Microsoft 应用 ID 和密码** | 自动创建应用 ID 和密码 | 如果需要手动输入 Microsoft 应用 ID 和密码，请使用此选项。 否则，将在机器人创建过程中创建新的 Microsoft 应用 ID 和密码。 |
+ | **Microsoft 应用 ID 和密码** | 自动创建应用 ID 和密码 | 如果需要手动输入 Microsoft 应用 ID 和密码，请使用此选项。 否则，在机器人创建过程中系统会为你创建新的 Microsoft 应用 ID 和密码。 为机器人服务手动创建应用注册时，请确保支持的帐户类型设置为“任何组织目录中的帐户”或“任何组织目录中的帐户和个人 Microsoft 帐户（例如，Skype、Outlook.com、Xbox 等）” |
 
 4. 单击“创建”创建服务并将机器人部署到云。  此过程可能需要数分钟。
 

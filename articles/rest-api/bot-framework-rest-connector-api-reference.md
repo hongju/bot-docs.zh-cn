@@ -8,12 +8,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 10/25/2018
-ms.openlocfilehash: fd98b1bc8c3aa3b2c9fd716289dfd3ce75bec75b
-ms.sourcegitcommit: 8183bcb34cecbc17b356eadc425e9d3212547e27
+ms.openlocfilehash: 41aceaa20613d9b6b7ac95a7837b4ae197d1dd4a
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 02/09/2019
-ms.locfileid: "55971537"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464796"
 ---
 # <a name="api-reference"></a>API 参考
 
@@ -23,7 +23,7 @@ ms.locfileid: "55971537"
 在 Bot Framework 中，Bot Connector 服务使机器人能够在 Bot Framework 门户中配置的通道上与用户交换消息，而 Bot State 服务使机器人能够存储和检索与机器人使用 Bot Connector 服务执行的聊天相关的状态数据。 这两种服务都通过 HTTPS 使用行业标准 REST 和 JSON。
 
 > [!IMPORTANT]
-> 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展之一用于生产机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”主题。
+> 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展  之一用于生产机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”  主题。
 
 ## <a name="base-uri"></a>基本 URI
 
@@ -126,14 +126,17 @@ Authorization: Bearer ACCESS_TOKEN
 
 | Operation | 说明 |
 |----|----|
-| [创建聊天](#create-conversation) | 创建新的聊天。 | 
-| [发送到聊天](#send-to-conversation) | 将活动（消息）发送到指定聊天的末尾。 | 
-| [回复活动](#reply-to-activity) | 将活动（消息）发送到指定聊天，作为对指定活动的回复。 | 
+| [创建聊天](#create-conversation) | 创建新的聊天。 |
+| [发送到聊天](#send-to-conversation) | 将活动（消息）发送到指定聊天的末尾。 |
+| [回复活动](#reply-to-activity) | 将活动（消息）发送到指定聊天，作为对指定活动的回复。 |
+| [获取对话](#get-conversations) | 获取机器人参与的对话列表。 |
 | [获取聊天成员](#get-conversation-members) | 获取指定聊天的成员。 |
 | [获取聊天分页成员](#get-conversation-paged-members) | 获取指定聊天的成员，一次一页。 |
-| [获取活动成员](#get-activity-members) | 获取指定聊天中指定活动的成员。 | 
-| [更新活动](#update-activity) | 更新现有活动。 | 
-| [删除活动](#delete-activity) | 删除现有活动。 | 
+| [获取活动成员](#get-activity-members) | 获取指定聊天中指定活动的成员。 |
+| [更新活动](#update-activity) | 更新现有活动。 |
+| [删除活动](#delete-activity) | 删除现有活动。 |
+| [删除对话成员](#delete-conversation-member) | 从对话中删除成员。 |
+| [发送对话历史记录](#send-conversation-history) | 将过去活动的脚本上传到对话中。 |
 | [将附件上传到通道](#upload-attachment-to-channel) | 将附件直接上传到通道的 blob 存储中。 |
 
 ### <a name="create-conversation"></a>创建聊天
@@ -145,7 +148,7 @@ POST /v3/conversations
 | | |
 |----|----|
 | **请求正文** | [Conversation](#conversation-object) 对象 |
-| **返回** | [ResourceResponse](#resourceresponse-object) 对象 | 
+| **返回** | [ConversationResourceResponse](#conversationresourceresponse-object) 对象 | 
 
 ### <a name="send-to-conversation"></a>发送到聊天
 将活动（消息）发送到指定的聊天。 活动将根据通道的时间戳或语义追加到聊天的末尾。 若要回复聊天中的特定消息，请改用[回复活动](#reply-to-activity)。
@@ -169,6 +172,17 @@ POST /v3/conversations/{conversationId}/activities/{activityId}
 | **请求正文** | [Activity](#activity-object) 对象 |
 | **返回** | [Identification](#identification-object) 对象 | 
 
+### <a name="get-conversations"></a>获取对话
+获取机器人参与的对话列表。
+```http
+GET /v3/conversations?continuationToken={continuationToken}
+```
+
+| | |
+|----|----|
+| **请求正文** | 不适用 |
+| **返回** | [ConversationsResult](#conversationsresult-object) 对象 | 
+
 ### <a name="get-conversation-members"></a>获取聊天成员
 获取指定聊天的成员。
 ```http
@@ -183,13 +197,13 @@ GET /v3/conversations/{conversationId}/members
 ### <a name="get-conversation-paged-members"></a>获取聊天分页成员
 获取指定聊天的成员，一次一页。
 ```http
-GET /v3/conversations/{conversationId}/pagedmembers
+GET /v3/conversations/{conversationId}/pagedmembers?pageSize={pageSize}&continuationToken={continuationToken}
 ```
 
 | | |
 |----|----|
 | **请求正文** | 不适用 |
-| **返回** | 一个 [ChannelAccount](#channelaccount-object) 对象数组和一个可用于获取更多值的继续标记|
+| **返回** | 一个 [ChannelAccount](#channelaccount-object) 对象数组和一个可用于获取更多值的继续标记 |
 
 ### <a name="get-activity-members"></a>获取活动成员
 获取指定聊天中指定活动的成员。
@@ -224,8 +238,30 @@ DELETE /v3/conversations/{conversationId}/activities/{activityId}
 | **请求正文** | 不适用 |
 | **返回** | 指示操作结果的 HTTP 状态代码。 响应正文中未指定任何内容。 | 
 
+### <a name="delete-conversation-member"></a>删除对话成员
+从对话中删除成员。 如果该成员是对话中最后一个成员，则删除对话。
+```http
+DELETE /v3/conversations/{conversationId}/members/{memberId}
+```
+
+| | |
+|----|----|
+| **请求正文** | 不适用 |
+| **返回** | 指示操作结果的 HTTP 状态代码。 响应正文中未指定任何内容。 | 
+
+### <a name="send-conversation-history"></a>发送对话历史记录
+将过去活动的脚本上传到对话中，使客户端可以呈现它们。
+```http
+POST /v3/conversations/{conversationId}/activities/history
+```
+
+| | |
+|----|----|
+| **请求正文** | [脚本](#transcript-object)对象。 |
+| **返回** | [ResourceResponse](#resourceresponse-object) 对象。 | 
+
 ### <a name="upload-attachment-to-channel"></a>将附件上传到通道
-将指定聊天的附件直接上传到通道的 blob 存储中。 这样就可以将数据存储在兼容的存储中。 
+将指定聊天的附件直接上传到通道的 blob 存储中。 这样就可以将数据存储在兼容的存储中。
 ```http 
 POST /v3/conversations/{conversationId}/attachments
 ```
@@ -359,12 +395,12 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 
 架构定义机器人可用来与用户通信的对象及其属性。 
 
-| 对象 | 说明 |
+| Object | 说明 |
 | ---- | ---- |
 | [Activity 对象](#activity-object) | 定义在机器人与用户之间交换的消息。 |
 | [AnimationCard 对象](#animationcard-object) | 定义可播放动态 GIF 或短视频的卡。 |
 | [Attachment 对象](#attachment-object) | 定义要包含在消息中的其他信息。 附件可以是媒体文件（例如，音频、视频、图像、文件）或资讯卡。 |
-| [AttachmentData 对象](#attachmentdata-object) |描述附件数据。 |
+| [AttachmentData 对象](#attachmentdata-object) | 描述附件数据。 |
 | [AttachmentInfo 对象](#attachmentinfo-object) | 描述附件。 |
 | [AttachmentView 对象](#attachmentview-object) | 定义附件视图。 |
 | [AttachmentUpload 对象](#attachmentupload-object) | 定义要上传的附件。 |
@@ -375,9 +411,11 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | [ChannelAccount 对象](#channelaccount-object) | 定义通道上的机器人或用户帐户。 |
 | [Conversation 对象](#conversation-object) | 定义聊天，包括聊天中包含的机器人和用户。 |
 | [ConversationAccount 对象](#conversationaccount-object) | 定义通道中的聊天。 |
+| [ConversationMembers 对象](#conversationmembers-object) | 定义对话的成员。 |
 | [ConversationParameters 对象](#conversationparameters-object) | 定义用于创建新聊天的参数 |
 | [ConversationReference 对象](#conversationreference-object) | 定义聊天中的特定点。 |
-| [ConversationResourceResponse 对象](#conversationresourceresponse-object) | 包含资源的响应 |
+| [ConversationResourceResponse 对象](#conversationresourceresponse-object) | 定义[创建对话](#create-conversation)的响应。 |
+| [ConversationsResult 对象](#conversationsresult-object) | 定义调用[获取对话](#get-conversations)的结果。 |
 | [Entity 对象](#entity-object) | 定义实体对象。 |
 | [Error 对象](#error-object) | 定义错误。 |
 | [ErrorResponse 对象](#errorresponse-object) | 定义 HTTP API 响应。 |
@@ -385,7 +423,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | [Geocoordinates 对象](#geocoordinates-object) | 使用世界测地系统 (WSG84) 坐标定义地理位置。 |
 | [HeroCard 对象](#herocard-object) | 定义具有大图像、标题、文本和操作按钮的卡。 |
 | [Identification 对象](#identification-object) | 标识资源。 |
-| [MediaEventValue 对象](#mediaeventvalue-object) |媒体事件的补充参数。|
+| [MediaEventValue 对象](#mediaeventvalue-object) | 媒体事件的补充参数。 |
 | [MediaUrl 对象](#mediaurl-object) | 定义媒体文件源的 URL。 |
 | [Mention 对象](#mention-object) | 定义聊天中提到的用户或机器人。 |
 | [MessageReaction 对象](#messagereaction-object) | 定义对消息的回应。 |
@@ -393,12 +431,13 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | [ReceiptCard 对象](#receiptcard-object) | 定义包含购买收据的卡。 |
 | [ReceiptItem 对象](#receiptitem-object) | 定义收据中的订单项。 |
 | [ResourceResponse 对象](#resourceresponse-object) | 定义资源。 |
+| [SemanticAction 对象](#semanticaction-object) | 定义对编程操作的引用。 |
 | [SignInCard 对象](#signincard-object) | 定义允许用户登录服务的卡。 |
 | [SuggestedActions 对象](#suggestedactions-object) | 定义用户可以选择的选项。 |
 | [ThumbnailCard 对象](#thumbnailcard-object) | 定义具有缩略图、标题、文本和操作按钮的卡。 |
 | [ThumbnailUrl 对象](#thumbnailurl-object) | 定义图像源的 URL。 |
+| [脚本对象](#transcript-object) | 使用[发送对话历史记录](#send-conversation-history)上传的活动集合。 |
 | [VideoCard 对象](#videocard-object) | 定义可播放视频的卡。 |
-| [SemanticAction 对象](#semanticaction-object) | 定义对编程操作的引用。 |
 
 ### <a name="activity-object"></a>Activity 对象
 定义在机器人与用户之间交换的消息。<br/><br/> 
@@ -410,30 +449,30 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **attachmentLayout** | 字符串 | 消息中包含的资讯卡**附件**的布局。 下列值之一：**carousel**、**list**。 有关资讯卡附件的详细信息，请参阅[向消息添加资讯卡附件](bot-framework-rest-connector-add-rich-cards.md)。 |
 | **channelData** | 对象 | 一个包含特定于通道的内容的对象。 某些通道提供的功能需要其他信息，而这些信息不能使用附件架构来表示。 对于此类情况，请按通道文档中的定义将此属性设置为特定于通道的内容。 有关详细信息，请参阅[实现特定于通道的功能](bot-framework-rest-connector-channeldata.md)。 |
 | **channelId** | 字符串 | 用于唯一标识通道的 ID。 由通道设置。 | 
-| 对话 | [ConversationAccount](#conversationaccount-object) | 一个 **ConversationAccount** 对象，用于定义活动所属的聊天。 |
+| 对话  | [ConversationAccount](#conversationaccount-object) | 一个 **ConversationAccount** 对象，用于定义活动所属的聊天。 |
 | **code** | 字符串 | 指示聊天结束原因的代码。 |
 | **entities** | 对象[] | 一个对象数组，表示消息中提到的实体。 此数组中的对象可以是任何 <a href="http://schema.org/" target="_blank">Schema.org</a> 对象。 例如，此数组可能包含 [Mention](#mention-object) 对象，用于标识聊天中提到的某人，以及 [Place](#place-object) 对象，用于标识聊天中提到的某个位置。 |
 | **from** | [ChannelAccount](#channelaccount-object) | 一个 **ChannelAccount** 对象，用于指定消息的发送者。 |
-| **historyDisclosed** | 布尔值 | 一个标志，指示是否公开历史记录。 默认值为“false”。 |
+| **historyDisclosed** | 布尔值 | 一个标志，指示是否公开历史记录。 默认值为“false”  。 |
 | **id** | 字符串 | 一个 ID，用于唯一标识通道上的活动。 | 
 | **inputHint** | 字符串 | 一个值，指示在将消息传送到客户端后，机器人是接受、预期还是忽略用户输入。 下列值之一：**acceptingInput**、**expectingInput**、**ignoringInput**。 |
 | **locale** | 字符串 | 应该用于在消息中显示文本的语言的区域设置，格式为 `<language>-<country>`。 通道使用此属性指示用户的语言，以便机器人可以指定该语言的显示字符串。 默认值为 **en-US**。 |
 | **localTimestamp** | 字符串 | 在本地时区发送消息的日期和时间，以 <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO-8601</a> 格式表示。 |
 | **membersAdded** | [ChannelAccount](#channelaccount-object)[] | 一个 **ChannelAccount** 对象数组，表示已加入聊天的用户的列表。 仅当活动 **type** 为“conversationUpdate”且用户已加入聊天时才会显示。 | 
 | **membersRemoved** | [ChannelAccount](#channelaccount-object)[] | 一个 **ChannelAccount** 对象数组，表示已离开聊天的用户的列表。 仅当活动 **type** 为“conversationUpdate”且用户已离开聊天时才会显示。 | 
-| name | 字符串 | 要调用的操作的名称或事件的名称。 |
+| name  | 字符串 | 要调用的操作的名称或事件的名称。 |
 | **recipient** | [ChannelAccount](#channelaccount-object) | 一个 **ChannelAccount** 对象，用于指定消息的接收者。 |
 | **relatesTo** | [ConversationReference](#conversationreference-object) | 一个 **ConversationReference** 对象，用于定义聊天中的特定点。 |
 | **replyToId** | 字符串 | 此消息回复的消息的 ID。 若要回复用户发送的消息，请将此属性设置为用户消息的 ID。 并非所有通道都支持线程回复。 在这些情况下，通道将忽略此属性并使用时间时间排序语义（时间戳）将消息追加到聊天。 | 
 | **serviceUrl** | 字符串 | 用于指定通道服务终结点的 URL。 由通道设置。 | 
-| **speak** | 字符串 | 机器人要在支持语音的通道上朗读的文本。 若要控制机器人语音的各种特性，如声音、语速、音量、发音和音调，请以<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言 (SSML)</a> 格式指定此属性。 |
+| **speak** | 字符串 | 机器人要在支持语音的通道上朗读的文本。 若要控制机器人语音的各种特性，如声音、语速、音量、发音和音调，请以<a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言 (SSML)</a> 格式指定此属性。 |
 | **suggestedActions** | [SuggestedActions](#suggestedactions-object) | 一个 **SuggestedActions** 对象，用于定义用户可以选择的选项。 |
 | **summary** | 字符串 | 消息包含的信息摘要。 例如，对于在电子邮件通道上发送的邮件，此属性可以指定电子邮件的前 50 个字符。 |
 | **text** | 字符串 | 从用户发送给机器人或从机器人发送给用户的消息文本。 请参阅通道的相关文档，了解此属性内容的限制。 |
 | **textFormat** | 字符串 | 消息**文本**的格式。 下列值之一：**markdown**、**plain**、**xml**。 有关文本格式的详细信息，请参阅[创建消息](bot-framework-rest-connector-create-messages.md)。 |
 | **timestamp** | 字符串 | 在 UTC 时区发送消息的日期和时间，以 <a href="https://en.wikipedia.org/wiki/ISO_8601" target="_blank">ISO-8601</a> 格式表示。 |
 | **topicName** | 字符串 | 活动所属聊天的主题。 |
-| type | 字符串 | 活动的类型。 下列值之一：**contactRelationUpdate**、**conversationUpdate**、**deleteUserData**、**message**、**typing**、**event** 和 **endOfConversation**。 有关活动类型的详细信息，请参阅[活动概述](bot-framework-rest-connector-activities.md)。 |
+| type  | 字符串 | 活动的类型。 下列值之一：**contactRelationUpdate**、**conversationUpdate**、**deleteUserData**、**message**、**typing**、**event** 和 **endOfConversation**。 有关活动类型的详细信息，请参阅[活动概述](bot-framework-rest-connector-activities.md)。 |
 | **值** | 对象 | 开放式值。 |
 | **semanticAction** |[SemanticAction](#semanticaction-object) | 一个 **SemanticAction** 对象，表示对编程操作的引用。 |
 
@@ -466,28 +505,30 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **contentType** | 字符串 | 附件中内容的媒体类型。 对于媒体文件，请将此属性设置为已知媒体类型，例如 **image/png**、**audio/wav** 和 **video/mp4**。 对于资讯卡，请将此属性设置为以下特定于供应商的类型之一：<ul><li>**application/vnd.microsoft.card.adaptive**：一种可包含文本、语音、图像、按钮和输入域的任意组合的资讯卡。 将 **content** 属性设置为 <a href="http://adaptivecards.io/documentation/#create-cardschema" target="_blank">AdaptiveCard</a> 对象。</li><li>**application/vnd.microsoft.card.animation**：一种播放动画的资讯卡。 将 **content** 属性设置为 [AnimationCard](#animationcard-object) 对象。</li><li>**application/vnd.microsoft.card.audio**：一种播放音频文件的资讯卡。 将 **content** 属性设置为 [AudioCard](#audiocard-object) 对象。</li><li>**application/vnd.microsoft.card.video**：一种播放视频的资讯卡。 将 **content** 属性设置为 [VideoCard](#videocard-object) 对象。</li><li>**application/vnd.microsoft.card.hero**：英雄卡。 将 **content** 属性设置为 [HeroCard](#herocard-object) 对象。</li><li>**application/vnd.microsoft.card.thumbnail**：缩略图卡。 将 **content** 属性设置为 [ThumbnailCard](#thumbnailcard-object) 对象。</li><li>**application/vnd.microsoft.com.card.receipt**：收据卡。 将 **content** 属性设置为 [ReceiptCard](#receiptcard-object) 对象。</li><li>**application/vnd.microsoft.com.card.signin**：用户登录卡。 将 **content** 属性设置为 [SignInCard](#signincard-object) 对象。</li></ul> |
 | **contentUrl** | 字符串 | 附件内容的 URL。 例如，如果附件是图像，请将 **contentUrl** 设置为表示图像位置的 URL。 支持的协议为：HTTP、HTTPS、文件和数据。 |
 | **content** | 对象 | 附件内容。 如果附件是资讯卡，请将此属性设置为资讯卡对象。 此属性与 **contentUrl** 属性互相排斥。 |
-| name | 字符串 | 附件的名称。 |
+| name  | 字符串 | 附件的名称。 |
 | **thumbnailUrl** | 字符串 | 通道可以使用的缩略图的 URL，但前提是它支持使用 **content** 或 **contentUrl** 的较小替代形式。 例如，如果将 **contentType** 设置为 **application/word**，将 **contentUrl** 设置为 Word 文档的位置，则可以包含表示文档的缩略图。 通道可以显示缩略图而不是文档。 当用户单击图像时，通道将打开文档。 |
 
 <a href="#objects">返回到架构表</a>
 
 ### <a name="attachmentdata-object"></a>AttachmentData 对象 
-描述附件数据。
+描述附件数据。<br/><br/> 
 
 | 属性 | Type | 说明 |
 |----|----|----|
-| name | 字符串 | 附件的名称。 |
+| name  | 字符串 | 附件的名称。 |
 | **originalBase64** | 字符串 | 附件内容。 |
 | **thumbnailBase64** | 字符串 | 附件缩略图的内容。 |
-| type | 字符串 | 附件的 Content-type。 |
+| type  | 字符串 | 附件的 Content-type。 |
+
+<a href="#objects">返回到架构表</a>
 
 ### <a name="attachmentinfo-object"></a>AttachmentInfo 对象
 描述附件。<br/><br/> 
 
 | 属性 | Type | 说明 |
 |----|----|----|
-| name | 字符串 | 附件的名称。 |
-| type | 字符串 | 附件的 ContentType。 |
+| name  | 字符串 | 附件的名称。 |
+| type  | 字符串 | 附件的 ContentType。 |
 | **视图** | [AttachmentView](#attachmentview-object)[] | 一个 **AttachmentView** 对象数组，表示附件的可用视图。 |
 
 <a href="#objects">返回到架构表</a>
@@ -508,8 +549,8 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 
 | 属性 | Type | 说明 |
 |----|----|----|
-| type | 字符串 | 附件的 ContentType。 | 
-| name | 字符串 | 附件的名称。 | 
+| type  | 字符串 | 附件的 ContentType。 | 
+| name  | 字符串 | 附件的名称。 | 
 | **originalBase64** | 字符串 | 二进制数据，表示文件原始版本的内容。 |
 | **thumbnailBase64** | 字符串 | 二进制数据，表示文件缩略图版本的内容。 |
 
@@ -555,7 +596,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **text** | 字符串 | 操作的文本 |
 | **title** | 字符串 | 按钮的文本。 仅适用于按钮的操作。 |
 按钮。 仅适用于按钮的操作。 |
-| type | 字符串 | 要执行的操作类型。 有关有效值的列表，请参阅[向消息添加资讯卡附件](bot-framework-rest-connector-add-rich-cards.md)。 |
+| type  | 字符串 | 要执行的操作类型。 有关有效值的列表，请参阅[向消息添加资讯卡附件](bot-framework-rest-connector-add-rich-cards.md)。 |
 | **值** | 对象 | 操作的补充参数。 此属性的值因操作 **type** 而异。 有关详细信息，请参阅[向消息添加资讯卡附件](bot-framework-rest-connector-add-rich-cards.md)。 |
 
 <a href="#objects">返回到架构表</a>
@@ -577,7 +618,7 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | 属性 | Type | 说明 |
 |----|----|----|
 | **id** | 字符串 | 一个 ID，用于唯一标识通道上的机器人或用户。 |
-| name | 字符串 | 机器人或用户的名称。 |
+| name  | 字符串 | 机器人或用户的名称。 |
 
 <a href="#objects">返回到架构表</a>
 
@@ -600,15 +641,25 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 
 | 属性 | Type | 说明 |
 |----|----|----|
-| **id** | 字符串 | 用于标识聊天的 ID。 每个通道的 ID 都是唯一的。 如果通道启动聊天，它会设置此 ID；否则，机器人会将此属性设置为启动聊天时在响应中返回的 ID（请参阅“启动聊天”）。 |
+| **id** | 字符串 | 用于标识聊天的 ID。 每个通道的 ID 都是唯一的。 如果通道启动对话，它会设置此 ID；否则，机器人会将此属性设置为启动聊天时在响应中返回的 ID（请参阅“启动对话”）。 |
 | **isGroup** | 布尔值 | 一个标志，指示聊天在活动生成时是否包含两个以上的参与者。 如果这是群组聊天，则设置为 **true**；否则设置为 **false**。 默认值为 **false**。 |
-| name | 字符串 | 可用于标识聊天的显示名称。 |
+| name  | 字符串 | 可用于标识聊天的显示名称。 |
 | **conversationType** | 字符串 | 指示区分聊天类型（例如：群组、个人）的通道中的聊天类型。 |
 
 <a href="#objects">返回到架构表</a>
 
+### <a name="conversationmembers-object"></a>ConversationMembers 对象
+定义对话的成员。<br/><br/>
+
+| 属性 | Type | 说明 |
+|----|----|----|
+| **id** | 字符串 | 对话 ID。 |
+| **members** | 数组 | [ChannelAccount](#channelaccount-object) 对象数组。 |
+
+<a href="#objects">返回到架构表</a>
+
 ### <a name="conversationparameters-object"></a>ConversationParameters 对象
-定义用于创建新聊天的参数
+定义用于创建新对话的参数。<br/><br/> 
 
 | 属性 | Type | 说明 |
 |----|----|----|
@@ -619,6 +670,8 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **activity** | [活动](#activity-object) | （可选）在创建新聊天时，将此活动用作聊天的初始消息。 |
 | **channelData** | 对象 | 用于创建聊天的通道特定有效负载。 |
 
+<a href="#objects">返回到架构表</a>
+
 ### <a name="conversationreference-object"></a>ConversationReference 对象
 定义聊天中的特定点。<br/><br/>
 
@@ -627,14 +680,14 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **activityId** | 字符串 | 一个 ID，用于唯一标识此对象引用的活动。 | 
 | **bot** | [ChannelAccount](#channelaccount-object) | 一个 **ChannelAccount** 对象，用于标识此对象引用的聊天中的机器人。 |
 | **channelId** | 字符串 | 一个 ID，用于唯一标识此对象引用的聊天中的通道。 | 
-| 对话 | [ConversationAccount](#conversationaccount-object) | 一个 **ConversationAccount** 对象，用于定义此对象引用的聊天。 |
+| 对话  | [ConversationAccount](#conversationaccount-object) | 一个 **ConversationAccount** 对象，用于定义此对象引用的聊天。 |
 | **serviceUrl** | 字符串 | 一个 URL，用于指定此对象引用的聊天中的通道服务终结点。 | 
 | **user** | [ChannelAccount](#channelaccount-object) | 一个 **ChannelAccount** 对象，用于标识此对象引用的聊天中的用户。 |
 
 <a href="#objects">返回到架构表</a>
 
 ### <a name="conversationresourceresponse-object"></a>ConversationResourceResponse 对象
-定义包含资源的响应。
+定义[创建对话](#create-conversation)的响应。<br/><br/> 
 
 | 属性 | Type | 说明 |
 |----|----|----|
@@ -642,8 +695,20 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **id** | 字符串 | 资源的 ID。 |
 | **serviceUrl** | 字符串 | 服务终结点。 |
 
+<a href="#objects">返回到架构表</a>
+
+### <a name="conversationsresult-object"></a>ConversationsResult 对象
+定义调用[获取对话](#get-conversations)的结果。<br/><br/> 
+
+| 属性 | Type | 说明 |
+|----|----|----|
+| **continuationToken** | 字符串 | 对[获取会话](#get-conversations)的后续调用中使用的继续标记。 |
+| **聊天** | 数组 | [ConversationMembers](#conversationmembers-object) 对象数组 |
+
+<a href="#objects">返回到架构表</a>
+
 ### <a name="error-object"></a>Error 对象
-定义错误。<br/><br/>
+定义错误。<br/><br/> 
 
 | 属性 | Type | 说明 |
 |----|----|----|
@@ -653,12 +718,13 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 <a href="#objects">返回到架构表</a>
 
 ### <a name="entity-object"></a>Entity 对象
-定义实体对象。
+定义实体对象。<br/><br/> 
 
 | 属性 | Type | 说明 |
 |----|----|----|
-| type | 字符串 | 实体类型。 通常包含 schema.org 中的类型。 |
+| type  | 字符串 | 实体类型。 通常包含 schema.org 中的类型。 |
 
+<a href="#objects">返回到架构表</a>
 
 ### <a name="errorresponse-object"></a>ErrorResponse 对象
 定义 HTTP API 响应。<br/><br/> 
@@ -679,16 +745,16 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 
 <a href="#objects">返回到架构表</a>
 
-### <a name="geocoordinates-object"></a>Geocoordinates 对象
+### <a name="geocoordinates-object"></a>GeoCoordinates 对象
 使用世界测地系统 (WSG84) 坐标定义地理位置。<br/><br/> 
 
 | 属性 | Type | 说明 |
 |----|----|----|
 | **elevation** | 数字 | 位置的海拔高度。 |
-| name | 字符串 | 位置的名称。 |
+| name  | 字符串 | 位置的名称。 |
 | **latitude** | 数字 | 位置的纬度。 |
 | **longitude** | 数字 | 位置的经度。 |
-| type | 字符串 | 此对象的类型。 始终设置为 **GeoCoordinates**。 |
+| type  | 字符串 | 此对象的类型。 始终设置为 **GeoCoordinates**。 |
 
 <a href="#objects">返回到架构表</a>
 
@@ -717,11 +783,13 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 <a href="#objects">返回到架构表</a>
 
 ### <a name="mediaeventvalue-object"></a>MediaEventValue 对象 
-媒体事件的补充参数。
+媒体事件的补充参数。<br/><br/> 
 
 | 属性 | Type | 说明 |
 |----|----|----|
-| **cardValue** | 对象 | 在发出此事件的媒体卡的“值”字段中指定的回调参数。 |
+| **cardValue** | 对象 | 在发出此事件的媒体卡的“值”字段中指定的回调参数  。 |
+
+<a href="#objects">返回到架构表</a>
 
 ### <a name="mediaurl-object"></a>MediaUrl 对象
 定义媒体文件源的 URL。<br/><br/> 
@@ -747,11 +815,13 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 <a href="#objects">返回到架构表</a>
 
 ### <a name="messagereaction-object"></a>MessageReaction 对象
-定义对消息的回应。
+定义对消息的回应。<br/><br/> 
 
 | 属性 | Type | 说明 |
 |----|----|----|
-| type | 字符串 | 回应的类型。 |
+| type  | 字符串 | 回应的类型。 |
+
+<a href="#objects">返回到架构表</a>
 
 ### <a name="place-object"></a>Place 对象
 定义聊天中提到的位置。<br/><br/> 
@@ -761,8 +831,8 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **address** | 对象 |  某个位置的地址。 此属性可以是 `string` 或 `PostalAddress` 类型的复杂对象。 |
 | **geo** | [GeoCoordinates](#geocoordinates-object) | 一个 **GeoCoordinates** 对象，用于指定该位置的地理坐标。 |
 | **hasMap** | 对象 | 该位置的地图。 此属性可以是 `string` (URL) 或 `Map` 类型的复杂对象。 |
-| name | 字符串 | 该位置的名称。 |
-| type | 字符串 | 此对象的类型。 始终设置为 **Place**。 |
+| name  | 字符串 | 该位置的名称。 |
+| type  | 字符串 | 此对象的类型。 始终设置为 **Place**。 |
 
 <a href="#objects">返回到架构表</a>
 
@@ -800,10 +870,19 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 ### <a name="resourceresponse-object"></a>ResourceResponse 对象
 定义包含资源 ID 的响应。<br/><br/>
 
-
 |      属性       |  Type  |                说明                |
 |---------------------|--------|-------------------------------------------|
 | <strong>id</strong> | 字符串 | 用于唯一标识资源的 ID。 |
+
+<a href="#objects">返回到架构表</a>
+
+### <a name="semanticaction-object"></a>SemanticAction 对象
+定义对编程操作的引用。<br/><br/>
+
+| 属性 | Type | 说明 |
+|----|----|----|
+| **id** | 字符串 | 此操作的 ID |
+| **entities** | [实体](#entity-object) | 与此操作关联的实体 |
 
 <a href="#objects">返回到架构表</a>
 
@@ -851,6 +930,15 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 
 <a href="#objects">返回到架构表</a>
 
+### <a name="transcript-object"></a>脚本对象
+使用[发送对话历史记录](#send-conversation-history)上传的活动集合。<br/><br/> 
+
+| 属性 | Type | 说明 |
+|----|----|----|
+| **activities** | 数组 | [Activity](#activity-object) 对象数组。 它们每个都应该有唯一的 ID 和时间戳。 |
+
+<a href="#objects">返回到架构表</a>
+
 ### <a name="videocard-object"></a>VideoCard 对象
 定义可播放视频的卡。<br/><br/>
 
@@ -868,15 +956,5 @@ DELETE /v3/botstate/{channelId}/users/{userId}
 | **text** | 字符串 | 要在卡的标题或副标题下显示的描述或提示。 |
 | **title** | 字符串 | 卡的标题。 |
 | **值** | 对象 | 此卡的补充参数|
-
-<a href="#objects">返回到架构表</a>
-
-### <a name="semanticaction-object"></a>SemanticAction 对象
-定义对编程操作的引用。<br/><br/>
-
-| 属性 | Type | 说明 |
-|----|----|----|
-| **id** | 字符串 | 此操作的 ID |
-| **entities** | [实体](#entity-object) | 与此操作关联的实体 |
 
 <a href="#objects">返回到架构表</a>

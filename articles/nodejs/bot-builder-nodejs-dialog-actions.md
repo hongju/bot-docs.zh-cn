@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 7ca595b1c24769addfbdf7975c48d3a052c4a2de
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 5a0756be0a29660ef63f50a67ce4fa0f27ccc50f
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54226002"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405047"
 ---
 # <a name="handle-user-actions"></a>处理用户操作
 
@@ -24,7 +24,7 @@ ms.locfileid: "54226002"
 > - [.NET](../dotnet/bot-builder-dotnet-global-handlers.md)
 > - [Node.js](../nodejs/bot-builder-nodejs-dialog-actions.md)
 
-用户通常尝试通过使用“帮助”、“取消”或“重新开始”等关键字来访问机器人中的某些功能。 用户会在聊天中途，在机器人期望得到不同的答复时这样操作。 通过实现“操作”，可调整机器人，使其更优雅地处理此类请求。 处理程序将检查用户针对所指定的关键字（例如“帮助”、“取消”或“重新开始”）输入的内容并进行适当响应。 
+用户通常尝试通过使用“帮助”、“取消”或“重新开始”等关键字来访问机器人中的某些功能。 用户会在聊天中途，在机器人期望得到不同的答复时这样操作。 通过实现“操作”，可调整机器人，使其更优雅地处理此类请求  。 处理程序将检查用户针对所指定的关键字（例如“帮助”、“取消”或“重新开始”）输入的内容并进行适当响应。 
 
 ![用户的说话方式](../media/designing-bots/capabilities/trigger-actions.png)
 
@@ -49,11 +49,11 @@ ms.locfileid: "54226002"
 
 ## <a name="bind-actions-to-dialog"></a>将操作绑定到对话
 
-用户话语或按钮单击都可触发与[对话](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html)相关的操作。
-如果指定了匹配，则操作将侦听用户，检查其是否说出触发操作的字词或短语。  `matches` 选项可采用正则表达式或[识别器][RecognizeIntent]的名称。
+用户话语或按钮单击都可触发与[对话](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html)相关的操作  。
+如果指定了匹配，则操作将侦听用户，检查其是否说出触发操作的字词或短语  。  `matches` 选项可采用正则表达式或[识别器][RecognizeIntent]的名称。
 要将操作绑定到“按钮单击”，请使用 [CardAction.dialogAction()][CardAction] 触发该操作。
 
-操作是可链接的，因此可根据需要将任意数量的操作绑定到对话中。
+操作是可链接的，因此可根据需要将任意数量的操作绑定到对话中  。
 
 ### <a name="bind-a-triggeraction"></a>绑定 triggerAction
 
@@ -116,7 +116,7 @@ bot.customAction({
 
 ### <a name="bind-a-begindialogaction"></a>绑定 beginDialogAction
 
-将 `beginDialogAction` 绑定到对话时会向对话注册操作。 触发时，此方法将启动另一个对话。 此操作的行为与调用 [beginDialog](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#begindialog) 方法的行为类似。 新的对话已推送到对话堆栈顶部，因此它不自动结束当前任务。 新对话结束后，当前任务仍然继续。 
+将 `beginDialogAction` 绑定到对话时会向对话注册操作。 触发时，此方法将启动另一个对话。 此操作的行为与调用 [beginDialog](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#begindialog) 方法的行为类似。 新的对话已推送到对话堆栈顶部，因此它不自动结束当前任务。 新对话结束后，当前任务仍然继续。 
 
 以下代码片段展示了如何将 [beginDialogAction][beginDialogAction] 绑定到对话。
 
@@ -142,7 +142,7 @@ bot.dialog('showDinnerCart', function(session){
 });
 ```
 
-如果需要将其他参数传递到新的对话中，可向操作添加 [`dialogArgs`](https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs) 选项。
+如果需要将其他参数传递到新的对话中，可向操作添加 [`dialogArgs`](https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs) 选项。
 
 通过上述示例，可以修改为接受通过 `dialogArgs` 传入的参数。
 
@@ -178,7 +178,7 @@ bot.dialog('showDinnerCart', function(session, args){
 
 ### <a name="bind-a-reloadaction"></a>绑定 reloadAction
 
-将 `reloadAction` 绑定到对话时会将其注册到对话中。 如果将此操作绑定到对话，这会在触发操作时让对话从头开始。 触发此操作与调用 [replaceDialog](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#replacedialog) 方法类似。 这对于实现处理用户话语（如“重新开始”）或创建[循环](bot-builder-nodejs-dialog-replace.md#repeat-an-action)的逻辑非常有帮助。
+将 `reloadAction` 绑定到对话时会将其注册到对话中。 如果将此操作绑定到对话，这会在触发操作时让对话从头开始。 触发此操作与调用 [replaceDialog](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#replacedialog) 方法类似。 这对于实现处理用户话语（如“重新开始”）或创建[循环](bot-builder-nodejs-dialog-replace.md#repeat-an-action)的逻辑非常有帮助。
 
 以下代码片段展示了如何将 [reloadAction][reloadAction] 绑定到对话。
 
@@ -193,7 +193,7 @@ bot.dialog('orderDinner', [
 });
 ```
 
-如果需要将其他参数传递到重载的对话中，可向操作添加 [`dialogArgs`](https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs) 选项。 此选项已传递到 `args` 参数中。 重写上述示例代码以接收重载操作的相关参数；此行为将如下所示：
+如果需要将其他参数传递到重载的对话中，可向操作添加 [`dialogArgs`](https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.idialogactionoptions#dialogargs) 选项。 此选项已传递到 `args` 参数中。 重写上述示例代码以接收重载操作的相关参数；此行为将如下所示：
 
 ```javascript
 // Order dinner.
@@ -219,7 +219,7 @@ bot.dialog('orderDinner', [
 
 ### <a name="bind-a-cancelaction"></a>绑定 cancelAction
 
-绑定 `cancelAction` 会将其注册到对话。 触发后，此操作将突然结束对话。 对话结束后，父级对话将恢复，并有一个恢复的代码显示它处于 `canceled` 状态。 用户可使用此操作处理“没关系”或“取消”等话语。 如果需要以编程方式取消对话，请参阅[取消对话](bot-builder-nodejs-dialog-replace.md#cancel-a-dialog)。 要详细了解已恢复的代码，请参阅[提示结果](bot-builder-nodejs-dialog-prompt.md#prompt-results)。 
+绑定 `cancelAction` 会将其注册到对话。 触发后，此操作将突然结束对话。 对话结束后，父级对话将恢复，并有一个恢复的代码显示它处于 `canceled` 状态。 用户可使用此操作处理“没关系”或“取消”等话语。 如果需要以编程方式取消对话，请参阅[取消对话](bot-builder-nodejs-dialog-replace.md#cancel-a-dialog)。 要详细了解已恢复的代码，请参阅[提示结果](bot-builder-nodejs-dialog-prompt.md#prompt-results)  。 
 
 以下代码片段展示了如何将 [cancelAction][cancelAction] 绑定到对话。
 
@@ -236,7 +236,7 @@ bot.dialog('orderDinner', [
 
 ### <a name="bind-an-endconversationaction"></a>绑定 endConversationAction
 
-绑定 `endConversationAction` 会将其注册到对话。 触发后，此操作将结束与用户的聊天。 触发此操作与调用 [endConversation](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session.html#endconversation) 方法类似。 聊天结束后，Bot Framework SDK for Node.js 将清除对话堆栈和持久化的状态数据。 要详细了解持久化的状态数据，请参阅[管理状态数据](bot-builder-nodejs-state.md)。
+绑定 `endConversationAction` 会将其注册到对话。 触发后，此操作将结束与用户的聊天。 触发此操作与调用 [endConversation](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session.html#endconversation) 方法类似。 聊天结束后，Bot Framework SDK for Node.js 将清除对话堆栈和持久化的状态数据。 要详细了解持久化的状态数据，请参阅[管理状态数据](bot-builder-nodejs-state.md)。
 
 以下代码片段展示了如何将 [endConversationAction][endConversationAction] 绑定到对话。
 
@@ -255,7 +255,7 @@ bot.dialog('orderDinner', [
 
 其中大部分操作（若不是全部）中断的是常规的聊天流。 很多操作都可能中断，因此要谨慎处理。 例如，`triggerAction`、`cancelAction` 或 `endConversationAction` 将清除对话堆栈。 如果用户错误地触发了这些操作中的任何一个，他们将不得不重新开始任务。 要确保用户真的想触发这些操作，可向这些操作添加 `confirmPrompt` 选项。 `confirmPrompt` 将询问用户是否确定取消或结束当前任务。 它允许用户改变主意并继续操作。
 
-以下代码片段显示了一个 [cancelAction][cancelAction]，它带有 [confirmPrompt](http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.itriggeractionoptions#confirmprompt)，目的是确保用户真的想取消订单流程。
+以下代码片段显示了一个 [cancelAction][cancelAction]，它带有 [confirmPrompt](http://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.itriggeractionoptions#confirmprompt)，目的是确保用户真的想取消订单流程。
 
 ```javascript
 // Order dinner.
@@ -274,22 +274,22 @@ bot.dialog('orderDinner', [
 
 ## <a name="next-steps"></a>后续步骤
 
-“操作”让你能够预测用户请求，同时让机器人能够优雅地处理这些请求。 其中很多操作都会中断当前聊天。 如果要使用户能够关闭和恢复聊天，需要在关闭之前保存用户状态。让我们更深入地了解如何保存用户状态和管理状态数据。
+“操作”让你能够预测用户请求，同时让机器人能够优雅地处理这些请求  。 其中很多操作都会中断当前聊天。 如果要使用户能够关闭和恢复聊天，需要在关闭之前保存用户状态。让我们更深入地了解如何保存用户状态和管理状态数据。
 
 > [!div class="nextstepaction"]
 > [管理状态数据](bot-builder-nodejs-state.md)
 
 
-[triggerAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#triggeraction
+[triggerAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#triggeraction
 
-[cancelAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#cancelaction
+[cancelAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#cancelaction
 
-[reloadAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#reloadaction
+[reloadAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#reloadaction
 
-[beginDialogAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#begindialogaction
+[beginDialogAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#begindialogaction
 
-[endConversationAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#endconversationaction
+[endConversationAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#endconversationaction
 
 [RecognizeIntent]: bot-builder-nodejs-recognize-intent-messages.md
 
-[CardAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction
+[CardAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.cardaction#dialogaction

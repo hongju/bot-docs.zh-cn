@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: f93ab91281cf0f19be10898436dc41a6a1583c9a
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 94c0e7dd55e36c88066662ec7c9f3be1ce2dfd06
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032985"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405605"
 ---
 # <a name="add-speech-to-messages"></a>向消息添加语音
 
@@ -29,11 +29,11 @@ ms.locfileid: "65032985"
 
 ## <a name="specify-text-to-be-spoken-by-your-bot"></a>指定机器人要朗读的文本
 
-使用 Bot Framework SDK for .NET，有多种方法可以指定机器人要在支持语音的通道上说出的文本。 可以设置[消息][IMessageActivity]的 `Speak` 属性、调用 `IDialogContext.SayAsync()` 方法，或者在使用内置提示发送消息时指定提示选项 `speak` 和 `retrySpeak`。
+使用 Bot Framework SDK for .NET，有多种方法可以指定机器人要在支持语音的通道上说出的文本。 可以设置[消息][IMessageActivity]的 `Speak` 属性，调用 `IDialogContext.SayAsync()` 方法，或者在使用内置提示发送消息时指定提示选项 `speak` 和 `retrySpeak`。
 
 ### <a id="message-speak"></a> IMessageActivity.Speak
 
-如果要创建[消息][IMessageActivity]并设置其各个属性，则可以设置消息的 `Speak` 属性以指定机器人要说的文本。 以下代码示例创建一条消息，指定要显示的文本和要说出的文本，并指示机器人[正在接受用户输入](bot-builder-dotnet-add-input-hints.md)。
+如果要创建[消息][IMessageActivity]，并设置其各个属性，则可以设置消息的 `Speak` 属性以指定机器人要说的文本。 以下代码示例创建一条消息，指定要显示的文本和要说出的文本，并指示机器人[正在接受用户输入](bot-builder-dotnet-add-input-hints.md)。
 
 [!code-csharp[Set speak property](../includes/code/dotnet-text-to-speech.cs#Speak1)]
 
@@ -51,7 +51,7 @@ ms.locfileid: "65032985"
 
 ## <a id="ssml"></a> 语音合成标记语言 (SSML)
 
-若要指定供机器人说的文本，可以为其提供一个字符串，该字符串已格式化为语音合成标记语言 (SSML)。 SSML 是基于 XML 的标记语言（因此必须是有效的 XML），用于控制机器人语音的各种特性，如声音、语速、音量、发音、音调，等等。 有关 SSML 的详细信息，请参阅<a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言参考</a>。
+若要指定供机器人说的文本，可以为其提供一个字符串，该字符串已格式化为语音合成标记语言 (SSML)。 SSML 是基于 XML 的标记语言（因此必须是有效的 XML），用于控制机器人语音的各种特性，如声音、语速、音量、发音、音调，等等。 有关 SSML 的详细信息，请参阅<a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言参考</a>。
 
 提供 SSML 格式的字符串时，可以省略外部的 SSML 包装器元素。
 
@@ -67,9 +67,9 @@ ms.locfileid: "65032985"
 
 - [创建消息](bot-builder-dotnet-create-messages.md)
 - [向消息添加输入提示](bot-builder-dotnet-add-input-hints.md)
-- <a href="https://msdn.microsoft.com/en-us/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言 (SSML)</a>
+- <a href="https://msdn.microsoft.com/library/hh378377(v=office.14).aspx" target="_blank">语音合成标记语言 (SSML)</a>
 - <a href="https://github.com/Microsoft/BotBuilder-Samples/tree/v3-sdk-samples/CSharp/demo-RollerSkill" target="_blank">掷骰子技能示例 (GitHub)</a>
-- <a href="https://docs.botframework.com/en-us/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活动类</a>
+- <a href="https://docs.botframework.com/csharp/builder/sdkreference/dc/d2f/class_microsoft_1_1_bot_1_1_connector_1_1_activity.html" target="_blank">活动类</a>
 - <a href="/dotnet/api/microsoft.bot.connector.imessageactivity" target="_blank">IMessageActivity 接口</a>
 - <a href="/dotnet/api/microsoft.bot.builder.dialogs.internals.dialogcontext" target="_blank">DialogContext 类</a>
 - <a href="/dotnet/api/microsoft.bot.builder.dialogs.internals.prompt-2" target="_blank">提示类</a>

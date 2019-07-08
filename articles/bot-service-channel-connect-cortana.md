@@ -9,18 +9,18 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 04/30/2018
-ms.openlocfilehash: 6bb4945801ee127cfa954289792987a57eae7fd5
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 3df9d22b486e56547452cc5bce4add3946f670f5
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032987"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405934"
 ---
 # <a name="connect-a-bot-to-cortana"></a>将机器人连接到 Cortana
 
-Cortana 是支持语音的通道，除文本聊天外，它还可以发送和接收语音消息。 要连接到 Cortana 的机器人应支持语音和文本。 Cortana 技能是可使用 Cortana 客户端调用的机器人。 发布机器人会将机器人添加到可用技能列表中。
+Cortana 是支持语音的通道，除文本聊天外，它还可以发送和接收语音消息。 要连接到 Cortana 的机器人应支持语音和文本。 Cortana 技能是可使用 Cortana 客户端调用的机器人  。 发布机器人会将机器人添加到可用技能列表中。
 
-若要添加 Cortana 通道，在 [Azure 门户](https://portal.azure.com/)中打开机器人，单击“通道”边栏选项卡，然后单击“Cortana”。
+若要添加 Cortana 通道，在 [Azure 门户](https://portal.azure.com/)中打开机器人，单击“通道”边栏选项卡，然后单击“Cortana”   。
 
 ![添加 Cortana 通道](~/media/channels/cortana-addchannel.png)
 
@@ -36,9 +36,11 @@ Cortana 是支持语音的通道，除文本聊天外，它还可以发送和接
 
 ![默认设置](~/media/channels/cortana-defaultsettings.png)
 
+>！注意：Cortana 当前不支持使用 Azure Active Directory (AAD) 帐户身份验证。 你需要使用 Microsoft 帐户 (MSA) 将机器人成功发布到 Cortana。
+
 ## <a name="general-bot-information"></a>常规机器人信息
 
-在“通过连接服务管理用户标识”部分，按下该选项进行启用。 填写表单。
+在“通过连接服务管理用户标识”部分，按下该选项进行启用  。 填写表单。
 
 带有星号 (*) 的所有字段为必填项。 必须先将机器人发布到 Azure，然后才能将其连接到 Cortana。
 
@@ -47,9 +49,9 @@ Cortana 是支持语音的通道，除文本聊天外，它还可以发送和接
 
 ### <a name="when-should-cortana-prompt-for-a-user-to-sign-in"></a>Cortana 应该何时提示用户登录
 
-如果希望 Cortana 在用户调用你的技能时登录用户，请选择“在调用时登录”。
+如果希望 Cortana 在用户调用你的技能时登录用户，请选择“在调用时登录”。 
 
-如果使用机器人服务登录卡登录用户，请选择“必要时登录”。 通常情况下，如果希望仅在用户使用需要身份验证的功能时才登录用户，则使用此选项。 如果技能发送的消息中包含登录卡附件，Cortana 会忽略登录卡并使用“连接帐户”设置执行授权流。
+如果使用机器人服务登录卡登录用户，请选择“必要时登录”。  通常情况下，如果希望仅在用户使用需要身份验证的功能时才登录用户，则使用此选项。 如果技能发送的消息中包含登录卡附件，Cortana 会忽略登录卡并使用“连接帐户”设置执行授权流。
 
 ### <a name="account-name"></a>帐户名
 
@@ -69,15 +71,15 @@ Cortana 是支持语音的通道，除文本聊天外，它还可以发送和接
 
 ### <a name="token-options"></a>令牌选项
 
-选择“POST” 。
+选择“POST”  。
 
 ### <a name="grant-type"></a>授权类型
 
-选择“授权代码”以使用代码授予流，或者选择“隐式”以使用隐式流。
+选择“授权代码”以使用代码授予流，或者选择“隐式”以使用隐式流。  
 
 ### <a name="token-url"></a>令牌 URL
 
-对于“授权代码”授权类型，请将其设置为 `https://login.microsoftonline.com/common/oauth2/v2.0/token`。
+对于“授权代码”授权类型，请将其设置为 `https://login.microsoftonline.com/common/oauth2/v2.0/token`。 
 
 ### <a name="client-secretpassword-for-third-party-services"></a>第三方服务的客户端机密/密码
 
@@ -85,7 +87,7 @@ Cortana 是支持语音的通道，除文本聊天外，它还可以发送和接
 
 ### <a name="client-authentication-scheme"></a>客户端身份验证方案
 
-选择“HTTP 基本”。
+选择“HTTP 基本”。 
 
 ### <a name="internet-access-required-to-authenticate-users"></a>需要 Internet 访问权限才能对用户进行身份验证
 
@@ -95,11 +97,11 @@ Cortana 是支持语音的通道，除文本聊天外，它还可以发送和接
 
 Cortana 提供对几种不同类型的用户配置文件信息的访问，可使用这些信息为用户自定义机器人。 例如，如果技能可以访问用户的姓名和位置，那么技能可具有自定义响应，例如“你好，Kamran，我希望你在华盛顿州贝尔维尤度过愉快的一天”。
 
-单击“添加用户配置文件请求”，然后从下拉列表中选择所需的用户配置文件信息。 添加友好名称以用于从机器人代码中访问此信息。
+单击“添加用户配置文件请求”，然后从下拉列表中选择所需的用户配置文件信息  。 添加友好名称以用于从机器人代码中访问此信息。
 
 ### <a name="deploy-on-cortana"></a>在 Cortana 上部署
 
-填写完 Cortana 技能注册表单后，单击“在 Cortana 上部署”以完成连接。 此操作将返回到机器人的“通道”边栏选项卡，可看到它现在已连接到 Cortana。
+填写完 Cortana 技能注册表单后，单击“在 Cortana 上部署”以完成连接。  此操作将返回到机器人的“通道”边栏选项卡，可看到它现在已连接到 Cortana。
 
 此时，机器人已作为 Cortana 技能部署到你的帐户。
 
@@ -109,6 +111,6 @@ Cortana 提供对几种不同类型的用户配置文件信息的访问，可使
 * [启用调试](bot-service-debug-cortana-skill.md)
 * [发布 Cortana 技能][publish]
 
-[invocation]: https://docs.microsoft.com/en-us/cortana/skills/cortana-invocation-guidelines
-[publish]: https://docs.microsoft.com/en-us/cortana/skills/publish-skill
+[invocation]: https://docs.microsoft.com/cortana/skills/cortana-invocation-guidelines
+[publish]: https://docs.microsoft.com/cortana/skills/publish-skill
 [CortanaEntity]: https://aka.ms/lgvcto

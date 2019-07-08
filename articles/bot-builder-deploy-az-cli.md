@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: abs
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: afb27ad20ec8585c2ca30810a9be6858adc17187
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: cc49cab1a3c82b3f0af2a4d8ebf261415c137e36
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693516"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405976"
 ---
 # <a name="deploy-your-bot"></a>部署机器人
 
@@ -26,7 +26,8 @@ ms.locfileid: "66693516"
 ## <a name="prerequisites"></a>先决条件
 - 如果还没有 Azure 订阅，可以在开始前创建一个[帐户](https://azure.microsoft.com/free/)。
 - 在本地计算机上开发的 CSharp、JavaScript 或 TypeScript 机器人。
-- 最新版本的 [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest)。
+- 最新版本的 [Azure CLI](https://docs.microsoft.com/cli/azure/?view=azure-cli-latest)。
+- 熟悉 [Azure cli 和 ARM 模板](https://docs.microsoft.com/azure/azure-resource-manager/resource-group-overview)。
 
 ## <a name="1-prepare-for-deployment"></a>1.准备部署
 使用 Visual Studio 或 Yeoman 模板创建机器人时，生成的源代码将包含 `deploymentTemplates` 文件夹和 ARM 模板。 本文所述的部署过程使用 ARM 模板通过 Azure CLI 在 Azure 中预配机器人所需的资源。 
@@ -182,7 +183,7 @@ az webapp deployment source config-zip --resource-group "<new-group-name>" --nam
 - 成功部署后，请等待几秒，然后视需要重启 Web 应用以清除所有缓存。 返回到“Web 应用机器人”边栏选项卡，并使用 Azure 门户中提供的“网络聊天”进行测试。
 
 ## <a name="additional-information"></a>其他信息
-将机器人部署到 Azure 需要支付服务使用费。 [计费和成本管理](https://docs.microsoft.com/en-us/azure/billing/)一文可帮助你了解 Azure 计费方式、如何监视使用量与费用，以及如何管理帐户和订阅。
+将机器人部署到 Azure 需要支付服务使用费。 [计费和成本管理](https://docs.microsoft.com/azure/billing/)一文可帮助你了解 Azure 计费方式、如何监视使用量与费用，以及如何管理帐户和订阅。
 
 ## <a name="next-steps"></a>后续步骤
 > [!div class="nextstepaction"]

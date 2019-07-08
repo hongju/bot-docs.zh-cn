@@ -1,6 +1,6 @@
 ---
 title: 在同一 .NET Framework 项目中迁移现有的机器人 | Microsoft Docs
-description: 使用同一个项目将现有的 v3 机器人迁移到 v4 SDK。
+description: 使用同一个项目将现有的 .NET v3 机器人迁移到 .NET v4 SDK。
 keywords: 机器人, formflow, 对话, v3 机器人
 author: JonathanFingold
 ms.author: v-jofing
@@ -10,14 +10,14 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: aca21d9af94f274936900f1d73c1b340272cd089
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 45830f099833c41c308b0f5a5e7b104986604e03
+ms.sourcegitcommit: 93508adfb79523f610a919b361fc34f5c8dd3eff
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215617"
+ms.lasthandoff: 07/02/2019
+ms.locfileid: "67533392"
 ---
-# <a name="migrate-a-net-v3-bot-to-a-framework-v4-bot"></a>将 .NET v3 机器人迁移到 Framework v4 机器人
+# <a name="migrate-a-net-v3-bot-to-a-net-framework-v4-bot"></a>将 .NET v3 机器人迁移到 .NET Framework v4 机器人
 
 在本文中，我们会将 [v3 ContosoHelpdeskChatBot](https://github.com/microsoft/BotBuilder-Samples/tree/master/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V3) 转换为 v4 机器人，_但不转换项目类型_。 它将仍然是 .NET Framework 项目。
 这种转换划分为以下步骤：
@@ -28,12 +28,13 @@ ms.locfileid: "66215617"
 1. 转换对话
 
 此转换的结果是 [.NET Framework v4 ContosoHelpdeskChatBot](https://github.com/microsoft/BotBuilder-Samples/tree/master/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework)。
+若要在新项目中迁移到 .NET Core v4 机器人，请参阅[将 .NET V3 机器人迁移到 .NET Core v4 机器人](conversion-core.md)。
 
 Bot Framework SDK v4 与 SDK v3 基于相同的基础 REST API。 但是，SDK v4 对以前的 SDK 版本作了重构，使开发人员对其机器人拥有更高的灵活性和控制度。 该 SDK 的主要更改包括：
 
 - 通过状态管理对象和属性访问器管理状态。
 - 设置轮次处理程序以及向其传递活动的方式发生了变化。
-- 可评分对象不再存在。 在将控制权传递给对话之前，可以检查轮次处理程序中的“全局”命令。
+- 可评分项不再存在。 在将控制权传递给对话之前，可以检查轮次处理程序中的“全局”命令。
 - 采用新的对话库，该库与以前的版本有很大的不同。 需要使用组件和瀑布对话以及适用于 v4 的 Formflow 对话的社区实现，将旧对话转换为新的对话系统
 
 有关特定更改的详细信息，请参阅 [v3 和 v4 .NET SDK 之间的差异](migration-about.md)。
@@ -63,33 +64,38 @@ Bot Framework SDK v4 与 SDK v3 基于相同的基础 REST API。 但是，SDK v
 
 在 **Global.asax.cs** 中：
 
-1. 更新 `using` 语句：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Global.asax.cs?range=4-13)]
+1. 更新 `using` 语句：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Global.asax.cs?range=4-13)]
 
-1. 从 **Application_Start** 方法中删除这些行：[!code-csharp[Removed lines](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V3/ContosoHelpdeskChatBot/Global.asax.cs?range=23-24)]
+1. 从 `Application_Start` 方法中删除这些行：  
+    [!code-csharp[Removed lines](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V3/ContosoHelpdeskChatBot/Global.asax.cs?range=23-24)]
 
-    插入此行：[!code-csharp[Reference BotConfig.Register](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Global.asax.cs?range=22)]
+    然后，插入此行：  
+    [!code-csharp[Reference BotConfig.Register](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Global.asax.cs?range=22)]
 
-1. 删除不再引用的 **RegisterBotModules** 方法。
+1. 删除不再引用的 `RegisterBotModules` 方法。
 
-1. 将 **BotConfig.UpdateConversationContainer** 方法替换为此 **BotConfig.Register** 方法，我们将在此方法中注册所需的对象用于支持依赖项注入。 此机器人既不使用“用户”状态，也不使用“私人聊天”状态，   因此我们只创建聊天状态管理对象。
+1. 将 `BotConfig.UpdateConversationContainer` 方法替换为 `BotConfig.Register` 方法，我们将在其中注册支持依赖项注入所需的对象。 此机器人既不使用“用户”状态，也不使用“私人聊天”状态，   因此我们只创建聊天状态管理对象。  
     [!code-csharp[Define BotConfig.Register](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Global.asax.cs?range=31-61)]
 
 ## <a name="update-your-messagescontroller-class"></a>更新 MessagesController 类
 
 v4 中机器人在此类中启动一个轮次，因此需要对此类进行大量更改。 除了机器人的轮次处理程序本身外，大部分组件都可被视为样本。 在 **Controllers\MessagesController.cs** 文件中：
 
-1. 更新 `using` 语句：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Controllers/MessagesController.cs?range=4-8)]
+1. 更新 `using` 语句：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Controllers/MessagesController.cs?range=4-8)]
 
 1. 从类中删除 `[BotAuthentication]` 属性。 在 v4 中，机器人的适配器将处理身份验证。
 
-1. 添加以下字段和一个构造函数，将其初始化。 ASP.NET 和 Autofac 使用依赖项注入来获取参数值。 （我们已在 **Global.asax.cs** 中注册适配器和机器人对象，以支持此功能。）[!code-csharp[Fields and constructor](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Controllers/MessagesController.cs?range=14-21)]
+1. 添加以下字段和一个构造函数，将其初始化。 ASP.NET 和 Autofac 使用依赖项注入来获取参数值。 （我们已在 Global.asax.cs 中注册适配器和机器人对象，以支持此功能  。）  
+    [!code-csharp[Fields and constructor](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Controllers/MessagesController.cs?range=14-21)]
 
-1. 替换 **Post** 方法的主体。 我们使用适配器来调用机器人的消息循环（轮次处理程序）。
+1. 替换 `Post` 方法的主体。 我们使用适配器来调用机器人的消息循环（轮次处理程序）。  
     [!code-csharp[Post method](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Controllers/MessagesController.cs?range=23-31)]
 
 ### <a name="delete-the-cancelscorable-and-globalmessagehandlersbotmodule-classes"></a>删除 CancelScorable 和 GlobalMessageHandlersBotModule 类
 
-由于 v4 中不存在可评分对象，并且我们已更新轮次处理程序，使之对 `cancel` 消息做出反应，因此，可以删除 **CancelScorable**（在 **Dialogs\CancelScorable.cs** 中）和 **GlobalMessageHandlersBotModule** 类。
+由于 v4 中不存在可评分项，并且我们已更新轮次处理程序，使之对 `cancel` 消息做出反应，因此，可以删除 `CancelScorable`（在 Dialogs\CancelScorable.cs 中）和 `GlobalMessageHandlersBotModule` 类  。
 
 ## <a name="create-your-bot-class"></a>创建机器人类
 
@@ -97,24 +103,26 @@ v4 中机器人在此类中启动一个轮次，因此需要对此类进行大�
 
 1. 创建 **Bots\DialogBots.cs** 文件。
 
-1. 更新 `using` 语句：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=4-8)]
+1. 更新 `using` 语句：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=4-8)]
 
-1. 从 `ActivityHandler` 派生 `DialogBot`，为对话添加泛型参数。
+1. 从 `ActivityHandler` 派生 `DialogBot`，为对话添加泛型参数。  
     [!code-csharp[Class definition](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=19)]
 
-1. 添加以下字段和一个构造函数，将其初始化。 同样，ASP.NET 和 Autofac 使用依赖项注入来获取参数值。
+1. 添加以下字段和一个构造函数，将其初始化。 同样，ASP.NET 和 Autofac 使用依赖项注入来获取参数值。  
     [!code-csharp[Fields and constructor](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=21-28)]
 
-1. 重写用于调用主对话的 `OnMessageActivityAsync`。 （我们很快就会定义 `Run` 扩展方法。）[!code-csharp[OnMessageActivityAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=38-47)]
+1. 重写用于调用主对话的 `OnMessageActivityAsync`。 （我们很快就会定义 `Run` 扩展方法。）  
+    [!code-csharp[OnMessageActivityAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=38-47)]
 
-1. 重写 `OnTurnAsync`，以便在轮次结束时保存聊天状态。 在 v4 中，我们必须显式这样做才能将状态写入到持久层。 `ActivityHandler.OnTurnAsync` 方法根据已接收活动的类型调用特定的活动处理程序方法，因此我们会在调用基方法后保存状态。
+1. 重写 `OnTurnAsync`，以便在轮次结束时保存聊天状态。 在 v4 中，我们必须显式这样做才能将状态写入到持久层。 `ActivityHandler.OnTurnAsync` 方法根据已接收活动的类型调用特定的活动处理程序方法，因此我们会在调用基方法后保存状态。  
     [!code-csharp[OnTurnAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Bots/DialogBot.cs?range=30-36)]
 
 ### <a name="create-the-run-extension-method"></a>创建 Run 扩展方法
 
 我们将创建一个扩展方法，用于合并通过机器人运行裸机组件对话所需的代码。
 
-创建 **DialogExtensions.cs** 文件并实现 `Run` 扩展方法。
+创建 **DialogExtensions.cs** 文件并实现 `Run` 扩展方法。  
 [!code-csharp[The extension](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/DialogExtensions.cs?range=4-41)]
 
 ## <a name="convert-your-dialogs"></a>转换对话
@@ -168,38 +176,39 @@ v4 中机器人在此类中启动一个轮次，因此需要对此类进行大�
 
 在 **Dialogs/RootDialog.cs** 文件中：
 
-1. 更新 `using` 语句：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/RootDialog.cs?range=4-10)]
+1. 更新 `using` 语句：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/RootDialog.cs?range=4-10)]
 
-1. 需要将 `HelpdeskOptions` 选项从字符串列表转换为选项列表。 此项将与选项提示结合使用。选项提示接受选项编号（列表中）、选项值，或选项的任何同义词（作为有效输入）。
+1. 需要将 `HelpdeskOptions` 选项从字符串列表转换为选项列表。 此项将与选项提示结合使用。选项提示接受选项编号（列表中）、选项值，或选项的任何同义词（作为有效输入）。  
     [!code-csharp[HelpDeskOptions](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/RootDialog.cs?range=28-33)]
 
 1. 添加一个构造函数。 此代码将执行以下操作：
-   - 创建对话时，将为该对话的每个实例分配一个 ID。 对话 ID 是对话所要添加到的对话集的一部分。 如前所述，机器人已使用 **MessageController** 类中的对话对象初始化。 每个 `ComponentDialog` 具有自身的内部对话集，该集具有自身的对话 ID 集。
+   - 创建对话时，将为该对话的每个实例分配一个 ID。 对话 ID 是对话所要添加到的对话集的一部分。 如前所述，机器人已使用 `MessageController` 类中的对话对象初始化。 每个 `ComponentDialog` 具有自身的内部对话集，该集具有自身的对话 ID 集。
    - 它会添加其他对话，包括选项提示（子对话）。 此处，我们只对每个对话 ID 使用类名。
    - 此类定义包括三个步骤的瀑布对话。 稍后我们将实现这些步骤。
      - 该对话首先提示用户选择要执行的任务。
      - 然后，启动与该选项关联的子对话。
      - 最后重启自身。
    - 每个瀑布步骤是一个委托，接下来，在可能的情况下，我们将采用原始对话中的现有代码实现这些步骤。
-   - 启动组件对话框时，它会启动其 _initial dialog_。 默认情况下，这是添加到组件对话的第一个子对话。 我们将显式设置 `InitialDialogId` 属性，这意味着，主要瀑布对话不需要是添加到集中的第一个对话。 例如，如果你偏向于先添加提示，则你可以这样做，而不会导致运行时问题。
+   - 启动组件对话框时，它会启动其 _initial dialog_。 默认情况下，这是添加到组件对话的第一个子对话。 我们将显式设置 `InitialDialogId` 属性，这意味着，主要瀑布对话不需要是添加到集中的第一个对话。 例如，如果你偏向于先添加提示，则你可以这样做，而不会导致运行时问题。  
     [!code-csharp[Constructor](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/RootDialog.cs?range=35-49)]
 
-1. 可以删除 **StartAsync** 方法。 组件对话开始时，会自动启动其初始对话。  在这种情况下，它是我们在构造函数中定义的瀑布对话。 该对话还会自动启动其第一个步骤。
+1. 我们可以删除 `StartAsync` 方法。 组件对话开始时，会自动启动其初始对话。  在这种情况下，它是我们在构造函数中定义的瀑布对话。 该对话还会自动启动其第一个步骤。
 
-1. 我们将删除 **MessageReceivedAsync** 和 **ShowOptions** 方法，并将其替换为第一个瀑布步骤。 这两个方法问候用户，并要求他们选择可用的选项之一。
+1. 我们将删除 `MessageReceivedAsync` 和 `ShowOptions` 方法，并将其替换为第一个瀑布步骤。 这两个方法问候用户，并要求他们选择可用的选项之一。
    - 在此处可以看到调用选项提示时提供的选项列表以及问候语和错误消息。
    - 无需指定对话中要调用的下一个方法，因为选项提示完成后，瀑布会转到下一步骤。
-   - 选项提示将不断循环，直到收到有效输入或整个对话堆栈被取消。
+   - 选项提示将不断循环，直到收到有效输入或整个对话堆栈被取消。  
     [!code-csharp[PromptForOptionsAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/RootDialog.cs?range=51-65)]
 
-1. 可将 **OnOptionSelected** 替换为第二个瀑布步骤。 仍然根据用户的输入启动一个子对话。
+1. 可将 `OnOptionSelected` 替换为第二个瀑布步骤。 仍然根据用户的输入启动一个子对话。
    - 选项提示返回 `FoundChoice` 值。 此值显示在步骤上下文的 `Result` 属性中。 对话堆栈将所有返回值视为对象。 如果返回值来自某个对话，则就能知道对象值的类型是什么。 有关返回的每种提示类型的列表，请参阅[提示类型](../bot-builder-concept-dialog.md#prompt-types)。
    - 由于选项提示不引发异常，因此我们可以删除 try-catch 块。
-   - 我们需要添加一个失败代码，以便此方法始终返回适当的值。 此代码应该永远不会命中，但如果命中，它可以让对话“正常失败”。
+   - 我们需要添加一个失败代码，以便此方法始终返回适当的值。 此代码应该永远不会命中，但如果命中，它可以让对话“正常失败”。  
     [!code-csharp[ShowChildDialogAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/RootDialog.cs?range=67-102)]
 
-1. 最后，将旧的 **ResumeAfterOptionDialog** 方法替换为最后一个瀑布步骤。
-    - 通过将堆栈上的原始实例替换为对话自身的新实例来重启瀑布，而不要像在原始对话中那样结束对话并返回票证编号。 之所以可以这样做，是因为原始应用始终忽略返回值（票证编号）并重启根对话。
+1. 最后，将旧的 `ResumeAfterOptionDialog` 方法替换为最后一个瀑布步骤。
+    - 通过将堆栈上的原始实例替换为对话自身的新实例来重启瀑布，而不要像在原始对话中那样结束对话并返回票证编号。 之所以可以这样做，是因为原始应用始终忽略返回值（票证编号）并重启根对话。  
     [!code-csharp[ResumeAfterAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/RootDialog.cs?range=104-138)]
 
 ### <a name="update-the-install-app-dialog"></a>更新安装应用对话
@@ -216,90 +225,93 @@ v4 中机器人在此类中启动一个轮次，因此需要对此类进行大�
 
 在 **Dialogs/InstallAppDialog.cs** 文件中：
 
-1. 更新 `using` 语句：[!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=4-11)]
+1. 更新 `using` 语句：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=4-11)]
 
-1. 为用于跟踪所收集信息的键定义一个常量。
+1. 为用于跟踪所收集信息的键定义一个常量。  
     [!code-csharp[Key ID](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=17-18)]
 
-1. 添加一个构造函数，并初始化组件的对话集。
-    [!code-csharp[Constructor](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=20-34)]
+1. 添加一个构造函数，并初始化组件的对话集。  
+    [!code-csharp[Constructor](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=20-33)]
 
-1. 可将 **StartAsync** 替换为第一个瀑布步骤。
+1. 我们可以将 `StartAsync` 替换为第一个瀑布步骤。
     - 我们必须自行管理状态，因此，将要跟踪对话状态中的安装应用对象。
-    - 请求用户提供输入的消息成了提示调用中的一个选项。
+    - 请求用户提供输入的消息成了提示调用中的一个选项。  
     [!code-csharp[GetSearchTermAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=35-50)]
 
-1. 可将 **appNameAsync** 和 **multipleAppsAsync** 替换为第二个瀑布步骤。
+1. 我们可将 `appNameAsync` 和 `multipleAppsAsync` 替换为第二个瀑布步骤。
     - 现在我们将获取提示结果，而不只是查看用户的最后一条消息。
-    - 数据库查询和 if 语句的组织方式与在 **appNameAsync** 中相同。 if 语句的每个块中的代码已更新，可以配合 v4 对话运行。
+    - 数据库查询和 if 语句的组织方式与在 `appNameAsync` 中相同。 if 语句的每个块中的代码已更新，可以配合 v4 对话运行。
         - 如果有一个命中项，则会更新对话状态并继续下一步。
-        - 如果有多个命中项，则使用选项提示来要求用户从选项列表中做出选择。 这意味着可以删除 **multipleAppsAsync**。
-        - 如果没有命中项，则结束此对话，并向根对话返回 null。
+        - 如果有多个命中项，则使用选项提示来要求用户从选项列表中做出选择。 这意味着可以删除 `multipleAppsAsync`。
+        - 如果没有命中项，则结束此对话，并向根对话返回 null。  
     [!code-csharp[ResolveAppNameAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=52-91)]
 
-1. 解决查询后，**appNameAsync** 还要求用户指定其计算机名。 我们将在下一个瀑布步骤中捕获该逻辑部分。
+1. 解析查询后，`appNameAsync` 还要求用户提供其计算机名。 我们将在下一个瀑布步骤中捕获该逻辑部分。
     - 同样，在 v4 中，我们必须自行管理状态。 此处唯一的棘手问题是，如何通过上一步骤中的两个不同逻辑分支转到此步骤。
-    - 我们使用与前面一样的文本提示来请求用户指定计算机名（这一次只需提供不同的选项即可）。
+    - 我们使用与前面一样的文本提示来请求用户指定计算机名（这一次只需提供不同的选项即可）。  
     [!code-csharp[GetMachineNameAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=93-114)]
 
-1. **machineNameAsync** 中的逻辑包装在最后一个瀑布步骤中。
+1. `machineNameAsync` 中的逻辑包装在最后一个瀑布步骤中。
     - 从文本提示结果中检索计算机名，并更新对话状态。
     - 我们将删除更新数据库的调用，因为支持代码位于不同的项目中。
-    - 然后，我们向用户发送成功消息并结束对话。
+    - 然后，我们向用户发送成功消息并结束对话。  
     [!code-csharp[SubmitRequestAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=116-135)]
 
-1. 模拟数据库调用时，我们会模拟 **getAppsAsync** 以查询静态列表而不是数据库。
+1. 模拟数据库调用时，我们会模拟 `getAppsAsync` 以查询静态列表而不是数据库。  
     [!code-csharp[GetAppsAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/InstallAppDialog.cs?range=137-200)]
 
 ### <a name="update-the-local-admin-dialog"></a>更新本地管理员对话
 
 在 v3 中，此对话问候用户、启动 Formflow 对话，然后将结果保存到数据库。 这可以轻松转换为双步骤瀑布。
 
-1. 更新 `using` 语句。 请注意，此对话包含一个 v3 Formflow 对话。 在 v4 中，我们可以使用社区 Formflow 库。
+1. 更新 `using` 语句。 请注意，此对话包含一个 v3 Formflow 对话。 在 v4 中，我们可以使用社区 Formflow 库。  
     [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/LocalAdminDialog.cs?range=4-8)]
 
 1. 可以删除 `LocalAdmin` 的实例属性，因为结果将在对话状态中提供。
 
-1. 添加一个构造函数，并初始化组件的对话集。 Formflow 对话以相同的方式创建。 只需在构造函数中将该对话添加到组件的对话集。
+1. 添加一个构造函数，并初始化组件的对话集。 Formflow 对话以相同的方式创建。 只需在构造函数中将该对话添加到组件的对话集。  
     [!code-csharp[Constructor](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/LocalAdminDialog.cs?range=14-23)]
 
-1. 可将 **StartAsync** 替换为第一个瀑布步骤。 我们已在构造函数中创建 Formflow，其他两个语句将转换为此 Formflow。 请注意，`FormBuilder` 将模型的类型名称指定为已生成对话的 ID，该对话是此模型的 `LocalAdminPrompt`。
+1. 我们可以将 `StartAsync` 替换为第一个瀑布步骤。 我们已在构造函数中创建 Formflow，其他两个语句将转换为此 Formflow。 请注意，`FormBuilder` 将模型的类型名称指定为已生成对话的 ID，该对话是此模型的 `LocalAdminPrompt`。  
     [!code-csharp[BeginFormflowAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/LocalAdminDialog.cs?range=25-35)]
 
-1. 可将 **ResumeAfterLocalAdminFormDialog** 替换为第二个瀑布步骤。 必须从步骤上下文而不是实例属性中获取返回值。
+1. 可将 `ResumeAfterLocalAdminFormDialog` 替换为第二个瀑布步骤。 必须从步骤上下文而不是实例属性中获取返回值。  
     [!code-csharp[SaveResultAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/LocalAdminDialog.cs?range=37-50)]
 
-1. **BuildLocalAdminForm** 基本上保持不变，不过，我们没有让 Formflow 更新实例属性。
+1. `BuildLocalAdminForm` 基本上保持不变，不过，我们没有让 Formflow 更新实例属性。  
     [!code-csharp[BuildLocalAdminForm](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/LocalAdminDialog.cs?range=52-76)]
 
 ### <a name="update-the-reset-password-dialog"></a>更新重置密码对话
 
 在 v3 中，此对话问候用户、使用通行短语为用户授权、使 Formflow 对话失败或启动，然后重置密码。 这仍然可以转换为瀑布。
 
-1. 更新 `using` 语句。 请注意，此对话包含一个 v3 Formflow 对话。 在 v4 中，我们可以使用社区 Formflow 库。
+1. 更新 `using` 语句。 请注意，此对话包含一个 v3 Formflow 对话。 在 v4 中，我们可以使用社区 Formflow 库。  
     [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/ResetPasswordDialog.cs?range=4-9)]
 
-1. 添加一个构造函数，并初始化组件的对话集。 Formflow 对话以相同的方式创建。 只需在构造函数中将该对话添加到组件的对话集。
+1. 添加一个构造函数，并初始化组件的对话集。 Formflow 对话以相同的方式创建。 只需在构造函数中将该对话添加到组件的对话集。  
     [!code-csharp[Constructor](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/ResetPasswordDialog.cs?range=15-25)]
 
-1. 可将 **StartAsync** 替换为第一个瀑布步骤。 我们已在构造函数中创建 Formflow。 否则，我们将保留相同的逻辑，只需将 v3 调用转换为 v4 等效项。
+1. 我们可以将 `StartAsync` 替换为第一个瀑布步骤。 我们已在构造函数中创建 Formflow。 否则，我们将保留相同的逻辑，只需将 v3 调用转换为 v4 等效项。  
     [!code-csharp[BeginFormflowAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/ResetPasswordDialog.cs?range=27-45)]
 
-1. **sendPassCode** 主要是出于练习目的而保留的。 原始代码已注释掉，方法只返回 true。 此外，我们同样可以删除电子邮件地址，因为原始机器人中不使用它。
+1. `sendPassCode` 主要是出于练习目的而保留的。 原始代码已注释掉，方法只返回 true。 此外，我们同样可以删除电子邮件地址，因为原始机器人中不使用它。  
     [!code-csharp[SendPassCode](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/ResetPasswordDialog.cs?range=47-81)]
 
-1. **BuildResetPasswordForm** 没有变化。
+1. `BuildResetPasswordForm` 无更改。
 
-1. 可将 **ResumeAfterLocalAdminFormDialog** 替换为第二个瀑布步骤，我们将从步骤上下文中获取返回值。 我们已删除原始对话不对其做任何处理的电子邮件地址，并且我们提供了虚拟结果而不是查询数据库。 我们将保留相同的逻辑，只需将 v3 调用转换为 v4 等效项。
+1. 可将 `ResumeAfterResetPasswordFormDialog` 替换为第二个瀑布步骤，我们将从步骤上下文中获取返回值。 我们已删除原始对话不对其做任何处理的电子邮件地址，并且我们提供了虚拟结果而不是查询数据库。 我们将保留相同的逻辑，只需将 v3 调用转换为 v4 等效项。  
     [!code-csharp[ProcessRequestAsync](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Dialogs/ResetPasswordDialog.cs?range=90-113)]
 
 ### <a name="update-models-as-necessary"></a>根据需要更新模型
 
 需要更新引用 Formflow 库的某些模型中的 `using` 语句。
 
-1. 在 `LocalAdminPrompt` 中，将其更改为 [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Models/LocalAdminPrompt.cs?range=4)]
+1. 在 `LocalAdminPrompt` 中，将其更改为：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Models/LocalAdminPrompt.cs?range=4)]
 
-1. 在 `ResetPasswordPrompt` 中，将其更改为 [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Models/ResetPasswordPrompt.cs?range=4-5)]
+1. 在 `ResetPasswordPrompt` 中，将其更改为：  
+    [!code-csharp[Using statements](~/../botbuilder-samples/MigrationV3V4/CSharp/ContosoHelpdeskChatBot-V4NetFramework/ContosoHelpdeskChatBot/Models/ResetPasswordPrompt.cs?range=4-5)]
 
 ## <a name="update-webconfig"></a>更新 Web.config
 
@@ -328,3 +340,5 @@ v4 操作指南主题：
 - [发送和接收文本消息](../bot-builder-howto-send-messages.md)
 - [保存用户和聊天数据](../bot-builder-howto-v4-state.md)
 - [实现顺序聊天流](../bot-builder-dialog-manage-conversation-flow.md)
+- [使用模拟器进行调试](../../bot-service-debug-emulator.md)
+- [将遥测功能添加到机器人](../bot-builder-telemetry.md)

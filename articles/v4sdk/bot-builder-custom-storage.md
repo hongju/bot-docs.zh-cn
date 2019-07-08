@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 2b77b19a3b2d0fbd8e545e563f154124af894ffa
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: 138f3c943fc6c4a7882e808c3f280d4ebe04f62f
+ms.sourcegitcommit: 409e8f89a1e9bcd0e69a29a313add424f66a81e1
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693735"
+ms.lasthandoff: 06/17/2019
+ms.locfileid: "67153081"
 ---
 # <a name="implement-custom-storage-for-your-bot"></a>为机器人实现自定义存储
 
@@ -114,7 +114,8 @@ Bot Framework 包含默认的实现，此实现基本上能够满足许多应用
 
 生成的 OnTurn 实现如下所示：
 
-**ScaleoutBot.cs** [!code-csharp[OnMessageActivity](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/Bots/ScaleOutBot.cs?range=43-72)]
+**ScaleoutBot.cs**  
+[!code-csharp[OnMessageActivity](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/Bots/ScaleOutBot.cs?range=43-72)]
 
 请注意，我们已将对话执行建模为函数调用。 也许某个更复杂的实现定义了接口并使此依赖项可注入，但根据我们的目的，将所有对话定位在静态函数的后面是为了强调方法的功能性。 一般而言，对实现进行适当的组织，使关键部件正常运行，将非常有利于该实现在网络中成功运作。
 
@@ -124,7 +125,8 @@ Bot Framework 包含默认的实现，此实现基本上能够满足许多应用
 下一项要求是缓冲出站活动，直到成功执行 Save 为止。 这需要自定义的 BotAdapter 实现。 在此代码中，我们将实现抽象 SendActivity 函数，以将活动添加到列表，而无需发送活动。 要托管的对话并不是很智能。
 在此特定方案中，UpdateActivity 和 DeleteActivity 操作不受支持，因此这些方法只会引发“未实现”。 此外，我们不关心 SendActivity 的返回值。 例如，需要发送活动更新的方案中的某些通道会使用此方法，来禁用通道中显示的卡片上的按钮。 需要状态时，这些消息交换可能特别复杂，这不属于本文的讨论范畴。 自定义 BotAdapter 的完整实现如下所示：
 
-**DialogHostAdapter.cs** [!code-csharp[DialogHostAdapter](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/DialogHostAdapter.cs?range=19-46)]
+**DialogHostAdapter.cs**  
+[!code-csharp[DialogHostAdapter](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/DialogHostAdapter.cs?range=19-46)]
 
 ## <a name="integration"></a>集成
 
@@ -136,11 +138,13 @@ Bot Framework 包含默认的实现，此实现基本上能够满足许多应用
 
 下面是驱动程序代码：
 
-**DialogHost.cs** [!code-csharp[DialogHost](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/DialogHost.cs?range=22-72)]
+**DialogHost.cs**  
+[!code-csharp[DialogHost](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/DialogHost.cs?range=22-72)]
 
 最后，对于自定义访问器，我们只需实现 Get，因为状态是按引用定义的：
 
-**RefAccessor.cs** [!code-csharp[RefAccessor](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/RefAccessor.cs?range=22-60)]
+**RefAccessor.cs**  
+[!code-csharp[RefAccessor](~/../botbuilder-samples/samples/csharp_dotnetcore/42.scaleout/RefAccessor.cs?range=22-60)]
 
 ## <a name="additional-information"></a>其他信息
 GitHub 上提供了本文中使用的 [C# 示例](http://aka.ms/scale-out)代码。

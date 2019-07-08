@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 305e89f5bef4b50e99b24780b0e31580e3b38fb9
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: fd6b1b7ed38b57e8245098679d7753bd5cbb9387
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693701"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464685"
 ---
 # <a name="tutorial-create-and-deploy-a-basic-bot"></a>教程：创建和部署基本机器人
 
@@ -47,7 +47,7 @@ ms.locfileid: "66693701"
 ### <a name="prerequisites"></a>先决条件
 - 如果没有 Azure 订阅，请在开始之前创建一个[免费帐户](https://azure.microsoft.com/free/)。
 - 在本地计算机上运行的具有上述功能的机器人。
-- 最新版本的 [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/?view=azure-cli-latest)。
+- 最新版本的 [Azure CLI](https://docs.microsoft.com/cli/azure/?view=azure-cli-latest)。
 
 ### <a name="1-prepare-for-deployment"></a>1.准备部署
 使用 Visual Studio 或 Yeoman 模板创建机器人时，生成的源代码将包含 `deploymentTemplates` 文件夹和 ARM 模板。 本文所述的部署过程使用 ARM 模板通过 Azure CLI 在 Azure 中预配机器人所需的资源。 
@@ -65,7 +65,7 @@ az login
 设置要使用的默认订阅。
 
 ```cmd
-az account set --subscription "<azure-subscription>"
+az account set --subscription "azure-subscription"
 ```
 
 如果你不确定要使用哪个订阅来部署机器人，可以使用 `az account list` 命令查看帐户的订阅列表。 导航到 bot 文件夹。
@@ -94,7 +94,7 @@ az ad app create --display-name "displayName" --password "AtLeastSixteenCharacte
 将在 Azure 中创建新资源组，然后使用 ARM 模板来创建其中指定的资源。 在本例中，我们将提供应用服务计划、Web 应用和机器人通道注册。
 
 ```cmd
-az deployment create --name "<name-of-deployment>" --template-file "template-with-new-rg.json" --location "location-name" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" botSku=F0 newAppServicePlanName="<name-of-app-service-plan>" newWebAppName="<name-of-web-app>" groupName="<new-group-name>" groupLocation="<location>" newAppServicePlanLocation="<location>"
+az deployment create --name "name-of-deployment" --template-file "template-with-new-rg.json" --location "location-name" --parameters appId="msa-app-guid" appSecret="msa-app-password" botId="id-or-name-of-bot" botSku=F0 newAppServicePlanName="name-of-app-service-plan" newWebAppName="name-of-web-app" groupName="new-group-name" groupLocation="location" newAppServicePlanLocation="location"
 ```
 
 | 选项   | 说明 |
@@ -117,7 +117,7 @@ az deployment create --name "<name-of-deployment>" --template-file "template-wit
 _注意：botId 参数应全局唯一，用作不可变的机器人 ID。此参数还用于配置机器人的可变显示名称。_
 
 ```cmd
-az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" existingAppServicePlan="<name-of-app-service-plan>" appServicePlanLocation="<location>"
+az group deployment create --name "name-of-deployment" --resource-group "name-of-resource-group" --template-file "template-with-preexisting-rg.json" --parameters appId="msa-app-guid" appSecret="msa-app-password" botId="id-or-name-of-bot" newWebAppName="name-of-web-app" existingAppServicePlan="name-of-app-service-plan" appServicePlanLocation="location"
 ```
 
 **选项 2：新的应用服务计划** 
@@ -125,7 +125,7 @@ az group deployment create --name "<name-of-deployment>" --resource-group "<name
 在本例中，我们将创建应用服务计划、Web 应用和机器人通道注册。 
 
 ```cmd
-az group deployment create --name "<name-of-deployment>" --resource-group "<name-of-resource-group>" --template-file "template-with-preexisting-rg.json" --parameters appId="<msa-app-guid>" appSecret="<msa-app-password>" botId="<id-or-name-of-bot>" newWebAppName="<name-of-web-app>" newAppServicePlanName="<name-of-app-service-plan>" appServicePlanLocation="<location>"
+az group deployment create --name "name-of-deployment" --resource-group "name-of-resource-group" --template-file "template-with-preexisting-rg.json" --parameters appId="msa-app-guid" appSecret="msa-app-password" botId="id-or-name-of-bot" newWebAppName="name-of-web-app" newAppServicePlanName="name-of-app-service-plan" appServicePlanLocation="location"
 ```
 
 | 选项   | 说明 |
@@ -177,7 +177,7 @@ az bot prepare-deploy --code-dir "." --lang Javascript
 现在，我们已准备好将代码部署到 Azure Web 应用。 在命令行中运行以下命令，以使用 Web 应用的 Kudu zip 推送部署来执行部署。
 
 ```cmd
-az webapp deployment source config-zip --resource-group "<new-group-name>" --name "<name-of-web-app>" --src "code.zip" 
+az webapp deployment source config-zip --resource-group "new-group-name" --name "name-of-web-app" --src "code.zip" 
 ```
 
 | 选项   | 说明 |

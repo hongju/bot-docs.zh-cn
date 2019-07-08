@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 3852c0b25ea385301be11edd0a46ed5984510820
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: 1b2d3f9f04601bd4e01dddd08f09f7191b59204e
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54224862"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404709"
 ---
 # <a name="send-a-typing-indicator"></a>发送键入指示符 
 
@@ -26,7 +26,7 @@ ms.locfileid: "54224862"
 
 ## <a name="typing-indicator-example"></a>键入指示符示例
 
-以下示例演示如何使用 [session.sendTyping()][SendTyping] 发送键入指示。  可使用 Bot Framework Emulator 进行测试。
+以下示例演示了如何使用 [session.sendTyping()][SendTyping] 发送键入指示。  可使用 Bot Framework Emulator 进行测试。
 
 
 ```javascript
@@ -50,5 +50,5 @@ var bot = new builder.UniversalBot(connector, function (session) {
 * [sendTyping][SendTyping]
 
 
-[SendTyping]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#sendtyping
-[IMessage]: http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
+[SendTyping]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#sendtyping
+[IMessage]: http://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage

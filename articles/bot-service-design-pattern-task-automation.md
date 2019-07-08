@@ -9,12 +9,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 2/13/2018
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 21324f68332be6a60f55e6ab55545fc6102bedb9
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: d81a7e55ab7ac5e3b430ae051d1abbb4ca94b44d
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033018"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405833"
 ---
 # <a name="create-task-automation-bots"></a>创建任务自动化机器人
 
@@ -50,11 +50,11 @@ Contoso 公司经验丰富的开发人员 John 决定创建一个机器人来自
 
 根对话为用户提供了两个选项： 
 
-1. “更改密码”适用于用户知道其当前密码而只想更改密码的情况。
-2. “重置密码”适用于用户忘记或输错密码而需要生成新密码的情况。
+1. “更改密码”适用于用户知道其当前密码而只想更改密码的情况  。
+2. “重置密码”适用于用户忘记或输错密码而需要生成新密码的情况  。
 
 > [!NOTE]
-> 为简单起见，本文仅介绍“重置密码”流程。
+> 为简单起见，本文仅介绍“重置密码”流程  。
 
 该规范描述了根对话，如以下屏幕截图所示。
 
@@ -62,7 +62,7 @@ Contoso 公司经验丰富的开发人员 John 决定创建一个机器人来自
 
 #### <a name="resetpassword-dialog"></a>“ResetPassword”对话
 
-用户从根对话中选择“重置密码”时，将调用 `ResetPassword` 对话。 然后，`ResetPassword` 对话将调用另外两个对话。 首先，它调用 `PromptStringRegex` 对话，收集用户的电话号码。 然后，它调用 `PromptDate` 对话，收集用户的出生日期。 
+用户从根对话中选择“重置密码”时，将调用 `ResetPassword` 对话  。 然后，`ResetPassword` 对话将调用另外两个对话。 首先，它调用 `PromptStringRegex` 对话，收集用户的电话号码。 然后，它调用 `PromptDate` 对话，收集用户的出生日期。 
 
 > [!NOTE]
 > 在此示例中，John 选择使用两个单独的对话来实现收集用户电话号码和出生日期的逻辑。 此方法不仅简化了每个对话所需的代码，而且还增加了将来其他方案可使用这些对话的几率。 
@@ -85,7 +85,7 @@ Contoso 公司经验丰富的开发人员 John 决定创建一个机器人来自
 
 ## <a name="bot-app-or-website"></a>机器人、应用或网站？
 
-你可能想知道，如果任务自动化机器人与应用或网站非常类似，为什么不直接构建一个应用或网站呢？ 根据具体情况，构建应用或网站而非机器人可能是一个完全合理的选择。 甚至可选择使用 [Bot Framework Direct Line API][directLineAPI] 或<a href="https://aka.ms/BotFramework-WebChat" target="_blank">网上聊天控件</a>将机器人嵌入到应用中。 在应用的上下文中实现机器人堪称两全其美：集丰富的应用体验和聊天式体验于一身。 
+你可能想知道，如果任务自动化机器人与应用或网站非常类似，为什么不直接构建一个应用或网站呢？ 根据具体情况，构建应用或网站而非机器人可能是一个完全合理的选择。 甚至可选择使用 [Bot Framework Direct Line API][directLineAPI] 或 <a href="https://aka.ms/BotFramework-WebChat" target="_blank">网上聊天控件</a>将机器人嵌入到应用中。 在应用的上下文中实现机器人堪称两全其美：集丰富的应用体验和聊天式体验于一身。 
 
 然而，许多情况下，构建应用或网站可能比构建机器人更为复杂和昂贵。 应用或网站通常需要支持多个客户端和平台，打包和部署是一个繁琐且耗时的过程，并且必须下载和安装应用的用户体验不一定是理想之选。 出于这些原因，机器人通常可以提供一种更简单的方法来解决目前的问题。 
 
@@ -106,4 +106,4 @@ For a complete sample that shows how to implement simple task automation using t
 - [使用对话管理聊天流 (Node.js)](~/nodejs/bot-builder-nodejs-manage-conversation-flow.md)
 
 
-[directLineAPI]: https://docs.botframework.com/en-us/restapi/directline3/#navtitle
+[directLineAPI]: https://docs.botframework.com/restapi/directline3/#navtitle

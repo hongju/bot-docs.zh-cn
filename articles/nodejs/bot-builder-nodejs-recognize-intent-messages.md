@@ -9,18 +9,18 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 211800211b422bb9c90c00705585be89737c77a9
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: e308445a43507db94fe54735432790dabdb88731
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225552"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404854"
 ---
 # <a name="recognize-user-intent-from-message-content"></a>识别消息内容中的用户意向
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-机器人接收来自用户的消息后，可使用识别器检查该消息并确定意向。 意向提供了从消息到要调用的对话的映射。 本文介绍如何使用正则表达式或通过检查消息内容识别意向。 例如，机器人可使用正则表达式检查消息是否包含“帮助”一词，并调用帮助对话。 机器人还可以检查用户消息的属性（例如查看用户发送了图像还是文本），并调用图像处理对话。 
+机器人接收来自用户的消息后，可使用识别器检查该消息并确定意向  。 意向提供了从消息到要调用的对话的映射。 本文介绍如何使用正则表达式或通过检查消息内容识别意向。 例如，机器人可使用正则表达式检查消息是否包含“帮助”一词，并调用帮助对话。 机器人还可以检查用户消息的属性（例如查看用户发送了图像还是文本），并调用图像处理对话。 
 
 > [!NOTE]
 > 要了解如何使用 LUIS 识别意向，请参阅[使用 LUIS 识别意向和实体](bot-builder-nodejs-recognize-intent-luis.md) 
@@ -36,7 +36,7 @@ ms.locfileid: "54225552"
 
 [!code-js[Add a regular expression recognizer (JavaScript)](../includes/code/node-regex-recognizer.js#addRegexRecognizer)]
 
-将识别器添加到机器人后，请将 [triggerAction][triggerAction] 附加到希望机器人在识别器检测到意向时调用的对话。 使用[匹配][matches]选项指定意向名称，如以下代码中所示：
+将识别器添加到机器人后，附加 [triggerAction][triggerAction] to the dialog that you want the bot to invoke when the recognizer detects the intent. Use the [matches][matches] 选项以指定意向名称，如下代码所示：
 
 [!code-js[Map the CancelIntent recognizer to a cancel dialog (JavaScript)](../includes/code/node-regex-recognizer.js#bindCancelDialogToRegexRecognizer)]
 
@@ -61,7 +61,7 @@ ms.locfileid: "54225552"
 
 默认情况下，识别器以并行方式运行，但你可设置 [IIntentRecognizerSetOptions][IntentRecognizerSetOptions] 中的 recognizeOrder，以便在机器人找到得分为 1.0 的意向时进程立即退出。
 
-Bot Framework SDK 包括一个[示例][DisambiguationSample]，用于演示如何通过实现 [IDisambiguateRouteHandler][IDisambiguateRouteHandler] 在机器人中提供自定义区分逻辑。
+Bot Framework SDK 包括[示例][DisambiguationSample]that demonstrates how to provide custom disambiguation logic in your bot by implementing [IDisambiguateRouteHandler][IDisambiguateRouteHandler]。
 
 ## <a name="next-steps"></a>后续步骤
 使用正则表达式和检查消息内容的逻辑可能会变复杂，尤其是在机器人采用开放式聊天流的情况下。 要帮助机器人处理来自用户的各种文本和语音输入，可使用意向识别服务（如 [LUIS][LUIS]）向机器人添加自然语言理解。
@@ -72,28 +72,28 @@ Bot Framework SDK 包括一个[示例][DisambiguationSample]，用于演示如�
 
 [LUIS]: https://www.luis.ai/
 
-[triggerAction]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#triggeraction
+[triggerAction]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.dialog.html#triggeraction
 
-[matches]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.itriggeractionoptions.html#matches
+[matches]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.itriggeractionoptions.html#matches
 
 [node-js-bot-how-to]: bot-builder-nodejs-recognize-intent-luis.md
 
 [LUISAzureDocs]: /azure/cognitive-services/LUIS/Home
 
-[IMessage]: http://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
+[IMessage]: http://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage
 
-[IntentRecognizerSetOptions]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizersetoptions.html
+[IntentRecognizerSetOptions]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.iintentrecognizersetoptions.html
 
-[LuisRecognizer]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.luisrecognizer
+[LuisRecognizer]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.luisrecognizer
 
 [LUISSample]: https://aka.ms/v3-js-luisSample
 
-[LUISConcepts]: https://docs.botframework.com/en-us/node/builder/guides/understanding-natural-language/
+[LUISConcepts]: https://docs.botframework.com/node/builder/guides/understanding-natural-language/
 
 [DisambiguationSample]: https://aka.ms/v3-js-onDisambiguateRoute
 
-[IDisambiguateRouteHandler]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.idisambiguateroutehandler.html
+[IDisambiguateRouteHandler]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.idisambiguateroutehandler.html
 
-[RegExpRecognizer]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.regexprecognizer.html
+[RegExpRecognizer]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.regexprecognizer.html
 
 [AlarmBot]: https://aka.ms/v3-js-luisSample

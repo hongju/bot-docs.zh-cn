@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 591f58e1cefca576e2e3e4a486ecc6fbe0a6b0e4
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 573dabba7a16f88db890f0d095a2d4a0f983660c
+ms.sourcegitcommit: 41c8caf0e0c849beeeb50cdccf6dbc1ba7cce442
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215603"
+ms.lasthandoff: 06/24/2019
+ms.locfileid: "67344594"
 ---
 # <a name="migrate-a-sdk-v3-javascript-bot-to-v4"></a>将 SDK v3 Javascript 机器人迁移到 v4
 
@@ -489,7 +489,7 @@ exports.FlightDialog = FlightDialog;
 
 将 **./bot.js** 重命名为 **./bots/reservationBot.js** 并对其进行编辑。
 
-1. 该文件已导入 **ActivityHandler**，后者提供机器人的基实现。
+1. 该文件已导入 `ActivityHandler`，后者提供机器人的基实现。
 
     ```javascript
     const { ActivityHandler } = require('botbuilder');
@@ -634,3 +634,5 @@ v4 操作指南主题：
 - [发送和接收文本消息](../bot-builder-howto-send-messages.md)
 - [保存用户和聊天数据](../bot-builder-howto-v4-state.md)
 - [实现顺序聊天流](../bot-builder-dialog-manage-conversation-flow.md)
+- [使用模拟器进行调试](../../bot-service-debug-emulator.md)
+- [将遥测功能添加到机器人](../bot-builder-telemetry.md)

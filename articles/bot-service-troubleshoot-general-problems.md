@@ -7,21 +7,21 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.date: 04/30/2019
-ms.openlocfilehash: 1e0678d869b02d536eb5c3ce39461da94dbd9a57
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 7a018855b11aa638cbad1b70b53505395ae7f5f9
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65033087"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464585"
 ---
 # <a name="troubleshooting-general-problems"></a>排查常见问题
 这些常见问题有助于排查常见的机器人开发或操作问题。
 
 ## <a name="how-can-i-troubleshoot-issues-with-my-bot"></a>如何排查机器人的问题？
 
-1. 通过 [Visual Studio Code](debug-bots-locally-vscode.md) 或 [Visual Studio](https://docs.microsoft.com/en-us/visualstudio/debugger/navigating-through-code-with-the-debugger?view=vs-2017) 调试机器人的源代码。
+1. 通过 [Visual Studio Code](debug-bots-locally-vscode.md) 或 [Visual Studio](https://docs.microsoft.com/visualstudio/debugger/navigating-through-code-with-the-debugger?view=vs-2017) 调试机器人的源代码。
 1. 先使用[模拟器](bot-service-debug-emulator.md)测试机器人，然后再将其部署到云。
-1. 将机器人部署到类似于 Azure 的云托管平台，然后使用 <a href="https://portal.azure.com" target="_blank">Azure 门户</a>中机器人仪表板上的内置 Web 聊天控件测试与机器人的连接性。 如果在将机器人部署到 Azure 后遇到问题，可以考虑参阅此博客文章：[Understanding Azure troubleshooting and support](https://azure.microsoft.com/en-us/blog/understanding-azure-troubleshooting-and-support/)（了解 Azure 故障排除和支持）。
+1. 将机器人部署到类似于 Azure 的云托管平台，然后使用 <a href="https://portal.azure.com" target="_blank">Azure 门户</a>中机器人仪表板上的内置 Web 聊天控件测试与机器人的连接性。 如果在将机器人部署到 Azure 后遇到问题，可以考虑参阅此博客文章：[Understanding Azure troubleshooting and support](https://azure.microsoft.com/blog/understanding-azure-troubleshooting-and-support/)（了解 Azure 故障排除和支持）。
 1. 排除[身份验证][TroubleshootingAuth]可能存在问题的可能性。
 1. 在 Skype 上测试机器人。 这将有助于验证端到端的用户体验。
 1. 考虑在具有其他身份验证要求的渠道（例如 Direct Line 或网上聊天）上测试机器人。
@@ -34,10 +34,10 @@ ms.locfileid: "65033087"
 ## <a name="im-using-the-bot-framework-sdk-for-net-how-can-i-troubleshoot-issues-with-my-bot"></a>我使用的是 Bot Framework SDK for .NET。 如何排查机器人的问题？
 
 **查找异常。**  
-在 Visual Studio 2017 中，转到“调试” > “Windows” > “异常设置”。 在“异常设置”窗口中，选中“公共语言运行时异常”旁边的“引发时中断”复选框。 当存在引发的异常或未处理的异常时，还可能会在“输出”窗口中看到诊断输出。
+在 Visual Studio 2017 中，转到“调试”   > “Windows”   > “异常设置”  。 在“异常设置”  窗口中，选中“公共语言运行时异常”  旁边的“引发时中断”  复选框。 当存在引发的异常或未处理的异常时，还可能会在“输出”窗口中看到诊断输出。
 
 **查看调用堆栈。**  
-在 Visual Studio 中，可以选择是否调试[仅我的代码](https://msdn.microsoft.com/en-us/library/dn457346.aspx)。 检查完整的调用堆栈可能会对问题提供其他见解。
+在 Visual Studio 中，可以选择是否调试[仅我的代码](https://msdn.microsoft.com/library/dn457346.aspx)。 检查完整的调用堆栈可能会对问题提供其他见解。
 
 **确保所有对话框方法都以处理下一条消息的计划结束。**  
 所有对话框步骤都需要馈送到瀑布框的下一步中，或者需要终止当前对话框，以便将其从堆栈中弹出。 如果某个步骤未正确处理，则聊天不会像预期的那样继续。 若要详细了解对话框，请参阅有关[对话框](v4sdk/bot-builder-concept-dialog.md)的概念文章。
@@ -57,13 +57,13 @@ HTTP 状态代码 429 的错误响应表示在给定的时间内发出了太多�
 
 在响应中生成的消息活动必须正确处理，否则到不了预期的目标。 绝大多数情况下，你不需进行显式处理；SDK 会为你处理此消息活动。 
 
-正确处理某项活动意味着包括相应的聊天引用详细信息以及有关发送者和接收者的详细信息。 大多数情况下，发送消息活动是为了响应已经到达的消息活动。 因此，可以从入站活动中获取寻址详细信息。 
+正确处理某项活动意味着包括相应的聊天引用详细信息以及有关发送者和接收者的详细信息。  大多数情况下，发送消息活动是为了响应已经到达的消息活动。 因此，可以从入站活动中获取寻址详细信息。 
 
 如果检查跟踪或审核日志，则可通过检查来确保消息正确寻址。 否则，请在机器人中设置一个断点，看看是在何处为消息设置的 ID。
 
 ## <a name="how-can-i-run-background-tasks-in-aspnet"></a>如何在 ASP.NET 中运行后台任务？ 
 
-在某些情况下，你可能希望启动一个需要等待几秒钟的异步任务，然后执行一些代码以清除用户配置文件或重置会话/对话状态。 有关如何实现此目的的详细信息，请参阅[如何在 ASP.NET 中运行后台任务](https://www.hanselman.com/blog/HowToRunBackgroundTasksInASPNET.aspx)。 具体而言，请考虑使用[HostingEnvironment.QueueBackgroundWorkItem](https://msdn.microsoft.com/en-us/library/dn636893(v=vs.110).aspx)。 
+在某些情况下，你可能希望启动一个需要等待几秒钟的异步任务，然后执行一些代码以清除用户配置文件或重置会话/对话状态。 有关如何实现此目的的详细信息，请参阅[如何在 ASP.NET 中运行后台任务](https://www.hanselman.com/blog/HowToRunBackgroundTasksInASPNET.aspx)。 具体而言，请考虑使用[HostingEnvironment.QueueBackgroundWorkItem](https://msdn.microsoft.com/library/dn636893(v=vs.110).aspx)。 
 
 
 ## <a name="how-do-user-messages-relate-to-https-method-calls"></a>用户消息如何与 HTTPS 方法调用关联？
@@ -74,7 +74,7 @@ HTTP 状态代码 429 的错误响应表示在给定的时间内发出了太多�
 
 机器人是 Web 服务和一些托管平台（包括 Azure），会在一段时间内没有收到流量时自动将服务置于休眠状态。 如果你的机器人发生这种情况，它必须在下次收到消息时重启，这会使其响应速度比其已在运行的响应速度慢得多。
 
-借助某些托管平台，你可以配置服务，以使其不会进入休眠状态。 要在 Azure 中执行此操作，请导航到 [Azure 门户](https://portal.azure.com)中的机器人服务，选择“应用程序设置”，然后选择“Always on”。 大多数（但不是全部）服务计划都提供此选项。
+借助某些托管平台，你可以配置服务，以使其不会进入休眠状态。 要在 Azure 中执行此操作，请导航到 [Azure 门户](https://portal.azure.com)中的机器人服务，选择“应用程序设置”  ，然后选择“Always on”  。 大多数（但不是全部）服务计划都提供此选项。
 
 ## <a name="how-can-i-guarantee-message-delivery-order"></a>如何保证消息传递顺序？
 
@@ -108,11 +108,11 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 
 ## <a name="why-is-my-kik-bot-replying-im-sorry-i-cant-talk-right-now"></a>为什么我的 Kik 机器人回复“我很抱歉，我现在不能说话”？
 
-在 Kik 上开发的机器人允许 50 个订阅者。 在 50 个不同用户与你的机器人交互后，任何尝试与你的机器人聊天的新用户都会收到消息“我很抱歉，我现在不能说话。” 有关详细信息，请参阅 [Kik 文档](https://botsupport.kik.com/hc/en-us/articles/225764648-How-can-I-share-my-bot-with-Kik-users-while-in-development-)。
+在 Kik 上开发的机器人允许 50 个订阅者。 在 50 个不同用户与你的机器人交互后，任何尝试与你的机器人聊天的新用户都会收到消息“我很抱歉，我现在不能说话。” 有关详细信息，请参阅 [Kik 文档](https://botsupport.kik.com/hc/articles/225764648-How-can-I-share-my-bot-with-Kik-users-while-in-development-)。
 
 ## <a name="how-can-i-use-authenticated-services-from-my-bot"></a>如何通过我的机器人使用经过身份验证的服务？
 
-有关 Azure Active Directory 身份验证，请参阅添加身份验证 [V3](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-3.0&tabs=csharp) | [V4](https://docs.microsoft.com/en-us/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-4.0&tabs=csharp)。 
+有关 Azure Active Directory 身份验证，请参阅添加身份验证 [V3](https://docs.microsoft.com/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-3.0&tabs=csharp) | [V4](https://docs.microsoft.com/azure/bot-service/bot-builder-tutorial-authentication?view=azure-bot-service-4.0&tabs=csharp)。 
 
 > [!NOTE] 
 > 如果向机器人添加身份验证和安全功能，则应确保在代码中实现的模式符合应用程序相应的安全标准。
@@ -157,7 +157,7 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 可提供多种方法：
 
 * 通过 `Autofac` 和 `FiberModule.Key_DoNotSerialize` 解决依赖关系。 这是最明确的解决方案。
-* 使用 [NonSerialized](https://msdn.microsoft.com/en-us/library/system.nonserializedattribute(v=vs.110).aspx) 和 [OnDeserialized](https://msdn.microsoft.com/en-us/library/system.runtime.serialization.ondeserializedattribute(v=vs.110).aspx) 属性还原反序列化的依赖关系。 这是最简单的解决方案。
+* 使用 [NonSerialized](https://msdn.microsoft.com/library/system.nonserializedattribute(v=vs.110).aspx) 和 [OnDeserialized](https://msdn.microsoft.com/library/system.runtime.serialization.ondeserializedattribute(v=vs.110).aspx) 属性还原反序列化的依赖关系。 这是最简单的解决方案。
 * 不要存储该依赖关系，以便不对其进行序列化。 不建议在技术上可行的情况下使用此解决方案。
 * 使用反射序列化代理。 在某些情况下，此解决方案可能不可行，并且存在序列化过多的风险。
 
@@ -180,7 +180,7 @@ Bot Framework 和许多通道就像使用 [Markdown](https://en.wikipedia.org/wi
 * 使用语言（Node.js 或 C#）层中的生成器接口。
 
 > [!IMPORTANT]
-> 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展之一用于生产机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”主题。
+> 建议不要将 Bot Framework State Service API 用于生产环境，该 API 可能会在将来的版本中弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展  之一用于生产机器人。 有关详细信息，请参阅针对 [.NET](~/dotnet/bot-builder-dotnet-state.md) 或 [Node](~/nodejs/bot-builder-nodejs-state.md) 实现的“管理状态数据”  主题。
 
 ::: moniker-end
 
@@ -220,11 +220,11 @@ builder.Update(Conversation.Container);
 ## <a name="how-do-i-version-the-bot-data-stored-through-the-state-api"></a>如何对通过状态 API 存储的机器人数据进行版本控制？
 
 > [!IMPORTANT]
-> 建议不要将 Bot Framework State Service API 用于生产环境或 v4 机器人，该 API 可能会在将来的版本中完全弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展之一用于生产机器人。 有关详细信息，请参阅[管理状态数据](v4sdk/bot-builder-howto-v4-state.md)主题。
+> 建议不要将 Bot Framework State Service API 用于生产环境或 v4 机器人，该 API 可能会在将来的版本中完全弃用。 建议更新机器人代码以使用内存中存储进行测试，或者将 Azure 扩展  之一用于生产机器人。 有关详细信息，请参阅[管理状态数据](v4sdk/bot-builder-howto-v4-state.md)主题。
 
 借助状态服务，可以通过会话中的对话框保留进度，以便用户稍后可以返回到与机器人的会话，而不会丢失其位置。 为保留这功能，修改机器人代码时，不会自动清除通过状态 API 存储的机器人数据属性包。 应根据修改后的代码是否与旧版数据兼容来决定是否应清除机器人数据。 
 
-* 如果要在开发机器人期间手动重置会话的对话框堆栈和状态，可以使用 ` /deleteprofile` 命令删除状态数据。 确保在此命令中包含前导空格，以防通道解释该命令。
+* 如果要在开发机器人期间手动重置会话的对话框堆栈和状态，可以使用 `/deleteprofile` 命令删除状态数据。 确保在此命令中包含前导空格，以防通道解释该命令。
 * 将机器人部署到生产环境后，可以对机器人数据进行版本控制，以便在版本冲突时清除关联的状态数据。 对于 Bot Framework SDK for Node.js，这可以使用中间件来完成；对于 Bot Framework SDK for .NET，这可以使用 `IPostToBot` 实现来完成。
 
 > [!NOTE]
@@ -253,7 +253,7 @@ Bot Framework SDK for Node.js 和 Bot Framework SDK for .NET 均支持从单个 
 * [语言理解 (LUIS) 简介 - Microsoft 认知服务](https://www.youtube.com/watch?v=jWeLajon9M8)（视频）
 * [语言理解 (LUIS) 的高级学习会话](https://www.youtube.com/watch?v=39L0Gv2EcSk)（视频）
 * [LUIS 文档](/azure/cognitive-services/LUIS/Home)
-* [语言理解论坛](https://social.msdn.microsoft.com/forums/azure/en-US/home?forum=LUIS) 
+* [语言理解论坛](https://social.msdn.microsoft.com/forums/azure/home?forum=LUIS) 
 
 
 ## <a name="what-are-some-community-authored-dialogs"></a>社区创作的对话框有哪些？
@@ -267,23 +267,23 @@ Bot Framework SDK for Node.js 和 Bot Framework SDK for .NET 均支持从单个 
 
 ## <a name="why-do-i-get-an-authorizationrequestdenied-exception-when-creating-a-bot"></a>创建机器人时，为什么会收到 Authorization_RequestDenied 异常？
 
-创建 Azure 机器人服务机器人的权限是通过 Azure Active Directory (AAD) 门户进行管理的。 如果未在 [AAD 门户](http://aad.portal.azure.com)中正确配置权限，则在尝试创建机器人服务时，用户将收到 Authorization_RequestDenied 异常。
+创建 Azure 机器人服务机器人的权限是通过 Azure Active Directory (AAD) 门户进行管理的。 如果未在 [AAD 门户](http://aad.portal.azure.com)中正确配置权限，则在尝试创建机器人服务时，用户将收到 Authorization_RequestDenied  异常。
 
 首先检查你是否是目录的“来宾”：
 
 1. 登录到 [Azure 门户](http://portal.azure.com)。
-2. 单击“所有服务”，然后搜索“可用”。
-3. 选择“Azure Active Directory”。
-4. 单击“用户”。
-5. 从列表中查找用户，并确保“用户类型”不是“来宾”。
+2. 单击“所有服务”  ，然后搜索“可用”  。
+3. 选择“Azure Active Directory”  。
+4. 单击“用户”  。
+5. 从列表中查找用户，并确保“用户类型”  不是“来宾”  。
 
 ![Azure Active Directory 用户类型](~/media/azure-active-directory/user_type.png)
 
-确认你不是“来宾”后，然后确保 Active Directory 中的用户可以创建机器人服务，目录管理员需要配置以下设置：
+确认你不是“来宾”  后，然后确保 Active Directory 中的用户可以创建机器人服务，目录管理员需要配置以下设置：
 
-1. 登录到 [AAD 门户](http://aad.portal.azure.com)。 转到“用户和组”，然后选择“用户设置”。
-2. 在“应用注册”部分下，将“用户可以注册应用程序”设置为“是”。 这允许目录中的用户创建机器人服务。
-3. 在“外部用户”部分下，将“来宾用户权限受限”设置为“否”。 这允许目录中的来宾用户创建机器人服务。
+1. 登录到 [AAD 门户](http://aad.portal.azure.com)。 转到“用户和组”  ，然后选择“用户设置”  。
+2. 在“应用注册”  部分下，将“用户可以注册应用程序”  设置为“是”  。 这允许目录中的用户创建机器人服务。
+3. 在“外部用户”  部分下，将“来宾用户权限受限”  设置为“否”  。 这允许目录中的来宾用户创建机器人服务。
 
 ![Azure Active Directory 管理中心](~/media/azure-active-directory/admin_center.png)
 

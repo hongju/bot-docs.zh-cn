@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 4b2cd49d84ea90f0ac6449ce4da61495100d45c4
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: a72c103204384188d509777639c2c90e63431dd8
+ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215367"
+ms.lasthandoff: 07/01/2019
+ms.locfileid: "67496694"
 ---
 # <a name="send-and-receive-text-message"></a>发送和接收文本消息
 
@@ -24,6 +24,8 @@ ms.locfileid: "66215367"
 机器人与用户通信以及接收通信等的主要方法是通过消息  活动。 某些消息可能会只包含纯文本，而其他消息可能包含更丰富的内容，如卡或附件。 机器人的轮次处理程序从用户那里接收消息，然后你可以向用户发送响应。 轮次上下文对象提供用于将消息发送回用户的方法。 本文介绍了如何发送简单的文本消息。
 
 大多数文本字段支持 Markdown，但支持可能因通道而异。
+
+有关正在运行的机器人如何发送和接收消息，请遵循目录顶部的快速入门，或查看[机器人工作原理](bot-builder-basics.md#bot-structure)一文，该文章所提供的简单示例链接，可帮助你自行运行。
 
 ## <a name="send-a-text-message"></a>发送文本消息
 

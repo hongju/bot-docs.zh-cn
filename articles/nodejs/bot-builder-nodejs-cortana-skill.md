@@ -8,12 +8,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 02/10/2019
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: ff2d55ccdd6312e95bdb1acb223d8e1d5f60b0b3
-ms.sourcegitcommit: f84b56beecd41debe6baf056e98332f20b646bda
+ms.openlocfilehash: 1b62ca7e98313fb0247d45cb66fcae8be32e6492
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/03/2019
-ms.locfileid: "65032634"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405056"
 ---
 # <a name="build-a-speech-enabled-bot-with-cortana-skills"></a>使用 Cortana 技能构建支持语音的机器人
 
@@ -31,7 +31,7 @@ ms.locfileid: "65032634"
 使用 Bot Framework 创建 Cortana 技能只需少量的 Cortana 特定知识，主要包括构建机器人。 与已创建的其他机器人的一个主要区别是 Cortana 具有视觉和音频组件。 对于视觉组件，Cortana 提供画布区域用于呈现卡片等内容。 对于音频组件，可在机器人的消息中提供文本或 SSML，Cortana 会向用户读出这些内容，使机器人拥有语音功能。 
 
 > [!NOTE]
-> Cortana 可用于多种不同的设备。 有些设备带有屏幕，而有些设备可能没有屏幕，例如独立的扬声器。 应确保机器人能够处理这两种情况。 请参阅 [Cortana 特定的实体][CortanaSpecificEntities]，了解如何检查设备信息。
+> Cortana 可用于多种不同的设备。 有些设备带有屏幕，而有些设备可能没有屏幕，例如独立的扬声器。 应确保机器人能够处理这两种情况。 请参阅[特定于 Cortana 的实体][CortanaSpecificEntities]，了解如何检查设备信息。
 
 ## <a name="adding-speech-to-your-bot"></a>将语音添加到机器人
 
@@ -39,7 +39,7 @@ ms.locfileid: "65032634"
 
 ### <a name="sessionsay"></a>session.say
 
-机器人使用 session.say 方法向用户讲话，用于代替 session.send。 它包含用于发送 SSML 输出的可选参数，以及卡片等附件。 
+机器人使用 session.say 方法向用户讲话，用于代替 session.send   。 它包含用于发送 SSML 输出的可选参数，以及卡片等附件。 
 
 该方法具有以下格式：
 
@@ -49,16 +49,16 @@ ms.locfileid: "65032634"
 |------|------|
 | **displayText** | 在 Cortana 的 UI 中显示的文本消息。|
 | **speechText** | Cortana 读取给用户的文本或 SSML。 |
-| **options** | [IMessage][IMessage] 对象，可以包含附件或输入提示。 输入提示指示机器人接受、期待或忽略输入。 卡片附件显示在 displayText 信息下方 Cortana 的画布中。   |
+| **options** | [IMessage][IMessage] 对象，可以包含附件或输入提示。 输入提示指示机器人接受、期待或忽略输入。 卡片附件显示在 displayText 信息下方 Cortana 的画布中  。   |
 
-inputHint 属性有助于向 Cortana 指示机器人是否期待输入。 如果使用内置提示，此值会自动设置为 expectingInput 的默认值。
+inputHint 属性有助于向 Cortana 指示机器人是否期待输入  。 如果使用内置提示，此值会自动设置为 expectingInput 的默认值  。
 
 
 | 值 | 说明 |
 |------|------|
 | **acceptingInput** | 机器人被动地准备好接收输入，但并不等待响应。 如果用户按住麦克风按钮，Cortana 接受来自用户的输入。|
 | **expectingInput** | 指示机器人主动期待来自用户的响应。 Cortana 会收听用户对着麦克风的讲话。  |
-||注意：请勿在无外设设备（没有显示器的设备）上使用 **expectingInput**。 请参阅 [Cortana 技能套件常见问题解答](https://review.docs.microsoft.com/en-us/cortana/skills/faq)。|
+||注意：请勿在无外设设备（没有显示器的设备）上  使用 **expectingInput**。 请参阅 [Cortana 技能套件常见问题解答](https://review.docs.microsoft.com/cortana/skills/faq)。|
 | **ignoringInput** | Cortana 将忽略输入。 如果机器人正在主动处理请求，并且会在请求完成之前忽略用户的输入，则机器人可能发送此提示。  |
 
 下面的示例显示 Cortana 如何读取纯文本或 SSML：
@@ -87,7 +87,7 @@ session.say('Hi there', 'Hi, what’s your name?', {
 
 ### <a name="prompts"></a>提示
 
-除使用 session.say() 方法外，还可以使用 speak 和 retrySpeak 选项向内置提示传递文本或 SSML。  
+除使用 session.say() 方法外，还可以使用 speak 和 retrySpeak 选项向内置提示传递文本或 SSML    。  
 
 ```javascript
 
@@ -101,9 +101,9 @@ builder.Prompts.text(session, 'text based prompt', {
 
 <!-- TODO: Link to SSML library -->
 
-若要为用户提供选项列表，请使用 Prompts.choice。 synonyms 选项允许更灵活地识别用户话语。 value 选项在 results.response.entity 中返回。 action 选项指定机器人为该选择显示的标签。
+若要为用户提供选项列表，请使用 Prompts.choice  。 synonyms 选项允许更灵活地识别用户话语  。 value 选项在 results.response.entity 中返回   。 action 选项指定机器人为该选择显示的标签  。
 
-Prompts.choice 支持序号选择。 这意味着用户可以说“第一”、“第二”或“第三”来选择列表中的项目。 例如，给定以下提示，如果用户向 Cortana 提出“第二个选项”，则提示符将返回 8 值。
+Prompts.choice 支持序号选择  。 这意味着用户可以说“第一”、“第二”或“第三”来选择列表中的项目。 例如，给定以下提示，如果用户向 Cortana 提出“第二个选项”，则提示符将返回 8 值。
 
 ```javascript
 
@@ -119,7 +119,7 @@ Prompts.choice 支持序号选择。 这意味着用户可以说“第一”、�
 
 ```
 
-在前面的示例中，通过使用存储在本地化提示文件中具有以下格式的字符串，对提示的 speak 属性的 SSML 进行格式设置。 
+在前面的示例中，通过使用存储在本地化提示文件中具有以下格式的字符串，对提示的 speak 属性的 SSML 进行格式设置  。 
 
 ```json
 
@@ -156,13 +156,13 @@ module.exports.speak = function (template, params, options) {
 ## <a name="display-cards-in-cortana"></a>在 Cortana 中显示卡片
 
 除语音响应外，Cortana 还可显示卡片附件。 Cortana 支持以下资讯卡：
-* [HeroCard](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.herocard.html)
-* [ReceiptCard](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.receiptcard.html)
-* [ThumbnailCard](https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.thumbnailcard.html)
+* [HeroCard](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.herocard.html)
+* [ReceiptCard](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.receiptcard.html)
+* [ThumbnailCard](https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.thumbnailcard.html)
 
 请参阅[卡片设计最佳做法][CardDesign]，查看这些卡片在 Cortana 中的外观。 有关如何将资讯卡添加到机器人的示例，请参阅[发送资讯卡](bot-builder-nodejs-send-rich-cards.md)。 
 
-下面的代码演示如何将 speak 和 inputHint 属性添加到包含 Hero 卡片的消息中。
+下面的代码演示如何将 speak 和 inputHint 属性添加到包含 Hero 卡片的消息中   。
 
 ```javascript
 
@@ -195,7 +195,7 @@ module.exports.speak = function (template, params, options) {
 ## <a name="sample-rollerskill"></a>示例：RollerSkill
 以下部分中的代码摘自掷骰子的示例 Cortana 技能。 从 [BotBuilder-Samples 存储库](https://github.com/Microsoft/BotBuilder-Samples/tree/master/Node/demo-RollerSkill)下载机器人的完整代码。
 
-可通过向 Cortana 说出技能的[调用名称][InvocationNameGuidelines]来调用该技能。 对于掷骰子技能，[将机器人添加到 Cortana 通道][CortanaChannel]并将其注册为 Cortana 技能后，可以通过向 Cortana 说出“掷骰子”或“掷骰子”来调用该技能。
+通过说出[调用名][InvocationNameGuidelines]to Cortana. For the roller skill, after you [add the bot to the Cortana channel][CortanaChannel]来调用该技能，并将其注册为 Cortana 技能，就可以通过对 Cortana 说“Ask Roller”或“Ask Roller to roll dice”来调用该技能。
 
 ### <a name="explore-the-code"></a>浏览代码
 
@@ -234,7 +234,7 @@ bot.dialog('HelpDialog', function (session) {
 
 下面的对话设置自定义游戏供机器人玩耍。  机器人询问用户他们希望骰子具有的面数，以及应该滚动的面数。 机器人构建游戏结构后，会将其传递给单独的“PlayGameDialog”。
 
-要启动对话，此对话上的 triggerAction() 处理程序允许用户说出“我想玩玩投骰子”之类的内容。 它使用正则表达式来匹配用户的输入，但你可以使用 [LUIS 意向](./bot-builder-nodejs-recognize-intent-luis.md)，用起来同样简单。 
+要启动对话，此对话上的 triggerAction() 处理程序允许用户说出“我想玩玩投骰子”之类的内容  。 它使用正则表达式来匹配用户的输入，但你可以使用 [LUIS 意向](./bot-builder-nodejs-recognize-intent-luis.md)，用起来同样简单。 
 
 
 ```javascript
@@ -303,7 +303,7 @@ bot.dialog('CreateGameDialog', [
 
 ### <a name="render-results"></a>呈现结果
 
- 此对话是我们主要的游戏循环。 机器人在 session.conversationData 中存储游戏结构，因此如果用户说"再投一次"，我们可以再次重新抛掷同一组骰子。
+ 此对话是我们主要的游戏循环。 机器人在 session.conversationData 中存储游戏结构，因此如果用户说"再投一次"，我们可以再次重新抛掷同一组骰子  。
 
 ```javascript
 
@@ -430,9 +430,9 @@ bot.dialog('PlayGameDialog', function (session, args) {
 
 
 [SSMLRef]: https://aka.ms/cortana-ssml
-[IMessage]: https://docs.botframework.com/en-us/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html
-[Send]: https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.session#send
-[CortanaDevCenter]: https://developer.microsoft.com/en-us/cortana
+[IMessage]: https://docs.botframework.com/node/builder/chat-reference/interfaces/_botbuilder_d_.imessage.html
+[Send]: https://docs.botframework.com/node/builder/chat-reference/classes/_botbuilder_d_.session#send
+[CortanaDevCenter]: https://developer.microsoft.com/cortana
 
 [CortanaSpecificEntities]: https://aka.ms/lgvcto
 [CortanaAuth]: https://aka.ms/vsdqcj

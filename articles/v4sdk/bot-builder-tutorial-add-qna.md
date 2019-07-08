@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 5c8b164aa97ff4ea74acbd6765c72ea0c3f1ad3b
-ms.sourcegitcommit: e276008fb5dd7a37554e202ba5c37948954301f1
+ms.openlocfilehash: aff1440f739150181ddc2d65d9b749b4eeda5d79
+ms.sourcegitcommit: dbbfcf45a8d0ba66bd4fb5620d093abfa3b2f725
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/05/2019
-ms.locfileid: "66693646"
+ms.lasthandoff: 06/28/2019
+ms.locfileid: "67464687"
 ---
 # <a name="tutorial-use-qna-maker-in-your-bot-to-answer-questions"></a>教程：在机器人中使用 QnA Maker 来回答问题
 
@@ -53,7 +53,7 @@ ms.locfileid: "66693646"
 
 1. 将 Samples 存储库克隆或复制到计算机。
 1. 在 QnA Maker 门户中**创建知识库**。
-   1. 如有必要，请创建 QnA 服务。 （就本教程来说，可以使用现有的 QnA Maker 服务，也可以创建一个新的。）如需更多详细的 QnA Maker 说明，请参阅[创建 QnA Maker 服务](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure)和[创建、训练和发布 QnA Maker 知识库](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/create-publish-knowledge-base)。
+   1. 如有必要，请创建 QnA 服务。 （就本教程来说，可以使用现有的 QnA Maker 服务，也可以创建一个新的。）如需更多详细的 QnA Maker 说明，请参阅[创建 QnA Maker 服务](https://docs.microsoft.com/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure)和[创建、训练和发布 QnA Maker 知识库](https://docs.microsoft.com/azure/cognitive-services/qnamaker/quickstarts/create-publish-knowledge-base)。
    1. 将 QnA 服务连接到知识库。
    1. 为知识库命名。
    1. 若要填充知识库，请使用 Samples 存储库中的 **BotBuilder-Samples\samples\csharp_dotnetcore\11.qnamaker\CognitiveModels\smartLightFAQ.tsv** 文件。
@@ -78,23 +78,23 @@ Authorization: EndpointKey <qna-maker-resource-key>
 ## <a name="add-knowledge-base-information-to-your-bot"></a>将知识库信息添加到机器人
 从 Bot Framework v4.3 开始，Azure 不再在下载的机器人源代码中提供 .bot 文件。 请按以下说明将 CSharp 或 JavaScript 机器人连接到知识库。
 
-## <a name="ctabcsharp"></a>[C#](#tab/csharp)
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 向 appsetting.json 文件添加以下值：
 
 ```json
 {
-   "MicrosoftAppId": "",
+  "MicrosoftAppId": "",
   "MicrosoftAppPassword": "",
   "ScmType": "None",
   
-  "QnAKnowledgebaseId": "<knowledge-base-id>",
-  "QnAAuthKey": "<qna-maker-resource-key>",
-  "QnAEndpointHostName": "<your-hostname>" // This is a URL ending in /qnamaker
+  "QnAKnowledgebaseId": "knowledge-base-id",
+  "QnAAuthKey": "qna-maker-resource-key",
+  "QnAEndpointHostName": "your-hostname" // This is a URL ending in /qnamaker
 }
 ```
 
-## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 向 .env 文件添加以下值：
 
@@ -103,9 +103,9 @@ MicrosoftAppId=""
 MicrosoftAppPassword=""
 ScmType=None
 
-QnAKnowledgebaseId="<knowledge-base-id>"
-QnAAuthKey="<qna-maker-resource-key>"
-QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
+QnAKnowledgebaseId="knowledge-base-id"
+QnAAuthKey="qna-maker-resource-key"
+QnAEndpointHostName="your-hostname" // This is a URL ending in /qnamaker
 ```
 
 ---
@@ -122,20 +122,33 @@ QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
 
 更新初始化代码，加载知识库的服务信息。
 
-## <a name="ctabcsharp"></a>[C#](#tab/csharp)
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
 1. 将 **Microsoft.Bot.Builder.AI.QnA** NuGet 包添加到项目中。
+
+   可通过 NuGet 包管理器或命令行执行此操作：
+
+   ```cmd
+   dotnet add package Microsoft.Bot.Builder.AI.QnA
+   ```
+
+   有关 NuGet 的详细信息，请参阅 [NuGet 文档](https://docs.microsoft.com/nuget/#pivot=start&panel=start-all)。
+
 1. 将 **Microsoft.Extensions.Configuration** NuGet 包添加到项目中。
+
 1. 在 **Startup.cs** 文件中，添加这些命名空间引用。
 
    **Startup.cs**
+
    ```csharp
    using Microsoft.Bot.Builder.AI.QnA;
    using Microsoft.Extensions.Configuration;
    ```
+
 1. 修改 _ConfigureServices_ 方法，创建一个 QnAMakerEndpoint，以便连接到在 **appsettings.json** 文件中定义的知识库。
 
    **Startup.cs**
+
    ```csharp
    // Create QnAMaker endpoint as a singleton
    services.AddSingleton(new QnAMakerEndpoint
@@ -146,9 +159,11 @@ QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
     });
 
    ```
+
 1. 在 **EchoBot.cs** 文件中，添加这些命名空间引用。
 
    **EchoBot.cs**
+
    ```csharp
    using System.Linq;
    using Microsoft.Bot.Builder.AI.QnA;
@@ -157,6 +172,7 @@ QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
 1. 添加一个 `EchoBotQnA` 连接器，在机器人的构造函数中将其初始化。
 
    **EchoBot.cs**
+
    ```csharp
    public QnAMaker EchoBotQnA { get; private set; }
    public EchoBot(QnAMakerEndpoint endpoint)
@@ -165,9 +181,11 @@ QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
       EchoBotQnA = new QnAMaker(endpoint);
    }
    ```
+
 1. 在 _OnMembersAddedAsync( )_ 方法下方，通过添加以下代码创建 _AccessQnAMaker( )_ 方法：
 
    **EchoBot.cs**
+
    ```csharp
    private async Task AccessQnAMaker(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
    {
@@ -182,19 +200,21 @@ QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
       }
    }
    ```
+
 1. 现在，在 _OnMessageActivityAsync( )_ 中调用新方法 _AccessQnAMaker( )_ ，如下所示：
 
    **EchoBot.cs**
+
    ```csharp
    protected override async Task OnMessageActivityAsync(ITurnContext<IMessageActivity> turnContext, CancellationToken cancellationToken)
    {
-      // First send the user input to your QnA Maker knowledgebase
+      // First send the user input to your QnA Maker knowledge base
       await AccessQnAMaker(turnContext, cancellationToken);
       ...
    }
    ```
 
-## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 1. 打开终端或命令提示符，转到项目的根目录。
 1. 将 **botbuilder-ai** npm 包添加到项目。
@@ -206,7 +226,7 @@ QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
 
    **index.js**
    ```javascript
-   // Map knowledgebase endpoint values from .env file into the required format for `QnAMaker`.
+   // Map knowledge base endpoint values from .env file into the required format for `QnAMaker`.
    const configuration = {
       knowledgeBaseId: process.env.QnAKnowledgebaseId,
       endpointKey: process.env.QnAAuthKey,
@@ -242,24 +262,29 @@ QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
             this.qnaMaker = new QnAMaker(configuration, qnaOptions);
    ```
 
-1. 最后，将以下代码添加到 onMessage( ) 调用，以便将每项用户输入传递到 QnA Maker 知识库，并将 QnA Maker 响应返回给用户，以便查询知识库中的答案。
- 
-    **bot.js**
-    ```javascript
-   // send user input to QnA Maker.
-   const qnaResults = await this.qnaMaker.getAnswers(turnContext);
+1. 最后，更新 `onMessage` 函数，以便在知识库中查询答案。 将每个用户输入传递给 QnA Maker 知识库，并将第一个 QnA Maker 响应返回给用户。
 
-   // If an answer was received from QnA Maker, send the answer back to the user.
-   if (qnaResults[0]) {
-      await turnContext.sendActivity(`QnAMaker returned response: ' ${ qnaResults[0].answer}`);
-   } 
-   else { 
-      // If no answers were returned from QnA Maker, reply with help.
-      await turnContext.sendActivity('No QnA Maker response was returned.'
-           + 'This example uses a QnA Maker Knowledge Base that focuses on smart light bulbs. '
-           + `Ask the bot questions like "Why won't it turn on?" or "I need help."`);
-   }
-   ```
+    **bot.js**
+
+    ```javascript
+    this.onMessage(async (context, next) => {
+        // send user input to QnA Maker.
+        const qnaResults = await this.qnaMaker.getAnswers(context);
+
+        // If an answer was received from QnA Maker, send the answer back to the user.
+        if (qnaResults[0]) {
+            await context.sendActivity(`QnAMaker returned response: ' ${ qnaResults[0].answer}`);
+        }
+        else {
+            // If no answers were returned from QnA Maker, reply with help.
+            await context.sendActivity('No QnA Maker response was returned.'
+                + 'This example uses a QnA Maker Knowledge Base that focuses on smart light bulbs. '
+                + `Ask the bot questions like "Why won't it turn on?" or "I need help."`);
+        }
+        await next();
+    });
+    ```
+
 ---
 
 ### <a name="test-the-bot-locally"></a>在本地测试机器人
@@ -281,12 +306,12 @@ QnAEndpointHostName="<your-hostname>" // This is a URL ending in /qnamaker
 >
 > 如果根文件夹位置不正确，**机器人将无法在 Azure 门户中运行**。
 
-## <a name="ctabcsharp"></a>[C#](#tab/csharp)
+# <a name="ctabcsharp"></a>[C#](#tab/csharp)
 ```cmd
-az webapp deployment source config-zip --resource-group <resource-group-name> --name <bot-name-in-azure> --src "c:\bot\mybot.zip"
+az webapp deployment source config-zip --resource-group "resource-group-name" --name "bot-name-in-azure" --src "c:\bot\mybot.zip"
 ```
 
-## <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
 
 [!INCLUDE [publish snippet](~/includes/deploy/snippet-publish-js.md)]
 

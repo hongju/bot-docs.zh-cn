@@ -9,12 +9,12 @@ ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
 ms.date: 09/20/2018
-ms.openlocfilehash: 0b5bc1e82b6ef2dc5550fcaa5db176d06a7d2ea7
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: ecccbcadab93417dd52f72512a0046e70a83e85e
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49999694"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405827"
 ---
 # <a name="design-the-user-experience"></a>设计用户体验
 
@@ -22,9 +22,9 @@ ms.locfileid: "49999694"
 
 ## <a name="rich-user-controls"></a>富用户控件
 
-“富用户控件”是常用的 UI 控件，例如按钮、图像、轮播和菜单。机器人可以将这些控件提供给用户，然后用户即可用其来传递选择和意向。 机器人可以使用 UI 控件集来模拟应用，甚至可以在应用中以嵌入方式运行。 机器人嵌入应用或网站时，可以利用托管它的应用的功能，因此可以表示几乎任何 UI 控件。 
+ “富用户控件”是常用的 UI 控件，例如按钮、图像、轮播和菜单。机器人可以将这些控件提供给用户，然后用户即可用其来传递选择和意向。 机器人可以使用 UI 控件集来模拟应用，甚至可以在应用中以嵌入方式运行。 机器人嵌入应用或网站时，可以利用托管它的应用的功能，因此可以表示几乎任何 UI 控件。 
 
-几十年来，应用程序和网站开发人员一直依赖于 UI 控件来启用用户与其应用程序的交互，而这些相同的 UI 控件也可在机器人中高效使用。 例如，可以通过按钮为用户提供简单的选择。 让用户通过单击标记为“Hotels”的按钮来传达“Hotels”的意思比强制用户键入“Hotels”要容易，且更快速。 这在移动设备上尤其如此，用户更喜欢单击而不是键入。
+几十年来，应用程序和网站开发人员一直依赖于 UI 控件来启用用户与其应用程序的交互，而这些相同的 UI 控件也可在机器人中高效使用。 例如，可以通过按钮为用户提供简单的选择。 让用户通过单击标记为“Hotels”的按钮来传达“Hotels”的意思比强制用户键入“Hotels”要容易，且更快速。  这在移动设备上尤其如此，用户更喜欢单击而不是键入。
 
 ## <a name="cards"></a>卡
 
@@ -32,7 +32,7 @@ ms.locfileid: "49999694"
 
 Microsoft 机器人服务卡是可编程的对象，包含标准化的集合，而这些集合中的富用户控件可以跨不同范围的通道进行识别。 下表介绍了可用卡的列表，并针对每种类型的卡提供了使用方面的最佳做法建议。
 
-| 卡类型 | 示例 | Description |
+| 卡类型 | 示例 | 说明 |
 | ---- | ---- | ---- |
 | AdaptiveCard | ![自适应卡图像](./media/adaptive-card.png) | 一种开放式卡交换格式，以 JSON 对象方式呈现。 通常用于跨通道部署卡。 卡会适应每个托管通道的外观。 |
 | AnimationCard | ![动画卡图像](./media/animation-card1.png) | 一种可以播放动态 GIF 或短视频的卡。 |
@@ -47,7 +47,7 @@ Microsoft 机器人服务卡是可编程的对象，包含标准化的集合，�
 
 可以通过卡对机器人设计一次，然后就可以让机器人跨各种通道使用。 但是，并非所有卡类型在所有可用通道中都受到完全的支持。 
 
-有关如何向机器人添加卡的详细说明，可参阅[添加富卡媒体附件](v4sdk/bot-builder-howto-add-media-attachments.md)和[向消息添加建议的操作](v4sdk/bot-builder-howto-add-suggested-actions.md)部分。 还可以在此处找到以下卡的示例代码：[C#](https://aka.ms/bot-cards-sample-code-cs)/[JS](https://aka.ms/bot-cards-sample-code-js) 自适应卡：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)，附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-js-sample-code)，以及建议的操作：[C#](https://aka.ms/bot-suggested-actions-code)/[JS](https://aka.ms/bot-suggested-actions-js-code)。
+有关如何向机器人添加卡的详细说明，可参阅[添加富卡媒体附件](v4sdk/bot-builder-howto-add-media-attachments.md)和[向消息添加建议的操作](v4sdk/bot-builder-howto-add-suggested-actions.md)部分。 还可以在下面找到卡片的示例代码：[C#](https://aka.ms/bot-cards-sample-code-cs)/[JS](https://aka.ms/bot-cards-sample-code-js) 自适应卡片：[C#](https://aka.ms/bot-adaptive-cards-sample-code)/[JS](https://aka.ms/bot-adaptive-cards-js-sample-code)，附件：[C#](https://aka.ms/bot-attachments-sample-code)/[JS](https://aka.ms/bot-attachments-js-sample-code) 和建议的操作：[C#](https://aka.ms/bot-suggested-actions-code)/[JS](https://aka.ms/bot-suggested-actions-js-code)。
 
 
 
@@ -77,7 +77,7 @@ Microsoft 机器人服务卡是可编程的对象，包含标准化的集合，�
 > 将机器人设计成要求用户提供具体命令通常会提供好的用户体验，同时也不需自然语言理解功能。
 
   
-使用知识库机器人或问答式机器人时，用户可能会**提问一般性问题**。 例如，假设一个机器人可以根据数千个文档的内容回答问题。 <a href="https://qnamaker.ai" target="_blank">QnA Maker</a> 和 <a href="https://azure.microsoft.com/en-us/services/search/" target="_blank">Azure 搜索</a>都是专门针对此类场景设计的技术。 有关详细信息，请参阅[设计知识库机器人](bot-service-design-pattern-knowledge-base.md)。
+使用知识库机器人或问答式机器人时，   用户可能会**提问一般性问题**。 例如，假设一个机器人可以根据数千个文档的内容回答问题。 <a href="https://qnamaker.ai" target="_blank">QnA Maker</a> 和 <a href="https://azure.microsoft.com/services/search/" target="_blank">Azure 搜索</a>都是专门针对此类场景设计的技术。 有关详细信息，请参阅[设计知识库机器人](bot-service-design-pattern-knowledge-base.md)。
 
 > [!TIP]
 > 如果设计的机器人可以根据数据库、网页或文档中的结构化或非结构化数据来回答问题，请考虑使用专门针对此类场景设计的技术，而不要尝试使用自然语言理解来解决问题。

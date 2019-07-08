@@ -7,14 +7,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 12/13/17
+ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 9251307cb77cfb240e88c7ae44b13fe7e7fa2cdb
-ms.sourcegitcommit: b78fe3d8dd604c4f7233740658a229e85b8535dd
+ms.openlocfilehash: 147862b0fe684f9312a94fe903326ca737f5a3d6
+ms.sourcegitcommit: 697a577d72aaf91a0834d4b4c2ef5aa11291f28f
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 10/24/2018
-ms.locfileid: "49998634"
+ms.lasthandoff: 07/01/2019
+ms.locfileid: "67496706"
 ---
 # <a name="support-audio-calls-with-skype"></a>支持使用 Skype 进行音频通话
 
@@ -53,7 +53,7 @@ bot.dialog('/', function (session) {
 ```
 
 > [!NOTE]
-> 若要查找机器人的“AppID”和“AppPassword”，请参阅 [MicrosoftAppID 和 MicrosoftAppPassword](~/bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
+> 若要查找机器人的“AppID”  和“AppPassword”  ，请参阅 [MicrosoftAppID 和 MicrosoftAppPassword](~/bot-service-manage-overview.md#microsoftappid-and-microsoftapppassword)。
 
 模拟器目前不支持测试呼叫机器人。 若要测试机器人，需要完成发布机器人所需的大部分步骤。  此外需要使用 Skype 客户端与机器人进行交互。 
 
@@ -65,7 +65,7 @@ bot.dialog('/', function (session) {
 在机器人注册过程中，将向你分配一个应用 ID 和密码，应将其粘贴到 hello world 机器人的连接器设置中。 还需要使用完整的呼叫链接，并将其粘贴到 callbackUrl 设置中。
 
 ### <a name="add-bot-to-contacts"></a>将机器人添加到联系人
-在开发人员门户的机器人注册页，可以看到机器人 Skype 通道旁边的“添加到 Skype”按钮。 单击该按钮以将机器人添加到 Skype 中的联系人列表。  这样做之后，你（以及为其提供联接链接的任何人）将能够与机器人进行通信。
+在开发人员门户的机器人注册页，可以看到机器人 Skype 通道旁边的“添加到 Skype”  按钮。 单击该按钮以将机器人添加到 Skype 中的联系人列表。  这样做之后，你（以及为其提供联接链接的任何人）将能够与机器人进行通信。
 
 ### <a name="test-your-bot"></a>测试机器人
 可以使用 Skype 客户端测试机器人。 单击机器人联系人条目时（可能需要搜索机器人才能看到），会注意到高亮显示的呼叫图标。如果你已向现有机器人添加呼叫，呼叫图标亮起可能需要几分钟的时间。  
@@ -73,9 +73,9 @@ bot.dialog('/', function (session) {
 如果按呼叫按钮，它应拨号给机器人，你应会听到“Watson... come here!” 然后挂断。
 
 ## <a name="calling-basics"></a>呼叫基础知识
-[UniversalCallBot](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.universalcallbot) 和 [CallConnector](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callconnector) 类让你可以像创建聊天机器人一样创建呼叫机器人。 将实质上与[聊天对话框](bot-builder-nodejs-manage-conversation-flow.md)相同的对话框添加到机器人。 可以将[瀑布图](bot-builder-nodejs-prompts.md)添加到机器人。 会话对象 [CallSession](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession) 类包含添加的 [answer()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#answer)、[hangup()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#hangup) 和 [reject()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#reject) 方法用于管理当前调用。 一般情况下，无需担心这些呼叫控制方法，因为 CallSession 具有自动管理呼叫的逻辑。 如果采取了发送消息或调用内置提示的操作，会话将自动响应呼叫。 如果你调用 [endConversation()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#endconversation) 或者它检测到你已停止询问呼叫方问题（未调用内置提示），它也会自动挂断/拒绝呼叫。
+[UniversalCallBot](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.universalcallbot) 和 [CallConnector](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callconnector) 类让你可以像创建聊天机器人一样创建呼叫机器人。 将实质上与[聊天对话框](bot-builder-nodejs-manage-conversation-flow.md)相同的对话框添加到机器人。 可以将[瀑布图](bot-builder-nodejs-prompts.md)添加到机器人。 会话对象 [CallSession](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession) 类包含添加的 [answer()](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession#answer)、[hangup()](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession#hangup) 和 [reject()](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession#reject) 方法用于管理当前调用。 一般情况下，无需担心这些呼叫控制方法，因为 CallSession 具有自动管理呼叫的逻辑。 如果采取了发送消息或调用内置提示的操作，会话将自动响应呼叫。 如果你调用 [endConversation()](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession#endconversation) 或者它检测到你已停止询问呼叫方问题（未调用内置提示），它也会自动挂断/拒绝呼叫。
 
-呼叫机器人和聊天机器人之间的另一个区别是，虽然聊天机器人通常向用户发送消息、卡和键盘，但由呼叫机器人处理操作和结果。 需要使用 Skype 呼叫机器人来创建由一个或多个[操作](http://docs.botframework.com/en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.iaction)组成的[工作流](http://docs.botframework.com/en-us/node/builder/calling-reference/interfaces/_botbuilder_d_.iworkflow)。  这是另一件在实践中不必太过担心的事，因为 Bot Builder 呼叫 SDK 将为你管理大部分内容。 可使用 [CallSession.send()](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.callsession#send) 方法传递操作或字符串，它会将其转变为 [PlayPromptActions](http://docs.botframework.com/en-us/node/builder/calling-reference/classes/_botbuilder_d_.playpromptaction)。  此会话包含自动批处理逻辑，将多个操作合并到提交给呼叫服务的单个工作流，以便可以多次安全地调用 send()。  在处理所有结果时，应依赖于 SDK 的内置[提示](bot-builder-nodejs-prompts.md)来收集用户输入。  
+呼叫机器人和聊天机器人之间的另一个区别是，虽然聊天机器人通常向用户发送消息、卡和键盘，但由呼叫机器人处理操作和结果。 需要使用 Skype 呼叫机器人来创建由一个或多个[操作](http://docs.botframework.com/node/builder/calling-reference/interfaces/_botbuilder_d_.iaction)组成的[工作流](http://docs.botframework.com/node/builder/calling-reference/interfaces/_botbuilder_d_.iworkflow)。  这是另一件在实践中不必太过担心的事，因为 Bot Builder 呼叫 SDK 将为你管理大部分内容。 可使用 [CallSession.send()](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.callsession#send) 方法传递操作或字符串，它会将其转变为 [PlayPromptActions](http://docs.botframework.com/node/builder/calling-reference/classes/_botbuilder_d_.playpromptaction)。  此会话包含自动批处理逻辑，将多个操作合并到提交给呼叫服务的单个工作流，以便可以多次安全地调用 send()。  在处理所有结果时，应依赖于 SDK 的内置[提示](bot-builder-nodejs-prompts.md)来收集用户输入。  
 
-[calling_sdk]: http://docs.botframework.com/en-us/node/builder/calling-reference/modules/_botbuilder_d_
-[chat_sdk]: http://docs.botframework.com/en-us/node/builder/chat-reference/modules/_botbuilder_d_
+[calling_sdk]: http://docs.botframework.com/node/builder/calling-reference/modules/_botbuilder_d_
+[chat_sdk]: http://docs.botframework.com/node/builder/chat-reference/modules/_botbuilder_d_

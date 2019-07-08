@@ -9,47 +9,47 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 12/13/2017
 monikerRange: azure-bot-service-3.0
-ms.openlocfilehash: 26b23c9beda872b71defd779563531328b63a0c8
-ms.sourcegitcommit: b15cf37afc4f57d13ca6636d4227433809562f8b
+ms.openlocfilehash: ebbaa7473ec44ef9369df25a41873583abc28034
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 01/11/2019
-ms.locfileid: "54225372"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67405665"
 ---
 # <a name="recognize-intents-and-entities-with-luis"></a>使用 LUIS 识别意向和实体 
 
 [!INCLUDE [pre-release-label](../includes/pre-release-label-v3.md)]
 
-本文以笔记记录机器人为例，演示语言理解 ([LUIS][LUIS]) 如何帮助机器人正确响应自然语言输入。 机器人通过识别用户意向来检测他们想要执行的操作。 根据口头或文本输入，或者话语确定此意向。 意向将话语映射到机器人采取的操作。 例如，笔记记录机器人识别到 `Notes.Create` 意向，便调用创建笔记功能。 机器人可能还需要提取实体，这些实体是话语中的重要字词。 在笔记记录机器人的示例中，`Notes.Title` 实体标识每条笔记的标题。
+本文以笔记记录机器人为例，演示语言理解 ([LUIS][LUIS]) 如何帮助机器人正确响应自然语言输入。 机器人通过识别用户意向来检测他们想要执行的操作  。 根据口头或文本输入，或者话语确定此意向  。 意向将话语映射到机器人采取的操作。 例如，笔记记录机器人识别到 `Notes.Create` 意向，便调用创建笔记功能。 机器人可能还需要提取实体，这些实体是话语中的重要字词  。 在笔记记录机器人的示例中，`Notes.Title` 实体标识每条笔记的标题。
 
 ## <a name="create-a-language-understanding-bot-with-bot-service"></a>使用机器人服务创建语言理解机器人
 
-1. 在 [Azure 门户](https://portal.azure.com)上的菜单边栏选项卡中选择“创建新资源”，然后单击“全部查看”。
+1. 在 [Azure 门户](https://portal.azure.com)上的菜单边栏选项卡中选择“创建新资源”，然后单击“全部查看”   。
 
     ![新建资源](../media/bot-builder-dotnet-use-luis/bot-service-creation.png)
 
-2. 在搜索框中，搜索“Web 应用机器人”。 
+2. 在搜索框中，搜索“Web 应用机器人”  。 
 
     ![新建资源](../media/bot-builder-dotnet-use-luis/bot-service-selection.png)
 
-3. 在“机器人服务”边栏选项卡中提供所需的信息，然后单击“创建”。 此操作可创建机器人服务和 LUIS 应用并将其部署到 Azure。 
-   * 将“应用名称”设置为机器人名称。 将机器人部署到云（例如，mynotesbot.azurewebsites.net）时，该名称用作子域。 此名称还用作与机器人关联的 LUIS 应用的名称。 复制该名称，稍后将用它查找与机器人关联的 LUIS 应用。
-   * 选择“订阅”、“[资源组](/azure/azure-resource-manager/resource-group-overview)”、“应用服务计划”和“[位置](https://azure.microsoft.com/en-us/regions/)”。
-   * 对于“机器人模板”字段，选择“语言理解(C#)”模板。
+3. 在“机器人服务”边栏选项卡中提供所需的信息，然后单击“创建”   。 此操作可创建机器人服务和 LUIS 应用并将其部署到 Azure。 
+   * 将“应用名称”设置为机器人名称  。 将机器人部署到云（例如，mynotesbot.azurewebsites.net）时，该名称用作子域。 此名称还用作与机器人关联的 LUIS 应用的名称。 复制该名称，稍后将用它查找与机器人关联的 LUIS 应用。
+   * 选择“订阅”、“[资源组](/azure/azure-resource-manager/resource-group-overview)”、“应用服务计划”和“[位置](https://azure.microsoft.com/regions/)”。
+   * 对于“机器人模板”字段，选择“语言理解(C#)”模板   。
 
      ![“机器人服务”边栏选项卡](../media/bot-builder-dotnet-use-luis/bot-service-setting-callout-template.png)
 
    * 选中此框以确认服务条款。
 
 4. 确认已部署机器人服务。
-    * 单击“通知”（Azure 门户顶部边缘的钟形图标）。 通知将从“部署已开始”更改为“部署已成功”。
-    * 通知更改为“部署已成功”后，在通知上单击“转到资源”。
+    * 单击“通知”（Azure 门户顶部边缘的钟形图标）。 通知将从“部署已开始”更改为“部署已成功”   。
+    * 通知更改为“部署已成功”后，在通知上单击“转到资源”   。
 
 ## <a name="try-the-bot"></a>试用机器人
 
-查看“通知”，确认已部署机器人。 通知将从“正在进行部署...”更改为“部署已成功”。 单击“转到资源”按钮，打开机器人的资源边栏选项卡。
+查看“通知”，确认已部署机器人  。 通知将从“正在进行部署...”更改为“部署已成功”   。 单击“转到资源”按钮，打开机器人的资源边栏选项卡  。
 
-注册机器人后，单击“通过网页聊天执行测试”，打开“网页聊天”窗格。 在网页聊天中键入“你好”。
+注册机器人后，单击“通过网页聊天执行测试”，打开“网页聊天”窗格  。 在网页聊天中键入“你好”。
 
   ![通过网上聊天测试机器人](../media/bot-builder-dotnet-use-luis/bot-service-web-chat.png)
 
@@ -57,15 +57,15 @@ ms.locfileid: "54225372"
 
 ## <a name="modify-the-luis-app"></a>修改 LUIS 应用
 
-使用用于登录 Azure 的相同帐户登录 [https://www.luis.ai](https://www.luis.ai)。 单击“我的应用”。 在应用列表中找到所需应用，该应用的开头为创建机器人服务时在“机器人服务”边栏选项卡的“应用名称”中指定的名称。 
+使用用于登录 Azure 的相同帐户登录 [https://www.luis.ai](https://www.luis.ai)。 单击“我的应用”  。 在应用列表中找到所需应用，该应用的开头为创建机器人服务时在“机器人服务”边栏选项卡的“应用名称”中指定的名称   。 
 
 LUIS 应用起初有 4 个意向：Cancel、Greeting、Help 和 None。 <!-- picture -->
 
 以下步骤添加 Note.Create、Note.ReadAloud 和 Note.Delete 意向： 
 
-1. 单击页面左下角的“预生成域”。 找到“Note”域，然后单击“添加域”。
+1. 单击页面左下角的“预生成域”  。 找到“Note”域，然后单击“添加域”   。
 
-2. 本教程不会使用“Note”预生成域中包含的所有意向。 在“意向”页中，单击以下每个意向名称，然后单击“删除意向”按钮。
+2. 本教程不会使用“Note”预生成域中包含的所有意向  。 在“意向”页中，单击以下每个意向名称，然后单击“删除意向”按钮   。
    * Note.ShowNext
    * Note.DeleteNoteItem
    * Note.Confirm
@@ -84,12 +84,12 @@ LUIS 应用起初有 4 个意向：Cancel、Greeting、Help 和 None。 <!-- pic
 
      ![LUIS 应用中显示的意向](../media/bot-builder-dotnet-use-luis/luis-intent-list.png)
 
-3. 单击右上角的“训练”按钮，训练应用。
-4. 单击顶部导航栏中的“发布”，打开“发布”页。 单击“发布到生产槽”按钮。 发布成功后，复制“发布应用”页的“终结点”列中显示的 URL（位于以资源名称 Starter_Key 开头的行中）。 保存此 URL 以便稍后在机器人代码中使用。 该 URL 的格式类似于以下示例：`https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx?subscription-key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&timezoneOffset=0&verbose=true&q=`
+3. 单击右上角的“训练”按钮，训练应用  。
+4. 单击顶部导航栏中的“发布”，打开“发布”页   。 单击“发布到生产槽”按钮  。 发布成功后，复制“发布应用”页的“终结点”列中显示的 URL（位于以资源名称 Starter_Key 开头的行中）   。 保存此 URL 以便稍后在机器人代码中使用。 该 URL 的格式类似于以下示例：`https://westus.api.cognitive.microsoft.com/luis/v2.0/apps/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx?subscription-key=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&timezoneOffset=0&verbose=true&q=`
 
 ## <a name="modify-the-bot-code"></a>修改机器人代码
 
-单击“生成”，然后单击“打开联机代码编辑器”。
+单击“生成”，然后单击“打开联机代码编辑器”   。
     ![打开联机代码编辑器](../media/bot-builder-dotnet-use-luis/bot-service-build.png)
 
 在代码编辑器中，打开 `BasicLuisDialog.cs`。 它包含以下用于处理 LUIS 应用中的意向的代码。
@@ -359,13 +359,13 @@ using System.Collections.Generic;
 ```
 
 ## <a name="build-the-bot"></a>生成机器人
-在代码编辑器中右键单击“build.cmd”，然后选择“从控制台运行”。
+在代码编辑器中右键单击“build.cmd”，然后选择“从控制台运行”   。
 
    ![运行 build.cmd](../media/bot-builder-dotnet-use-luis/bot-service-run-console.png)
 
 ## <a name="test-the-bot"></a>测试机器人
 
-在 Azure 门户中，单击“通过网上聊天执行测试”以测试机器人。 尝试键入“创建笔记”、“阅读笔记”和“删除笔记”等消息。
+在 Azure 门户中，单击“通过网上聊天执行测试”以测试机器人  。 尝试键入“创建笔记”、“阅读笔记”和“删除笔记”等消息。
    ![通过网上聊天测试笔记机器人](../media/bot-builder-dotnet-use-luis/bot-service-test-notebot.png)
 
 > [!TIP]

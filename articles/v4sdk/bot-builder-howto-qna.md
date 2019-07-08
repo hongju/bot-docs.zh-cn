@@ -10,12 +10,12 @@ ms.service: bot-service
 ms.subservice: cognitive-services
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 09b8261ea69e04345cb9fb2d80542ae754efdc25
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 15581daa570b9e51ff8f7bec93d16deebcd71d45
+ms.sourcegitcommit: 93508adfb79523f610a919b361fc34f5c8dd3eff
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215377"
+ms.lasthandoff: 07/02/2019
+ms.locfileid: "67533381"
 ---
 # <a name="use-qna-maker-to-answer-questions"></a>使用 QnA Maker 回答问题
 
@@ -29,7 +29,7 @@ QnA Maker 提供基于数据的聊天式问答层。 这样机器人就可以向
 
 - 本文中的代码基于 QnA Maker 示例。 需要以 **[CSharp](https://aka.ms/cs-qna) 或 [JavaScript](https://aka.ms/js-qna-sample)** 编写的示例的副本。
 - [QnA Maker](https://www.qnamaker.ai/) 帐户
-- 了解[机器人基础知识](bot-builder-basics.md)、[QnA Maker](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/overview/overview) 和[管理机器人资源](bot-file-basics.md)。
+- 了解[机器人基础知识](bot-builder-basics.md)、[QnA Maker](https://docs.microsoft.com/azure/cognitive-services/qnamaker/overview/overview) 和[管理机器人资源](bot-file-basics.md)。
 
 ## <a name="about-this-sample"></a>关于此示例
 
@@ -49,9 +49,9 @@ QnA Maker 提供基于数据的聊天式问答层。 这样机器人就可以向
 用户的输入将发送到知识库，而返回的最佳解答将回显给用户。
 
 ## <a name="create-a-qna-maker-service-and-publish-a-knowledge-base"></a>创建 QnA Maker 服务并发布知识库
-第一步是创建 QnA Maker 服务。 按照 QnA Maker [文档](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure)中列出的步骤在 Azure 中创建此服务。
+第一步是创建 QnA Maker 服务。 按照 QnA Maker [文档](https://docs.microsoft.com/azure/cognitive-services/qnamaker/how-to/set-up-qnamaker-service-azure)中列出的步骤在 Azure 中创建此服务。
 
-接下来，使用示例项目的 CognitiveModels 文件夹中的 `smartLightFAQ.tsv` 文件创建一个知识库。 QnA Maker 文档中列出了创建、训练和发布 QnA Maker [知识库](https://docs.microsoft.com/en-us/azure/cognitive-services/qnamaker/quickstarts/create-publish-knowledge-base)的步骤。 在执行以下步骤的过程中，请将知识库命名为 `qna`，并使用 `smartLightFAQ.tsv` 文件来填充知识库。
+接下来，使用示例项目的 CognitiveModels 文件夹中的 `smartLightFAQ.tsv` 文件创建一个知识库。 QnA Maker 文档中列出了创建、训练和发布 QnA Maker [知识库](https://docs.microsoft.com/azure/cognitive-services/qnamaker/quickstarts/create-publish-knowledge-base)的步骤。 在执行以下步骤的过程中，请将知识库命名为 `qna`，并使用 `smartLightFAQ.tsv` 文件来填充知识库。
 
 > 注意。 也可以参考本文来访问用户自己开发的 QnA Maker 知识库。
 
@@ -83,9 +83,9 @@ QnA Maker 提供基于数据的聊天式问答层。 这样机器人就可以向
   "MicrosoftAppId": "",
   "MicrosoftAppPassword": "",
   
-  "QnA-sample-qna-kbId": "<knowledge-base-id>",
-  "QnA-sample-qna-endpointKey": "<your-endpoint-key>",
-  "QnA-sample-qna-hostname": "<your-hostname>"
+  "QnAKnowledgebaseId": "<knowledge-base-id>",
+  "QnAAuthKey": "<your-endpoint-key>",
+  "QnAEndpointHostName": "<your-hostname>"
 }
 ```
 
@@ -114,7 +114,8 @@ QnAEndpointHostName="<your-hostname>"
 
 在 **QnABot.cs** 的 `OnMessageActivityAsync` 方法中，我们创建一个 QnAMaker 实例。 `QnABot` 类也是在其中拉入连接信息名称（保存在上面的 `appsettings.json` 中）的地方。 如果在设置文件中为知识库连接信息选择了其他名称，请务必根据你所选择的名称在此更新这些名称。
 
-**Bots/QnABot.cs** [!code-csharp[qna connection](~/../botbuilder-samples/samples/csharp_dotnetcore/11.qnamaker/Bots/QnABot.cs?range=32-37)]
+**Bots/QnABot.cs**  
+[!code-csharp[qna connection](~/../botbuilder-samples/samples/csharp_dotnetcore/11.qnamaker/Bots/QnABot.cs?range=32-37)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 
@@ -135,7 +136,8 @@ QnAEndpointHostName="<your-hostname>"
 
 当机器人需要来自 QnAMaker 的答案时，请通过机器人代码调用 `GetAnswersAsync()`，以便根据当前的上下文获取适当的答案。 若要访问自己的知识库，请更改下面的“找不到答案”消息，为用户提供有用的说明。 
 
-**QnABot.cs** [!code-csharp[qna connection](~/../botbuilder-samples/samples/csharp_dotnetcore/11.qnamaker/Bots/QnABot.cs?range=43-52)]
+**QnABot.cs**  
+[!code-csharp[qna connection](~/../botbuilder-samples/samples/csharp_dotnetcore/11.qnamaker/Bots/QnABot.cs?range=43-52)]
 
 ## <a name="javascripttabjs"></a>[JavaScript](#tab/js)
 

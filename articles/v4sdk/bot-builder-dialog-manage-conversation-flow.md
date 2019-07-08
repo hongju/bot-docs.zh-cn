@@ -10,25 +10,29 @@ ms.service: bot-service
 ms.subservice: sdk
 ms.date: 05/23/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 680d9148b463bbb5d10f4a6a06cc7b32b824b66e
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 0f29520b993d12ce01c65cd29517b3a4b2aada84
+ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215423"
+ms.lasthandoff: 06/26/2019
+ms.locfileid: "67404557"
 ---
 # <a name="implement-sequential-conversation-flow"></a>实现顺序聊天流
 
 [!INCLUDE[applies-to](../includes/applies-to.md)]
 
-通过发布问题来收集信息是机器人与用户交互的主要方式之一。 使用对话库可以轻松提问和验证响应，以确保响应与特定的数据类型匹配或符合自定义的验证规则。
+通过发布问题来收集信息是机器人与用户交互的主要方式之一。 对话库提供有用的内置功能（如 prompt 类），以轻松提问和验证答复，从而确保它与特定数据类型匹配或符合自定义验证规则  。 
 
 可以使用对话库来管理简单的和复杂的聊天流。 在简单的交互中，机器人将按固定的顺序运行一组步骤，直到聊天完成。 一般情况下，当机器人需要从用户收集信息时，对话就非常有用。 本主题详细介绍如何通过创建提示并从瀑布对话调用这些提示来实现简单的聊天流。 
 
+> [!TIP]
+> 有关如何在不使用对话库的情况下编写自己的提示的示例，请参阅[创建自己的提示来收集用户输入](bot-builder-primitive-prompts.md)一文。 
+
+
 ## <a name="prerequisites"></a>先决条件
 
-- 了解[机器人基础知识][concept-basics]、[管理状态][concept-state]和[对话库][concept-dialogs]。
-- 以 [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample] 编写的**多轮次提示**示例副本。
+- 了解[机器人基础知识][concept-basics]、, [managing state][concept-state]和[对话库][概念对话]。
+-  使用 [**CSharp**][cs-sample] or [**JavaScript**][js-sample] 的多轮次提示示例的副本。
 
 ## <a name="about-this-sample"></a>关于此示例
 
@@ -63,6 +67,8 @@ ms.locfileid: "66215423"
 [!code-csharp[Constructor snippet](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Dialogs/UserProfileDialog.cs?range=22-41)]
 
 接下来，实现该对话使用的步骤。 若要使用提示，请从对话中的某个步骤调用它，然后使用 `stepContext.Result` 检索下一步骤中的提示结果。 在幕后，提示是由两个步骤组成的对话。 首先，提示会请求输入；其次，它会返回有效值，或者使用重新提示从头开始，直到收到有效的输入为止。
+
+
 
 应始终从瀑布步骤返回非 null 的 `DialogTurnResult`。 否则，对话可能不按设计意图运行。 此处演示了瀑布对话中 `NameStepAsync` 的实现。
 
