@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/23/2019
+ms.date: 07/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: bc11e5a4a5dec1a9588254b3a9d28d56ad163fb4
-ms.sourcegitcommit: 409e8f89a1e9bcd0e69a29a313add424f66a81e1
+ms.openlocfilehash: b7ffa16c2f0a00043b12faec1d31bbfe5bfa250f
+ms.sourcegitcommit: b498649da0b44f073dc5b23c9011ea2831edb31e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/17/2019
-ms.locfileid: "67153056"
+ms.lasthandoff: 07/05/2019
+ms.locfileid: "67587477"
 ---
 # <a name="create-advanced-conversation-flow-using-branches-and-loops"></a>使用分支和循环创建高级聊天流
 
@@ -27,8 +27,8 @@ ms.locfileid: "67153056"
 
 ## <a name="prerequisites"></a>先决条件
 
-- 了解[机器人基础知识][concept-basics]、[管理状态][concept-state]、[对话库][concept-dialogs]，以及如何[实现顺序聊天流][simple-dialog]。
-- 以 [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample] 编写的复杂对话示例副本。
+- 了解[机器人基础知识][concept-basics], [managing state][concept-state]、[对话库][concept-dialogs]以及如何[实现有序聊天流][simple-dialog]。
+- 以 [**CSharp**][cs-sample] or [**JavaScript**][js-sample] 编写的复杂对话示例副本。
 
 ## <a name="about-this-sample"></a>关于此示例
 
@@ -186,19 +186,21 @@ review-selection 对话从 top-level 对话的 `startSelectionStep` 启动，包
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-**DialogExtensions.cs**
+<!-- **DialogExtensions.cs**
 
-在此示例中，我们定义了一个 `Run` 帮助程序方法，用于创建和访问对话上下文。
-由于组件对话定义内部对话集，因此我们必须创建可让消息处理程序代码看到的外部对话集，并使用它来创建对话上下文。
+In this sample, we've defined a `Run` helper method that we will use to create and access the dialog context.
+Since component dialog defines an inner dialog set, we have to create an outer dialog set that's visible to the message handler code, and use that to create a dialog context.
 
-- `dialog` 是机器人的主组件对话。
-- `turnContext` 是机器人的当前轮次上下文。
+- `dialog` is the main component dialog for the bot.
+- `turnContext` is the current turn context for the bot.
 
 [!code-csharp[Run method](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/DialogExtensions.cs?range=13-24)]
 
+-->
+
 **Bots\DialogBot.cs**
 
-消息处理程序调用 `Run` 帮助程序方法来管理对话，而我们已重写轮次处理程序，可以保存在轮次中对聊天和用户状态所做的任何更改。 基 `OnTurnAsync` 会调用 `OnMessageActivityAsync` 方法，确保在该轮次结束时进行保存调用。
+消息处理程序调用 `RunAsync` 方法来管理对话，而我们已重写轮次处理程序，可以保存在轮次中对聊天和用户状态所做的任何更改。 基 `OnTurnAsync` 会调用 `OnMessageActivityAsync` 方法，确保在该轮次结束时进行保存调用。
 
 [!code-csharp[Overrides](~/../botbuilder-samples/samples/csharp_dotnetcore/43.complex-dialog/Bots/DialogBot.cs?range=33-48&highlight=5-7)]
 

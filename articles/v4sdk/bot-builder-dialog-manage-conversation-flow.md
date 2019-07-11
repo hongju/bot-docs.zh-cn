@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/23/2019
+ms.date: 07/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 0f29520b993d12ce01c65cd29517b3a4b2aada84
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.openlocfilehash: c3c116eec8222ce50cd7dde672cc86f9765a3f97
+ms.sourcegitcommit: b498649da0b44f073dc5b23c9011ea2831edb31e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67404557"
+ms.lasthandoff: 07/05/2019
+ms.locfileid: "67587488"
 ---
 # <a name="implement-sequential-conversation-flow"></a>实现顺序聊天流
 
@@ -122,29 +122,13 @@ ms.locfileid: "67404557"
 
 [!code-javascript[user profile](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/userProfile.js?range=4-10)]
 
-**Dialogs\UserProfileDialog.cs**
+**dialogs\userProfileDialog.js**
 
 最后一个步骤检查前一瀑布步骤中调用的对话返回的 `step.result`。 如果返回值为 true，则我们将使用用户个人资料访问器来获取和更新用户个人资料。 为了获取用户个人资料，我们将调用 `get` 方法，然后设置 `userProfile.transport`、`userProfile.name` 和 `userProfile.age` 属性的值。 最后，在调用用于结束对话的 `endDialog` 之前汇总用户的信息。 结束对话会从对话堆栈中弹出该对话，并将可选结果返回到该对话的父级。 父级是启动了刚刚结束的对话的对话或方法。
 
 [!code-javascript[summary step](~/../botbuilder-samples/samples/javascript_nodejs/05.multi-turn-prompt/dialogs/userProfileDialog.js?range=115-136&highlight=4-8,20-21)]
 
----
-
-## <a name="create-the-extension-method-to-run-the-waterfall-dialog"></a>创建用于运行瀑布对话的扩展方法
-
-# <a name="ctabcsharp"></a>[C#](#tab/csharp)
-
-我们定义了一个 `Run` 扩展方法用于创建和访问对话上下文。 此处的 `accessor` 是对话状态属性的状态属性访问器，`dialog` 是用户个人资料组件对话。 由于组件对话定义内部对话集，因此我们必须创建可让消息处理程序代码看到的外部对话集，并使用它来创建对话上下文。
-
-对话上下文是通过调用 `CreateContext` 方法创建的，用于从机器人轮次处理程序内部来与对话集交互。 对话上下文包含当前轮次上下文、父对话和对话状态。对话状态提供一种方法用于在对话中保留信息。
-
-借助对话上下文可以使用对话的字符串 ID 来启动该对话，或继续当前的对话（例如，包含多个步骤的瀑布对话）。 对话上下文将传递到机器人的所有对话和瀑布步骤。
-
-**DialogExtensions.cs**
-
-[!code-csharp[Run method](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/DialogExtensions.cs?range=13-24)]
-
-# <a name="javascripttabjavascript"></a>[JavaScript](#tab/javascript)
+**创建用于运行瀑布对话的扩展方法**
 
 我们在 `userProfileDialog` 中定义了一个 `run` 帮助器方法用于创建和访问对话上下文。 此处的 `accessor` 是对话状态属性的状态属性访问器，`this` 是用户个人资料组件对话。 由于组件对话定义内部对话集，因此我们必须创建可让消息处理程序代码看到的外部对话集，并使用它来创建对话上下文。
 
@@ -162,7 +146,7 @@ ms.locfileid: "67404557"
 
 **Bots\DialogBot.cs**
 
-`OnMessageActivityAsync` 处理程序使用扩展方法来启动或继续对话。 在 `OnTurnAsync` 中，我们使用了机器人的状态管理对象将所有状态更改保存到存储中。 （`ActivityHandler.OnTurnAsync` 方法调用各种活动处理程序方法，例如 `OnMessageActivityAsync`。 这样，在消息处理程序完成之后、轮次本身完成之前，我们将会保存状态。）
+`OnMessageActivityAsync` 处理程序使用 `RunAsync` 方法来启动或继续对话。 在 `OnTurnAsync` 中，我们使用了机器人的状态管理对象将所有状态更改保存到存储中。 （`ActivityHandler.OnTurnAsync` 方法调用各种活动处理程序方法，例如 `OnMessageActivityAsync`。 这样，在消息处理程序完成之后、轮次本身完成之前，我们将会保存状态。）
 
 [!code-csharp[overrides](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Bots/DialogBot.cs?range=33-48&highlight=5-7)]
 

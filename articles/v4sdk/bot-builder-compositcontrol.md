@@ -8,14 +8,14 @@ manager: kamrani
 ms.topic: article
 ms.service: bot-service
 ms.subservice: sdk
-ms.date: 05/23/2019
+ms.date: 07/05/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 1f9070b0fd3b4e88eb7d752f5a73c4374bfe8415
-ms.sourcegitcommit: ea64a56acfabc6a9c1576ebf9f17ac81e7e2a6b7
+ms.openlocfilehash: 77f1c154af5821b1e476546f307a01be27f568c0
+ms.sourcegitcommit: b498649da0b44f073dc5b23c9011ea2831edb31e
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 05/24/2019
-ms.locfileid: "66215526"
+ms.lasthandoff: 07/05/2019
+ms.locfileid: "67587494"
 ---
 # <a name="reuse-dialogs"></a>重复使用对话
 
@@ -25,8 +25,8 @@ ms.locfileid: "66215526"
 
 ## <a name="prerequisites"></a>先决条件
 
-- 了解[机器人基础知识][concept-basics]、[对话库][concept-dialogs]、以及如何[管理聊天][simple-flow]。
-- 以 [**CSharp**][cs-sample] 或 [**JavaScript**][js-sample] 编写的多轮次提示示例副本。
+- 了解[机器人基础知识][concept-basics], the [dialogs library][concept-dialogs]，以及如何[管理聊天][simple-flow]。
+- 使用 [**CSharp**][cs-sample] or [**JavaScript**][js-sample] 的多轮次提示示例的副本。
 
 ## <a name="about-the-sample"></a>关于本示例
 
@@ -106,15 +106,9 @@ ms.locfileid: "66215526"
 
 # <a name="ctabcsharp"></a>[C#](#tab/csharp)
 
-**DialogExtensions.cs**
+**Bots\DialoBot.cs**
 
-在示例中，这是使用 `Run` 扩展方法完成的，如下所示。
-
-[!code-csharp[Run method](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/DialogExtensions.cs?range=13-24)]
-
-**Bots\DialogBot.cs**
-
-`Run` 方法从机器人的 `OnMessageActivityAsync` 方法中调用。
+在该示例中，这是使用从机器人的 `OnMessageActivityAsync` 方法调用的 `RunAsync` 方法完成的。
 
 [!code-csharp[OnMessageActivityAsync](~/../botbuilder-samples/samples/csharp_dotnetcore/05.multi-turn-prompt/Bots/DialogBot.cs?range=42-48)]
 
