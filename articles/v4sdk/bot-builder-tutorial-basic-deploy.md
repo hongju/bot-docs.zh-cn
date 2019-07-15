@@ -99,7 +99,7 @@ az deployment create --name "name-of-deployment" --template-file "template-with-
 
 | 选项   | 说明 |
 |:---------|:------------|
-| 名称 | 部署的易记名称。 |
+| name | 部署的易记名称。 |
 | template-file | ARM 模板的路径。 可以使用项目的 `deploymentTemplates` 文件夹中提供的 `template-with-new-rg.json` 文件。 |
 | location |位置。 `az account list-locations` 中的值。 可以使用 `az configure --defaults location=<location>` 配置默认位置。 |
 | parameters | 提供部署参数值。 运行 `az ad app create` 命令后获取的 `appId` 值。 `appSecret` 是在上一步骤中提供的密码。 `botId` 参数应全局唯一，用作不可变的机器人 ID。 此参数还用于配置机器人的可变显示名称。 `botSku` 是定价层，可以是 F0（免费）或 S1（标准）。 `newAppServicePlanName` 是应用服务计划的名称。 `newWebAppName` 要创建的 Web 应用的名称。 `groupName` 要创建的 Azure 资源组的名称。 `groupLocation` 是 Azure 资源组的位置。 `newAppServicePlanLocation` 是应用服务计划的位置。 |
@@ -130,7 +130,7 @@ az group deployment create --name "name-of-deployment" --resource-group "name-of
 
 | 选项   | 说明 |
 |:---------|:------------|
-| 名称 | 部署的易记名称。 |
+| name | 部署的易记名称。 |
 | resource-group | Azure 资源组的名称 |
 | template-file | ARM 模板的路径。 可以使用项目的 `deploymentTemplates` 文件夹中提供的 `template-with-preexisting-rg.json` 文件。 |
 | location |位置。 `az account list-locations` 中的值。 可以使用 `az configure --defaults location=<location>` 配置默认位置。 |
@@ -183,7 +183,7 @@ az webapp deployment source config-zip --resource-group "new-group-name" --name 
 | 选项   | 说明 |
 |:---------|:------------|
 | resource-group | 先前在 Azure 中创建的资源组名称。 |
-| 名称 | 先前使用的 Web 应用的名称。 |
+| name | 先前使用的 Web 应用的名称。 |
 | src  | 创建的压缩文件的路径。 |
 
 ### <a name="3-test-in-web-chat"></a>3.通过网页聊天执行测试
