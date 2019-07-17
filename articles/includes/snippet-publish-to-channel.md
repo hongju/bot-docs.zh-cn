@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: 8484df6b140447d175805b396a81832c059c3b76
-ms.sourcegitcommit: a295a90eac461f8b96770dd902ba44919acf33fc
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/26/2019
-ms.locfileid: "67405203"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68230536"
 ---
 ### <a name="cortana"></a>Cortana
 机器人可以从[仪表板](https://aka.ms/cortana-publish)发布到 Cortana，用于为 Cortana 技能提供支持。 发布机器人就是提交机器人进行审核。 Cortana 技能可以部署给你自己使用、部署给一个小组使用，或者发布给全世界使用。

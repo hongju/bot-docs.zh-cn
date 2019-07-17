@@ -1,12 +1,12 @@
 ---
 ms.openlocfilehash: 0891b9652154f8ed086cc45ce6018aa0be1a67b8
-ms.sourcegitcommit: aea57820b8a137047d59491b45320cf268043861
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/22/2019
-ms.locfileid: "59905153"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68230574"
 ---
-若要将本地 JavaScript 机器人发布回 Azure，必须首先手动创建单个压缩的文件，其中包含用于在本地生成和运行机器人的所有文件。 这包括下载到 `node_modules` 文件夹中的所有 npm 库。 创建此 zip 文件时，请确保所用根目录是 index.js 文件所在的目录。
+若要将本地 JavaScript 机器人发布回 Azure，必须首先手动创建单个压缩的文件，其中包含用于在本地生成和运行机器人的所有文件。 这包括下载到 `node_modules` 文件夹中的所有 npm 库。 创建此 zip 文件时，请确保所用根目录是 index.js 文件所在的目录。 
 
 创建包含机器人的所有源代码的 zip 文件以后，请打开一个命令提示符窗口并运行下述 _Az cli_ 命令。 
 

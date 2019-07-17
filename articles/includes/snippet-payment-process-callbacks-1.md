@@ -1,10 +1,10 @@
 ---
 ms.openlocfilehash: f09d0a7b81e3cfa69fd42356faf27f79e3bc038c
-ms.sourcegitcommit: 980612a922b8290b2faadaca193496c4117e415a
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 04/26/2019
-ms.locfileid: "64563647"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68230678"
 ---
 收到“送货地址更新”或“送货选项更新”回调时，机器人将从 `Activity.Value` 属性中的客户端获得付款详细信息的当前状态。
 作为商家，你应该将这些回调视为静态，根据给定的输入付款详细信息计算某些输出付款详细信息。如果客户端提供的输入状态因故无效，则操作会失败。 

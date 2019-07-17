@@ -1,3 +1,11 @@
+---
+ms.openlocfilehash: c19287b38a2c807e6675af2c3f7e1824eb7eab8e
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
+ms.translationtype: HT
+ms.contentlocale: zh-CN
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68230772"
+---
 某些通道提供无法仅使用消息文本和附件实现的功能。 若要实现特定于通道的功能，可以将本机元数据传递给活动对象的_通道数据_属性。 例如，机器人可使用通道数据属性来指示 Telegram 发送贴纸或指示 Office365 发送电子邮件。
 
 本文介绍如何使用消息活动的通道数据属性来实现此通道特定的功能：
@@ -24,7 +32,7 @@
 | bccRecipients | 添加到邮件“Bcc(密件抄送)”字段的用分号 (;) 分隔的电子邮件地址字符串。 |
 | ccRecipients | 添加到邮件“Cc(抄送)”字段的用分号 (;) 分隔的电子邮件地址字符串。 |
 | htmlBody | 用于指定电子邮件正文的 HTML 文档。 要了解受支持的 HTML 元素和特性，请参阅通道的相关文档。 |
-| importance | 电子邮件的重要性级别。 有效值为 high、normal 和 low。 默认值为 normal。 |
+| importance | 电子邮件的重要性级别。 有效值为 high、normal 和 low    。 默认值为 normal  。 |
 | subject | 电子邮件的主题。 要了解字段要求，请参阅通道的相关文档。 |
 | toRecipients | 添加到邮件“收件人”字段的用分号 (;) 分隔的电子邮件地址字符串。 |
 
@@ -56,7 +64,7 @@
 若要创建完全保真的 Slack 消息，请将活动对象的通道数据属性设置为 JSON 对象，该对象指定 <a href="https://api.slack.com/docs/messages" target="_blank">Slack 消息</a>、<a href="https://api.slack.com/docs/message-attachments" target="_blank">Slack 附件</a>和/或 <a href="https://api.slack.com/docs/message-buttons" target="_blank">Slack 按钮</a>。
 
 > [!NOTE]
-> 要使用户能在 Slack 消息中使用按钮，必须在[将机器人连接](../bot-service-manage-channels.md)到 Slack 通道时启用“交互式消息”。
+> 要使用户能在 Slack 消息中使用按钮，必须在[将机器人连接](../bot-service-manage-channels.md)到 Slack 通道时启用“交互式消息”  。
 
 此代码片段显示了自定义 Slack 消息的 `channelData` 属性示例。
 
@@ -242,7 +250,7 @@
 
 | 属性 | 说明 |
 |----|----|
-| notification_type | 通知的类型（例如 REGULAR、SILENT_PUSH 和 NO_PUSH）。
+| notification_type | 通知的类型（例如 REGULAR、SILENT_PUSH 和 NO_PUSH）    。
 | attachment | 附件（用于指定图像、视频或其他多媒体类型）或模板化附件（如收据）。 |
 
 > [!NOTE]
@@ -269,7 +277,7 @@
 
 | 属性 | 说明 |
 |----|----|
-| 方法 | 要调用的 Telegram 机器人 API 方法。 |
+| method | 要调用的 Telegram 机器人 API 方法。 |
 | parameters | 已指定的方法的参数。 |
 
 支持以下 Telegram 方法： 
