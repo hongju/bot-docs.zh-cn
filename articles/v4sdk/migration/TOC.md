@@ -1,5 +1,6 @@
-<!--# [Migration overview](migratration-overview.md)-->
+# [迁移概述](migration-overview.md)
 # [v3 和 v4 .NET SDK 之间的差异](migration-about.md)
+# [V3 和 v4 JavaScript SDK 之间的差异](migration-about-javascript.md)
 # [.NET 迁移快速参考](net-migration-quickreference.md)
 # [JavaScript 迁移快速参考](javascript-migration-quickreference.md)
 # [将 .NET v3 机器人迁移到 .NET Framework v4 机器人](conversion-framework.md)
