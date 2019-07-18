@@ -622,7 +622,7 @@ AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient =
 - ReplyToID
 - RecipientId
 - ConversationName
-- 区域设置
+- Locale
 - RecipientName（对于 PII 是可选的）
 - Text（对于 PII 是可选的）
 - Speak（对于 PII 是可选的）
@@ -638,7 +638,7 @@ AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient =
 - RecipientId
 - ConversationId
 - ConversationName
-- 区域设置
+- Locale
 - Text（对于 PII 是可选的）
 
 
@@ -664,7 +664,7 @@ AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient =
 - Channel（[从遥测初始化表达式](https://aka.ms/telemetry-initializer)）
 - ActivityType（[从遥测初始化表达式](https://aka.ms/telemetry-initializer)）
 - ApplicationId
-- 意向
+- Intent
 - IntentScore
 - Intent2 
 - IntentScore2 
