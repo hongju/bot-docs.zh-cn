@@ -605,7 +605,7 @@ AddDialog(new WaterfallDialog(ProfileDialog, waterfallSteps) { TelemetryClient =
   - 对应于 Bot Framework 协议的[源名称](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)字段。
   - 记录的属性名称为 `fromName`。
 
-- 区域设置
+- Locale
   - 对应于 Bot Framework 协议的[源名称](https://github.com/Microsoft/BotBuilder/blob/master/specs/botframework-activity/botframework-activity.md#from)字段。
   - 记录的属性名称为 `fromName`。
 
