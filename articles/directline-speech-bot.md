@@ -8,16 +8,16 @@ manager: kamrani
 ms.topic: get-started-article
 ms.service: bot-service
 ms.subservice: abs
-ms.date: 05/23/2019
+ms.date: 07/15/2019
 monikerRange: azure-bot-service-4.0
-ms.openlocfilehash: 73a675c6e54d676f74dad2df24b3668d5e4e98be
-ms.sourcegitcommit: a47183f5d1c2b2454c4a06c0f292d7c075612cdd
+ms.openlocfilehash: 898136303d2c5bbf6a8ce5ea5b87bff0bac0a5c7
+ms.sourcegitcommit: fa6e775dcf95a4253ad854796f5906f33af05a42
 ms.translationtype: HT
 ms.contentlocale: zh-CN
-ms.lasthandoff: 06/19/2019
-ms.locfileid: "67252377"
+ms.lasthandoff: 07/16/2019
+ms.locfileid: "68230765"
 ---
-## <a name="use-direct-line-speech-in-your-bot"></a>在机器人中使用 Direct Line 语音 
+# <a name="use-direct-line-speech-in-your-bot"></a>在机器人中使用 Direct Line 语音 
 
 [!INCLUDE [applies-to-v4](includes/applies-to.md)]
 
@@ -29,11 +29,24 @@ Direct Line 语音使用 Bot Framework 的一项新的基于 WebSocket 的流式
 
 2.  转到机器人项目的属性下的“管理 Nuget 包”。
 
-3.  如果尚未将其设置为源，请在右上角的 NuGet 源设置中将其添加为 `https://botbuilder.myget.org/F/experimental/api/v3/index.json` 源。
+3.  添加 `Microsoft.Bot.Builder.StreamingExtensions` 程序包。 需勾选“包括预发行版”框才能查看预览包。
 
-4.  选择此 NuGet 源，然后添加一个 `Microsoft.Bot.Protocol.StreamingExtensions.NetCore` 包。
+4.  接受任何提示，完成将包添加到项目的操作。
 
-5.  接受任何提示，完成将包添加到项目的操作。
+## <a name="set-the-speak-field-on-activities-you-want-spoken-to-the-user"></a>在需要向用户讲述的“活动”上设置“讲述”字段
+必须为机器人发送的需要向用户讲述的任何“活动”设置“讲述”字段。 
+
+```cs
+public IActivity Speak(string message)
+{
+    var activity = MessageFactory.Text(message);
+    string body = @"<speak version='1.0' xmlns='https://www.w3.org/2001/10/synthesis' xml:lang='en-US'>
+        <voice name='Microsoft Server Speech Text to Speech Voice (en-US, JessaNeural)'>" +
+        $"{message}" + "</voice></speak>";
+    activity.Speak = body;
+    return activity;
+}
+```
 
 ## <a name="option-1-update-your-net-core-bot-code-if-your-bot-has-a-botcontrollercs"></a>选项 1：如果机器人有 BotController.cs，请更新 .NET Core 机器人代码 
 在 Azure 门户中使用某个模板（例如 EchoBot）创建新的机器人时，会得到一个包含 ASP.NET MVC 控制器的机器人，该控制器会公开单个 POST 终结点。 以下说明介绍了如何对其进行扩展，使之还公开一个终结点，以便接受属于 GET 终结点的 WebSocket 流式处理终结点。
@@ -55,7 +68,7 @@ public async Task PostAsync()
 5.  添加新命名空间：
 
 ```cs
-using Microsoft.Bot.Protocol.StreamingExtensions.NetCore;
+using Microsoft.Bot.Builder.StreamingExtensions;
 ```
 
 6.  在 ConfigureServices 方法中，不使用 AdapterWithErrorHandler，改用相应 services.AddSingleton 调用中的 WebSocketEnabledHttpAdapter：
